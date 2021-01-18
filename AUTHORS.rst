@@ -2,12 +2,7 @@
 Credits
 =======
 
-Development Lead
-----------------
+Developers
+----------
 
 * Mika Pflüger <mika.pflueger@pik-potsdam.de>
-
-Contributors
-------------
-
-None yet. Why not be the first?

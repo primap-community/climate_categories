@@ -1,11 +1,7 @@
 #!/usr/bin/env python
-
 """Tests for `climate_categories` package."""
 
 import pytest
-
-
-from climate_categories import climate_categories
 
 
 @pytest.fixture

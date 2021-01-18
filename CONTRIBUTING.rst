@@ -64,7 +64,8 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
 
     $ git clone git@github.com:your_name_here/climate_categories.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper
+   installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv climate_categories
     $ cd climate_categories/
