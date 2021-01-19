@@ -18,27 +18,23 @@ Use cases
    the descendants
  * get a categorization as a pandas dataframe
 
-API
-~~~
+Open questions
+~~~~~~~~~~~~~~
 
-::
+ * What about categorizations with multiple codes meaning the same thing?
 
-    import climate_categories
-    climate_categories.cat  # dict mapping categorization names to objects
-    climate_categories.CategoryName  # categorization object
-    CategoryName.name: str
-    CategoryName.references: str  # Papers, URLs etc. describing the categorization
-    CategoryName.title: str  # a succinct description
-    CategoryName.comment: str  # a long-form description or notes
-    CategoryName.institution: str  # where the categorization originates
-    CategoryName.last_update: datetime.date  # last time the categorization was changed
-    CategoryName.version: Optional[str]  # if applicable, the version
-    CategoryName[code]  # translate a code into its meaning
-    CategoryName.keys()  # iterable of all codes in the categorization
-    CategoryName.hierarchical: bool  # are descendants and ancestors defined
-    CategoryName.total_sum: bool  # does the sum of direct descendants equal the total
-    CategoryName.level(code) -> int  # get the level of a code
-    CategoryName.parents(code) -> list[str]  # get the codes of direct parents
-    CategoryName.children(code) -> list[str]  # get the codes of direct children
-    CategoryName.df: pd.DataFrame  # code, meaning(, level) as a dataframe
-    climate_categories.find(code) -> list[(str, str)]  # find a code anywhere
+Definition
+----------
+
+Use cases
+~~~~~~~~~
+
+ * extend a categorization with some additional categories
+ * define a new categorization from a file
+ * define a new categorization programmatically
+
+Other use cases
+---------------
+
+ * Open: mapping between categorizations, e.g. different versions
+ * Visualization of categorizations

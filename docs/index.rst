@@ -8,6 +8,7 @@ Welcome to climate_category's documentation!
    readme
    installation
    usage
+   api_design
    api
    contributing
    credits
