@@ -29,11 +29,11 @@ Fix Bugs
 Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
 wanted" is open to whoever wants to implement it.
 
-Implement Features
-~~~~~~~~~~~~~~~~~~
+New categorizations
+~~~~~~~~~~~~~~~~~~~
 
-Look through the GitHub issues for features. Anything tagged with "enhancement"
-and "help wanted" is open to whoever wants to implement it.
+Especially welcome are new categorizations, which are not included in climate_categories
+so far. Pull requests and issue reports at github are very welcome!
 
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -45,14 +45,14 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/pik-primap/climate_categories/issues.
+The best way to send feedback is to file an issue at
+https://github.com/pik-primap/climate_categories/issues.
 
 If you are proposing a feature:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
-  are welcome :)
+* Remember that contributions are welcome :)
 
 Get Started!
 ------------
@@ -67,9 +67,9 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper
    installed, this is how you set up your fork for local development::
 
-    $ mkvirtualenv climate_categories
     $ cd climate_categories/
-    $ python setup.py develop
+    $ make virtual-environment
+    $ make install-pre-commit
 
 4. Create a branch for local development::
 
@@ -77,14 +77,13 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
-   tests, including testing other Python versions with tox::
+5. When you're done making changes, check that your changes pass our tests and
+   automatically format everything according to our rules::
 
-    $ flake8 climate_categories tests
-    $ python setup.py test or pytest
-    $ tox
+    $ make lint
 
-   To get flake8 and tox, just pip install them into your virtualenv.
+    Often, the linters can fix errors themselves, so if you get failures, run
+    ``make lint`` again to see if any errors need human intervention.
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -103,27 +102,16 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 3.5, 3.6, 3.7 and 3.8, and for PyPy. Check
-   https://travis-ci.com/pik-primap/climate_categories/pull_requests
-   and make sure that the tests pass for all supported Python versions.
-
-Tips
-----
-
-To run a subset of tests::
-
-$ pytest tests.test_climate_categories
+3. The pull request should work for Python 3.6, 3.7, and 3.8.
 
 
 Deploying
 ---------
 
 A reminder for the maintainers on how to deploy.
-Make sure all your changes are committed (including an entry in HISTORY.rst).
+Make sure all your changes are committed (including an entry in CAHNGELOG.rst).
 Then run::
 
 $ bump2version patch # possible: major / minor / patch
 $ git push
 $ git push --tags
-
-Travis will then deploy to PyPI if tests pass.

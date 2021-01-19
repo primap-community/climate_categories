@@ -6,3 +6,4 @@ Changelog
 ------------------
 
 * First release on PyPI.
+* Contains documentation and a stub API for querying, but no working code yet.

@@ -6,9 +6,6 @@ Climate categories
 .. image:: https://img.shields.io/pypi/v/climate_categories.svg
         :target: https://pypi.python.org/pypi/climate_categories
 
-.. image:: https://img.shields.io/travis/pik-primap/climate_categories.svg
-        :target: https://travis-ci.com/pik-primap/climate_categories
-
 .. image:: https://readthedocs.org/projects/climate-categories/badge/?version=latest
         :target: https://climate-categories.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
@@ -24,16 +21,7 @@ policy analysis in a nice Python package.
 * Documentation: https://climate-categories.readthedocs.io.
 
 
-Features
---------
+Status
+------
 
-* TODO
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_
-project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+This project is still in the API design phase, so nothing actually works right now.

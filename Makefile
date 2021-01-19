@@ -47,10 +47,7 @@ coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage report -m
 	venv/bin/coverage html
 
-docs: venv ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/climate_categories.rst
-	rm -f docs/modules.rst
-	venv/bin/sphinx-apidoc -o docs/generated/ climate_categories
+docs: venv ## generate Sphinx HTML documentation
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 

@@ -8,9 +8,9 @@ Welcome to climate_category's documentation!
    readme
    installation
    usage
-   generated/modules
+   api
    contributing
-   authors
+   credits
    changelog
 
 Indices and tables
