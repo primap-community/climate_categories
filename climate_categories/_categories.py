@@ -45,6 +45,7 @@ class Categorization:
     def __init__(
         self,
         *,
+        code_meanings: Dict[str, str],
         name: str,
         references: str,
         title: str,
@@ -54,6 +55,7 @@ class Categorization:
         version: Optional[str] = None,
         hierarchical: bool = False,
     ):
+        self._codes = code_meanings
         self.name = name
         self.references = references
         self.title = title
@@ -86,6 +88,32 @@ class Categorization:
         Categorization
         """
         raise NotImplementedError
+
+    def _extend_prepare(
+        self,
+        name: str,
+        categories: Dict[str, str],
+        title: Optional[str] = None,
+        comment: Optional[str] = None,
+        last_update: Optional[datetime.date] = None,
+    ):
+        if title is None:
+            title = f"{self.title} + {name}"
+        else:
+            title = self.title + title
+
+        if comment is None:
+            comment = f"{self.comment} extended by {name}"
+        else:
+            comment = self.comment + comment
+
+        if last_update is None:
+            last_update = datetime.date.today()
+
+        code_meanings = self._codes.copy()
+        code_meanings.update(categories)
+
+        return (name, categories, title, comment, last_update)
 
     def extend(
         self,
@@ -126,20 +154,37 @@ class Categorization:
         -------
         Extended categorization : Categorization
         """
-        raise NotImplementedError
+        (name, categories, title, comment, last_update) = self._extend_prepare(
+            name, categories, title, comment, last_update
+        )
+
+        return Categorization(
+            code_meanings=categories,
+            name=f"{self.name}_{name}",
+            references="",
+            title=title,
+            comment=comment,
+            institution="",
+            last_update=last_update,
+            version=self.version,
+        )
 
     def __getitem__(self, code: str) -> str:
         """Get the meaning for a code."""
-        raise NotImplementedError
+        return self._codes[code]
 
     def keys(self) -> Iterable:
         """Iterable of all category codes."""
-        raise NotImplementedError
+        return self._codes.keys()
 
     @property
-    def df(self) -> "pandas.Dataframe":
+    def df(self) -> "pandas.DataFrame":
         """All category codes and meanings as a pandas dataframe."""
-        raise NotImplementedError
+        if pandas is None:
+            raise ImportError("pandas not found")
+        return pandas.DataFrame(
+            index=self._codes.keys(), data={"meaning": self._codes.values()}
+        )
 
 
 class HierarchicalCategorization(Categorization):
@@ -161,6 +206,8 @@ class HierarchicalCategorization(Categorization):
     def __init__(
         self,
         *,
+        code_meanings: Dict[str, str],
+        hierarchy: Dict[str, Iterable[str]],
         name: str,
         references: str,
         title: str,
@@ -171,6 +218,7 @@ class HierarchicalCategorization(Categorization):
         total_sum: bool = False,
     ):
         super(HierarchicalCategorization, self).__init__(
+            code_meanings=code_meanings,
             name=name,
             references=references,
             title=title,
@@ -180,6 +228,7 @@ class HierarchicalCategorization(Categorization):
             version=version,
             hierarchical=True,
         )
+        self._hierarchy = hierarchy
         self.total_sum = total_sum
 
     @classmethod
@@ -261,7 +310,24 @@ class HierarchicalCategorization(Categorization):
         -------
         Extended categorization : HierarchicalCategorization
         """
-        raise NotImplementedError
+        (name, categories, title, comment, last_update) = self._extend_prepare(
+            name, categories, title, comment, last_update
+        )
+
+        hierarchy = self._hierarchy.copy()
+        hierarchy.update(children)
+
+        return HierarchicalCategorization(
+            code_meanings=categories,
+            hierarchy=hierarchy,
+            name=f"{self.name}_{name}",
+            references="",
+            title=title,
+            comment=comment,
+            institution="",
+            last_update=last_update,
+            version=self.version,
+        )
 
     def extend_with_hierarchy(
         self,
@@ -307,7 +373,22 @@ class HierarchicalCategorization(Categorization):
         -------
         Extended categorization : HierarchicalCategorization
         """
-        raise NotImplementedError
+
+        (name, categories, title, comment, last_update) = self._extend_prepare(
+            name, categories, title, comment, last_update
+        )
+
+        return HierarchicalCategorization(
+            code_meanings=categories,
+            hierarchy=hierarchy,
+            name=f"{self.name}_{name}",
+            references="",
+            title=title,
+            comment=comment,
+            institution="",
+            last_update=last_update,
+            version=self.version,
+        )
 
     def level(self, code: str) -> int:
         """The level of the given code.
@@ -318,13 +399,13 @@ class HierarchicalCategorization(Categorization):
 
     def parents(self, code: str) -> List[str]:
         """The direct parents of the given category."""
-        raise NotImplementedError
+        return [x for x in self._hierarchy if code in self._hierarchy[x]]
 
     def children(self, code: str) -> List[str]:
         """The direct children of the given category."""
-        raise NotImplementedError
+        return list(self._hierarchy[code])
 
     @property
     def hierarchy(self) -> Dict[str, List[str]]:
         """The full hierarchy as a dict mapping parent codes to lists of children."""
-        raise NotImplementedError
+        return {x: list(self._hierarchy[x]) for x in self._hierarchy}
