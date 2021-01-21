@@ -22,6 +22,7 @@ Open questions
 ~~~~~~~~~~~~~~
 
  * What about categorizations with multiple codes meaning the same thing?
+ * What about code normalization?
 
 Definition
 ----------
