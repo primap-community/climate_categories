@@ -32,7 +32,6 @@ Use cases
 
  * extend a categorization with some additional categories
  * define a new categorization from a file
- * define a new categorization programmatically
 
 Other use cases
 ---------------

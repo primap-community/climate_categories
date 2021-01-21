@@ -2,7 +2,7 @@
 
 import datetime
 import pathlib
-from typing import Iterable, List, Optional, Union
+from typing import Dict, Iterable, List, Optional, Union
 
 try:
     import pandas
@@ -85,6 +85,48 @@ class Categorization:
         -------
         Categorization
         """
+        raise NotImplementedError
+
+    def extend(
+        self,
+        *,
+        name: str,
+        categories: Dict[str, str],
+        title: Optional[str] = None,
+        comment: Optional[str] = None,
+        last_update: Optional[datetime.date] = None,
+    ) -> "Categorization":
+        """Extend the categorization with additional categories, yielding a new
+        categorization.
+
+        Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
+        automatically (see below), the ``institution`` is deleted, and the values for
+        ``version`` and ``hierarchical`` are kept. You can set more accurate metadata
+        (for example, your institution) on the returned object if needed.
+
+        Parameters
+        ----------
+        name : str
+           The name of your extension. The returned Categorization will have a name
+           of "{old_name}_{name}", indicating that it is an extension of the underlying
+           Categorization.
+        categories : dict
+           Map of new category codes to their meaning.
+        title : str, optional
+           A string to add to the original title. If not provided, " + {name}" will be
+           used.
+        comment : str, optional
+           A string to add to the original comment. If not provided, " extend by {name}"
+           will be used.
+        last_update : datetime.date, optional
+           The date of the last update to this extension. Today will be used if not
+           provided.
+
+        Returns
+        -------
+        Extended categorization : Categorization
+        """
+        raise NotImplementedError
 
     def __getitem__(self, code: str) -> str:
         """Get the meaning for a code."""
@@ -170,6 +212,103 @@ class HierarchicalCategorization(Categorization):
         """
         raise NotImplementedError
 
+    def extend(
+        self,
+        *,
+        name: str,
+        categories: Dict[str, str],
+        children: Optional[Dict[str, Iterable[str]]] = None,
+        title: Optional[str] = None,
+        comment: Optional[str] = None,
+        last_update: Optional[datetime.date] = None,
+    ) -> "HierarchicalCategorization":
+        """Extend the categorization with additional categories and relationships,
+        yielding a new categorization.
+
+        Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
+        automatically (see below), the ``institution`` is deleted, and the values for
+        ``version``, ``hierarchical``, and ``total_sum`` are kept. You can set more
+        accurate metadata (for example, your institution) on the returned object if
+        needed.
+
+        Using this function, only new relationships between (existing and new)
+        categories can be added. If you need to delete or reorder existing
+        relationships, look at ``extend_with_hierarchy``.
+
+        Parameters
+        ----------
+        name : str
+           The name of your extension. The returned Categorization will have a name
+           of "{old_name}_{name}", indicating that it is an extension of the underlying
+           Categorization.
+        categories : dict
+           Map of new category codes to their meaning.
+        children : dict, optional
+           Map of parent category codes to lists of child category codes. The given
+           relationships are inserted into the hierarchy. Both existing and new category
+           codes can be used as parents or children.
+        title : str, optional
+           A string to add to the original title. If not provided, " + {name}" will be
+           used.
+        comment : str, optional
+           A string to add to the original comment. If not provided, " extend by {name}"
+           will be used.
+        last_update : datetime.date, optional
+           The date of the last update to this extension. Today will be used if not
+           provided.
+
+        Returns
+        -------
+        Extended categorization : HierarchicalCategorization
+        """
+        raise NotImplementedError
+
+    def extend_with_hierarchy(
+        self,
+        *,
+        name: str,
+        categories: Dict[str, str],
+        hierarchy: Dict[str, Iterable[str]],
+        title: Optional[str] = None,
+        comment: Optional[str] = None,
+        last_update: Optional[datetime.date] = None,
+    ):
+        """Extend the categorization with additional categories and a new hierarchy,
+        yielding a new categorization.
+
+        Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
+        automatically (see below), the ``institution`` is deleted, and the values for
+        ``version``, ``hierarchical``, and ``total_sum`` are kept. You can set more
+        accurate metadata (for example, your institution) on the returned object if
+        needed.
+
+        Parameters
+        ----------
+        name : str
+           The name of your extension. The returned Categorization will have a name
+           of "{old_name}_{name}", indicating that it is an extension of the underlying
+           Categorization.
+        categories : dict
+           Map of new category codes to their meaning.
+        hierarchy : dict
+           Map of parent category codes to lists of child category codes. The given
+           hierarchy replaces the original hierarchy.
+        title : str, optional
+           A string to add to the original title. If not provided, " + {name}" will be
+           used.
+        comment : str, optional
+           A string to add to the original comment. If not provided, " extend by {name}"
+           will be used.
+        last_update : datetime.date, optional
+           The date of the last update to this extension. Today will be used if not
+           provided.
+
+        Returns
+        -------
+        Extended categorization : HierarchicalCategorization
+        """
+        raise NotImplementedError
+
     def level(self, code: str) -> int:
         """The level of the given code.
 
@@ -183,4 +322,9 @@ class HierarchicalCategorization(Categorization):
 
     def children(self, code: str) -> List[str]:
         """The direct children of the given category."""
+        raise NotImplementedError
+
+    @property
+    def hierarchy(self) -> Dict[str, List[str]]:
+        """The full hierarchy as a dict mapping parent codes to lists of children."""
         raise NotImplementedError
