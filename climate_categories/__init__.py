@@ -23,6 +23,7 @@ Excat = Categorization(
     comment="This is an example of a simple categorization.",
     institution="PIK",
     last_update=datetime.date(2021, 1, 19),
+    code_meanings={"A": "Category A", "B": "Category B"},
 )
 
 cats = {"Excat": Excat}
