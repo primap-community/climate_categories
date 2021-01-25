@@ -5,10 +5,7 @@ names of categorizations. To access the example categorization `Excat`, simply u
 
 __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
-# fmt: off
-# bump2version wants single quotes
-__version__ = '0.1.0'
-# fmt: on
+__version__ = "0.1.0"
 
 import datetime
 import typing
