@@ -1,8 +1,9 @@
 """Classes to represent and query categorical systems."""
 
+import csv
 import datetime
 import pathlib
-from typing import Dict, Iterable, List, Optional, Union
+from typing import Dict, Iterable, List, Optional, Tuple, Union
 
 try:
     import pandas
@@ -87,7 +88,29 @@ class Categorization:
         -------
         Categorization
         """
-        raise NotImplementedError
+        meta = {}
+        with open(metadata_csv, newline="") as fd:
+            r = csv.reader(fd)
+            for key, value in r:
+                meta[key] = value
+
+        code_meanings = {}
+        with open(data_csv, newline="") as fd:
+            r = csv.reader(fd)
+            for key, value in r:
+                code_meanings[key] = value
+
+        return cls(
+            code_meanings=code_meanings,
+            name=meta["name"],
+            references=meta["references"],
+            title=meta["title"],
+            comment=meta["comment"],
+            institution=meta["institution"],
+            last_update=datetime.date.fromisoformat(meta["last_update"]),
+            version=meta["version"] if "version" in meta else None,
+            hierarchical=meta["bool"] == "True" if "bool" in meta else False,
+        )
 
     def _extend_prepare(
         self,
@@ -231,6 +254,37 @@ class HierarchicalCategorization(Categorization):
         self._hierarchy = hierarchy
         self.total_sum = total_sum
 
+    @staticmethod
+    def _parse_hierarchy_csv(reader: csv.reader) -> List[Tuple[str, str]]:
+        parents = []
+        previous_lvl = -1
+        previous_code = None
+        edges = []
+        for i, row in enumerate(reader):
+            for lvl, code in enumerate(row):
+                if code:
+                    break
+            if lvl == previous_lvl + 1:  # child of previous node
+                if previous_code is not None:  # not first row
+                    parents.append(previous_code)
+            elif lvl == previous_lvl:
+                pass  # same parents
+            elif lvl < previous_lvl:
+                parents = parents[:lvl]
+            else:
+                raise ValueError(
+                    f"Unexpected indent at line {i} for {code}."
+                    "Should be at most one level deeper than the previous line."
+                )
+
+            if parents:
+                edges.append((parents[-1], code))
+
+            previous_lvl = lvl
+            previous_code = code
+
+        return edges
+
     @classmethod
     def from_csvs(
         cls,
@@ -259,7 +313,40 @@ class HierarchicalCategorization(Categorization):
         -------
         HierarchicalCategorization
         """
-        raise NotImplementedError
+        meta = {}
+        with open(metadata_csv, newline="") as fd:
+            r = csv.reader(fd)
+            for key, value in r:
+                meta[key] = value
+
+        code_meanings = {}
+        with open(data_csv, newline="") as fd:
+            r = csv.reader(fd)
+            for key, value in r:
+                code_meanings[key] = value
+
+        with open(hierarchy_csv, newline="") as fd:
+            edges = cls._parse_hierarchy_csv(csv.reader(fd))
+
+        hierarchy = {}
+        for parent, child in edges:
+            if parent in hierarchy:
+                hierarchy[parent].append(child)
+            else:
+                hierarchy[parent] = [child]
+
+        return cls(
+            code_meanings=code_meanings,
+            hierarchy=hierarchy,
+            name=meta["name"],
+            references=meta["references"],
+            title=meta["title"],
+            comment=meta["comment"],
+            institution=meta["institution"],
+            last_update=datetime.date.fromisoformat(meta["last_update"]),
+            version=meta["version"] if "version" in meta else None,
+            total_sum=meta["total_sum"] == "True" if "total_sum" in meta else False,
+        )
 
     def extend(
         self,
