@@ -33,8 +33,21 @@ Use cases
  * extend a categorization with some additional categories
  * define a new categorization from a file
 
+Open questions
+~~~~~~~~~~~~~~
+
+ * What would be a good file format for categorizations? "Three CSVs" is fast and
+   easily modifiable in Excel / Calc / pycharm, but somewhat unorganized. YAML is
+   slow to parse, arbitrarily complex and there are no sophisticated editors.
+   pon or python files would be great for python, but maybe we also want the same
+   data for R or julia or whatever. Maybe we need to parse and "compile" YAML files
+   during build, that at least would alleviate the problem of YAML being slow to parse.
+
 Other use cases
 ---------------
 
  * Open: mapping between categorizations, e.g. different versions
  * Visualization of categorizations
+ * Do we need more than just a code and a meaning for categories? Like for
+   whole categorizations: a code, a title, a comment? How would that map to a pythonic
+   API?
