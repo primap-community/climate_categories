@@ -402,7 +402,8 @@ class HierarchicalCategorization(Categorization):
         )
 
         hierarchy = self._hierarchy.copy()
-        hierarchy.update(children)
+        if children is not None:
+            hierarchy.update(children)
 
         return HierarchicalCategorization(
             code_meanings=categories,

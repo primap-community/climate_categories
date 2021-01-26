@@ -7,23 +7,22 @@ __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
 __version__ = "0.1.0"
 
-import datetime
+import pathlib
 import typing
 
 from . import search
-from ._categories import Categorization, HierarchicalCategorization
+from ._categories import Categorization  # noqa: F401
+from ._categories import HierarchicalCategorization
 
-Excat = Categorization(
-    name="Excat",
-    references="doi:0000000/000000000000",
-    title="The Example Categorization",
-    comment="This is an example of a simple categorization.",
-    institution="PIK",
-    last_update=datetime.date(2021, 1, 19),
-    code_meanings={"A": "Category A", "B": "Category B"},
+_data_dir = pathlib.Path(__file__).parent / "data"
+
+IPCC2006 = HierarchicalCategorization.from_csvs(
+    metadata_csv=_data_dir / "ipcc_2006_meta.csv",
+    data_csv=_data_dir / "ipcc_2006_meaning.csv",
+    hierarchy_csv=_data_dir / "ipcc_2006_hierarchy.csv",
 )
 
-cats = {"Excat": Excat}
+cats = {"IPCC2006": IPCC2006}
 
 
 def find(code: str) -> typing.List[typing.Tuple[str, str]]:
@@ -31,4 +30,6 @@ def find(code: str) -> typing.List[typing.Tuple[str, str]]:
     return search.search(code, cats.values())
 
 
-__all__ = ["cats", "Categorization", "HierarchicalCategorization", "Excat", "find"]
+__all__ = ["cats", "Categorization", "HierarchicalCategorization", "find"] + list(
+    cats.keys()
+)
