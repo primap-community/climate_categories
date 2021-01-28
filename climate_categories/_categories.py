@@ -491,7 +491,10 @@ class HierarchicalCategorization(Categorization):
 
     def children(self, code: str) -> List[str]:
         """The direct children of the given category."""
-        return list(self._hierarchy[code])
+        if code in self._hierarchy:
+            return list(self._hierarchy[code])
+        else:
+            return []
 
     @property
     def hierarchy(self) -> Dict[str, List[str]]:

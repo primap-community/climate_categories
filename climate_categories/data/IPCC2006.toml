@@ -1,0 +1,434 @@
+name = "IPCC2006"
+references = ""
+title = "IPCC sectoral categories (2006)"
+comment = "International Panel on Climate Change sectoral categories as released 2006"
+institution = "IPCC"
+last_update = 2006-12-31
+version = "2006"
+
+[categories]
+1 = "Energy"
+2 = "INDUSTRIAL PROCESSES AND PRODUCT USE"
+3 = ""
+4 = "WASTE"
+5 = ""
+1A = "Fuel Combustion Activities"
+1A1 = "Energy Industries"
+1A1A = "Main Activity Electricity and Heat Production"
+1A1AI = "Electricity Generation"
+1A1AII = "Combined Heat and Power Generation (CHP)"
+1A1AIII = "Heat Plants"
+1A1B = "Petroleum Refining"
+1A1C = "Manufacture of Solid Fuels and Other Energy Industries"
+1A1CI = "Manufacture of Solid Fuels"
+1A1CII = "Other Energy Industries"
+1A2 = "Manufacturing Industries and Construction"
+1A2A = "Iron and Steel"
+1A2B = "Non-Ferrous Metals"
+1A2C = "Chemicals"
+1A2D = "Pulp, Paper and Print"
+1A2E = "Food Processing, Beverages and Tobacco"
+1A2F = "Non-Metallic Minerals"
+1A2G = "Transport Equipment"
+1A2H = "Machinery"
+1A2I = "Mining (excluding fuels) and Quarrying"
+1A2J = "Wood and Wood Products"
+1A2K = "Construction"
+1A2L = "Textile and Leather"
+1A2M = "Non-specified Industry:"
+1A3 = "Transport Equipment"
+1A3A = "Civil Aviation"
+1A3AI = "International Aviation (International Bunkers)"
+1A3AII = "Domestic Aviaton"
+1A3B = "Road Transportation"
+1A3BI = "Cars"
+1A3BI1 = "Passenger Cars With 3-way Catalysts"
+1A3BI2 = "Passenger Cars Without 3-way Catalysts"
+1A3BII = "Light-duty Trucks"
+1A3BII1 = "Light-duty Trucks With 3-way Catalysts"
+1A3BII2 = "Light-duty Trucks Without 3-way Catalysts"
+1A3BIII = "Heavy-duty Trucks and Buses"
+1A3BIV = "Motorcycles"
+1A3BV = "Evaporative Emissions from Vehicles"
+1A3BVI = "Urea-based Catalysts"
+1A3C = "Railways"
+1A3D = "Water-borne Navigation"
+1A3DI = "International Water-borne Navigation (International Bunkers)"
+1A3DII = "Domestic Water-borne Navigation"
+1A3E = "Other Transportation"
+1A3EI = "Pipeline Transport"
+1A3EII = "Off-road"
+1A4 = "Other Sectors"
+1A4A = "Commercial/Institutional"
+1A4B = "Residential"
+1A4C = "Agriculture/Forestry/Fishing/Fish Farms"
+1A4CI = "Stationary"
+1A4CII = "Off-road Vehicles and Other Machinery"
+1A4CIII = "Fishing (mobile combustion)"
+1A5 = "Non-Specified"
+1A5A = "Stationary"
+1A5B = "Mobile"
+1A5BI = "Mobile (Aviation Component)"
+1A5BII = "Mobile (Water-borne Component)"
+1A5BIII = "Mobile (Other)"
+1A5C = "Multilateral Operations"
+1B = "Fugitive Emissions from Fuels"
+1B1 = "Solid Fuels"
+1B1A = "Coal Mining and Handling"
+1B1AI = "Underground Mines"
+1B1AI1 = "Mining"
+1B1AI2 = "Post-mining Seam Gas Emissions"
+1B1AI3 = "Abandoned Underground Mines"
+1B1AI4 = "Flaring of Drained Methane or Conversion of Methane to CO 2"
+1B1AII = "Surface Mines"
+1B1AII1 = "Mining"
+1B1AII2 = "Post-mining Seam Gas Emissions"
+1B1B = "Uncontrolled Combustion, and Burning Coal Dumps"
+1B1C = "Solid Fuel Transformation"
+1B2 = "Oil and Natural Gas"
+1B2A = "Oil"
+1B2AI = "Venting"
+1B2AII = "Flaring"
+1B2AIII = "All Other"
+1B2AIII1 = "Exploration"
+1B2AIII2 = "Production and Upgrading"
+1B2AIII3 = "Transport"
+1B2AIII4 = "Refining"
+1B2AIII5 = "Distribution of Oil Products"
+1B2AIII6 = "Other"
+1B2B = "Natural Gas"
+1B2BI = "Venting"
+1B2BII = "Flaring"
+1B2BIII = "All Other"
+1B2BIII1 = "Exploration"
+1B2BIII2 = "Production"
+1B2BIII3 = "Processing"
+1B2BIII4 = "Transmission and Storage"
+1B2BIII5 = "Distribution"
+1B2BIII6 = "Other"
+1B3 = "Other Emissions from Energy Production"
+1C = "Carbon Dioxide Transport and Storage"
+1C1 = "Transport of CO 2"
+1C1A = "Pipelines"
+1C1B = "Ships"
+1C1C = "Other (please specify)"
+1C2 = "Injection and Storage"
+1C2A = "Injection"
+1C2B = "Storage"
+1C3 = "Other"
+2A = "Mineral Industry"
+2A1 = "Cement Production"
+2A2 = "Lime Production"
+2A3 = "Glass Production"
+2A4 = "Other Process Uses of Carbonates"
+2A4A = "Ceramics"
+2A4B = "Other Uses of Soda Ash"
+2A4C = "Non Metallurgical Magnesia Production"
+2A4D = "Other (please specify)"
+2A5 = "Other (please specify)"
+2B = "Chemical Industry"
+2B1 = "Ammonia Production"
+2B10 = "Other (please specify)"
+2B2 = "Nitric Acid Production"
+2B3 = "Adipic Acid Production"
+2B4 = "Caprolactam, Glyoxal and Glyoxylic Acid Production"
+2B5 = "Carbide Production"
+2B6 = "Titanium Dioxide Production"
+2B7 = "Soda Ash Production"
+2B8 = "Petrochemical and Carbon Black Production"
+2B8A = "Methanol"
+2B8B = "Ethylene"
+2B8C = "Ethylene Dichloride and Vinyl Chloride Monomer"
+2B8D = "Ethylene Oxide"
+2B8E = "Acrylonitrile"
+2B8F = "Carbon Black"
+2B9 = "Fluorochemical Production"
+2B9A = "By-product Emissions"
+2B9B = "Fugitive Emissions"
+2C = "Metal Industry"
+2C1 = "Iron and Steel Production"
+2C2 = "Ferroalloys Production"
+2C3 = "Aluminium Production"
+2C4 = "Magnesium Production"
+2C5 = "Lead Production"
+2C6 = "Zinc Production"
+2C7 = "Other (please specify)"
+2D = "Non-Energy Products from Fuels and Solvent Use"
+2D1 = "Lubricant Use"
+2D2 = "Paraffin Wax Use"
+2D3 = "Solvent Use"
+2D4 = "Other (please specify)"
+2E = "Electronics Industry"
+2E1 = "Integrated Circuit or Semiconductor"
+2E2 = "TFT Flat Panel Display"
+2E3 = "Photovoltaics"
+2E4 = "Heat Transfer Fluid"
+2E5 = "Other (please specify)"
+2F = "Product Uses as Substitutes for Ozone Depleting Substances"
+2F1 = "Refrigeration and Air Conditioning"
+2F1A = "Refrigeration and Stationary Air Conditioning"
+2F1B = "Mobile Air Conditioning"
+2F2 = "Foam Blowing Agents"
+2F3 = "Fire Protection"
+2F4 = "Aerosols"
+2F5 = "Solvents"
+2F6 = "Other Applications (please specify)"
+2G = "OTHER PRODUCT MANUFACTURE AND USE"
+2G1 = "Electrical Equipment"
+2G1A = "Manufacture of Electrical Equipment"
+2G1B = "Use of Electrical Equipment"
+2G1C = "Disposal of Electrical Equipment"
+2G2 = "SF 6 and PFCs from Other Product Uses"
+2G2A = "Military Applications"
+2G2B = "Accelerators"
+2G2C = "Other (please specify)"
+2G3 = "N 2 O from Product Uses"
+2G3A = "Medical Applications"
+2G3B = "Propellant for Pressure and Aerosol Products"
+2G3C = "Other (please specify)"
+2G4 = "Other (please specify)"
+2H = "Other"
+2H1 = "Pulp and Paper Industry"
+2H2 = "Food and Beverages Industry"
+2H3 = "Other (please specify)"
+3A = "Livestock"
+3A1 = "Enteric Fermentation"
+3A1A = "Cattle"
+3A1AI = "Dairy Cows"
+3A1AII = "Other Cattle"
+3A1B = "Buffalo"
+3A1C = "Sheep"
+3A1D = "Goats"
+3A1E = "Camels"
+3A1F = "Horses"
+3A1G = "Mules and Asses"
+3A1H = "Swine"
+3A1J = "Other (please specify)"
+3A2 = "Manure Management"
+3A2A = "Cattle"
+3A2AI = "Dairy Cows"
+3A2AII = "Other Cattle"
+3A2B = "Buffalo"
+3A2C = "Sheep"
+3A2D = "Goats"
+3A2E = "Camels"
+3A2F = "Horses"
+3A2G = "Mules and Asses"
+3A2H = "Swine"
+3A2I = "Poultry"
+3A2J = "Other (please specify)"
+3B = "Land"
+3B1 = "Forest Land"
+3B1A = "Forest land Remaining Forest Land"
+3B1B = "Land Converted to Forest Land"
+3B1BI = "Cropland Converted to Forest Land"
+3B1BII = "Grassland Converted to Forest Land"
+3B1BIII = "Wetlands Converted to Forest Land"
+3B1BIV = "Settlements Converted to Forest Land"
+3B1BV = "Other Land Converted to Forest Land"
+3B2 = "Cropland"
+3B2A = "Cropland Remaining Cropland"
+3B2B = "Land Converted to Cropland"
+3B2BI = "Forest Land Converted to Cropland"
+3B2BII = "Grassland Converted to Cropland"
+3B2BIII = "Wetlands Converted to Cropland"
+3B2BIV = "Settlements Converted to Cropland"
+3B2BV = "Other Land Converted to Cropland"
+3B3 = "Grassland"
+3B3A = "Grassland Remaining Grassland"
+3B3B = "Land Converted to Grassland"
+3B3BI = "Forest Land Converted to Grassland"
+3B3BII = "Cropland Converted to Grassland"
+3B3BIII = "Wetlands Converted to Grassland"
+3B3BIV = "Settlements Converted to Grassland"
+3B3BV = "Other Land Converted to Grassland"
+3B4 = "Wetlands"
+3B4A = "Wetlands Remaining Wetlands"
+3B4AI = "Peatlands Remaining peatlands"
+3B4AII = "Flooded Land Remaining Flooded Land"
+3B4B = "Land Converted to Wetlands"
+3B4BI = "Land Converted for Peat Extraction"
+3B4BII = "Land Converted to Flooded Land"
+3B4BIII = "Land Converted to Other Wetlands"
+3B5 = "Settlements"
+3B5A = "Settlements Remaining Settlements"
+3B5B = "Land Converted to Settlements"
+3B5BI = "Forest Land Converted to Settlements"
+3B5BII = "Cropland Converted to Settlements"
+3B5BIII = "Grassland Converted to Settlements"
+3B5BIV = "Wetlands Converted to Settlements"
+3B5BV = "Other Land Converted to Settlements"
+3B6 = "Other Land"
+3B6A = "Other Land Remaining Other Land"
+3B6B = "Land Converted to Other Land"
+3B6BI = "Forest Land Converted to Other Land"
+3B6BII = "Cropland Converted to Other Land"
+3B6BIII = "Grassland Converted to Other Land"
+3B6BIV = "Wetlands Converted to Other Land"
+3B6BV = "Settlements Converted to Other Land"
+3C = "Aggregate Sources and Non-CO 2 Emissions Sources on Land"
+3C1 = "Emissions from Biomass Burning"
+3C1A = "Biomass Burning in Forest Lands"
+3C1B = "Biomass Burning in Croplands"
+3C1C = "Biomass Burning in Grasslands"
+3C1D = "Biomass Burning in All Other Land"
+3C2 = "Liming"
+3C3 = "Urea Application"
+3C4 = "Direct N 2 O Emissions from Managed Soils"
+3C5 = "Indirect N 2 O Emissions from Managed Soils"
+3C6 = "Indirect N 2 O Emissions from Manure Management"
+3C7 = "Rice Cultivations"
+3C8 = "Other (please specify)"
+3D = "Other"
+3D1 = "Harvested Wood Products"
+3D2 = "Other (please specify)"
+4A = "Solid Waste Disposal"
+4A1 = "Managed Waste Disposal Sites"
+4A2 = "Unmanaged Waste Disposal Sites"
+4A3 = "Uncategorised Waste Disposal Sites"
+4B = "Biological Treatment of Solid Waste"
+4C = "Incineration and Open Burning of Waste"
+4C1 = "Waste Incineration"
+4C2 = "Open Burning of Waste"
+4D = "Wastewater Treatment and Discharge"
+4D1 = "Domestic Wastewater Treatment and Discharge"
+4D2 = "Industrial Wastewater Treatment and Discharge"
+4E = "Other (please specify)"
+5A = "Indirect N 2 O Emissions from the Atmospheric Deposition of Nitrogen in NO x and NH 3"
+5B = "Other (please specify)"
+
+[children]
+0 = ["1", "2", "3", "4", "5"]
+1 = ["1A", "1B", "1C"]
+2 = ["2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H"]
+3 = ["3A", "3B", "3C", "3D"]
+4 = ["4A", "4B", "4C", "4D", "4E"]
+5 = ["5A", "5B"]
+1A = ["1A1", "1A2", "1A3", "1A4", "1A5"]
+1A1 = ["1A1A", "1A1B", "1A1C"]
+1A1A = ["1A1AI", "1A1AII", "1A1AIII"]
+1A1C = ["1A1CI", "1A1CII"]
+1A2 = [
+    "1A2A",
+    "1A2B",
+    "1A2C",
+    "1A2D",
+    "1A2E",
+    "1A2F",
+    "1A2G",
+    "1A2H",
+    "1A2I",
+    "1A2J",
+    "1A2K",
+    "1A2L",
+    "1A2M"
+]
+1A3 = ["1A3A", "1A3B", "1A3C", "1A3D", "1A3E"]
+1A3A = ["1A3AI", "1A3AII"]
+1A3B = ["1A3BI", "1A3BII", "1A3BIII", "1A3BIV", "1A3BV", "1A3BVI"]
+1A3BI = ["1A3BI1", "1A3BI2"]
+1A3BII = ["1A3BII1", "1A3BII2"]
+1A3D = ["1A3DI", "1A3DII"]
+1A3E = ["1A3EI", "1A3EII"]
+1A4 = ["1A4A", "1A4B", "1A4C"]
+1A4C = ["1A4CI", "1A4CII", "1A4CIII"]
+1A5 = ["1A5A", "1A5B", "1A5C"]
+1A5B = ["1A5BI", "1A5BII", "1A5BIII"]
+1B = ["1B1", "1B2", "1B3"]
+1B1 = ["1B1A", "1B1B", "1B1C"]
+1B1A = ["1B1AI", "1B1AII"]
+1B1AI = ["1B1AI1", "1B1AI2", "1B1AI3", "1B1AI4"]
+1B1AII = ["1B1AII1", "1B1AII2"]
+1B2 = ["1B2A", "1B2B"]
+1B2A = ["1B2AI", "1B2AII", "1B2AIII"]
+1B2AIII = [
+    "1B2AIII1",
+    "1B2AIII2",
+    "1B2AIII3",
+    "1B2AIII4",
+    "1B2AIII5",
+    "1B2AIII6"
+]
+1B2B = ["1B2BI", "1B2BII", "1B2BIII"]
+1B2BIII = [
+    "1B2BIII1",
+    "1B2BIII2",
+    "1B2BIII3",
+    "1B2BIII4",
+    "1B2BIII5",
+    "1B2BIII6"
+]
+1C = ["1C1", "1C2", "1C3"]
+1C1 = ["1C1A", "1C1B", "1C1C"]
+1C2 = ["1C2A", "1C2B"]
+2A = ["2A1", "2A2", "2A3", "2A4", "2A5"]
+2A4 = ["2A4A", "2A4B", "2A4C", "2A4D"]
+2B = [
+    "2B1",
+    "2B2",
+    "2B3",
+    "2B4",
+    "2B5",
+    "2B6",
+    "2B7",
+    "2B8",
+    "2B9"
+]
+2B8 = ["2B8A", "2B8B", "2B8C", "2B8D", "2B8E", "2B8F"]
+2B9 = ["2B9A", "2B9B", "2B10"]
+2C = ["2C1", "2C2", "2C3", "2C4", "2C5", "2C6", "2C7"]
+2D = ["2D1", "2D2", "2D3", "2D4"]
+2E = ["2E1", "2E2", "2E3", "2E4", "2E5"]
+2F = ["2F1", "2F2", "2F3", "2F4", "2F5", "2F6"]
+2F1 = ["2F1A", "2F1B"]
+2G = ["2G1", "2G2", "2G3", "2G4"]
+2G1 = ["2G1A", "2G1B", "2G1C"]
+2G2 = ["2G2A", "2G2B", "2G2C"]
+2G3 = ["2G3A", "2G3B", "2G3C"]
+2H = ["2H1", "2H2", "2H3"]
+3A = ["3A1", "3A2"]
+3A1 = [
+    "3A1A",
+    "3A1B",
+    "3A1C",
+    "3A1D",
+    "3A1E",
+    "3A1F",
+    "3A1G",
+    "3A1H",
+    "3A1J"
+]
+3A1A = ["3A1AI", "3A1AII"]
+3A2 = [
+    "3A2A",
+    "3A2B",
+    "3A2C",
+    "3A2D",
+    "3A2E",
+    "3A2F",
+    "3A2G",
+    "3A2H",
+    "3A2I",
+    "3A2J"
+]
+3A2A = ["3A2AI", "3A2AII"]
+3B = ["3B1", "3B2", "3B3", "3B4", "3B5", "3B6"]
+3B1 = ["3B1A", "3B1B"]
+3B1B = ["3B1BI", "3B1BII", "3B1BIII", "3B1BIV", "3B1BV"]
+3B2 = ["3B2A", "3B2B"]
+3B2B = ["3B2BI", "3B2BII", "3B2BIII", "3B2BIV", "3B2BV"]
+3B3 = ["3B3A", "3B3B"]
+3B3B = ["3B3BI", "3B3BII", "3B3BIII", "3B3BIV", "3B3BV"]
+3B4 = ["3B4A", "3B4B"]
+3B4A = ["3B4AI", "3B4AII"]
+3B4B = ["3B4BI", "3B4BII", "3B4BIII"]
+3B5 = ["3B5A", "3B5B"]
+3B5B = ["3B5BI", "3B5BII", "3B5BIII", "3B5BIV", "3B5BV"]
+3B6 = ["3B6A", "3B6B"]
+3B6B = ["3B6BI", "3B6BII", "3B6BIII", "3B6BIV", "3B6BV"]
+3C = ["3C1", "3C2", "3C3", "3C4", "3C5", "3C6", "3C7", "3C8"]
+3C1 = ["3C1A", "3C1B", "3C1C", "3C1D"]
+3D = ["3D1", "3D2"]
+4A = ["4A1", "4A2", "4A3"]
+4C = ["4C1", "4C2"]
+4D = ["4D1", "4D2"]

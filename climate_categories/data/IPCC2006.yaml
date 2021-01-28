@@ -1,0 +1,1160 @@
+name: IPCC2006
+references: ""
+title: IPCC sectoral categories (2006)
+comment: International Panel on Climate Change sectoral categories as released 2006
+institution: IPCC
+last_update: 2006-12-31
+version: "2006"
+categories:
+  '1':
+    children:
+      - 1A
+      - 1B
+      - 1C
+    meaning: Energy
+  1A:
+    children:
+      - 1A1
+      - 1A2
+      - 1A3
+      - 1A4
+      - 1A5
+    meaning: Fuel Combustion Activities
+  1A1:
+    children:
+      - 1A1A
+      - 1A1B
+      - 1A1C
+    meaning: Energy Industries
+  1A1A:
+    children:
+      - 1A1AI
+      - 1A1AII
+      - 1A1AIII
+    meaning: Main Activity Electricity and Heat Production
+  1A1AI:
+    children: [ ]
+    meaning: Electricity Generation
+  1A1AII:
+    children: [ ]
+    meaning: Combined Heat and Power Generation (CHP)
+  1A1AIII:
+    children: [ ]
+    meaning: Heat Plants
+  1A1B:
+    children: [ ]
+    meaning: Petroleum Refining
+  1A1C:
+    children:
+      - 1A1CI
+      - 1A1CII
+    meaning: Manufacture of Solid Fuels and Other Energy Industries
+  1A1CI:
+    children: [ ]
+    meaning: Manufacture of Solid Fuels
+  1A1CII:
+    children: [ ]
+    meaning: Other Energy Industries
+  1A2:
+    children:
+      - 1A2A
+      - 1A2B
+      - 1A2C
+      - 1A2D
+      - 1A2E
+      - 1A2F
+      - 1A2G
+      - 1A2H
+      - 1A2I
+      - 1A2J
+      - 1A2K
+      - 1A2L
+      - 1A2M
+    meaning: Manufacturing Industries and Construction
+  1A2A:
+    children: [ ]
+    meaning: Iron and Steel
+  1A2B:
+    children: [ ]
+    meaning: Non-Ferrous Metals
+  1A2C:
+    children: [ ]
+    meaning: Chemicals
+  1A2D:
+    children: [ ]
+    meaning: Pulp, Paper and Print
+  1A2E:
+    children: [ ]
+    meaning: Food Processing, Beverages and Tobacco
+  1A2F:
+    children: [ ]
+    meaning: Non-Metallic Minerals
+  1A2G:
+    children: [ ]
+    meaning: Transport Equipment
+  1A2H:
+    children: [ ]
+    meaning: Machinery
+  1A2I:
+    children: [ ]
+    meaning: Mining (excluding fuels) and Quarrying
+  1A2J:
+    children: [ ]
+    meaning: Wood and Wood Products
+  1A2K:
+    children: [ ]
+    meaning: Construction
+  1A2L:
+    children: [ ]
+    meaning: Textile and Leather
+  1A2M:
+    children: [ ]
+    meaning: 'Non-specified Industry:'
+  1A3:
+    children:
+      - 1A3A
+      - 1A3B
+      - 1A3C
+      - 1A3D
+      - 1A3E
+    meaning: Transport Equipment
+  1A3A:
+    children:
+      - 1A3AI
+      - 1A3AII
+    meaning: Civil Aviation
+  1A3AI:
+    children: [ ]
+    meaning: International Aviation (International Bunkers)
+  1A3AII:
+    children: [ ]
+    meaning: Domestic Aviaton
+  1A3B:
+    children:
+      - 1A3BI
+      - 1A3BII
+      - 1A3BIII
+      - 1A3BIV
+      - 1A3BV
+      - 1A3BVI
+    meaning: Road Transportation
+  1A3BI:
+    children:
+      - 1A3BI1
+      - 1A3BI2
+    meaning: Cars
+  1A3BI1:
+    children: [ ]
+    meaning: Passenger Cars With 3-way Catalysts
+  1A3BI2:
+    children: [ ]
+    meaning: Passenger Cars Without 3-way Catalysts
+  1A3BII:
+    children:
+      - 1A3BII1
+      - 1A3BII2
+    meaning: Light-duty Trucks
+  1A3BII1:
+    children: [ ]
+    meaning: Light-duty Trucks With 3-way Catalysts
+  1A3BII2:
+    children: [ ]
+    meaning: Light-duty Trucks Without 3-way Catalysts
+  1A3BIII:
+    children: [ ]
+    meaning: Heavy-duty Trucks and Buses
+  1A3BIV:
+    children: [ ]
+    meaning: Motorcycles
+  1A3BV:
+    children: [ ]
+    meaning: Evaporative Emissions from Vehicles
+  1A3BVI:
+    children: [ ]
+    meaning: Urea-based Catalysts
+  1A3C:
+    children: [ ]
+    meaning: Railways
+  1A3D:
+    children:
+      - 1A3DI
+      - 1A3DII
+    meaning: Water-borne Navigation
+  1A3DI:
+    children: [ ]
+    meaning: International Water-borne Navigation (International Bunkers)
+  1A3DII:
+    children: [ ]
+    meaning: Domestic Water-borne Navigation
+  1A3E:
+    children:
+      - 1A3EI
+      - 1A3EII
+    meaning: Other Transportation
+  1A3EI:
+    children: [ ]
+    meaning: Pipeline Transport
+  1A3EII:
+    children: [ ]
+    meaning: Off-road
+  1A4:
+    children:
+      - 1A4A
+      - 1A4B
+      - 1A4C
+    meaning: Other Sectors
+  1A4A:
+    children: [ ]
+    meaning: Commercial/Institutional
+  1A4B:
+    children: [ ]
+    meaning: Residential
+  1A4C:
+    children:
+      - 1A4CI
+      - 1A4CII
+      - 1A4CIII
+    meaning: Agriculture/Forestry/Fishing/Fish Farms
+  1A4CI:
+    children: [ ]
+    meaning: Stationary
+  1A4CII:
+    children: [ ]
+    meaning: Off-road Vehicles and Other Machinery
+  1A4CIII:
+    children: [ ]
+    meaning: Fishing (mobile combustion)
+  1A5:
+    children:
+      - 1A5A
+      - 1A5B
+      - 1A5C
+    meaning: Non-Specified
+  1A5A:
+    children: [ ]
+    meaning: Stationary
+  1A5B:
+    children:
+      - 1A5BI
+      - 1A5BII
+      - 1A5BIII
+    meaning: Mobile
+  1A5BI:
+    children: [ ]
+    meaning: Mobile (Aviation Component)
+  1A5BII:
+    children: [ ]
+    meaning: Mobile (Water-borne Component)
+  1A5BIII:
+    children: [ ]
+    meaning: Mobile (Other)
+  1A5C:
+    children: [ ]
+    meaning: Multilateral Operations
+  1B:
+    children:
+      - 1B1
+      - 1B2
+      - 1B3
+    meaning: Fugitive Emissions from Fuels
+  1B1:
+    children:
+      - 1B1A
+      - 1B1B
+      - 1B1C
+    meaning: Solid Fuels
+  1B1A:
+    children:
+      - 1B1AI
+      - 1B1AII
+    meaning: Coal Mining and Handling
+  1B1AI:
+    children:
+      - 1B1AI1
+      - 1B1AI2
+      - 1B1AI3
+      - 1B1AI4
+    meaning: Underground Mines
+  1B1AI1:
+    children: [ ]
+    meaning: Mining
+  1B1AI2:
+    children: [ ]
+    meaning: Post-mining Seam Gas Emissions
+  1B1AI3:
+    children: [ ]
+    meaning: Abandoned Underground Mines
+  1B1AI4:
+    children: [ ]
+    meaning: Flaring of Drained Methane or Conversion of Methane to CO 2
+  1B1AII:
+    children:
+      - 1B1AII1
+      - 1B1AII2
+    meaning: Surface Mines
+  1B1AII1:
+    children: [ ]
+    meaning: Mining
+  1B1AII2:
+    children: [ ]
+    meaning: Post-mining Seam Gas Emissions
+  1B1B:
+    children: [ ]
+    meaning: Uncontrolled Combustion, and Burning Coal Dumps
+  1B1C:
+    children: [ ]
+    meaning: Solid Fuel Transformation
+  1B2:
+    children:
+      - 1B2A
+      - 1B2B
+    meaning: Oil and Natural Gas
+  1B2A:
+    children:
+      - 1B2AI
+      - 1B2AII
+      - 1B2AIII
+    meaning: Oil
+  1B2AI:
+    children: [ ]
+    meaning: Venting
+  1B2AII:
+    children: [ ]
+    meaning: Flaring
+  1B2AIII:
+    children:
+      - 1B2AIII1
+      - 1B2AIII2
+      - 1B2AIII3
+      - 1B2AIII4
+      - 1B2AIII5
+      - 1B2AIII6
+    meaning: All Other
+  1B2AIII1:
+    children: [ ]
+    meaning: Exploration
+  1B2AIII2:
+    children: [ ]
+    meaning: Production and Upgrading
+  1B2AIII3:
+    children: [ ]
+    meaning: Transport
+  1B2AIII4:
+    children: [ ]
+    meaning: Refining
+  1B2AIII5:
+    children: [ ]
+    meaning: Distribution of Oil Products
+  1B2AIII6:
+    children: [ ]
+    meaning: Other
+  1B2B:
+    children:
+      - 1B2BI
+      - 1B2BII
+      - 1B2BIII
+    meaning: Natural Gas
+  1B2BI:
+    children: [ ]
+    meaning: Venting
+  1B2BII:
+    children: [ ]
+    meaning: Flaring
+  1B2BIII:
+    children:
+      - 1B2BIII1
+      - 1B2BIII2
+      - 1B2BIII3
+      - 1B2BIII4
+      - 1B2BIII5
+      - 1B2BIII6
+    meaning: All Other
+  1B2BIII1:
+    children: [ ]
+    meaning: Exploration
+  1B2BIII2:
+    children: [ ]
+    meaning: Production
+  1B2BIII3:
+    children: [ ]
+    meaning: Processing
+  1B2BIII4:
+    children: [ ]
+    meaning: Transmission and Storage
+  1B2BIII5:
+    children: [ ]
+    meaning: Distribution
+  1B2BIII6:
+    children: [ ]
+    meaning: Other
+  1B3:
+    children: [ ]
+    meaning: Other Emissions from Energy Production
+  1C:
+    children:
+      - 1C1
+      - 1C2
+      - 1C3
+    meaning: Carbon Dioxide Transport and Storage
+  1C1:
+    children:
+      - 1C1A
+      - 1C1B
+      - 1C1C
+    meaning: Transport of CO 2
+  1C1A:
+    children: [ ]
+    meaning: Pipelines
+  1C1B:
+    children: [ ]
+    meaning: Ships
+  1C1C:
+    children: [ ]
+    meaning: Other (please specify)
+  1C2:
+    children:
+      - 1C2A
+      - 1C2B
+    meaning: Injection and Storage
+  1C2A:
+    children: [ ]
+    meaning: Injection
+  1C2B:
+    children: [ ]
+    meaning: Storage
+  1C3:
+    children: [ ]
+    meaning: Other
+  '2':
+    children:
+      - 2A
+      - 2B
+      - 2C
+      - 2D
+      - 2E
+      - 2F
+      - 2G
+      - 2H
+    meaning: INDUSTRIAL PROCESSES AND PRODUCT USE
+  '2E1':
+    children: [ ]
+    meaning: Integrated Circuit or Semiconductor
+  '2E2':
+    children: [ ]
+    meaning: TFT Flat Panel Display
+  '2E3':
+    children: [ ]
+    meaning: Photovoltaics
+  '2E4':
+    children: [ ]
+    meaning: Heat Transfer Fluid
+  '2E5':
+    children: [ ]
+    meaning: Other (please specify)
+  2A:
+    children:
+      - 2A1
+      - 2A2
+      - 2A3
+      - 2A4
+      - 2A5
+    meaning: Mineral Industry
+  2A1:
+    children: [ ]
+    meaning: Cement Production
+  2A2:
+    children: [ ]
+    meaning: Lime Production
+  2A3:
+    children: [ ]
+    meaning: Glass Production
+  2A4:
+    children:
+      - 2A4A
+      - 2A4B
+      - 2A4C
+      - 2A4D
+    meaning: Other Process Uses of Carbonates
+  2A4A:
+    children: [ ]
+    meaning: Ceramics
+  2A4B:
+    children: [ ]
+    meaning: Other Uses of Soda Ash
+  2A4C:
+    children: [ ]
+    meaning: Non Metallurgical Magnesia Production
+  2A4D:
+    children: [ ]
+    meaning: Other (please specify)
+  2A5:
+    children: [ ]
+    meaning: Other (please specify)
+  2B:
+    children:
+      - 2B1
+      - 2B2
+      - 2B3
+      - 2B4
+      - 2B5
+      - 2B6
+      - 2B7
+      - 2B8
+      - 2B9
+    meaning: Chemical Industry
+  2B1:
+    children: [ ]
+    meaning: Ammonia Production
+  2B10:
+    children: [ ]
+    meaning: Other (please specify)
+  2B2:
+    children: [ ]
+    meaning: Nitric Acid Production
+  2B3:
+    children: [ ]
+    meaning: Adipic Acid Production
+  2B4:
+    children: [ ]
+    meaning: Caprolactam, Glyoxal and Glyoxylic Acid Production
+  2B5:
+    children: [ ]
+    meaning: Carbide Production
+  2B6:
+    children: [ ]
+    meaning: Titanium Dioxide Production
+  2B7:
+    children: [ ]
+    meaning: Soda Ash Production
+  2B8:
+    children:
+      - 2B8A
+      - 2B8B
+      - 2B8C
+      - 2B8D
+      - 2B8E
+      - 2B8F
+    meaning: Petrochemical and Carbon Black Production
+  2B8A:
+    children: [ ]
+    meaning: Methanol
+  2B8B:
+    children: [ ]
+    meaning: Ethylene
+  2B8C:
+    children: [ ]
+    meaning: Ethylene Dichloride and Vinyl Chloride Monomer
+  2B8D:
+    children: [ ]
+    meaning: Ethylene Oxide
+  2B8E:
+    children: [ ]
+    meaning: Acrylonitrile
+  2B8F:
+    children: [ ]
+    meaning: Carbon Black
+  2B9:
+    children:
+      - 2B9A
+      - 2B9B
+      - 2B10
+    meaning: Fluorochemical Production
+  2B9A:
+    children: [ ]
+    meaning: By-product Emissions
+  2B9B:
+    children: [ ]
+    meaning: Fugitive Emissions
+  2C:
+    children:
+      - 2C1
+      - 2C2
+      - 2C3
+      - 2C4
+      - 2C5
+      - 2C6
+      - 2C7
+    meaning: Metal Industry
+  2C1:
+    children: [ ]
+    meaning: Iron and Steel Production
+  2C2:
+    children: [ ]
+    meaning: Ferroalloys Production
+  2C3:
+    children: [ ]
+    meaning: Aluminium Production
+  2C4:
+    children: [ ]
+    meaning: Magnesium Production
+  2C5:
+    children: [ ]
+    meaning: Lead Production
+  2C6:
+    children: [ ]
+    meaning: Zinc Production
+  2C7:
+    children: [ ]
+    meaning: Other (please specify)
+  2D:
+    children:
+      - 2D1
+      - 2D2
+      - 2D3
+      - 2D4
+    meaning: Non-Energy Products from Fuels and Solvent Use
+  2D1:
+    children: [ ]
+    meaning: Lubricant Use
+  2D2:
+    children: [ ]
+    meaning: Paraffin Wax Use
+  2D3:
+    children: [ ]
+    meaning: Solvent Use
+  2D4:
+    children: [ ]
+    meaning: Other (please specify)
+  2E:
+    children:
+      - 2E1
+      - 2E2
+      - 2E3
+      - 2E4
+      - 2E5
+    meaning: Electronics Industry
+  2F:
+    children:
+      - 2F1
+      - 2F2
+      - 2F3
+      - 2F4
+      - 2F5
+      - 2F6
+    meaning: Product Uses as Substitutes for Ozone Depleting Substances
+  2F1:
+    children:
+      - 2F1A
+      - 2F1B
+    meaning: Refrigeration and Air Conditioning
+  2F1A:
+    children: [ ]
+    meaning: Refrigeration and Stationary Air Conditioning
+  2F1B:
+    children: [ ]
+    meaning: Mobile Air Conditioning
+  2F2:
+    children: [ ]
+    meaning: Foam Blowing Agents
+  2F3:
+    children: [ ]
+    meaning: Fire Protection
+  2F4:
+    children: [ ]
+    meaning: Aerosols
+  2F5:
+    children: [ ]
+    meaning: Solvents
+  2F6:
+    children: [ ]
+    meaning: Other Applications (please specify)
+  2G:
+    children:
+      - 2G1
+      - 2G2
+      - 2G3
+      - 2G4
+    meaning: OTHER PRODUCT MANUFACTURE AND USE
+  2G1:
+    children:
+      - 2G1A
+      - 2G1B
+      - 2G1C
+    meaning: Electrical Equipment
+  2G1A:
+    children: [ ]
+    meaning: Manufacture of Electrical Equipment
+  2G1B:
+    children: [ ]
+    meaning: Use of Electrical Equipment
+  2G1C:
+    children: [ ]
+    meaning: Disposal of Electrical Equipment
+  2G2:
+    children:
+      - 2G2A
+      - 2G2B
+      - 2G2C
+    meaning: SF 6 and PFCs from Other Product Uses
+  2G2A:
+    children: [ ]
+    meaning: Military Applications
+  2G2B:
+    children: [ ]
+    meaning: Accelerators
+  2G2C:
+    children: [ ]
+    meaning: Other (please specify)
+  2G3:
+    children:
+      - 2G3A
+      - 2G3B
+      - 2G3C
+    meaning: N 2 O from Product Uses
+  2G3A:
+    children: [ ]
+    meaning: Medical Applications
+  2G3B:
+    children: [ ]
+    meaning: Propellant for Pressure and Aerosol Products
+  2G3C:
+    children: [ ]
+    meaning: Other (please specify)
+  2G4:
+    children: [ ]
+    meaning: Other (please specify)
+  2H:
+    children:
+      - 2H1
+      - 2H2
+      - 2H3
+    meaning: Other
+  2H1:
+    children: [ ]
+    meaning: Pulp and Paper Industry
+  2H2:
+    children: [ ]
+    meaning: Food and Beverages Industry
+  2H3:
+    children: [ ]
+    meaning: Other (please specify)
+  '3':
+    children:
+      - 3A
+      - 3B
+      - 3C
+      - 3D
+    meaning: ''
+  3A:
+    children:
+      - 3A1
+      - 3A2
+    meaning: Livestock
+  3A1:
+    children:
+      - 3A1A
+      - 3A1B
+      - 3A1C
+      - 3A1D
+      - 3A1E
+      - 3A1F
+      - 3A1G
+      - 3A1H
+      - 3A1J
+    meaning: Enteric Fermentation
+  3A1A:
+    children:
+      - 3A1AI
+      - 3A1AII
+    meaning: Cattle
+  3A1AI:
+    children: [ ]
+    meaning: Dairy Cows
+  3A1AII:
+    children: [ ]
+    meaning: Other Cattle
+  3A1B:
+    children: [ ]
+    meaning: Buffalo
+  3A1C:
+    children: [ ]
+    meaning: Sheep
+  3A1D:
+    children: [ ]
+    meaning: Goats
+  3A1E:
+    children: [ ]
+    meaning: Camels
+  3A1F:
+    children: [ ]
+    meaning: Horses
+  3A1G:
+    children: [ ]
+    meaning: Mules and Asses
+  3A1H:
+    children: [ ]
+    meaning: Swine
+  3A1J:
+    children: [ ]
+    meaning: Other (please specify)
+  3A2:
+    children:
+      - 3A2A
+      - 3A2B
+      - 3A2C
+      - 3A2D
+      - 3A2E
+      - 3A2F
+      - 3A2G
+      - 3A2H
+      - 3A2I
+      - 3A2J
+    meaning: Manure Management
+  3A2A:
+    children:
+      - 3A2AI
+      - 3A2AII
+    meaning: Cattle
+  3A2AI:
+    children: [ ]
+    meaning: Dairy Cows
+  3A2AII:
+    children: [ ]
+    meaning: Other Cattle
+  3A2B:
+    children: [ ]
+    meaning: Buffalo
+  3A2C:
+    children: [ ]
+    meaning: Sheep
+  3A2D:
+    children: [ ]
+    meaning: Goats
+  3A2E:
+    children: [ ]
+    meaning: Camels
+  3A2F:
+    children: [ ]
+    meaning: Horses
+  3A2G:
+    children: [ ]
+    meaning: Mules and Asses
+  3A2H:
+    children: [ ]
+    meaning: Swine
+  3A2I:
+    children: [ ]
+    meaning: Poultry
+  3A2J:
+    children: [ ]
+    meaning: Other (please specify)
+  3B:
+    children:
+      - 3B1
+      - 3B2
+      - 3B3
+      - 3B4
+      - 3B5
+      - 3B6
+    meaning: Land
+  3B1:
+    children:
+      - 3B1A
+      - 3B1B
+    meaning: Forest Land
+  3B1A:
+    children: [ ]
+    meaning: Forest land Remaining Forest Land
+  3B1B:
+    children:
+      - 3B1BI
+      - 3B1BII
+      - 3B1BIII
+      - 3B1BIV
+      - 3B1BV
+    meaning: Land Converted to Forest Land
+  3B1BI:
+    children: [ ]
+    meaning: Cropland Converted to Forest Land
+  3B1BII:
+    children: [ ]
+    meaning: Grassland Converted to Forest Land
+  3B1BIII:
+    children: [ ]
+    meaning: Wetlands Converted to Forest Land
+  3B1BIV:
+    children: [ ]
+    meaning: Settlements Converted to Forest Land
+  3B1BV:
+    children: [ ]
+    meaning: Other Land Converted to Forest Land
+  3B2:
+    children:
+      - 3B2A
+      - 3B2B
+    meaning: Cropland
+  3B2A:
+    children: [ ]
+    meaning: Cropland Remaining Cropland
+  3B2B:
+    children:
+      - 3B2BI
+      - 3B2BII
+      - 3B2BIII
+      - 3B2BIV
+      - 3B2BV
+    meaning: Land Converted to Cropland
+  3B2BI:
+    children: [ ]
+    meaning: Forest Land Converted to Cropland
+  3B2BII:
+    children: [ ]
+    meaning: Grassland Converted to Cropland
+  3B2BIII:
+    children: [ ]
+    meaning: Wetlands Converted to Cropland
+  3B2BIV:
+    children: [ ]
+    meaning: Settlements Converted to Cropland
+  3B2BV:
+    children: [ ]
+    meaning: Other Land Converted to Cropland
+  3B3:
+    children:
+      - 3B3A
+      - 3B3B
+    meaning: Grassland
+  3B3A:
+    children: [ ]
+    meaning: Grassland Remaining Grassland
+  3B3B:
+    children:
+      - 3B3BI
+      - 3B3BII
+      - 3B3BIII
+      - 3B3BIV
+      - 3B3BV
+    meaning: Land Converted to Grassland
+  3B3BI:
+    children: [ ]
+    meaning: Forest Land Converted to Grassland
+  3B3BII:
+    children: [ ]
+    meaning: Cropland Converted to Grassland
+  3B3BIII:
+    children: [ ]
+    meaning: Wetlands Converted to Grassland
+  3B3BIV:
+    children: [ ]
+    meaning: Settlements Converted to Grassland
+  3B3BV:
+    children: [ ]
+    meaning: Other Land Converted to Grassland
+  3B4:
+    children:
+      - 3B4A
+      - 3B4B
+    meaning: Wetlands
+  3B4A:
+    children:
+      - 3B4AI
+      - 3B4AII
+    meaning: Wetlands Remaining Wetlands
+  3B4AI:
+    children: [ ]
+    meaning: Peatlands Remaining peatlands
+  3B4AII:
+    children: [ ]
+    meaning: Flooded Land Remaining Flooded Land
+  3B4B:
+    children:
+      - 3B4BI
+      - 3B4BII
+      - 3B4BIII
+    meaning: Land Converted to Wetlands
+  3B4BI:
+    children: [ ]
+    meaning: Land Converted for Peat Extraction
+  3B4BII:
+    children: [ ]
+    meaning: Land Converted to Flooded Land
+  3B4BIII:
+    children: [ ]
+    meaning: Land Converted to Other Wetlands
+  3B5:
+    children:
+      - 3B5A
+      - 3B5B
+    meaning: Settlements
+  3B5A:
+    children: [ ]
+    meaning: Settlements Remaining Settlements
+  3B5B:
+    children:
+      - 3B5BI
+      - 3B5BII
+      - 3B5BIII
+      - 3B5BIV
+      - 3B5BV
+    meaning: Land Converted to Settlements
+  3B5BI:
+    children: [ ]
+    meaning: Forest Land Converted to Settlements
+  3B5BII:
+    children: [ ]
+    meaning: Cropland Converted to Settlements
+  3B5BIII:
+    children: [ ]
+    meaning: Grassland Converted to Settlements
+  3B5BIV:
+    children: [ ]
+    meaning: Wetlands Converted to Settlements
+  3B5BV:
+    children: [ ]
+    meaning: Other Land Converted to Settlements
+  3B6:
+    children:
+      - 3B6A
+      - 3B6B
+    meaning: Other Land
+  3B6A:
+    children: [ ]
+    meaning: Other Land Remaining Other Land
+  3B6B:
+    children:
+      - 3B6BI
+      - 3B6BII
+      - 3B6BIII
+      - 3B6BIV
+      - 3B6BV
+    meaning: Land Converted to Other Land
+  3B6BI:
+    children: [ ]
+    meaning: Forest Land Converted to Other Land
+  3B6BII:
+    children: [ ]
+    meaning: Cropland Converted to Other Land
+  3B6BIII:
+    children: [ ]
+    meaning: Grassland Converted to Other Land
+  3B6BIV:
+    children: [ ]
+    meaning: Wetlands Converted to Other Land
+  3B6BV:
+    children: [ ]
+    meaning: Settlements Converted to Other Land
+  3C:
+    children:
+      - 3C1
+      - 3C2
+      - 3C3
+      - 3C4
+      - 3C5
+      - 3C6
+      - 3C7
+      - 3C8
+    meaning: Aggregate Sources and Non-CO 2 Emissions Sources on Land
+  3C1:
+    children:
+      - 3C1A
+      - 3C1B
+      - 3C1C
+      - 3C1D
+    meaning: Emissions from Biomass Burning
+  3C1A:
+    children: [ ]
+    meaning: Biomass Burning in Forest Lands
+  3C1B:
+    children: [ ]
+    meaning: Biomass Burning in Croplands
+  3C1C:
+    children: [ ]
+    meaning: Biomass Burning in Grasslands
+  3C1D:
+    children: [ ]
+    meaning: Biomass Burning in All Other Land
+  3C2:
+    children: [ ]
+    meaning: Liming
+  3C3:
+    children: [ ]
+    meaning: Urea Application
+  3C4:
+    children: [ ]
+    meaning: Direct N 2 O Emissions from Managed Soils
+  3C5:
+    children: [ ]
+    meaning: Indirect N 2 O Emissions from Managed Soils
+  3C6:
+    children: [ ]
+    meaning: Indirect N 2 O Emissions from Manure Management
+  3C7:
+    children: [ ]
+    meaning: Rice Cultivations
+  3C8:
+    children: [ ]
+    meaning: Other (please specify)
+  3D:
+    children:
+      - 3D1
+      - 3D2
+    meaning: Other
+  3D1:
+    children: [ ]
+    meaning: Harvested Wood Products
+  3D2:
+    children: [ ]
+    meaning: Other (please specify)
+  '4':
+    children:
+      - 4A
+      - 4B
+      - 4C
+      - 4D
+      - 4E
+    meaning: WASTE
+  4A:
+    children:
+      - 4A1
+      - 4A2
+      - 4A3
+    meaning: Solid Waste Disposal
+  4A1:
+    children: [ ]
+    meaning: Managed Waste Disposal Sites
+  4A2:
+    children: [ ]
+    meaning: Unmanaged Waste Disposal Sites
+  4A3:
+    children: [ ]
+    meaning: Uncategorised Waste Disposal Sites
+  4B:
+    children: [ ]
+    meaning: Biological Treatment of Solid Waste
+  4C:
+    children:
+      - 4C1
+      - 4C2
+    meaning: Incineration and Open Burning of Waste
+  4C1:
+    children: [ ]
+    meaning: Waste Incineration
+  4C2:
+    children: [ ]
+    meaning: Open Burning of Waste
+  4D:
+    children:
+      - 4D1
+      - 4D2
+    meaning: Wastewater Treatment and Discharge
+  4D1:
+    children: [ ]
+    meaning: Domestic Wastewater Treatment and Discharge
+  4D2:
+    children: [ ]
+    meaning: Industrial Wastewater Treatment and Discharge
+  4E:
+    children: [ ]
+    meaning: Other (please specify)
+  '5':
+    children:
+      - 5A
+      - 5B
+    meaning: ''
+  5A:
+    children: [ ]
+    meaning: Indirect N 2 O Emissions from the Atmospheric Deposition of Nitrogen in
+      NO x and NH 3
+  5B:
+    children: [ ]
+    meaning: Other (please specify)
