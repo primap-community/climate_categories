@@ -1,9 +1,8 @@
 """Classes to represent and query categorical systems."""
 
-import csv
 import datetime
 import pathlib
-from typing import Dict, Iterable, List, Optional, Tuple, Union
+from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
 
 try:
     import pandas
@@ -67,50 +66,9 @@ class Categorization:
         self.hierarchical = hierarchical
 
     @classmethod
-    def from_csvs(
-        cls,
-        *,
-        metadata_csv: Union[pathlib.Path, str],
-        data_csv: Union[pathlib.Path, str],
-    ) -> "Categorization":
-        """Construct a Categorization object from two CSV files.
-
-        Parameters
-        ----------
-        metadata_csv : Path or str
-            CSV file which contains the metadata as (key, value) pairs where the key
-            is the attribute name and one (key, value) pair per row.
-        data_csv : Path or str
-            CSV file which contains the translation of category codes to their meanings
-            as (code, meaning) pairs with one pair per row.
-
-        Returns
-        -------
-        Categorization
-        """
-        meta = {}
-        with open(metadata_csv, newline="") as fd:
-            r = csv.reader(fd)
-            for key, value in r:
-                meta[key] = value
-
-        code_meanings = {}
-        with open(data_csv, newline="") as fd:
-            r = csv.reader(fd)
-            for key, value in r:
-                code_meanings[key] = value
-
-        return cls(
-            code_meanings=code_meanings,
-            name=meta["name"],
-            references=meta["references"],
-            title=meta["title"],
-            comment=meta["comment"],
-            institution=meta["institution"],
-            last_update=datetime.date.fromisoformat(meta["last_update"]),
-            version=meta["version"] if "version" in meta else None,
-            hierarchical=meta["bool"] == "True" if "bool" in meta else False,
-        )
+    def from_yaml(cls, file: Union[str, pathlib.Path]) -> "HierarchicalCategorization":
+        """Read Categorization from a StrictYaml file."""
+        raise NotImplementedError
 
     def _extend_prepare(
         self,
@@ -230,7 +188,7 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         code_meanings: Dict[str, str],
-        hierarchy: Dict[str, Iterable[str]],
+        hierarchy: Dict[str, List[Set[str]]],
         name: str,
         references: str,
         title: str,
@@ -254,106 +212,17 @@ class HierarchicalCategorization(Categorization):
         self._hierarchy = hierarchy
         self.total_sum = total_sum
 
-    @staticmethod
-    def _parse_hierarchy_csv(reader: csv.reader) -> List[Tuple[str, str]]:
-        parents = []
-        previous_lvl = -1
-        previous_code = None
-        edges = []
-        for i, row in enumerate(reader):
-            for lvl, code in enumerate(row):
-                if code:
-                    break
-            if lvl == previous_lvl + 1:  # child of previous node
-                if previous_code is not None:  # not first row
-                    parents.append(previous_code)
-            elif lvl == previous_lvl:
-                pass  # same parents
-            elif lvl < previous_lvl:
-                parents = parents[:lvl]
-            else:
-                raise ValueError(
-                    f"Unexpected indent at line {i} for {code}."
-                    "Should be at most one level deeper than the previous line."
-                )
-
-            if parents:
-                edges.append((parents[-1], code))
-
-            previous_lvl = lvl
-            previous_code = code
-
-        return edges
-
     @classmethod
-    def from_csvs(
-        cls,
-        *,
-        metadata_csv: Union[pathlib.Path, str],
-        data_csv: Union[pathlib.Path, str],
-        hierarchy_csv: Union[pathlib.Path, str],
-    ) -> "HierarchicalCategorization":
-        """Construct a Categorization object from three CSV files.
-
-        Parameters
-        ----------
-        metadata_csv : Path or str
-            CSV file which contains the metadata as (key, value) pairs where the key
-            is the attribute name and one (key, value) pair per row.
-        data_csv : Path or str
-            CSV file which contains the translation of category codes to their meanings
-            as (code, meaning) pairs with one pair per row.
-        hierarchy_csv : Path or str
-            CSV file which contains the hierarchy of categories. Categories are
-            represented by their codes. There should be one code per row, the column
-            of the code determines the categories level, child categories are one
-            column to the right of parent categories.
-
-        Returns
-        -------
-        HierarchicalCategorization
-        """
-        meta = {}
-        with open(metadata_csv, newline="") as fd:
-            r = csv.reader(fd)
-            for key, value in r:
-                meta[key] = value
-
-        code_meanings = {}
-        with open(data_csv, newline="") as fd:
-            r = csv.reader(fd)
-            for key, value in r:
-                code_meanings[key] = value
-
-        with open(hierarchy_csv, newline="") as fd:
-            edges = cls._parse_hierarchy_csv(csv.reader(fd))
-
-        hierarchy = {}
-        for parent, child in edges:
-            if parent in hierarchy:
-                hierarchy[parent].append(child)
-            else:
-                hierarchy[parent] = [child]
-
-        return cls(
-            code_meanings=code_meanings,
-            hierarchy=hierarchy,
-            name=meta["name"],
-            references=meta["references"],
-            title=meta["title"],
-            comment=meta["comment"],
-            institution=meta["institution"],
-            last_update=datetime.date.fromisoformat(meta["last_update"]),
-            version=meta["version"] if "version" in meta else None,
-            total_sum=meta["total_sum"] == "True" if "total_sum" in meta else False,
-        )
+    def from_yaml(cls, file: Union[str, pathlib.Path]) -> "HierarchicalCategorization":
+        """Read HierarchicalCategorization from a StrictYaml file."""
+        raise NotImplementedError
 
     def extend(
         self,
         *,
         name: str,
         categories: Dict[str, str],
-        children: Optional[Dict[str, Iterable[str]]] = None,
+        children: Optional[Iterable[Tuple[str, Iterable[str]]]] = None,
         title: Optional[str] = None,
         comment: Optional[str] = None,
         last_update: Optional[datetime.date] = None,
@@ -379,16 +248,19 @@ class HierarchicalCategorization(Categorization):
            Categorization.
         categories : dict
            Map of new category codes to their meaning.
-        children : dict, optional
-           Map of parent category codes to lists of child category codes. The given
+        children : list of (parent, {child1, child2, …}) mappings
+           Map of parent category codes to sets of child category codes. The given
            relationships are inserted into the hierarchy. Both existing and new category
-           codes can be used as parents or children.
+           codes can be used as parents or children. parent codes can be given in
+           multiple entries if multiple sets of children are possible. Sets of children
+           will be added to the hierarchy in the specified order at the end of the
+           list of sets of children.
         title : str, optional
            A string to add to the original title. If not provided, " + {name}" will be
            used.
         comment : str, optional
-           A string to add to the original comment. If not provided, " extend by {name}"
-           will be used.
+           A string to add to the original comment. If not provided,
+           " extended by {name}" will be used.
         last_update : datetime.date, optional
            The date of the last update to this extension. Today will be used if not
            provided.
@@ -403,7 +275,11 @@ class HierarchicalCategorization(Categorization):
 
         hierarchy = self._hierarchy.copy()
         if children is not None:
-            hierarchy.update(children)
+            for (parent, child_set) in children:
+                if parent in hierarchy:
+                    hierarchy[parent].append(child_set)
+                else:
+                    hierarchy[parent] = [child_set]
 
         return HierarchicalCategorization(
             code_meanings=categories,
@@ -422,7 +298,7 @@ class HierarchicalCategorization(Categorization):
         *,
         name: str,
         categories: Dict[str, str],
-        hierarchy: Dict[str, Iterable[str]],
+        hierarchy: Dict[str, List[Set[str]]],
         title: Optional[str] = None,
         comment: Optional[str] = None,
         last_update: Optional[datetime.date] = None,
@@ -445,8 +321,8 @@ class HierarchicalCategorization(Categorization):
         categories : dict
            Map of new category codes to their meaning.
         hierarchy : dict
-           Map of parent category codes to lists of child category codes. The given
-           hierarchy replaces the original hierarchy.
+           Map of parent category codes to lists of sets of child category codes.
+           given hierarchy replaces the original hierarchy.
         title : str, optional
            A string to add to the original title. If not provided, " + {name}" will be
            used.
@@ -482,21 +358,26 @@ class HierarchicalCategorization(Categorization):
         """The level of the given code.
 
         The topmost category has level 1 and its children have level 2 etc.
+
+        If there is more than one topmost category or multiple ways to the topmost
+        category, the shortest path to a topmost category is used to calculate the
+        level.
         """
         raise NotImplementedError
 
     def parents(self, code: str) -> List[str]:
         """The direct parents of the given category."""
-        return [x for x in self._hierarchy if code in self._hierarchy[x]]
+        return [x for x in self._hierarchy if code in set().union(*self._hierarchy[x])]
 
-    def children(self, code: str) -> List[str]:
-        """The direct children of the given category."""
+    def children(self, code: str) -> List[Set[str]]:
+        """The list of sets of direct children of the given category."""
         if code in self._hierarchy:
             return list(self._hierarchy[code])
         else:
             return []
 
     @property
-    def hierarchy(self) -> Dict[str, List[str]]:
-        """The full hierarchy as a dict mapping parent codes to lists of children."""
-        return {x: list(self._hierarchy[x]) for x in self._hierarchy}
+    def hierarchy(self) -> Dict[str, List[Set[str]]]:
+        """The full hierarchy as a dict mapping parent codes to lists of sets of
+        children."""
+        return self._hierarchy
