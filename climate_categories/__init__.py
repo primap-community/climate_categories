@@ -12,15 +12,11 @@ import typing
 
 from . import search
 from ._categories import Categorization  # noqa: F401
-from ._categories import HierarchicalCategorization
+from ._categories import HierarchicalCategorization  # noqa: F401
 
 _data_dir = pathlib.Path(__file__).parent / "data"
 
-IPCC2006 = HierarchicalCategorization.from_csvs(
-    metadata_csv=_data_dir / "ipcc_2006_meta.csv",
-    data_csv=_data_dir / "ipcc_2006_meaning.csv",
-    hierarchy_csv=_data_dir / "ipcc_2006_hierarchy.csv",
-)
+IPCC2006 = None
 
 cats = {"IPCC2006": IPCC2006}
 

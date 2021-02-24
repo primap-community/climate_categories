@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-pyc clean-build docs help update-venv
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -73,5 +73,11 @@ venv: requirements_dev.txt setup.py
 	venv/bin/python -m pip install -e .
 	touch venv
 
-install-pre-commit: venv ## install the pre-commit hooks
+update-venv:
+	[ -d venv ] || python3 -m venv venv
+	venv/bin/python -m pip install -r requirements_dev.txt --upgrade
+	venv/bin/python -m pip install -e .
+	touch venv
+
+install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install

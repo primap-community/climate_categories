@@ -13,3 +13,4 @@ sphinx_rtd_theme
 pandas
 ipykernel
 nbsphinx
+strictyaml
