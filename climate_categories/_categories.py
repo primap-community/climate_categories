@@ -2,12 +2,103 @@
 
 import datetime
 import pathlib
-from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
+import typing
 
-try:
-    import pandas
-except ImportError:
-    pandas = None
+import pandas
+import strictyaml
+
+
+class Category:
+    """A single category."""
+
+    def __init__(
+        self,
+        codes: typing.Tuple[str],
+        categorization: "Categorization",
+        title: str,
+        comment: typing.Optional[str] = None,
+    ):
+        self.codes = codes
+        self.title = title
+        self.comment = comment
+        self.categorization = categorization
+
+    @classmethod
+    def from_spec(cls, code: str, spec: typing.Dict, categorization: "Categorization"):
+        codes = [code]
+        if "alternative_codes" in spec:
+            codes += spec["alternative_codes"]
+            del spec["alternative_codes"]
+        return cls(codes=tuple(codes), categorization=categorization, **spec)
+
+    def to_spec(self) -> (str, typing.Dict):
+        code = self.codes[0]
+        spec = {"title": self.title}
+        if self.comment is not None:
+            spec["comment"] = self.comment
+        if len(self.codes) > 1:
+            spec["alternative_codes"] = self.codes[1:]
+        return code, spec
+
+    def __str__(self) -> str:
+        return self.title
+
+    def __eq__(self, other: "Category"):
+        return any((x in other.codes for x in self.codes)) and (
+            self.categorization is other.categorization
+            or self.categorization.name.startswith(other.categorization.name)
+            or other.categorization.name.startswith(self.categorization.name)
+        )
+
+    def __repr__(self) -> str:
+        return f"<Category {self.title!r} {self.codes!r} {self.comment!r}>"
+
+
+class HierarchicalCategory(Category):
+    """A single category from a HierarchicalCategorization."""
+
+    def __init__(
+        self,
+        codes: typing.Tuple[str],
+        categorization: "HierarchicalCategorization",
+        title: str,
+        comment: typing.Optional[str] = None,
+    ):
+        Category.__init__(self, codes, categorization, title, comment)
+        self.categorization = categorization
+
+    @property
+    def children(self) -> typing.List[typing.Set["HierarchicalCategory"]]:
+        """The sets of subcategories comprising this category.
+
+        The first set is canonical, the other sets are alternative.
+        Only the canonical sets are used to calculate the level of a category."""
+        return self.categorization.children(self)
+
+    @property
+    def parents(self) -> typing.Set["HierarchicalCategory"]:
+        """The super-categories where this category is a member of any set of children.
+
+        Note that all possible parents are returned, not "canonical" parents.
+        """
+        return self.categorization.parents(self)
+
+    @property
+    def level(self) -> int:
+        """The level of the category.
+
+        The canonical top-level category has level 1 and its children have level 2 etc.
+
+        To calculate the level, only the first ("canonical") set of children is
+        considered for intermediate categories.
+        """
+        return self.categorization.level(self)
+
+    def __repr__(self) -> str:
+        return (
+            f"<Category {self.title!r} {self.codes!r} {self.comment!r} "
+            f"children: {self.children!r}>"
+        )
 
 
 class Categorization:
@@ -42,20 +133,32 @@ class Categorization:
         True if descendants and ancestors are defined
     """
 
+    hierarchical: bool = False
+
     def __init__(
         self,
         *,
-        code_meanings: Dict[str, str],
+        categories: typing.Dict[str, typing.Union[typing.Dict, Category]],
         name: str,
-        references: str,
         title: str,
         comment: str,
+        references: str,
         institution: str,
         last_update: datetime.date,
-        version: Optional[str] = None,
-        hierarchical: bool = False,
+        version: typing.Optional[str] = None,
     ):
-        self._codes = code_meanings
+        self._primary_code_map = {}
+        self._all_codes_map = {}
+        for code, spec in categories.items():
+            if isinstance(spec, Category):
+                cat = spec
+            else:
+                cat = Category.from_spec(code=code, spec=spec, categorization=self)
+
+            self._primary_code_map[code] = cat
+            for icode in cat.codes:
+                self._all_codes_map[icode] = cat
+
         self.name = name
         self.references = references
         self.title = title
@@ -63,20 +166,90 @@ class Categorization:
         self.institution = institution
         self.last_update = last_update
         self.version = version
-        self.hierarchical = hierarchical
 
     @classmethod
-    def from_yaml(cls, file: Union[str, pathlib.Path]) -> "HierarchicalCategorization":
+    def from_yaml(cls, file: typing.Union[str, pathlib.Path]) -> "Categorization":
         """Read Categorization from a StrictYaml file."""
-        raise NotImplementedError
+        with open(file) as fd:
+            yaml = strictyaml.load(fd.read())
+        last_update = datetime.date.fromisoformat(yaml.data["last_update"])
+        return cls(
+            categories=yaml.data["categories"],
+            name=yaml.data["name"],
+            title=yaml.data["title"],
+            comment=yaml.data["comment"],
+            references=yaml.data["references"],
+            institution=yaml.data["institution"],
+            last_update=last_update,
+            version=yaml.data.get("version", None),
+        )
+
+    def keys(self) -> typing.KeysView[str]:
+        """Iterate over the codes for all categories."""
+        return self._primary_code_map.keys()
+
+    def values(self) -> typing.ValuesView[Category]:
+        """Iterate over the categories."""
+        return self._primary_code_map.values()
+
+    def items(self) -> typing.ItemsView[str, Category]:
+        """Iterate over (primary code, category) pairs."""
+        return self._primary_code_map.items()
+
+    def all_keys(self) -> typing.KeysView[str]:
+        """Iterate over all codes for all categories."""
+        return self._all_codes_map.keys()
+
+    def __iter__(self) -> typing.Iterable[str]:
+        return iter(self._primary_code_map)
+
+    def __getitem__(self, code: str) -> Category:
+        """Get the category for a code."""
+        return self._all_codes_map[code]
+
+    def __contains__(self, code: str) -> bool:
+        """Can the code be mapped to a category?"""
+        return code in self._all_codes_map
+
+    def __len__(self) -> int:
+        return len(self._primary_code_map)
+
+    def __repr__(self) -> str:
+        return (
+            f"<Categorization {self.name} {self.title!r} with {len(self)} categories>"
+        )
+
+    def __str__(self) -> str:
+        return self.name
+
+    @property
+    def df(self) -> "pandas.DataFrame":
+        """All category codes as a pandas dataframe."""
+        titles = []
+        comments = []
+        alternative_codes = []
+        for cat in self.values():
+            titles.append(cat.title)
+            comments.append(cat.comment)
+            alternative_codes.append(cat.codes[1:])
+        return pandas.DataFrame(
+            index=self.keys(),
+            data={
+                "title": titles,
+                "comment": comments,
+                "alternative_codes": alternative_codes,
+            },
+        )
 
     def _extend_prepare(
         self,
+        *,
+        categories: typing.Optional[typing.Dict[str, typing.Dict]] = None,
+        alternative_codes: typing.Optional[typing.Dict[str, str]] = None,
         name: str,
-        categories: Dict[str, str],
-        title: Optional[str] = None,
-        comment: Optional[str] = None,
-        last_update: Optional[datetime.date] = None,
+        title: typing.Optional[str] = None,
+        comment: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
     ):
         if title is None:
             title = f"{self.title} + {name}"
@@ -91,42 +264,60 @@ class Categorization:
         if last_update is None:
             last_update = datetime.date.today()
 
-        code_meanings = self._codes.copy()
-        code_meanings.update(categories)
+        # serialize the current categories to make sure that we don't modify the
+        # old categories' values.
+        new_categories = dict((x.to_spec() for x in self.values()))
+        if categories is not None:
+            new_categories.update(categories)
 
-        return (name, categories, title, comment, last_update)
+        if alternative_codes is not None:
+            for alias, primary in alternative_codes.items():
+                if "alternative_codes" not in new_categories[primary]:
+                    new_categories[primary]["alternative_codes"] = tuple()
+                new_categories[primary]["alternative_codes"] = new_categories[primary][
+                    "alternative_codes"
+                ] + (alias,)
+
+        return (name, new_categories, title, comment, last_update)
 
     def extend(
         self,
         *,
+        categories: typing.Optional[typing.Dict[str, typing.Dict]] = None,
+        alternative_codes: typing.Optional[typing.Dict[str, str]] = None,
         name: str,
-        categories: Dict[str, str],
-        title: Optional[str] = None,
-        comment: Optional[str] = None,
-        last_update: Optional[datetime.date] = None,
+        title: typing.Optional[str] = None,
+        comment: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
     ) -> "Categorization":
         """Extend the categorization with additional categories, yielding a new
         categorization.
 
         Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
-        automatically (see below), the ``institution`` is deleted, and the values for
-        ``version`` and ``hierarchical`` are kept. You can set more accurate metadata
-        (for example, your institution) on the returned object if needed.
+        automatically (see below), the ``institution`` and ``references`` are deleted
+        and the values for ``version`` and ``hierarchical`` are kept.
+        You can set more accurate metadata (for example, your institution) on the
+        returned object if needed.
 
         Parameters
         ----------
+        categories: dict, optional
+           Map of new category codes to their specification. The specification is a
+           dictionary with the keys "title", optionally "comment", and optionally
+           "alternative_codes".
+        alternative_codes: dict, optional
+           Map of new alternative codes. A dictionary with the new alternative code
+           as key and existing code as value.
         name : str
            The name of your extension. The returned Categorization will have a name
            of "{old_name}_{name}", indicating that it is an extension of the underlying
            Categorization.
-        categories : dict
-           Map of new category codes to their meaning.
         title : str, optional
            A string to add to the original title. If not provided, " + {name}" will be
            used.
         comment : str, optional
-           A string to add to the original comment. If not provided, " extend by {name}"
-           will be used.
+           A string to add to the original comment. If not provided,
+           " extended by {name}" will be used.
         last_update : datetime.date, optional
            The date of the last update to this extension. Today will be used if not
            provided.
@@ -136,11 +327,16 @@ class Categorization:
         Extended categorization : Categorization
         """
         (name, categories, title, comment, last_update) = self._extend_prepare(
-            name, categories, title, comment, last_update
+            name=name,
+            categories=categories,
+            title=title,
+            comment=comment,
+            last_update=last_update,
+            alternative_codes=alternative_codes,
         )
 
         return Categorization(
-            code_meanings=categories,
+            categories=categories,
             name=f"{self.name}_{name}",
             references="",
             title=title,
@@ -148,23 +344,6 @@ class Categorization:
             institution="",
             last_update=last_update,
             version=self.version,
-        )
-
-    def __getitem__(self, code: str) -> str:
-        """Get the meaning for a code."""
-        return self._codes[code]
-
-    def keys(self) -> Iterable:
-        """Iterable of all category codes."""
-        return self._codes.keys()
-
-    @property
-    def df(self) -> "pandas.DataFrame":
-        """All category codes and meanings as a pandas dataframe."""
-        if pandas is None:
-            raise ImportError("pandas not found")
-        return pandas.DataFrame(
-            index=self._codes.keys(), data={"meaning": self._codes.values()}
         )
 
 
@@ -187,15 +366,15 @@ class HierarchicalCategorization(Categorization):
     def __init__(
         self,
         *,
-        code_meanings: Dict[str, str],
-        hierarchy: Dict[str, List[Set[str]]],
+        code_meanings: typing.Dict[str, str],
+        hierarchy: typing.Dict[str, typing.List[typing.Set[str]]],
         name: str,
         references: str,
         title: str,
         comment: str,
         institution: str,
         last_update: datetime.date,
-        version: Optional[str] = None,
+        version: typing.Optional[str] = None,
         total_sum: bool = False,
     ):
         super(HierarchicalCategorization, self).__init__(
@@ -213,7 +392,9 @@ class HierarchicalCategorization(Categorization):
         self.total_sum = total_sum
 
     @classmethod
-    def from_yaml(cls, file: Union[str, pathlib.Path]) -> "HierarchicalCategorization":
+    def from_yaml(
+        cls, file: typing.Union[str, pathlib.Path]
+    ) -> "HierarchicalCategorization":
         """Read HierarchicalCategorization from a StrictYaml file."""
         raise NotImplementedError
 
@@ -221,11 +402,13 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         name: str,
-        categories: Dict[str, str],
-        children: Optional[Iterable[Tuple[str, Iterable[str]]]] = None,
-        title: Optional[str] = None,
-        comment: Optional[str] = None,
-        last_update: Optional[datetime.date] = None,
+        categories: typing.Dict[str, str],
+        children: typing.Optional[
+            typing.Iterable[typing.Tuple[str, typing.Iterable[str]]]
+        ] = None,
+        title: typing.Optional[str] = None,
+        comment: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
     ) -> "HierarchicalCategorization":
         """Extend the categorization with additional categories and relationships,
         yielding a new categorization.
@@ -297,11 +480,11 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         name: str,
-        categories: Dict[str, str],
-        hierarchy: Dict[str, List[Set[str]]],
-        title: Optional[str] = None,
-        comment: Optional[str] = None,
-        last_update: Optional[datetime.date] = None,
+        categories: typing.Dict[str, str],
+        hierarchy: typing.Dict[str, typing.List[typing.Set[str]]],
+        title: typing.Optional[str] = None,
+        comment: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
     ):
         """Extend the categorization with additional categories and a new hierarchy,
         yielding a new categorization.
@@ -365,11 +548,11 @@ class HierarchicalCategorization(Categorization):
         """
         raise NotImplementedError
 
-    def parents(self, code: str) -> List[str]:
+    def parents(self, code: str) -> typing.List[str]:
         """The direct parents of the given category."""
         return [x for x in self._hierarchy if code in set().union(*self._hierarchy[x])]
 
-    def children(self, code: str) -> List[Set[str]]:
+    def children(self, code: str) -> typing.List[typing.Set[str]]:
         """The list of sets of direct children of the given category."""
         if code in self._hierarchy:
             return list(self._hierarchy[code])
@@ -377,7 +560,7 @@ class HierarchicalCategorization(Categorization):
             return []
 
     @property
-    def hierarchy(self) -> Dict[str, List[Set[str]]]:
+    def hierarchy(self) -> typing.Dict[str, typing.List[typing.Set[str]]]:
         """The full hierarchy as a dict mapping parent codes to lists of sets of
         children."""
         return self._hierarchy

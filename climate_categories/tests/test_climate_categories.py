@@ -11,7 +11,7 @@ import climate_categories
 
 class TestSimple:
     def test_meta(self, SimpleCat: climate_categories.Categorization):
-        assert SimpleCat.name == "SimpleCat"
+        assert SimpleCat.name == "SimpleCat" == str(SimpleCat)
         assert SimpleCat.title == "Simple Categorization"
         assert SimpleCat.references == "doi:00000/00000"
         assert SimpleCat.last_update == datetime.date(2021, 2, 23)
@@ -23,23 +23,27 @@ class TestSimple:
             " categories"
         )
         assert SimpleCat.hierarchical is False
+        assert (
+            repr(SimpleCat)
+            == "<Categorization SimpleCat 'Simple Categorization' with 4 categories>"
+        )
 
     def test_categories(self, SimpleCat: climate_categories.Categorization):
         assert "1" in SimpleCat
         assert SimpleCat["1"].title == "Category 1" == str(SimpleCat["1"])
         assert SimpleCat["1"].comment == "The first category"
-        assert SimpleCat["1"].codes == ["1", "A", "CatA"]
+        assert SimpleCat["1"].codes == ("1", "A", "CatA")
         assert SimpleCat["1"] == SimpleCat["A"] == SimpleCat["CatA"]
         assert SimpleCat["1"] != SimpleCat["2"]
         assert SimpleCat["unnumbered"].title == "The unnumbered category"
         assert (
             repr(SimpleCat["1"])
-            == "<Category 'Category 1' ['1', 'A', 'CatA'] 'The first category'>"
+            == "<Category 'Category 1' ('1', 'A', 'CatA') 'The first category'>"
         )
 
     def test_dict_like(self, SimpleCat: climate_categories.Categorization):
         assert "A" in SimpleCat
-        assert list(SimpleCat) == [
+        assert list(SimpleCat.all_keys()) == [
             "1",
             "A",
             "CatA",
@@ -56,8 +60,8 @@ class TestSimple:
 
     def test_df(self, SimpleCat: climate_categories.Categorization):
         expected = pd.DataFrame(
-            {
-                "code": ["1", "2", "3", "unnumbered"],
+            index=["1", "2", "3", "unnumbered"],
+            data={
                 "title": [
                     "Category 1",
                     "Category 2",
@@ -76,9 +80,76 @@ class TestSimple:
                     ("C", "CatC"),
                     tuple(),
                 ],
-            }
+            },
         )
-        assert SimpleCat.df == expected
+        pd.testing.assert_frame_equal(SimpleCat.df, expected)
+
+    def test_extend(self, SimpleCat: climate_categories.Categorization):
+        SimpleCat_ext = SimpleCat.extend(
+            name="ext",
+            categories={
+                "4": {
+                    "title": "Category 4",
+                    "comment": "The fourth category",
+                    "alternative_codes": ("D", "CatD"),
+                },
+                "t": {"title": "Category T"},
+            },
+            title=" title_ext",
+            alternative_codes={"I": "1", "II": "2", "III": "3", "drai": "3", "IV": "4"},
+        )
+        assert SimpleCat_ext.name == "SimpleCat_ext"
+        assert SimpleCat_ext.title == "Simple Categorization title_ext"
+        assert SimpleCat_ext.references == ""
+        assert SimpleCat_ext.last_update == datetime.date.today()
+        assert SimpleCat_ext.institution == ""
+        assert SimpleCat_ext.version == "1"
+        assert (
+            SimpleCat_ext.comment
+            == "A simple example categorization without relationships between"
+            " categories extended by ext"
+        )
+        assert SimpleCat_ext.hierarchical is False
+
+        assert "1" in SimpleCat_ext
+        assert SimpleCat_ext["1"].title == "Category 1" == str(SimpleCat_ext["1"])
+        assert SimpleCat_ext["1"].comment == "The first category"
+        assert SimpleCat_ext["1"].codes == ("1", "A", "CatA", "I")
+        assert SimpleCat_ext["1"] == SimpleCat_ext["A"] == SimpleCat["CatA"]
+        assert SimpleCat_ext["1"] != SimpleCat_ext["2"]
+        assert SimpleCat_ext["unnumbered"].title == "The unnumbered category"
+        assert (
+            repr(SimpleCat_ext["1"])
+            == "<Category 'Category 1' ('1', 'A', 'CatA', 'I') 'The first category'>"
+        )
+
+        assert "A" in SimpleCat_ext
+        assert "D" in SimpleCat_ext
+        assert SimpleCat_ext["1"] == SimpleCat_ext["I"]
+        assert SimpleCat_ext["III"] == SimpleCat["3"] == SimpleCat_ext["drai"]
+        assert list(SimpleCat_ext.all_keys()) == [
+            "1",
+            "A",
+            "CatA",
+            "I",
+            "2",
+            "B",
+            "CatB",
+            "II",
+            "3",
+            "C",
+            "CatC",
+            "III",
+            "drai",
+            "unnumbered",
+            "4",
+            "D",
+            "CatD",
+            "IV",
+            "t",
+        ]
+        assert list(SimpleCat_ext.keys()) == ["1", "2", "3", "unnumbered", "4", "t"]
+        assert len(SimpleCat_ext) == 6
 
 
 class TestHierarchical:
@@ -116,21 +187,21 @@ class TestHierarchical:
             {HierCat["OX3"], HierCat["3"]},
         ]
         assert HierCat["1"].parents == {HierCat["0"], HierCat["0X3"]}
-        assert HierCat["0"].level == 1
         with pytest.raises(
             ValueError,
             match="'OT' is not a transitive child of the canonical top level '0'.",
         ):
-            HierCat["OT"].level
+            HierCat.level("OT")
         assert HierCat.canonical_top_level_category == HierCat["0"]
-        assert HierCat["1"].level == 2
-        assert HierCat["2"].level == 2
-        assert HierCat["0X3"].level == 2
-        assert HierCat["1B"].level == 3
+        assert HierCat.level("0") == 1
+        assert HierCat.level("1") == 2
+        assert HierCat.level("2") == 2
+        assert HierCat.level("0X3") == 2
+        assert HierCat.level("1B") == 3
 
     def test_dict_like(self, HierCat: climate_categories.HierarchicalCategorization):
         assert "0" in HierCat
-        assert list(HierCat) == [
+        assert HierCat.codes == [
             "0",
             "TOTAL",
             "1",
@@ -184,3 +255,66 @@ class TestHierarchical:
             }
         )
         assert HierCat.df.head(3) == expected
+
+    def test_extend(self, HierCat: climate_categories.HierarchicalCategorization):
+        HierCat_ext = HierCat.extend(
+            name="ext",
+            categories={
+                "2A1": {"title": "Category 2A1"},
+                "2A2": {"title": "Category 2A2"},
+            },
+            children=[("2A", ("2A1", "2A2")), ("2", ("2A1", "2A2", "2B"))],
+        )
+        assert HierCat_ext.name == "HierCat_ext"
+        assert HierCat_ext.title == "Hierarchical Categorization + ext"
+        assert HierCat_ext.references == ""
+        assert HierCat_ext.last_update == datetime.date.today()
+        assert HierCat_ext.institution == ""
+        assert HierCat_ext.version == "one"
+        assert (
+            HierCat_ext.comment
+            == "A simple hierarchical categorization with categories with relationships"
+        )
+        assert HierCat_ext.hierarchical is True
+
+        self.test_categories(HierCat=HierCat_ext)
+
+        assert "0" in HierCat_ext
+        assert HierCat_ext.codes == [
+            "0",
+            "TOTAL",
+            "1",
+            "2",
+            "3",
+            "1A",
+            "1a",
+            "1B",
+            "1b",
+            "2A",
+            "2a",
+            "2B",
+            "2b",
+            "3A",
+            "3a",
+            "0X3",
+            "0E3",
+            "OT",
+            "2A1",
+            "2A2",
+        ]
+        assert list(HierCat_ext.keys()) == [
+            "0",
+            "1",
+            "2",
+            "3",
+            "1A",
+            "1B",
+            "2A",
+            "2B",
+            "3A",
+            "0X3",
+            "OT",
+            "2A1",
+            "2A2",
+        ]
+        assert len(HierCat_ext) == 13
