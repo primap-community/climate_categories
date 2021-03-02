@@ -14,6 +14,6 @@ def SimpleCat():
 
 @pytest.fixture
 def HierCat():
-    return climate_categories.Categorization.from_yaml(
+    return climate_categories.HierarchicalCategorization.from_yaml(
         pathlib.Path(__file__).parent / "data" / "hierarchical_categorization.yaml"
     )

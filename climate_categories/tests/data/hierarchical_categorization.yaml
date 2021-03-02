@@ -5,6 +5,7 @@ references: doi:00000/00000
 institution: PIK
 last_update: 2021-02-23
 version: one
+total_sum: False
 canonical_top_level_category: 0
 categories:
   0:
@@ -15,6 +16,7 @@ categories:
     children:
       - [1, 2, 3]
       - [0X3, 3]
+      - [1A, 1B, 2, 3]
   1:
     title: Category 1
     comment: The first category

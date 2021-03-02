@@ -4,6 +4,7 @@ import datetime
 import pathlib
 import typing
 
+import networkx as nx
 import pandas
 import strictyaml
 
@@ -29,7 +30,12 @@ class Category:
         if "alternative_codes" in spec:
             codes += spec["alternative_codes"]
             del spec["alternative_codes"]
-        return cls(codes=tuple(codes), categorization=categorization, **spec)
+        return cls(
+            codes=tuple(codes),
+            categorization=categorization,
+            title=spec["title"],
+            comment=spec.get("comment", None),
+        )
 
     def to_spec(self) -> (str, typing.Dict):
         code = self.codes[0]
@@ -41,9 +47,18 @@ class Category:
         return code, spec
 
     def __str__(self) -> str:
-        return self.title
+        s = "Category "
+        if len(self.codes) == 1:
+            s += f"{self.codes[0]}"
+        else:
+            s += f"{self.codes}"
+        if self.title is not None:
+            s += f" {self.title!r}"
+        return s
 
     def __eq__(self, other: "Category"):
+        if not isinstance(other, Category):
+            return False
         return any((x in other.codes for x in self.codes)) and (
             self.categorization is other.categorization
             or self.categorization.name.startswith(other.categorization.name)
@@ -51,7 +66,10 @@ class Category:
         )
 
     def __repr__(self) -> str:
-        return f"<Category {self.title!r} {self.codes!r} {self.comment!r}>"
+        return f"<Category {self.codes[0]}>"
+
+    def __hash__(self):
+        return hash(self.codes[0])
 
 
 class HierarchicalCategory(Category):
@@ -94,11 +112,22 @@ class HierarchicalCategory(Category):
         """
         return self.categorization.level(self)
 
-    def __repr__(self) -> str:
-        return (
-            f"<Category {self.title!r} {self.codes!r} {self.comment!r} "
-            f"children: {self.children!r}>"
+    def __str__(self) -> str:
+        s = "Category "
+        if len(self.codes) == 1:
+            s += f"{self.codes[0]}"
+        else:
+            s += f"{self.codes}"
+        if self.title is not None:
+            s += f" {self.title!r}"
+        s += (
+            f" children: "
+            f"{[tuple(sorted((c.codes[0] for c in cs))) for cs in self.children]!r}"
         )
+        return s
+
+    def __repr__(self) -> str:
+        return f"<HierarchicalCategory {self.codes[0]}>"
 
 
 class Categorization:
@@ -135,10 +164,18 @@ class Categorization:
 
     hierarchical: bool = False
 
+    def _add_categories(self, categories: typing.Dict[str, typing.Dict]):
+        for code, spec in categories.items():
+            cat = Category.from_spec(code=code, spec=spec, categorization=self)
+
+            self._primary_code_map[code] = cat
+            for icode in cat.codes:
+                self._all_codes_map[icode] = cat
+
     def __init__(
         self,
         *,
-        categories: typing.Dict[str, typing.Union[typing.Dict, Category]],
+        categories: typing.Dict[str, typing.Dict],
         name: str,
         title: str,
         comment: str,
@@ -149,15 +186,7 @@ class Categorization:
     ):
         self._primary_code_map = {}
         self._all_codes_map = {}
-        for code, spec in categories.items():
-            if isinstance(spec, Category):
-                cat = spec
-            else:
-                cat = Category.from_spec(code=code, spec=spec, categorization=self)
-
-            self._primary_code_map[code] = cat
-            for icode in cat.codes:
-                self._all_codes_map[icode] = cat
+        self._add_categories(categories)
 
         self.name = name
         self.references = references
@@ -361,51 +390,121 @@ class HierarchicalCategorization(Categorization):
         categorization of Industries with categories `Power:Fossil Fuels` and
         `Power:Gas` which are both children of `Power` must set `total_sum = False`
         to avoid double counting of fossil gas.
+    canonical_top_level_category : HierarchicalCategory
+        The level of a category is calculated with respect to the canonical top level
+        category. Commonly, this will be the world total or a similar category. If the
+        canonical top level category is not set (i.e. is ``None``), levels are not
+        defined for categories.
     """
+
+    hierarchical = True
+
+    def _add_categories(self, categories: typing.Dict[str, typing.Dict]):
+        for code, spec in categories.items():
+            cat = HierarchicalCategory.from_spec(
+                code=code, spec=spec, categorization=self
+            )
+
+            self._primary_code_map[code] = cat
+            self._graph.add_node(cat)
+            for icode in cat.codes:
+                self._all_codes_map[icode] = cat
+
+        for code, spec in categories.items():
+            if "children" in spec:
+                parent = self._all_codes_map[code]
+                for i, child_set in enumerate(spec["children"]):
+                    for child_code in child_set:
+                        self._graph.add_edge(
+                            parent, self._all_codes_map[child_code], set=i
+                        )
 
     def __init__(
         self,
         *,
-        code_meanings: typing.Dict[str, str],
-        hierarchy: typing.Dict[str, typing.List[typing.Set[str]]],
+        categories: typing.Dict[str, typing.Dict],
         name: str,
-        references: str,
         title: str,
         comment: str,
+        references: str,
         institution: str,
         last_update: datetime.date,
         version: typing.Optional[str] = None,
-        total_sum: bool = False,
+        total_sum: bool,
+        canonical_top_level_category: typing.Optional[str] = None,
     ):
-        super(HierarchicalCategorization, self).__init__(
-            code_meanings=code_meanings,
+        self._graph = nx.MultiDiGraph()
+        Categorization.__init__(
+            self,
+            categories=categories,
             name=name,
-            references=references,
             title=title,
             comment=comment,
+            references=references,
             institution=institution,
             last_update=last_update,
             version=version,
-            hierarchical=True,
         )
-        self._hierarchy = hierarchy
         self.total_sum = total_sum
+        if canonical_top_level_category is None:
+            self.canonical_top_level_category: typing.Optional[
+                HierarchicalCategory
+            ] = None
+        else:
+            self.canonical_top_level_category = self._all_codes_map[
+                canonical_top_level_category
+            ]
+
+    def __getitem__(self, code: str) -> HierarchicalCategory:
+        """Get the category for a code."""
+        return self._all_codes_map[code]
+
+    def values(self) -> typing.ValuesView[HierarchicalCategory]:
+        """Iterate over the categories."""
+        return self._primary_code_map.values()
+
+    def items(self) -> typing.ItemsView[str, HierarchicalCategory]:
+        """Iterate over (primary code, category) pairs."""
+        return self._primary_code_map.items()
 
     @classmethod
     def from_yaml(
         cls, file: typing.Union[str, pathlib.Path]
     ) -> "HierarchicalCategorization":
-        """Read HierarchicalCategorization from a StrictYaml file."""
-        raise NotImplementedError
+        """Read Categorization from a StrictYaml file."""
+        with open(file) as fd:
+            yaml = strictyaml.dirty_load(fd.read(), allow_flow_style=True)
+        last_update = datetime.date.fromisoformat(yaml.data["last_update"])
+        return cls(
+            categories=yaml.data["categories"],
+            name=yaml.data["name"],
+            title=yaml.data["title"],
+            comment=yaml.data["comment"],
+            references=yaml.data["references"],
+            institution=yaml.data["institution"],
+            last_update=last_update,
+            version=yaml.data.get("version", None),
+            total_sum=bool(yaml.data["total_sum"]),
+            canonical_top_level_category=yaml.data.get(
+                "canonical_top_level_category", None
+            ),
+        )
+
+    @property
+    def _canonical_subgraph(self) -> nx.DiGraph:
+        return nx.DiGraph(
+            self._graph.edge_subgraph(
+                ((u, v, 0) for (u, v, s) in self._graph.edges(data="set") if s == 0)
+            )
+        )
 
     def extend(
         self,
         *,
+        categories: typing.Optional[typing.Dict[str, typing.Dict]] = None,
+        alternative_codes: typing.Optional[typing.Dict[str, str]] = None,
+        children: typing.Optional[typing.List[tuple]] = None,
         name: str,
-        categories: typing.Dict[str, str],
-        children: typing.Optional[
-            typing.Iterable[typing.Tuple[str, typing.Iterable[str]]]
-        ] = None,
         title: typing.Optional[str] = None,
         comment: typing.Optional[str] = None,
         last_update: typing.Optional[datetime.date] = None,
@@ -414,30 +513,27 @@ class HierarchicalCategorization(Categorization):
         yielding a new categorization.
 
         Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
-        automatically (see below), the ``institution`` is deleted, and the values for
-        ``version``, ``hierarchical``, and ``total_sum`` are kept. You can set more
-        accurate metadata (for example, your institution) on the returned object if
-        needed.
-
-        Using this function, only new relationships between (existing and new)
-        categories can be added. If you need to delete or reorder existing
-        relationships, look at ``extend_with_hierarchy``.
+        automatically (see below), the ``institution`` and ``references`` are deleted
+        and the values for ``version`` and ``hierarchical`` are kept.
+        You can set more accurate metadata (for example, your institution) on the
+        returned object if needed.
 
         Parameters
         ----------
+        categories: dict, optional
+           Map of new category codes to their specification. The specification is a
+           dictionary with the keys "title", optionally "comment", and optionally
+           "alternative_codes".
+        alternative_codes: dict, optional
+           Map of new alternative codes. A dictionary with the new alternative code
+           as key and existing code as value.
+        children: list, optional
+           List of ``(parent, (child1, child2, …))`` pairs. The given relationships will
+           be inserted in the extended categorization.
         name : str
            The name of your extension. The returned Categorization will have a name
            of "{old_name}_{name}", indicating that it is an extension of the underlying
            Categorization.
-        categories : dict
-           Map of new category codes to their meaning.
-        children : list of (parent, {child1, child2, …}) mappings
-           Map of parent category codes to sets of child category codes. The given
-           relationships are inserted into the hierarchy. Both existing and new category
-           codes can be used as parents or children. parent codes can be given in
-           multiple entries if multiple sets of children are possible. Sets of children
-           will be added to the hierarchy in the specified order at the end of the
-           list of sets of children.
         title : str, optional
            A string to add to the original title. If not provided, " + {name}" will be
            used.
@@ -453,20 +549,29 @@ class HierarchicalCategorization(Categorization):
         Extended categorization : HierarchicalCategorization
         """
         (name, categories, title, comment, last_update) = self._extend_prepare(
-            name, categories, title, comment, last_update
+            name=name,
+            categories=categories,
+            title=title,
+            comment=comment,
+            last_update=last_update,
+            alternative_codes=alternative_codes,
         )
 
-        hierarchy = self._hierarchy.copy()
+        def add_child_set(parent, child_set):
+            if "children" not in categories[parent]:
+                categories[parent]["children"] = []
+            categories[parent]["children"].append(child_set)
+
+        for cat in self.values():
+            for child_set in cat.children:
+                add_child_set(cat.codes[0], [c.codes[0] for c in child_set])
+
         if children is not None:
-            for (parent, child_set) in children:
-                if parent in hierarchy:
-                    hierarchy[parent].append(child_set)
-                else:
-                    hierarchy[parent] = [child_set]
+            for parent, child_set in children:
+                add_child_set(parent, child_set)
 
         return HierarchicalCategorization(
-            code_meanings=categories,
-            hierarchy=hierarchy,
+            categories=categories,
             name=f"{self.name}_{name}",
             references="",
             title=title,
@@ -474,93 +579,90 @@ class HierarchicalCategorization(Categorization):
             institution="",
             last_update=last_update,
             version=self.version,
+            total_sum=self.total_sum,
+            canonical_top_level_category=self.canonical_top_level_category.codes[0],
         )
-
-    def extend_with_hierarchy(
-        self,
-        *,
-        name: str,
-        categories: typing.Dict[str, str],
-        hierarchy: typing.Dict[str, typing.List[typing.Set[str]]],
-        title: typing.Optional[str] = None,
-        comment: typing.Optional[str] = None,
-        last_update: typing.Optional[datetime.date] = None,
-    ):
-        """Extend the categorization with additional categories and a new hierarchy,
-        yielding a new categorization.
-
-        Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
-        automatically (see below), the ``institution`` is deleted, and the values for
-        ``version``, ``hierarchical``, and ``total_sum`` are kept. You can set more
-        accurate metadata (for example, your institution) on the returned object if
-        needed.
-
-        Parameters
-        ----------
-        name : str
-           The name of your extension. The returned Categorization will have a name
-           of "{old_name}_{name}", indicating that it is an extension of the underlying
-           Categorization.
-        categories : dict
-           Map of new category codes to their meaning.
-        hierarchy : dict
-           Map of parent category codes to lists of sets of child category codes.
-           given hierarchy replaces the original hierarchy.
-        title : str, optional
-           A string to add to the original title. If not provided, " + {name}" will be
-           used.
-        comment : str, optional
-           A string to add to the original comment. If not provided, " extend by {name}"
-           will be used.
-        last_update : datetime.date, optional
-           The date of the last update to this extension. Today will be used if not
-           provided.
-
-        Returns
-        -------
-        Extended categorization : HierarchicalCategorization
-        """
-
-        (name, categories, title, comment, last_update) = self._extend_prepare(
-            name, categories, title, comment, last_update
-        )
-
-        return HierarchicalCategorization(
-            code_meanings=categories,
-            hierarchy=hierarchy,
-            name=f"{self.name}_{name}",
-            references="",
-            title=title,
-            comment=comment,
-            institution="",
-            last_update=last_update,
-            version=self.version,
-        )
-
-    def level(self, code: str) -> int:
-        """The level of the given code.
-
-        The topmost category has level 1 and its children have level 2 etc.
-
-        If there is more than one topmost category or multiple ways to the topmost
-        category, the shortest path to a topmost category is used to calculate the
-        level.
-        """
-        raise NotImplementedError
-
-    def parents(self, code: str) -> typing.List[str]:
-        """The direct parents of the given category."""
-        return [x for x in self._hierarchy if code in set().union(*self._hierarchy[x])]
-
-    def children(self, code: str) -> typing.List[typing.Set[str]]:
-        """The list of sets of direct children of the given category."""
-        if code in self._hierarchy:
-            return list(self._hierarchy[code])
-        else:
-            return []
 
     @property
-    def hierarchy(self) -> typing.Dict[str, typing.List[typing.Set[str]]]:
-        """The full hierarchy as a dict mapping parent codes to lists of sets of
-        children."""
-        return self._hierarchy
+    def df(self) -> "pandas.DataFrame":
+        """All category codes as a pandas dataframe."""
+        titles = []
+        comments = []
+        alternative_codes = []
+        children = []
+        for cat in self.values():
+            titles.append(cat.title)
+            comments.append(cat.comment)
+            alternative_codes.append(cat.codes[1:])
+            children.append(
+                tuple(tuple(sorted(c.codes[0] for c in cs)) for cs in cat.children)
+            )
+        return pandas.DataFrame(
+            index=self.keys(),
+            data={
+                "title": titles,
+                "comment": comments,
+                "alternative_codes": alternative_codes,
+                "children": children,
+            },
+        )
+
+    def level(self, cat: typing.Union[str, HierarchicalCategory]) -> int:
+        """The level of the given category.
+
+        The canonical top-level category has level 1 and its children have level 2 etc.
+
+        To calculate the level, first only the first ("canonical") set of children is
+        considered. Only if no path from the canonical top-level category to the
+        given category can be found all other sets of children are considered to
+        calculate the level.
+        """
+        if not isinstance(cat, HierarchicalCategory):
+            return self.level(self[cat])
+        if not isinstance(self.canonical_top_level_category, HierarchicalCategory):
+            raise ValueError(
+                "Can not calculate the level without a canonical_top_level_category."
+            )
+
+        # first use the canonical subgraph for shortest paths
+        csg = self._canonical_subgraph
+        try:
+            sp = nx.shortest_path_length(csg, self.canonical_top_level_category, cat)
+        except (nx.NetworkXNoPath, nx.NodeNotFound):
+            try:
+                sp = nx.shortest_path_length(
+                    self._graph, self.canonical_top_level_category, cat
+                )
+            except (nx.NetworkXNoPath, nx.NodeNotFound):
+                raise ValueError(
+                    f"{cat.codes[0]!r} is not a transitive child of the "
+                    f"canonical top level "
+                    f"{self.canonical_top_level_category.codes[0]!r}."
+                )
+
+        return sp + 1
+
+    def parents(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> typing.Set[HierarchicalCategory]:
+        """The direct parents of the given category."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.parents(self._all_codes_map[cat])
+
+        return set(self._graph.predecessors(cat))
+
+    def children(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> typing.List[typing.Set[HierarchicalCategory]]:
+        """The list of sets of direct children of the given category."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.children(self._all_codes_map[cat])
+
+        children_dict = {}
+        for (_, child, setno) in self._graph.edges(cat, "set"):
+            if setno not in children_dict:
+                children_dict[setno] = []
+            children_dict[setno].append(child)
+
+        children = [set(children_dict[x]) for x in sorted(children_dict.keys())]
+        return children

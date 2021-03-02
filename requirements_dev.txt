@@ -14,3 +14,4 @@ pandas
 ipykernel
 nbsphinx
 strictyaml
+networkx
