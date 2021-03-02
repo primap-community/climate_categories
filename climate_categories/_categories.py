@@ -38,6 +38,13 @@ class Category:
         )
 
     def to_spec(self) -> (str, typing.Dict):
+        """Turn this category into a specification ready to be written to a yaml file.
+
+        Returns
+        -------
+        (code: str, spec: dict)
+            Primary code and specification dict
+        """
         code = self.codes[0]
         spec = {"title": self.title}
         if self.comment is not None:
@@ -61,15 +68,15 @@ class Category:
             return False
         return any((x in other.codes for x in self.codes)) and (
             self.categorization is other.categorization
-            or self.categorization.name.startswith(other.categorization.name)
-            or other.categorization.name.startswith(self.categorization.name)
+            or self.categorization.name.startswith(f"{other.categorization.name}_")
+            or other.categorization.name.startswith(f"{self.categorization.name}_")
         )
 
     def __repr__(self) -> str:
         return f"<Category {self.codes[0]}>"
 
     def __hash__(self):
-        return hash(self.codes[0])
+        return hash(self.categorization.name + self.codes[0])
 
 
 class HierarchicalCategory(Category):
@@ -84,6 +91,20 @@ class HierarchicalCategory(Category):
     ):
         Category.__init__(self, codes, categorization, title, comment)
         self.categorization = categorization
+
+    def to_spec(self) -> (str, typing.Dict):
+        """Turn this category into a specification ready to be written to a yaml file.
+
+        Returns
+        -------
+        (code: str, spec: dict)
+            Primary code and specification dict
+        """
+        code, spec = Category.to_spec(self)
+        spec["children"] = []
+        for child_set in self.children:
+            spec["children"].append([c.codes[0] for c in child_set])
+        return code, spec
 
     @property
     def children(self) -> typing.List[typing.Set["HierarchicalCategory"]]:
@@ -186,8 +207,6 @@ class Categorization:
     ):
         self._primary_code_map = {}
         self._all_codes_map = {}
-        self._add_categories(categories)
-
         self.name = name
         self.references = references
         self.title = title
@@ -196,22 +215,55 @@ class Categorization:
         self.last_update = last_update
         self.version = version
 
+        self._add_categories(categories)
+
     @classmethod
     def from_yaml(cls, file: typing.Union[str, pathlib.Path]) -> "Categorization":
         """Read Categorization from a StrictYaml file."""
         with open(file) as fd:
             yaml = strictyaml.load(fd.read())
-        last_update = datetime.date.fromisoformat(yaml.data["last_update"])
+        return cls.from_spec(yaml.data)
+
+    @classmethod
+    def from_spec(cls, spec: typing.Dict[str, typing.Any]) -> "Categorization":
+        """Create Categorization from a Dictionary specification."""
+        last_update = datetime.date.fromisoformat(spec["last_update"])
         return cls(
-            categories=yaml.data["categories"],
-            name=yaml.data["name"],
-            title=yaml.data["title"],
-            comment=yaml.data["comment"],
-            references=yaml.data["references"],
-            institution=yaml.data["institution"],
+            categories=spec["categories"],
+            name=spec["name"],
+            title=spec["title"],
+            comment=spec["comment"],
+            references=spec["references"],
+            institution=spec["institution"],
             last_update=last_update,
-            version=yaml.data.get("version", None),
+            version=spec.get("version", None),
         )
+
+    def to_spec(self) -> typing.Dict[str, typing.Any]:
+        """Turn this categorization into a specification dictionary ready to be written
+        to a yaml file.
+
+        Returns
+        -------
+        spec: dict
+            Specification dictionary understood by `from_spec`.
+        """
+        spec = {
+            "name": self.name,
+            "title": self.title,
+            "comment": self.comment,
+            "references": self.references,
+            "institution": self.institution,
+            "last_update": self.last_update.isoformat(),
+        }
+        if self.version is not None:
+            spec["version"] = self.version
+        spec["categories"] = {}
+        for cat in self.values():
+            code, cat_spec = cat.to_spec()
+            spec["categories"][code] = cat_spec
+
+        return spec
 
     def keys(self) -> typing.KeysView[str]:
         """Iterate over the codes for all categories."""
@@ -279,35 +331,40 @@ class Categorization:
         title: typing.Optional[str] = None,
         comment: typing.Optional[str] = None,
         last_update: typing.Optional[datetime.date] = None,
-    ):
+    ) -> typing.Dict[str, typing.Any]:
+        spec = self.to_spec()
+
+        spec["name"] = f"{self.name}_{name}"
+        spec["references"] = ""
+        spec["institution"] = ""
+
         if title is None:
-            title = f"{self.title} + {name}"
+            spec["title"] = f"{self.title} + {name}"
         else:
-            title = self.title + title
+            spec["title"] = self.title + title
 
         if comment is None:
-            comment = f"{self.comment} extended by {name}"
+            spec["comment"] = f"{self.comment} extended by {name}"
         else:
-            comment = self.comment + comment
+            spec["comment"] = self.comment + comment
 
         if last_update is None:
-            last_update = datetime.date.today()
+            spec["last_update"] = datetime.date.today().isoformat()
+        else:
+            spec["last_update"] = last_update.isoformat()
 
-        # serialize the current categories to make sure that we don't modify the
-        # old categories' values.
-        new_categories = dict((x.to_spec() for x in self.values()))
-        if categories is not None:
-            new_categories.update(categories)
+        spec["categories"].update(categories)
 
         if alternative_codes is not None:
             for alias, primary in alternative_codes.items():
-                if "alternative_codes" not in new_categories[primary]:
-                    new_categories[primary]["alternative_codes"] = tuple()
-                new_categories[primary]["alternative_codes"] = new_categories[primary][
-                    "alternative_codes"
-                ] + (alias,)
+                if "alternative_codes" not in spec["categories"][primary]:
+                    spec["categories"][primary]["alternative_codes"] = tuple()
 
-        return (name, new_categories, title, comment, last_update)
+                spec["categories"][primary]["alternative_codes"] = spec["categories"][
+                    primary
+                ]["alternative_codes"] + (alias,)
+
+        return spec
 
     def extend(
         self,
@@ -355,7 +412,7 @@ class Categorization:
         -------
         Extended categorization : Categorization
         """
-        (name, categories, title, comment, last_update) = self._extend_prepare(
+        spec = self._extend_prepare(
             name=name,
             categories=categories,
             title=title,
@@ -364,16 +421,7 @@ class Categorization:
             alternative_codes=alternative_codes,
         )
 
-        return Categorization(
-            categories=categories,
-            name=f"{self.name}_{name}",
-            references="",
-            title=title,
-            comment=comment,
-            institution="",
-            last_update=last_update,
-            version=self.version,
-        )
+        return Categorization.from_spec(spec)
 
 
 class HierarchicalCategorization(Categorization):
@@ -471,24 +519,55 @@ class HierarchicalCategorization(Categorization):
     def from_yaml(
         cls, file: typing.Union[str, pathlib.Path]
     ) -> "HierarchicalCategorization":
-        """Read Categorization from a StrictYaml file."""
+        """Read HierarchicalCategorization from a StrictYaml file."""
         with open(file) as fd:
             yaml = strictyaml.dirty_load(fd.read(), allow_flow_style=True)
-        last_update = datetime.date.fromisoformat(yaml.data["last_update"])
+        return cls.from_spec(yaml.data)
+
+    @classmethod
+    def from_spec(
+        cls, spec: typing.Dict[str, typing.Any]
+    ) -> "HierarchicalCategorization":
+        """Create Categorization from a Dictionary specification."""
+        last_update = datetime.date.fromisoformat(spec["last_update"])
+        if spec["total_sum"] == "True":
+            total_sum = True
+        elif spec["total_sum"] == "False":
+            total_sum = False
+        else:
+            raise ValueError(
+                f"total_sum must be either 'True' or 'False', not {spec['total_sum']}."
+            )
         return cls(
-            categories=yaml.data["categories"],
-            name=yaml.data["name"],
-            title=yaml.data["title"],
-            comment=yaml.data["comment"],
-            references=yaml.data["references"],
-            institution=yaml.data["institution"],
+            categories=spec["categories"],
+            name=spec["name"],
+            title=spec["title"],
+            comment=spec["comment"],
+            references=spec["references"],
+            institution=spec["institution"],
             last_update=last_update,
-            version=yaml.data.get("version", None),
-            total_sum=bool(yaml.data["total_sum"]),
-            canonical_top_level_category=yaml.data.get(
-                "canonical_top_level_category", None
-            ),
+            version=spec.get("version", None),
+            total_sum=total_sum,
+            canonical_top_level_category=spec.get("canonical_top_level_category", None),
         )
+
+    def to_spec(self) -> typing.Dict[str, typing.Any]:
+        """Turn this categorization into a specification dictionary ready to be written
+        to a yaml file.
+
+        Returns
+        -------
+        spec: dict
+            Specification dictionary understood by `from_spec`.
+        """
+        spec = Categorization.to_spec(self)
+        spec["total_sum"] = str(self.total_sum)
+        if self.canonical_top_level_category is not None:
+            spec[
+                "canonical_top_level_category"
+            ] = self.canonical_top_level_category.codes[0]
+
+        return spec
 
     @property
     def _canonical_subgraph(self) -> nx.DiGraph:
@@ -514,7 +593,8 @@ class HierarchicalCategorization(Categorization):
 
         Metadata: the ``name``, ``title``, ``comment``, and ``last_update`` are updated
         automatically (see below), the ``institution`` and ``references`` are deleted
-        and the values for ``version`` and ``hierarchical`` are kept.
+        and the values for ``version``, ``hierarchical``, ``total_sum``, and
+        ``canonical_top_level_category`` are kept.
         You can set more accurate metadata (for example, your institution) on the
         returned object if needed.
 
@@ -548,7 +628,7 @@ class HierarchicalCategorization(Categorization):
         -------
         Extended categorization : HierarchicalCategorization
         """
-        (name, categories, title, comment, last_update) = self._extend_prepare(
+        spec = self._extend_prepare(
             name=name,
             categories=categories,
             title=title,
@@ -557,31 +637,13 @@ class HierarchicalCategorization(Categorization):
             alternative_codes=alternative_codes,
         )
 
-        def add_child_set(parent, child_set):
-            if "children" not in categories[parent]:
-                categories[parent]["children"] = []
-            categories[parent]["children"].append(child_set)
-
-        for cat in self.values():
-            for child_set in cat.children:
-                add_child_set(cat.codes[0], [c.codes[0] for c in child_set])
-
         if children is not None:
             for parent, child_set in children:
-                add_child_set(parent, child_set)
+                if "children" not in spec["categories"][parent]:
+                    spec["categories"][parent]["children"] = []
+                spec["categories"][parent]["children"].append(child_set)
 
-        return HierarchicalCategorization(
-            categories=categories,
-            name=f"{self.name}_{name}",
-            references="",
-            title=title,
-            comment=comment,
-            institution="",
-            last_update=last_update,
-            version=self.version,
-            total_sum=self.total_sum,
-            canonical_top_level_category=self.canonical_top_level_category.codes[0],
-        )
+        return HierarchicalCategorization.from_spec(spec)
 
     @property
     def df(self) -> "pandas.DataFrame":
