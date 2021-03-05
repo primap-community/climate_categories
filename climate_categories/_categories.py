@@ -52,7 +52,7 @@ class Category:
             info=spec.get("info", None),
         )
 
-    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, tuple, dict, list]]):
+    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, dict, list]]):
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -65,7 +65,7 @@ class Category:
         if self.comment is not None:
             spec["comment"] = self.comment
         if len(self.codes) > 1:
-            spec["alternative_codes"] = self.codes[1:]
+            spec["alternative_codes"] = list(self.codes[1:])
         if self.info:
             spec["info"] = self.info
         return code, spec
@@ -87,6 +87,7 @@ class Category:
             self.categorization is other.categorization
             or self.categorization.name.startswith(f"{other.categorization.name}_")
             or other.categorization.name.startswith(f"{self.categorization.name}_")
+            or self.categorization.name == other.categorization.name
         )
 
     def __repr__(self) -> str:
@@ -120,7 +121,7 @@ class HierarchicalCategory(Category):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
 
-    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, dict, list, tuple]]):
+    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, dict, list]]):
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -129,9 +130,11 @@ class HierarchicalCategory(Category):
             Primary code and specification dict
         """
         code, spec = Category.to_spec(self)
-        spec["children"] = []
+        children = []
         for child_set in self.children:
-            spec["children"].append([c.codes[0] for c in child_set])
+            children.append(list(sorted((c.codes[0] for c in child_set))))
+        if children:
+            spec["children"] = children
         return code, spec
 
     @property
@@ -259,9 +262,9 @@ class Categorization:
         self._add_categories(categories)
 
     @classmethod
-    def from_yaml(cls, file: typing.Union[str, pathlib.Path]) -> "Categorization":
+    def from_yaml(cls, filepath: typing.Union[str, pathlib.Path]) -> "Categorization":
         """Read Categorization from a StrictYaml file."""
-        with open(file) as fd:
+        with open(filepath) as fd:
             yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
         return cls.from_spec(yaml.data)
 
@@ -305,6 +308,13 @@ class Categorization:
             spec["categories"][code] = cat_spec
 
         return spec
+
+    def to_yaml(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+        """Write to StrictYaml file."""
+        spec = self.to_spec()
+        doc = sy.as_document(spec, self._strictyaml_schema)
+        with open(filepath, "w") as fd:
+            fd.write(doc.as_yaml())
 
     def keys(self) -> typing.KeysView[str]:
         """Iterate over the codes for all categories."""
@@ -399,11 +409,9 @@ class Categorization:
         if alternative_codes is not None:
             for alias, primary in alternative_codes.items():
                 if "alternative_codes" not in spec["categories"][primary]:
-                    spec["categories"][primary]["alternative_codes"] = tuple()
+                    spec["categories"][primary]["alternative_codes"] = []
 
-                spec["categories"][primary]["alternative_codes"] = spec["categories"][
-                    primary
-                ]["alternative_codes"] + (alias,)
+                spec["categories"][primary]["alternative_codes"].append(alias)
 
         return spec
 
@@ -463,6 +471,13 @@ class Categorization:
         )
 
         return Categorization.from_spec(spec)
+
+    def __eq__(self, other):
+        if not isinstance(other, Categorization):
+            return False
+        if self.name != other.name:
+            return False
+        return self._primary_code_map == other._primary_code_map
 
 
 class HierarchicalCategorization(Categorization):
@@ -575,10 +590,10 @@ class HierarchicalCategorization(Categorization):
 
     @classmethod
     def from_yaml(
-        cls, file: typing.Union[str, pathlib.Path]
+        cls, filepath: typing.Union[str, pathlib.Path]
     ) -> "HierarchicalCategorization":
         """Read HierarchicalCategorization from a StrictYaml file."""
-        with open(file) as fd:
+        with open(filepath) as fd:
             yaml = sy.dirty_load(
                 fd.read(), allow_flow_style=True, schema=cls._strictyaml_schema
             )
@@ -612,12 +627,28 @@ class HierarchicalCategorization(Categorization):
         spec: dict
             Specification dictionary understood by `from_spec`.
         """
-        spec = Categorization.to_spec(self)
+        # we can't call Categorization.to_spec here because we need to control ordering
+        # int the returned dict so that we get nicely ordered yaml files.
+        spec = {
+            "name": self.name,
+            "title": self.title,
+            "comment": self.comment,
+            "references": self.references,
+            "institution": self.institution,
+            "last_update": self.last_update.isoformat(),
+        }
+        if self.version is not None:
+            spec["version"] = self.version
         spec["total_sum"] = self.total_sum
         if self.canonical_top_level_category is not None:
             spec[
                 "canonical_top_level_category"
             ] = self.canonical_top_level_category.codes[0]
+
+        spec["categories"] = {}
+        for cat in self.values():
+            code, cat_spec = cat.to_spec()
+            spec["categories"][code] = cat_spec
 
         return spec
 

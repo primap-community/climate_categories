@@ -95,7 +95,7 @@ class TestSimple:
                 "4": {
                     "title": "Category 4",
                     "comment": "The fourth category",
-                    "alternative_codes": ("D", "CatD"),
+                    "alternative_codes": ["D", "CatD"],
                 },
                 "t": {"title": "Category T"},
             },
@@ -341,6 +341,23 @@ class TestHierarchical:
             "2A2",
         ]
         assert len(HierCat_ext) == 13
+
+    def test_roundtrip(self, HierCat, tmpdir):
+        f = pathlib.Path(tmpdir) / "thing.yaml"
+        HierCat.to_yaml(f)
+        ReRead = climate_categories.HierarchicalCategorization.from_yaml(f)
+        assert HierCat.name == ReRead.name
+        assert HierCat.title == ReRead.title
+        assert HierCat.comment == ReRead.comment
+        assert HierCat.references == ReRead.references
+        assert HierCat.hierarchical == ReRead.hierarchical
+        assert HierCat.total_sum == ReRead.total_sum
+        assert HierCat.last_update == ReRead.last_update
+        assert HierCat.version == ReRead.version
+        for key in HierCat:
+            assert key in ReRead
+            assert HierCat[key] == ReRead[key]
+        assert HierCat == ReRead
 
 
 def test_broken():
