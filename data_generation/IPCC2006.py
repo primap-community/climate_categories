@@ -17,6 +17,27 @@ INPATH = pathlib.Path("./data_generation/IPCC2006.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006.yaml")
 
 
+def split_code_name(code_name):
+    s = code_name.split()
+    code_ended = False
+    code_parts = []
+    name_parts = []
+    for si in s:
+        if code_ended:
+            name_parts.append(si)
+        else:
+            if si.isdigit():
+                code_parts.append(si)
+            elif len(si) <= 2:
+                code_parts.append(si)
+            elif si == "iii":
+                code_parts.append(si)
+            else:
+                code_ended = True
+                name_parts.append(si)
+    return code_parts, " ".join(name_parts)
+
+
 def main():
     if not INPATH.exists():
         print(f"{INPATH} not found, downloading it.")
@@ -84,28 +105,34 @@ def main():
     categories = {}
 
     for code_name, definition, code_96, gases in cats_raw:
-        try:
-            code_raw, title = code_name.rsplit("\n", 1)
-        except ValueError:
-            code_raw, title = code_name.rsplit(" ", 1)
-        code = ".".join(code_raw.split())
-        altcode = "".join(code_raw.split())
-        comment = definition.strip().replace("\n", " ")
+        code_parts, title = split_code_name(code_name)
+        # error in pdf
+        if code_parts == ["1", "B", "2", "a", "iii", "I"]:
+            code_parts = ["1", "B", "2", "a", "iii", "1"]
+        code = ".".join(code_parts)
+        altcode = "".join(code_parts)
+        comment = definition.strip().replace("\n", " ").strip()
+
+        if code in categories:
+            raise ValueError(f"double category? {code_name} -> {code_parts} {title}")
 
         categories[code] = {
             "title": title.strip(),
-            "comment": comment.strip(),
         }
+        if comment:
+            categories[code]["comment"] = comment
 
         if code != altcode:
             categories[code]["alternative_codes"] = [altcode]
 
+        gases = gases.replace("CH4 N2O", "CH4, N2O")  # common error in pdf
+        gases = gases.replace("N2O NOx", "N2O, NOx")  # common error in pdf
+        gases = gases.replace("CO2*", "CO2")  # we don't care for the *
         gases_stripped = [x.strip() for x in gases.split(",") if x.strip()]
         if gases_stripped:
-            print(gases_stripped)
             categories[code]["info"] = {"gases": gases_stripped}
 
-        if code_96.strip():
+        if code_96.strip() and code_96.strip() != "NA":
             if "info" not in categories[code]:
                 categories[code]["info"] = {}
             categories[code]["info"]["corresponding_categories_IPCC1996"] = [
@@ -139,10 +166,97 @@ def main():
         "categories": categories,
     }
 
+    # individual fixes to data from pdf
+    spec["categories"]["1"]["title"] = "ENERGY"
+    spec["categories"]["1.A.2.m"]["title"] = "Non-specified Industry"
+
+    spec["categories"]["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
+    spec["categories"]["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [
+        "2A3",
+        "2A4",
+    ]
+
+    spec["categories"]["2.A.4"]["info"]["gases"] = [
+        "CO2",
+        "CH4",
+        "NOx",
+        "CO",
+        "NMVOC",
+        "SO2",
+    ]
+    spec["categories"]["2.A.4"]["info"]["corresponding_categories_IPCC1996"] = [
+        "2A3",
+        "2A4",
+    ]
+
+    spec["categories"]["2.B.3"]["info"]["gases"] = ["N2O", "CO2", "CH4", "NOx"]
+
+    spec["categories"]["3.B.1.b"]["info"]["gases"] = [
+        "CO2",
+        "CH4",
+        "N2O",
+        "NOx",
+        "CO",
+        "NMVOC",
+        "SO2",
+    ]
+    spec["categories"]["3.B.1.b"]["info"]["corresponding_categories_IPCC1996"] = [
+        "5A",
+        "5C",
+        "5D",
+    ]
+
+    spec["categories"]["3.B.3"]["info"]["corresponding_categories_IPCC1996"] = [
+        "4D",
+        "4E",
+        "5A",
+        "5B",
+        "5C",
+        "5D",
+    ]
+
+    spec["categories"]["3.B.3.b"][
+        "comment"
+    ] = "Emissions and removals from land converted to grassland."
+    spec["categories"]["3.B.3.b"]["info"]["corresponding_categories_IPCC1996"] = [
+        "5B",
+        "5C",
+        "5D",
+    ]
+
+    spec["categories"]["3.C.1.c"]["title"] = "Biomass Burning in Grasslands"
+    spec["categories"]["3.C.1.c"]["comment"] = (
+        "Emissions from biomass burning that include N2O and CH4 in grasslands."
+        " CO2 emissions are included here only if emissions are not included in"
+        " 3B3 categories as carbon stock changes."
+    )
+
+    spec["categories"]["4"]["info"]["gases"] = [
+        "CO2",
+        "CH4",
+        "N2O",
+        "NOx",
+        "CO",
+        "NMVOC",
+        "SO2",
+    ]
+
+    spec["categories"]["4.A.3"]["title"] = "Uncategorised Waste Disposal Sites"
+    spec["categories"]["4.A.3"]["comment"] = (
+        "Mixture of above 4 A1 and 4 A2. Countries "
+        "that do not have data on division of managed/unmanaged may use this category."
+    )
+
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC2006.to_yaml(OUTPATH)
 
+    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+
 
 if __name__ == "__main__":
     main()
+
+# TODO: look at unique gases and 96 categories to see of weird ones are left
+# TODO: visualize canonical graph to find orphans or other weird stuff
+# TODO: count number of categories

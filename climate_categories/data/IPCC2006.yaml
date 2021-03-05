@@ -10,7 +10,7 @@ version: 2006
 total_sum: True
 categories:
   1:
-    title: ENRGY
+    title: ENERGY
     comment: This category includes all GHG emissions arising from combustion and
       fugitive releases of fuels. Emissions from the non-energy uses of fuels are
       generally not included here, but reported under Industrial Processes and Product
@@ -169,7 +169,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A1b
   1.A.1.c:
-    title: Manufacture  of Solid Fuels and Other Energy Industries
+    title: Manufacture of Solid Fuels and Other Energy Industries
     comment: Combustion emissions from fuel use during the manufacture of secondary
       and tertiary products from solid fuels including production of charcoal. Emissions
       from own on-site fuel use should be included. Also includes combustion for the
@@ -410,8 +410,6 @@ categories:
       - CO
       - NMVOC
       - SO2
-      corresponding_categories_IPCC1996:
-      - NA
   1.A.2.j:
     title: Wood and Wood Products
     comment: ISIC Division 20.
@@ -426,8 +424,6 @@ categories:
       - CO
       - NMVOC
       - SO2
-      corresponding_categories_IPCC1996:
-      - NA
   1.A.2.k:
     title: Construction
     comment: ISIC Division 45.
@@ -458,10 +454,8 @@ categories:
       - CO
       - NMVOC
       - SO2
-      corresponding_categories_IPCC1996:
-      - NA
   1.A.2.m:
-    title: 'Non-specified Industry:'
+    title: Non-specified Industry
     comment: Any manufacturing industry/construction not included above or for which
       separate data are not available. Includes ISIC Divisions 25, 33, 36 and 37.
     alternative_codes:
@@ -475,12 +469,14 @@ categories:
       - CO
       - NMVOC
       - SO2
-      corresponding_categories_IPCC1996:
-      - NA
   1.A.3:
-    title: b  vi     Urea-based Catalysts
-    comment: CO2 emissions from use of urea-based additives in catalytic converters
-      (non-combustive emissions).
+    title: Transport
+    comment: Emissions from the combustion and evaporation of fuel for all transport
+      activity (excluding military transport), regardless of the sector, specified
+      by sub-categories below. Emissions from fuel sold to any air or marine vessel
+      engaged in international transport (1 A 3 a i and 1 A 3 d i) should as far as
+      possible be excluded from the totals and subtotals in this category and should
+      be reported separately.
     alternative_codes:
     - 1A3
     info:
@@ -492,6 +488,8 @@ categories:
       - CO
       - NMVOC
       - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3
     children:
     - - 1.A.3.a
       - 1.A.3.b
@@ -589,6 +587,7 @@ categories:
       - 1.A.3.b.iii
       - 1.A.3.b.iv
       - 1.A.3.b.v
+      - 1.A.3.b.vi
   1.A.3.b.i:
     title: Cars
     comment: Emissions from automobiles so designated in the vehicle registering country
@@ -596,6 +595,41 @@ categories:
       or fewer.
     alternative_codes:
     - 1A3bi
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3b i
+    children:
+    - - 1.A.3.b.i.1
+      - 1.A.3.b.i.2
+  1.A.3.b.i.1:
+    title: Passenger Cars With 3-way Catalysts
+    comment: Emissions from passenger car vehicles with 3-way catalysts.
+    alternative_codes:
+    - 1A3bi1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3b i
+  1.A.3.b.i.2:
+    title: Passenger Cars Without 3-way Catalysts
+    comment: Passenger car emissions from vehicles without 3-way catalysts.
+    alternative_codes:
+    - 1A3bi2
     info:
       gases:
       - CO2
@@ -627,6 +661,41 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3b ii
       - 1A3b i
+    children:
+    - - 1.A.3.b.ii.1
+      - 1.A.3.b.ii.2
+  1.A.3.b.ii.1:
+    title: Light-duty Trucks With 3-way Catalysts
+    comment: Emissions from light duty trucks with 3-way catalysts.
+    alternative_codes:
+    - 1A3bii1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3b ii
+  1.A.3.b.ii.2:
+    title: Light-duty Trucks Without 3-way Catalysts
+    comment: Emissions from light duty trucks without 3-way catalysts.
+    alternative_codes:
+    - 1A3bii2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3b ii
   1.A.3.b.iii:
     title: Heavy-duty Trucks and Buses
     comment: Emissions from any vehicles so designated in the vehicle registering
@@ -679,6 +748,21 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 1A3b v
+  1.A.3.b.vi:
+    title: Urea-based Catalysts
+    comment: CO2 emissions from use of urea-based additives in catalytic converters
+      (non-combustive emissions).
+    alternative_codes:
+    - 1A3bvi
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
   1.A.3.c:
     title: Railways
     comment: Emissions from railway transport for both freight and passenger traffic
@@ -1102,9 +1186,9 @@ categories:
       - 1.B.2
       - 1.B.3
   1.B.1:
-    title: a  ii  2  Post-mining  Seam Gas Emissions
-    comment: Includes methane and CO2 emitted after coal has been mined, subsequently
-      processed, stored and transported.
+    title: Solid Fuels
+    comment: Includes all intentional and unintentional emissions from the extraction,
+      processing, storage and transport of fuel to the point of final use.
     alternative_codes:
     - 1B1
     info:
@@ -1112,7 +1196,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a ii
+      - 1B1
     children:
     - - 1.B.1.a
       - 1.B.1.b
@@ -1143,6 +1227,59 @@ categories:
       - CH4
       corresponding_categories_IPCC1996:
       - 1B1a i
+    children:
+    - - 1.B.1.a.i.1
+      - 1.B.1.a.i.2
+      - 1.B.1.a.i.3
+      - 1.B.1.a.i.4
+  1.B.1.a.i.1:
+    title: Mining
+    comment: Includes all seam gas emissions vented to atmosphere from coal mine ventilation
+      air and degasification systems.
+    alternative_codes:
+    - 1B1ai1
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a i
+  1.B.1.a.i.2:
+    title: Post-mining Seam Gas Emissions
+    comment: Includes methane and CO2 emitted after coal has been mined, brought to
+      the surface and subsequently processed, stored and transported.
+    alternative_codes:
+    - 1B1ai2
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a i
+  1.B.1.a.i.3:
+    title: Abandoned Underground Mines
+    comment: Includes methane emissions from abandoned underground mines.
+    alternative_codes:
+    - 1B1ai3
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a i
+  1.B.1.a.i.4:
+    title: Flaring of Drained Methane or Conversion of Methane to CO2
+    comment: Methane drained and flared, or ventilation gas converted to CO2 by an
+      oxidation process should be included here. Methane used for energy production
+      should be included in Volume 2, Energy, Chapter 2 ‘Stationary Combustion’.
+    alternative_codes:
+    - 1B1ai4
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a i
   1.B.1.a.ii:
     title: Surface Mines
     comment: Includes all seam gas emissions arising from surface  coal mining.
@@ -1154,8 +1291,33 @@ categories:
       - CH4
       corresponding_categories_IPCC1996:
       - 1B1a ii
+    children:
+    - - 1.B.1.a.ii.1
+      - 1.B.1.a.ii.2
+  1.B.1.a.ii.1:
+    title: Mining
+    comment: Includes methane and CO2 emitted during mining from breakage of coal
+      and associated strata and leakage from the pit floor and high wall.
+    alternative_codes:
+    - 1B1aii1
+    info:
+      gases:
+      - CO2
+      - CH4
+  1.B.1.a.ii.2:
+    title: Post-mining Seam Gas Emissions
+    comment: Includes methane and CO2 emitted after coal has been mined, subsequently
+      processed, stored and transported.
+    alternative_codes:
+    - 1B1aii2
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a ii
   1.B.1.b:
-    title: Uncontrolled  Combustion, and Burning Coal Dumps
+    title: Uncontrolled Combustion, and Burning Coal Dumps
     comment: Includes fugitive emissions of CO2 from uncontrolled combustion in coal.
     alternative_codes:
     - 1B1b
@@ -1188,19 +1350,22 @@ categories:
       corresponding_categories_IPCC1996:
       - 1B1b
   1.B.2:
-    title: b  iii 6  Other
-    comment: Fugitive emissions from natural gas systems (excluding venting and flaring)
-      not otherwise accounted for in the above categories. This may include emissions
-      from well blowouts and pipeline ruptures or dig-ins.
+    title: Oil and Natural Gas
+    comment: Comprises fugitive emissions from all oil and natural gas activities.
+      The primary sources of these emissions may include fugitive equipment leaks,
+      evaporation losses, venting, flaring and accidental releases.
     alternative_codes:
     - 1B2
     info:
       gases:
       - CO2
       - CH4
+      - N2O
+      - NOx
+      - CO
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2 c
+      - 1B2
     children:
     - - 1.B.2.a
       - 1.B.2.b
@@ -1219,8 +1384,20 @@ categories:
       corresponding_categories_IPCC1996:
       - 1B2a
     children:
-    - - 1.B.2.a.ii
+    - - 1.B.2.a.i
+      - 1.B.2.a.ii
       - 1.B.2.a.iii
+  1.B.2.a.i:
+    title: Venting
+    comment: Emissions from venting of associated gas and waste gas/vapour streams
+      at oil facilities.
+    alternative_codes:
+    - 1B2ai
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
   1.B.2.a.ii:
     title: Flaring
     comment: Emissions from flaring of natural gas and waste gas/vapour streams at
@@ -1253,13 +1430,18 @@ categories:
       - CO
       - NMVOC
     children:
-    - - 1.B.2.a.iii.I
-  1.B.2.a.iii.I:
+    - - 1.B.2.a.iii.1
+      - 1.B.2.a.iii.2
+      - 1.B.2.a.iii.3
+      - 1.B.2.a.iii.4
+      - 1.B.2.a.iii.5
+      - 1.B.2.a.iii.6
+  1.B.2.a.iii.1:
     title: Exploration
     comment: Fugitive emissions (excluding venting and flaring) from oil well drilling,
       drill stem testing, and well completions.
     alternative_codes:
-    - 1B2aiiiI
+    - 1B2aiii1
     info:
       gases:
       - CO2
@@ -1267,6 +1449,97 @@ categories:
       - NMVOC
       corresponding_categories_IPCC1996:
       - 1B2a i
+  1.B.2.a.iii.2:
+    title: Production and Upgrading
+    comment: Fugitive emissions from oil production (excluding venting and flaring)
+      occur at the oil wellhead or at the oil sands or shale oil mine through to the
+      start of the oil transmission system. This includes fugitive emissions related
+      to well servicing, oil sands or shale oil mining, transport of untreated production
+      (i.e , well effluent, emulsion, oil shale and oilsands) to  treating or extraction
+      facilities, activities at extraction and upgrading facilities, associated gas
+      re- injection systems and produced water disposal systems. Fugitive emission
+      from upgraders are grouped with those from production rather than those from
+      refining since the upgraders are often integrated with extraction facilities
+      and their relative emission contributions are difficult to establish. However,
+      upgraders may also be integrated with refineries, co-generation plants or other
+      industrial facilities and their relative emission contributions can be difficult
+      to establish in these cases.
+    alternative_codes:
+    - 1B2aiii2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a ii
+  1.B.2.a.iii.3:
+    title: Transport
+    comment: Fugitive emissions (excluding venting and flaring) related to the transport
+      of marketable crude oil (including conventional, heavy and synthetic crude oil
+      and bitumen) to upgraders and refineries. The transportation systems may comprise
+      pipelines, marine tankers, tank trucks and rail cars. Evaporation losses from
+      storage, filling and unloading activities and fugitive equipment leaks are the
+      primary sources of these emissions.
+    alternative_codes:
+    - 1B2aiii3
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a iii
+  1.B.2.a.iii.4:
+    title: Refining
+    comment: Fugitive emissions (excluding venting and flaring) at petroleum refineries.
+      Refineries process crude oils, natural gas liquids and synthetic crude oils
+      to produce final refined products (e.g., primarily fuels and lubricants). Where
+      refineries are integrated with other facilities (for example, upgraders or co-generation
+      plants) their relative emission contributions can be difficult to establish.
+    alternative_codes:
+    - 1B2aiii4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a iv
+  1.B.2.a.iii.5:
+    title: Distribution of Oil Products
+    comment: This comprises fugitive emissions (excluding venting and flaring) from
+      the transport and distribution of refined products, including those at bulk
+      terminals and retail facilities. Evaporation losses from storage, filling and
+      unloading activities and fugitive equipment leaks are the primary sources of
+      these emissions.
+    alternative_codes:
+    - 1B2aiii5
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a v
+  1.B.2.a.iii.6:
+    title: Other
+    comment: Fugitive emissions from oil systems (excluding venting and flaring) not
+      otherwise accounted for in the above categories. This includes fugitive emissions
+      from spills and other accidental releases, waste oil treatment facilities and
+      oilfield waste disposal facilities.
+    alternative_codes:
+    - 1B2aiii6
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a vi
   1.B.2.b:
     title: Natural Gas
     comment: Comprises emissions from venting, flaring and all other fugitive sources
@@ -1327,6 +1600,98 @@ categories:
       - NOx
       - CO
       - NMVOC
+    children:
+    - - 1.B.2.b.iii.1
+      - 1.B.2.b.iii.2
+      - 1.B.2.b.iii.3
+      - 1.B.2.b.iii.4
+      - 1.B.2.b.iii.5
+      - 1.B.2.b.iii.6
+  1.B.2.b.iii.1:
+    title: Exploration
+    comment: Fugitive emissions (excluding venting and flaring) from gas well drilling,
+      drill stem testing and well completions.
+    alternative_codes:
+    - 1B2biii1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1Bb i
+  1.B.2.b.iii.2:
+    title: Production
+    comment: Fugitive emissions (excluding venting and flaring) from the gas wellhead
+      through to the inlet of gas processing plants, or, where processing is not required,
+      to the tie-in points on gas transmission systems. This includes fugitive emissions
+      related to well servicing, gas gathering, processing and associated waste water
+      and acid gas disposal activities.
+    alternative_codes:
+    - 1B2biii2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1Bb ii
+  1.B.2.b.iii.3:
+    title: Processing
+    comment: Fugitive emissions (excluding venting and flaring) from gas processing
+      facilities.
+    alternative_codes:
+    - 1B2biii3
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1Bb iii
+  1.B.2.b.iii.4:
+    title: Transmission and Storage
+    comment: Fugitive emissions from systems used to transport processed natural gas
+      to market (i.e., to industrial consumers and natural gas distribution systems).
+      Fugitive emissions from natural gas storage systems should also be included
+      in this category. Emissions from natural gas liquids extraction plants on gas
+      transmission systems should be reported as part of natural gas processing (Sector
+      1.B.2.b.iii.3). Fugitive emissions related to the transmission of natural gas
+      liquids should be reported under Category 1.B.2.a.iii.3.
+    alternative_codes:
+    - 1B2biii4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2b ii
+  1.B.2.b.iii.5:
+    title: Distribution
+    comment: Fugitive emissions (excluding venting and flaring) from the distribution
+      of natural gas to end users.
+    alternative_codes:
+    - 1B2biii5
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+  1.B.2.b.iii.6:
+    title: Other
+    comment: Fugitive emissions from natural gas systems (excluding venting and flaring)
+      not otherwise accounted for in the above categories. This may include emissions
+      from well blowouts and pipeline ruptures or dig-ins.
+    alternative_codes:
+    - 1B2biii6
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2 c
   1.B.3:
     title: Other Emissions from Energy Production
     comment: Other fugitive emissions for example, from geo thermal energy production,
@@ -1459,13 +1824,13 @@ categories:
     - - 2.A
       - 2.B
       - 2.C
+      - 2.D
       - 2.E
       - 2.F
       - 2.G
       - 2.H
   2.A:
     title: Mineral Industry
-    comment:
     alternative_codes:
     - 2A
     info:
@@ -1517,11 +1882,11 @@ categories:
     - 2A3
     info:
       gases:
+      - CO2
       - CH4
       corresponding_categories_IPCC1996:
       - 2A3
-      - 2A4  CO2
-      -
+      - 2A4
   2.A.4:
     title: Other Process Uses of Carbonates
     comment: Includes limestone, dolomite and other carbonates etc. Emissions from
@@ -1533,6 +1898,7 @@ categories:
     - 2A4
     info:
       gases:
+      - CO2
       - CH4
       - NOx
       - CO
@@ -1540,8 +1906,7 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 2A3
-      - 2A4  CO2
-      -
+      - 2A4
     children:
     - - 2.A.4.a
       - 2.A.4.b
@@ -1612,7 +1977,6 @@ categories:
       - 2A3
   2.A.5:
     title: Other (please specify)
-    comment:
     alternative_codes:
     - 2A5
     info:
@@ -1628,7 +1992,6 @@ categories:
       - 2A7
   2.B:
     title: Chemical Industry
-    comment:
     alternative_codes:
     - 2B
     info:
@@ -1650,6 +2013,7 @@ categories:
       - 3C
     children:
     - - 2.B.1
+      - 2.B.10
       - 2.B.2
       - 2.B.3
       - 2.B.4
@@ -1712,7 +2076,8 @@ categories:
       gases:
       - N2O
       - CO2
-      - CH4 NOx
+      - CH4
+      - NOx
       corresponding_categories_IPCC1996:
       - 2B3
   2.B.4:
@@ -1801,7 +2166,6 @@ categories:
       - 2A4
   2.B.8:
     title: Petrochemical and Carbon Black Production
-    comment:
     alternative_codes:
     - 2B8
     info:
@@ -1932,7 +2296,6 @@ categories:
       - 3C
   2.B.9:
     title: Fluorochemical Production
-    comment:
     alternative_codes:
     - 2B9
     info:
@@ -1979,13 +2342,13 @@ categories:
       - other halogenated gases
       corresponding_categories_IPCC1996:
       - 2E2
-  2.B.10.Other.(Please:
-    title: specify)
+  2.B.10:
+    title: Other (Please specify)
     comment: For example, gases with global warming potential listed in IPCC assessment
       reports that do not fall within any categories above could be reported here,
       if they are estimated.
     alternative_codes:
-    - 2B10Other(Please
+    - 2B10
     info:
       gases:
       - CO2
@@ -2003,7 +2366,6 @@ categories:
       - 2B5
   2.C:
     title: Metal Industry
-    comment:
     alternative_codes:
     - 2C
     info:
@@ -2152,7 +2514,6 @@ categories:
       - 2C5
   2.C.7:
     title: Other (please specify)
-    comment:
     alternative_codes:
     - 2C7
     info:
@@ -2170,12 +2531,12 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 2C5
-  2.D.Non-Energy.Products:
-    title: from  Fuels and Solvent Use
+  2.D:
+    title: Non-Energy Products from Fuels and Solvent Use
     comment: The use of oil products and coal-derived oils primarily intended for
       purposes other than combustion.
     alternative_codes:
-    - 2DNon-EnergyProducts
+    - 2D
     info:
       gases:
       - CO2
@@ -2190,6 +2551,11 @@ categories:
       - 2A5
       - 2A6
       - 3
+    children:
+    - - 2.D.1
+      - 2.D.2
+      - 2.D.3
+      - 2.D.4
   2.D.1:
     title: Lubricant Use
     comment: Lubricating oils, heat transfer oils, cutting oils and greases.
@@ -2249,7 +2615,6 @@ categories:
       - 3D
   2.E:
     title: Electronics Industry
-    comment:
     alternative_codes:
     - 2E
     info:
@@ -2331,7 +2696,6 @@ categories:
       - 2F6
   2.E.5:
     title: Other (please specify)
-    comment:
     alternative_codes:
     - 2E5
     info:
@@ -2347,7 +2711,6 @@ categories:
       - 2F6
   2.F:
     title: Product Uses as Substitutes for Ozone Depleting Substances
-    comment:
     alternative_codes:
     - 2F
     info:
@@ -2534,7 +2897,6 @@ categories:
       - 2F6
   2.G:
     title: OTHER PRODUCT MANUFACTURE AND USE
-    comment:
     alternative_codes:
     - 2G
     info:
@@ -2576,7 +2938,6 @@ categories:
       - 2.G.1.c
   2.G.1.a:
     title: Manufacture of Electrical Equipment
-    comment:
     alternative_codes:
     - 2G1a
     info:
@@ -2588,7 +2949,6 @@ categories:
       - 2F6
   2.G.1.b:
     title: Use of Electrical Equipment
-    comment:
     alternative_codes:
     - 2G1b
     info:
@@ -2600,7 +2960,6 @@ categories:
       - 2F6
   2.G.1.c:
     title: Disposal of Electrical Equipment
-    comment:
     alternative_codes:
     - 2G1c
     info:
@@ -2612,7 +2971,6 @@ categories:
       - 2F6
   2.G.2:
     title: SF6 and PFCs from Other Product Uses
-    comment:
     alternative_codes:
     - 2G2
     info:
@@ -2671,7 +3029,6 @@ categories:
       - 2F6
   2.G.3:
     title: N2O from Product Uses
-    comment:
     alternative_codes:
     - 2G3
     info:
@@ -2712,7 +3069,6 @@ categories:
       - 3D
   2.G.3.c:
     title: Other (Please specify)
-    comment:
     alternative_codes:
     - 2G3c
     info:
@@ -2722,7 +3078,6 @@ categories:
       - 3D
   2.G.4:
     title: Other (Please specify)
-    comment:
     alternative_codes:
     - 2G4
     info:
@@ -2736,7 +3091,6 @@ categories:
       - 3D
   2.H:
     title: Other
-    comment:
     alternative_codes:
     - 2H
     info:
@@ -2758,7 +3112,6 @@ categories:
       - 2.H.3
   2.H.1:
     title: Pulp and Paper Industry
-    comment:
     alternative_codes:
     - 2H1
     info:
@@ -2773,7 +3126,6 @@ categories:
       - 2D1
   2.H.2:
     title: Food and Beverages Industry
-    comment:
     alternative_codes:
     - 2H2
     info:
@@ -2788,7 +3140,6 @@ categories:
       - 2D2
   2.H.3:
     title: Other (please specify)
-    comment:
     alternative_codes:
     - 2H3
     info:
@@ -2802,15 +3153,13 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 2G
-  3.AGRICULTURE,.FORESTRY,.AND.OTHER.LAND:
-    title: USE
+  3:
+    title: AGRICULTURE, FORESTRY, AND OTHER LAND USE
     comment: Emissions and removals from forest land, cropland, grassland, wetlands,
       settlements, and other land. Also includes emissions from livestock and manure
       management, emissions from managed soils, and emissions from liming and urea
       application. Methods to estimate annual harvested wood product (HWP) variables
       are also covered in this category.
-    alternative_codes:
-    - 3AGRICULTURE,FORESTRY,ANDOTHERLAND
     info:
       gases:
       - CH4
@@ -2819,6 +3168,11 @@ categories:
       corresponding_categories_IPCC1996:
       - 4
       - 5
+    children:
+    - - 3.A
+      - 3.B
+      - 3.C
+      - 3.D
   3.A:
     title: Livestock
     comment: Methane emissions from enteric fermentation, and methane and nitrous
@@ -3158,7 +3512,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3184,7 +3539,8 @@ categories:
     - 3B1
     info:
       gases:
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3207,7 +3563,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3224,7 +3581,9 @@ categories:
     - 3B1b
     info:
       gases:
-      - CH4 N2O
+      - CO2
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3232,8 +3591,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 5A
       - 5C
-      - 5D CO2
-      -
+      - 5D
     children:
     - - 3.B.1.b.i
       - 3.B.1.b.ii
@@ -3248,7 +3606,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3261,7 +3620,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3274,7 +3634,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3287,7 +3648,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3300,7 +3662,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3315,7 +3678,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3339,7 +3703,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3359,7 +3724,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3381,7 +3747,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3394,7 +3761,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3407,7 +3775,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3420,7 +3789,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3433,21 +3803,52 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
       - SO2
   3.B.3:
-    title: a
-    comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
-      grassland.
+    title: Grassland
+    comment: Emissions and removals from rangelands and pasture land that is not considered
+      cropland. It also includes systems with woody vegetation that fall below the
+      threshold values used in the forest land category and are not expected to exceed
+      them, without human intervention. The category also includes all grassland from
+      wild lands to recreational areas as well as agricultural and silvi-pastural
+      systems, subdivided into managed and unmanaged, consistent with national definitions.
     alternative_codes:
     - 3B3
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 4D
+      - 4E
+      - 5A
+      - 5B
+      - 5C
+      - 5D
+    children:
+    - - 3.B.3.a
+      - 3.B.3.b
+  3.B.3.a:
+    title:
+    comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
+      grassland.
+    alternative_codes:
+    - 3B3a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3457,22 +3858,23 @@ categories:
       - 4E
       - 5A
       - 5D
-    children:
-    - - 3.B.3.b
   3.B.3.b:
     title: Land Converted to Grassland
-    comment: Emissions and removals from land converted to grassland.   5B, 5C,
+    comment: Emissions and removals from land converted to grassland.
     alternative_codes:
     - 3B3b
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
+      - 5B
+      - 5C
       - 5D
     children:
     - - 3.B.3.b.i
@@ -3488,7 +3890,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3501,7 +3904,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3514,7 +3918,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3527,7 +3932,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3540,7 +3946,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3557,7 +3964,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3579,7 +3987,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3603,7 +4012,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3628,7 +4038,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3645,7 +4056,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3665,7 +4077,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3681,7 +4094,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3698,7 +4112,8 @@ categories:
     info:
       gases:
       - CO2
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -3842,7 +4257,7 @@ categories:
       gases:
       - CO2
   3.B.6.b.iii:
-    title: Grassland Converted  to Other Land
+    title: Grassland Converted to Other Land
     comment: Emissions and removals from grassland converted to other land.
     alternative_codes:
     - 3B6biii
@@ -3881,20 +4296,21 @@ categories:
       - 3.C.7
       - 3.C.8
   3.C.1:
-    title: c
-    comment: Biomass Burning in Grasslands  Emissions from biomass burning that include
-      N2O and CH4 in grasslands. CO2 emissions are included here only if emissions
-      are not included in 3B3 categories as carbon stock changes.
+    title: Emissions from Biomass Burning
+    comment: Emissions from biomass burning that include N2O and CH4. CO2 emissions
+      are included here only if emissions are not included in 3B categories as carbon
+      stock changes.
     alternative_codes:
     - 3C1
     info:
       gases:
       - N2O
       - CH4
-      - CO2*
+      - CO2
     children:
     - - 3.C.1.a
       - 3.C.1.b
+      - 3.C.1.c
       - 3.C.1.d
   3.C.1.a:
     title: Biomass Burning in Forest Lands
@@ -3907,7 +4323,7 @@ categories:
       gases:
       - N2O
       - CH4
-      - CO2*
+      - CO2
   3.C.1.b:
     title: Biomass Burning in Croplands
     comment: Emissions from biomass burning that include N2O and CH4 in croplands.
@@ -3919,7 +4335,19 @@ categories:
       gases:
       - N2O
       - CH4
-      - CO2*
+      - CO2
+  3.C.1.c:
+    title: Biomass Burning in Grasslands
+    comment: Emissions from biomass burning that include N2O and CH4 in grasslands.
+      CO2 emissions are included here only if emissions are not included in 3B3 categories
+      as carbon stock changes.
+    alternative_codes:
+    - 3C1c
+    info:
+      gases:
+      - N2O
+      - CH4
+      - CO2
   3.C.1.d:
     title: Biomass Burning in All Other Land
     comment: Emissions from biomass burning that include N2O and CH4 in settlements,
@@ -3931,7 +4359,7 @@ categories:
       gases:
       - N2O
       - CH4
-      - CO2*
+      - CO2
   3.C.2:
     title: Liming
     comment: CO2 emissions from the use of lime in agricultural soils, managed forest
@@ -4016,7 +4444,6 @@ categories:
       - CH4
   3.D:
     title: Other
-    comment:
     alternative_codes:
     - 3D
     children:
@@ -4032,12 +4459,10 @@ categories:
       - CO2
   3.D.2:
     title: Other (please specify)
-    comment:
     alternative_codes:
     - 3D2
   4:
     title: WASTE
-    comment:
     info:
       gases:
       - CO2
@@ -4045,7 +4470,8 @@ categories:
       - N2O
       - NOx
       - CO
-      - NMVOC SO2
+      - NMVOC
+      - SO2
     children:
     - - 4.A
       - 4.B
@@ -4053,21 +4479,27 @@ categories:
       - 4.D
       - 4.E
   4.A:
-    title: 3
-    comment: Uncategorised Waste Disposal Sites Mixture of above 4 A1 and 4 A2. Countries
-      that do not have data on division of managed/unmanaged may use this category.
+    title: Solid Waste Disposal
+    comment: Methane is produced from anaerobic microbial decomposition of organic
+      matter in solid waste disposal sites.  Carbon dioxide (CO2) is also produced
+      but CO2 from biogenic or organic waste sources is covered by the AFOLU Sector.
+      Emissions of halogenated gases should be accounted in IPPU. Long-term storage
+      of carbon in SWDS is reported as an information item.
     alternative_codes:
     - 4A
     info:
       gases:
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
+      - CO
       - NMVOC
       corresponding_categories_IPCC1996:
-      - NA
+      - 6A
     children:
     - - 4.A.1
       - 4.A.2
+      - 4.A.3
   4.A.1:
     title: Managed Waste Disposal Sites
     comment: 'A managed solid waste disposal site must have controlled placement of
@@ -4079,7 +4511,8 @@ categories:
     - 4A1
     info:
       gases:
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - CO
       - NMVOC
@@ -4093,11 +4526,24 @@ categories:
     - 4A2
     info:
       gases:
-      - CH4 N2O
+      - CH4
+      - N2O
       - NOx
       - NMVOC
       corresponding_categories_IPCC1996:
       - 6A2
+  4.A.3:
+    title: Uncategorised Waste Disposal Sites
+    comment: Mixture of above 4 A1 and 4 A2. Countries that do not have data on division
+      of managed/unmanaged may use this category.
+    alternative_codes:
+    - 4A3
+    info:
+      gases:
+      - CH4
+      - N2O
+      - NOx
+      - NMVOC
   4.B:
     title: Biological Treatment of Solid Waste
     comment: Solid waste composting and other biological treatment. Emissions from
@@ -4108,7 +4554,8 @@ categories:
     info:
       gases:
       - CH4
-      - N2O NOx
+      - N2O
+      - NOx
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
@@ -4163,8 +4610,6 @@ categories:
       - NOx
       - CO
       - NMVOC
-      corresponding_categories_IPCC1996:
-      - NA
   4.D:
     title: Wastewater Treatment and Discharge
     comment: Methane is produced from anaerobic decomposition of organic matter by
@@ -4176,7 +4621,8 @@ categories:
     info:
       gases:
       - CH4
-      - N2O NOx
+      - N2O
+      - NOx
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
@@ -4196,7 +4642,8 @@ categories:
     info:
       gases:
       - CH4
-      - N2O NOx
+      - N2O
+      - NOx
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
@@ -4213,7 +4660,8 @@ categories:
     info:
       gases:
       - CH4
-      - N2O NOx
+      - N2O
+      - NOx
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
@@ -4236,7 +4684,6 @@ categories:
       - 6D
   5:
     title: Other
-    comment:
     info:
       corresponding_categories_IPCC1996:
       - 7
@@ -4253,8 +4700,6 @@ categories:
     info:
       gases:
       - N2O
-      corresponding_categories_IPCC1996:
-      - NA
   5.B:
     title: Other (please specify)
     comment: Only use this category exceptionally, for any categories than cannot
