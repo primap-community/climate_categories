@@ -1,9 +1,11 @@
 """Tests for `climate_categories` package."""
 
 import datetime
+import pathlib
 
 import pandas as pd
 import pytest
+import strictyaml
 
 import climate_categories
 
@@ -37,6 +39,11 @@ class TestSimple:
         assert SimpleCat["unnumbered"].title == "The unnumbered category"
         assert repr(SimpleCat["1"]) == "<Category 1>"
         assert str(SimpleCat["1"]) == "Category ('1', 'A', 'CatA') 'Category 1'"
+        assert SimpleCat["1"].info == {
+            "important_data": ["A", "B", "C"],
+            "other_important_thing": "ABC",
+        }
+        assert SimpleCat["2"].info == {}
 
     def test_dict_like(self, SimpleCat: climate_categories.Categorization):
         assert "A" in SimpleCat
@@ -176,6 +183,11 @@ class TestHierarchical:
             == "Category ('0', 'TOTAL') 'Category 0' children: [('1', '2', '3'),"
             " ('0X3', '3'), ('1A', '1B', '2', '3')]"
         )
+        assert HierCat["1"].info == {
+            "SomeInfo": "A",
+            "OtherInfo": ["A", "B", "C"],
+        }
+        assert HierCat["2"].info == {}
 
     def test_category_relationships(
         self, HierCat: climate_categories.HierarchicalCategorization
@@ -329,3 +341,15 @@ class TestHierarchical:
             "2A2",
         ]
         assert len(HierCat_ext) == 13
+
+
+def test_broken():
+    with pytest.raises(
+        strictyaml.YAMLValidationError,
+        match="unexpected key not in schema 'reefrences'",
+    ):
+        climate_categories.HierarchicalCategorization.from_yaml(
+            pathlib.Path(__file__).parent
+            / "data"
+            / "broken_hierarchical_categorization.yaml"
+        )

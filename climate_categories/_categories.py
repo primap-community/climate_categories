@@ -6,11 +6,20 @@ import typing
 
 import networkx as nx
 import pandas
-import strictyaml
+import strictyaml as sy
 
 
 class Category:
     """A single category."""
+
+    _strictyaml_schema = sy.Map(
+        {
+            "title": sy.Str(),
+            sy.Optional("comment"): sy.Str(),
+            sy.Optional("alternative_codes"): sy.Seq(sy.Str()),
+            sy.Optional("info"): sy.MapPattern(sy.Str(), sy.Any()),
+        }
+    )
 
     def __init__(
         self,
@@ -18,11 +27,16 @@ class Category:
         categorization: "Categorization",
         title: str,
         comment: typing.Optional[str] = None,
+        info: typing.Optional[dict] = None,
     ):
         self.codes = codes
         self.title = title
         self.comment = comment
         self.categorization = categorization
+        if info is None:
+            self.info = {}
+        else:
+            self.info = info
 
     @classmethod
     def from_spec(cls, code: str, spec: typing.Dict, categorization: "Categorization"):
@@ -35,9 +49,10 @@ class Category:
             categorization=categorization,
             title=spec["title"],
             comment=spec.get("comment", None),
+            info=spec.get("info", None),
         )
 
-    def to_spec(self) -> (str, typing.Dict):
+    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, tuple, dict, list]]):
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -51,6 +66,8 @@ class Category:
             spec["comment"] = self.comment
         if len(self.codes) > 1:
             spec["alternative_codes"] = self.codes[1:]
+        if self.info:
+            spec["info"] = self.info
         return code, spec
 
     def __str__(self) -> str:
@@ -82,17 +99,28 @@ class Category:
 class HierarchicalCategory(Category):
     """A single category from a HierarchicalCategorization."""
 
+    _strictyaml_schema = sy.Map(
+        {
+            "title": sy.Str(),
+            sy.Optional("comment"): sy.Str(),
+            sy.Optional("alternative_codes"): sy.Seq(sy.Str()),
+            sy.Optional("info"): sy.MapPattern(sy.Str(), sy.Any()),
+            sy.Optional("children"): sy.Seq(sy.Seq(sy.Str())),
+        }
+    )
+
     def __init__(
         self,
         codes: typing.Tuple[str],
         categorization: "HierarchicalCategorization",
         title: str,
         comment: typing.Optional[str] = None,
+        info: typing.Optional[dict] = None,
     ):
-        Category.__init__(self, codes, categorization, title, comment)
+        Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
 
-    def to_spec(self) -> (str, typing.Dict):
+    def to_spec(self) -> (str, typing.Dict[str, typing.Union[str, dict, list, tuple]]):
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -185,6 +213,19 @@ class Categorization:
 
     hierarchical: bool = False
 
+    _strictyaml_schema = sy.Map(
+        {
+            "name": sy.Str(),
+            "title": sy.Str(),
+            "comment": sy.Str(),
+            "references": sy.Str(),
+            "institution": sy.Str(),
+            "last_update": sy.Str(),
+            sy.Optional("version"): sy.Str(),
+            "categories": sy.MapPattern(sy.Str(), Category._strictyaml_schema),
+        }
+    )
+
     def _add_categories(self, categories: typing.Dict[str, typing.Dict]):
         for code, spec in categories.items():
             cat = Category.from_spec(code=code, spec=spec, categorization=self)
@@ -221,7 +262,7 @@ class Categorization:
     def from_yaml(cls, file: typing.Union[str, pathlib.Path]) -> "Categorization":
         """Read Categorization from a StrictYaml file."""
         with open(file) as fd:
-            yaml = strictyaml.load(fd.read())
+            yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
         return cls.from_spec(yaml.data)
 
     @classmethod
@@ -447,6 +488,23 @@ class HierarchicalCategorization(Categorization):
 
     hierarchical = True
 
+    _strictyaml_schema = sy.Map(
+        {
+            "name": sy.Str(),
+            "title": sy.Str(),
+            "comment": sy.Str(),
+            "references": sy.Str(),
+            "institution": sy.Str(),
+            "last_update": sy.Str(),
+            sy.Optional("version"): sy.Str(),
+            "total_sum": sy.Bool(),
+            sy.Optional("canonical_top_level_category"): sy.Str(),
+            "categories": sy.MapPattern(
+                sy.Str(), HierarchicalCategory._strictyaml_schema
+            ),
+        }
+    )
+
     def _add_categories(self, categories: typing.Dict[str, typing.Dict]):
         for code, spec in categories.items():
             cat = HierarchicalCategory.from_spec(
@@ -521,7 +579,9 @@ class HierarchicalCategorization(Categorization):
     ) -> "HierarchicalCategorization":
         """Read HierarchicalCategorization from a StrictYaml file."""
         with open(file) as fd:
-            yaml = strictyaml.dirty_load(fd.read(), allow_flow_style=True)
+            yaml = sy.dirty_load(
+                fd.read(), allow_flow_style=True, schema=cls._strictyaml_schema
+            )
         return cls.from_spec(yaml.data)
 
     @classmethod
@@ -530,14 +590,6 @@ class HierarchicalCategorization(Categorization):
     ) -> "HierarchicalCategorization":
         """Create Categorization from a Dictionary specification."""
         last_update = datetime.date.fromisoformat(spec["last_update"])
-        if spec["total_sum"] == "True":
-            total_sum = True
-        elif spec["total_sum"] == "False":
-            total_sum = False
-        else:
-            raise ValueError(
-                f"total_sum must be either 'True' or 'False', not {spec['total_sum']}."
-            )
         return cls(
             categories=spec["categories"],
             name=spec["name"],
@@ -547,7 +599,7 @@ class HierarchicalCategorization(Categorization):
             institution=spec["institution"],
             last_update=last_update,
             version=spec.get("version", None),
-            total_sum=total_sum,
+            total_sum=spec["total_sum"],
             canonical_top_level_category=spec.get("canonical_top_level_category", None),
         )
 
@@ -561,7 +613,7 @@ class HierarchicalCategorization(Categorization):
             Specification dictionary understood by `from_spec`.
         """
         spec = Categorization.to_spec(self)
-        spec["total_sum"] = str(self.total_sum)
+        spec["total_sum"] = self.total_sum
         if self.canonical_top_level_category is not None:
             spec[
                 "canonical_top_level_category"
