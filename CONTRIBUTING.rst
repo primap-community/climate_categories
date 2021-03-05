@@ -80,10 +80,10 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
 5. When you're done making changes, check that your changes pass our tests and
    automatically format everything according to our rules::
 
-    $ make lint
+     $ make lint
 
-    Often, the linters can fix errors themselves, so if you get failures, run
-    ``make lint`` again to see if any errors need human intervention.
+   Often, the linters can fix errors themselves, so if you get failures, run
+   ``make lint`` again to see if any errors need human intervention.
 
 6. Commit your changes and push your branch to GitHub::
 
