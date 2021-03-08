@@ -16,7 +16,7 @@ from ._categories import HierarchicalCategorization  # noqa: F401
 
 _data_dir = pathlib.Path(__file__).parent / "data"
 
-IPCC2006 = None
+IPCC2006 = HierarchicalCategorization.from_pickle(_data_dir / "IPCC2006.pickle")
 
 cats = {"IPCC2006": IPCC2006}
 

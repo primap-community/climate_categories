@@ -2,6 +2,7 @@
 
 import datetime
 import pathlib
+import pickle
 import typing
 
 import networkx as nx
@@ -283,6 +284,16 @@ class Categorization:
             version=spec.get("version", None),
         )
 
+    @classmethod
+    def from_pickle(cls, filepath: typing.Union[str, pathlib.Path]) -> "Categorization":
+        """De-serialize Categorization from a file written by to_pickle.
+
+        Note that this uses the pickle module, which executes arbitrary code in the
+        provided file. Only load from pickle files that you trust."""
+        with open(filepath, "rb") as fd:
+            spec = pickle.load(fd)
+        return cls.from_spec(spec)
+
     def to_spec(self) -> typing.Dict[str, typing.Any]:
         """Turn this categorization into a specification dictionary ready to be written
         to a yaml file.
@@ -315,6 +326,12 @@ class Categorization:
         doc = sy.as_document(spec, self._strictyaml_schema)
         with open(filepath, "w") as fd:
             fd.write(doc.as_yaml())
+
+    def to_pickle(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+        """Serialize to a file using python's pickle."""
+        spec = self.to_spec()
+        with open(filepath, "wb") as fd:
+            pickle.dump(spec, fd, protocol=4)
 
     def keys(self) -> typing.KeysView[str]:
         """Iterate over the codes for all categories."""
