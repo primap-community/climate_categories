@@ -136,7 +136,7 @@ def main():
             if "info" not in categories[code]:
                 categories[code]["info"] = {}
             categories[code]["info"]["corresponding_categories_IPCC1996"] = [
-                x.strip() for x in code_96.split(",")
+                x.strip().replace(" ", "") for x in code_96.split(",")
             ]
 
     for parent_code in categories:
@@ -169,6 +169,9 @@ def main():
     # individual fixes to data from pdf
     spec["categories"]["1"]["title"] = "ENERGY"
     spec["categories"]["1.A.2.m"]["title"] = "Non-specified Industry"
+    spec["categories"]["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = [
+        "1A3e"
+    ]
 
     spec["categories"]["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
     spec["categories"]["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [
@@ -191,20 +194,21 @@ def main():
 
     spec["categories"]["2.B.3"]["info"]["gases"] = ["N2O", "CO2", "CH4", "NOx"]
 
-    spec["categories"]["3.B.1.b"]["info"]["gases"] = [
-        "CO2",
-        "CH4",
-        "N2O",
-        "NOx",
-        "CO",
-        "NMVOC",
-        "SO2",
-    ]
-    spec["categories"]["3.B.1.b"]["info"]["corresponding_categories_IPCC1996"] = [
-        "5A",
-        "5C",
-        "5D",
-    ]
+    for cat in ("3.B.1", "3.B.1.b"):
+        spec["categories"][cat]["info"]["gases"] = [
+            "CO2",
+            "CH4",
+            "N2O",
+            "NOx",
+            "CO",
+            "NMVOC",
+            "SO2",
+        ]
+        spec["categories"][cat]["info"]["corresponding_categories_IPCC1996"] = [
+            "5A",
+            "5C",
+            "5D",
+        ]
 
     spec["categories"]["3.B.3"]["info"]["corresponding_categories_IPCC1996"] = [
         "4D",
@@ -256,7 +260,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# TODO: look at unique gases and 96 categories to see of weird ones are left
-# TODO: visualize canonical graph to find orphans or other weird stuff
-# TODO: count number of categories

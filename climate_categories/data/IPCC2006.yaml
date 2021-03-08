@@ -115,7 +115,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A1a i
+      - 1A1ai
   1.A.1.a.ii:
     title: Combined Heat and Power Generation (CHP)
     comment: Emissions from production of both heat and electrical power from main
@@ -132,7 +132,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A1a ii
+      - 1A1aii
   1.A.1.a.iii:
     title: Heat Plants
     comment: Production of heat from main activity producers for sale by pipe network.
@@ -148,7 +148,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A1a iii
+      - 1A1aiii
   1.A.1.b:
     title: Petroleum Refining
     comment: All combustion activities supporting the refining of petroleum products
@@ -206,7 +206,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A1c i
+      - 1A1ci
   1.A.1.c.ii:
     title: Other Energy Industries
     comment: Combustion emissions arising from the energy-producing industries own
@@ -229,7 +229,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A1c ii
+      - 1A1cii
   1.A.2:
     title: Manufacturing Industries and Construction
     comment: Emissions from combustion of fuels in industry. Also includes combustion
@@ -542,7 +542,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3a i
+      - 1A3ai
   1.A.3.a.ii:
     title: Domestic Aviation
     comment: Emissions from civil domestic passenger and freight traffic that departs
@@ -563,7 +563,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3a ii
+      - 1A3aii
   1.A.3.b:
     title: Road Transportation
     comment: All combustion and evaporative emissions arising from fuel use in road
@@ -605,7 +605,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b i
+      - 1A3bi
     children:
     - - 1.A.3.b.i.1
       - 1.A.3.b.i.2
@@ -624,7 +624,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b i
+      - 1A3bi
   1.A.3.b.i.2:
     title: Passenger Cars Without 3-way Catalysts
     comment: Passenger car emissions from vehicles without 3-way catalysts.
@@ -640,7 +640,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b i
+      - 1A3bi
   1.A.3.b.ii:
     title: Light-duty Trucks
     comment: Emissions from vehicles so designated in the vehicle registering country
@@ -659,8 +659,8 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b ii
-      - 1A3b i
+      - 1A3bii
+      - 1A3bi
     children:
     - - 1.A.3.b.ii.1
       - 1.A.3.b.ii.2
@@ -679,7 +679,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b ii
+      - 1A3bii
   1.A.3.b.ii.2:
     title: Light-duty Trucks Without 3-way Catalysts
     comment: Emissions from light duty trucks without 3-way catalysts.
@@ -695,7 +695,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b ii
+      - 1A3bii
   1.A.3.b.iii:
     title: Heavy-duty Trucks and Buses
     comment: Emissions from any vehicles so designated in the vehicle registering
@@ -713,7 +713,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b iii
+      - 1A3biii
   1.A.3.b.iv:
     title: Motorcycles
     comment: Emissions from any motor vehicle designed to travel with not more than
@@ -730,7 +730,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b iv
+      - 1A3biv
   1.A.3.b.v:
     title: Evaporative Emissions from Vehicles
     comment: Evaporative emissions from vehicles (e.g. hot soak, running losses) are
@@ -747,7 +747,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3b v
+      - 1A3bv
   1.A.3.b.vi:
     title: Urea-based Catalysts
     comment: CO2 emissions from use of urea-based additives in catalytic converters
@@ -825,7 +825,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3d i
+      - 1A3di
   1.A.3.d.ii:
     title: Domestic Water-borne Navigation
     comment: Emissions from fuels used by vessels of all flags that depart and arrive
@@ -845,7 +845,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3d ii
+      - 1A3dii
   1.A.3.e:
     title: Other Transportation
     comment: Combustion emissions from all remaining transport activities including
@@ -865,7 +865,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3de
+      - 1A3e
     children:
     - - 1.A.3.e.i
       - 1.A.3.e.ii
@@ -943,7 +943,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A 4 a
+      - 1A4a
   1.A.4.b:
     title: Residential
     comment: All emissions from fuel combustion in households.
@@ -1226,7 +1226,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a i
+      - 1B1ai
     children:
     - - 1.B.1.a.i.1
       - 1.B.1.a.i.2
@@ -1243,7 +1243,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a i
+      - 1B1ai
   1.B.1.a.i.2:
     title: Post-mining Seam Gas Emissions
     comment: Includes methane and CO2 emitted after coal has been mined, brought to
@@ -1255,7 +1255,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a i
+      - 1B1ai
   1.B.1.a.i.3:
     title: Abandoned Underground Mines
     comment: Includes methane emissions from abandoned underground mines.
@@ -1266,7 +1266,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a i
+      - 1B1ai
   1.B.1.a.i.4:
     title: Flaring of Drained Methane or Conversion of Methane to CO2
     comment: Methane drained and flared, or ventilation gas converted to CO2 by an
@@ -1279,7 +1279,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a i
+      - 1B1ai
   1.B.1.a.ii:
     title: Surface Mines
     comment: Includes all seam gas emissions arising from surface  coal mining.
@@ -1290,7 +1290,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a ii
+      - 1B1aii
     children:
     - - 1.B.1.a.ii.1
       - 1.B.1.a.ii.2
@@ -1315,7 +1315,7 @@ categories:
       - CO2
       - CH4
       corresponding_categories_IPCC1996:
-      - 1B1a ii
+      - 1B1aii
   1.B.1.b:
     title: Uncontrolled Combustion, and Burning Coal Dumps
     comment: Includes fugitive emissions of CO2 from uncontrolled combustion in coal.
@@ -1448,7 +1448,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a i
+      - 1B2ai
   1.B.2.a.iii.2:
     title: Production and Upgrading
     comment: Fugitive emissions from oil production (excluding venting and flaring)
@@ -1475,7 +1475,7 @@ categories:
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a ii
+      - 1B2aii
   1.B.2.a.iii.3:
     title: Transport
     comment: Fugitive emissions (excluding venting and flaring) related to the transport
@@ -1492,7 +1492,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a iii
+      - 1B2aiii
   1.B.2.a.iii.4:
     title: Refining
     comment: Fugitive emissions (excluding venting and flaring) at petroleum refineries.
@@ -1508,7 +1508,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a iv
+      - 1B2aiv
   1.B.2.a.iii.5:
     title: Distribution of Oil Products
     comment: This comprises fugitive emissions (excluding venting and flaring) from
@@ -1524,7 +1524,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a v
+      - 1B2av
   1.B.2.a.iii.6:
     title: Other
     comment: Fugitive emissions from oil systems (excluding venting and flaring) not
@@ -1539,7 +1539,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2a vi
+      - 1B2avi
   1.B.2.b:
     title: Natural Gas
     comment: Comprises emissions from venting, flaring and all other fugitive sources
@@ -1619,7 +1619,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1Bb i
+      - 1Bbi
   1.B.2.b.iii.2:
     title: Production
     comment: Fugitive emissions (excluding venting and flaring) from the gas wellhead
@@ -1635,7 +1635,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1Bb ii
+      - 1Bbii
   1.B.2.b.iii.3:
     title: Processing
     comment: Fugitive emissions (excluding venting and flaring) from gas processing
@@ -1648,7 +1648,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1Bb iii
+      - 1Bbiii
   1.B.2.b.iii.4:
     title: Transmission and Storage
     comment: Fugitive emissions from systems used to transport processed natural gas
@@ -1666,7 +1666,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2b ii
+      - 1B2bii
   1.B.2.b.iii.5:
     title: Distribution
     comment: Fugitive emissions (excluding venting and flaring) from the distribution
@@ -1691,7 +1691,7 @@ categories:
       - CH4
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 1B2 c
+      - 1B2c
   1.B.3:
     title: Other Emissions from Energy Production
     comment: Other fugitive emissions for example, from geo thermal energy production,
@@ -3539,6 +3539,7 @@ categories:
     - 3B1
     info:
       gases:
+      - CO2
       - CH4
       - N2O
       - NOx
@@ -3547,9 +3548,8 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 5A
-      - 5B
-      - 5D CO2
-      -
+      - 5C
+      - 5D
     children:
     - - 3.B.1.a
       - 3.B.1.b
@@ -4517,7 +4517,7 @@ categories:
       - CO
       - NMVOC
       corresponding_categories_IPCC1996:
-      - 6A 1
+      - 6A1
   4.A.2:
     title: Unmanaged Waste Disposal Sites
     comment: These are all other solid waste disposal sites that do not fall into
