@@ -40,7 +40,7 @@ lint: venv ## check style with pre-commit hooks
 	venv/bin/pre-commit run --all-files
 
 test: venv ## run tests quickly with the default Python
-	venv/bin/pytest
+	venv/bin/pytest  --xdoc -rx
 
 coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage run --source climate_categories -m pytest
