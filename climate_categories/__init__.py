@@ -5,7 +5,7 @@ names of categorizations. To access the example categorization `Excat`, simply u
 
 __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 import pathlib
 import typing
