@@ -1,0 +1,1627 @@
+name: PRIMAP_entity
+title: PRIMAP2 entities
+comment: Entities commonly used in PRIMAP2
+references: Many emissions entities are derived from openscm_units (https://github.com/openscm/openscm-units),
+  other entities are collected for PRIMAP2.
+institution: PIK
+last_update: 2021-03-09
+version: 2
+total_sum: False
+categories:
+  C:
+    title: carbon
+    comment: Emission rate of carbon
+    info:
+      addition_rule: extensive
+  CO2:
+    title: carbon_dioxide
+    comment: Emission rate of CO2
+    alternative_codes:
+    - carbon_dioxide
+    info:
+      addition_rule: extensive
+  CH4:
+    title: methane
+    comment: Emission rate of methane
+    alternative_codes:
+    - HC50
+    info:
+      addition_rule: extensive
+  N:
+    title: nitrogen
+    comment: Emission rate of nitrogen
+    info:
+      addition_rule: extensive
+  N2O:
+    title: nitrous_oxide
+    comment: Emission rate of N2O
+    alternative_codes:
+    - nitrous_oxide
+    info:
+      addition_rule: extensive
+  N2ON:
+    title: nitrous_oxide_farming_style
+    comment: Emission rate of N2ON
+    alternative_codes:
+    - nitrous_oxide_farming_style
+    info:
+      addition_rule: extensive
+  NO2:
+    title: nitrogen_dioxide
+    comment: Emission rate of NO2
+    alternative_codes:
+    - nitrogen_dioxide
+    info:
+      addition_rule: extensive
+  NOx:
+    title: NOx
+    comment: Emission rate of NOx
+    alternative_codes:
+    - nox
+    info:
+      addition_rule: extensive
+  NH3:
+    title: NH3
+    comment: Emission rate of NH3
+    alternative_codes:
+    - ammonia
+    info:
+      addition_rule: extensive
+  S:
+    title: sulfur
+    comment: Emission rate of sulfur
+    info:
+      addition_rule: extensive
+  SO2:
+    title: sulfur_dioxide
+    comment: Emission rate of SO2
+    alternative_codes:
+    - sulfur_dioxide
+    - SOx
+    info:
+      addition_rule: extensive
+  BC:
+    title: black_carbon
+    comment: Emission rate of black_carbon
+    info:
+      addition_rule: extensive
+  OC:
+    title: OC
+    comment: Emission rate of OC
+    info:
+      addition_rule: extensive
+  CO:
+    title: carbon_monoxide
+    comment: Emission rate of carbon_monoxide
+    info:
+      addition_rule: extensive
+  VOC:
+    title: VOC
+    comment: Emission rate of VOC
+    alternative_codes:
+    - NMVOC
+    - non_methane_volatile_organic_compounds
+    info:
+      addition_rule: extensive
+  CFC11:
+    title: CFC11
+    comment: Emission rate of CFC11
+    info:
+      addition_rule: extensive
+  CFC12:
+    title: CFC12
+    comment: Emission rate of CFC12
+    info:
+      addition_rule: extensive
+  CFC13:
+    title: CFC13
+    comment: Emission rate of CFC13
+    info:
+      addition_rule: extensive
+  CFC113:
+    title: CFC113
+    comment: Emission rate of CFC113
+    info:
+      addition_rule: extensive
+  CFC114:
+    title: CFC114
+    comment: Emission rate of CFC114
+    info:
+      addition_rule: extensive
+  CFC115:
+    title: CFC115
+    comment: Emission rate of CFC115
+    info:
+      addition_rule: extensive
+  C2H6:
+    title: ethane
+    comment: Emission rate of ethane
+    alternative_codes:
+    - HC170
+    info:
+      addition_rule: extensive
+  C3H8:
+    title: propane
+    comment: Emission rate of propane
+    alternative_codes:
+    - HC290
+    info:
+      addition_rule: extensive
+  HC600:
+    title: HC600
+    comment: Emission rate of HC600
+    alternative_codes:
+    - butane
+    info:
+      addition_rule: extensive
+  HC600a:
+    title: HC600a
+    comment: Emission rate of HC600a
+    alternative_codes:
+    - isobutane
+    info:
+      addition_rule: extensive
+  HC601:
+    title: HC601
+    comment: Emission rate of HC601
+    alternative_codes:
+    - pentane
+    info:
+      addition_rule: extensive
+  HC601a:
+    title: HC601a
+    comment: Emission rate of HC601a
+    alternative_codes:
+    - isopentane
+    info:
+      addition_rule: extensive
+  HCE170:
+    title: HCE170
+    comment: Emission rate of HCE170
+    info:
+      addition_rule: extensive
+  HO1270:
+    title: HO1270
+    comment: Emission rate of HO1270
+    alternative_codes:
+    - propene
+    info:
+      addition_rule: extensive
+  HCFC21:
+    title: HCFC21
+    comment: Emission rate of HCFC21
+    info:
+      addition_rule: extensive
+  HCFC22:
+    title: HCFC22
+    comment: Emission rate of HCFC22
+    info:
+      addition_rule: extensive
+  HCFC31:
+    title: HCFC31
+    comment: Emission rate of HCFC31
+    info:
+      addition_rule: extensive
+  HCFC123:
+    title: HCFC123
+    comment: Emission rate of HCFC123
+    info:
+      addition_rule: extensive
+  HCFC124:
+    title: HCFC124
+    comment: Emission rate of HCFC124
+    info:
+      addition_rule: extensive
+  HCFC141b:
+    title: HCFC141b
+    comment: Emission rate of HCFC141b
+    info:
+      addition_rule: extensive
+  HCFC142b:
+    title: HCFC142b
+    comment: Emission rate of HCFC142b
+    info:
+      addition_rule: extensive
+  HCFC225ca:
+    title: HCFC225ca
+    comment: Emission rate of HCFC225ca
+    info:
+      addition_rule: extensive
+  HCFC225cb:
+    title: HCFC225cb
+    comment: Emission rate of HCFC225cb
+    info:
+      addition_rule: extensive
+  HFC23:
+    title: HFC23
+    comment: Emission rate of HFC23
+    info:
+      addition_rule: extensive
+  HFC32:
+    title: HFC32
+    comment: Emission rate of HFC32
+    info:
+      addition_rule: extensive
+  HFC41:
+    title: HFC41
+    comment: Emission rate of HFC41
+    info:
+      addition_rule: extensive
+  HFC125:
+    title: HFC125
+    comment: Emission rate of HFC125
+    info:
+      addition_rule: extensive
+  HFC134:
+    title: HFC134
+    comment: Emission rate of HFC134
+    info:
+      addition_rule: extensive
+  HFC134a:
+    title: HFC134a
+    comment: Emission rate of HFC134a
+    info:
+      addition_rule: extensive
+  HFC143:
+    title: HFC143
+    comment: Emission rate of HFC143
+    info:
+      addition_rule: extensive
+  HFC143a:
+    title: HFC143a
+    comment: Emission rate of HFC143a
+    info:
+      addition_rule: extensive
+  HFC152:
+    title: HFC152
+    comment: Emission rate of HFC152
+    info:
+      addition_rule: extensive
+  HFC152a:
+    title: HFC152a
+    comment: Emission rate of HFC152a
+    info:
+      addition_rule: extensive
+  HFC161:
+    title: HFC161
+    comment: Emission rate of HFC161
+    info:
+      addition_rule: extensive
+  HFC227ea:
+    title: HFC227ea
+    comment: Emission rate of HFC227ea
+    info:
+      addition_rule: extensive
+  HFC236cb:
+    title: HFC236cb
+    comment: Emission rate of HFC236cb
+    info:
+      addition_rule: extensive
+  HFC236ea:
+    title: HFC236ea
+    comment: Emission rate of HFC236ea
+    info:
+      addition_rule: extensive
+  HFC236fa:
+    title: HFC236fa
+    comment: Emission rate of HFC236fa
+    info:
+      addition_rule: extensive
+  HFC245ca:
+    title: HFC245ca
+    comment: Emission rate of HFC245ca
+    info:
+      addition_rule: extensive
+  HFC245fa:
+    title: HFC245fa
+    comment: Emission rate of HFC245fa
+    info:
+      addition_rule: extensive
+  HFC365mfc:
+    title: HFC365mfc
+    comment: Emission rate of HFC365mfc
+    info:
+      addition_rule: extensive
+  HFC4310mee:
+    title: HFC4310mee
+    comment: Emission rate of HFC4310mee
+    alternative_codes:
+    - HFC4310
+    info:
+      addition_rule: extensive
+  HFC1336mzz:
+    title: HFC1336mzz
+    comment: Emission rate of HFC1336mzz
+    info:
+      addition_rule: extensive
+  Halon1201:
+    title: Halon1201
+    comment: Emission rate of Halon1201
+    info:
+      addition_rule: extensive
+  Halon1202:
+    title: Halon1202
+    comment: Emission rate of Halon1202
+    info:
+      addition_rule: extensive
+  Halon1211:
+    title: Halon1211
+    comment: Emission rate of Halon1211
+    info:
+      addition_rule: extensive
+  Halon1301:
+    title: Halon1301
+    comment: Emission rate of Halon1301
+    info:
+      addition_rule: extensive
+  Halon2402:
+    title: Halon2402
+    comment: Emission rate of Halon2402
+    info:
+      addition_rule: extensive
+  CF4:
+    title: CF4
+    comment: Emission rate of CF4
+    info:
+      addition_rule: extensive
+  C2F6:
+    title: C2F6
+    comment: Emission rate of C2F6
+    alternative_codes:
+    - PFC116
+    info:
+      addition_rule: extensive
+  cC3F6:
+    title: cC3F6
+    comment: Emission rate of cC3F6
+    info:
+      addition_rule: extensive
+  C3F8:
+    title: C3F8
+    comment: Emission rate of C3F8
+    alternative_codes:
+    - PFC218
+    info:
+      addition_rule: extensive
+  cC4F8:
+    title: cC4F8
+    comment: Emission rate of cC4F8
+    alternative_codes:
+    - PFCC318
+    info:
+      addition_rule: extensive
+  C4F10:
+    title: C4F10
+    comment: Emission rate of C4F10
+    info:
+      addition_rule: extensive
+  C5F12:
+    title: C5F12
+    comment: Emission rate of C5F12
+    info:
+      addition_rule: extensive
+  C6F14:
+    title: C6F14
+    comment: Emission rate of C6F14
+    info:
+      addition_rule: extensive
+  C7F16:
+    title: C7F16
+    comment: Emission rate of C7F16
+    info:
+      addition_rule: extensive
+  C8F18:
+    title: C8F18
+    comment: Emission rate of C8F18
+    info:
+      addition_rule: extensive
+  C10F18:
+    title: C10F18
+    comment: Emission rate of C10F18
+    info:
+      addition_rule: extensive
+  HFE125:
+    title: HFE125
+    comment: Emission rate of HFE125
+    info:
+      addition_rule: extensive
+  HFE134:
+    title: HFE134
+    comment: Emission rate of HFE134
+    info:
+      addition_rule: extensive
+  HFE143a:
+    title: HFE143a
+    comment: Emission rate of HFE143a
+    info:
+      addition_rule: extensive
+  HCFE235da2:
+    title: HCFE235da2
+    comment: Emission rate of HCFE235da2
+    info:
+      addition_rule: extensive
+  HFE245cb2:
+    title: HFE245cb2
+    comment: Emission rate of HFE245cb2
+    info:
+      addition_rule: extensive
+  HFE245fa2:
+    title: HFE245fa2
+    comment: Emission rate of HFE245fa2
+    info:
+      addition_rule: extensive
+  HFE347mcc3:
+    title: HFE347mcc3
+    comment: Emission rate of HFE347mcc3
+    info:
+      addition_rule: extensive
+  HFE347pcf2:
+    title: HFE347pcf2
+    comment: Emission rate of HFE347pcf2
+    info:
+      addition_rule: extensive
+  HFE356pcc3:
+    title: HFE356pcc3
+    comment: Emission rate of HFE356pcc3
+    info:
+      addition_rule: extensive
+  HFE449sl:
+    title: HFE449sl
+    comment: Emission rate of HFE449sl
+    info:
+      addition_rule: extensive
+  HFE569sf2:
+    title: HFE569sf2
+    comment: Emission rate of HFE569sf2
+    info:
+      addition_rule: extensive
+  HFE4310pccc124:
+    title: HFE4310pccc124
+    comment: Emission rate of HFE4310pccc124
+    info:
+      addition_rule: extensive
+  HFE236ca12:
+    title: HFE236ca12
+    comment: Emission rate of HFE236ca12
+    info:
+      addition_rule: extensive
+  HFE338pcc13:
+    title: HFE338pcc13
+    comment: Emission rate of HFE338pcc13
+    info:
+      addition_rule: extensive
+  HFE227ea:
+    title: HFE227ea
+    comment: Emission rate of HFE227ea
+    info:
+      addition_rule: extensive
+  HFE236ea2:
+    title: HFE236ea2
+    comment: Emission rate of HFE236ea2
+    info:
+      addition_rule: extensive
+  HFE236fa:
+    title: HFE236fa
+    comment: Emission rate of HFE236fa
+    info:
+      addition_rule: extensive
+  HFE245fa1:
+    title: HFE245fa1
+    comment: Emission rate of HFE245fa1
+    info:
+      addition_rule: extensive
+  HFE263fb2:
+    title: HFE263fb2
+    comment: Emission rate of HFE263fb2
+    info:
+      addition_rule: extensive
+  HFE329mcc2:
+    title: HFE329mcc2
+    comment: Emission rate of HFE329mcc2
+    info:
+      addition_rule: extensive
+  HFE338mcf2:
+    title: HFE338mcf2
+    comment: Emission rate of HFE338mcf2
+    info:
+      addition_rule: extensive
+  HFE347mcf2:
+    title: HFE347mcf2
+    comment: Emission rate of HFE347mcf2
+    info:
+      addition_rule: extensive
+  HFE356mec3:
+    title: HFE356mec3
+    comment: Emission rate of HFE356mec3
+    info:
+      addition_rule: extensive
+  HFE356pcf2:
+    title: HFE356pcf2
+    comment: Emission rate of HFE356pcf2
+    info:
+      addition_rule: extensive
+  HFE356pcf3:
+    title: HFE356pcf3
+    comment: Emission rate of HFE356pcf3
+    info:
+      addition_rule: extensive
+  HFE365mcf3:
+    title: HFE365mcf3
+    comment: Emission rate of HFE365mcf3
+    info:
+      addition_rule: extensive
+  HFE374pc2:
+    title: HFE374pc2
+    comment: Emission rate of HFE374pc2
+    info:
+      addition_rule: extensive
+  PFPMIE:
+    title: PFPMIE
+    comment: Emission rate of PFPMIE
+    info:
+      addition_rule: extensive
+  HFO1234yf:
+    title: HFO1234yf
+    comment: Emission rate of HFO1234yf
+    info:
+      addition_rule: extensive
+  HFO1234ze:
+    title: HFO1234ze
+    comment: Emission rate of HFO1234ze
+    info:
+      addition_rule: extensive
+  CCl4:
+    title: CCl4
+    comment: Emission rate of CCl4
+    info:
+      addition_rule: extensive
+  CHCl3:
+    title: CHCl3
+    comment: Emission rate of CHCl3
+    info:
+      addition_rule: extensive
+  CH2Cl2:
+    title: CH2Cl2
+    comment: Emission rate of CH2Cl2
+    info:
+      addition_rule: extensive
+  CH3CCl3:
+    title: CH3CCl3
+    comment: Emission rate of CH3CCl3
+    info:
+      addition_rule: extensive
+  CH3Cl:
+    title: CH3Cl
+    comment: Emission rate of CH3Cl
+    info:
+      addition_rule: extensive
+  CH3Br:
+    title: CH3Br
+    comment: Emission rate of CH3Br
+    info:
+      addition_rule: extensive
+  SF5CF3:
+    title: SF5CF3
+    comment: Emission rate of SF5CF3
+    info:
+      addition_rule: extensive
+  SF6:
+    title: SF6
+    comment: Emission rate of SF6
+    info:
+      addition_rule: extensive
+  SO2F2:
+    title: SO2F2
+    comment: Emission rate of SO2F2
+    info:
+      addition_rule: extensive
+  NF3:
+    title: NF3
+    comment: Emission rate of NF3
+    info:
+      addition_rule: extensive
+  HCO1130:
+    title: HCO1130
+    comment: Emission rate of HCO1130
+    info:
+      addition_rule: extensive
+  CFC400:
+    title: CFC400
+    comment: Emissions rate of the refrigerant CFC400, which is a mixture of 50% CFC12,
+      50% CFC114.
+    info:
+      addition_rule: extensive
+  HCFC401a:
+    title: HCFC401a
+    comment: Emissions rate of the refrigerant HCFC401a, which is a mixture of 53%
+      HCFC22, 13% HFC152a, 34% HCFC124.
+    info:
+      addition_rule: extensive
+  HCFC401b:
+    title: HCFC401b
+    comment: Emissions rate of the refrigerant HCFC401b, which is a mixture of 61%
+      HCFC22, 11% HFC152a, 28% HCFC124.
+    info:
+      addition_rule: extensive
+  HCFC401c:
+    title: HCFC401c
+    comment: Emissions rate of the refrigerant HCFC401c, which is a mixture of 33%
+      HCFC22, 15% HFC152a, 52% HCFC124.
+    info:
+      addition_rule: extensive
+  HCFC402a:
+    title: HCFC402a
+    comment: Emissions rate of the refrigerant HCFC402a, which is a mixture of 60%
+      HFC125, 2% C3H8, 38% HCFC22.
+    info:
+      addition_rule: extensive
+  HCFC402b:
+    title: HCFC402b
+    comment: Emissions rate of the refrigerant HCFC402b, which is a mixture of 38%
+      HFC125, 2% C3H8, 60% HCFC22.
+    info:
+      addition_rule: extensive
+  HCFC403a:
+    title: HCFC403a
+    comment: Emissions rate of the refrigerant HCFC403a, which is a mixture of 5%
+      C3H8, 75% HCFC22, 20% C3F8.
+    info:
+      addition_rule: extensive
+  HCFC403b:
+    title: HCFC403b
+    comment: Emissions rate of the refrigerant HCFC403b, which is a mixture of 5%
+      C3H8, 56% HCFC22, 39% C3F8.
+    info:
+      addition_rule: extensive
+  HFC404a:
+    title: HFC404a
+    comment: Emissions rate of the refrigerant HFC404a, which is a mixture of 44%
+      HFC125, 52% HFC143a, 4% HFC134a.
+    info:
+      addition_rule: extensive
+  HCFC405a:
+    title: HCFC405a
+    comment: Emissions rate of the refrigerant HCFC405a, which is a mixture of 45%
+      HCFC22, 7% HFC152, 5.5% HCFC142b, 42.5% cC4F8.
+    info:
+      addition_rule: extensive
+  HCFC406a:
+    title: HCFC406a
+    comment: Emissions rate of the refrigerant HCFC406a, which is a mixture of 55%
+      HCFC22, 4% HC600a, 41% HCFC142b.
+    info:
+      addition_rule: extensive
+  HFC407a:
+    title: HFC407a
+    comment: Emissions rate of the refrigerant HFC407a, which is a mixture of 20%
+      HFC32, 40% HFC125, 40% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407b:
+    title: HFC407b
+    comment: Emissions rate of the refrigerant HFC407b, which is a mixture of 10%
+      HFC32, 70% HFC125, 20% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407c:
+    title: HFC407c
+    comment: Emissions rate of the refrigerant HFC407c, which is a mixture of 23%
+      HFC32, 25% HFC125, 52% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407d:
+    title: HFC407d
+    comment: Emissions rate of the refrigerant HFC407d, which is a mixture of 15%
+      HFC32, 15% HFC125, 70% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407e:
+    title: HFC407e
+    comment: Emissions rate of the refrigerant HFC407e, which is a mixture of 25%
+      HFC32, 15% HFC125, 60% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407f:
+    title: HFC407f
+    comment: Emissions rate of the refrigerant HFC407f, which is a mixture of 30%
+      HFC32, 30% HFC125, 40% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407g:
+    title: HFC407g
+    comment: Emissions rate of the refrigerant HFC407g, which is a mixture of 2.5%
+      HFC32, 2.5% HFC125, 95% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407h:
+    title: HFC407h
+    comment: Emissions rate of the refrigerant HFC407h, which is a mixture of 32.5%
+      HFC32, 15% HFC125, 52.5% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC407i:
+    title: HFC407i
+    comment: Emissions rate of the refrigerant HFC407i, which is a mixture of 19.5%
+      HFC32, 8.5% HFC125, 72% HFC134a.
+    info:
+      addition_rule: extensive
+  HCFC408a:
+    title: HCFC408a
+    comment: Emissions rate of the refrigerant HCFC408a, which is a mixture of 7%
+      HFC125, 46% HFC143a, 47% HCFC22.
+    info:
+      addition_rule: extensive
+  HCFC409a:
+    title: HCFC409a
+    comment: Emissions rate of the refrigerant HCFC409a, which is a mixture of 60%
+      HCFC22, 25% HCFC124, 15% HCFC142b.
+    info:
+      addition_rule: extensive
+  HCFC409b:
+    title: HCFC409b
+    comment: Emissions rate of the refrigerant HCFC409b, which is a mixture of 65%
+      HCFC22, 25% HCFC124, 10% HCFC142b.
+    info:
+      addition_rule: extensive
+  HFC410a:
+    title: HFC410a
+    comment: Emissions rate of the refrigerant HFC410a, which is a mixture of 50%
+      HFC32, 50% HFC125.
+    info:
+      addition_rule: extensive
+  HFC410b:
+    title: HFC410b
+    comment: Emissions rate of the refrigerant HFC410b, which is a mixture of 45%
+      HFC32, 55% HFC125.
+    info:
+      addition_rule: extensive
+  HCFO411a:
+    title: HCFO411a
+    comment: Emissions rate of the refrigerant HCFO411a, which is a mixture of 1.5%
+      HO1270, 87.5% HCFC22, 11% HFC152a.
+    info:
+      addition_rule: extensive
+  HCFO411b:
+    title: HCFO411b
+    comment: Emissions rate of the refrigerant HCFO411b, which is a mixture of 3%
+      HO1270, 94% HCFC22, 3% HFC152a.
+    info:
+      addition_rule: extensive
+  HCFC412a:
+    title: HCFC412a
+    comment: Emissions rate of the refrigerant HCFC412a, which is a mixture of 70%
+      HCFC22, 5% C3F8, 25% HCFC142b.
+    info:
+      addition_rule: extensive
+  HFC413a:
+    title: HFC413a
+    comment: Emissions rate of the refrigerant HFC413a, which is a mixture of 9% C3F8,
+      88% HFC134a, 3% HC600a.
+    info:
+      addition_rule: extensive
+  HCFC414a:
+    title: HCFC414a
+    comment: Emissions rate of the refrigerant HCFC414a, which is a mixture of 51%
+      HCFC22, 28.5% HCFC124, 4% HC600a, 16.5% HCFC142b.
+    info:
+      addition_rule: extensive
+  HCFC414b:
+    title: HCFC414b
+    comment: Emissions rate of the refrigerant HCFC414b, which is a mixture of 50%
+      HCFC22, 39% HCFC124, 1.5% HC600a, 9.5% HCFC142b.
+    info:
+      addition_rule: extensive
+  HCFC415a:
+    title: HCFC415a
+    comment: Emissions rate of the refrigerant HCFC415a, which is a mixture of 82%
+      HCFC22, 18% HFC152a.
+    info:
+      addition_rule: extensive
+  HCFC415b:
+    title: HCFC415b
+    comment: Emissions rate of the refrigerant HCFC415b, which is a mixture of 25%
+      HCFC22, 75% HFC152a.
+    info:
+      addition_rule: extensive
+  HCFC416a:
+    title: HCFC416a
+    comment: Emissions rate of the refrigerant HCFC416a, which is a mixture of 59%
+      HFC134a, 39.5% HCFC124, 1.5% HC600.
+    info:
+      addition_rule: extensive
+  HFC417a:
+    title: HFC417a
+    comment: Emissions rate of the refrigerant HFC417a, which is a mixture of 46.6%
+      HFC125, 50% HFC134a, 3.4% HC600.
+    info:
+      addition_rule: extensive
+  HFC417b:
+    title: HFC417b
+    comment: Emissions rate of the refrigerant HFC417b, which is a mixture of 79%
+      HFC125, 18.3% HFC134a, 2.7% HC600.
+    info:
+      addition_rule: extensive
+  HFC417c:
+    title: HFC417c
+    comment: Emissions rate of the refrigerant HFC417c, which is a mixture of 19.5%
+      HFC125, 78.8% HFC134a, 1.7% HC600.
+    info:
+      addition_rule: extensive
+  HCFC418a:
+    title: HCFC418a
+    comment: Emissions rate of the refrigerant HCFC418a, which is a mixture of 1.5%
+      C3H8, 96% HCFC22, 2.5% HFC152a.
+    info:
+      addition_rule: extensive
+  HFC419a:
+    title: HFC419a
+    comment: Emissions rate of the refrigerant HFC419a, which is a mixture of 77%
+      HFC125, 19% HFC134a, 4% HCE170.
+    info:
+      addition_rule: extensive
+  HFC419b:
+    title: HFC419b
+    comment: Emissions rate of the refrigerant HFC419b, which is a mixture of 48.5%
+      HFC125, 48% HFC134a, 3.5% HCE170.
+    info:
+      addition_rule: extensive
+  HCFC420a:
+    title: HCFC420a
+    comment: Emissions rate of the refrigerant HCFC420a, which is a mixture of 88%
+      HFC134a, 12% HCFC142b.
+    info:
+      addition_rule: extensive
+  HFC421a:
+    title: HFC421a
+    comment: Emissions rate of the refrigerant HFC421a, which is a mixture of 58%
+      HFC125, 42% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC421b:
+    title: HFC421b
+    comment: Emissions rate of the refrigerant HFC421b, which is a mixture of 85%
+      HFC125, 15% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC422a:
+    title: HFC422a
+    comment: Emissions rate of the refrigerant HFC422a, which is a mixture of 85.1%
+      HFC125, 11.5% HFC134a, 3.4% HC600a.
+    info:
+      addition_rule: extensive
+  HFC422b:
+    title: HFC422b
+    comment: Emissions rate of the refrigerant HFC422b, which is a mixture of 55%
+      HFC125, 42% HFC134a, 3% HC600a.
+    info:
+      addition_rule: extensive
+  HFC422c:
+    title: HFC422c
+    comment: Emissions rate of the refrigerant HFC422c, which is a mixture of 82%
+      HFC125, 15% HFC134a, 3% HC600a.
+    info:
+      addition_rule: extensive
+  HFC422d:
+    title: HFC422d
+    comment: Emissions rate of the refrigerant HFC422d, which is a mixture of 65.1%
+      HFC125, 31.5% HFC134a, 3.4% HC600a.
+    info:
+      addition_rule: extensive
+  HFC422e:
+    title: HFC422e
+    comment: Emissions rate of the refrigerant HFC422e, which is a mixture of 58%
+      HFC125, 39.3% HFC134a, 2.7% HC600a.
+    info:
+      addition_rule: extensive
+  HFC423a:
+    title: HFC423a
+    comment: Emissions rate of the refrigerant HFC423a, which is a mixture of 52.5%
+      HFC134a, 47.5% HFC227ea.
+    info:
+      addition_rule: extensive
+  HFC424a:
+    title: HFC424a
+    comment: Emissions rate of the refrigerant HFC424a, which is a mixture of 50.5%
+      HFC125, 47.0% HFC134a, 0.9% HC600a, 1.0% HC600, 0.6% HC601a.
+    info:
+      addition_rule: extensive
+  HFC425a:
+    title: HFC425a
+    comment: Emissions rate of the refrigerant HFC425a, which is a mixture of 18.5%
+      HFC32, 69.5% HFC134a, 12% HFC227ea.
+    info:
+      addition_rule: extensive
+  HFC426a:
+    title: HFC426a
+    comment: Emissions rate of the refrigerant HFC426a, which is a mixture of 5.1%
+      HFC125, 93% HFC134a, 1.3% HC600, 0.6% HC601a.
+    info:
+      addition_rule: extensive
+  HFC427a:
+    title: HFC427a
+    comment: Emissions rate of the refrigerant HFC427a, which is a mixture of 15%
+      HFC32, 25% HFC125, 10% HFC143a, 50% HFC134a.
+    info:
+      addition_rule: extensive
+  HFC428a:
+    title: HFC428a
+    comment: Emissions rate of the refrigerant HFC428a, which is a mixture of 77.5%
+      HFC125, 20% HFC143a, 0.6% C3H8, 1.9% HC600a.
+    info:
+      addition_rule: extensive
+  HFC429a:
+    title: HFC429a
+    comment: Emissions rate of the refrigerant HFC429a, which is a mixture of 60%
+      HCE170, 10% HFC152a, 30% HC600a.
+    info:
+      addition_rule: extensive
+  HFC430a:
+    title: HFC430a
+    comment: Emissions rate of the refrigerant HFC430a, which is a mixture of 76%
+      HFC152a, 24% HC600a.
+    info:
+      addition_rule: extensive
+  HFC431a:
+    title: HFC431a
+    comment: Emissions rate of the refrigerant HFC431a, which is a mixture of 71%
+      C3H8, 29% HFC152a.
+    info:
+      addition_rule: extensive
+  HO432a:
+    title: HO432a
+    comment: Emissions rate of the refrigerant HO432a, which is a mixture of 80% HO1270,
+      20% HCE170.
+    info:
+      addition_rule: extensive
+  HO433a:
+    title: HO433a
+    comment: Emissions rate of the refrigerant HO433a, which is a mixture of 30% HO1270,
+      70% C3H8.
+    info:
+      addition_rule: extensive
+  HO433b:
+    title: HO433b
+    comment: Emissions rate of the refrigerant HO433b, which is a mixture of 5% HO1270,
+      95% C3H8.
+    info:
+      addition_rule: extensive
+  HO433c:
+    title: HO433c
+    comment: Emissions rate of the refrigerant HO433c, which is a mixture of 25% HO1270,
+      75% C3H8.
+    info:
+      addition_rule: extensive
+  HFC434a:
+    title: HFC434a
+    comment: Emissions rate of the refrigerant HFC434a, which is a mixture of 63.2%
+      HFC125, 18% HFC143a, 16% HFC134a, 2.8% HC600a.
+    info:
+      addition_rule: extensive
+  HFC435a:
+    title: HFC435a
+    comment: Emissions rate of the refrigerant HFC435a, which is a mixture of 80%
+      HCE170, 20% HFC152a.
+    info:
+      addition_rule: extensive
+  HC436a:
+    title: HC436a
+    comment: Emissions rate of the refrigerant HC436a, which is a mixture of 56% C3H8,
+      44% HC600a.
+    info:
+      addition_rule: extensive
+  HC436b:
+    title: HC436b
+    comment: Emissions rate of the refrigerant HC436b, which is a mixture of 52% C3H8,
+      48% HC600a.
+    info:
+      addition_rule: extensive
+  HC436c:
+    title: HC436c
+    comment: Emissions rate of the refrigerant HC436c, which is a mixture of 95% C3H8,
+      5% HC600a.
+    info:
+      addition_rule: extensive
+  HFC437a:
+    title: HFC437a
+    comment: Emissions rate of the refrigerant HFC437a, which is a mixture of 19.5%
+      HFC125, 78.5% HFC134a, 1.4% HC600, 0.6% HC601.
+    info:
+      addition_rule: extensive
+  HFC438a:
+    title: HFC438a
+    comment: Emissions rate of the refrigerant HFC438a, which is a mixture of 8.5%
+      HFC32, 45% HFC125, 44.2% HFC134a, 1.7% HC600, 0.6% HC601a.
+    info:
+      addition_rule: extensive
+  HFC439a:
+    title: HFC439a
+    comment: Emissions rate of the refrigerant HFC439a, which is a mixture of 50%
+      HFC32, 47% HFC125, 3% HC600a.
+    info:
+      addition_rule: extensive
+  HFC440a:
+    title: HFC440a
+    comment: Emissions rate of the refrigerant HFC440a, which is a mixture of 0.6%
+      C3H8, 1.6% HFC134a, 97.8% HFC152a.
+    info:
+      addition_rule: extensive
+  HC441a:
+    title: HC441a
+    comment: Emissions rate of the refrigerant HC441a, which is a mixture of 3.1%
+      C2H6, 54.8% C3H8, 6% HC600a, 36.1% HC600.
+    info:
+      addition_rule: extensive
+  HFC442a:
+    title: HFC442a
+    comment: Emissions rate of the refrigerant HFC442a, which is a mixture of 31%
+      HFC32, 31% HFC125, 30% HFC134a, 3% HFC152a, 5% HFC227ea.
+    info:
+      addition_rule: extensive
+  HO443a:
+    title: HO443a
+    comment: Emissions rate of the refrigerant HO443a, which is a mixture of 55% HO1270,
+      40% C3H8, 5% HC600a.
+    info:
+      addition_rule: extensive
+  HFO444a:
+    title: HFO444a
+    comment: Emissions rate of the refrigerant HFO444a, which is a mixture of 12%
+      HFC32, 5% HFC152a, 83% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO444b:
+    title: HFO444b
+    comment: Emissions rate of the refrigerant HFO444b, which is a mixture of 41.5%
+      HFC32, 10% HFC152a, 48.5% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO445a:
+    title: HFO445a
+    comment: Emissions rate of the refrigerant HFO445a, which is a mixture of 6% CO2,
+      9% HFC134a, 85% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO446a:
+    title: HFO446a
+    comment: Emissions rate of the refrigerant HFO446a, which is a mixture of 68%
+      HFC32, 29% HFO1234ze, 3% HC600.
+    info:
+      addition_rule: extensive
+  HFO447a:
+    title: HFO447a
+    comment: Emissions rate of the refrigerant HFO447a, which is a mixture of 68%
+      HFC32, 3.5% HFC125, 28.5% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO447b:
+    title: HFO447b
+    comment: Emissions rate of the refrigerant HFO447b, which is a mixture of 68%
+      HFC32, 8% HFC125, 24% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO448a:
+    title: HFO448a
+    comment: Emissions rate of the refrigerant HFO448a, which is a mixture of 26%
+      HFC32, 26% HFC125, 20% HFO1234yf, 21% HFC134a, 7% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO449a:
+    title: HFO449a
+    comment: Emissions rate of the refrigerant HFO449a, which is a mixture of 24.3%
+      HFC32, 24.7% HFC125, 25.3% HFO1234yf, 25.7% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO449b:
+    title: HFO449b
+    comment: Emissions rate of the refrigerant HFO449b, which is a mixture of 25.2%
+      HFC32, 24.3% HFC125, 23.2% HFO1234yf, 27.3% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO449c:
+    title: HFO449c
+    comment: Emissions rate of the refrigerant HFO449c, which is a mixture of 20%
+      HFC32, 20% HFC125, 31% HFO1234yf, 29% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO450a:
+    title: HFO450a
+    comment: Emissions rate of the refrigerant HFO450a, which is a mixture of 42%
+      HFC134a, 58% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO451a:
+    title: HFO451a
+    comment: Emissions rate of the refrigerant HFO451a, which is a mixture of 89.8%
+      HFO1234yf, 10.2% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO451b:
+    title: HFO451b
+    comment: Emissions rate of the refrigerant HFO451b, which is a mixture of 88.8%
+      HFO1234yf, 11.2% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO452a:
+    title: HFO452a
+    comment: Emissions rate of the refrigerant HFO452a, which is a mixture of 11%
+      HFC32, 59% HFC125, 30% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO452b:
+    title: HFO452b
+    comment: Emissions rate of the refrigerant HFO452b, which is a mixture of 67%
+      HFC32, 7% HFC125, 26% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO452c:
+    title: HFO452c
+    comment: Emissions rate of the refrigerant HFO452c, which is a mixture of 12.5%
+      HFC32, 61% HFC125, 26.5% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFC453a:
+    title: HFC453a
+    comment: Emissions rate of the refrigerant HFC453a, which is a mixture of 20%
+      HFC32, 20% HFC125, 53.8% HFC134a, 5% HFC227ea, 0.6% HC600, 0.6% HC601a.
+    info:
+      addition_rule: extensive
+  HFO454a:
+    title: HFO454a
+    comment: Emissions rate of the refrigerant HFO454a, which is a mixture of 35%
+      HFC32, 65% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO454b:
+    title: HFO454b
+    comment: Emissions rate of the refrigerant HFO454b, which is a mixture of 68.9%
+      HFC32, 31.1% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO454c:
+    title: HFO454c
+    comment: Emissions rate of the refrigerant HFO454c, which is a mixture of 21.5%
+      HFC32, 78.5% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO455a:
+    title: HFO455a
+    comment: Emissions rate of the refrigerant HFO455a, which is a mixture of 3% CO2,
+      21.5% HFC32, 75.5% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HFO456a:
+    title: HFO456a
+    comment: Emissions rate of the refrigerant HFO456a, which is a mixture of 6% HFC32,
+      45% HFC134a, 49% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO457a:
+    title: HFO457a
+    comment: Emissions rate of the refrigerant HFO457a, which is a mixture of 18%
+      HFC32, 70% HFO1234yf, 12% HFC152a.
+    info:
+      addition_rule: extensive
+  HFC458a:
+    title: HFC458a
+    comment: Emissions rate of the refrigerant HFC458a, which is a mixture of 20.5%
+      HFC32, 4% HFC125, 61.4% HFC134a, 13.5% HFC227ea, 0.6% HFC236fa.
+    info:
+      addition_rule: extensive
+  HFO459a:
+    title: HFO459a
+    comment: Emissions rate of the refrigerant HFO459a, which is a mixture of 68%
+      HFC32, 26% HFO1234yf, 6% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO459b:
+    title: HFO459b
+    comment: Emissions rate of the refrigerant HFO459b, which is a mixture of 21%
+      HFC32, 69% HFO1234yf, 10% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO460a:
+    title: HFO460a
+    comment: Emissions rate of the refrigerant HFO460a, which is a mixture of 12%
+      HFC32, 52% HFC125, 14% HFC134a, 22% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO460b:
+    title: HFO460b
+    comment: Emissions rate of the refrigerant HFO460b, which is a mixture of 28%
+      HFC32, 25% HFC125, 20% HFC134a, 27% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFO460c:
+    title: HFO460c
+    comment: Emissions rate of the refrigerant HFO460c, which is a mixture of 2.5%
+      HFC32, 2.5% HFC125, 46% HFC134a, 49% HFO1234ze.
+    info:
+      addition_rule: extensive
+  HFC461a:
+    title: HFC461a
+    comment: Emissions rate of the refrigerant HFC461a, which is a mixture of 55%
+      HFC125, 5% HFC143a, 32% HFC134a, 5% HFC227ea, 3% HC600a.
+    info:
+      addition_rule: extensive
+  HFC462a:
+    title: HFC462a
+    comment: Emissions rate of the refrigerant HFC462a, which is a mixture of 9% HFC32,
+      42% HFC125, 2% HFC143a, 44% HFC134a, 3% HC600.
+    info:
+      addition_rule: extensive
+  HFO463a:
+    title: HFO463a
+    comment: Emissions rate of the refrigerant HFO463a, which is a mixture of 6% CO2,
+      36% HFC32, 30% HFC125, 14% HFO1234yf, 14% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO464a:
+    title: HFO464a
+    comment: Emissions rate of the refrigerant HFO464a, which is a mixture of 27%
+      HFC32, 27% HFC125, 40% HFO1234ze, 6% HFC227ea.
+    info:
+      addition_rule: extensive
+  HFO465a:
+    title: HFO465a
+    comment: Emissions rate of the refrigerant HFO465a, which is a mixture of 21%
+      HFC32, 7.9% C3H8, 71.1% HFO1234yf.
+    info:
+      addition_rule: extensive
+  HCFC500:
+    title: HCFC500
+    comment: Emissions rate of the refrigerant HCFC500, which is a mixture of 73.8%
+      CFC12, 26.2% HFC152.
+    info:
+      addition_rule: extensive
+  HCFC501:
+    title: HCFC501
+    comment: Emissions rate of the refrigerant HCFC501, which is a mixture of 75%
+      HCFC22, 25% CFC12.
+    info:
+      addition_rule: extensive
+  HCFC502:
+    title: HCFC502
+    comment: Emissions rate of the refrigerant HCFC502, which is a mixture of 48.8%
+      HCFC22, 51.2% CFC115.
+    info:
+      addition_rule: extensive
+  HCFC503:
+    title: HCFC503
+    comment: Emissions rate of the refrigerant HCFC503, which is a mixture of 40.1%
+      HFC23, 59.9% CFC13.
+    info:
+      addition_rule: extensive
+  HCFC504:
+    title: HCFC504
+    comment: Emissions rate of the refrigerant HCFC504, which is a mixture of 48.2%
+      HFC32, 51.8% CFC115.
+    info:
+      addition_rule: extensive
+  HCFC505:
+    title: HCFC505
+    comment: Emissions rate of the refrigerant HCFC505, which is a mixture of 78%
+      CFC12, 22% HCFC31.
+    info:
+      addition_rule: extensive
+  HCFC506:
+    title: HCFC506
+    comment: Emissions rate of the refrigerant HCFC506, which is a mixture of 55.1%
+      HCFC31, 44.9% CFC114.
+    info:
+      addition_rule: extensive
+  HFC507a:
+    title: HFC507a
+    comment: Emissions rate of the refrigerant HFC507a, which is a mixture of 50%
+      HFC125, 50% HFC143a.
+    info:
+      addition_rule: extensive
+  HFC508a:
+    title: HFC508a
+    comment: Emissions rate of the refrigerant HFC508a, which is a mixture of 39%
+      HFC23, 61% C2F6.
+    info:
+      addition_rule: extensive
+  HFC508b:
+    title: HFC508b
+    comment: Emissions rate of the refrigerant HFC508b, which is a mixture of 46%
+      HFC23, 54% C2F6.
+    info:
+      addition_rule: extensive
+  HCFC509a:
+    title: HCFC509a
+    comment: Emissions rate of the refrigerant HCFC509a, which is a mixture of 44%
+      HCFC22, 56% C3F8.
+    info:
+      addition_rule: extensive
+  HC510a:
+    title: HC510a
+    comment: Emissions rate of the refrigerant HC510a, which is a mixture of 88% HCE170,
+      12% HC600a.
+    info:
+      addition_rule: extensive
+  HC511a:
+    title: HC511a
+    comment: Emissions rate of the refrigerant HC511a, which is a mixture of 95% C3H8,
+      5% HCE170.
+    info:
+      addition_rule: extensive
+  HFC512a:
+    title: HFC512a
+    comment: Emissions rate of the refrigerant HFC512a, which is a mixture of 5% HFC134a,
+      95% HFC152a.
+    info:
+      addition_rule: extensive
+  HFO513a:
+    title: HFO513a
+    comment: Emissions rate of the refrigerant HFO513a, which is a mixture of 56%
+      HFO1234yf, 44% HFC134a.
+    info:
+      addition_rule: extensive
+  HFO513b:
+    title: HFO513b
+    comment: Emissions rate of the refrigerant HFO513b, which is a mixture of 58.5%
+      HFO1234yf, 41.5% HFC134a.
+    info:
+      addition_rule: extensive
+  HCO514a:
+    title: HCO514a
+    comment: Emissions rate of the refrigerant HCO514a, which is a mixture of 74.7%
+      HFC1336mzz, 25.3% HCO1130.
+    info:
+      addition_rule: extensive
+  HFO515a:
+    title: HFO515a
+    comment: Emissions rate of the refrigerant HFO515a, which is a mixture of 88%
+      HFO1234ze, 12% HFC227ea.
+    info:
+      addition_rule: extensive
+  HFO516a:
+    title: HFO516a
+    comment: Emissions rate of the refrigerant HFO516a, which is a mixture of 77.5%
+      HFO1234yf, 8.5% HFC134a, 14% HFC152a.
+    info:
+      addition_rule: extensive
+  emissions:
+    title: Emissions categories
+    children:
+    - - BC
+      - C
+      - C10F18
+      - C2F6
+      - C2H6
+      - C3F8
+      - C3H8
+      - C4F10
+      - C5F12
+      - C6F14
+      - C7F16
+      - C8F18
+      - CCl4
+      - CF4
+      - CFC11
+      - CFC113
+      - CFC114
+      - CFC115
+      - CFC12
+      - CFC13
+      - CFC400
+      - CH2Cl2
+      - CH3Br
+      - CH3CCl3
+      - CH3Cl
+      - CH4
+      - CHCl3
+      - CO
+      - CO2
+      - HC436a
+      - HC436b
+      - HC436c
+      - HC441a
+      - HC510a
+      - HC511a
+      - HC600
+      - HC600a
+      - HC601
+      - HC601a
+      - HCE170
+      - HCFC123
+      - HCFC124
+      - HCFC141b
+      - HCFC142b
+      - HCFC21
+      - HCFC22
+      - HCFC225ca
+      - HCFC225cb
+      - HCFC31
+      - HCFC401a
+      - HCFC401b
+      - HCFC401c
+      - HCFC402a
+      - HCFC402b
+      - HCFC403a
+      - HCFC403b
+      - HCFC405a
+      - HCFC406a
+      - HCFC408a
+      - HCFC409a
+      - HCFC409b
+      - HCFC412a
+      - HCFC414a
+      - HCFC414b
+      - HCFC415a
+      - HCFC415b
+      - HCFC416a
+      - HCFC418a
+      - HCFC420a
+      - HCFC500
+      - HCFC501
+      - HCFC502
+      - HCFC503
+      - HCFC504
+      - HCFC505
+      - HCFC506
+      - HCFC509a
+      - HCFE235da2
+      - HCFO411a
+      - HCFO411b
+      - HCO1130
+      - HCO514a
+      - HFC125
+      - HFC1336mzz
+      - HFC134
+      - HFC134a
+      - HFC143
+      - HFC143a
+      - HFC152
+      - HFC152a
+      - HFC161
+      - HFC227ea
+      - HFC23
+      - HFC236cb
+      - HFC236ea
+      - HFC236fa
+      - HFC245ca
+      - HFC245fa
+      - HFC32
+      - HFC365mfc
+      - HFC404a
+      - HFC407a
+      - HFC407b
+      - HFC407c
+      - HFC407d
+      - HFC407e
+      - HFC407f
+      - HFC407g
+      - HFC407h
+      - HFC407i
+      - HFC41
+      - HFC410a
+      - HFC410b
+      - HFC413a
+      - HFC417a
+      - HFC417b
+      - HFC417c
+      - HFC419a
+      - HFC419b
+      - HFC421a
+      - HFC421b
+      - HFC422a
+      - HFC422b
+      - HFC422c
+      - HFC422d
+      - HFC422e
+      - HFC423a
+      - HFC424a
+      - HFC425a
+      - HFC426a
+      - HFC427a
+      - HFC428a
+      - HFC429a
+      - HFC430a
+      - HFC4310mee
+      - HFC431a
+      - HFC434a
+      - HFC435a
+      - HFC437a
+      - HFC438a
+      - HFC439a
+      - HFC440a
+      - HFC442a
+      - HFC453a
+      - HFC458a
+      - HFC461a
+      - HFC462a
+      - HFC507a
+      - HFC508a
+      - HFC508b
+      - HFC512a
+      - HFE125
+      - HFE134
+      - HFE143a
+      - HFE227ea
+      - HFE236ca12
+      - HFE236ea2
+      - HFE236fa
+      - HFE245cb2
+      - HFE245fa1
+      - HFE245fa2
+      - HFE263fb2
+      - HFE329mcc2
+      - HFE338mcf2
+      - HFE338pcc13
+      - HFE347mcc3
+      - HFE347mcf2
+      - HFE347pcf2
+      - HFE356mec3
+      - HFE356pcc3
+      - HFE356pcf2
+      - HFE356pcf3
+      - HFE365mcf3
+      - HFE374pc2
+      - HFE4310pccc124
+      - HFE449sl
+      - HFE569sf2
+      - HFO1234yf
+      - HFO1234ze
+      - HFO444a
+      - HFO444b
+      - HFO445a
+      - HFO446a
+      - HFO447a
+      - HFO447b
+      - HFO448a
+      - HFO449a
+      - HFO449b
+      - HFO449c
+      - HFO450a
+      - HFO451a
+      - HFO451b
+      - HFO452a
+      - HFO452b
+      - HFO452c
+      - HFO454a
+      - HFO454b
+      - HFO454c
+      - HFO455a
+      - HFO456a
+      - HFO457a
+      - HFO459a
+      - HFO459b
+      - HFO460a
+      - HFO460b
+      - HFO460c
+      - HFO463a
+      - HFO464a
+      - HFO465a
+      - HFO513a
+      - HFO513b
+      - HFO515a
+      - HFO516a
+      - HO1270
+      - HO432a
+      - HO433a
+      - HO433b
+      - HO433c
+      - HO443a
+      - Halon1201
+      - Halon1202
+      - Halon1211
+      - Halon1301
+      - Halon2402
+      - N
+      - N2O
+      - N2ON
+      - NF3
+      - NH3
+      - NO2
+      - NOx
+      - OC
+      - PFPMIE
+      - S
+      - SF5CF3
+      - SF6
+      - SO2
+      - SO2F2
+      - VOC
+      - cC3F6
+      - cC4F8
