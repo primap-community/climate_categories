@@ -120,7 +120,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring and check the generated
    API documentation.
-3. The pull request should work for Python 3.6, 3.7, and 3.8.
+3. The pull request should work for Python 3.7, and 3.8.
 
 Deploying
 ---------

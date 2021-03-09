@@ -23,14 +23,14 @@ test_requirements = [
 setup(
     author="Mika Pflüger",
     author_email="mika.pflueger@pik-potsdam.de",
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Science/Research",
+        "Topic :: Scientific/Engineering :: Atmospheric Science",
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
