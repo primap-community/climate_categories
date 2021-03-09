@@ -10,18 +10,38 @@ Climate categories
         :target: https://climate-categories.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-
-
-
 Commonly used codes, categories, terminologies, and nomenclatures used in climate
 policy analysis in a nice Python package.
+The documentation can be found at: https://climate-categories.readthedocs.io.
 
+Included categorizations
+------------------------
 
-* Free software: Apache Software License 2.0
-* Documentation: https://climate-categories.readthedocs.io.
-
+==========  ===================================
+Name        Title
+----------  -----------------------------------
+IPCC2006    IPCC GHG emission categories (2006)
+==========  ===================================
 
 Status
 ------
+Climate categories is still in development and the API and names of categorizations
+are still subject to change.
 
-This project is still in the API design phase, so nothing actually works right now.
+License
+-------
+Copyright 2021, Potsdam-Institut für Klimafolgenforschung e.V.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+file except in compliance with the License. You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the specific language governing
+permissions and limitations under the License.
+
+Citation
+--------
+If you use this library and want to cite it, please cite it as:

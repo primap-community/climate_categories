@@ -44,7 +44,7 @@ setup(
     name="climate_categories",
     packages=find_packages(include=["climate_categories", "climate_categories.*"]),
     setup_requires=setup_requirements,
-    test_suite="tests",
+    test_suite="climate_categories/tests",
     tests_require=test_requirements,
     url="https://github.com/pik-primap/climate_categories",
     version="0.1.0",

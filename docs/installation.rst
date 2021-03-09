@@ -4,8 +4,6 @@
 Installation
 ============
 
-There are no releases of Climate Categories yet.
-
 Stable release
 --------------
 
