@@ -2,8 +2,8 @@
 Changelog
 =========
 
-unreleased
-----------
+0.2.0 (2021-03-09)
+------------------
 
 * Introduce API for multiple codes and multiple children.
 * Implement classes and functions.
