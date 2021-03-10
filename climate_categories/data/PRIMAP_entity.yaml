@@ -11,11 +11,13 @@ categories:
   C:
     title: carbon
     comment: Emission rate of carbon
+    alternative_codes:
+    - carbon
     info:
       addition_rule: extensive
   CO2:
-    title: carbon_dioxide
-    comment: Emission rate of CO2
+    title: carbon dioxide
+    comment: Emission rate of carbon dioxide
     alternative_codes:
     - carbon_dioxide
     info:
@@ -24,31 +26,34 @@ categories:
     title: methane
     comment: Emission rate of methane
     alternative_codes:
+    - methane
     - HC50
     info:
       addition_rule: extensive
   N:
     title: nitrogen
     comment: Emission rate of nitrogen
+    alternative_codes:
+    - nitrogen
     info:
       addition_rule: extensive
   N2O:
-    title: nitrous_oxide
-    comment: Emission rate of N2O
+    title: nitrous oxide
+    comment: Emission rate of nitrous oxide
     alternative_codes:
     - nitrous_oxide
     info:
       addition_rule: extensive
   N2ON:
-    title: nitrous_oxide_farming_style
-    comment: Emission rate of N2ON
+    title: nitrous oxide farming style
+    comment: Emission rate of nitrous oxide farming style
     alternative_codes:
     - nitrous_oxide_farming_style
     info:
       addition_rule: extensive
   NO2:
-    title: nitrogen_dioxide
-    comment: Emission rate of NO2
+    title: nitrogen dioxide
+    comment: Emission rate of nitrogen dioxide
     alternative_codes:
     - nitrogen_dioxide
     info:
@@ -70,34 +75,40 @@ categories:
   S:
     title: sulfur
     comment: Emission rate of sulfur
+    alternative_codes:
+    - sulfur
     info:
       addition_rule: extensive
   SO2:
-    title: sulfur_dioxide
-    comment: Emission rate of SO2
+    title: sulfur dioxide
+    comment: Emission rate of sulfur dioxide
     alternative_codes:
     - sulfur_dioxide
     - SOx
     info:
       addition_rule: extensive
   BC:
-    title: black_carbon
-    comment: Emission rate of black_carbon
+    title: black carbon
+    comment: Emission rate of black carbon
+    alternative_codes:
+    - black_carbon
     info:
       addition_rule: extensive
   OC:
-    title: OC
-    comment: Emission rate of OC
+    title: organic carbon
+    comment: Emission rate of organic carbon
     info:
       addition_rule: extensive
   CO:
-    title: carbon_monoxide
-    comment: Emission rate of carbon_monoxide
+    title: carbon monoxide
+    comment: Emission rate of carbon monoxide
+    alternative_codes:
+    - carbon_monoxide
     info:
       addition_rule: extensive
   VOC:
-    title: VOC
-    comment: Emission rate of VOC
+    title: volatile organic compounds
+    comment: Emission rate of non-methane volatile organic compounds
     alternative_codes:
     - NMVOC
     - non_methane_volatile_organic_compounds
@@ -137,6 +148,7 @@ categories:
     title: ethane
     comment: Emission rate of ethane
     alternative_codes:
+    - ethane
     - HC170
     info:
       addition_rule: extensive
@@ -144,6 +156,7 @@ categories:
     title: propane
     comment: Emission rate of propane
     alternative_codes:
+    - propane
     - HC290
     info:
       addition_rule: extensive
@@ -1381,8 +1394,137 @@ categories:
       HFO1234yf, 8.5% HFC134a, 14% HFC152a.
     info:
       addition_rule: extensive
+  mixtures:
+    title: Emissions of refrigerant mixtures
+    children:
+    - - CFC400
+      - HC436a
+      - HC436b
+      - HC436c
+      - HC441a
+      - HC510a
+      - HC511a
+      - HCFC401a
+      - HCFC401b
+      - HCFC401c
+      - HCFC402a
+      - HCFC402b
+      - HCFC403a
+      - HCFC403b
+      - HCFC405a
+      - HCFC406a
+      - HCFC408a
+      - HCFC409a
+      - HCFC409b
+      - HCFC412a
+      - HCFC414a
+      - HCFC414b
+      - HCFC415a
+      - HCFC415b
+      - HCFC416a
+      - HCFC418a
+      - HCFC420a
+      - HCFC500
+      - HCFC501
+      - HCFC502
+      - HCFC503
+      - HCFC504
+      - HCFC505
+      - HCFC506
+      - HCFC509a
+      - HCFO411a
+      - HCFO411b
+      - HCO514a
+      - HFC404a
+      - HFC407a
+      - HFC407b
+      - HFC407c
+      - HFC407d
+      - HFC407e
+      - HFC407f
+      - HFC407g
+      - HFC407h
+      - HFC407i
+      - HFC410a
+      - HFC410b
+      - HFC413a
+      - HFC417a
+      - HFC417b
+      - HFC417c
+      - HFC419a
+      - HFC419b
+      - HFC421a
+      - HFC421b
+      - HFC422a
+      - HFC422b
+      - HFC422c
+      - HFC422d
+      - HFC422e
+      - HFC423a
+      - HFC424a
+      - HFC425a
+      - HFC426a
+      - HFC427a
+      - HFC428a
+      - HFC429a
+      - HFC430a
+      - HFC431a
+      - HFC434a
+      - HFC435a
+      - HFC437a
+      - HFC438a
+      - HFC439a
+      - HFC440a
+      - HFC442a
+      - HFC453a
+      - HFC458a
+      - HFC461a
+      - HFC462a
+      - HFC507a
+      - HFC508a
+      - HFC508b
+      - HFC512a
+      - HFO444a
+      - HFO444b
+      - HFO445a
+      - HFO446a
+      - HFO447a
+      - HFO447b
+      - HFO448a
+      - HFO449a
+      - HFO449b
+      - HFO449c
+      - HFO450a
+      - HFO451a
+      - HFO451b
+      - HFO452a
+      - HFO452b
+      - HFO452c
+      - HFO454a
+      - HFO454b
+      - HFO454c
+      - HFO455a
+      - HFO456a
+      - HFO457a
+      - HFO459a
+      - HFO459b
+      - HFO460a
+      - HFO460b
+      - HFO460c
+      - HFO463a
+      - HFO464a
+      - HFO465a
+      - HFO513a
+      - HFO513b
+      - HFO515a
+      - HFO516a
+      - HO432a
+      - HO433a
+      - HO433b
+      - HO433c
+      - HO443a
   emissions:
-    title: Emissions categories
+    title: Emissions of climate-relevant substances
     children:
     - - BC
       - C
@@ -1625,3 +1767,4 @@ categories:
       - VOC
       - cC3F6
       - cC4F8
+      - mixtures

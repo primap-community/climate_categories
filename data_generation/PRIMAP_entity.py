@@ -17,9 +17,18 @@ def main():
     categories = openscm_standard_gases()
     categories.update(openscm_mixtures())
     categories["emissions"] = {
-        "title": "Emissions categories",
+        "title": "Emissions of climate-relevant substances",
         "children": [list(categories.keys())],
     }
+
+    # specific fixes
+    categories["OC"]["title"] = "organic carbon"
+    categories["OC"]["comment"] = "Emission rate of organic carbon"
+
+    categories["VOC"]["title"] = "volatile organic compounds"
+    categories["VOC"][
+        "comment"
+    ] = "Emission rate of non-methane volatile organic compounds"
 
     spec = {
         "name": "PRIMAP_entity",
@@ -55,6 +64,11 @@ def openscm_mixtures():
             "info": {"addition_rule": "extensive"},
         }
 
+    categories["mixtures"] = {
+        "title": "Emissions of refrigerant mixtures",
+        "children": [list(categories.keys())],
+    }
+
     return categories
 
 
@@ -66,12 +80,13 @@ def openscm_standard_gases():
     for (oscm_gas_code, oscm_gas_spec) in sg.items():
         if isinstance(oscm_gas_spec, str):  # base entity
             code = oscm_gas_code
+            title = oscm_gas_spec.replace("_", " ")
             categories[code] = {
-                "title": oscm_gas_spec,
-                "comment": f"Emission rate of {oscm_gas_spec}",
+                "title": title,
+                "comment": f"Emission rate of {title}",
                 "info": {"addition_rule": "extensive"},
             }
-            if code != oscm_gas_code:
+            if code != oscm_gas_spec and " " not in oscm_gas_spec:
                 categories[code]["alternative_codes"] = [oscm_gas_spec]
         else:  # derived entity or alias
             definition = oscm_gas_spec[0]
@@ -85,9 +100,10 @@ def openscm_standard_gases():
                 code = oscm_gas_code
                 if len(oscm_altcodes) > 1:
                     raise ValueError(f"Unexpected entry for {oscm_gas_code}")
+                title = oscm_altcodes[0].replace("_", " ")
                 categories[code] = {
-                    "title": oscm_altcodes[0],
-                    "comment": f"Emission rate of {oscm_gas_code}",
+                    "title": title,
+                    "comment": f"Emission rate of {title}",
                     "info": {"addition_rule": "extensive"},
                 }
                 if code != oscm_altcodes[0]:
