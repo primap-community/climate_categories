@@ -16,9 +16,10 @@ from ._categories import HierarchicalCategorization  # noqa: F401
 
 _data_dir = pathlib.Path(__file__).parent / "data"
 
+IPCC1996 = HierarchicalCategorization.from_pickle(_data_dir / "IPCC1996.pickle")
 IPCC2006 = HierarchicalCategorization.from_pickle(_data_dir / "IPCC2006.pickle")
 
-cats = {"IPCC2006": IPCC2006}
+cats = {"IPCC1996": IPCC1996, "IPCC2006": IPCC2006}
 
 
 def find(code: str) -> typing.List[typing.Tuple[str, str]]:
