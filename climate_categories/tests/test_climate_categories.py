@@ -38,7 +38,7 @@ class TestSimple:
         assert SimpleCat["1"] != SimpleCat["2"]
         assert SimpleCat["unnumbered"].title == "The unnumbered category"
         assert repr(SimpleCat["1"]) == "<Category 1>"
-        assert str(SimpleCat["1"]) == "Category ('1', 'A', 'CatA') 'Category 1'"
+        assert str(SimpleCat["1"]) == "1 Category 1"
         assert SimpleCat["1"].info == {
             "important_data": ["A", "B", "C"],
             "other_important_thing": "ABC",
@@ -123,9 +123,7 @@ class TestSimple:
         assert SimpleCat_ext["1"] != SimpleCat_ext["2"]
         assert SimpleCat_ext["unnumbered"].title == "The unnumbered category"
         assert repr(SimpleCat_ext["1"]) == "<Category 1>"
-        assert (
-            str(SimpleCat_ext["1"]) == "Category ('1', 'A', 'CatA', 'I') 'Category 1'"
-        )
+        assert str(SimpleCat_ext["1"]) == "1 Category 1"
 
         assert "A" in SimpleCat_ext
         assert "D" in SimpleCat_ext
@@ -178,11 +176,7 @@ class TestHierarchical:
         assert HierCat["0"] == HierCat["TOTAL"]
         assert HierCat["0"] != HierCat["1"]
         assert repr(HierCat["0"]) == "<HierarchicalCategory 0>"
-        assert (
-            str(HierCat["0"])
-            == "Category ('0', 'TOTAL') 'Category 0' children: [('1', '2', '3'),"
-            " ('0X3', '3'), ('1A', '1B', '2', '3')]"
-        )
+        assert str(HierCat["0"]) == "0 Category 0"
         assert HierCat["1"].info == {
             "SomeInfo": "A",
             "OtherInfo": ["A", "B", "C"],
