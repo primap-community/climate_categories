@@ -2,10 +2,9 @@
 
 import itertools
 import pathlib
-import shutil
 
 import camelot
-import requests
+from utils import download_cached
 
 import climate_categories
 
@@ -40,15 +39,7 @@ def split_code_name(code_name):
 
 
 def main():
-    if not INPATH.exists():
-        print(f"{INPATH} not found, downloading it.")
-        r = requests.get(URL, stream=True)
-        if r.status_code == 200:
-            with INPATH.open("wb") as f:
-                r.raw.decode_content = True
-                shutil.copyfileobj(r.raw, f)
-        else:
-            raise RuntimeError(f"Could not download {URL!r}")
+    download_cached(URL, INPATH)
 
     t = camelot.read_pdf(
         str(INPATH),

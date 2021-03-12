@@ -5,6 +5,7 @@ Changelog
 unreleased
 ----------
 
+* Add IPCC1996 categorization and scripts to generate it from the source pdf.
 
 0.2.2 (2021-03-09)
 ------------------

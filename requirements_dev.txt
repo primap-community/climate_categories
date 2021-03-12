@@ -16,3 +16,4 @@ nbsphinx
 strictyaml
 networkx
 xdoctest
+camelot-py[plot,cv]

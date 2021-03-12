@@ -82,5 +82,8 @@ update-venv:
 install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install
 
-climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py
+climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py venv
 	venv/bin/python data_generation/IPCC2006.py
+
+climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py venv
+	venv/bin/python data_generation/IPCC1996.py
