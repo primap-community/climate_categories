@@ -266,13 +266,13 @@ categories:
     - - 1.A.3.b.i.1
       - 1.A.3.b.i.2
   1.A.3.b.i.1:
-    title: Passenger Cars With 3-Way Catalysts
+    title: Passenger Cars with 3-Way Catalysts
     comment: Passenger car emissions from vehicles with 3-way catalysts.
     alternative_codes:
     - 1A3bi1
     - 1 A 3 b i 1
   1.A.3.b.i.2:
-    title: Passenger Cars Without 3-Way Catalysts
+    title: Passenger Cars without 3-Way Catalysts
     comment: Passenger car emissions from vehicles without 3-way catalysts.
     alternative_codes:
     - 1A3bi2
@@ -289,13 +289,13 @@ categories:
     - - 1.A.3.b.ii.1
       - 1.A.3.b.ii.2
   1.A.3.b.ii.1:
-    title: Light Duty Trucks With 3- Way Catalysts
+    title: Light Duty Trucks with 3- Way Catalysts
     comment: Light Duty Truck emissions from vehicles with 3-way catalysts.
     alternative_codes:
     - 1A3bii1
     - 1 A 3 b ii 1
   1.A.3.b.ii.2:
-    title: Light Duty Trucks Without 3-Way Catalysts
+    title: Light Duty Trucks without 3-Way Catalysts
     comment: Light Duty Truck emissions from vehicles without 3-way catalysts.
     alternative_codes:
     - 1A3bii2
@@ -315,7 +315,7 @@ categories:
     - 1A3biv
     - 1 A 3 b iv
   1.A.3.b.v:
-    title: Evaporative Emissions From Vehicles
+    title: Evaporative Emissions from Vehicles
     comment: Evaporative emissions are included here (they are estimated with the
       same activity data as are used for estimating combustion emissions).
     alternative_codes:
@@ -455,7 +455,7 @@ categories:
     - 1A5b
     - 1 A 5 b
   1.B:
-    title: Fugitive Emissions From Fuels
+    title: Fugitive Emissions from Fuels
     comment: Fugitive emissions are intentional or unintentional releases of gases
       from anthropogenic activities. In particular, they may arise from the production,
       processing, transmission, storage and use of fuels, and include emissions from
@@ -729,7 +729,7 @@ categories:
     - 2A5
     - 2 A 5
   2.A.6:
-    title: Road Paving With Asphalt
+    title: Road Paving with Asphalt
     alternative_codes:
     - 2A6
     - 2 A 6

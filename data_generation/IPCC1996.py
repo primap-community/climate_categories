@@ -219,6 +219,18 @@ def parse_codes(rows):
     return cats_raw
 
 
+def title_case(instr: str) -> str:
+    return (
+        instr.title()
+        .replace(" And ", " and ")
+        .replace(" Of ", " of ")
+        .replace(" On ", " on ")
+        .replace(" From ", " from ")
+        .replace(" With ", " with ")
+        .replace(" Without ", " without ")
+    )
+
+
 def parse_categories(cats_raw):
     cats = {}
     for (code, title, definition) in cats_raw:
@@ -226,13 +238,7 @@ def parse_categories(cats_raw):
             title, definition = title.split("(")
             definition = definition[:-1]
 
-        title = (
-            " ".join(title.split())
-            .title()
-            .replace("And", "and")
-            .replace(" Of ", " of ")
-            .replace(" On ", " on ")
-        )
+        title = title_case(" ".join(title.split()))
         definition = " ".join(definition.split()).replace("- ", "")
         if len(definition) > 2 and definition[0] == "(" and definition[-1] == ")":
             definition = definition[1:-1]
