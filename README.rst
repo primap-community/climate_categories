@@ -23,6 +23,7 @@ Included categorizations
 ==========  ===================================
 Name        Title
 ----------  -----------------------------------
+IPCC1996    IPCC GHG emission categories (1996)
 IPCC2006    IPCC GHG emission categories (2006)
 ==========  ===================================
 
