@@ -3,7 +3,7 @@ title: IPCC GHG emission categories (1996)
 comment: IPCC classification of green-house gas emissions and removals into categories,
   1996 edition
 references: 'IPCC 1996, Revised 1996 IPCC Guidelines for National Greenhouse Gas Inventories:
-  Reporting Instructions, Volume 1, Chapter 1.1, pages 1.2ff,  https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf'
+  Reporting Instructions, Volume 1, Chapter 1.1, pages 1.2ff, https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf'
 institution: IPCC
 last_update: 1996-09-13
 version: 1996
@@ -14,6 +14,9 @@ categories:
     comment: Total emission of all greenhouse gases from stationary and mobile energy
       activities (fuel combustion as well as fugitive fuel emissions). Sum of categories
       I A & B.
+    children:
+    - - 1.A
+      - 1.B
   1.A:
     title: Fuel Combustion Activities
     comment: Total emissions of all greenhouse gases from all fuel combustion activities
@@ -31,15 +34,25 @@ categories:
     alternative_codes:
     - 1A
     - 1 A
+    children:
+    - - 1.A.1
+      - 1.A.2
+      - 1.A.3
+      - 1.A.4
+      - 1.A.5
   1.A.1:
     title: Energy Industries
-    comment: Comprises emissions from fuels combusted by the fuel extraction or energyproducing
-      industries.
+    comment: Comprises emissions from fuels combusted by the fuel extraction or energy
+      producing industries.
     alternative_codes:
     - 1A1
     - 1 A 1
+    children:
+    - - 1.A.1.a
+      - 1.A.1.b
+      - 1.A.1.c
   1.A.1.a:
-    title: Public Electricity And Heat Production
+    title: Public Electricity and Heat Production
     comment: Sum of emissions from public electricity generation, public combined
       heat and power generation, and public heat plants. Public utilities are defined
       as those undertakings whose primary activity is to supply the public. They may
@@ -51,6 +64,10 @@ categories:
     alternative_codes:
     - 1A1a
     - 1 A 1 a
+    children:
+    - - 1.A.1.a.i
+      - 1.A.1.a.ii
+      - 1.A.1.a.iii
   1.A.1.a.i:
     title: Public Electricity Generation
     comment: Comprises emissions from all fuel use for electricity generation except
@@ -59,7 +76,7 @@ categories:
     - 1A1ai
     - 1 A 1 a i
   1.A.1.a.ii:
-    title: Public Combined Heat And Power Generation (Chp)
+    title: Public Combined Heat and Power Generation (Chp)
     comment: Emissions from production of both heat and electrical power for sale
       to the public, at a single facility; co-generation plant.
     alternative_codes:
@@ -80,15 +97,18 @@ categories:
     - 1A1b
     - 1 A 1 b
   1.A.1.c:
-    title: Manufacture Of Solid Fuels And Other Energy Industries
+    title: Manufacture of Solid Fuels and Other Energy Industries
     comment: Combustion emissions from fuel use during the manufacture of secondary
       and tertiary products from solid fuels including production of charcoal. Emissions
       from own on-site fuel use should be included.
     alternative_codes:
     - 1A1c
     - 1 A 1 c
+    children:
+    - - 1.A.1.c.i
+      - 1.A.1.c.ii
   1.A.1.c.i:
-    title: Manufacture Of Solid Fuels
+    title: Manufacture of Solid Fuels
     comment: Emissions arising from fuel combustion for the production of coke, brown
       coal briquettes and patent fuel.
     alternative_codes:
@@ -104,7 +124,7 @@ categories:
     - 1A1cii
     - 1 A 1 c ii
   1.A.2:
-    title: Manufacturing Industries And Construction (Isic - 3Rd Revision)1
+    title: Manufacturing Industries and Construction
     comment: Emissions from combustion of fuels in industry including combustion for
       the generation of electricity and heat. Emissions from autoproducers should
       be assigned to the sector where they were generated and an attempt made to separately
@@ -113,42 +133,51 @@ categories:
       and steel industry should be reported under 1 A 1 c and not within manufacturing
       industry. Emissions from the industry sector should be specified by subsectors
       that correspond to the International Standard Industrial Classification of All
-      Economic Activities (ISIC). Energy used for transport by industry should not
-      be reported here but under Transport (1 A 3 below). Emissions arising from off-road
-      and other mobile machinery in industry should, if possible, be broken out as
-      a separate subcategory. For each country, the emissions from the largest fuel-consuming
+      Economic Activities, 3rd Edition (ISIC)  [International Standard Industrial
+      Classification of all Economic Activities, Series M No. 4, Rev. 3, United Nations,
+      New York, 1990]. Energy used for transport by industry should not be reported
+      here but under Transport (1 A 3 below). Emissions arising from off-road and
+      other mobile machinery in industry should, if possible, be broken out as a separate
+      subcategory. For each country, the emissions from the largest fuel-consuming
       industrial categories (ISIC) should be reported, as well as those from significant
       emitters of pollutants. A suggested list of categories is outlined below.
     alternative_codes:
     - 1A2
     - 1 A 2
+    children:
+    - - 1.A.2.a
+      - 1.A.2.b
+      - 1.A.2.c
+      - 1.A.2.d
+      - 1.A.2.e
+      - 1.A.2.f
   1.A.2.a:
-    title: Iron And Steel (Isic Group 271 And Class 2731)
-    comment:
+    title: Iron and Steel
+    comment: ISIC Group 271 and Class 2731
     alternative_codes:
     - 1A2a
     - 1 A 2 a
   1.A.2.b:
-    title: Non-Ferrous Metals (Isic Group 272 And Class 2732)
-    comment:
+    title: Non-Ferrous Metals
+    comment: ISIC Group 272 and Class 2732
     alternative_codes:
     - 1A2b
     - 1 A 2 b
   1.A.2.c:
-    title: Chemicals (Isic Division 24)
-    comment:
+    title: Chemicals
+    comment: ISIC Division 24
     alternative_codes:
     - 1A2c
     - 1 A 2 c
   1.A.2.d:
-    title: Pulp, Paper And Print (Isic Divisions 21 And 22)
-    comment:
+    title: Pulp, Paper and Print
+    comment: ISIC Divisions 21 and 22
     alternative_codes:
     - 1A2d
     - 1 A 2 d
   1.A.2.e:
-    title: Food Processing, Beverages And Tobacco (Isic Divisions 15 And 16)
-    comment:
+    title: Food Processing, Beverages and Tobacco
+    comment: ISIC Divisions 15 and 16
     alternative_codes:
     - 1A2e
     - 1 A 2 e
@@ -172,6 +201,12 @@ categories:
     alternative_codes:
     - 1A3
     - 1 A 3
+    children:
+    - - 1.A.3.a
+      - 1.A.3.b
+      - 1.A.3.c
+      - 1.A.3.d
+      - 1.A.3.e
   1.A.3.a:
     title: Civil Aviation
     comment: Emissions from international civil aviation and domestic air transport
@@ -183,6 +218,9 @@ categories:
     alternative_codes:
     - 1A3a
     - 1 A 3 a
+    children:
+    - - 1.A.3.a.i
+      - 1.A.3.a.ii
   1.A.3.a.i:
     title: International Aviation (International Bunkers)
     comment: Emissions which relate to fuel use for international civil aviation.
@@ -210,6 +248,12 @@ categories:
     alternative_codes:
     - 1A3b
     - 1 A 3 b
+    children:
+    - - 1.A.3.b.i
+      - 1.A.3.b.ii
+      - 1.A.3.b.iii
+      - 1.A.3.b.iv
+      - 1.A.3.b.v
   1.A.3.b.i:
     title: Cars
     comment: Automobiles designated primarily for transport of persons and having
@@ -218,6 +262,9 @@ categories:
     alternative_codes:
     - 1A3bi
     - 1 A 3 b i
+    children:
+    - - 1.A.3.b.i.1
+      - 1.A.3.b.i.2
   1.A.3.b.i.1:
     title: Passenger Cars With 3-Way Catalysts
     comment: Passenger car emissions from vehicles with 3-way catalysts.
@@ -238,6 +285,9 @@ categories:
     alternative_codes:
     - 1A3bii
     - 1 A 3 b ii
+    children:
+    - - 1.A.3.b.ii.1
+      - 1.A.3.b.ii.2
   1.A.3.b.ii.1:
     title: Light Duty Trucks With 3- Way Catalysts
     comment: Light Duty Truck emissions from vehicles with 3-way catalysts.
@@ -251,7 +301,7 @@ categories:
     - 1A3bii2
     - 1 A 3 b ii 2
   1.A.3.b.iii:
-    title: Heavy Duty Trucks And Buses
+    title: Heavy Duty Trucks and Buses
     comment: Any vehicle rated at more than 3900 kg gross vehicle weight or designed
       to carry more than 12 persons at a time.
     alternative_codes:
@@ -284,6 +334,9 @@ categories:
     alternative_codes:
     - 1A3d
     - 1 A 3 d
+    children:
+    - - 1.A.3.d.i
+      - 1.A.3.d.ii
   1.A.3.d.i:
     title: International Marine (Bunkers)
     comment: Comprises emissions from fuels burned by sea-going ships of all flags
@@ -311,15 +364,16 @@ categories:
     alternative_codes:
     - 1A3e
     - 1 A 3 e
+    children:
+    - - 1.A.3.e.i
+      - 1.A.3.e.ii
   1.A.3.e.i:
     title: Pipeline Transport
-    comment:
     alternative_codes:
     - 1A3ei
     - 1 A 3 e i
   1.A.3.e.ii:
     title: Off -Road
-    comment:
     alternative_codes:
     - 1A3eii
     - 1 A 3 e ii
@@ -332,6 +386,10 @@ categories:
     alternative_codes:
     - 1A4
     - 1 A 4
+    children:
+    - - 1.A.4.a
+      - 1.A.4.b
+      - 1.A.4.c
   1.A.4.a:
     title: Commercial / Institutional
     comment: Emission from fuel combustion in commercial and institutional buildings.
@@ -355,34 +413,37 @@ categories:
     alternative_codes:
     - 1A4c
     - 1 A 4 c
+    children:
+    - - 1.A.4.c.i
+      - 1.A.4.c.ii
+      - 1.A.4.c.iii
   1.A.4.c.i:
     title: Stationary
-    comment:
     alternative_codes:
     - 1A4ci
     - 1 A 4 c i
   1.A.4.c.ii:
-    title: Off-Road Vehicles And Other Machinery
-    comment:
+    title: Off-Road Vehicles and Other Machinery
     alternative_codes:
     - 1A4cii
     - 1 A 4 c ii
   1.A.4.c.iii:
     title: Fishing
-    comment:
     alternative_codes:
     - 1A4ciii
     - 1 A 4 c iii
   1.A.5:
-    title: Other (Not Else- Where Specified)
+    title: Other
     comment: All remaining emissions from non-specified fuel combustion. Include emissions
       from military fuel use.
     alternative_codes:
     - 1A5
     - 1 A 5
+    children:
+    - - 1.A.5.a
+      - 1.A.5.b
   1.A.5.a:
     title: Stationary
-    comment:
     alternative_codes:
     - 1A5a
     - 1 A 5 a
@@ -405,6 +466,9 @@ categories:
     alternative_codes:
     - 1B
     - 1 B
+    children:
+    - - 1.B.1
+      - 1.B.2
   1.B.1:
     title: Solid Fuels
     comment: Total release of methane during coal mining and post-mining activities.
@@ -413,18 +477,27 @@ categories:
     alternative_codes:
     - 1B1
     - 1 B 1
+    children:
+    - - 1.B.1.a
+      - 1.B.1.b
+      - 1.B.1.c
   1.B.1.a:
     title: Coal Mining
     comment: Total emissions from underground and surface mining and post-mining activities.
     alternative_codes:
     - 1B1a
     - 1 B 1 a
+    children:
+    - - 1.B.1.a.i
+      - 1.B.1.a.ii
   1.B.1.a.i:
     title: Underground Mines
-    comment:
     alternative_codes:
     - 1B1ai
     - 1 B 1 a i
+    children:
+    - - 1.B.1.a.i.1
+      - 1.B.1.a.i.2
   1.B.1.a.i.1:
     title: Mining Activities
     comment: Emissions from underground mines, brought to the surface by ventilation
@@ -445,6 +518,9 @@ categories:
     alternative_codes:
     - 1B1aii
     - 1 B 1 a ii
+    children:
+    - - 1.B.1.a.ii.1
+      - 1.B.1.a.ii.2
   1.B.1.a.ii.1:
     title: Mining Activities
     comment: Emissions primarily from the exposed coal surfaces and coal rubble, but
@@ -473,7 +549,7 @@ categories:
     - 1B1c
     - 1 B 1 c
   1.B.2:
-    title: Oil And Natural Gas
+    title: Oil and Natural Gas
     comment: Total fugitive emissions from oil and gas activities. Fugitive emissions
       may arise from equipment exhaust (non-combustion), leakages, upsets and mishaps
       at any point in the chain from production through final use. Note also that
@@ -482,12 +558,22 @@ categories:
     alternative_codes:
     - 1B2
     - 1 B 2
+    children:
+    - - 1.B.2.a
+      - 1.B.2.b
+      - 1.B.2.c
   1.B.2.a:
     title: Oil
-    comment:
     alternative_codes:
     - 1B2a
     - 1 B 2 a
+    children:
+    - - 1.B.2.a.i
+      - 1.B.2.a.ii
+      - 1.B.2.a.iii
+      - 1.B.2.a.iv
+      - 1.B.2.a.v
+      - 1.B.2.a.vi
   1.B.2.a.i:
     title: Exploration
     comment: Fugitive emissions from oil exploration only.
@@ -514,23 +600,25 @@ categories:
     - 1B2aiv
     - 1 B 2 a iv
   1.B.2.a.v:
-    title: Distribution Of Oil Products
+    title: Distribution of Oil Products
     comment: Emissions (primarily NMVOCs) from transport and handling of oil products.
     alternative_codes:
     - 1B2av
     - 1 B 2 a v
   1.B.2.a.vi:
     title: Other
-    comment:
     alternative_codes:
     - 1B2avi
     - 1 B 2 a vi
   1.B.2.b:
     title: Natural Gas
-    comment:
     alternative_codes:
     - 1B2b
     - 1 B 2 b
+    children:
+    - - 1.B.2.b.i
+      - 1.B.2.b.ii
+      - 1.B.2.b.iii
   1.B.2.b.i:
     title: Production/ Processing
     comment: Emissions from the production of gas, gas gathering systems and gas separation
@@ -553,27 +641,28 @@ categories:
     - 1B2biii
     - 1 B 2 b iii
   1.B.2.c:
-    title: Venting And Flaring
+    title: Venting and Flaring
     comment: The release and/or combustion of excess gas at facilities for the production
       of oil or gas and for the processing of gas.
     alternative_codes:
     - 1B2c
     - 1 B 2 c
+    children:
+    - - 1.B.2.c.i
+      - 1.B.2.c.ii
+      - 1.B.2.c.iii
   1.B.2.c.i:
     title: Oil
-    comment:
     alternative_codes:
     - 1B2ci
     - 1 B 2 c i
   1.B.2.c.ii:
     title: Gas
-    comment:
     alternative_codes:
     - 1B2cii
     - 1 B 2 c ii
   1.B.2.c.iii:
-    title: Combined (In Case Oil And Gas Cannot Be Separated)
-    comment:
+    title: Combined (In Case Oil and Gas Cannot Be Separated)
     alternative_codes:
     - 1B2ciii
     - 1 B 2 c iii
@@ -592,45 +681,55 @@ categories:
       or a stock material with which emissions are linked (for example, limestone).
       In these cases, assignment of emissions to ISIC activities may be difficult
       or incomplete.
+    children:
+    - - 2.A
+      - 2.B
+      - 2.C
+      - 2.D
+      - 2.E
+      - 2.F
+      - 2.G
   2.A:
     title: Mineral Products
-    comment: (ISIC2 Division 26)
+    comment: ISIC2 Division 26
     alternative_codes:
     - 2A
     - 2 A
+    children:
+    - - 2.A.1
+      - 2.A.2
+      - 2.A.3
+      - 2.A.4
+      - 2.A.5
+      - 2.A.6
+      - 2.A.7
   2.A.1:
     title: Cement Production
-    comment:
     alternative_codes:
     - 2A1
     - 2 A 1
   2.A.2:
     title: Lime Production
-    comment:
     alternative_codes:
     - 2A2
     - 2 A 2
   2.A.3:
-    title: Limestone And Dolomite Use
-    comment:
+    title: Limestone and Dolomite Use
     alternative_codes:
     - 2A3
     - 2 A 3
   2.A.4:
-    title: Soda Ash Production And Use
-    comment:
+    title: Soda Ash Production and Use
     alternative_codes:
     - 2A4
     - 2 A 4
   2.A.5:
     title: Asphalt Roofing
-    comment:
     alternative_codes:
     - 2A5
     - 2 A 5
   2.A.6:
     title: Road Paving With Asphalt
-    comment:
     alternative_codes:
     - 2A6
     - 2 A 6
@@ -642,31 +741,33 @@ categories:
     - 2 A 7
   2.B:
     title: Chemical Industry
-    comment: (ISIC Division 24)
+    comment: ISIC Division 24
     alternative_codes:
     - 2B
     - 2 B
+    children:
+    - - 2.B.1
+      - 2.B.2
+      - 2.B.3
+      - 2.B.4
+      - 2.B.5
   2.B.1:
     title: Ammonia Production
-    comment:
     alternative_codes:
     - 2B1
     - 2 B 1
   2.B.2:
     title: Nitric Acid Production
-    comment:
     alternative_codes:
     - 2B2
     - 2 B 2
   2.B.3:
     title: Adipic Acid Production
-    comment:
     alternative_codes:
     - 2B3
     - 2 B 3
   2.B.4:
     title: Carbide Production
-    comment:
     alternative_codes:
     - 2B4
     - 2 B 4
@@ -677,32 +778,34 @@ categories:
     - 2B5
     - 2 B 5
   2.C:
-    title: Metal Production (Isic Division 27)
-    comment:
+    title: Metal Production
+    comment: ISIC Division 27
     alternative_codes:
     - 2C
     - 2 C
+    children:
+    - - 2.C.1
+      - 2.C.2
+      - 2.C.3
+      - 2.C.4
+      - 2.C.5
   2.C.1:
-    title: Iron And Steel Production
-    comment:
+    title: Iron and Steel Production
     alternative_codes:
     - 2C1
     - 2 C 1
   2.C.2:
     title: Ferroalloys Production
-    comment:
     alternative_codes:
     - 2C2
     - 2 C 2
   2.C.3:
     title: Aluminium Production
-    comment:
     alternative_codes:
     - 2C3
     - 2 C 3
   2.C.4:
-    title: Sf6 Used In Aluminium And Magnesium Foundries
-    comment:
+    title: SF6 used in Aluminium and Magnesium Foundries
     alternative_codes:
     - 2C4
     - 2 C 4
@@ -714,37 +817,40 @@ categories:
     - 2 C 5
   2.D:
     title: Other Production
-    comment: (ISIC Divisions 15 and 29)
+    comment: ISIC Divisions 15 and 29
     alternative_codes:
     - 2D
     - 2 D
+    children:
+    - - 2.D.1
+      - 2.D.2
   2.D.1:
-    title: Pulp And Paper
-    comment:
+    title: Pulp and Paper
     alternative_codes:
     - 2D1
     - 2 D 1
   2.D.2:
-    title: Food And Drink
-    comment:
+    title: Food and Drink
     alternative_codes:
     - 2D2
     - 2 D 2
   2.E:
-    title: Production Of Halocarbons And Sulphur Hexafluoride
-    comment: (Possibly ISIC Class 2411 or 2429)
+    title: Production of Halocarbons and Sulphur Hexafluoride
+    comment: Possibly ISIC Class 2411 or 2429
     alternative_codes:
     - 2E
     - 2 E
+    children:
+    - - 2.E.1
+      - 2.E.2
+      - 2.E.3
   2.E.1:
     title: By-Product Emissions
-    comment:
     alternative_codes:
     - 2E1
     - 2 E 1
   2.E.2:
     title: Fugitive Emissions
-    comment:
     alternative_codes:
     - 2E2
     - 2 E 2
@@ -755,38 +861,39 @@ categories:
     - 2E3
     - 2 E 3
   2.F:
-    title: Consumption Of Halocarbons And Sulphur Hexafluoride
-    comment:
+    title: Consumption of Halocarbons and Sulphur Hexafluoride
     alternative_codes:
     - 2F
     - 2 F
+    children:
+    - - 2.F.1
+      - 2.F.2
+      - 2.F.3
+      - 2.F.4
+      - 2.F.5
+      - 2.F.6
   2.F.1:
-    title: Refrigeration And Air Conditioning Equipment
-    comment:
+    title: Refrigeration and Air Conditioning Equipment
     alternative_codes:
     - 2F1
     - 2 F 1
   2.F.2:
     title: Foam Blowing
-    comment:
     alternative_codes:
     - 2F2
     - 2 F 2
   2.F.3:
     title: Fire Extinguishers
-    comment:
     alternative_codes:
     - 2F3
     - 2 F 3
   2.F.4:
     title: Aerosols
-    comment:
     alternative_codes:
     - 2F4
     - 2 F 4
   2.F.5:
     title: Solvents
-    comment:
     alternative_codes:
     - 2F5
     - 2 F 5
@@ -798,12 +905,11 @@ categories:
     - 2 F 6
   2.G:
     title: Other
-    comment:
     alternative_codes:
     - 2G
     - 2 G
   3:
-    title: Solvent And Other Product Use
+    title: Solvent and Other Product Use
     comment: This category covers mainly NMVOC emissions resulting from the use of
       solvents and other products containing volatile compounds. When the solvents
       and other products are, or are produced from, petroleum products, the carbon
@@ -813,21 +919,23 @@ categories:
       and sulphur hexafluoride should be reported in the Industrial Processes Chapter
       under 2 F. All other non-energy emissions not included under Industrial Processes
       are reported here.
+    children:
+    - - 3.A
+      - 3.B
+      - 3.C
+      - 3.D
   3.A:
     title: Paint Application
-    comment:
     alternative_codes:
     - 3A
     - 3 A
   3.B:
     title: Degreasing & Dry Cleaning
-    comment:
     alternative_codes:
     - 3B
     - 3 B
   3.C:
     title: Chemical Products, Manufacture & Processing
-    comment:
     alternative_codes:
     - 3C
     - 3 C
@@ -842,6 +950,14 @@ categories:
     comment: Describes all anthropogenic emissions from this sector except for fuel
       combustion and sewage emissions, which are covered in Energy 1 A and Waste 6
       B, respectively. Sum of all agriculture categories 4 A, B, C, D, E, F & G.
+    children:
+    - - 4.A
+      - 4.B
+      - 4.C
+      - 4.D
+      - 4.E
+      - 4.F
+      - 4.G
   4.A:
     title: Enteric Fermentation
     comment: Methane production from herbivores as a by-product of enteric fermentation,
@@ -852,12 +968,25 @@ categories:
     alternative_codes:
     - 4A
     - 4 A
+    children:
+    - - 4.A.1
+      - 4.A.10
+      - 4.A.2
+      - 4.A.3
+      - 4.A.4
+      - 4.A.5
+      - 4.A.6
+      - 4.A.7
+      - 4.A.8
+      - 4.A.9
   4.A.1:
     title: Cattle
-    comment:
     alternative_codes:
     - 4A1
     - 4 A 1
+    children:
+    - - 4.A.1.a
+      - 4.A.1.b
   4.A.1.a:
     title: Dairy
     comment: Cattle producing milk for commercial exchange and calves and heifers
@@ -874,49 +1003,41 @@ categories:
     - 4 A 1 b
   4.A.2:
     title: Buffalo
-    comment:
     alternative_codes:
     - 4A2
     - 4 A 2
   4.A.3:
     title: Sheep
-    comment:
     alternative_codes:
     - 4A3
     - 4 A 3
   4.A.4:
     title: Goats
-    comment:
     alternative_codes:
     - 4A4
     - 4 A 4
   4.A.5:
-    title: Camels And Llamas
-    comment:
+    title: Camels and Llamas
     alternative_codes:
     - 4A5
     - 4 A 5
   4.A.6:
     title: Horses
-    comment:
     alternative_codes:
     - 4A6
     - 4 A 6
   4.A.7:
-    title: Mules And Asses
-    comment:
+    title: Mules and Asses
     alternative_codes:
     - 4A7
     - 4 A 7
   4.A.8:
     title: Swine
-    comment:
     alternative_codes:
     - 4A8
     - 4 A 8
   4.A.9:
     title: Poultry
-    comment:
     alternative_codes:
     - 4A9
     - 4 A 9
@@ -938,87 +1059,90 @@ categories:
     alternative_codes:
     - 4B
     - 4 B
+    children:
+    - - 4.B.1
+      - 4.B.10
+      - 4.B.11
+      - 4.B.12
+      - 4.B.13
+      - 4.B.2
+      - 4.B.3
+      - 4.B.4
+      - 4.B.5
+      - 4.B.6
+      - 4.B.7
+      - 4.B.8
+      - 4.B.9
   4.B.1:
     title: Cattle
-    comment:
     alternative_codes:
     - 4B1
     - 4 B 1
+    children:
+    - - 4.B.1.a
+      - 4.B.1.b
   4.B.1.a:
     title: Dairy
-    comment:
     alternative_codes:
     - 4B1a
     - 4 B 1 a
   4.B.1.b:
     title: Non-Dairy
-    comment:
     alternative_codes:
     - 4B1b
     - 4 B 1 b
   4.B.2:
     title: Buffalo
-    comment:
     alternative_codes:
     - 4B2
     - 4 B 2
   4.B.3:
     title: Sheep
-    comment:
     alternative_codes:
     - 4B3
     - 4 B 3
   4.B.4:
     title: Goats
-    comment:
     alternative_codes:
     - 4B4
     - 4 B 4
   4.B.5:
-    title: Camels And Llamas
-    comment:
+    title: Camels and Llamas
     alternative_codes:
     - 4B5
     - 4 B 5
   4.B.6:
     title: Horses
-    comment:
     alternative_codes:
     - 4B6
     - 4 B 6
   4.B.7:
-    title: Mules And Asses
-    comment:
+    title: Mules and Asses
     alternative_codes:
     - 4B7
     - 4 B 7
   4.B.8:
     title: Swine
-    comment:
     alternative_codes:
     - 4B8
     - 4 B 8
   4.B.9:
     title: Poultry
-    comment:
     alternative_codes:
     - 4B9
     - 4 B 9
   4.B.10:
     title: Anaerobic
-    comment:
     alternative_codes:
     - 4B10
     - 4 B 10
   4.B.11:
     title: Liquid Systems
-    comment:
     alternative_codes:
     - 4B11
     - 4 B 11
   4.B.12:
-    title: Solid Storage And Drylot
-    comment:
+    title: Solid Storage and Drylot
     alternative_codes:
     - 4B12
     - 4 B 12
@@ -1042,24 +1166,33 @@ categories:
     alternative_codes:
     - 4C
     - 4 C
+    children:
+    - - 4.C.1
+      - 4.C.2
+      - 4.C.3
+      - 4.C.4
   4.C.1:
     title: Irrigated
     comment: Water regime is fully controlled.
     alternative_codes:
     - 4C1
     - 4 C 1
+    children:
+    - - 4.C.1.a
+      - 4.C.1.b
   4.C.1.a:
     title: Continuously Flooded
-    comment:
     alternative_codes:
     - 4C1a
     - 4 C 1 a
   4.C.1.b:
     title: Intermittently Flooded
-    comment:
     alternative_codes:
     - 4C1b
     - 4 C 1 b
+    children:
+    - - 4.C.1.b.i
+      - 4.C.1.b.ii
   4.C.1.b.i:
     title: Single Aeration
     comment: Fields have a single aeration during the cropping season at any growth
@@ -1079,6 +1212,9 @@ categories:
     alternative_codes:
     - 4C2
     - 4 C 2
+    children:
+    - - 4.C.2.a
+      - 4.C.2.b
   4.C.2.a:
     title: Flood Prone
     comment: The water level may rise up to 50 cm during the cropping season.
@@ -1098,6 +1234,9 @@ categories:
     alternative_codes:
     - 4C3
     - 4 C 3
+    children:
+    - - 4.C.3.a
+      - 4.C.3.b
   4.C.3.a:
     title: Water Depth 50-100 Cm
     comment: Fields inundated with water depth from 50 100 cm.
@@ -1112,7 +1251,6 @@ categories:
     - 4 C 3 b
   4.C.4:
     title: Other
-    comment:
     alternative_codes:
     - 4C4
     - 4 C 4
@@ -1134,7 +1272,7 @@ categories:
     - 4D
     - 4 D
   4.E:
-    title: Prescribed Burning Of Savannas
+    title: Prescribed Burning of Savannas
     comment: Emissions of CH4, CO, N2O, and NOx from the burning of savannas*. Savannas
       are burned to control the growth of vegetation, remove pests and weeds, promote
       the nutrient cycle and to encourage the growth of new grass for animal grazing.
@@ -1147,7 +1285,7 @@ categories:
     - 4E
     - 4 E
   4.F:
-    title: Field Burning Of Agricultural Residues
+    title: Field Burning of Agricultural Residues
     comment: Emission of non-CO2 greenhouse gases from burning (in the field) of crop
       residue and other agricultural wastes on site. These include woody crop residues
       (e.g. coconut shells, jute sticks, etc.); cereal residues (e.g. rice and wheat
@@ -1160,6 +1298,12 @@ categories:
     alternative_codes:
     - 4F
     - 4 F
+    children:
+    - - 4.F.1
+      - 4.F.2
+      - 4.F.3
+      - 4.F.4
+      - 4.F.5
   4.F.1:
     title: Cereals
     comment: Emissions from the on-site burning of residue from cereal crops harvested
@@ -1176,7 +1320,7 @@ categories:
     - 4F2
     - 4 F 2
   4.F.3:
-    title: Tuber And Root
+    title: Tuber and Root
     comment: Emissions from the on-site burning of residue from tuber and root crops,
       including but not limited to potatoes, feedbeet, sugarbeet, girasol (Jerusalem
       artichoke) and peanut.
@@ -1208,8 +1352,14 @@ categories:
       as described below. These activities have an impact on three different carbon
       sources/sinks: aboveground biomass, belowground biomass and soil carbon. Sum
       of 5 A, B, C, D & E.'
+    children:
+    - - 5.A
+      - 5.B
+      - 5.C
+      - 5.D
+      - 5.E
   5.A:
-    title: Changes In Forest And Other Woody Biomass Stocks
+    title: Changes In Forest and Other Woody Biomass Stocks
     comment: Emissions and removals of CO2 from decreases or increases in biomass
       stocks due to forest management, logging, fuelwood collection, etc. The category
       is either a net source if biomass harvest/destruction exceeds regrowth in the
@@ -1218,57 +1368,64 @@ categories:
     alternative_codes:
     - 5A
     - 5 A
+    children:
+    - - 5.A.1
+      - 5.A.2
+      - 5.A.3
+      - 5.A.4
+      - 5.A.5
   5.A.1:
     title: Tropical Forests
     comment: .
     alternative_codes:
     - 5A1
     - 5 A 1
+    children:
+    - - 5.A.1.a
+      - 5.A.1.b
+      - 5.A.1.c
+      - 5.A.1.d
+      - 5.A.1.e
+      - 5.A.1.f
+      - 5.A.1.g
+      - 5.A.1.h
   5.A.1.a:
     title: Wet/ Very Moist
-    comment:
     alternative_codes:
     - 5A1a
     - 5 A 1 a
   5.A.1.b:
     title: Moist, Short Dry Season
-    comment:
     alternative_codes:
     - 5A1b
     - 5 A 1 b
   5.A.1.c:
     title: Moist, Long Dry Season
-    comment:
     alternative_codes:
     - 5A1c
     - 5 A 1 c
   5.A.1.d:
     title: Dry
-    comment:
     alternative_codes:
     - 5A1d
     - 5 A 1 d
   5.A.1.e:
     title: Mountain Moist
-    comment:
     alternative_codes:
     - 5A1e
     - 5 A 1 e
   5.A.1.f:
     title: Mountain Dry
-    comment:
     alternative_codes:
     - 5A1f
     - 5 A 1 f
   5.A.1.g:
     title: Plantations
-    comment:
     alternative_codes:
     - 5A1g
     - 5 A 1 g
   5.A.1.h:
     title: Other
-    comment:
     alternative_codes:
     - 5A1h
     - 5 A 1 h
@@ -1278,27 +1435,28 @@ categories:
     alternative_codes:
     - 5A2
     - 5 A 2
+    children:
+    - - 5.A.2.a
+      - 5.A.2.b
+      - 5.A.2.c
+      - 5.A.2.d
   5.A.2.a:
     title: Coniferous
-    comment:
     alternative_codes:
     - 5A2a
     - 5 A 2 a
   5.A.2.b:
     title: Broadleaf
-    comment:
     alternative_codes:
     - 5A2b
     - 5 A 2 b
   5.A.2.c:
     title: Plantations
-    comment:
     alternative_codes:
     - 5A2c
     - 5 A 2 c
   5.A.2.d:
     title: Other
-    comment:
     alternative_codes:
     - 5A2d
     - 5 A 2 d
@@ -1308,21 +1466,22 @@ categories:
     alternative_codes:
     - 5A3
     - 5 A 3
+    children:
+    - - 5.A.3.a
+      - 5.A.3.b
+      - 5.A.3.c
   5.A.3.a:
     title: Mixed Broadleaf/Coniferous
-    comment:
     alternative_codes:
     - 5A3a
     - 5 A 3 a
   5.A.3.b:
     title: Coniferous
-    comment:
     alternative_codes:
     - 5A3b
     - 5 A 3 b
   5.A.3.c:
     title: Forest Tundra
-    comment:
     alternative_codes:
     - 5A3c
     - 5 A 3 c
@@ -1336,123 +1495,135 @@ categories:
   5.A.5:
     title: Other
     comment: Emissions and removals of CO2 from other biomass categories, including
-      village and farm trees, etc.3
+      village and farm trees, etc. This category is intended to account for biomass
+      which is found in locations other than the major ecosystem types listed. This
+      includes dispersed trees in villages, farms, urban areas, etc., and also includes
+      additional ecosystem types which may be important for biomass accounting in
+      specific countries. Afforestation programmes which create forests will be accounted
+      for in the appropriate forest ecosystem category. Afforestation which produces
+      dispersed trees, e.g., urban tree planting, would be accounted for in “Other.”
     alternative_codes:
     - 5A5
     - 5 A 5
   5.B:
-    title: Forest And Grassland Conversion
+    title: Forest and Grassland Conversion
     comment: This category includes conversion of existing forests and natural grasslands
       to other land uses. Emissions of CO2, CH4, CO, N2O, NOx and NMVOCs from the
       burning and decay of biomass.
     alternative_codes:
     - 5B
     - 5 B
+    children:
+    - - 5.B.1
+      - 5.B.2
+      - 5.B.3
+      - 5.B.4
+      - 5.B.5
   5.B.1:
     title: Tropical Forests
-    comment:
     alternative_codes:
     - 5B1
     - 5 B 1
+    children:
+    - - 5.B.1.a
+      - 5.B.1.b
+      - 5.B.1.c
+      - 5.B.1.d
+      - 5.B.1.e
+      - 5.B.1.f
+      - 5.B.1.g
+      - 5.B.1.h
   5.B.1.a:
     title: Wet/Very Moist
-    comment:
     alternative_codes:
     - 5B1a
     - 5 B 1 a
   5.B.1.b:
     title: Moist, Short Dry Season
-    comment:
     alternative_codes:
     - 5B1b
     - 5 B 1 b
   5.B.1.c:
     title: Moist, Long Dry Season
-    comment:
     alternative_codes:
     - 5B1c
     - 5 B 1 c
   5.B.1.d:
     title: Dry
-    comment:
     alternative_codes:
     - 5B1d
     - 5 B 1 d
   5.B.1.e:
     title: Mountain Moist
-    comment:
     alternative_codes:
     - 5B1e
     - 5 B 1 e
   5.B.1.f:
     title: Mountain Dry
-    comment:
     alternative_codes:
     - 5B1f
     - 5 B 1 f
   5.B.1.g:
     title: Plantations
-    comment:
     alternative_codes:
     - 5B1g
     - 5 B 1 g
   5.B.1.h:
     title: Other
-    comment:
     alternative_codes:
     - 5B1h
     - 5 B 1 h
   5.B.2:
     title: Temperate Forests
-    comment:
     alternative_codes:
     - 5B2
     - 5 B 2
+    children:
+    - - 5.B.2.a
+      - 5.B.2.b
+      - 5.B.2.c
+      - 5.B.2.d
   5.B.2.a:
     title: Coniferous
-    comment:
     alternative_codes:
     - 5B2a
     - 5 B 2 a
   5.B.2.b:
     title: Broadleaf
-    comment:
     alternative_codes:
     - 5B2b
     - 5 B 2 b
   5.B.2.c:
     title: Plantations
-    comment:
     alternative_codes:
     - 5B2c
     - 5 B 2 c
   5.B.2.d:
     title: Other
-    comment:
     alternative_codes:
     - 5B2d
     - 5 B 2 d
   5.B.3:
     title: Boreal Forests
-    comment:
     alternative_codes:
     - 5B3
     - 5 B 3
+    children:
+    - - 5.B.3.a
+      - 5.B.3.b
+      - 5.B.3.c
   5.B.3.a:
     title: Mixed Broadleaf/Coniferous
-    comment:
     alternative_codes:
     - 5B3a
     - 5 B 3 a
   5.B.3.b:
     title: Coniferous
-    comment:
     alternative_codes:
     - 5B3b
     - 5 B 3 b
   5.B.3.c:
     title: Forest Tundra
-    comment:
     alternative_codes:
     - 5B3c
     - 5 B 3 c
@@ -1471,7 +1642,7 @@ categories:
     - 5B5
     - 5 B 5
   5.C:
-    title: Abandonment Of Managed Lands
+    title: Abandonment of Managed Lands
     comment: Removal of CO2 from the abandonment of formerly managed lands (e.g. croplands
       and pastures). This category includes conversion of managed to abandoned lands.
       The categories below are determined by the type of biomass which regrows on
@@ -1479,27 +1650,29 @@ categories:
     alternative_codes:
     - 5C
     - 5 C
+    children:
+    - - 5.C.1
+      - 5.C.2
+      - 5.C.3
+      - 5.C.4
+      - 5.C.5
   5.C.1:
     title: Tropical Forests
-    comment:
     alternative_codes:
     - 5C1
     - 5 C 1
   5.C.2:
     title: Temperate Forests
-    comment:
     alternative_codes:
     - 5C2
     - 5 C 2
   5.C.3:
     title: Boreal Forests
-    comment:
     alternative_codes:
     - 5C3
     - 5 C 3
   5.C.4:
     title: Grasslands/Tundra
-    comment:
     alternative_codes:
     - 5C4
     - 5 C 4
@@ -1511,7 +1684,7 @@ categories:
     - 5C5
     - 5 C 5
   5.D:
-    title: Co2 Emissions And Removals From Soil
+    title: CO2 Emissions and Removals From Soil
     comment: Emissions and removals of CO2 in soil associated with land-use change
       and management. Includes CO2 emissions from liming of agricultural soil.
     alternative_codes:
@@ -1536,16 +1709,25 @@ categories:
       see note on double counting under Section 2 “Reporting the National Inventory.”
       CO2 from organic waste handling and decay should not be included (see below).
       Sum of 6 A, B, C & D.
+    children:
+    - - 6.A
+      - 6.B
+      - 6.C
+      - 6.D
   6.A:
-    title: Solid Waste Disposal On Land
+    title: Solid Waste Disposal on Land
     comment: Methane is produced from anaerobic microbial decomposition of organic
       matter in solid waste disposal sites. Carbon dioxide from non-biologic or (CO2)
       is also produced but only CO2 inorganic waste sources should be reported here.
     alternative_codes:
     - 6A
     - 6 A
+    children:
+    - - 6.A.1
+      - 6.A.2
+      - 6.A.3
   6.A.1:
-    title: Managed Waste Disposal On Land
+    title: Managed Waste Disposal on Land
     comment: 'A managed solid waste disposal site must have controlled placement of
       waste (i.e. waste directed to specific deposition areas, a degree of control
       of scavenging and a degree of control fires) and will include at least one of
@@ -1576,6 +1758,10 @@ categories:
     alternative_codes:
     - 6B
     - 6 B
+    children:
+    - - 6.B.1
+      - 6.B.2
+      - 6.B.3
   6.B.1:
     title: Industrial Wastewater
     comment: 'Handling of liquid wastes and sludge from industrial processes such
@@ -1586,7 +1772,7 @@ categories:
     - 6B1
     - 6 B 1
   6.B.2:
-    title: Domestic And Commercial Wastewater
+    title: Domestic and Commercial Wastewater
     comment: 'Handling of liquid wastes and sludge from housing and commercial sources
       (including human waste) through: wastewater collection and treatment, open pits
       / latrines, ponds, or discharge into surface waters. N2O emissions from discharge
@@ -1596,7 +1782,6 @@ categories:
     - 6 B 2
   6.B.3:
     title: Other
-    comment:
     alternative_codes:
     - 6B3
     - 6 B 3

@@ -222,15 +222,28 @@ def parse_codes(rows):
 def parse_categories(cats_raw):
     cats = {}
     for (code, title, definition) in cats_raw:
-        title = " ".join(title.split()).title()
+        if "(" in title and "ISIC" in title and not definition:
+            title, definition = title.split("(")
+            definition = definition[:-1]
+
+        title = (
+            " ".join(title.split())
+            .title()
+            .replace("And", "and")
+            .replace(" Of ", " of ")
+            .replace(" On ", " on ")
+        )
         definition = " ".join(definition.split()).replace("- ", "")
+        if len(definition) > 2 and definition[0] == "(" and definition[-1] == ")":
+            definition = definition[1:-1]
 
         altcode = code.replace(".", "")
         altcode2 = code.replace(".", " ")
         spec = {
             "title": title,
-            "comment": definition,
         }
+        if definition:
+            spec["comment"] = definition
         if altcode != code:
             spec["alternative_codes"] = [altcode, altcode2]
 
@@ -241,12 +254,24 @@ def parse_categories(cats_raw):
     return cats
 
 
+def add_relationships(categories):
+    for parent_code in categories:
+        prefix = parent_code + "."
+        children = []
+        for child_code in categories:
+            if child_code.startswith(prefix) and "." not in child_code[len(prefix) :]:
+                children.append(child_code)
+        if children:
+            categories[parent_code]["children"] = [children]
+
+
 def main():
     download_cached(URL, INPATH)
     ts = read_pdf(INPATH)
     rows = combine_rows(ts)
     cats_raw = parse_codes(rows)
     categories = parse_categories(cats_raw)
+    add_relationships(categories)
 
     spec = {
         "name": "IPCC1996",
@@ -255,7 +280,7 @@ def main():
         " categories, 1996 edition",
         "references": "IPCC 1996, Revised 1996 IPCC Guidelines for National Greenhouse"
         " Gas Inventories: Reporting Instructions,"
-        " Volume 1, Chapter 1.1, pages 1.2ff, "
+        " Volume 1, Chapter 1.1, pages 1.2ff,"
         " https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf",
         "institution": "IPCC",
         "last_update": "1996-09-13",
@@ -264,15 +289,52 @@ def main():
         "categories": categories,
     }
 
+    spec["categories"]["1.A.1"]["comment"] = spec["categories"]["1.A.1"][
+        "comment"
+    ].replace("energyproducing", "energy producing")
+
+    spec["categories"]["1.A.2"]["title"] = "Manufacturing Industries and Construction"
+    spec["categories"]["1.A.2"]["comment"] = spec["categories"]["1.A.2"][
+        "comment"
+    ].replace(
+        "Emissions from the industry sector should be specified by subsectors that "
+        "correspond to the International Standard Industrial Classification of All "
+        "Economic Activities (ISIC).",
+        "Emissions from the industry sector should be specified by subsectors that "
+        "correspond to the International Standard Industrial Classification of All "
+        "Economic Activities, 3rd Edition (ISIC) "
+        " [International Standard Industrial Classification of all Economic Activities,"
+        " Series M No. 4, Rev. 3, United Nations, New York, 1990].",
+    )
+
+    spec["categories"]["1.A.5"]["title"] = "Other"
+
+    spec["categories"]["2.C.4"][
+        "title"
+    ] = "SF6 used in Aluminium and Magnesium Foundries"
+
+    spec["categories"]["5.A.5"]["comment"] = (
+        "Emissions and removals of CO2 from other biomass categories, including"
+        " village and farm trees, etc."
+        " This category"
+        " is intended to account for biomass which is found in locations other than"
+        " the major ecosystem types listed. This includes dispersed trees in villages,"
+        " farms, urban areas, etc., and also includes additional ecosystem types which"
+        " may be important for biomass accounting in specific countries."
+        " Afforestation programmes which create forests will be accounted for in the"
+        " appropriate forest ecosystem category. Afforestation which produces"
+        " dispersed trees, e.g., urban tree planting, would be accounted for in"
+        " “Other.”"
+    )
+
+    spec["categories"]["5.D"]["title"] = "CO2 Emissions and Removals From Soil"
+
     IPCC1996 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC1996.to_yaml(OUTPATH)
     IPCC1996.to_pickle(OUTPATH_PICKLE)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
-
-    # TODO:
-    # * add relationships.
 
 
 if __name__ == "__main__":
