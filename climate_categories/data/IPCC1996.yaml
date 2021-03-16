@@ -5,6 +5,7 @@ comment: IPCC classification of green-house gas emissions and removals into cate
 references: 'IPCC 1996, Revised 1996 IPCC Guidelines for National Greenhouse Gas Inventories:
   Reporting Instructions, Volume 1, Chapter 1.1, pages 1.2ff, https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf'
 institution: IPCC
+hierarchical: yes
 last_update: 1996-09-13
 version: 1996
 total_sum: True

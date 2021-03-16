@@ -290,6 +290,7 @@ def main():
         " https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf",
         "institution": "IPCC",
         "last_update": "1996-09-13",
+        "hierarchical": True,
         "version": "1996",
         "total_sum": "True",
         "categories": categories,
@@ -338,7 +339,6 @@ def main():
     IPCC1996 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC1996.to_yaml(OUTPATH)
-    IPCC1996.to_pickle(OUTPATH_PICKLE)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

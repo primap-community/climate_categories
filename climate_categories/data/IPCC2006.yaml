@@ -5,6 +5,7 @@ references: IPCC 2006, 2006 IPCC Guidelines for National Greenhouse Gas Inventor
   Prepared by the National Greenhouse Gas Inventories Programme, Eggleston H.S., Buendia
   L., Miwa K., Ngara T. and Tanabe K. (eds). Volume 1, Chapter 8, Table 8.2, https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol1.html
 institution: IPCC
+hierarchical: yes
 last_update: 2010-06-30
 version: 2006
 total_sum: True

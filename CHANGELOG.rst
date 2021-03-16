@@ -6,6 +6,9 @@ unreleased
 ----------
 
 * Add IPCC1996 categorization and scripts to generate it from the source pdf.
+* Change packaging to declarative style.
+* Automate generation of pickled files via Makefile.
+* Automate loading of included categorizations.
 
 0.2.2 (2021-03-09)
 ------------------

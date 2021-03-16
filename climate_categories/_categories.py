@@ -208,6 +208,7 @@ class Categorization:
             "references": sy.Str(),
             "institution": sy.Str(),
             "last_update": sy.Str(),
+            "hierarchical": sy.Bool(),
             sy.Optional("version"): sy.Str(),
             "categories": sy.MapPattern(sy.Str(), Category._strictyaml_schema),
         }
@@ -255,6 +256,11 @@ class Categorization:
     @classmethod
     def from_spec(cls, spec: typing.Dict[str, typing.Any]) -> "Categorization":
         """Create Categorization from a Dictionary specification."""
+        if spec["hierarchical"] != cls.hierarchical:
+            raise ValueError(
+                "Specification is for a hierarchical categorization, use"
+                "HierarchicalCategorization.from_spec."
+            )
         last_update = datetime.date.fromisoformat(spec["last_update"])
         return cls(
             categories=spec["categories"],
@@ -268,13 +274,18 @@ class Categorization:
         )
 
     @classmethod
-    def from_pickle(cls, filepath: typing.Union[str, pathlib.Path]) -> "Categorization":
+    def from_pickle(
+        cls, filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+    ) -> "Categorization":
         """De-serialize Categorization from a file written by to_pickle.
 
         Note that this uses the pickle module, which executes arbitrary code in the
         provided file. Only load from pickle files that you trust."""
-        with open(filepath, "rb") as fd:
-            spec = pickle.load(fd)
+        if isinstance(filepath, (str, pathlib.Path)):
+            with open(filepath, "rb") as fd:
+                spec = pickle.load(fd)
+        else:
+            spec = pickle.load(filepath)
         return cls.from_spec(spec)
 
     def to_spec(self) -> typing.Dict[str, typing.Any]:
@@ -292,6 +303,7 @@ class Categorization:
             "comment": self.comment,
             "references": self.references,
             "institution": self.institution,
+            "hierarchical": self.hierarchical,
             "last_update": self.last_update.isoformat(),
         }
         if self.version is not None:
@@ -512,6 +524,7 @@ class HierarchicalCategorization(Categorization):
             "references": sy.Str(),
             "institution": sy.Str(),
             "last_update": sy.Str(),
+            "hierarchical": sy.Bool(),
             sy.Optional("version"): sy.Str(),
             "total_sum": sy.Bool(),
             sy.Optional("canonical_top_level_category"): sy.Str(),
@@ -595,9 +608,7 @@ class HierarchicalCategorization(Categorization):
     ) -> "HierarchicalCategorization":
         """Read HierarchicalCategorization from a StrictYaml file."""
         with open(filepath) as fd:
-            yaml = sy.dirty_load(
-                fd.read(), allow_flow_style=True, schema=cls._strictyaml_schema
-            )
+            yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
         return cls.from_spec(yaml.data)
 
     @classmethod
@@ -605,6 +616,11 @@ class HierarchicalCategorization(Categorization):
         cls, spec: typing.Dict[str, typing.Any]
     ) -> "HierarchicalCategorization":
         """Create Categorization from a Dictionary specification."""
+        if spec["hierarchical"] != cls.hierarchical:
+            raise ValueError(
+                "Specification is for a non-hierarchical categorization, use"
+                "Categorization.from_spec."
+            )
         last_update = datetime.date.fromisoformat(spec["last_update"])
         return cls(
             categories=spec["categories"],
@@ -629,13 +645,14 @@ class HierarchicalCategorization(Categorization):
             Specification dictionary understood by `from_spec`.
         """
         # we can't call Categorization.to_spec here because we need to control ordering
-        # int the returned dict so that we get nicely ordered yaml files.
+        # in the returned dict so that we get nicely ordered yaml files.
         spec = {
             "name": self.name,
             "title": self.title,
             "comment": self.comment,
             "references": self.references,
             "institution": self.institution,
+            "hierarchical": self.hierarchical,
             "last_update": self.last_update.isoformat(),
         }
         if self.version is not None:
@@ -930,3 +947,43 @@ class HierarchicalCategorization(Categorization):
 
         children = [set(children_dict[x]) for x in sorted(children_dict.keys())]
         return children
+
+
+def from_pickle(
+    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+) -> typing.Union[Categorization, HierarchicalCategorization]:
+    """De-serialize Categorization or HierarchicalCategorization from a file written by
+    to_pickle.
+
+    Note that this uses the pickle module, which executes arbitrary code in the
+    provided file. Only load from pickle files that you trust."""
+    if isinstance(filepath, (str, pathlib.Path)):
+        with open(filepath, "rb") as fd:
+            spec = pickle.load(fd)
+    else:
+        spec = pickle.load(filepath)
+
+    return from_spec(spec)
+
+
+def from_spec(
+    spec: typing.Dict[str, typing.Any]
+) -> typing.Union[Categorization, HierarchicalCategorization]:
+    """Create Categorization or HierarchicalCategorization from a dict specification."""
+    if spec["hierarchical"]:
+        return HierarchicalCategorization.from_spec(spec)
+    else:
+        return Categorization.from_spec(spec)
+
+
+def from_yaml(
+    filepath: typing.Union[str, pathlib.Path]
+) -> typing.Union[Categorization, HierarchicalCategorization]:
+    """Read Categorization or HierarchicalCategorization from a StrictYaml file."""
+    with open(filepath) as fd:
+        yaml = sy.load(fd.read())
+    if yaml.data["hierarchical"] == "yes":
+        cls = HierarchicalCategorization
+    else:
+        cls = Categorization
+    return cls.from_yaml(filepath)

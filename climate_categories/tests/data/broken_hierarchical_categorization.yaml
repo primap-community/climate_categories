@@ -4,6 +4,7 @@ comment: A simple hierarchical categorization with categories with relationships
 reefrences: doi:00000/00000
 institution: PIK
 last_update: 2021-02-23
+hierarchical: yes
 version: one
 total_sum: False
 canonical_top_level_category: 0
@@ -14,9 +15,15 @@ categories:
     alternative_codes:
       - TOTAL
     children:
-      - [1, 2, 3]
-      - [0X3, 3]
-      - [1A, 1B, 2, 3]
+      - - 1
+        - 2
+        - 3
+      - - 0X3
+        - 3
+      - - 1A
+        - 1B
+        - 2
+        - 3
   1:
     title: Category 1
     comment: The first category
@@ -27,17 +34,19 @@ categories:
         - B
         - C
     children:
-      - [1A, 1B]
+      - - 1A
+        - 1B
   2:
     title: Category 2
     comment: The second category
     children:
-      - [2A, 2B]
+      - - 2A
+        - 2B
   3:
     title: Category 3
     comment: The third category
     children:
-      - [3A]
+      - - 3A
   1A:
     title: Category 1A
     alternative_codes:
@@ -63,8 +72,10 @@ categories:
     alternative_codes:
       - 0E3
     children:
-      - [1, 2]
+      - - 1
+        - 2
   OT:
     title: Other top category
     children:
-      - [1B, 2B]
+      - - 1B
+        - 2B
