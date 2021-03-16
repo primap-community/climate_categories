@@ -10,7 +10,7 @@ with open("README.rst") as readme_file:
 with open("CHANGELOG.rst") as history_file:
     history = history_file.read()
 
-requirements = ["networkx", "pandas", "strictyaml"]
+requirements = ["networkx", "pandas", "strictyaml", "natsort"]
 
 setup_requirements = [
     "pytest-runner",

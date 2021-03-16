@@ -16,4 +16,5 @@ nbsphinx
 strictyaml
 networkx
 xdoctest
+natsort
 camelot-py[plot,cv]

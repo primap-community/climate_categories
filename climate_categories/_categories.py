@@ -5,6 +5,7 @@ import pathlib
 import pickle
 import typing
 
+import natsort
 import networkx as nx
 import pandas
 import strictyaml as sy
@@ -72,14 +73,7 @@ class Category:
         return code, spec
 
     def __str__(self) -> str:
-        s = "Category "
-        if len(self.codes) == 1:
-            s += f"{self.codes[0]}"
-        else:
-            s += f"{self.codes}"
-        if self.title is not None:
-            s += f" {self.title!r}"
-        return s
+        return f"{self.codes[0]} {self.title}"
 
     def __eq__(self, other: "Category"):
         if not isinstance(other, Category):
@@ -96,6 +90,9 @@ class Category:
 
     def __hash__(self):
         return hash(self.categorization.name + self.codes[0])
+
+    def __lt__(self, other):
+        return self.codes[0] < other.codes[0]
 
 
 class HierarchicalCategory(Category):
@@ -164,20 +161,6 @@ class HierarchicalCategory(Category):
         considered for intermediate categories.
         """
         return self.categorization.level(self)
-
-    def __str__(self) -> str:
-        s = "Category "
-        if len(self.codes) == 1:
-            s += f"{self.codes[0]}"
-        else:
-            s += f"{self.codes}"
-        if self.title is not None:
-            s += f" {self.title!r}"
-        s += (
-            f" children: "
-            f"{[tuple(sorted((c.codes[0] for c in cs))) for cs in self.children]!r}"
-        )
-        return s
 
     def __repr__(self) -> str:
         return f"<HierarchicalCategory {self.codes[0]}>"
@@ -421,7 +404,8 @@ class Categorization:
         else:
             spec["last_update"] = last_update.isoformat()
 
-        spec["categories"].update(categories)
+        if categories is not None:
+            spec["categories"].update(categories)
 
         if alternative_codes is not None:
             for alias, primary in alternative_codes.items():
@@ -671,11 +655,129 @@ class HierarchicalCategorization(Categorization):
 
     @property
     def _canonical_subgraph(self) -> nx.DiGraph:
+        # TODO: from python 3.8 on, there is functools.cached_property to
+        # automatically cache this - as soon as we drop python 3.7 support, we can
+        # easily add it.
         return nx.DiGraph(
             self._graph.edge_subgraph(
                 ((u, v, 0) for (u, v, s) in self._graph.edges(data="set") if s == 0)
             )
         )
+
+    def _show_subtree(
+        self,
+        *,
+        node: HierarchicalCategory,
+        prefix="",
+        last=False,
+        format_func: typing.Callable[[HierarchicalCategory], str] = str,
+        maxdepth: typing.Optional[int],
+    ) -> str:
+        if maxdepth is not None:
+            maxdepth -= 1
+        if prefix:
+            if last:
+                r = f"{prefix[:-1]}╰{format_func(node)}\n"
+            else:
+                r = f"{prefix[:-1]}├{format_func(node)}\n"
+        else:
+            r = f"{format_func(node)}\n"
+
+        if maxdepth is not None and maxdepth == 0:
+            return r
+
+        child_sets = node.children
+        if len(child_sets) == 0:
+            return r
+        elif len(child_sets) == 1:
+            children = child_sets[0]
+            if children:
+                children_sorted = natsort.natsorted(children, key=format_func)
+                for child in children_sorted[:-1]:
+                    r += self._show_subtree(
+                        node=child,
+                        prefix=prefix + "│",
+                        format_func=format_func,
+                        maxdepth=maxdepth,
+                    )
+                r += self._show_subtree(
+                    node=children_sorted[-1],
+                    prefix=prefix + " ",
+                    last=True,
+                    format_func=format_func,
+                    maxdepth=maxdepth,
+                )
+        else:
+            prefix += "║"
+            first = True
+            for children in child_sets:
+                if children:
+                    if first:
+                        r += f"{prefix[:-1]}╠╤══\n"
+                        first = False
+                    else:
+                        r += f"{prefix[:-1]}╠╕\n"
+
+                    children_sorted = natsort.natsorted(children, key=format_func)
+                    for child in children_sorted[:-1]:
+                        r += self._show_subtree(
+                            node=child,
+                            prefix=prefix + "│",
+                            format_func=format_func,
+                            maxdepth=maxdepth,
+                        )
+                    r += self._show_subtree(
+                        node=children_sorted[-1],
+                        prefix=prefix + " ",
+                        last=True,
+                        format_func=format_func,
+                        maxdepth=maxdepth,
+                    )
+            r += f"{prefix[:-1]}╚═══\n"
+
+        return r
+
+    def show_as_tree(
+        self,
+        format_func: typing.Callable[[HierarchicalCategory], str] = str,
+        maxdepth: typing.Optional[int] = None,
+    ) -> str:
+        """Format the hierarchy as a tree.
+
+        Starting from top-level categories (i.e. categories without parents), the full
+        tree of categories is show, with children connected to their parents using
+        lines. If a parent category has one set of children, the children are connected
+        to each other and the parent with a simple line. If a parent category has
+        multiple sets of children, the sets are connected to parent with double lines
+        and the children in a set are connected to each other with simple lines.
+
+        Parameters
+        ----------
+        format_func: callable, optional
+            Function to call to format categories for display. Each category is
+            formatted for display using format_func(category), so format_func should
+            return a string without line breaks, otherwise the tree will look weird.
+            By default, str() is used, so that the first code and the title of the
+            category are used.
+        maxdepth: int, optional
+            Maximum depth to show in the tree. By default, goes to arbitrary depth.
+
+        Returns
+        -------
+        tree_str: str
+            Representation of the hierarchy as formatted string. print() it for optimal
+            viewing.
+        """
+        top_level_nodes = (node for node in self.values() if not node.parents)
+        r = ""
+        for top_level_node in top_level_nodes:
+            r += (
+                self._show_subtree(
+                    node=top_level_node, format_func=format_func, maxdepth=maxdepth
+                )
+                + "\n"
+            )
+        return r
 
     def extend(
         self,
