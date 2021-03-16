@@ -139,6 +139,6 @@ A reminder for the maintainers on how to deploy.
     a release on zenodo.
 5.  Upload the release to pyPI: ``make release``
 6.  Use the new DOI from zenodo to update the citation information and
-    zenodo DOI badge in the README.rst. Commit your changes.
+    zenodo DOI badge in the README.rst.
 7.  To prepare for future development, add a new "unreleased" section to CHANGELOG.rst,
     and commit the result.
