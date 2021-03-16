@@ -38,9 +38,11 @@ servedocs: docs ## compile the docs watching for changes
 
 clean: ## clean up after dist
 	rm -rf dist/
+	rm -rf climate_categories.egg-info/
+	rm -rf build/
 
 release: dist ## package and upload a release
-	twine upload dist/*
+	venv/bin/twine upload dist/*
 
 dist: clean venv pickles ## builds source and wheel package
 	venv/bin/python -m build

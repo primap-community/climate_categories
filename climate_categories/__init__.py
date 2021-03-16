@@ -5,18 +5,19 @@ names of categorizations. To access the example categorization `Excat`, simply u
 
 __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
-__version__ = "0.3.1"
 
 import importlib
 import importlib.resources
 import typing
 
-from . import data, search
+from . import _version, data, search
 from ._categories import Categorization  # noqa: F401
 from ._categories import HierarchicalCategorization  # noqa: F401
 from ._categories import from_pickle  # noqa: F401
 from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
+
+__version__ = _version.version
 
 cats = {}
 
