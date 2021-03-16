@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help update-venv
+.PHONY: clean docs help update-venv pickles
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -14,27 +14,6 @@ export PRINT_HELP_PYSCRIPT
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
-
-clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
-
-clean-build: ## remove build artifacts
-	rm -fr build/
-	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-clean-pyc: ## remove Python file artifacts
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
-
-clean-test: ## remove test and coverage artifacts
-	rm -fr .tox/
-	rm -f .coverage
-	rm -fr htmlcov/
-	rm -fr .pytest_cache
 
 lint: venv ## check style with pre-commit hooks
 	venv/bin/pre-commit run --all-files
@@ -54,12 +33,14 @@ docs: venv ## generate Sphinx HTML documentation
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
+clean: ## clean up after dist
+	rm -rf dist/
+
 release: dist ## package and upload a release
 	twine upload dist/*
 
-dist: clean venv ## builds source and wheel package
-	venv/bin/python setup.py sdist
-	venv/bin/python setup.py bdist_wheel
+dist: clean venv pickles ## builds source and wheel package
+	venv/bin/python -m build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
@@ -67,20 +48,23 @@ install: clean ## install the package to the active Python's site-packages
 
 virtual-environment: venv ## setup a virtual environment for development
 
-venv: requirements_dev.txt setup.py
+venv: setup.py pyproject.toml setup.cfg
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install -r requirements_dev.txt
-	venv/bin/python -m pip install -e .
+	venv/bin/python -m pip install -e .[dev]
 	touch venv
 
 update-venv:
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install -r requirements_dev.txt --upgrade
-	venv/bin/python -m pip install -e .
+	venv/bin/python -m pip install --upgrade -e .[dev]
 	touch venv
 
 install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install
+
+%.pickle: %.yaml
+	venv/bin/python data_generation/convert_yaml_to_pickle.py $< $@
+
+pickles: climate_categories/data/IPCC2006.pickle climate_categories/data/IPCC1996.pickle ## re-generate pickles from yamls
 
 climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py venv
 	venv/bin/python data_generation/IPCC2006.py

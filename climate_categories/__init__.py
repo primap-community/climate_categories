@@ -7,19 +7,26 @@ __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
 __version__ = "0.2.2"
 
-import pathlib
+import importlib
+import importlib.resources
 import typing
 
-from . import search
+from . import data, search
 from ._categories import Categorization  # noqa: F401
 from ._categories import HierarchicalCategorization  # noqa: F401
+from ._categories import from_pickle  # noqa: F401
+from ._categories import from_spec  # noqa: F401
+from ._categories import from_yaml  # noqa: F401
 
-_data_dir = pathlib.Path(__file__).parent / "data"
+cats = {}
 
-IPCC1996 = HierarchicalCategorization.from_pickle(_data_dir / "IPCC1996.pickle")
-IPCC2006 = HierarchicalCategorization.from_pickle(_data_dir / "IPCC2006.pickle")
-
-cats = {"IPCC1996": IPCC1996, "IPCC2006": IPCC2006}
+# read in all categorizations delivered in data/ as pickles
+for resource in importlib.resources.contents(data):
+    if resource.endswith(".pickle"):
+        with importlib.resources.open_binary(data, resource) as fd:
+            _cat = from_pickle(fd)
+            cats[_cat.name] = _cat
+            globals()[_cat.name] = _cat
 
 
 def find(code: str) -> typing.List[typing.Tuple[str, str]]:
@@ -27,6 +34,12 @@ def find(code: str) -> typing.List[typing.Tuple[str, str]]:
     return search.search(code, cats.values())
 
 
-__all__ = ["cats", "Categorization", "HierarchicalCategorization", "find"] + list(
-    cats.keys()
-)
+__all__ = [
+    "cats",
+    "Categorization",
+    "HierarchicalCategorization",
+    "find",
+    "from_pickle",
+    "from_spec",
+    "from_yaml",
+] + list(cats.keys())

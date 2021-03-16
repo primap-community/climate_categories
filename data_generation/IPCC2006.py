@@ -153,6 +153,7 @@ def main():
         " https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol1.html",
         "institution": "IPCC",
         "last_update": "2010-06-30",
+        "hierarchical": True,
         "version": "2006",
         "total_sum": "True",
         "categories": categories,
@@ -246,7 +247,6 @@ def main():
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC2006.to_yaml(OUTPATH)
-    IPCC2006.to_pickle(OUTPATH_PICKLE)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

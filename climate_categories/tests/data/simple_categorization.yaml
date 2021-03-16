@@ -4,6 +4,7 @@ comment: A simple example categorization without relationships between categorie
 references: doi:00000/00000
 institution: PIK
 last_update: 2021-02-23
+hierarchical: no
 version: 1
 categories:
   1:
