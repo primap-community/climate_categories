@@ -2,8 +2,8 @@
 Changelog
 =========
 
-unreleased
-----------
+0.3.0 (2021-03-16)
+------------------
 
 * Add IPCC1996 categorization and scripts to generate it from the source pdf.
 * Change packaging to declarative style.
