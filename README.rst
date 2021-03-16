@@ -10,8 +10,8 @@ Climate categories
         :target: https://climate-categories.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4590233.svg
-        :target: https://doi.org/10.5281/zenodo.4590233
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4608734.svg
+        :target: https://doi.org/10.5281/zenodo.4608734
 
 Commonly used codes, categories, terminologies, and nomenclatures used in climate
 policy analysis in a nice Python package.
@@ -50,6 +50,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, and Johannes Gütschow. (2021, March 9).
-pik-primap/climate_categories: Version 0.2.2.
-Zenodo. http://doi.org/10.5281/zenodo.4590233
+Mika Pflüger, Annika Günther, and Johannes Gütschow. (2021, March 16).
+pik-primap/climate_categories: Version 0.3.0.
+Zenodo. http://doi.org/10.5281/zenodo.4608734
