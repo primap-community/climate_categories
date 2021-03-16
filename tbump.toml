@@ -1,0 +1,45 @@
+# Uncomment this if your project is hosted on GitHub:
+github_url = "https://github.com/pik-primap/climate_categories/"
+
+[version]
+current = "0.3.1"
+
+# Example of a semver regexp.
+# Make sure this matches current_version before
+# using tbump
+regex = '''
+  (?P<major>\d+)
+  \.
+  (?P<minor>\d+)
+  \.
+  (?P<patch>\d+)
+  '''
+
+[git]
+message_template = "Release version {new_version}"
+tag_template = "v{new_version}"
+
+# For each file to patch, add a [[file]] config
+# section containing the path of the file, relative to the
+# tbump.toml location.
+[[file]]
+src = "setup.cfg"
+search = 'version = {current_version}'
+
+[[file]]
+src = "climate_categories/__init__.py"
+search = '__version__ = "{current_version}"'
+
+# You can specify a list of commands to
+# run after the files have been patched
+# and before the git commit is made
+
+[[before_commit]]
+name = "lint"
+cmd = "make lint"
+
+# Or run some commands after the git tag and the branch
+# have been pushed:
+#  [[after_push]]
+#  name = "publish"
+#  cmd = "./publish.sh"
