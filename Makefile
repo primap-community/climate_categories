@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv pickles
+.PHONY: clean docs help update-venv pickles test test-full lint coverage release
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -20,6 +20,9 @@ lint: venv ## check style with pre-commit hooks
 
 test: venv ## run tests quickly with the default Python
 	venv/bin/pytest  --xdoc -rx
+
+test-full: venv ## run tests with all Python versions; needs python versions already set up
+	tox
 
 coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage run --source climate_categories -m pytest
