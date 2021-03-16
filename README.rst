@@ -10,8 +10,8 @@ Climate categories
         :target: https://climate-categories.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4609273.svg
-        :target: https://doi.org/10.5281/zenodo.4609273
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4590232.svg
+        :target: https://doi.org/10.5281/zenodo.4590232
 
 Commonly used codes, categories, terminologies, and nomenclatures used in climate
 policy analysis in a nice Python package.

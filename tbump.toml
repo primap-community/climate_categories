@@ -30,6 +30,10 @@ search = 'version = {current_version}'
 src = "climate_categories/__init__.py"
 search = '__version__ = "{current_version}"'
 
+[[file]]
+src = "README.rst"
+search = 'pik-primap/climate_categories: Version {current_version}.'
+
 # You can specify a list of commands to
 # run after the files have been patched
 # and before the git commit is made

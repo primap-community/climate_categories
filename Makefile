@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv pickles test test-full lint coverage release
+.PHONY: clean docs help update-venv pickles test test-full lint coverage release update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -40,6 +40,10 @@ clean: ## clean up after dist
 	rm -rf dist/
 	rm -rf climate_categories.egg-info/
 	rm -rf build/
+
+update-citation: ## Update the citation information from zenodo
+	venv/bin/python update_citation_info.py
+	git commit -m 'Update citation information from zenodo.'
 
 release: dist ## package and upload a release
 	venv/bin/twine upload dist/*
