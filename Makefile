@@ -43,7 +43,7 @@ clean: ## clean up after dist
 
 update-citation: ## Update the citation information from zenodo
 	venv/bin/python update_citation_info.py
-	git commit -m 'Update citation information from zenodo.'
+	git commit -am 'Update citation information from zenodo.'
 
 release: dist ## package and upload a release
 	venv/bin/twine upload dist/*
