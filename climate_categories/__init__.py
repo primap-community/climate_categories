@@ -47,7 +47,7 @@ __all__ = [
     "cats",
     "Categorization",
     "HierarchicalCategorization",
-    "find",
+    "find_code",
     "from_pickle",
     "from_spec",
     "from_yaml",

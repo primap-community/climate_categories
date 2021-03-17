@@ -14,7 +14,6 @@ URL = (
 )
 INPATH = pathlib.Path("./data_generation/IPCC2006.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006.yaml")
-OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/IPCC2006.pickle")
 
 
 def split_code_name(code_name):
