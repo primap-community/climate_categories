@@ -166,6 +166,10 @@ def main():
         "1A3e"
     ]
 
+    del spec["categories"]["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
+    del spec["categories"]["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
+    del spec["categories"]["1.B.2.b.iii.3"]["info"]["corresponding_categories_IPCC1996"]
+
     spec["categories"]["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
     spec["categories"]["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [
         "2A3",

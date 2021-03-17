@@ -1619,8 +1619,6 @@ categories:
       - CO2
       - CH4
       - NMVOC
-      corresponding_categories_IPCC1996:
-      - 1Bbi
   1.B.2.b.iii.2:
     title: Production
     comment: Fugitive emissions (excluding venting and flaring) from the gas wellhead
@@ -1635,8 +1633,6 @@ categories:
       - CO2
       - CH4
       - NMVOC
-      corresponding_categories_IPCC1996:
-      - 1Bbii
   1.B.2.b.iii.3:
     title: Processing
     comment: Fugitive emissions (excluding venting and flaring) from gas processing
@@ -1648,8 +1644,6 @@ categories:
       - CO2
       - CH4
       - NMVOC
-      corresponding_categories_IPCC1996:
-      - 1Bbiii
   1.B.2.b.iii.4:
     title: Transmission and Storage
     comment: Fugitive emissions from systems used to transport processed natural gas

@@ -1,14 +1,14 @@
-from typing import Iterable, List, Tuple
+from typing import Iterable, Set
 
 from . import _categories
 
 
-def search(
+def search_code(
     code: str, cats: Iterable[_categories.Categorization]
-) -> List[Tuple[str, str]]:
+) -> Set[_categories.Category]:
     """Search for the given code in the given categorizations."""
-    res = []
+    res = set()
     for cat in cats:
-        if code in cat.keys():
-            res.append((cat.name, cat[code]))
+        if code in cat.all_keys():
+            res.add(cat[code])
     return res
