@@ -2,8 +2,8 @@
 Changelog
 =========
 
-unreleased
-----------
+0.4.0 (2021-03-17)
+------------------
 
 * Add more unit tests.
 * Add consistency tests for IPCC categorizations.
