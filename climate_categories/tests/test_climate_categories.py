@@ -1,6 +1,8 @@
 """Tests for `climate_categories` package."""
 
 import datetime
+import importlib
+import importlib.resources
 import pathlib
 
 import pandas as pd
@@ -8,6 +10,8 @@ import pytest
 import strictyaml
 
 import climate_categories
+import climate_categories.tests
+import climate_categories.tests.data
 
 
 class TestSimple:
@@ -37,7 +41,7 @@ class TestSimple:
         assert SimpleCat["1"] == SimpleCat["A"] == SimpleCat["CatA"]
         assert SimpleCat["1"] != SimpleCat["2"]
         assert SimpleCat["unnumbered"].title == "The unnumbered category"
-        assert repr(SimpleCat["1"]) == "<Category 1>"
+        assert repr(SimpleCat["1"]) == "<SimpleCat: '1'>"
         assert str(SimpleCat["1"]) == "1 Category 1"
         assert SimpleCat["1"].info == {
             "important_data": ["A", "B", "C"],
@@ -60,7 +64,42 @@ class TestSimple:
             "unnumbered",
         ]
         assert list(SimpleCat.keys()) == ["1", "2", "3", "unnumbered"]
+        assert list(SimpleCat.items()) == [
+            ("1", SimpleCat["1"]),
+            ("2", SimpleCat["2"]),
+            ("3", SimpleCat["3"]),
+            ("unnumbered", SimpleCat["unnumbered"]),
+        ]
         assert len(SimpleCat) == 4
+
+    def test_comparisons(self, SimpleCat: climate_categories.Categorization):
+        assert list(sorted(SimpleCat.values())) == [
+            SimpleCat["1"],
+            SimpleCat["2"],
+            SimpleCat["3"],
+            SimpleCat["unnumbered"],
+        ]
+
+        assert not SimpleCat["1"] == "1"
+        assert not SimpleCat["1"] == SimpleCat["2"]
+        assert SimpleCat["1"] == SimpleCat["1"]
+        ext = SimpleCat.extend(
+            name="ext",
+            categories={"10": {"title": "ten"}},
+            alternative_codes={"yksi": "1"},
+        )
+        assert SimpleCat["1"] == ext["1"]
+        assert SimpleCat["2"] == ext["2"]
+        assert ext["yksi"] < SimpleCat["2"]
+        assert not ext["yksi"] < SimpleCat["1"]
+
+        assert list(sorted(ext.values())) == [
+            ext["1"],
+            ext["2"],
+            ext["3"],
+            ext["10"],
+            ext["unnumbered"],
+        ]
 
     def test_df(self, SimpleCat: climate_categories.Categorization):
         expected = pd.DataFrame(
@@ -122,7 +161,7 @@ class TestSimple:
         assert SimpleCat_ext["1"] == SimpleCat_ext["A"] == SimpleCat["CatA"]
         assert SimpleCat_ext["1"] != SimpleCat_ext["2"]
         assert SimpleCat_ext["unnumbered"].title == "The unnumbered category"
-        assert repr(SimpleCat_ext["1"]) == "<Category 1>"
+        assert repr(SimpleCat_ext["1"]) == "<SimpleCat_ext: '1'>"
         assert str(SimpleCat_ext["1"]) == "1 Category 1"
 
         assert "A" in SimpleCat_ext
@@ -153,6 +192,35 @@ class TestSimple:
         assert list(SimpleCat_ext.keys()) == ["1", "2", "3", "unnumbered", "4", "t"]
         assert len(SimpleCat_ext) == 6
 
+    def test_extend_defaults(self, SimpleCat: climate_categories.Categorization):
+        a = SimpleCat.extend(name="ext")
+        assert a.name == "SimpleCat_ext"
+        assert a.references == ""
+        assert a.institution == ""
+        assert a.title == "Simple Categorization + ext"
+        assert (
+            a.comment == "A simple example categorization without relationships between"
+            " categories extended by ext"
+        )
+        assert a.last_update == datetime.date.today()
+
+    def test_extend_not_defaults(self, SimpleCat: climate_categories.Categorization):
+        b = SimpleCat.extend(
+            name="ext",
+            title="title",
+            comment="comment",
+            last_update=datetime.date.fromisoformat("2020-02-20"),
+        )
+        assert b.name == "SimpleCat_ext"
+        assert b.references == ""
+        assert b.institution == ""
+        assert b.title == "Simple Categorizationtitle"
+        assert (
+            b.comment == "A simple example categorization without relationships between"
+            " categoriescomment"
+        )
+        assert b.last_update == datetime.date.fromisoformat("2020-02-20")
+
 
 class TestHierarchical:
     def test_meta(self, HierCat: climate_categories.HierarchicalCategorization):
@@ -175,7 +243,7 @@ class TestHierarchical:
         assert HierCat["0"].codes == ("0", "TOTAL")
         assert HierCat["0"] == HierCat["TOTAL"]
         assert HierCat["0"] != HierCat["1"]
-        assert repr(HierCat["0"]) == "<HierarchicalCategory 0>"
+        assert repr(HierCat["0"]) == "<HierCat: '0'>"
         assert str(HierCat["0"]) == "0 Category 0"
         assert HierCat["1"].info == {
             "SomeInfo": "A",
@@ -241,6 +309,19 @@ class TestHierarchical:
             "0X3",
             "OT",
         ]
+        assert list(HierCat.items()) == [
+            ("0", HierCat["0"]),
+            ("1", HierCat["1"]),
+            ("2", HierCat["2"]),
+            ("3", HierCat["3"]),
+            ("1A", HierCat["1A"]),
+            ("1B", HierCat["1B"]),
+            ("2A", HierCat["2A"]),
+            ("2B", HierCat["2B"]),
+            ("3A", HierCat["3A"]),
+            ("0X3", HierCat["0X3"]),
+            ("OT", HierCat["OT"]),
+        ]
         assert len(HierCat) == 11
 
     def test_df(self, HierCat: climate_categories.HierarchicalCategorization):
@@ -284,8 +365,6 @@ class TestHierarchical:
             " extended by ext"
         )
         assert HierCat_ext.hierarchical is True
-
-        self.test_categories(HierCat=HierCat_ext)
 
         assert HierCat_ext["2"].children == [
             {HierCat_ext["2A"], HierCat_ext["2B"]},
@@ -336,6 +415,12 @@ class TestHierarchical:
         ]
         assert len(HierCat_ext) == 13
 
+    def test_extend_new_alternatives(
+        self, HierCat: climate_categories.HierarchicalCategorization
+    ):
+        ext = HierCat.extend(name="ext", alternative_codes={"yksi": "1"})
+        assert ext["yksi"] == HierCat["1"]
+
     def test_roundtrip(self, HierCat, tmpdir):
         f = pathlib.Path(tmpdir) / "thing.yaml"
         HierCat.to_yaml(f)
@@ -353,14 +438,194 @@ class TestHierarchical:
             assert HierCat[key] == ReRead[key]
         assert HierCat == ReRead
 
+    def test_level_error(self, HierCat: climate_categories.HierarchicalCategorization):
+        HierCat.canonical_top_level_category = None
+        with pytest.raises(ValueError, match="Can not calculate the level"):
+            HierCat["1"].level
 
-def test_broken():
-    with pytest.raises(
-        strictyaml.YAMLValidationError,
-        match="unexpected key not in schema 'reefrences'",
-    ):
-        climate_categories.HierarchicalCategorization.from_yaml(
-            pathlib.Path(__file__).parent
-            / "data"
-            / "broken_hierarchical_categorization.yaml"
+    def test_parents_code(self, HierCat):
+        assert HierCat.parents(HierCat["1"]) == HierCat.parents("1")
+
+    def test_children_code(self, HierCat):
+        assert HierCat.children(HierCat["1"]) == HierCat.children("1")
+
+
+def test_compare(HierCat, SimpleCat):
+    assert HierCat != SimpleCat
+    assert HierCat != "HierCat"
+    ext = HierCat.extend(name="ext")
+    assert HierCat != ext
+
+
+class TestShowAsTree:
+    def test_show_as_tree(self, HierCat):
+        assert (
+            HierCat.show_as_tree()
+            == """0 Category 0
+╠╤══
+║├1 Category 1
+║│├1A Category 1A
+║│╰1B Category 1B
+║├2 Category 2
+║│├2A Category 2A
+║│╰2B Category 2B
+║╰3 Category 3
+║ ╰3A Category 3A
+╠╕
+║├0X3 Total excluding category 3
+║│├1 Category 1
+║││├1A Category 1A
+║││╰1B Category 1B
+║│╰2 Category 2
+║│ ├2A Category 2A
+║│ ╰2B Category 2B
+║╰3 Category 3
+║ ╰3A Category 3A
+╠╕
+║├1A Category 1A
+║├1B Category 1B
+║├2 Category 2
+║│├2A Category 2A
+║│╰2B Category 2B
+║╰3 Category 3
+║ ╰3A Category 3A
+╚═══
+
+OT Other top category
+├1B Category 1B
+╰2B Category 2B
+
+"""
         )
+
+    def test_format_func(self, HierCat):
+        assert (
+            HierCat.show_as_tree(format_func=lambda x: x.codes[0])
+            == """0
+╠╤══
+║├1
+║│├1A
+║│╰1B
+║├2
+║│├2A
+║│╰2B
+║╰3
+║ ╰3A
+╠╕
+║├0X3
+║│├1
+║││├1A
+║││╰1B
+║│╰2
+║│ ├2A
+║│ ╰2B
+║╰3
+║ ╰3A
+╠╕
+║├1A
+║├1B
+║├2
+║│├2A
+║│╰2B
+║╰3
+║ ╰3A
+╚═══
+
+OT
+├1B
+╰2B
+
+"""
+        )
+
+    def test_maxdepth(self, HierCat):
+        assert (
+            HierCat.show_as_tree(maxdepth=2)
+            == """0 Category 0
+╠╤══
+║├1 Category 1
+║├2 Category 2
+║╰3 Category 3
+╠╕
+║├0X3 Total excluding category 3
+║╰3 Category 3
+╠╕
+║├1A Category 1A
+║├1B Category 1B
+║├2 Category 2
+║╰3 Category 3
+╚═══
+
+OT Other top category
+├1B Category 1B
+╰2B Category 2B
+
+"""
+        )
+
+
+class TestIO:
+    def test_spec_misses_hierarchical(self, spec_simple):
+        with pytest.raises(KeyError):
+            del spec_simple["hierarchical"]
+            climate_categories.Categorization.from_spec(spec_simple)
+
+    def test_spec_wrong_hierarchical(self, spec_simple, spec_hier):
+        with pytest.raises(
+            ValueError, match="Specification is for a hierarchical categorization"
+        ):
+            climate_categories.Categorization.from_spec(spec_hier)
+
+        with pytest.raises(
+            ValueError, match="Specification is for a non-hierarchical categorization"
+        ):
+            climate_categories.HierarchicalCategorization.from_spec(spec_simple)
+
+    def test_from_spec(self, spec_simple, SimpleCat):
+        fs = climate_categories.from_spec(spec_simple)
+        assert fs == SimpleCat
+        assert fs.keys() == SimpleCat.keys()
+        assert list(fs.values()) == list(SimpleCat.values())
+
+    def test_roundtrip(self, tmpdir, any_cat):
+        any_cat.to_yaml(tmpdir / "any_cat.yaml")
+        any_cat_r = climate_categories.from_yaml(tmpdir / "any_cat.yaml")
+        assert any_cat == any_cat_r
+        assert list(any_cat.values()) == list(any_cat_r.values())
+
+        any_cat.to_pickle(tmpdir / "any_cat.pickle")
+        any_cat_p = climate_categories.from_pickle(tmpdir / "any_cat.pickle")
+        assert any_cat == any_cat_p
+        assert list(any_cat.values()) == list(any_cat_p.values())
+
+        assert climate_categories.from_pickle(
+            tmpdir / "any_cat.pickle"
+        ) == climate_categories.Categorization.from_pickle(tmpdir / "any_cat.pickle")
+
+    def test_roundtrip_hierarchical(self, tmpdir, HierCat):
+        HierCat.to_yaml(tmpdir / "HierCat.yaml")
+        HierCat_r = climate_categories.HierarchicalCategorization.from_yaml(
+            tmpdir / "HierCat.yaml"
+        )
+        assert HierCat == HierCat_r
+
+    def test_broken(self):
+        with pytest.raises(
+            strictyaml.YAMLValidationError,
+            match="unexpected key not in schema 'reefrences'",
+        ):
+            climate_categories.HierarchicalCategorization.from_yaml(
+                importlib.resources.open_text(
+                    climate_categories.tests.data,
+                    "broken_hierarchical_categorization.yaml",
+                )
+            )
+
+    def test_broken_hierarchical(self):
+        with pytest.raises(ValueError, match="'hierarchical' must be 'yes' or 'no'."):
+            climate_categories.from_yaml(
+                importlib.resources.open_text(
+                    climate_categories.tests.data,
+                    "broken_simple_categorization.yaml",
+                )
+            )

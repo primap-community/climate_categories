@@ -5,6 +5,10 @@ Changelog
 unreleased
 ----------
 
+* Add more unit tests.
+* Add consistency tests for IPCC categorizations.
+* Update documentation.
+* Add data format documentation.
 
 0.3.2 (2021-03-16)
 ------------------

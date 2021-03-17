@@ -10,7 +10,6 @@ import climate_categories
 URL = "https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf"
 INPATH = pathlib.Path("./data_generation/IPCC1996.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC1996.yaml")
-OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/IPCC1996.pickle")
 
 
 def parse_pages(fpath, pages, areas, columns) -> list:

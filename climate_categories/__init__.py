@@ -11,34 +11,43 @@ import importlib
 import importlib.resources
 import typing
 
-from . import data, search
-from ._categories import Categorization  # noqa: F401
-from ._categories import HierarchicalCategorization  # noqa: F401
-from ._categories import from_pickle  # noqa: F401
+from . import _categories, data, search
 from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
+from ._categories import Categorization, HierarchicalCategorization, from_pickle
 
 cats = {}
 
-# read in all categorizations delivered in data/ as pickles
-for resource in importlib.resources.contents(data):
-    if resource.endswith(".pickle"):
-        with importlib.resources.open_binary(data, resource) as fd:
-            _cat = from_pickle(fd)
-            cats[_cat.name] = _cat
-            globals()[_cat.name] = _cat
+
+def _read_pickle_hier(name) -> HierarchicalCategorization:
+    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
+        _cat = from_pickle(fd)
+    cats[_cat.name] = _cat
+    return _cat
 
 
-def find(code: str) -> typing.List[typing.Tuple[str, str]]:
-    """Find the given code in all known categorizations."""
-    return search.search(code, cats.values())
+def _read_pickle_nh(name) -> Categorization:
+    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
+        _cat = from_pickle(fd)
+    cats[_cat.name] = _cat
+    return _cat
+
+
+# do this explicitly to help static analysis tools
+IPCC1996 = _read_pickle_hier("IPCC1996")
+IPCC2006 = _read_pickle_hier("IPCC2006")
+
+
+def find_code(code: str) -> typing.Set[_categories.Category]:
+    """Search for the given code in all included categorizations."""
+    return search.search_code(code, cats.values())
 
 
 __all__ = [
     "cats",
     "Categorization",
     "HierarchicalCategorization",
-    "find",
+    "find_code",
     "from_pickle",
     "from_spec",
     "from_yaml",

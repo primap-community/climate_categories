@@ -14,7 +14,6 @@ URL = (
 )
 INPATH = pathlib.Path("./data_generation/IPCC2006.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006.yaml")
-OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/IPCC2006.pickle")
 
 
 def split_code_name(code_name):
@@ -165,6 +164,10 @@ def main():
     spec["categories"]["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = [
         "1A3e"
     ]
+
+    del spec["categories"]["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
+    del spec["categories"]["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
+    del spec["categories"]["1.B.2.b.iii.3"]["info"]["corresponding_categories_IPCC1996"]
 
     spec["categories"]["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
     spec["categories"]["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [

@@ -86,13 +86,17 @@ class Category:
         )
 
     def __repr__(self) -> str:
-        return f"<Category {self.codes[0]}>"
+        return f"<{self.categorization.name}: {self.codes[0]!r}>"
 
     def __hash__(self):
         return hash(self.categorization.name + self.codes[0])
 
     def __lt__(self, other):
-        return self.codes[0] < other.codes[0]
+        s = natsort.natsorted((self.codes[0], other.codes[0]))
+        if s[0] == self.codes[0] and not self == other:
+            return True
+        else:
+            return False
 
 
 class HierarchicalCategory(Category):
@@ -161,9 +165,6 @@ class HierarchicalCategory(Category):
         considered for intermediate categories.
         """
         return self.categorization.level(self)
-
-    def __repr__(self) -> str:
-        return f"<HierarchicalCategory {self.codes[0]}>"
 
 
 class Categorization:
@@ -247,10 +248,15 @@ class Categorization:
         self._add_categories(categories)
 
     @classmethod
-    def from_yaml(cls, filepath: typing.Union[str, pathlib.Path]) -> "Categorization":
+    def from_yaml(
+        cls, filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+    ) -> "Categorization":
         """Read Categorization from a StrictYaml file."""
-        with open(filepath) as fd:
-            yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
+        try:
+            yaml = sy.load(filepath.read(), schema=cls._strictyaml_schema)
+        except AttributeError:
+            with open(filepath) as fd:
+                yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
         return cls.from_spec(yaml.data)
 
     @classmethod
@@ -273,20 +279,15 @@ class Categorization:
             version=spec.get("version", None),
         )
 
-    @classmethod
+    @staticmethod
     def from_pickle(
-        cls, filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
     ) -> "Categorization":
         """De-serialize Categorization from a file written by to_pickle.
 
         Note that this uses the pickle module, which executes arbitrary code in the
         provided file. Only load from pickle files that you trust."""
-        if isinstance(filepath, (str, pathlib.Path)):
-            with open(filepath, "rb") as fd:
-                spec = pickle.load(fd)
-        else:
-            spec = pickle.load(filepath)
-        return cls.from_spec(spec)
+        return from_pickle(filepath)
 
     def to_spec(self) -> typing.Dict[str, typing.Any]:
         """Turn this categorization into a specification dictionary ready to be written
@@ -601,15 +602,6 @@ class HierarchicalCategorization(Categorization):
     def items(self) -> typing.ItemsView[str, HierarchicalCategory]:
         """Iterate over (primary code, category) pairs."""
         return self._primary_code_map.items()
-
-    @classmethod
-    def from_yaml(
-        cls, filepath: typing.Union[str, pathlib.Path]
-    ) -> "HierarchicalCategorization":
-        """Read HierarchicalCategorization from a StrictYaml file."""
-        with open(filepath) as fd:
-            yaml = sy.load(fd.read(), schema=cls._strictyaml_schema)
-        return cls.from_spec(yaml.data)
 
     @classmethod
     def from_spec(
@@ -957,11 +949,11 @@ def from_pickle(
 
     Note that this uses the pickle module, which executes arbitrary code in the
     provided file. Only load from pickle files that you trust."""
-    if isinstance(filepath, (str, pathlib.Path)):
+    try:
+        spec = pickle.load(filepath)
+    except TypeError:
         with open(filepath, "rb") as fd:
             spec = pickle.load(fd)
-    else:
-        spec = pickle.load(filepath)
 
     return from_spec(spec)
 
@@ -977,13 +969,19 @@ def from_spec(
 
 
 def from_yaml(
-    filepath: typing.Union[str, pathlib.Path]
+    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
 ) -> typing.Union[Categorization, HierarchicalCategorization]:
     """Read Categorization or HierarchicalCategorization from a StrictYaml file."""
-    with open(filepath) as fd:
-        yaml = sy.load(fd.read())
+    try:
+        yaml = sy.load(filepath.read())
+        filepath.seek(0)
+    except AttributeError:
+        with open(filepath) as fd:
+            yaml = sy.load(fd.read())
     if yaml.data["hierarchical"] == "yes":
         cls = HierarchicalCategorization
-    else:
+    elif yaml.data["hierarchical"] == "no":
         cls = Categorization
+    else:
+        raise ValueError("'hierarchical' must be 'yes' or 'no'.")
     return cls.from_yaml(filepath)
