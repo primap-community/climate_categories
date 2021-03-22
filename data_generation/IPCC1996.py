@@ -291,7 +291,7 @@ def main():
         "last_update": "1996-09-13",
         "hierarchical": True,
         "version": "1996",
-        "total_sum": "True",
+        "total_sum": True,
         "categories": categories,
     }
 

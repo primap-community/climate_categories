@@ -5,12 +5,12 @@ references: IPCC 2006, 2006 IPCC Guidelines for National Greenhouse Gas Inventor
   Prepared by the National Greenhouse Gas Inventories Programme, Eggleston H.S., Buendia
   L., Miwa K., Ngara T. and Tanabe K. (eds). Volume 1, Chapter 8, Table 8.2, https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol1.html
 institution: IPCC
-hierarchical: yes
-last_update: 2010-06-30
-version: 2006
-total_sum: True
+hierarchical: true
+last_update: '2010-06-30'
+version: '2006'
+total_sum: true
 categories:
-  1:
+  '1':
     title: ENERGY
     comment: This category includes all GHG emissions arising from combustion and
       fugitive releases of fuels. Emissions from the non-energy uses of fuels are
@@ -1796,7 +1796,7 @@ categories:
     info:
       gases:
       - CO2
-  2:
+  '2':
     title: INDUSTRIAL PROCESSES AND PRODUCT USE
     comment: Emissions from industrial processes and product use, excluding those
       related to energy combustion (reported under 1A), extraction, processing and
@@ -2320,7 +2320,7 @@ categories:
       - SF6
       - other halogenated gases
       corresponding_categories_IPCC1996:
-      - 2E1
+      - '2E1'
   2.B.9.b:
     title: Fugitive Emissions
     comment: These are emissions of the principal product from the process to manufacture
@@ -2336,7 +2336,7 @@ categories:
       - SF6
       - other halogenated gases
       corresponding_categories_IPCC1996:
-      - 2E2
+      - '2E2'
   2.B.10:
     title: Other (Please specify)
     comment: For example, gases with global warming potential listed in IPCC assessment
@@ -2542,10 +2542,10 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1
+      - '1'
       - 2A5
       - 2A6
-      - 3
+      - '3'
     children:
     - - 2.D.1
       - 2.D.2
@@ -2560,8 +2560,8 @@ categories:
       gases:
       - CO2
       corresponding_categories_IPCC1996:
-      - 1
-      - 3
+      - '1'
+      - '3'
   2.D.2:
     title: Paraffin Wax Use
     comment: Oil-derived waxes such as petroleum jelly, paraffin waxes and other waxes.
@@ -2573,8 +2573,8 @@ categories:
       - CH4
       - N2O
       corresponding_categories_IPCC1996:
-      - 1
-      - 3
+      - '1'
+      - '3'
   2.D.3:
     title: Solvent Use
     comment: NMVOC emissions from solvent use e.g. in paint application, degreasing
@@ -2636,7 +2636,7 @@ categories:
       in rapidly evolving ways and in varying amounts, which depend on product (e.g.,
       memory or logic devices) and equipment manufacturer.
     alternative_codes:
-    - 2E1
+    - '2E1'
     info:
       gases:
       - CO2
@@ -2654,7 +2654,7 @@ categories:
       display manufacture. In addition to these gases, C2F6, C3F8 and c-C4F8 may also
       be used and emitted during the manufacture of thin and smart displays.
     alternative_codes:
-    - 2E2
+    - '2E2'
     info:
       gases:
       - PFCs
@@ -2667,7 +2667,7 @@ categories:
     title: Photovoltaics
     comment: Photovoltaic cell manufacture may use and emit CF4 and C2F6 among others.
     alternative_codes:
-    - 2E3
+    - '2E3'
     info:
       gases:
       - PFCs
@@ -2683,7 +2683,7 @@ categories:
       used and emitted during IC manufacture, testing and assembly. They are used
       in chillers, temperature shock testers and vapour phase reflow soldering.
     alternative_codes:
-    - 2E4
+    - '2E4'
     info:
       gases:
       - other halogenated gases
@@ -2692,7 +2692,7 @@ categories:
   2.E.5:
     title: Other (please specify)
     alternative_codes:
-    - 2E5
+    - '2E5'
     info:
       gases:
       - CO2
@@ -3148,7 +3148,7 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 2G
-  3:
+  '3':
     title: AGRICULTURE, FORESTRY, AND OTHER LAND USE
     comment: Emissions and removals from forest land, cropland, grassland, wetlands,
       settlements, and other land. Also includes emissions from livestock and manure
@@ -3161,8 +3161,8 @@ categories:
       - N2O
       - CO2
       corresponding_categories_IPCC1996:
-      - 4
-      - 5
+      - '4'
+      - '5'
     children:
     - - 3.A
       - 3.B
@@ -3178,7 +3178,7 @@ categories:
       gases:
       - CH4
       corresponding_categories_IPCC1996:
-      - 4
+      - '4'
     children:
     - - 3.A.1
       - 3.A.2
@@ -3514,7 +3514,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 5
+      - '5'
     children:
     - - 3.B.1
       - 3.B.2
@@ -3834,7 +3834,7 @@ categories:
     - - 3.B.3.a
       - 3.B.3.b
   3.B.3.a:
-    title:
+    title: ''
     comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
       grassland.
     alternative_codes:
@@ -4456,7 +4456,7 @@ categories:
     title: Other (please specify)
     alternative_codes:
     - 3D2
-  4:
+  '4':
     title: WASTE
     info:
       gases:
@@ -4677,11 +4677,11 @@ categories:
       - NMVOC
       corresponding_categories_IPCC1996:
       - 6D
-  5:
+  '5':
     title: Other
     info:
       corresponding_categories_IPCC1996:
-      - 7
+      - '7'
     children:
     - - 5.A
       - 5.B
@@ -4704,4 +4704,4 @@ categories:
     - 5B
     info:
       corresponding_categories_IPCC1996:
-      - 7
+      - '7'

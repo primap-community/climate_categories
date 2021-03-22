@@ -154,7 +154,7 @@ def main():
         "last_update": "2010-06-30",
         "hierarchical": True,
         "version": "2006",
-        "total_sum": "True",
+        "total_sum": True,
         "categories": categories,
     }
 
