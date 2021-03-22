@@ -2,9 +2,10 @@
 Data
 ====
 
-The categorizations included in this package are stored as
-`StrictYaml <https://github.com/crdoconnor/strictyaml>`_ files with a defined schema.
-The exact format is defined here.
+The categorizations included in this package are stored as YAML 1.2 files.
+The data files must only use the subset of YAML's features understood by
+`StrictYaml <https://github.com/crdoconnor/strictyaml>`_.
+The allowed contents are defined here.
 
 Simple Categorizations
 ----------------------
@@ -21,7 +22,7 @@ comment       str   long-form description                      IPCC classificati
 references    str   citable reference(s) and sources           IPCC 2006, 2006 IPCC Guidelines…
 institution   str   where the categorization is from           IPCC
 last_update   str   date of last change in ISO format          2010-06-30
-hierarchical  bool  has to be ``no``                           no
+hierarchical  bool  has to be ``no``, ``false``, or ``False``  no
 version       str   optional                                   2006
 categories    map   see below
 ============  ====  =========================================  ===================================
@@ -42,13 +43,13 @@ alternative_codes  list  optional, alias codes                      ['1A', '1 A'
 info               map   optional, arbitrary metadata               {'gases': ['CO2', 'NH3']}
 =================  ====  =========================================  ===================================
 
-The examples in the table are given in python syntax. An example in StrictYaml syntax
+The examples in the table are given in python syntax. An example in YAML syntax
 would be:
 
 .. code-block:: yaml
 
     categories:
-      1:
+      '1':
         title: ENERGY
         comment: This category includes all GHG emissions arising from combustion and
           fugitive releases of fuels. Emissions from the non-energy uses of fuels are
@@ -82,7 +83,7 @@ meta data fields:
 ============================  ====  =========================================  =======
 Key                           Type  Notes                                      Example
 ----------------------------  ----  -----------------------------------------  -------
-hierarchical                  str   has to be ``yes``                          yes
+hierarchical                  str   has to be ``yes``, ``true``, or ``True``   yes
 total_sum                     bool  if parents are the sum of their children   True
 canonical_top_level_category  str   optional, code of the highest category     TOTAL
 ============================  ====  =========================================  =======
@@ -97,7 +98,7 @@ An example in StrictYaml syntax with two categories would be:
 .. code-block:: yaml
 
     categories:
-      1:
+      '1':
         title: ENERGY
         comment: This category includes all GHG emissions arising from combustion and
           fugitive releases of fuels. Emissions from the non-energy uses of fuels are
