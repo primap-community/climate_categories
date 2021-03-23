@@ -2,11 +2,12 @@
 Changelog
 =========
 
-unreleased
-----------
+0.5.0 (2021-03-23)
+------------------
 
 * Switch ``to_yaml()`` output to ruamel.yaml so that valid, correctly typed YAML 1.2
-  is written.
+  is written. This should enable easier re-use of the data in other contexts.
+* Consistently use title case for titles in IPCC categorizations.
 
 
 0.4.0 (2021-03-17)
