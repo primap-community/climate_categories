@@ -1377,7 +1377,6 @@ categories:
       - 5.A.5
   5.A.1:
     title: Tropical Forests
-    comment: .
     alternative_codes:
     - 5A1
     - 5 A 1
@@ -1432,7 +1431,6 @@ categories:
     - 5 A 1 h
   5.A.2:
     title: Temperate Forests
-    comment: .
     alternative_codes:
     - 5A2
     - 5 A 2
@@ -1463,7 +1461,6 @@ categories:
     - 5 A 2 d
   5.A.3:
     title: Boreal Forests
-    comment: .
     alternative_codes:
     - 5A3
     - 5 A 3

@@ -75,8 +75,8 @@ install-pre-commit: update-venv ## install the pre-commit hooks
 
 pickles: climate_categories/data/IPCC2006.pickle climate_categories/data/IPCC1996.pickle ## re-generate pickles from yamls
 
-climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py
+climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py data_generation/utils.py
 	venv/bin/python data_generation/IPCC2006.py
 
-climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py
+climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py data_generation/utils.py
 	venv/bin/python data_generation/IPCC1996.py

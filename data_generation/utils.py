@@ -14,3 +14,25 @@ def download_cached(url: str, fpath: pathlib.Path):
                 shutil.copyfileobj(r.raw, f)
         else:
             raise FileNotFoundError(f"Could not download {url!r}")
+
+
+def title_case(instr: str) -> str:
+    return (
+        instr.title()
+        .replace(" And ", " and ")
+        .replace(" Of ", " of ")
+        .replace(" On ", " on ")
+        .replace(" Or ", " or ")
+        .replace(" To ", " to ")
+        .replace(" As ", " as ")
+        .replace(" For ", " for ")
+        .replace(" From ", " from ")
+        .replace(" With ", " with ")
+        .replace(" Without ", " without ")
+        .replace("Nox", "NOx")
+        .replace("Nh3", "NH3")
+        .replace("Co2", "CO2")
+        .replace("Sf6", "SF6")
+        .replace("Pfc", "PFC")
+        .replace("Tft", "TFT")
+    )

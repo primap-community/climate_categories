@@ -4,7 +4,7 @@ import itertools
 import pathlib
 
 import camelot
-from utils import download_cached
+from utils import download_cached, title_case
 
 import climate_categories
 
@@ -108,7 +108,7 @@ def main():
             raise ValueError(f"double category? {code_name} -> {code_parts} {title}")
 
         categories[code] = {
-            "title": title.strip(),
+            "title": title_case(title.strip()),
         }
         if comment:
             categories[code]["comment"] = comment
@@ -159,11 +159,14 @@ def main():
     }
 
     # individual fixes to data from pdf
-    spec["categories"]["1"]["title"] = "ENERGY"
-    spec["categories"]["1.A.2.m"]["title"] = "Non-specified Industry"
+    spec["categories"]["1"]["title"] = "Energy"
+    spec["categories"]["1.A.2.m"]["title"] = "Non-Specified Industry"
     spec["categories"]["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = [
         "1A3e"
     ]
+    spec["categories"]["1.A.1.a.ii"][
+        "title"
+    ] = "Combined Heat and Power Generation (CHP)"
 
     del spec["categories"]["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
     del spec["categories"]["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
