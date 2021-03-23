@@ -9,6 +9,7 @@ import natsort
 import networkx as nx
 import pandas
 import strictyaml as sy
+from ruamel.yaml import YAML
 
 
 class Category:
@@ -317,11 +318,12 @@ class Categorization:
         return spec
 
     def to_yaml(self, filepath: typing.Union[str, pathlib.Path]) -> None:
-        """Write to StrictYaml file."""
+        """Write to a YAML file."""
         spec = self.to_spec()
-        doc = sy.as_document(spec, self._strictyaml_schema)
+        yaml = YAML()
+        yaml.default_flow_style = False
         with open(filepath, "w") as fd:
-            fd.write(doc.as_yaml())
+            yaml.dump(spec, fd)
 
     def to_pickle(self, filepath: typing.Union[str, pathlib.Path]) -> None:
         """Serialize to a file using python's pickle."""
@@ -978,10 +980,14 @@ def from_yaml(
     except AttributeError:
         with open(filepath) as fd:
             yaml = sy.load(fd.read())
-    if yaml.data["hierarchical"] == "yes":
+    hier = yaml.data["hierarchical"]
+    if hier in ("yes", "true", "True"):
         cls = HierarchicalCategorization
-    elif yaml.data["hierarchical"] == "no":
+    elif hier in ("no", "false", "False"):
         cls = Categorization
     else:
-        raise ValueError("'hierarchical' must be 'yes' or 'no'.")
+        raise ValueError(
+            f"'hierarchical' must be 'yes', 'true', 'True', 'no', 'false' or 'False',"
+            f" not {hier!r}."
+        )
     return cls.from_yaml(filepath)

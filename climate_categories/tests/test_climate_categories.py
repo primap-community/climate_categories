@@ -622,7 +622,7 @@ class TestIO:
             )
 
     def test_broken_hierarchical(self):
-        with pytest.raises(ValueError, match="'hierarchical' must be 'yes' or 'no'."):
+        with pytest.raises(ValueError, match="'hierarchical' must be "):
             climate_categories.from_yaml(
                 importlib.resources.open_text(
                     climate_categories.tests.data,

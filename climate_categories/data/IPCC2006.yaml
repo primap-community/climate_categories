@@ -5,13 +5,13 @@ references: IPCC 2006, 2006 IPCC Guidelines for National Greenhouse Gas Inventor
   Prepared by the National Greenhouse Gas Inventories Programme, Eggleston H.S., Buendia
   L., Miwa K., Ngara T. and Tanabe K. (eds). Volume 1, Chapter 8, Table 8.2, https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol1.html
 institution: IPCC
-hierarchical: yes
-last_update: 2010-06-30
-version: 2006
-total_sum: True
+hierarchical: true
+last_update: '2010-06-30'
+version: '2006'
+total_sum: true
 categories:
-  1:
-    title: ENERGY
+  '1':
+    title: Energy
     comment: This category includes all GHG emissions arising from combustion and
       fugitive releases of fuels. Emissions from the non-energy uses of fuels are
       generally not included here, but reported under Industrial Processes and Product
@@ -398,7 +398,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A2f
   1.A.2.i:
-    title: Mining (excluding fuels) and Quarrying
+    title: Mining (Excluding Fuels) and Quarrying
     comment: ISIC Divisions 13 and 14.
     alternative_codes:
     - 1A2i
@@ -456,7 +456,7 @@ categories:
       - NMVOC
       - SO2
   1.A.2.m:
-    title: Non-specified Industry
+    title: Non-Specified Industry
     comment: Any manufacturing industry/construction not included above or for which
       separate data are not available. Includes ISIC Divisions 25, 33, 36 and 37.
     alternative_codes:
@@ -611,7 +611,7 @@ categories:
     - - 1.A.3.b.i.1
       - 1.A.3.b.i.2
   1.A.3.b.i.1:
-    title: Passenger Cars With 3-way Catalysts
+    title: Passenger Cars with 3-Way Catalysts
     comment: Emissions from passenger car vehicles with 3-way catalysts.
     alternative_codes:
     - 1A3bi1
@@ -627,7 +627,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3bi
   1.A.3.b.i.2:
-    title: Passenger Cars Without 3-way Catalysts
+    title: Passenger Cars without 3-Way Catalysts
     comment: Passenger car emissions from vehicles without 3-way catalysts.
     alternative_codes:
     - 1A3bi2
@@ -643,7 +643,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3bi
   1.A.3.b.ii:
-    title: Light-duty Trucks
+    title: Light-Duty Trucks
     comment: Emissions from vehicles so designated in the vehicle registering country
       primarily for transportation of light- weight cargo or which are equipped with
       special features such as four-wheel drive for off-road operation. The gross
@@ -666,7 +666,7 @@ categories:
     - - 1.A.3.b.ii.1
       - 1.A.3.b.ii.2
   1.A.3.b.ii.1:
-    title: Light-duty Trucks With 3-way Catalysts
+    title: Light-Duty Trucks with 3-Way Catalysts
     comment: Emissions from light duty trucks with 3-way catalysts.
     alternative_codes:
     - 1A3bii1
@@ -682,7 +682,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3bii
   1.A.3.b.ii.2:
-    title: Light-duty Trucks Without 3-way Catalysts
+    title: Light-Duty Trucks without 3-Way Catalysts
     comment: Emissions from light duty trucks without 3-way catalysts.
     alternative_codes:
     - 1A3bii2
@@ -698,7 +698,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3bii
   1.A.3.b.iii:
-    title: Heavy-duty Trucks and Buses
+    title: Heavy-Duty Trucks and Buses
     comment: Emissions from any vehicles so designated in the vehicle registering
       country. Normally the gross vehicle weight ranges from 3500-3900 kg or more
       for heavy duty trucks and the buses are rated to carry more than 12 persons.
@@ -750,7 +750,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3bv
   1.A.3.b.vi:
-    title: Urea-based Catalysts
+    title: Urea-Based Catalysts
     comment: CO2 emissions from use of urea-based additives in catalytic converters
       (non-combustive emissions).
     alternative_codes:
@@ -782,7 +782,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3c
   1.A.3.d:
-    title: Water-borne Navigation
+    title: Water-Borne Navigation
     comment: Emissions from fuels used to propel water-borne vessels, including hovercraft
       and hydrofoils, but excluding fishing vessels. The international/domestic split
       should be determined on the basis of port of departure and port of arrival,
@@ -804,7 +804,7 @@ categories:
     - - 1.A.3.d.i
       - 1.A.3.d.ii
   1.A.3.d.i:
-    title: International Water-borne Navigation (International Bunkers)
+    title: International Water-Borne Navigation (International Bunkers)
     comment: Emissions from fuels used by vessels of all flags that are engaged in
       international water-borne navigation. The international navigation may take
       place at sea, on inland lakes and waterways and in coastal waters.  Includes
@@ -828,7 +828,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3di
   1.A.3.d.ii:
-    title: Domestic Water-borne Navigation
+    title: Domestic Water-Borne Navigation
     comment: Emissions from fuels used by vessels of all flags that depart and arrive
       in the same country (exclude fishing, which should be reported under 1 A 4 c
       iii, and military, which should be reported under 1 A 5 b). Note that this may
@@ -891,7 +891,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3e
   1.A.3.e.ii:
-    title: Off-road
+    title: Off-Road
     comment: Combustion emissions from Other Transportation excluding Pipeline Transport.
     alternative_codes:
     - 1A3eii
@@ -1002,7 +1002,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A4ci
   1.A.4.c.ii:
-    title: Off-road Vehicles and Other Machinery
+    title: Off-Road Vehicles and Other Machinery
     comment: Emissions from fuels combusted in traction vehicles on farm land and
       in forests.
     alternative_codes:
@@ -1019,7 +1019,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1A3e
   1.A.4.c.iii:
-    title: Fishing (mobile combustion)
+    title: Fishing (Mobile Combustion)
     comment: Emissions from fuels combusted for inland, coastal and deep-sea fishing.
       Fishing should cover vessels of all flags that have refuelled in the country
       (include international fishing).
@@ -1118,7 +1118,7 @@ categories:
       - NMVOC
       - SO2
   1.A.5.b.ii:
-    title: Mobile (Water-borne Component)
+    title: Mobile (Water-Borne Component)
     comment: All remaining water-borne emissions from fuel combustion that are not
       specified elsewhere. Include emissions from fuel delivered to the country’s
       military not otherwise included separately in 1 A3 d i as well as fuel delivered
@@ -1246,7 +1246,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 1B1ai
   1.B.1.a.i.2:
-    title: Post-mining Seam Gas Emissions
+    title: Post-Mining Seam Gas Emissions
     comment: Includes methane and CO2 emitted after coal has been mined, brought to
       the surface and subsequently processed, stored and transported.
     alternative_codes:
@@ -1306,7 +1306,7 @@ categories:
       - CO2
       - CH4
   1.B.1.a.ii.2:
-    title: Post-mining Seam Gas Emissions
+    title: Post-Mining Seam Gas Emissions
     comment: Includes methane and CO2 emitted after coal has been mined, subsequently
       processed, stored and transported.
     alternative_codes:
@@ -1752,7 +1752,7 @@ categories:
       gases:
       - CO2
   1.C.1.c:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Fugitive emissions from other systems used to transport CO2 to the injection
       site and temporary storage
     alternative_codes:
@@ -1796,8 +1796,8 @@ categories:
     info:
       gases:
       - CO2
-  2:
-    title: INDUSTRIAL PROCESSES AND PRODUCT USE
+  '2':
+    title: Industrial Processes and Product Use
     comment: Emissions from industrial processes and product use, excluding those
       related to energy combustion (reported under 1A), extraction, processing and
       transport of fuels (reported under 1B) and CO2 transport, injection and storage
@@ -1952,7 +1952,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2A3
   2.A.4.d:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Process-related emissions reported under this sub-category should include
       all other miscellaneous uses of limestone, dolomite and other carbonates, except
       from uses already listed in the sub-categories above, and uses as fluxes or
@@ -1971,7 +1971,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2A3
   2.A.5:
-    title: Other (please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 2A5
     info:
@@ -2305,7 +2305,7 @@ categories:
     - - 2.B.9.a
       - 2.B.9.b
   2.B.9.a:
-    title: By-product Emissions
+    title: By-Product Emissions
     comment: Fluorochemical Production covers the complete range of fluorochemicals,
       whether or not the principal products are greenhouse gases. Emissions encompass
       HFCs, PFCs, SF6 and all other halogenated gases with global warming potential
@@ -2320,7 +2320,7 @@ categories:
       - SF6
       - other halogenated gases
       corresponding_categories_IPCC1996:
-      - 2E1
+      - '2E1'
   2.B.9.b:
     title: Fugitive Emissions
     comment: These are emissions of the principal product from the process to manufacture
@@ -2336,9 +2336,9 @@ categories:
       - SF6
       - other halogenated gases
       corresponding_categories_IPCC1996:
-      - 2E2
+      - '2E2'
   2.B.10:
-    title: Other (Please specify)
+    title: Other (Please Specify)
     comment: For example, gases with global warming potential listed in IPCC assessment
       reports that do not fall within any categories above could be reported here,
       if they are estimated.
@@ -2508,7 +2508,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2C5
   2.C.7:
-    title: Other (please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 2C7
     info:
@@ -2542,10 +2542,10 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1
+      - '1'
       - 2A5
       - 2A6
-      - 3
+      - '3'
     children:
     - - 2.D.1
       - 2.D.2
@@ -2560,8 +2560,8 @@ categories:
       gases:
       - CO2
       corresponding_categories_IPCC1996:
-      - 1
-      - 3
+      - '1'
+      - '3'
   2.D.2:
     title: Paraffin Wax Use
     comment: Oil-derived waxes such as petroleum jelly, paraffin waxes and other waxes.
@@ -2573,8 +2573,8 @@ categories:
       - CH4
       - N2O
       corresponding_categories_IPCC1996:
-      - 1
-      - 3
+      - '1'
+      - '3'
   2.D.3:
     title: Solvent Use
     comment: NMVOC emissions from solvent use e.g. in paint application, degreasing
@@ -2589,7 +2589,7 @@ categories:
       - 3A
       - 3B
   2.D.4:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: For example, CH4, CO and NMVOC emissions from asphalt production and
       use (including asphalt blowing), as well as NMVOC emissions from the use of
       other chemical products than solvents should be contained here, if relevant.
@@ -2636,7 +2636,7 @@ categories:
       in rapidly evolving ways and in varying amounts, which depend on product (e.g.,
       memory or logic devices) and equipment manufacturer.
     alternative_codes:
-    - 2E1
+    - '2E1'
     info:
       gases:
       - CO2
@@ -2654,7 +2654,7 @@ categories:
       display manufacture. In addition to these gases, C2F6, C3F8 and c-C4F8 may also
       be used and emitted during the manufacture of thin and smart displays.
     alternative_codes:
-    - 2E2
+    - '2E2'
     info:
       gases:
       - PFCs
@@ -2667,7 +2667,7 @@ categories:
     title: Photovoltaics
     comment: Photovoltaic cell manufacture may use and emit CF4 and C2F6 among others.
     alternative_codes:
-    - 2E3
+    - '2E3'
     info:
       gases:
       - PFCs
@@ -2683,16 +2683,16 @@ categories:
       used and emitted during IC manufacture, testing and assembly. They are used
       in chillers, temperature shock testers and vapour phase reflow soldering.
     alternative_codes:
-    - 2E4
+    - '2E4'
     info:
       gases:
       - other halogenated gases
       corresponding_categories_IPCC1996:
       - 2F6
   2.E.5:
-    title: Other (please specify)
+    title: Other (Please Specify)
     alternative_codes:
-    - 2E5
+    - '2E5'
     info:
       gases:
       - CO2
@@ -2869,7 +2869,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2F5
   2.F.6:
-    title: Other Applications (please specify)
+    title: Other Applications (Please Specify)
     comment: The properties of ozone depleting substances have made them attractive
       for a variety of niche applications not covered in other sub-source categories.
       These include electronics testing, heat transfer, dielectric fluid and medical
@@ -2891,7 +2891,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2F6
   2.G:
-    title: OTHER PRODUCT MANUFACTURE AND USE
+    title: Other Product Manufacture and Use
     alternative_codes:
     - 2G
     info:
@@ -3009,7 +3009,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2F6
   2.G.2.c:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: This source includes adiabatic uses, sound-proof glazing, PFCs used as
       heat transfer fluids in consumer and commercial applications, PFCs used in cosmetic
       and medical applications, and PFCs and SF6 used as tracers.
@@ -3063,7 +3063,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 3D
   2.G.3.c:
-    title: Other (Please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 2G3c
     info:
@@ -3072,7 +3072,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 3D
   2.G.4:
-    title: Other (Please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 2G4
     info:
@@ -3134,7 +3134,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 2D2
   2.H.3:
-    title: Other (please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 2H3
     info:
@@ -3148,8 +3148,8 @@ categories:
       - SO2
       corresponding_categories_IPCC1996:
       - 2G
-  3:
-    title: AGRICULTURE, FORESTRY, AND OTHER LAND USE
+  '3':
+    title: Agriculture, Forestry, and Other Land Use
     comment: Emissions and removals from forest land, cropland, grassland, wetlands,
       settlements, and other land. Also includes emissions from livestock and manure
       management, emissions from managed soils, and emissions from liming and urea
@@ -3161,8 +3161,8 @@ categories:
       - N2O
       - CO2
       corresponding_categories_IPCC1996:
-      - 4
-      - 5
+      - '4'
+      - '5'
     children:
     - - 3.A
       - 3.B
@@ -3178,7 +3178,7 @@ categories:
       gases:
       - CH4
       corresponding_categories_IPCC1996:
-      - 4
+      - '4'
     children:
     - - 3.A.1
       - 3.A.2
@@ -3312,7 +3312,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 4A8
   3.A.1.j:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Methane emissions from other livestock (e.g.  alpacas, llamas, deer,
       reindeer, etc.).
     alternative_codes:
@@ -3482,7 +3482,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 4B9
   3.A.2.j:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Methane and nitrous oxide emissions from the decomposition of manure
       from other livestock (e.g. alpacas, llamas, deer, reindeer, fur-bearing animals,
       ostriches, etc.)
@@ -3514,7 +3514,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 5
+      - '5'
     children:
     - - 3.B.1
       - 3.B.2
@@ -3549,7 +3549,7 @@ categories:
     - - 3.B.1.a
       - 3.B.1.b
   3.B.1.a:
-    title: Forest land Remaining Forest Land
+    title: Forest Land Remaining Forest Land
     comment: Emissions and removals from managed forests and plantations which have
       always been under forest land use or other land categories converted to forest
       over 20 years ago (default assumption).
@@ -3834,7 +3834,7 @@ categories:
     - - 3.B.3.a
       - 3.B.3.b
   3.B.3.a:
-    title:
+    title: ''
     comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
       grassland.
     alternative_codes:
@@ -3997,7 +3997,7 @@ categories:
     - - 3.B.4.a.i
       - 3.B.4.a.ii
   3.B.4.a.i:
-    title: Peatlands Remaining peatlands
+    title: Peatlands Remaining Peatlands
     comment: Includes (1) on-site emissions from peat deposits during the extraction
       phase and (2) off-site emissions from horticultural use of peat. The off-site
       emissions from the energy use of peat are reported in the Energy Sector and
@@ -4308,7 +4308,7 @@ categories:
       - 3.C.1.c
       - 3.C.1.d
   3.C.1.a:
-    title: Biomass Burning in Forest Lands
+    title: Biomass Burning In Forest Lands
     comment: Emissions from biomass burning that include N2O and CH4 in forest lands.
       CO2 emissions are included here only if emissions are not included in 3B1 categories
       as carbon stock changes.
@@ -4320,7 +4320,7 @@ categories:
       - CH4
       - CO2
   3.C.1.b:
-    title: Biomass Burning in Croplands
+    title: Biomass Burning In Croplands
     comment: Emissions from biomass burning that include N2O and CH4 in croplands.
       CO2 emissions are included here only if emissions are not included in 3B2 categories
       as carbon stock changes.
@@ -4344,7 +4344,7 @@ categories:
       - CH4
       - CO2
   3.C.1.d:
-    title: Biomass Burning in All Other Land
+    title: Biomass Burning In All Other Land
     comment: Emissions from biomass burning that include N2O and CH4 in settlements,
       and all other land. CO2 emissions are included here only if emissions are not
       included in 3B6 categories as carbon stock changes.
@@ -4429,7 +4429,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 4C
   3.C.8:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Other sources of CH4 and N2O emissions on land.
     alternative_codes:
     - 3C8
@@ -4453,11 +4453,11 @@ categories:
       gases:
       - CO2
   3.D.2:
-    title: Other (please specify)
+    title: Other (Please Specify)
     alternative_codes:
     - 3D2
-  4:
-    title: WASTE
+  '4':
+    title: Waste
     info:
       gases:
       - CO2
@@ -4662,7 +4662,7 @@ categories:
       corresponding_categories_IPCC1996:
       - 6B1
   4.E:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Release of GHGs from other waste handling activities than listed in categories
       4A to 4D.
     alternative_codes:
@@ -4677,16 +4677,16 @@ categories:
       - NMVOC
       corresponding_categories_IPCC1996:
       - 6D
-  5:
+  '5':
     title: Other
     info:
       corresponding_categories_IPCC1996:
-      - 7
+      - '7'
     children:
     - - 5.A
       - 5.B
   5.A:
-    title: Indirect N2O Emissions from the Atmospheric Deposition of Nitrogen in NOx
+    title: Indirect N2O Emissions from The Atmospheric Deposition of Nitrogen In NOx
       and NH3
     comment: Excluding indirect emissions from NOx and NH3 in agriculture which are
       reported in 3C5 & 3C6.
@@ -4696,7 +4696,7 @@ categories:
       gases:
       - N2O
   5.B:
-    title: Other (please specify)
+    title: Other (Please Specify)
     comment: Only use this category exceptionally, for any categories than cannot
       be accommodated in the categories described above. Include a reference to where
       a detailed explanation of the category can be found.
@@ -4704,4 +4704,4 @@ categories:
     - 5B
     info:
       corresponding_categories_IPCC1996:
-      - 7
+      - '7'

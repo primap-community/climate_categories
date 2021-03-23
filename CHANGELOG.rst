@@ -5,6 +5,9 @@ Changelog
 unreleased
 ----------
 
+* Switch ``to_yaml()`` output to ruamel.yaml so that valid, correctly typed YAML 1.2
+  is written.
+
 
 0.4.0 (2021-03-17)
 ------------------

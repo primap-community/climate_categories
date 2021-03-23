@@ -5,12 +5,12 @@ comment: IPCC classification of green-house gas emissions and removals into cate
 references: 'IPCC 1996, Revised 1996 IPCC Guidelines for National Greenhouse Gas Inventories:
   Reporting Instructions, Volume 1, Chapter 1.1, pages 1.2ff, https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf'
 institution: IPCC
-hierarchical: yes
-last_update: 1996-09-13
-version: 1996
-total_sum: True
+hierarchical: true
+last_update: '1996-09-13'
+version: '1996'
+total_sum: true
 categories:
-  1:
+  '1':
     title: Energy
     comment: Total emission of all greenhouse gases from stationary and mobile energy
       activities (fuel combustion as well as fugitive fuel emissions). Sum of categories
@@ -667,7 +667,7 @@ categories:
     alternative_codes:
     - 1B2ciii
     - 1 B 2 c iii
-  2:
+  '2':
     title: Industrial Processes
     comment: Emissions within this sector comprise by-product or fugitive emissions
       of greenhouse gases from industrial processes. Emissions from fuel combustion
@@ -848,18 +848,18 @@ categories:
   2.E.1:
     title: By-Product Emissions
     alternative_codes:
-    - 2E1
+    - '2E1'
     - 2 E 1
   2.E.2:
     title: Fugitive Emissions
     alternative_codes:
-    - 2E2
+    - '2E2'
     - 2 E 2
   2.E.3:
     title: Other
     comment: Please specify.
     alternative_codes:
-    - 2E3
+    - '2E3'
     - 2 E 3
   2.F:
     title: Consumption of Halocarbons and Sulphur Hexafluoride
@@ -909,7 +909,7 @@ categories:
     alternative_codes:
     - 2G
     - 2 G
-  3:
+  '3':
     title: Solvent and Other Product Use
     comment: This category covers mainly NMVOC emissions resulting from the use of
       solvents and other products containing volatile compounds. When the solvents
@@ -946,7 +946,7 @@ categories:
     alternative_codes:
     - 3D
     - 3 D
-  4:
+  '4':
     title: Agriculture
     comment: Describes all anthropogenic emissions from this sector except for fuel
       combustion and sewage emissions, which are covered in Energy 1 A and Waste 6
@@ -1347,7 +1347,7 @@ categories:
     alternative_codes:
     - 4G
     - 4 G
-  5:
+  '5':
     title: Land-Use Change & Forestry
     comment: 'Total emissions and removals from forest and land use change activities
       as described below. These activities have an impact on three different carbon
@@ -1377,7 +1377,6 @@ categories:
       - 5.A.5
   5.A.1:
     title: Tropical Forests
-    comment: .
     alternative_codes:
     - 5A1
     - 5 A 1
@@ -1432,7 +1431,6 @@ categories:
     - 5 A 1 h
   5.A.2:
     title: Temperate Forests
-    comment: .
     alternative_codes:
     - 5A2
     - 5 A 2
@@ -1463,7 +1461,6 @@ categories:
     - 5 A 2 d
   5.A.3:
     title: Boreal Forests
-    comment: .
     alternative_codes:
     - 5A3
     - 5 A 3
@@ -1702,7 +1699,7 @@ categories:
     alternative_codes:
     - 5E
     - 5 E
-  6:
+  '6':
     title: Waste
     comment: Total emissions from solid waste disposal on land, wastewater, waste
       incineration and any other waste management activity. Any emissions from fossil-based
@@ -1802,7 +1799,7 @@ categories:
     alternative_codes:
     - 6D
     - 6 D
-  7:
+  '7':
     title: Other
     comment: Efforts should be made to fit all emission sources/sinks into the six
       categories described above. If it is impossible to do so, however, this category

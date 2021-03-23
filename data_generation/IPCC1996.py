@@ -3,7 +3,7 @@
 import pathlib
 
 import camelot
-from utils import download_cached
+from utils import download_cached, title_case
 
 import climate_categories
 
@@ -218,18 +218,6 @@ def parse_codes(rows):
     return cats_raw
 
 
-def title_case(instr: str) -> str:
-    return (
-        instr.title()
-        .replace(" And ", " and ")
-        .replace(" Of ", " of ")
-        .replace(" On ", " on ")
-        .replace(" From ", " from ")
-        .replace(" With ", " with ")
-        .replace(" Without ", " without ")
-    )
-
-
 def parse_categories(cats_raw):
     cats = {}
     for (code, title, definition) in cats_raw:
@@ -247,7 +235,7 @@ def parse_categories(cats_raw):
         spec = {
             "title": title,
         }
-        if definition:
+        if definition and definition.strip() != ".":
             spec["comment"] = definition
         if altcode != code:
             spec["alternative_codes"] = [altcode, altcode2]
@@ -291,7 +279,7 @@ def main():
         "last_update": "1996-09-13",
         "hierarchical": True,
         "version": "1996",
-        "total_sum": "True",
+        "total_sum": True,
         "categories": categories,
     }
 
