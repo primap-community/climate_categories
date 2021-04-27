@@ -15,15 +15,15 @@ repos:
       - id: detect-private-key
       - id: mixed-line-ending
   - repo: https://github.com/psf/black
-    rev: '20.8b1'
+    rev: '21.4b0'
     hooks:
       - id: black
   - repo: https://github.com/keewis/blackdoc
     rev: v0.3.3
     hooks:
       - id: blackdoc
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: '3.8.4'
+  - repo: https://github.com/PyCQA/flake8
+    rev: '3.9.1'
     hooks:
       - id: flake8
   - repo: https://github.com/PyCQA/doc8
@@ -31,16 +31,16 @@ repos:
     hooks:
       - id: doc8
   - repo: https://github.com/PyCQA/isort
-    rev: '5.7.0'
+    rev: '5.8.0'
     hooks:
       - id: isort
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: '0.5.6'
+    rev: '0.7.0'
     hooks:
       - id: nbqa-black
         args: [ --nbqa-mutate, --line-length=75 ]
       - id: nbqa-check-ast
   - repo: https://github.com/asottile/blacken-docs
-    rev: 'v1.9.1'
+    rev: 'v1.10.0'
     hooks:
       - id: blacken-docs
