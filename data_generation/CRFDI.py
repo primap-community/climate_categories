@@ -69,7 +69,7 @@ def parse_categories(r):
             categories[code]["info"] = {}
         if "numerical_ids" not in categories[code]["info"]:
             categories[code]["info"]["numerical_ids"] = []
-        categories[code]["info"]["numerical_ids"].append(int(category_id))
+        categories[code]["info"]["numerical_ids"].append(str(category_id))
 
     return categories
 
@@ -79,12 +79,12 @@ def add_relationships(r, categories):
         child_codes = []
         for nid in categories[code]["info"]["numerical_ids"]:
             try:
-                for child in r.annex_one_reader.category_tree.children(nid):
+                for child in r.annex_one_reader.category_tree.children(int(nid)):
                     try:
                         child_code = [
                             xcode
                             for xcode, x in categories.items()
-                            if child.identifier in x["info"]["numerical_ids"]
+                            if str(int(child.identifier)) in x["info"]["numerical_ids"]
                         ][0]
                         child_codes.append(child_code)
                     except IndexError:  # child code is not used in the data, discard

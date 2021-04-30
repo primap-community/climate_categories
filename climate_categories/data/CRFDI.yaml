@@ -13,12 +13,12 @@ categories:
     title: CO₂ Emissions from Biomass
     info:
       numerical_ids:
-      - 8270
+      - '8270'
   '8564':
     title: International Bunkers
     info:
       numerical_ids:
-      - 8564
+      - '8564'
     children:
     - - '10357'
       - '8828'
@@ -26,7 +26,7 @@ categories:
     title: Total GHG emissions with LULUCF
     info:
       numerical_ids:
-      - 8677
+      - '8677'
     children:
     - - '1'
       - '2'
@@ -38,22 +38,22 @@ categories:
     title: International Navigation
     info:
       numerical_ids:
-      - 8828
+      - '8828'
   '8987':
     title: Multilateral Operations
     info:
       numerical_ids:
-      - 8987
+      - '8987'
   '10357':
     title: International Aviation
     info:
       numerical_ids:
-      - 10357
+      - '10357'
   '10464':
     title: Total GHG emissions without LULUCF
     info:
       numerical_ids:
-      - 10464
+      - '10464'
     children:
     - - '1'
       - '2'
@@ -64,82 +64,82 @@ categories:
     title: Total GHG emissions without LULUCF including indirect CO₂
     info:
       numerical_ids:
-      - 10479
+      - '10479'
   '10480':
     title: Total GHG emissions with LULUCF including indirect CO₂
     info:
       numerical_ids:
-      - 10480
+      - '10480'
   '10502':
     title: Total land area
     info:
       numerical_ids:
-      - 10502
+      - '10502'
   '10503':
     title: GDP
     info:
       numerical_ids:
-      - 10503
+      - '10503'
   '10504':
     title: Total population
     info:
       numerical_ids:
-      - 10504
+      - '10504'
   '11023':
     title: Long-term Storage of C in Waste Disposal Sites
     info:
       numerical_ids:
-      - 11023
+      - '11023'
   '11024':
     title: Annual Change in Total Long-term C Storage
     info:
       numerical_ids:
-      - 11024
+      - '11024'
   '11025':
     title: Annual Change in Total Long-term C Storage in HWP Waste
     info:
       numerical_ids:
-      - 11025
+      - '11025'
   '11027':
     title: Waste Incineration with Energy Recovery included as Biomass
     info:
       numerical_ids:
-      - 11027
+      - '11027'
   '11028':
     title: Waste Incineration with Energy Recovery included as Fossil Fuels
     info:
       numerical_ids:
-      - 11028
+      - '11028'
   '11030':
     title: Total Amount Captured for Storage
     info:
       numerical_ids:
-      - 11030
+      - '11030'
   '11031':
     title: Total Amount of Imports for Storage
     info:
       numerical_ids:
-      - 11031
+      - '11031'
   '11032':
     title: Total Amount of Exports for Storage
     info:
       numerical_ids:
-      - 11032
+      - '11032'
   '11033':
     title: Total Amount of CO₂ Injected at Storage Sites
     info:
       numerical_ids:
-      - 11033
+      - '11033'
   '11034':
     title: Total Leakage from Transport, Injection and Storage
     info:
       numerical_ids:
-      - 11034
+      - '11034'
   '11036':
     title: HWP in SWDS
     info:
       numerical_ids:
-      - 11036
+      - '11036'
   '1':
     title: Energy
     alternative_codes:
@@ -148,8 +148,8 @@ categories:
     - '10481'
     info:
       numerical_ids:
-      - 8819
-      - 10481
+      - '8819'
+      - '10481'
     children:
     - - 1.AA
       - 1.AB
@@ -164,7 +164,7 @@ categories:
     - 1 A 1
     info:
       numerical_ids:
-      - 10402
+      - '10402'
     children:
     - - 1.A.1.a
       - 1.A.1.b
@@ -177,7 +177,7 @@ categories:
     - 1 A 1 a
     info:
       numerical_ids:
-      - 9422
+      - '9422'
     children:
     - - 1.A.1.a.i
       - 1.A.1.a.ii
@@ -191,7 +191,7 @@ categories:
     - 1 A 1 a i
     info:
       numerical_ids:
-      - 8616
+      - '8616'
   1.A.1.a.ii:
     title: Combined Heat and Power Generation
     alternative_codes:
@@ -200,7 +200,7 @@ categories:
     - 1 A 1 a ii
     info:
       numerical_ids:
-      - 9614
+      - '9614'
   1.A.1.a.iii:
     title: Heat Plants
     alternative_codes:
@@ -209,7 +209,7 @@ categories:
     - 1 A 1 a iii
     info:
       numerical_ids:
-      - 9971
+      - '9971'
   1.A.1.a.iv:
     title: Other
     alternative_codes:
@@ -218,7 +218,7 @@ categories:
     - 1 A 1 a iv
     info:
       numerical_ids:
-      - 8368
+      - '8368'
   1.A.1.b:
     title: Petroleum Refining
     alternative_codes:
@@ -227,7 +227,7 @@ categories:
     - 1 A 1 b
     info:
       numerical_ids:
-      - 9771
+      - '9771'
   1.A.1.c:
     title: Manufacture of Solid Fuels and Other Energy Industries
     alternative_codes:
@@ -236,7 +236,7 @@ categories:
     - 1 A 1 c
     info:
       numerical_ids:
-      - 9004
+      - '9004'
     children:
     - - 1.A.1.c.i
       - 1.A.1.c.ii
@@ -250,7 +250,7 @@ categories:
     - 1 A 1 c i
     info:
       numerical_ids:
-      - 10306
+      - '10306'
   1.A.1.c.ii:
     title: Oil and Gas Extraction
     alternative_codes:
@@ -259,7 +259,7 @@ categories:
     - 1 A 1 c ii
     info:
       numerical_ids:
-      - 10425
+      - '10425'
   1.A.1.c.iii:
     title: Other Energy Industries
     alternative_codes:
@@ -268,7 +268,7 @@ categories:
     - 1 A 1 c iii
     info:
       numerical_ids:
-      - 8335
+      - '8335'
   1.A.1.c.iv:
     title: Other
     alternative_codes:
@@ -277,7 +277,7 @@ categories:
     - 1 A 1 c iv
     info:
       numerical_ids:
-      - 8656
+      - '8656'
   1.A.2:
     title: Manufacturing Industries and Construction
     alternative_codes:
@@ -286,7 +286,7 @@ categories:
     - 1 A 2
     info:
       numerical_ids:
-      - 8556
+      - '8556'
     children:
     - - 1.A.2.a
       - 1.A.2.b
@@ -303,7 +303,7 @@ categories:
     - 1 A 2 a
     info:
       numerical_ids:
-      - 10329
+      - '10329'
   1.A.2.b:
     title: Non-Ferrous Metals
     alternative_codes:
@@ -312,7 +312,7 @@ categories:
     - 1 A 2 b
     info:
       numerical_ids:
-      - 9859
+      - '9859'
   1.A.2.c:
     title: Chemicals
     alternative_codes:
@@ -321,7 +321,7 @@ categories:
     - 1 A 2 c
     info:
       numerical_ids:
-      - 9369
+      - '9369'
   1.A.2.d:
     title: Pulp, Paper and Print
     alternative_codes:
@@ -330,7 +330,7 @@ categories:
     - 1 A 2 d
     info:
       numerical_ids:
-      - 10119
+      - '10119'
   1.A.2.e:
     title: Food Processing, Beverages and Tobacco
     alternative_codes:
@@ -339,7 +339,7 @@ categories:
     - 1 A 2 e
     info:
       numerical_ids:
-      - 8321
+      - '8321'
   1.A.2.f:
     title: Non-metallic Minerals
     alternative_codes:
@@ -348,7 +348,7 @@ categories:
     - 1 A 2 f
     info:
       numerical_ids:
-      - 8876
+      - '8876'
   1.A.2.g:
     title: Other
     alternative_codes:
@@ -357,7 +357,7 @@ categories:
     - 1 A 2 g
     info:
       numerical_ids:
-      - 9832
+      - '9832'
     children:
     - - 1.A.2.g.i
       - 1.A.2.g.ii
@@ -375,7 +375,7 @@ categories:
     - 1 A 2 g i
     info:
       numerical_ids:
-      - 10308
+      - '10308'
   1.A.2.g.ii:
     title: Manufacturing of Transport Equipment
     alternative_codes:
@@ -384,7 +384,7 @@ categories:
     - 1 A 2 g ii
     info:
       numerical_ids:
-      - 10150
+      - '10150'
   1.A.2.g.iii:
     title: Mining (Excluding Fuels) and Quarrying
     alternative_codes:
@@ -393,7 +393,7 @@ categories:
     - 1 A 2 g iii
     info:
       numerical_ids:
-      - 8527
+      - '8527'
   1.A.2.g.iv:
     title: Wood and Wood Products
     alternative_codes:
@@ -402,7 +402,7 @@ categories:
     - 1 A 2 g iv
     info:
       numerical_ids:
-      - 8424
+      - '8424'
   1.A.2.g.v:
     title: Construction
     alternative_codes:
@@ -411,7 +411,7 @@ categories:
     - 1 A 2 g v
     info:
       numerical_ids:
-      - 10287
+      - '10287'
   1.A.2.g.vi:
     title: Textile and Leather
     alternative_codes:
@@ -420,7 +420,7 @@ categories:
     - 1 A 2 g vi
     info:
       numerical_ids:
-      - 8721
+      - '8721'
   1.A.2.g.vii:
     title: Off-road Vehicles and Other Machinery
     alternative_codes:
@@ -429,7 +429,7 @@ categories:
     - 1 A 2 g vii
     info:
       numerical_ids:
-      - 8587
+      - '8587'
   1.A.2.g.viii:
     title: Other
     alternative_codes:
@@ -438,7 +438,7 @@ categories:
     - 1 A 2 g viii
     info:
       numerical_ids:
-      - 8794
+      - '8794'
   1.A.3:
     title: Transport
     alternative_codes:
@@ -447,7 +447,7 @@ categories:
     - 1 A 3
     info:
       numerical_ids:
-      - 8322
+      - '8322'
     children:
     - - 1.A.3.a
       - 1.A.3.b
@@ -462,7 +462,7 @@ categories:
     - 1 A 3 a
     info:
       numerical_ids:
-      - 10419
+      - '10419'
   1.A.3.b:
     title: Road Transportation
     alternative_codes:
@@ -471,7 +471,7 @@ categories:
     - 1 A 3 b
     info:
       numerical_ids:
-      - 9607
+      - '9607'
     children:
     - - 1.A.3.b.i
       - 1.A.3.b.ii
@@ -486,7 +486,7 @@ categories:
     - 1 A 3 b i
     info:
       numerical_ids:
-      - 9279
+      - '9279'
   1.A.3.b.ii:
     title: Light Duty Trucks
     alternative_codes:
@@ -495,7 +495,7 @@ categories:
     - 1 A 3 b ii
     info:
       numerical_ids:
-      - 9702
+      - '9702'
   1.A.3.b.iii:
     title: Heavy Duty Trucks and Buses
     alternative_codes:
@@ -504,7 +504,7 @@ categories:
     - 1 A 3 b iii
     info:
       numerical_ids:
-      - 8358
+      - '8358'
   1.A.3.b.iv:
     title: Motorcycles
     alternative_codes:
@@ -513,7 +513,7 @@ categories:
     - 1 A 3 b iv
     info:
       numerical_ids:
-      - 9622
+      - '9622'
   1.A.3.b.v:
     title: Other
     alternative_codes:
@@ -522,7 +522,7 @@ categories:
     - 1 A 3 b v
     info:
       numerical_ids:
-      - 9083
+      - '9083'
   1.A.3.c:
     title: Railways
     alternative_codes:
@@ -531,7 +531,7 @@ categories:
     - 1 A 3 c
     info:
       numerical_ids:
-      - 8924
+      - '8924'
   1.A.3.d:
     title: Domestic Navigation
     alternative_codes:
@@ -540,7 +540,7 @@ categories:
     - 1 A 3 d
     info:
       numerical_ids:
-      - 9670
+      - '9670'
   1.A.3.e:
     title: Other Transportation
     alternative_codes:
@@ -549,7 +549,7 @@ categories:
     - 1 A 3 e
     info:
       numerical_ids:
-      - 8456
+      - '8456'
     children:
     - - 1.A.3.e.i
       - 1.A.3.e.ii
@@ -561,7 +561,7 @@ categories:
     - 1 A 3 e i
     info:
       numerical_ids:
-      - 9504
+      - '9504'
   1.A.3.e.ii:
     title: Other
     alternative_codes:
@@ -570,7 +570,7 @@ categories:
     - 1 A 3 e ii
     info:
       numerical_ids:
-      - 9935
+      - '9935'
   1.A.4:
     title: Other Sectors
     alternative_codes:
@@ -579,7 +579,7 @@ categories:
     - 1 A 4
     info:
       numerical_ids:
-      - 9815
+      - '9815'
     children:
     - - 1.A.4.a
       - 1.A.4.b
@@ -592,7 +592,7 @@ categories:
     - 1 A 4 a
     info:
       numerical_ids:
-      - 8597
+      - '8597'
     children:
     - - 1.A.4.a.i
       - 1.A.4.a.ii
@@ -605,7 +605,7 @@ categories:
     - 1 A 4 a i
     info:
       numerical_ids:
-      - 8216
+      - '8216'
   1.A.4.a.ii:
     title: Off-road Vehicles and Other Machinery
     alternative_codes:
@@ -614,7 +614,7 @@ categories:
     - 1 A 4 a ii
     info:
       numerical_ids:
-      - 8251
+      - '8251'
   1.A.4.a.iii:
     title: Other
     alternative_codes:
@@ -623,7 +623,7 @@ categories:
     - 1 A 4 a iii
     info:
       numerical_ids:
-      - 8223
+      - '8223'
   1.A.4.b:
     title: Residential
     alternative_codes:
@@ -632,7 +632,7 @@ categories:
     - 1 A 4 b
     info:
       numerical_ids:
-      - 9823
+      - '9823'
     children:
     - - 1.A.4.b.i
       - 1.A.4.b.ii
@@ -645,7 +645,7 @@ categories:
     - 1 A 4 b i
     info:
       numerical_ids:
-      - 8609
+      - '8609'
   1.A.4.b.ii:
     title: Off-road Vehicles and Other Machinery
     alternative_codes:
@@ -654,7 +654,7 @@ categories:
     - 1 A 4 b ii
     info:
       numerical_ids:
-      - 10435
+      - '10435'
   1.A.4.b.iii:
     title: Other
     alternative_codes:
@@ -663,7 +663,7 @@ categories:
     - 1 A 4 b iii
     info:
       numerical_ids:
-      - 8632
+      - '8632'
   1.A.4.c:
     title: Agriculture/Forestry/Fishing
     alternative_codes:
@@ -672,7 +672,7 @@ categories:
     - 1 A 4 c
     info:
       numerical_ids:
-      - 8554
+      - '8554'
     children:
     - - 1.A.4.c.i
       - 1.A.4.c.ii
@@ -685,7 +685,7 @@ categories:
     - 1 A 4 c i
     info:
       numerical_ids:
-      - 8364
+      - '8364'
   1.A.4.c.ii:
     title: Off-road Vehicles and Other Machinery
     alternative_codes:
@@ -694,7 +694,7 @@ categories:
     - 1 A 4 c ii
     info:
       numerical_ids:
-      - 10080
+      - '10080'
   1.A.4.c.iii:
     title: Fishing
     alternative_codes:
@@ -703,7 +703,7 @@ categories:
     - 1 A 4 c iii
     info:
       numerical_ids:
-      - 9812
+      - '9812'
   1.A.5:
     title: Other (Not specified elsewhere)
     alternative_codes:
@@ -712,7 +712,7 @@ categories:
     - 1 A 5
     info:
       numerical_ids:
-      - 10273
+      - '10273'
     children:
     - - 1.A.5.a
       - 1.A.5.b
@@ -724,7 +724,7 @@ categories:
     - 1 A 5 a
     info:
       numerical_ids:
-      - 9861
+      - '9861'
   1.A.5.b:
     title: Mobile
     alternative_codes:
@@ -733,7 +733,7 @@ categories:
     - 1 A 5 b
     info:
       numerical_ids:
-      - 9101
+      - '9101'
   1.AA:
     title: Fuel Combustion - Sectoral approach
     alternative_codes:
@@ -745,7 +745,7 @@ categories:
     - 1 AA
     info:
       numerical_ids:
-      - 9089
+      - '9089'
     children:
     - - 1.A.1
       - 1.A.2
@@ -760,7 +760,7 @@ categories:
     - 1 AB
     info:
       numerical_ids:
-      - 8533
+      - '8533'
   1.AD:
     title: Feedstocks, Reductants and Other Non-energy Use of Fuels
     alternative_codes:
@@ -769,7 +769,7 @@ categories:
     - 1 AD
     info:
       numerical_ids:
-      - 8731
+      - '8731'
   1.B:
     title: Fugitive Emissions from Fuels
     alternative_codes:
@@ -778,7 +778,7 @@ categories:
     - 1 B
     info:
       numerical_ids:
-      - 9374
+      - '9374'
     children:
     - - 1.B.1
       - 1.B.2
@@ -790,7 +790,7 @@ categories:
     - 1 B 1
     info:
       numerical_ids:
-      - 9455
+      - '9455'
     children:
     - - 1.B.1.a
       - 1.B.1.b
@@ -803,7 +803,7 @@ categories:
     - 1 B 1 a
     info:
       numerical_ids:
-      - 9835
+      - '9835'
     children:
     - - 1.B.1.a.i
       - 1.B.1.a.ii
@@ -815,7 +815,7 @@ categories:
     - 1 B 1 a i
     info:
       numerical_ids:
-      - 9116
+      - '9116'
     children:
     - - 1.B.1.a.i.1
       - 1.B.1.a.i.2
@@ -828,7 +828,7 @@ categories:
     - 1 B 1 a i 1
     info:
       numerical_ids:
-      - 9933
+      - '9933'
   1.B.1.a.i.2:
     title: Post-Mining Activities
     alternative_codes:
@@ -837,7 +837,7 @@ categories:
     - 1 B 1 a i 2
     info:
       numerical_ids:
-      - 9427
+      - '9427'
   1.B.1.a.i.3:
     title: Abandoned Underground Mines
     alternative_codes:
@@ -846,7 +846,7 @@ categories:
     - 1 B 1 a i 3
     info:
       numerical_ids:
-      - 8211
+      - '8211'
   1.B.1.a.ii:
     title: Surface Mines
     alternative_codes:
@@ -855,7 +855,7 @@ categories:
     - 1 B 1 a ii
     info:
       numerical_ids:
-      - 8573
+      - '8573'
     children:
     - - 1.B.1.a.ii.1
       - 1.B.1.a.ii.2
@@ -867,7 +867,7 @@ categories:
     - 1 B 1 a ii 1
     info:
       numerical_ids:
-      - 10282
+      - '10282'
   1.B.1.a.ii.2:
     title: Post-Mining Activities
     alternative_codes:
@@ -876,7 +876,7 @@ categories:
     - 1 B 1 a ii 2
     info:
       numerical_ids:
-      - 9601
+      - '9601'
   1.B.1.b:
     title: Solid Fuel Transformation
     alternative_codes:
@@ -885,7 +885,7 @@ categories:
     - 1 B 1 b
     info:
       numerical_ids:
-      - 8300
+      - '8300'
   1.B.1.c:
     title: Other
     alternative_codes:
@@ -894,7 +894,7 @@ categories:
     - 1 B 1 c
     info:
       numerical_ids:
-      - 8964
+      - '8964'
   1.B.2:
     title: Oil and Natural Gas and Other Emissions from Energy Production
     alternative_codes:
@@ -903,7 +903,7 @@ categories:
     - 1 B 2
     info:
       numerical_ids:
-      - 8806
+      - '8806'
     children:
     - - 1.B.2.a
       - 1.B.2.b
@@ -917,7 +917,7 @@ categories:
     - 1 B 2 a
     info:
       numerical_ids:
-      - 9822
+      - '9822'
     children:
     - - 1.B.2.a.i
       - 1.B.2.a.ii
@@ -933,7 +933,7 @@ categories:
     - 1 B 2 a i
     info:
       numerical_ids:
-      - 8165
+      - '8165'
   1.B.2.a.ii:
     title: Production
     alternative_codes:
@@ -942,7 +942,7 @@ categories:
     - 1 B 2 a ii
     info:
       numerical_ids:
-      - 10078
+      - '10078'
   1.B.2.a.iii:
     title: Transport
     alternative_codes:
@@ -951,7 +951,7 @@ categories:
     - 1 B 2 a iii
     info:
       numerical_ids:
-      - 9550
+      - '9550'
   1.B.2.a.iv:
     title: Refining / Storage
     alternative_codes:
@@ -960,7 +960,7 @@ categories:
     - 1 B 2 a iv
     info:
       numerical_ids:
-      - 9891
+      - '9891'
   1.B.2.a.v:
     title: Distribution of Oil Products
     alternative_codes:
@@ -969,7 +969,7 @@ categories:
     - 1 B 2 a v
     info:
       numerical_ids:
-      - 8371
+      - '8371'
   1.B.2.a.vi:
     title: Other
     alternative_codes:
@@ -978,7 +978,7 @@ categories:
     - 1 B 2 a vi
     info:
       numerical_ids:
-      - 8228
+      - '8228'
   1.B.2.b:
     title: Natural Gas
     alternative_codes:
@@ -987,7 +987,7 @@ categories:
     - 1 B 2 b
     info:
       numerical_ids:
-      - 8493
+      - '8493'
     children:
     - - 1.B.2.b.i
       - 1.B.2.b.ii
@@ -1003,7 +1003,7 @@ categories:
     - 1 B 2 b i
     info:
       numerical_ids:
-      - 9314
+      - '9314'
   1.B.2.b.ii:
     title: Production
     alternative_codes:
@@ -1012,7 +1012,7 @@ categories:
     - 1 B 2 b ii
     info:
       numerical_ids:
-      - 8474
+      - '8474'
   1.B.2.b.iii:
     title: Processing
     alternative_codes:
@@ -1021,7 +1021,7 @@ categories:
     - 1 B 2 b iii
     info:
       numerical_ids:
-      - 9999
+      - '9999'
   1.B.2.b.iv:
     title: Transmission and Storage
     alternative_codes:
@@ -1030,7 +1030,7 @@ categories:
     - 1 B 2 b iv
     info:
       numerical_ids:
-      - 9902
+      - '9902'
   1.B.2.b.v:
     title: Distribution
     alternative_codes:
@@ -1039,7 +1039,7 @@ categories:
     - 1 B 2 b v
     info:
       numerical_ids:
-      - 9728
+      - '9728'
   1.B.2.b.vi:
     title: Other
     alternative_codes:
@@ -1048,7 +1048,7 @@ categories:
     - 1 B 2 b vi
     info:
       numerical_ids:
-      - 9974
+      - '9974'
   1.B.2.c:
     title: Venting and Flaring
     alternative_codes:
@@ -1057,7 +1057,7 @@ categories:
     - 1 B 2 c
     info:
       numerical_ids:
-      - 8333
+      - '8333'
     children:
     - - 1.B.2.c.i
       - 1.B.2.c.ii
@@ -1069,7 +1069,7 @@ categories:
     - 1 B 2 c i
     info:
       numerical_ids:
-      - 10303
+      - '10303'
     children:
     - - 1.B.2.c.i.1
       - 1.B.2.c.i.2
@@ -1082,7 +1082,7 @@ categories:
     - 1 B 2 c i 1
     info:
       numerical_ids:
-      - 9827
+      - '9827'
   1.B.2.c.i.2:
     title: Gas
     alternative_codes:
@@ -1091,7 +1091,7 @@ categories:
     - 1 B 2 c i 2
     info:
       numerical_ids:
-      - 10239
+      - '10239'
   1.B.2.c.i.3:
     title: Combined
     alternative_codes:
@@ -1100,7 +1100,7 @@ categories:
     - 1 B 2 c i 3
     info:
       numerical_ids:
-      - 8576
+      - '8576'
   1.B.2.c.ii:
     title: Flaring
     alternative_codes:
@@ -1109,7 +1109,7 @@ categories:
     - 1 B 2 c ii
     info:
       numerical_ids:
-      - 10392
+      - '10392'
     children:
     - - 1.B.2.c.ii.1
       - 1.B.2.c.ii.2
@@ -1122,7 +1122,7 @@ categories:
     - 1 B 2 c ii 1
     info:
       numerical_ids:
-      - 9210
+      - '9210'
   1.B.2.c.ii.2:
     title: Gas
     alternative_codes:
@@ -1131,7 +1131,7 @@ categories:
     - 1 B 2 c ii 2
     info:
       numerical_ids:
-      - 8904
+      - '8904'
   1.B.2.c.ii.3:
     title: Combined
     alternative_codes:
@@ -1140,7 +1140,7 @@ categories:
     - 1 B 2 c ii 3
     info:
       numerical_ids:
-      - 9824
+      - '9824'
   1.B.2.d:
     title: Other
     alternative_codes:
@@ -1149,7 +1149,7 @@ categories:
     - 1 B 2 d
     info:
       numerical_ids:
-      - 9077
+      - '9077'
   1.C:
     title: CO₂ Transport and Storage
     alternative_codes:
@@ -1158,7 +1158,7 @@ categories:
     - 1 C
     info:
       numerical_ids:
-      - 9070
+      - '9070'
     children:
     - - 1.C.1
       - 1.C.2
@@ -1171,7 +1171,7 @@ categories:
     - 1 C 1
     info:
       numerical_ids:
-      - 9365
+      - '9365'
     children:
     - - 1.C.1.a
       - 1.C.1.b
@@ -1184,7 +1184,7 @@ categories:
     - 1 C 1 a
     info:
       numerical_ids:
-      - 9769
+      - '9769'
   1.C.1.b:
     title: Ships
     alternative_codes:
@@ -1193,7 +1193,7 @@ categories:
     - 1 C 1 b
     info:
       numerical_ids:
-      - 10197
+      - '10197'
   1.C.1.c:
     title: Other
     alternative_codes:
@@ -1202,7 +1202,7 @@ categories:
     - 1 C 1 c
     info:
       numerical_ids:
-      - 9366
+      - '9366'
   1.C.2:
     title: Injection and Storage
     alternative_codes:
@@ -1211,7 +1211,7 @@ categories:
     - 1 C 2
     info:
       numerical_ids:
-      - 9474
+      - '9474'
     children:
     - - 1.C.2.a
       - 1.C.2.b
@@ -1223,7 +1223,7 @@ categories:
     - 1 C 2 a
     info:
       numerical_ids:
-      - 8741
+      - '8741'
   1.C.2.b:
     title: Storage
     alternative_codes:
@@ -1232,7 +1232,7 @@ categories:
     - 1 C 2 b
     info:
       numerical_ids:
-      - 10333
+      - '10333'
   1.C.3:
     title: Other
     alternative_codes:
@@ -1241,7 +1241,7 @@ categories:
     - 1 C 3
     info:
       numerical_ids:
-      - 9330
+      - '9330'
   '2':
     title: Industrial Processes and Product Use
     alternative_codes:
@@ -1250,8 +1250,8 @@ categories:
     - '10482'
     info:
       numerical_ids:
-      - 10393
-      - 10482
+      - '10393'
+      - '10482'
     children:
     - - 2.A
       - 2.B
@@ -1269,7 +1269,7 @@ categories:
     - 2 A
     info:
       numerical_ids:
-      - 8452
+      - '8452'
     children:
     - - 2.A.1
       - 2.A.2
@@ -1283,7 +1283,7 @@ categories:
     - 2 A 1
     info:
       numerical_ids:
-      - 8787
+      - '8787'
   2.A.2:
     title: Lime Production
     alternative_codes:
@@ -1292,7 +1292,7 @@ categories:
     - 2 A 2
     info:
       numerical_ids:
-      - 8702
+      - '8702'
   2.A.3:
     title: Glass production
     alternative_codes:
@@ -1301,7 +1301,7 @@ categories:
     - 2 A 3
     info:
       numerical_ids:
-      - 8579
+      - '8579'
   2.A.4:
     title: Other Process Uses of Carbonates
     alternative_codes:
@@ -1310,7 +1310,7 @@ categories:
     - 2 A 4
     info:
       numerical_ids:
-      - 9731
+      - '9731'
     children:
     - - 2.A.4.a
       - 2.A.4.b
@@ -1324,7 +1324,7 @@ categories:
     - 2 A 4 a
     info:
       numerical_ids:
-      - 8539
+      - '8539'
   2.A.4.b:
     title: Other Uses of Soda Ash
     alternative_codes:
@@ -1333,7 +1333,7 @@ categories:
     - 2 A 4 b
     info:
       numerical_ids:
-      - 9452
+      - '9452'
   2.A.4.c:
     title: Non-metallurgical Magnesium Production
     alternative_codes:
@@ -1342,7 +1342,7 @@ categories:
     - 2 A 4 c
     info:
       numerical_ids:
-      - 10101
+      - '10101'
   2.A.4.d:
     title: Other
     alternative_codes:
@@ -1351,7 +1351,7 @@ categories:
     - 2 A 4 d
     info:
       numerical_ids:
-      - 9342
+      - '9342'
   2.B:
     title: Chemical Industry
     alternative_codes:
@@ -1360,7 +1360,7 @@ categories:
     - 2 B
     info:
       numerical_ids:
-      - 9304
+      - '9304'
     children:
     - - 2.B.1
       - 2.B.10
@@ -1380,7 +1380,7 @@ categories:
     - 2 B 1
     info:
       numerical_ids:
-      - 9658
+      - '9658'
   2.B.2:
     title: Nitric Acid Production
     alternative_codes:
@@ -1389,7 +1389,7 @@ categories:
     - 2 B 2
     info:
       numerical_ids:
-      - 9410
+      - '9410'
   2.B.3:
     title: Adipic Acid Production
     alternative_codes:
@@ -1398,7 +1398,7 @@ categories:
     - 2 B 3
     info:
       numerical_ids:
-      - 8468
+      - '8468'
   2.B.4:
     title: Caprolactam, Glyoxal and Glyoxylic Acid Production
     alternative_codes:
@@ -1407,7 +1407,7 @@ categories:
     - 2 B 4
     info:
       numerical_ids:
-      - 8544
+      - '8544'
     children:
     - - 2.B.4.a
       - 2.B.4.b
@@ -1420,7 +1420,7 @@ categories:
     - 2 B 4 a
     info:
       numerical_ids:
-      - 9515
+      - '9515'
   2.B.4.b:
     title: Glyoxal
     alternative_codes:
@@ -1429,7 +1429,7 @@ categories:
     - 2 B 4 b
     info:
       numerical_ids:
-      - 9564
+      - '9564'
   2.B.4.c:
     title: Glyoxylic Acid
     alternative_codes:
@@ -1438,7 +1438,7 @@ categories:
     - 2 B 4 c
     info:
       numerical_ids:
-      - 8789
+      - '8789'
   2.B.5:
     title: Carbide Production
     alternative_codes:
@@ -1447,7 +1447,7 @@ categories:
     - 2 B 5
     info:
       numerical_ids:
-      - 9531
+      - '9531'
     children:
     - - 2.B.5.a
       - 2.B.5.b
@@ -1459,7 +1459,7 @@ categories:
     - 2 B 5 a
     info:
       numerical_ids:
-      - 9683
+      - '9683'
   2.B.5.b:
     title: Calcium Carbide
     alternative_codes:
@@ -1468,7 +1468,7 @@ categories:
     - 2 B 5 b
     info:
       numerical_ids:
-      - 9206
+      - '9206'
   2.B.6:
     title: Titanium Dioxide Production
     alternative_codes:
@@ -1477,7 +1477,7 @@ categories:
     - 2 B 6
     info:
       numerical_ids:
-      - 9917
+      - '9917'
   2.B.7:
     title: Soda Ash Production
     alternative_codes:
@@ -1486,7 +1486,7 @@ categories:
     - 2 B 7
     info:
       numerical_ids:
-      - 8530
+      - '8530'
   2.B.8:
     title: Petrochemical and Carbon Black Production
     alternative_codes:
@@ -1495,7 +1495,7 @@ categories:
     - 2 B 8
     info:
       numerical_ids:
-      - 9000
+      - '9000'
     children:
     - - 2.B.8.a
       - 2.B.8.b
@@ -1512,7 +1512,7 @@ categories:
     - 2 B 8 a
     info:
       numerical_ids:
-      - 8934
+      - '8934'
   2.B.8.b:
     title: Ethylene
     alternative_codes:
@@ -1521,7 +1521,7 @@ categories:
     - 2 B 8 b
     info:
       numerical_ids:
-      - 9146
+      - '9146'
   2.B.8.c:
     title: Ethylene Dichloride and Vinyl Chloride Monomer
     alternative_codes:
@@ -1530,7 +1530,7 @@ categories:
     - 2 B 8 c
     info:
       numerical_ids:
-      - 8686
+      - '8686'
   2.B.8.d:
     title: Ethylene Oxide
     alternative_codes:
@@ -1539,7 +1539,7 @@ categories:
     - 2 B 8 d
     info:
       numerical_ids:
-      - 9468
+      - '9468'
   2.B.8.e:
     title: Acrylonitrile
     alternative_codes:
@@ -1548,7 +1548,7 @@ categories:
     - 2 B 8 e
     info:
       numerical_ids:
-      - 9784
+      - '9784'
   2.B.8.f:
     title: Carbon Black
     alternative_codes:
@@ -1557,7 +1557,7 @@ categories:
     - 2 B 8 f
     info:
       numerical_ids:
-      - 8864
+      - '8864'
   2.B.8.g:
     title: Other
     alternative_codes:
@@ -1566,7 +1566,7 @@ categories:
     - 2 B 8 g
     info:
       numerical_ids:
-      - 9384
+      - '9384'
     children:
     - - 2.B.8.g.i
       - 2.B.8.g.ii
@@ -1578,7 +1578,7 @@ categories:
     - 2 B 8 g i
     info:
       numerical_ids:
-      - 9941
+      - '9941'
   2.B.8.g.ii:
     title: Other
     alternative_codes:
@@ -1587,7 +1587,7 @@ categories:
     - 2 B 8 g ii
     info:
       numerical_ids:
-      - 8276
+      - '8276'
   2.B.9:
     title: Fluorochemical Production
     alternative_codes:
@@ -1596,7 +1596,7 @@ categories:
     - 2 B 9
     info:
       numerical_ids:
-      - 8884
+      - '8884'
     children:
     - - 2.B.9.a
       - 2.B.9.b
@@ -1608,7 +1608,7 @@ categories:
     - 2 B 9 a
     info:
       numerical_ids:
-      - 9517
+      - '9517'
     children:
     - - 2.B.9.a.i
       - 2.B.9.a.ii
@@ -1620,7 +1620,7 @@ categories:
     - 2 B 9 a i
     info:
       numerical_ids:
-      - 9992
+      - '9992'
   2.B.9.a.ii:
     title: Other
     alternative_codes:
@@ -1629,7 +1629,7 @@ categories:
     - 2 B 9 a ii
     info:
       numerical_ids:
-      - 8782
+      - '8782'
   2.B.9.b:
     title: Fugitive Emissions
     alternative_codes:
@@ -1638,7 +1638,7 @@ categories:
     - 2 B 9 b
     info:
       numerical_ids:
-      - 9938
+      - '9938'
     children:
     - - 2.B.9.b.i
       - 2.B.9.b.ii
@@ -1651,7 +1651,7 @@ categories:
     - 2 B 9 b i
     info:
       numerical_ids:
-      - 8427
+      - '8427'
   2.B.9.b.ii:
     title: Production of SF₆
     alternative_codes:
@@ -1660,7 +1660,7 @@ categories:
     - 2 B 9 b ii
     info:
       numerical_ids:
-      - 8150
+      - '8150'
   2.B.9.b.iii:
     title: Other
     alternative_codes:
@@ -1669,7 +1669,7 @@ categories:
     - 2 B 9 b iii
     info:
       numerical_ids:
-      - 8419
+      - '8419'
   2.B.10:
     title: Other
     alternative_codes:
@@ -1678,7 +1678,7 @@ categories:
     - 2 B 10
     info:
       numerical_ids:
-      - 9953
+      - '9953'
   2.C:
     title: Metal Industry
     alternative_codes:
@@ -1687,7 +1687,7 @@ categories:
     - 2 C
     info:
       numerical_ids:
-      - 9064
+      - '9064'
     children:
     - - 2.C.1
       - 2.C.2
@@ -1704,7 +1704,7 @@ categories:
     - 2 C 1
     info:
       numerical_ids:
-      - 8229
+      - '8229'
     children:
     - - 2.C.1.a
       - 2.C.1.b
@@ -1720,7 +1720,7 @@ categories:
     - 2 C 1 a
     info:
       numerical_ids:
-      - 9540
+      - '9540'
   2.C.1.b:
     title: Pig Iron
     alternative_codes:
@@ -1729,7 +1729,7 @@ categories:
     - 2 C 1 b
     info:
       numerical_ids:
-      - 9567
+      - '9567'
   2.C.1.c:
     title: Direct Reduced Iron
     alternative_codes:
@@ -1738,7 +1738,7 @@ categories:
     - 2 C 1 c
     info:
       numerical_ids:
-      - 9679
+      - '9679'
   2.C.1.d:
     title: Sinter
     alternative_codes:
@@ -1747,7 +1747,7 @@ categories:
     - 2 C 1 d
     info:
       numerical_ids:
-      - 8962
+      - '8962'
   2.C.1.e:
     title: Pellet
     alternative_codes:
@@ -1756,7 +1756,7 @@ categories:
     - 2 C 1 e
     info:
       numerical_ids:
-      - 9387
+      - '9387'
   2.C.1.f:
     title: Other
     alternative_codes:
@@ -1765,7 +1765,7 @@ categories:
     - 2 C 1 f
     info:
       numerical_ids:
-      - 10223
+      - '10223'
   2.C.2:
     title: Ferroalloys Production
     alternative_codes:
@@ -1774,7 +1774,7 @@ categories:
     - 2 C 2
     info:
       numerical_ids:
-      - 10390
+      - '10390'
   2.C.3:
     title: Aluminium Production
     alternative_codes:
@@ -1783,7 +1783,7 @@ categories:
     - 2 C 3
     info:
       numerical_ids:
-      - 10068
+      - '10068'
     children:
     - - 2.C.3.a
       - 2.C.3.b
@@ -1796,7 +1796,7 @@ categories:
     - 2 C 3 a
     info:
       numerical_ids:
-      - 9079
+      - '9079'
   2.C.3.b:
     title: By-Product Emissions
     alternative_codes:
@@ -1805,7 +1805,7 @@ categories:
     - 2 C 3 b
     info:
       numerical_ids:
-      - 9445
+      - '9445'
   2.C.3.c:
     title: F-gases Used in Foundries
     alternative_codes:
@@ -1814,7 +1814,7 @@ categories:
     - 2 C 3 c
     info:
       numerical_ids:
-      - 9072
+      - '9072'
   2.C.4:
     title: Magnesium Production
     alternative_codes:
@@ -1823,7 +1823,7 @@ categories:
     - 2 C 4
     info:
       numerical_ids:
-      - 9635
+      - '9635'
   2.C.5:
     title: Lead Production
     alternative_codes:
@@ -1832,7 +1832,7 @@ categories:
     - 2 C 5
     info:
       numerical_ids:
-      - 10210
+      - '10210'
   2.C.6:
     title: Zinc Production
     alternative_codes:
@@ -1841,7 +1841,7 @@ categories:
     - 2 C 6
     info:
       numerical_ids:
-      - 9667
+      - '9667'
   2.C.7:
     title: Other
     alternative_codes:
@@ -1850,7 +1850,7 @@ categories:
     - 2 C 7
     info:
       numerical_ids:
-      - 10447
+      - '10447'
   2.D:
     title: Non-energy Products from Fuels and Solvent Use
     alternative_codes:
@@ -1859,7 +1859,7 @@ categories:
     - 2 D
     info:
       numerical_ids:
-      - 10094
+      - '10094'
     children:
     - - 2.D.1
       - 2.D.2
@@ -1872,7 +1872,7 @@ categories:
     - 2 D 1
     info:
       numerical_ids:
-      - 8852
+      - '8852'
   2.D.2:
     title: Paraffin Wax Use
     alternative_codes:
@@ -1881,7 +1881,7 @@ categories:
     - 2 D 2
     info:
       numerical_ids:
-      - 8925
+      - '8925'
   2.D.3:
     title: Other
     alternative_codes:
@@ -1890,7 +1890,7 @@ categories:
     - 2 D 3
     info:
       numerical_ids:
-      - 8811
+      - '8811'
     children:
     - - 2.D.3.a
       - 2.D.3.b
@@ -1904,7 +1904,7 @@ categories:
     - 2 D 3 a
     info:
       numerical_ids:
-      - 10214
+      - '10214'
   2.D.3.b:
     title: Road Paving with Asphalt
     alternative_codes:
@@ -1913,7 +1913,7 @@ categories:
     - 2 D 3 b
     info:
       numerical_ids:
-      - 10044
+      - '10044'
   2.D.3.c:
     title: Asphalt Roofing
     alternative_codes:
@@ -1922,7 +1922,7 @@ categories:
     - 2 D 3 c
     info:
       numerical_ids:
-      - 8822
+      - '8822'
   2.D.3.d:
     title: Other
     alternative_codes:
@@ -1931,7 +1931,7 @@ categories:
     - 2 D 3 d
     info:
       numerical_ids:
-      - 8212
+      - '8212'
   2.E:
     title: Electronics Industry
     alternative_codes:
@@ -1940,7 +1940,7 @@ categories:
     - 2 E
     info:
       numerical_ids:
-      - 8938
+      - '8938'
     children:
     - - 2.E.1
       - 2.E.2
@@ -1955,7 +1955,7 @@ categories:
     - 2 E 1
     info:
       numerical_ids:
-      - 10075
+      - '10075'
   2.E.2:
     title: TFT Flat Panel Display
     alternative_codes:
@@ -1964,7 +1964,7 @@ categories:
     - 2 E 2
     info:
       numerical_ids:
-      - 10442
+      - '10442'
   2.E.3:
     title: Photovoltaics
     alternative_codes:
@@ -1973,7 +1973,7 @@ categories:
     - 2 E 3
     info:
       numerical_ids:
-      - 8601
+      - '8601'
   2.E.4:
     title: Heat Transfer Fluid
     alternative_codes:
@@ -1982,7 +1982,7 @@ categories:
     - 2 E 4
     info:
       numerical_ids:
-      - 9911
+      - '9911'
   2.E.5:
     title: Other
     alternative_codes:
@@ -1991,7 +1991,7 @@ categories:
     - 2 E 5
     info:
       numerical_ids:
-      - 8434
+      - '8434'
   2.F:
     title: Product Uses as Substitutes for ODS
     alternative_codes:
@@ -2000,7 +2000,7 @@ categories:
     - 2 F
     info:
       numerical_ids:
-      - 8262
+      - '8262'
     children:
     - - 2.F.1
       - 2.F.2
@@ -2016,7 +2016,7 @@ categories:
     - 2 F 1
     info:
       numerical_ids:
-      - 9207
+      - '9207'
     children:
     - - 2.F.1.a
       - 2.F.1.b
@@ -2032,7 +2032,7 @@ categories:
     - 2 F 1 a
     info:
       numerical_ids:
-      - 9129
+      - '9129'
   2.F.1.b:
     title: Domestic Refrigeration
     alternative_codes:
@@ -2041,7 +2041,7 @@ categories:
     - 2 F 1 b
     info:
       numerical_ids:
-      - 9780
+      - '9780'
   2.F.1.c:
     title: Industrial Refrigeration
     alternative_codes:
@@ -2050,7 +2050,7 @@ categories:
     - 2 F 1 c
     info:
       numerical_ids:
-      - 10252
+      - '10252'
   2.F.1.d:
     title: Transport Refrigeration
     alternative_codes:
@@ -2059,7 +2059,7 @@ categories:
     - 2 F 1 d
     info:
       numerical_ids:
-      - 9634
+      - '9634'
   2.F.1.e:
     title: Mobile Air-conditioning
     alternative_codes:
@@ -2068,7 +2068,7 @@ categories:
     - 2 F 1 e
     info:
       numerical_ids:
-      - 10244
+      - '10244'
   2.F.1.f:
     title: Stationary Air-conditioning
     alternative_codes:
@@ -2077,7 +2077,7 @@ categories:
     - 2 F 1 f
     info:
       numerical_ids:
-      - 10298
+      - '10298'
   2.F.2:
     title: Foam Blowing Agents
     alternative_codes:
@@ -2086,7 +2086,7 @@ categories:
     - 2 F 2
     info:
       numerical_ids:
-      - 9352
+      - '9352'
     children:
     - - 2.F.2.a
       - 2.F.2.b
@@ -2098,7 +2098,7 @@ categories:
     - 2 F 2 a
     info:
       numerical_ids:
-      - 8642
+      - '8642'
   2.F.2.b:
     title: Open Cells
     alternative_codes:
@@ -2107,7 +2107,7 @@ categories:
     - 2 F 2 b
     info:
       numerical_ids:
-      - 9224
+      - '9224'
   2.F.3:
     title: Fire Protection
     alternative_codes:
@@ -2116,7 +2116,7 @@ categories:
     - 2 F 3
     info:
       numerical_ids:
-      - 9296
+      - '9296'
   2.F.4:
     title: Aerosols
     alternative_codes:
@@ -2125,7 +2125,7 @@ categories:
     - 2 F 4
     info:
       numerical_ids:
-      - 10383
+      - '10383'
     children:
     - - 2.F.4.a
       - 2.F.4.b
@@ -2137,7 +2137,7 @@ categories:
     - 2 F 4 a
     info:
       numerical_ids:
-      - 8519
+      - '8519'
   2.F.4.b:
     title: Other
     alternative_codes:
@@ -2146,7 +2146,7 @@ categories:
     - 2 F 4 b
     info:
       numerical_ids:
-      - 8379
+      - '8379'
   2.F.5:
     title: Solvents
     alternative_codes:
@@ -2155,7 +2155,7 @@ categories:
     - 2 F 5
     info:
       numerical_ids:
-      - 8316
+      - '8316'
   2.F.6:
     title: Other Applications
     alternative_codes:
@@ -2164,7 +2164,7 @@ categories:
     - 2 F 6
     info:
       numerical_ids:
-      - 8607
+      - '8607'
     children:
     - - 2.F.6.a
       - 2.F.6.b
@@ -2176,7 +2176,7 @@ categories:
     - 2 F 6 a
     info:
       numerical_ids:
-      - 10246
+      - '10246'
   2.F.6.b:
     title: Contained
     alternative_codes:
@@ -2185,7 +2185,7 @@ categories:
     - 2 F 6 b
     info:
       numerical_ids:
-      - 10042
+      - '10042'
   2.G:
     title: Other Product Manufacture and Use
     alternative_codes:
@@ -2194,7 +2194,7 @@ categories:
     - 2 G
     info:
       numerical_ids:
-      - 8201
+      - '8201'
     children:
     - - 2.G.1
       - 2.G.2
@@ -2208,7 +2208,7 @@ categories:
     - 2 G 1
     info:
       numerical_ids:
-      - 9490
+      - '9490'
   2.G.2:
     title: SF₆ and PFCs from Other Product Use
     alternative_codes:
@@ -2217,7 +2217,7 @@ categories:
     - 2 G 2
     info:
       numerical_ids:
-      - 10301
+      - '10301'
     children:
     - - 2.G.2.a
       - 2.G.2.b
@@ -2232,7 +2232,7 @@ categories:
     - 2 G 2 a
     info:
       numerical_ids:
-      - 9055
+      - '9055'
   2.G.2.b:
     title: Accelerators
     alternative_codes:
@@ -2241,7 +2241,7 @@ categories:
     - 2 G 2 b
     info:
       numerical_ids:
-      - 9925
+      - '9925'
   2.G.2.c:
     title: Soundproof Windows
     alternative_codes:
@@ -2250,7 +2250,7 @@ categories:
     - 2 G 2 c
     info:
       numerical_ids:
-      - 9789
+      - '9789'
   2.G.2.d:
     title: 'Adiabatic Properties: Shoes and Tyres'
     alternative_codes:
@@ -2259,7 +2259,7 @@ categories:
     - 2 G 2 d
     info:
       numerical_ids:
-      - 9610
+      - '9610'
   2.G.2.e:
     title: Other
     alternative_codes:
@@ -2268,7 +2268,7 @@ categories:
     - 2 G 2 e
     info:
       numerical_ids:
-      - 8978
+      - '8978'
   2.G.3:
     title: N₂O from Product Uses
     alternative_codes:
@@ -2277,7 +2277,7 @@ categories:
     - 2 G 3
     info:
       numerical_ids:
-      - 10433
+      - '10433'
     children:
     - - 2.G.3.a
       - 2.G.3.b
@@ -2289,7 +2289,7 @@ categories:
     - 2 G 3 a
     info:
       numerical_ids:
-      - 8737
+      - '8737'
   2.G.3.b:
     title: Other
     alternative_codes:
@@ -2298,7 +2298,7 @@ categories:
     - 2 G 3 b
     info:
       numerical_ids:
-      - 9014
+      - '9014'
     children:
     - - 2.G.3.b.i
       - 2.G.3.b.ii
@@ -2310,7 +2310,7 @@ categories:
     - 2 G 3 b i
     info:
       numerical_ids:
-      - 9201
+      - '9201'
   2.G.3.b.ii:
     title: Other
     alternative_codes:
@@ -2319,7 +2319,7 @@ categories:
     - 2 G 3 b ii
     info:
       numerical_ids:
-      - 8566
+      - '8566'
   2.G.4:
     title: Other
     alternative_codes:
@@ -2328,7 +2328,7 @@ categories:
     - 2 G 4
     info:
       numerical_ids:
-      - 8534
+      - '8534'
   2.H:
     title: Other
     alternative_codes:
@@ -2337,7 +2337,7 @@ categories:
     - 2 H
     info:
       numerical_ids:
-      - 9899
+      - '9899'
     children:
     - - 2.H.1
       - 2.H.2
@@ -2350,7 +2350,7 @@ categories:
     - 2 H 1
     info:
       numerical_ids:
-      - 8644
+      - '8644'
   2.H.2:
     title: Food and Beverages Industry
     alternative_codes:
@@ -2359,7 +2359,7 @@ categories:
     - 2 H 2
     info:
       numerical_ids:
-      - 8797
+      - '8797'
   2.H.3:
     title: Other
     alternative_codes:
@@ -2368,7 +2368,7 @@ categories:
     - 2 H 3
     info:
       numerical_ids:
-      - 8883
+      - '8883'
   '3':
     title: Agriculture
     alternative_codes:
@@ -2377,8 +2377,8 @@ categories:
     - '10483'
     info:
       numerical_ids:
-      - 10096
-      - 10483
+      - '10096'
+      - '10483'
     children:
     - - 3.A
       - 3.B
@@ -2398,7 +2398,7 @@ categories:
     - 3 A
     info:
       numerical_ids:
-      - 9559
+      - '9559'
   3.B:
     title: Manure Management
     alternative_codes:
@@ -2407,7 +2407,7 @@ categories:
     - 3 B
     info:
       numerical_ids:
-      - 9608
+      - '9608'
   3.C:
     title: Rice Cultivation
     alternative_codes:
@@ -2416,7 +2416,7 @@ categories:
     - 3 C
     info:
       numerical_ids:
-      - 10228
+      - '10228'
     children:
     - - 3.C.1
       - 3.C.2
@@ -2430,7 +2430,7 @@ categories:
     - 3 C 1
     info:
       numerical_ids:
-      - 9960
+      - '9960'
     children:
     - - 3.C.1.a
       - 3.C.1.b
@@ -2442,7 +2442,7 @@ categories:
     - 3 C 1 a
     info:
       numerical_ids:
-      - 10315
+      - '10315'
   3.C.1.b:
     title: Intermittently Flooded
     alternative_codes:
@@ -2451,7 +2451,7 @@ categories:
     - 3 C 1 b
     info:
       numerical_ids:
-      - 8915
+      - '8915'
     children:
     - - 3.C.1.b.i
       - 3.C.1.b.ii
@@ -2463,7 +2463,7 @@ categories:
     - 3 C 1 b i
     info:
       numerical_ids:
-      - 9184
+      - '9184'
   3.C.1.b.ii:
     title: Multiple Aeration
     alternative_codes:
@@ -2472,7 +2472,7 @@ categories:
     - 3 C 1 b ii
     info:
       numerical_ids:
-      - 10065
+      - '10065'
   3.C.2:
     title: Rainfed
     alternative_codes:
@@ -2481,7 +2481,7 @@ categories:
     - 3 C 2
     info:
       numerical_ids:
-      - 8984
+      - '8984'
     children:
     - - 3.C.2.a
       - 3.C.2.b
@@ -2493,7 +2493,7 @@ categories:
     - 3 C 2 a
     info:
       numerical_ids:
-      - 9942
+      - '9942'
   3.C.2.b:
     title: Drought Prone
     alternative_codes:
@@ -2502,7 +2502,7 @@ categories:
     - 3 C 2 b
     info:
       numerical_ids:
-      - 8941
+      - '8941'
   3.C.3:
     title: Deep Water
     alternative_codes:
@@ -2511,7 +2511,7 @@ categories:
     - 3 C 3
     info:
       numerical_ids:
-      - 9094
+      - '9094'
     children:
     - - 3.C.3.a
       - 3.C.3.b
@@ -2523,7 +2523,7 @@ categories:
     - 3 C 3 a
     info:
       numerical_ids:
-      - 8995
+      - '8995'
   3.C.3.b:
     title: Water Depth > 100 cm
     alternative_codes:
@@ -2532,7 +2532,7 @@ categories:
     - 3 C 3 b
     info:
       numerical_ids:
-      - 8373
+      - '8373'
   3.C.4:
     title: Other
     alternative_codes:
@@ -2541,7 +2541,7 @@ categories:
     - 3 C 4
     info:
       numerical_ids:
-      - 8747
+      - '8747'
   3.D:
     title: Agricultural Soils
     alternative_codes:
@@ -2550,7 +2550,7 @@ categories:
     - 3 D
     info:
       numerical_ids:
-      - 9678
+      - '9678'
     children:
     - - 3.D.1
       - 3.D.2
@@ -2562,7 +2562,7 @@ categories:
     - 3 D 1
     info:
       numerical_ids:
-      - 9087
+      - '9087'
     children:
     - - 3.D.1.a
       - 3.D.1.b
@@ -2579,7 +2579,7 @@ categories:
     - 3 D 1 a
     info:
       numerical_ids:
-      - 9566
+      - '9566'
   3.D.1.b:
     title: Organic N Fertilizers
     alternative_codes:
@@ -2588,7 +2588,7 @@ categories:
     - 3 D 1 b
     info:
       numerical_ids:
-      - 9523
+      - '9523'
     children:
     - - 3.D.1.b.i
       - 3.D.1.b.ii
@@ -2601,7 +2601,7 @@ categories:
     - 3 D 1 b i
     info:
       numerical_ids:
-      - 8365
+      - '8365'
   3.D.1.b.ii:
     title: Sewage Sludge Applied to Soils
     alternative_codes:
@@ -2610,7 +2610,7 @@ categories:
     - 3 D 1 b ii
     info:
       numerical_ids:
-      - 8482
+      - '8482'
   3.D.1.b.iii:
     title: Other Organic Fertilizers Applied to Soils
     alternative_codes:
@@ -2619,7 +2619,7 @@ categories:
     - 3 D 1 b iii
     info:
       numerical_ids:
-      - 8218
+      - '8218'
   3.D.1.c:
     title: Urine and Dung Deposited by Grazing Animals
     alternative_codes:
@@ -2628,7 +2628,7 @@ categories:
     - 3 D 1 c
     info:
       numerical_ids:
-      - 9041
+      - '9041'
   3.D.1.d:
     title: Crop Residues
     alternative_codes:
@@ -2637,7 +2637,7 @@ categories:
     - 3 D 1 d
     info:
       numerical_ids:
-      - 10142
+      - '10142'
   3.D.1.e:
     title: Mineralization/Immobilization Associated with Loss/Gain of Soil Organic
       Matter
@@ -2647,7 +2647,7 @@ categories:
     - 3 D 1 e
     info:
       numerical_ids:
-      - 9302
+      - '9302'
   3.D.1.f:
     title: Cultivation of Organic Soils
     alternative_codes:
@@ -2656,7 +2656,7 @@ categories:
     - 3 D 1 f
     info:
       numerical_ids:
-      - 10437
+      - '10437'
   3.D.1.g:
     title: Other
     alternative_codes:
@@ -2665,7 +2665,7 @@ categories:
     - 3 D 1 g
     info:
       numerical_ids:
-      - 8502
+      - '8502'
   3.D.2:
     title: Indirect N₂O Emissions From Managed Soils
     alternative_codes:
@@ -2674,7 +2674,7 @@ categories:
     - 3 D 2
     info:
       numerical_ids:
-      - 8920
+      - '8920'
     children:
     - - 3.D.2.a
       - 3.D.2.b
@@ -2686,7 +2686,7 @@ categories:
     - 3 D 2 a
     info:
       numerical_ids:
-      - 9821
+      - '9821'
   3.D.2.b:
     title: Nitrogen Leaching and Run-off
     alternative_codes:
@@ -2695,7 +2695,7 @@ categories:
     - 3 D 2 b
     info:
       numerical_ids:
-      - 9875
+      - '9875'
   3.E:
     title: Prescribed Burning of Savannas
     alternative_codes:
@@ -2704,7 +2704,7 @@ categories:
     - 3 E
     info:
       numerical_ids:
-      - 10322
+      - '10322'
     children:
     - - 3.E.1
       - 3.E.2
@@ -2716,7 +2716,7 @@ categories:
     - 3 E 1
     info:
       numerical_ids:
-      - 9488
+      - '9488'
   3.E.2:
     title: Grassland
     alternative_codes:
@@ -2725,7 +2725,7 @@ categories:
     - 3 E 2
     info:
       numerical_ids:
-      - 9970
+      - '9970'
   3.F:
     title: Field Burning of Agricultural Residues
     alternative_codes:
@@ -2734,7 +2734,7 @@ categories:
     - 3 F
     info:
       numerical_ids:
-      - 8783
+      - '8783'
     children:
     - - 3.F.1
       - 3.F.2
@@ -2749,7 +2749,7 @@ categories:
     - 3 F 1
     info:
       numerical_ids:
-      - 10305
+      - '10305'
     children:
     - - 3.F.1.a
       - 3.F.1.b
@@ -2763,7 +2763,7 @@ categories:
     - 3 F 1 a
     info:
       numerical_ids:
-      - 8669
+      - '8669'
   3.F.1.b:
     title: Barley
     alternative_codes:
@@ -2772,7 +2772,7 @@ categories:
     - 3 F 1 b
     info:
       numerical_ids:
-      - 10193
+      - '10193'
   3.F.1.c:
     title: Maize
     alternative_codes:
@@ -2781,7 +2781,7 @@ categories:
     - 3 F 1 c
     info:
       numerical_ids:
-      - 8990
+      - '8990'
   3.F.1.d:
     title: Other
     alternative_codes:
@@ -2790,7 +2790,7 @@ categories:
     - 3 F 1 d
     info:
       numerical_ids:
-      - 9507
+      - '9507'
   3.F.2:
     title: Pulses
     alternative_codes:
@@ -2799,7 +2799,7 @@ categories:
     - 3 F 2
     info:
       numerical_ids:
-      - 9749
+      - '9749'
   3.F.3:
     title: Tubers and Roots
     alternative_codes:
@@ -2808,7 +2808,7 @@ categories:
     - 3 F 3
     info:
       numerical_ids:
-      - 9142
+      - '9142'
   3.F.4:
     title: Sugar Cane
     alternative_codes:
@@ -2817,7 +2817,7 @@ categories:
     - 3 F 4
     info:
       numerical_ids:
-      - 10387
+      - '10387'
   3.F.5:
     title: Other
     alternative_codes:
@@ -2826,7 +2826,7 @@ categories:
     - 3 F 5
     info:
       numerical_ids:
-      - 10336
+      - '10336'
   3.G:
     title: Liming
     alternative_codes:
@@ -2835,7 +2835,7 @@ categories:
     - 3 G
     info:
       numerical_ids:
-      - 8278
+      - '8278'
     children:
     - - 3.G.1
       - 3.G.2
@@ -2847,7 +2847,7 @@ categories:
     - 3 G 1
     info:
       numerical_ids:
-      - 8504
+      - '8504'
   3.G.2:
     title: Dolomite CaMg(CO₃)₂
     alternative_codes:
@@ -2856,7 +2856,7 @@ categories:
     - 3 G 2
     info:
       numerical_ids:
-      - 8267
+      - '8267'
   3.H:
     title: Urea Application
     alternative_codes:
@@ -2865,7 +2865,7 @@ categories:
     - 3 H
     info:
       numerical_ids:
-      - 9927
+      - '9927'
   3.I:
     title: Other Carbon-containing Fertilizers
     alternative_codes:
@@ -2874,7 +2874,7 @@ categories:
     - 3 I
     info:
       numerical_ids:
-      - 8417
+      - '8417'
   3.J:
     title: Other
     alternative_codes:
@@ -2883,7 +2883,7 @@ categories:
     - 3 J
     info:
       numerical_ids:
-      - 10025
+      - '10025'
   '4':
     title: Land Use, Land-Use Change and Forestry
     alternative_codes:
@@ -2891,7 +2891,7 @@ categories:
     - '9411'
     info:
       numerical_ids:
-      - 9411
+      - '9411'
     children:
     - - 4.A
       - 4.B
@@ -2909,7 +2909,7 @@ categories:
     - 4 A
     info:
       numerical_ids:
-      - 10121
+      - '10121'
     children:
     - - 4.A.1
       - 4.A.2
@@ -2921,7 +2921,7 @@ categories:
     - 4 A 1
     info:
       numerical_ids:
-      - 8348
+      - '8348'
   4.A.2:
     title: Land Converted to Forest Land
     alternative_codes:
@@ -2930,7 +2930,7 @@ categories:
     - 4 A 2
     info:
       numerical_ids:
-      - 8416
+      - '8416'
     children:
     - - 4.A.2.a
       - 4.A.2.b
@@ -2945,7 +2945,7 @@ categories:
     - 4 A 2 a
     info:
       numerical_ids:
-      - 9741
+      - '9741'
   4.A.2.b:
     title: Grassland Converted to Forest Land
     alternative_codes:
@@ -2954,7 +2954,7 @@ categories:
     - 4 A 2 b
     info:
       numerical_ids:
-      - 9851
+      - '9851'
   4.A.2.c:
     title: Wetlands Converted to Forest Land
     alternative_codes:
@@ -2963,7 +2963,7 @@ categories:
     - 4 A 2 c
     info:
       numerical_ids:
-      - 9306
+      - '9306'
   4.A.2.d:
     title: Settlements Converted to Forest Land
     alternative_codes:
@@ -2972,7 +2972,7 @@ categories:
     - 4 A 2 d
     info:
       numerical_ids:
-      - 10297
+      - '10297'
   4.A.2.e:
     title: Other Land Converted to Forest Land
     alternative_codes:
@@ -2981,7 +2981,7 @@ categories:
     - 4 A 2 e
     info:
       numerical_ids:
-      - 8735
+      - '8735'
   4.B:
     title: Cropland
     alternative_codes:
@@ -2990,7 +2990,7 @@ categories:
     - 4 B
     info:
       numerical_ids:
-      - 9805
+      - '9805'
     children:
     - - 4.B.1
       - 4.B.2
@@ -3002,7 +3002,7 @@ categories:
     - 4 B 1
     info:
       numerical_ids:
-      - 10430
+      - '10430'
   4.B.2:
     title: Land Converted to Cropland
     alternative_codes:
@@ -3011,7 +3011,7 @@ categories:
     - 4 B 2
     info:
       numerical_ids:
-      - 8678
+      - '8678'
     children:
     - - 4.B.2.a
       - 4.B.2.b
@@ -3026,7 +3026,7 @@ categories:
     - 4 B 2 a
     info:
       numerical_ids:
-      - 9799
+      - '9799'
   4.B.2.b:
     title: Grassland Converted to Cropland
     alternative_codes:
@@ -3035,7 +3035,7 @@ categories:
     - 4 B 2 b
     info:
       numerical_ids:
-      - 9491
+      - '9491'
   4.B.2.c:
     title: Wetlands Converted to Cropland
     alternative_codes:
@@ -3044,7 +3044,7 @@ categories:
     - 4 B 2 c
     info:
       numerical_ids:
-      - 10450
+      - '10450'
   4.B.2.d:
     title: Settlements Converted to Cropland
     alternative_codes:
@@ -3053,7 +3053,7 @@ categories:
     - 4 B 2 d
     info:
       numerical_ids:
-      - 8709
+      - '8709'
   4.B.2.e:
     title: Other Land Converted to Cropland
     alternative_codes:
@@ -3062,7 +3062,7 @@ categories:
     - 4 B 2 e
     info:
       numerical_ids:
-      - 9560
+      - '9560'
   4.C:
     title: Grassland
     alternative_codes:
@@ -3071,7 +3071,7 @@ categories:
     - 4 C
     info:
       numerical_ids:
-      - 8849
+      - '8849'
     children:
     - - 4.C.1
       - 4.C.2
@@ -3083,7 +3083,7 @@ categories:
     - 4 C 1
     info:
       numerical_ids:
-      - 9360
+      - '9360'
   4.C.2:
     title: Land Converted to Grassland
     alternative_codes:
@@ -3092,7 +3092,7 @@ categories:
     - 4 C 2
     info:
       numerical_ids:
-      - 8259
+      - '8259'
     children:
     - - 4.C.2.a
       - 4.C.2.b
@@ -3107,7 +3107,7 @@ categories:
     - 4 C 2 a
     info:
       numerical_ids:
-      - 9405
+      - '9405'
   4.C.2.b:
     title: Cropland Converted to Grassland
     alternative_codes:
@@ -3116,7 +3116,7 @@ categories:
     - 4 C 2 b
     info:
       numerical_ids:
-      - 9966
+      - '9966'
   4.C.2.c:
     title: Wetlands Converted to Grassland
     alternative_codes:
@@ -3125,7 +3125,7 @@ categories:
     - 4 C 2 c
     info:
       numerical_ids:
-      - 10323
+      - '10323'
   4.C.2.d:
     title: Settlements Converted to Grassland
     alternative_codes:
@@ -3134,7 +3134,7 @@ categories:
     - 4 C 2 d
     info:
       numerical_ids:
-      - 9444
+      - '9444'
   4.C.2.e:
     title: Other Land Converted to Grassland
     alternative_codes:
@@ -3143,7 +3143,7 @@ categories:
     - 4 C 2 e
     info:
       numerical_ids:
-      - 10189
+      - '10189'
   4.D:
     title: Wetlands
     alternative_codes:
@@ -3152,7 +3152,7 @@ categories:
     - 4 D
     info:
       numerical_ids:
-      - 9897
+      - '9897'
     children:
     - - 4.D.1
       - 4.D.2
@@ -3164,7 +3164,7 @@ categories:
     - 4 D 1
     info:
       numerical_ids:
-      - 9154
+      - '9154'
     children:
     - - 4.D.1.a
       - 4.D.1.b
@@ -3177,7 +3177,7 @@ categories:
     - 4 D 1 a
     info:
       numerical_ids:
-      - 10156
+      - '10156'
   4.D.1.b:
     title: Flooded Land Remaining Flooded Land
     alternative_codes:
@@ -3186,7 +3186,7 @@ categories:
     - 4 D 1 b
     info:
       numerical_ids:
-      - 9151
+      - '9151'
   4.D.1.c:
     title: Other Wetlands Remaining Other Wetlands
     alternative_codes:
@@ -3195,7 +3195,7 @@ categories:
     - 4 D 1 c
     info:
       numerical_ids:
-      - 8307
+      - '8307'
   4.D.2:
     title: Land Converted to Wetlands
     alternative_codes:
@@ -3204,7 +3204,7 @@ categories:
     - 4 D 2
     info:
       numerical_ids:
-      - 8232
+      - '8232'
     children:
     - - 4.D.2.a
       - 4.D.2.b
@@ -3217,7 +3217,7 @@ categories:
     - 4 D 2 a
     info:
       numerical_ids:
-      - 11002
+      - '11002'
   4.D.2.b:
     title: Land Converted to Flooded Land
     alternative_codes:
@@ -3226,7 +3226,7 @@ categories:
     - 4 D 2 b
     info:
       numerical_ids:
-      - 11003
+      - '11003'
     children:
     - - 4.D.2.b.i
       - 4.D.2.b.ii
@@ -3241,7 +3241,7 @@ categories:
     - 4 D 2 b i
     info:
       numerical_ids:
-      - 11004
+      - '11004'
   4.D.2.b.ii:
     title: Cropland Converted to Flooded Land
     alternative_codes:
@@ -3250,7 +3250,7 @@ categories:
     - 4 D 2 b ii
     info:
       numerical_ids:
-      - 11005
+      - '11005'
   4.D.2.b.iii:
     title: Grassland Converted to Flooded Land
     alternative_codes:
@@ -3259,7 +3259,7 @@ categories:
     - 4 D 2 b iii
     info:
       numerical_ids:
-      - 11006
+      - '11006'
   4.D.2.b.iv:
     title: Settlements Converted to Flooded Land
     alternative_codes:
@@ -3268,7 +3268,7 @@ categories:
     - 4 D 2 b iv
     info:
       numerical_ids:
-      - 11007
+      - '11007'
   4.D.2.b.v:
     title: Other Land Converted to Flooded Land
     alternative_codes:
@@ -3277,7 +3277,7 @@ categories:
     - 4 D 2 b v
     info:
       numerical_ids:
-      - 11008
+      - '11008'
   4.D.2.c:
     title: Land Converted to Other Wetlands
     alternative_codes:
@@ -3286,7 +3286,7 @@ categories:
     - 4 D 2 c
     info:
       numerical_ids:
-      - 11009
+      - '11009'
     children:
     - - 4.D.2.c.i
       - 4.D.2.c.ii
@@ -3301,7 +3301,7 @@ categories:
     - 4 D 2 c i
     info:
       numerical_ids:
-      - 11010
+      - '11010'
   4.D.2.c.ii:
     title: Cropland Converted to Other Wetlands
     alternative_codes:
@@ -3310,7 +3310,7 @@ categories:
     - 4 D 2 c ii
     info:
       numerical_ids:
-      - 11011
+      - '11011'
   4.D.2.c.iii:
     title: Grassland Converted to Other Wetlands
     alternative_codes:
@@ -3319,7 +3319,7 @@ categories:
     - 4 D 2 c iii
     info:
       numerical_ids:
-      - 11012
+      - '11012'
   4.D.2.c.iv:
     title: Settlements Converted to Other Wetlands
     alternative_codes:
@@ -3328,7 +3328,7 @@ categories:
     - 4 D 2 c iv
     info:
       numerical_ids:
-      - 11013
+      - '11013'
   4.D.2.c.v:
     title: Other Land Converted to Other Wetlands
     alternative_codes:
@@ -3337,7 +3337,7 @@ categories:
     - 4 D 2 c v
     info:
       numerical_ids:
-      - 11014
+      - '11014'
   4.E:
     title: Settlements
     alternative_codes:
@@ -3346,7 +3346,7 @@ categories:
     - 4 E
     info:
       numerical_ids:
-      - 10314
+      - '10314'
     children:
     - - 4.E.1
       - 4.E.2
@@ -3358,7 +3358,7 @@ categories:
     - 4 E 1
     info:
       numerical_ids:
-      - 10132
+      - '10132'
   4.E.2:
     title: Land Converted to Settlements
     alternative_codes:
@@ -3367,7 +3367,7 @@ categories:
     - 4 E 2
     info:
       numerical_ids:
-      - 9506
+      - '9506'
     children:
     - - 4.E.2.a
       - 4.E.2.b
@@ -3382,7 +3382,7 @@ categories:
     - 4 E 2 a
     info:
       numerical_ids:
-      - 10183
+      - '10183'
   4.E.2.b:
     title: Cropland Converted to Settlements
     alternative_codes:
@@ -3391,7 +3391,7 @@ categories:
     - 4 E 2 b
     info:
       numerical_ids:
-      - 9914
+      - '9914'
   4.E.2.c:
     title: Grassland Converted to Settlements
     alternative_codes:
@@ -3400,7 +3400,7 @@ categories:
     - 4 E 2 c
     info:
       numerical_ids:
-      - 10026
+      - '10026'
   4.E.2.d:
     title: Wetlands Converted to Settlements
     alternative_codes:
@@ -3409,7 +3409,7 @@ categories:
     - 4 E 2 d
     info:
       numerical_ids:
-      - 8465
+      - '8465'
   4.E.2.e:
     title: Other Land Converted to Settlements
     alternative_codes:
@@ -3418,7 +3418,7 @@ categories:
     - 4 E 2 e
     info:
       numerical_ids:
-      - 9857
+      - '9857'
   4.F:
     title: Other Land
     alternative_codes:
@@ -3427,7 +3427,7 @@ categories:
     - 4 F
     info:
       numerical_ids:
-      - 8288
+      - '8288'
     children:
     - - 4.F.1
       - 4.F.2
@@ -3439,7 +3439,7 @@ categories:
     - 4 F 1
     info:
       numerical_ids:
-      - 11015
+      - '11015'
   4.F.2:
     title: Land Converted to Other Land
     alternative_codes:
@@ -3448,7 +3448,7 @@ categories:
     - 4 F 2
     info:
       numerical_ids:
-      - 8343
+      - '8343'
     children:
     - - 4.F.2.a
       - 4.F.2.b
@@ -3463,7 +3463,7 @@ categories:
     - 4 F 2 a
     info:
       numerical_ids:
-      - 8488
+      - '8488'
   4.F.2.b:
     title: Cropland Converted to Other Land
     alternative_codes:
@@ -3472,7 +3472,7 @@ categories:
     - 4 F 2 b
     info:
       numerical_ids:
-      - 8234
+      - '8234'
   4.F.2.c:
     title: Grassland Converted  to Other Land
     alternative_codes:
@@ -3481,7 +3481,7 @@ categories:
     - 4 F 2 c
     info:
       numerical_ids:
-      - 8574
+      - '8574'
   4.F.2.d:
     title: Wetlands Converted to Other Land
     alternative_codes:
@@ -3490,7 +3490,7 @@ categories:
     - 4 F 2 d
     info:
       numerical_ids:
-      - 10371
+      - '10371'
   4.F.2.e:
     title: Settlements Converted to Other Land
     alternative_codes:
@@ -3499,7 +3499,7 @@ categories:
     - 4 F 2 e
     info:
       numerical_ids:
-      - 9019
+      - '9019'
   4.G:
     title: Harvested Wood Products
     alternative_codes:
@@ -3508,7 +3508,7 @@ categories:
     - 4 G
     info:
       numerical_ids:
-      - 9133
+      - '9133'
     children:
     - - 4.G.1
       - 4.G.2
@@ -3521,7 +3521,7 @@ categories:
     - 4 G 1
     info:
       numerical_ids:
-      - 11016
+      - '11016'
     children:
     - - 4.G.1.a
       - 4.G.1.b
@@ -3534,7 +3534,7 @@ categories:
     - 4 G 1 a
     info:
       numerical_ids:
-      - 11017
+      - '11017'
   4.G.1.b:
     title: Wood Panels
     alternative_codes:
@@ -3543,7 +3543,7 @@ categories:
     - 4 G 1 b
     info:
       numerical_ids:
-      - 11018
+      - '11018'
   4.G.1.c:
     title: Other Solid Wood Products
     alternative_codes:
@@ -3552,7 +3552,7 @@ categories:
     - 4 G 1 c
     info:
       numerical_ids:
-      - 11019
+      - '11019'
   4.G.2:
     title: Paper and Paperboard
     alternative_codes:
@@ -3561,7 +3561,7 @@ categories:
     - 4 G 2
     info:
       numerical_ids:
-      - 11020
+      - '11020'
   4.G.3:
     title: Other
     alternative_codes:
@@ -3570,7 +3570,7 @@ categories:
     - 4 G 3
     info:
       numerical_ids:
-      - 11021
+      - '11021'
   4.H:
     title: Other
     alternative_codes:
@@ -3579,7 +3579,7 @@ categories:
     - 4 H
     info:
       numerical_ids:
-      - 9158
+      - '9158'
   '5':
     title: Waste
     alternative_codes:
@@ -3588,8 +3588,8 @@ categories:
     - '10484'
     info:
       numerical_ids:
-      - 10159
-      - 10484
+      - '10159'
+      - '10484'
     children:
     - - 5.A
       - 5.B
@@ -3604,7 +3604,7 @@ categories:
     - 5 A
     info:
       numerical_ids:
-      - 9284
+      - '9284'
     children:
     - - 5.A.1
       - 5.A.2
@@ -3617,7 +3617,7 @@ categories:
     - 5 A 1
     info:
       numerical_ids:
-      - 8477
+      - '8477'
     children:
     - - 5.A.1.a
       - 5.A.1.b
@@ -3629,7 +3629,7 @@ categories:
     - 5 A 1 a
     info:
       numerical_ids:
-      - 9839
+      - '9839'
   5.A.1.b:
     title: Semi-aerobic
     alternative_codes:
@@ -3638,7 +3638,7 @@ categories:
     - 5 A 1 b
     info:
       numerical_ids:
-      - 9144
+      - '9144'
   5.A.2:
     title: Unmanaged Waste Disposal Sites
     alternative_codes:
@@ -3647,7 +3647,7 @@ categories:
     - 5 A 2
     info:
       numerical_ids:
-      - 10235
+      - '10235'
   5.A.3:
     title: Uncategorized Waste Disposal Sites
     alternative_codes:
@@ -3656,7 +3656,7 @@ categories:
     - 5 A 3
     info:
       numerical_ids:
-      - 8652
+      - '8652'
   5.B:
     title: Biological Treatment of Solid Waste
     alternative_codes:
@@ -3665,7 +3665,7 @@ categories:
     - 5 B
     info:
       numerical_ids:
-      - 9245
+      - '9245'
     children:
     - - 5.B.1
       - 5.B.2
@@ -3677,7 +3677,7 @@ categories:
     - 5 B 1
     info:
       numerical_ids:
-      - 8701
+      - '8701'
     children:
     - - 5.B.1.a
       - 5.B.1.b
@@ -3689,7 +3689,7 @@ categories:
     - 5 B 1 a
     info:
       numerical_ids:
-      - 9682
+      - '9682'
   5.B.1.b:
     title: Other
     alternative_codes:
@@ -3698,7 +3698,7 @@ categories:
     - 5 B 1 b
     info:
       numerical_ids:
-      - 8640
+      - '8640'
   5.B.2:
     title: Anaerobic Digestion at Biogas Facilities
     alternative_codes:
@@ -3707,7 +3707,7 @@ categories:
     - 5 B 2
     info:
       numerical_ids:
-      - 8225
+      - '8225'
     children:
     - - 5.B.2.a
       - 5.B.2.b
@@ -3719,7 +3719,7 @@ categories:
     - 5 B 2 a
     info:
       numerical_ids:
-      - 9290
+      - '9290'
   5.B.2.b:
     title: Other
     alternative_codes:
@@ -3728,7 +3728,7 @@ categories:
     - 5 B 2 b
     info:
       numerical_ids:
-      - 9639
+      - '9639'
   5.C:
     title: Incineration and Open Burning of Waste
     alternative_codes:
@@ -3737,7 +3737,7 @@ categories:
     - 5 C
     info:
       numerical_ids:
-      - 8227
+      - '8227'
     children:
     - - 5.C.1
       - 5.C.2
@@ -3749,7 +3749,7 @@ categories:
     - 5 C 1
     info:
       numerical_ids:
-      - 10408
+      - '10408'
     children:
     - - 5.C.1.a
       - 5.C.1.b
@@ -3761,7 +3761,7 @@ categories:
     - 5 C 1 a
     info:
       numerical_ids:
-      - 8776
+      - '8776'
     children:
     - - 5.C.1.a.i
       - 5.C.1.a.ii
@@ -3773,7 +3773,7 @@ categories:
     - 5 C 1 a i
     info:
       numerical_ids:
-      - 9069
+      - '9069'
   5.C.1.a.ii:
     title: Other
     alternative_codes:
@@ -3782,7 +3782,7 @@ categories:
     - 5 C 1 a ii
     info:
       numerical_ids:
-      - 8401
+      - '8401'
     children:
     - - 5.C.1.a.ii.1
       - 5.C.1.a.ii.2
@@ -3797,7 +3797,7 @@ categories:
     - 5 C 1 a ii 1
     info:
       numerical_ids:
-      - 8260
+      - '8260'
   5.C.1.a.ii.2:
     title: Hazardous Waste
     alternative_codes:
@@ -3806,7 +3806,7 @@ categories:
     - 5 C 1 a ii 2
     info:
       numerical_ids:
-      - 9329
+      - '9329'
   5.C.1.a.ii.3:
     title: Clinical Waste
     alternative_codes:
@@ -3815,7 +3815,7 @@ categories:
     - 5 C 1 a ii 3
     info:
       numerical_ids:
-      - 9141
+      - '9141'
   5.C.1.a.ii.4:
     title: Sewage Sludge
     alternative_codes:
@@ -3824,7 +3824,7 @@ categories:
     - 5 C 1 a ii 4
     info:
       numerical_ids:
-      - 9538
+      - '9538'
   5.C.1.a.ii.5:
     title: Other
     alternative_codes:
@@ -3833,7 +3833,7 @@ categories:
     - 5 C 1 a ii 5
     info:
       numerical_ids:
-      - 9218
+      - '9218'
   5.C.1.b:
     title: Non-biogenic
     alternative_codes:
@@ -3842,7 +3842,7 @@ categories:
     - 5 C 1 b
     info:
       numerical_ids:
-      - 9979
+      - '9979'
     children:
     - - 5.C.1.b.i
       - 5.C.1.b.ii
@@ -3854,7 +3854,7 @@ categories:
     - 5 C 1 b i
     info:
       numerical_ids:
-      - 10302
+      - '10302'
   5.C.1.b.ii:
     title: Other
     alternative_codes:
@@ -3863,7 +3863,7 @@ categories:
     - 5 C 1 b ii
     info:
       numerical_ids:
-      - 9696
+      - '9696'
     children:
     - - 5.C.1.b.ii.1
       - 5.C.1.b.ii.2
@@ -3879,7 +3879,7 @@ categories:
     - 5 C 1 b ii 1
     info:
       numerical_ids:
-      - 8158
+      - '8158'
   5.C.1.b.ii.2:
     title: Hazardous Waste
     alternative_codes:
@@ -3888,7 +3888,7 @@ categories:
     - 5 C 1 b ii 2
     info:
       numerical_ids:
-      - 9250
+      - '9250'
   5.C.1.b.ii.3:
     title: Clinical Waste
     alternative_codes:
@@ -3897,7 +3897,7 @@ categories:
     - 5 C 1 b ii 3
     info:
       numerical_ids:
-      - 10050
+      - '10050'
   5.C.1.b.ii.4:
     title: Sewage Sludge
     alternative_codes:
@@ -3906,7 +3906,7 @@ categories:
     - 5 C 1 b ii 4
     info:
       numerical_ids:
-      - 8619
+      - '8619'
   5.C.1.b.ii.5:
     title: Fossil Liquid Waste
     alternative_codes:
@@ -3915,7 +3915,7 @@ categories:
     - 5 C 1 b ii 5
     info:
       numerical_ids:
-      - 9730
+      - '9730'
   5.C.1.b.ii.6:
     title: Other
     alternative_codes:
@@ -3924,7 +3924,7 @@ categories:
     - 5 C 1 b ii 6
     info:
       numerical_ids:
-      - 9649
+      - '9649'
   5.C.2:
     title: Open Burning of Waste
     alternative_codes:
@@ -3933,7 +3933,7 @@ categories:
     - 5 C 2
     info:
       numerical_ids:
-      - 8943
+      - '8943'
     children:
     - - 5.C.2.a
       - 5.C.2.b
@@ -3945,7 +3945,7 @@ categories:
     - 5 C 2 a
     info:
       numerical_ids:
-      - 8825
+      - '8825'
     children:
     - - 5.C.2.a.i
       - 5.C.2.a.ii
@@ -3957,7 +3957,7 @@ categories:
     - 5 C 2 a i
     info:
       numerical_ids:
-      - 10182
+      - '10182'
   5.C.2.a.ii:
     title: Other
     alternative_codes:
@@ -3966,7 +3966,7 @@ categories:
     - 5 C 2 a ii
     info:
       numerical_ids:
-      - 8772
+      - '8772'
   5.C.2.b:
     title: Non-biogenic
     alternative_codes:
@@ -3975,7 +3975,7 @@ categories:
     - 5 C 2 b
     info:
       numerical_ids:
-      - 8910
+      - '8910'
     children:
     - - 5.C.2.b.i
       - 5.C.2.b.ii
@@ -3987,7 +3987,7 @@ categories:
     - 5 C 2 b i
     info:
       numerical_ids:
-      - 8768
+      - '8768'
   5.C.2.b.ii:
     title: Other
     alternative_codes:
@@ -3996,7 +3996,7 @@ categories:
     - 5 C 2 b ii
     info:
       numerical_ids:
-      - 9181
+      - '9181'
   5.D:
     title: Wastewater Treatment and Discharge
     alternative_codes:
@@ -4005,7 +4005,7 @@ categories:
     - 5 D
     info:
       numerical_ids:
-      - 8423
+      - '8423'
     children:
     - - 5.D.1
       - 5.D.2
@@ -4018,7 +4018,7 @@ categories:
     - 5 D 1
     info:
       numerical_ids:
-      - 10391
+      - '10391'
   5.D.2:
     title: Industrial Wastewater
     alternative_codes:
@@ -4027,7 +4027,7 @@ categories:
     - 5 D 2
     info:
       numerical_ids:
-      - 9831
+      - '9831'
   5.D.3:
     title: Other
     alternative_codes:
@@ -4036,7 +4036,7 @@ categories:
     - 5 D 3
     info:
       numerical_ids:
-      - 8153
+      - '8153'
   5.E:
     title: Other
     alternative_codes:
@@ -4045,7 +4045,7 @@ categories:
     - 5 E
     info:
       numerical_ids:
-      - 8284
+      - '8284'
   '6':
     title: Other
     alternative_codes:
@@ -4054,5 +4054,5 @@ categories:
     - '10485'
     info:
       numerical_ids:
-      - 10476
-      - 10485
+      - '10476'
+      - '10485'
