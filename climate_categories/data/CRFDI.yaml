@@ -39,6 +39,15 @@ categories:
     info:
       numerical_ids:
       - '8828'
+  '8869':
+    title: Memo Items
+    info:
+      numerical_ids:
+      - '8869'
+    children:
+    - - '8270'
+      - '8564'
+      - '8987'
   '8987':
     title: Multilateral Operations
     info:
@@ -85,6 +94,15 @@ categories:
     info:
       numerical_ids:
       - '10504'
+  '11022':
+    title: Memo Items
+    info:
+      numerical_ids:
+      - '11022'
+    children:
+    - - '11023'
+      - '11024'
+      - '11025'
   '11023':
     title: Long-term Storage of C in Waste Disposal Sites
     info:
@@ -100,6 +118,14 @@ categories:
     info:
       numerical_ids:
       - '11025'
+  '11026':
+    title: Information Item
+    info:
+      numerical_ids:
+      - '11026'
+    children:
+    - - '11027'
+      - '11028'
   '11027':
     title: Waste Incineration with Energy Recovery included as Biomass
     info:
@@ -110,6 +136,17 @@ categories:
     info:
       numerical_ids:
       - '11028'
+  '11029':
+    title: Information Item
+    info:
+      numerical_ids:
+      - '11029'
+    children:
+    - - '11030'
+      - '11031'
+      - '11032'
+      - '11033'
+      - '11034'
   '11030':
     title: Total Amount Captured for Storage
     info:
@@ -135,6 +172,13 @@ categories:
     info:
       numerical_ids:
       - '11034'
+  '11035':
+    title: Information Item
+    info:
+      numerical_ids:
+      - '11035'
+    children:
+    - - '11036'
   '11036':
     title: HWP in SWDS
     info:
@@ -144,18 +188,19 @@ categories:
     title: Energy
     alternative_codes:
     - '1.'
-    - '8819'
     - '10481'
+    - '8819'
     info:
       numerical_ids:
-      - '8819'
       - '10481'
+      - '8819'
     children:
     - - 1.AA
       - 1.AB
       - 1.AD
       - 1.B
       - 1.C
+      - '8869'
   1.A.1:
     title: Energy Industries
     alternative_codes:
@@ -752,6 +797,7 @@ categories:
       - 1.A.3
       - 1.A.4
       - 1.A.5
+      - '11026'
   1.AB:
     title: Fuel Combustion - Reference Approach
     alternative_codes:
@@ -1163,6 +1209,7 @@ categories:
     - - 1.C.1
       - 1.C.2
       - 1.C.3
+      - '11029'
   1.C.1:
     title: Transport of CO₂
     alternative_codes:
@@ -2373,12 +2420,12 @@ categories:
     title: Agriculture
     alternative_codes:
     - '3.'
-    - '10096'
     - '10483'
+    - '10096'
     info:
       numerical_ids:
-      - '10096'
       - '10483'
+      - '10096'
     children:
     - - 3.A
       - 3.B
@@ -3510,7 +3557,8 @@ categories:
       numerical_ids:
       - '9133'
     children:
-    - - 4.G.1
+    - - '11035'
+      - 4.G.1
       - 4.G.2
       - 4.G.3
   4.G.1:
@@ -3584,14 +3632,15 @@ categories:
     title: Waste
     alternative_codes:
     - '5.'
-    - '10159'
     - '10484'
+    - '10159'
     info:
       numerical_ids:
-      - '10159'
       - '10484'
+      - '10159'
     children:
-    - - 5.A
+    - - '11022'
+      - 5.A
       - 5.B
       - 5.C
       - 5.D

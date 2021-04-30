@@ -37,6 +37,7 @@ def _read_pickle_nh(name) -> Categorization:
 IPCC1996 = _read_pickle_hier("IPCC1996")
 IPCC2006 = _read_pickle_hier("IPCC2006")
 CRFDI = _read_pickle_hier("CRFDI")
+BURDI = _read_pickle_hier("BURDI")
 
 
 def find_code(code: str) -> typing.Set[_categories.Category]:

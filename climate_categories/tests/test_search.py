@@ -6,4 +6,5 @@ def test_search():
         climate_categories.IPCC1996["1.A"],
         climate_categories.IPCC2006["1.A"],
         climate_categories.CRFDI["1.A"],
+        climate_categories.BURDI["1.A"],
     }
