@@ -5,8 +5,8 @@ Changelog
 Unreleased
 ----------
 
-* Add CRFDI categorization and scripts to generate it from the UNFCCC DI flexible
-  query API.
+* Add BURDI and CRFDI categorizations and scripts to generate them from the UNFCCC DI
+  flexible query API.
 
 
 0.5.0 (2021-03-23)
