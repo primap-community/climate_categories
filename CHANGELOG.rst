@@ -2,12 +2,11 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.5.1 (2021-05-04)
+------------------
 
-* Add BURDI and CRFDI categorizations and scripts to generate them from the UNFCCC DI
-  flexible query API.
-
+* Add BURDI, CRFDI, BURDI_class, and CRFDI_class categorizations and scripts to generate
+  them from the UNFCCC DI flexible query API.
 
 0.5.0 (2021-03-23)
 ------------------
@@ -15,7 +14,6 @@ Unreleased
 * Switch ``to_yaml()`` output to ruamel.yaml so that valid, correctly typed YAML 1.2
   is written. This should enable easier re-use of the data in other contexts.
 * Consistently use title case for titles in IPCC categorizations.
-
 
 0.4.0 (2021-03-17)
 ------------------
