@@ -1,15 +1,15 @@
 name: IPCC2006_PRIMAP
-title: IPCC GHG emission categories (2006)IPCC2006 categories amended with custom
-  categories
-comment: IPCC classification of green-house gas emissions into categories, 2006 editionIPCC2006
-  categories with additional categories needed for analyses and for datasets like
-  PRIMAP-crf or EDGAR v6.0
+title: IPCC GHG emission categories (2006) with custom categories used in PRIMAP
+comment: IPCC classification of green-house gas emissions into categories, 2006 edition
+  with additional categories needed for analyses and for datasets like PRIMAP-crf
+  or EDGAR v6.0
 references: ''
-institution: ''
+institution: PIK
 hierarchical: true
 last_update: '2021-05-12'
 version: '2006'
 total_sum: true
+canonical_top_level_category: '0'
 categories:
   '1':
     title: Energy
@@ -75,6 +75,8 @@ categories:
     - - 1.A.1.a
       - 1.A.1.b
       - 1.A.1.c
+    - - 1.A.1.a
+      - 1.A.1.bc
   1.A.1.a:
     title: Main Activity Electricity and Heat Production
     comment: Sum of emissions from main activity producers of electricity generation,

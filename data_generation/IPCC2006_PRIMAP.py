@@ -1,4 +1,5 @@
-"""Run this via `make climate_categories/data/BURDI.yaml` in the main directory."""
+"""Run this via `make climate_categories/data/IPCC2006_PRIMAP.yaml` in the main
+directory."""
 import datetime
 import pathlib
 
@@ -71,11 +72,12 @@ def main():
         ("M.0.EL", ("1", "2", "M.AG", "4", "5")),
         ("M.AG", ("1.A", "M.AG.ELV")),
         ("1.A.1.bc", ("1.A.1.b", "1.A.1.c")),
+        ("1.A.1", ("1.A.1.a", "1.A.1.bc")),
     ]
     name = "PRIMAP"
-    title = "IPCC2006 categories amended with custom categories"
+    title = " with custom categories used in PRIMAP"
     comment = (
-        "IPCC2006 categories with additional categories needed for analyses "
+        " with additional categories needed for analyses "
         "and for datasets like PRIMAP-crf or EDGAR v6.0"
     )
 
@@ -87,6 +89,8 @@ def main():
         categories=categories,
         children=children,
     )
+    ipcc2006_primap.institution = "PIK"
+    ipcc2006_primap.canonical_top_level_category = ipcc2006_primap["0"]
 
     ipcc2006_primap.to_yaml(OUTPATH)
 

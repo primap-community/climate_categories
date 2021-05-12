@@ -1,15 +1,15 @@
-import pytest
-
 import climate_categories
 
 
 def test_number_of_categories():
-    assert len(climate_categories.IPCC2006_PRIMAP) == 289 + 14
+    assert (
+        len(climate_categories.IPCC2006_PRIMAP) == len(climate_categories.IPCC2006) + 14
+    )
 
 
-@pytest.mark.xfail  # no top-level category for IPCC
 def test_levels():
-    assert climate_categories.IPCC2006_PRIMAP.level("1") == 1
+    assert climate_categories.IPCC2006_PRIMAP.level("1") == 2
+    assert climate_categories.IPCC2006_PRIMAP.level("1.A.1.bc") == 5
 
 
 def test_consistent():
