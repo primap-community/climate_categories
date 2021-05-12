@@ -275,6 +275,13 @@ categories:
       - 1.A.2.k
       - 1.A.2.l
       - 1.A.2.m
+    - - 1.A.2.a
+      - 1.A.2.b
+      - 1.A.2.c
+      - 1.A.2.d
+      - 1.A.2.e
+      - 1.A.2.f
+      - M.1.A.2.m
   1.A.2.a:
     title: Iron and Steel
     comment: ISIC Group 271 and Class 2731.
@@ -497,6 +504,11 @@ categories:
     children:
     - - 1.A.3.a
       - 1.A.3.b
+      - 1.A.3.c
+      - 1.A.3.d
+      - 1.A.3.e
+    - - 1.A.3.a
+      - 1.A.3.b_noRES
       - 1.A.3.c
       - 1.A.3.d
       - 1.A.3.e
@@ -3171,6 +3183,8 @@ categories:
       - 3.B
       - 3.C
       - 3.D
+    - - M.AG
+      - M.LULUCF
   3.A:
     title: Livestock
     comment: Methane emissions from enteric fermentation, and methane and nitrous
@@ -3208,6 +3222,16 @@ categories:
       - 3.A.1.f
       - 3.A.1.g
       - 3.A.1.h
+      - 3.A.1.j
+    - - 3.A.1.a
+      - 3.A.1.b
+      - 3.A.1.c
+      - 3.A.1.d
+      - 3.A.1.e
+      - 3.A.1.f
+      - 3.A.1.g
+      - 3.A.1.h
+      - 3.A.1.i
       - 3.A.1.j
   3.A.1.a:
     title: Cattle
@@ -4717,6 +4741,8 @@ categories:
       - '3'
       - '4'
       - '5'
+    - - M.0.EL
+      - M.LULUCF
   M.0.EL:
     title: Total emissions excluding LULUCF
     comment: All emissions and removals except for Land Use, Land Use Change, and
@@ -4741,7 +4767,7 @@ categories:
     title: Agriculture
     comment: Agricultural part of AFOLU
     children:
-    - - 1.A
+    - - 3.A
       - M.AG.ELV
   M.AG.ELV:
     title: Agriculture excluding Livestock
@@ -4752,6 +4778,9 @@ categories:
   M.BK:
     title: International Bunkers
     comment: M category as not included in national total in CRF data
+    children:
+    - - M.BK.A
+      - M.BK.M
   M.BK.A:
     title: International Aviation
     comment: International aviation bunkers. same as 1.A.3.a.i, excluded from CRF
