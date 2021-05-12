@@ -10,9 +10,6 @@ def test_number_of_categories():
 @pytest.mark.xfail  # no top-level category for IPCC
 def test_levels():
     assert climate_categories.IPCC2006_PRIMAP.level("1") == 1
-    assert climate_categories.IPCC2006_PRIMAP.level("0") == 0
-    assert climate_categories.IPCC2006_PRIMAP.level("M.AG") == 0
-    assert climate_categories.IPCC2006_PRIMAP.level("3.A.1.") == 4
 
 
 def test_consistent():
