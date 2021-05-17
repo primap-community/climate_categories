@@ -4,6 +4,7 @@ Changelog
 
 Unreleased
 ----------
+* Add IPCC2006_PRIMAP categorization
 
 0.5.1 (2021-05-04)
 ------------------
