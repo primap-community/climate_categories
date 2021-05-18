@@ -6,7 +6,7 @@ comment: Common Reporting Format categories of GHG emissions and removals and so
 references: https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
 institution: UNFCCC
 hierarchical: true
-last_update: '2021-05-04'
+last_update: '2021-05-18'
 total_sum: false
 canonical_top_level_category: '8677'
 categories:
@@ -2983,6 +2983,10 @@ categories:
     info:
       numerical_ids:
       - '9129'
+    children:
+    - - 2.F.1.a-m1
+      - 2.F.1.a-m2
+      - 2.F.1.a-m3
   2.F.1.b:
     title: Domestic Refrigeration
     alternative_codes:
@@ -2994,6 +2998,10 @@ categories:
     info:
       numerical_ids:
       - '9780'
+    children:
+    - - 2.F.1.b-m1
+      - 2.F.1.b-m2
+      - 2.F.1.b-m3
   2.F.1.c:
     title: Industrial Refrigeration
     alternative_codes:
@@ -3005,6 +3013,10 @@ categories:
     info:
       numerical_ids:
       - '10252'
+    children:
+    - - 2.F.1.c-m1
+      - 2.F.1.c-m2
+      - 2.F.1.c-m3
   2.F.1.d:
     title: Transport Refrigeration
     alternative_codes:
@@ -3016,6 +3028,10 @@ categories:
     info:
       numerical_ids:
       - '9634'
+    children:
+    - - 2.F.1.d-m1
+      - 2.F.1.d-m2
+      - 2.F.1.d-m3
   2.F.1.e:
     title: Mobile Air-conditioning
     alternative_codes:
@@ -3027,6 +3043,10 @@ categories:
     info:
       numerical_ids:
       - '10244'
+    children:
+    - - 2.F.1.e-m1
+      - 2.F.1.e-m2
+      - 2.F.1.e-m3
   2.F.1.f:
     title: Stationary Air-conditioning
     alternative_codes:
@@ -3038,6 +3058,10 @@ categories:
     info:
       numerical_ids:
       - '10298'
+    children:
+    - - 2.F.1.f-m1
+      - 2.F.1.f-m2
+      - 2.F.1.f-m3
   2.F.2:
     title: Foam Blowing Agents
     alternative_codes:
@@ -3063,6 +3087,10 @@ categories:
     info:
       numerical_ids:
       - '8642'
+    children:
+    - - 2.F.2.a-m1
+      - 2.F.2.a-m2
+      - 2.F.2.a-m3
   2.F.2.b:
     title: Open Cells
     alternative_codes:
@@ -3074,6 +3102,9 @@ categories:
     info:
       numerical_ids:
       - '9224'
+    children:
+    - - 2.F.2.b-m1
+      - 2.F.2.b-m2
   2.F.3:
     title: Fire Protection
     alternative_codes:
@@ -3085,6 +3116,10 @@ categories:
     info:
       numerical_ids:
       - '9296'
+    children:
+    - - 2.F.3-m1
+      - 2.F.3-m2
+      - 2.F.3-m3
   2.F.4:
     title: Aerosols
     alternative_codes:
@@ -3110,6 +3145,9 @@ categories:
     info:
       numerical_ids:
       - '8519'
+    children:
+    - - 2.F.4.a-m1
+      - 2.F.4.a-m2
   2.F.4.b:
     title: Other
     alternative_codes:
@@ -3132,6 +3170,10 @@ categories:
     info:
       numerical_ids:
       - '8316'
+    children:
+    - - 2.F.5-m1
+      - 2.F.5-m2
+      - 2.F.5-m3
   2.F.6:
     title: Other Applications
     alternative_codes:
@@ -3157,6 +3199,9 @@ categories:
     info:
       numerical_ids:
       - '10246'
+    children:
+    - - 2.F.6.a-m1
+      - 2.F.6.a-m2
   2.F.6.b:
     title: Contained
     alternative_codes:
@@ -3168,6 +3213,10 @@ categories:
     info:
       numerical_ids:
       - '10042'
+    children:
+    - - 2.F.6.b-m1
+      - 2.F.6.b-m2
+      - 2.F.6.b-m3
   2.G:
     title: Other Product Manufacture and Use
     alternative_codes:
@@ -3195,6 +3244,10 @@ categories:
     info:
       numerical_ids:
       - '9490'
+    children:
+    - - 2.G.1-m1
+      - 2.G.1-m2
+      - 2.G.1-m3
   2.G.2:
     title: SF₆ and PFCs from Other Product Use
     alternative_codes:
@@ -3223,6 +3276,10 @@ categories:
     info:
       numerical_ids:
       - '9055'
+    children:
+    - - 2.G.2.a-m1
+      - 2.G.2.a-m2
+      - 2.G.2.a-m3
   2.G.2.b:
     title: Accelerators
     alternative_codes:
@@ -3234,6 +3291,10 @@ categories:
     info:
       numerical_ids:
       - '9925'
+    children:
+    - - 2.G.2.b-m1
+      - 2.G.2.b-m2
+      - 2.G.2.b-m3
   2.G.2.c:
     title: Soundproof Windows
     alternative_codes:
@@ -3245,6 +3306,10 @@ categories:
     info:
       numerical_ids:
       - '9789'
+    children:
+    - - 2.G.2.c-m1
+      - 2.G.2.c-m2
+      - 2.G.2.c-m3
   2.G.2.d:
     title: 'Adiabatic Properties: Shoes and Tyres'
     alternative_codes:
@@ -3256,6 +3321,10 @@ categories:
     info:
       numerical_ids:
       - '9610'
+    children:
+    - - 2.G.2.d-m1
+      - 2.G.2.d-m2
+      - 2.G.2.d-m3
   2.G.2.e:
     title: Other
     alternative_codes:
@@ -3365,6 +3434,10 @@ categories:
     info:
       numerical_ids:
       - '8644'
+    children:
+    - - 2.H.1-m1
+      - 2.H.1-m2
+      - 2.H.1-m3
   2.H.2:
     title: Food and Beverages Industry
     alternative_codes:
@@ -3376,6 +3449,10 @@ categories:
     info:
       numerical_ids:
       - '8797'
+    children:
+    - - 2.H.2-m1
+      - 2.H.2-m2
+      - 2.H.2-m3
   2.H.3:
     title: Other
     alternative_codes:
@@ -8983,3 +9060,288 @@ categories:
     alternative_codes:
     - 4.H-10826
     - 9158-10826
+  2.F.1.a-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.a-m10809
+    - 9129-m10809
+  2.F.1.a-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.a-m10810
+    - 9129-m10810
+  2.F.1.a-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.a-m10811
+    - 9129-m10811
+  2.F.1.b-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.b-m10809
+    - 9780-m10809
+  2.F.1.b-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.b-m10810
+    - 9780-m10810
+  2.F.1.b-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.b-m10811
+    - 9780-m10811
+  2.F.1.c-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.c-m10809
+    - 10252-m10809
+  2.F.1.c-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.c-m10810
+    - 10252-m10810
+  2.F.1.c-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.c-m10811
+    - 10252-m10811
+  2.F.1.d-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.d-m10809
+    - 9634-m10809
+  2.F.1.d-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.d-m10810
+    - 9634-m10810
+  2.F.1.d-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.d-m10811
+    - 9634-m10811
+  2.F.1.e-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.e-m10809
+    - 10244-m10809
+  2.F.1.e-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.e-m10810
+    - 10244-m10810
+  2.F.1.e-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.e-m10811
+    - 10244-m10811
+  2.F.1.f-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.1.f-m10809
+    - 10298-m10809
+  2.F.1.f-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.1.f-m10810
+    - 10298-m10810
+  2.F.1.f-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.1.f-m10811
+    - 10298-m10811
+  2.F.2.a-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.2.a-m10809
+    - 8642-m10809
+  2.F.2.a-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.2.a-m10810
+    - 8642-m10810
+  2.F.2.a-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.2.a-m10811
+    - 8642-m10811
+  2.F.2.b-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.2.b-m10810
+    - 9224-m10810
+  2.F.2.b-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.2.b-m10811
+    - 9224-m10811
+  2.F.3-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.3-m10809
+    - 9296-m10809
+  2.F.3-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.3-m10810
+    - 9296-m10810
+  2.F.3-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.3-m10811
+    - 9296-m10811
+  2.F.4.a-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.4.a-m10810
+    - 8519-m10810
+  2.F.4.a-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.4.a-m10811
+    - 8519-m10811
+  2.F.5-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.5-m10809
+    - 8316-m10809
+  2.F.5-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.5-m10810
+    - 8316-m10810
+  2.F.5-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.5-m10811
+    - 8316-m10811
+  2.F.6.a-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.6.a-m10810
+    - 10246-m10810
+  2.F.6.a-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.6.a-m10811
+    - 10246-m10811
+  2.F.6.b-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.F.6.b-m10809
+    - 10042-m10809
+  2.F.6.b-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.F.6.b-m10810
+    - 10042-m10810
+  2.F.6.b-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.F.6.b-m10811
+    - 10042-m10811
+  2.G.1-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.G.1-m10809
+    - 9490-m10809
+  2.G.1-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.G.1-m10810
+    - 9490-m10810
+  2.G.1-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.G.1-m10811
+    - 9490-m10811
+  2.G.2.a-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.G.2.a-m10809
+    - 9055-m10809
+  2.G.2.a-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.G.2.a-m10810
+    - 9055-m10810
+  2.G.2.a-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.G.2.a-m10811
+    - 9055-m10811
+  2.G.2.b-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.G.2.b-m10809
+    - 9925-m10809
+  2.G.2.b-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.G.2.b-m10810
+    - 9925-m10810
+  2.G.2.b-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.G.2.b-m10811
+    - 9925-m10811
+  2.G.2.c-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.G.2.c-m10809
+    - 9789-m10809
+  2.G.2.c-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.G.2.c-m10810
+    - 9789-m10810
+  2.G.2.c-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.G.2.c-m10811
+    - 9789-m10811
+  2.G.2.d-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.G.2.d-m10809
+    - 9610-m10809
+  2.G.2.d-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.G.2.d-m10810
+    - 9610-m10810
+  2.G.2.d-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.G.2.d-m10811
+    - 9610-m10811
+  2.H.1-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.H.1-m10809
+    - 8644-m10809
+  2.H.1-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.H.1-m10810
+    - 8644-m10810
+  2.H.1-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.H.1-m10811
+    - 8644-m10811
+  2.H.2-m3:
+    title: Emissions from disposal
+    alternative_codes:
+    - 2.H.2-m10809
+    - 8797-m10809
+  2.H.2-m1:
+    title: Emissions from manufacturing
+    alternative_codes:
+    - 2.H.2-m10810
+    - 8797-m10810
+  2.H.2-m2:
+    title: Emissions from stocks
+    alternative_codes:
+    - 2.H.2-m10811
+    - 8797-m10811
