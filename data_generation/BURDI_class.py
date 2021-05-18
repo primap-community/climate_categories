@@ -15,6 +15,7 @@ def parse_classifications():
 
     new_categories = {}
     new_children = []
+    new_alternative_codes = {}
     for parent_category in climate_categories.BURDI.values():
         classification_ids = np.unique(
             rao.variables.loc[
@@ -29,6 +30,13 @@ def parse_classifications():
         i = 0
         for cid in sorted(classification_ids):
             if cid == 10510:  # Total for category, i.e. not a sub-category
+                # Just add additional altcodes
+                primary_altcode = f"{parent_category.codes[0]}-{cid}"
+                new_alternative_codes[primary_altcode] = parent_category.codes[0]
+                for nid in parent_category.info["numerical_ids"]:
+                    altcode = f"{nid}-{cid}"
+                    if altcode != primary_altcode:
+                        new_alternative_codes[altcode] = parent_category.codes[0]
                 continue
             i += 1
             code = f"{parent_category.codes[0]}-{i}"
@@ -49,15 +57,16 @@ def parse_classifications():
         if new_children_for_category:
             new_children.append((parent_category.codes[0], new_children_for_category))
 
-    return new_categories, new_children
+    return new_categories, new_children, new_alternative_codes
 
 
 def main():
-    categories, children = parse_classifications()
+    categories, children, alternative_codes = parse_classifications()
 
     BURDI_class = climate_categories.BURDI.extend(
         categories=categories,
         children=children,
+        alternative_codes=alternative_codes,
         name="class",
         title=" + classifications",
         comment=" extended by sub-classifications also provided by the DI flexible "
