@@ -2,8 +2,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.5.2 (2021-05-18)
+------------------
 
 * Add IPCC2006_PRIMAP categorization.
 * Add refrigerant sub-classes and additional codes to CRFDI_class.
