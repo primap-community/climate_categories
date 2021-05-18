@@ -5,7 +5,7 @@ names of categorizations. To access the example categorization `Excat`, simply u
 
 __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@pik-potsdam.de"
-__version__ = "0.5.1"
+__version__ = "0.5.2"
 
 import importlib
 import importlib.resources
