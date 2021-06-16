@@ -5,6 +5,8 @@ import typing
 
 import pyparsing
 
+from ._categories import Categorization
+
 
 class Conversion:
     """Rules for conversion between two categorizations."""
@@ -36,6 +38,23 @@ class Conversion:
         self.categorization_a = categorization_a
         self.categorization_b = categorization_b
         self.conversion_factors = conversion_factors
+
+    def ensure_valid(self, cats: typing.Dict[str, Categorization]) -> None:
+        """Check if all used codes are contained in the categorizations."""
+        try:
+            cat_a = cats[self.categorization_a]
+        except KeyError:
+            raise KeyError(f"{self.categorization_a!r} not found in categorizations.")
+        try:
+            cat_b = cats[self.categorization_b]
+        except KeyError:
+            raise KeyError(f"{self.categorization_b!r} not found in categorizations.")
+
+        for f_a, f_b in self.conversion_factors:
+            for code_factors, cat in ((f_a, cat_a), (f_b, cat_b)):
+                for code in code_factors:
+                    if code not in cat:
+                        raise KeyError(f"{code!r} not in {cat}.")
 
     @classmethod
     def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
