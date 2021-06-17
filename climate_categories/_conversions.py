@@ -2,10 +2,12 @@
 import csv
 import pathlib
 import typing
+from typing import TYPE_CHECKING
 
 import pyparsing
 
-from ._categories import Categorization
+if TYPE_CHECKING:
+    from ._categories import Categorization
 
 
 class Conversion:
@@ -39,7 +41,7 @@ class Conversion:
         self.categorization_b = categorization_b
         self.conversion_factors = conversion_factors
 
-    def ensure_valid(self, cats: typing.Dict[str, Categorization]) -> None:
+    def ensure_valid(self, cats: typing.Dict[str, "Categorization"]) -> None:
         """Check if all used codes are contained in the categorizations."""
         try:
             cat_a = cats[self.categorization_a]

@@ -1,6 +1,8 @@
 """Classes to represent and query categorical systems."""
 
 import datetime
+import importlib
+import importlib.resources
 import pathlib
 import pickle
 import typing
@@ -10,6 +12,9 @@ import networkx as nx
 import pandas
 import strictyaml as sy
 from ruamel.yaml import YAML
+
+from . import data
+from ._conversions import Conversion
 
 
 class Category:
@@ -494,6 +499,21 @@ class Categorization:
         if self.name != other.name:
             return False
         return self._primary_code_map == other._primary_code_map
+
+    def conversion_to(self, other: "Categorization") -> Conversion:
+        """Get conversion to other categorization.
+
+        If conversion rules for this conversion are not included, raises KeyError."""
+        for csv_name in (
+            f"conversion.{self.name}.{other.name}.csv",
+            f"conversion.{other.name}.{self.name}.csv",
+        ):
+            if importlib.resources.is_resource(data, csv_name):
+                fd = importlib.resources.open_text(data, csv_name)
+                return Conversion.from_csv(fd)
+        raise KeyError(
+            f"Conversion between {self.name} and {other.name} not yet included."
+        )
 
 
 class HierarchicalCategorization(Categorization):
