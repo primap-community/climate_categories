@@ -1133,7 +1133,7 @@ categories:
     - 4B9
     - 4 B 9
   4.B.10:
-    title: Anaerobic
+    title: Anaerobic Lagoons
     alternative_codes:
     - 4B10
     - 4 B 10
@@ -1239,13 +1239,13 @@ categories:
     - - 4.C.3.a
       - 4.C.3.b
   4.C.3.a:
-    title: Water Depth 50-100 Cm
+    title: Water Depth 50-100 cm
     comment: Fields inundated with water depth from 50 100 cm.
     alternative_codes:
     - 4C3a
     - 4 C 3 a
   4.C.3.b:
-    title: Water Depth 100 Cm
+    title: Water Depth > 100 cm
     comment: Fields inundated with water depth 100 cm.
     alternative_codes:
     - 4C3b

@@ -307,6 +307,11 @@ def main():
         "title"
     ] = "SF6 used in Aluminium and Magnesium Foundries"
 
+    spec["categories"]["4.B.10"]["title"] = "Anaerobic Lagoons"
+
+    spec["categories"]["4.C.3.a"]["title"] = "Water Depth 50-100 cm"
+    spec["categories"]["4.C.3.b"]["title"] = "Water Depth > 100 cm"
+
     spec["categories"]["5.A.5"]["comment"] = (
         "Emissions and removals of CO2 from other biomass categories, including"
         " village and farm trees, etc."
