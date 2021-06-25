@@ -37,6 +37,7 @@ def _read_pickle_nh(name) -> Categorization:
 IPCC1996 = _read_pickle_hier("IPCC1996")
 IPCC2006 = _read_pickle_hier("IPCC2006")
 IPCC2006_PRIMAP = _read_pickle_hier("IPCC2006_PRIMAP")
+CRF1999 = _read_pickle_hier("CRF1999")
 CRFDI = _read_pickle_hier("CRFDI")
 CRFDI_class = _read_pickle_hier("CRFDI_class")
 BURDI = _read_pickle_hier("BURDI")

@@ -26,6 +26,7 @@ Name             Title
 IPCC1996         IPCC GHG emission categories (1996)
 IPCC2006         IPCC GHG emission categories (2006)
 IPCC2006_PRIMAP  IPCC GHG emission categories (2006) with additional categories
+CRF1999          Common Reporting Format GHG emissions categories (1999)
 BURDI            BUR GHG emission categories (DI query interface)
 BURDI_class      BUR GHG emission categories (DI query interface) + classifications
 CRFDI            CRF GHG emission categories (DI query interface)
