@@ -11,14 +11,16 @@ if TYPE_CHECKING:
 
 
 class Conversion:
-    """Rules for conversion between two categorizations."""
+    """Rules for conversion between two categorizations.
+
+    #TODO: always take categorization objects, not strs"""
 
     # Parsing rules for simple formulas in the CSV
     # Supported operators at the moment are plus and minus
     _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
     _operator_factors = {"+": 1, "-": -1}
     # alphanumeric category codes can be given directly, others have to be quoted
-    _category_code = pyparsing.Word(pyparsing.alphanums) ^ pyparsing.QuotedString(
+    _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
         quoteChar='"', escChar="\\"
     )
     _formula = (
@@ -41,8 +43,10 @@ class Conversion:
         self.categorization_b = categorization_b
         self.conversion_factors = conversion_factors
 
-    def ensure_valid(self, cats: typing.Dict[str, "Categorization"]) -> None:
-        """Check if all used codes are contained in the categorizations."""
+    def _get_categorizations(
+        self, cats: typing.Dict[str, "Categorization"]
+    ) -> ("Categorization", "Categorization"):
+        """Returns categorization_a and categorization_b as Categorization objects."""
         try:
             cat_a = cats[self.categorization_a]
         except KeyError:
@@ -52,11 +56,73 @@ class Conversion:
         except KeyError:
             raise KeyError(f"{self.categorization_b!r} not found in categorizations.")
 
+        return cat_a, cat_b
+
+    def ensure_valid(self, cats: typing.Dict[str, "Categorization"]) -> None:
+        """Check if all used codes are contained in the categorizations."""
+        cat_a, cat_b = self._get_categorizations(cats)
+
         for f_a, f_b in self.conversion_factors:
             for code_factors, cat in ((f_a, cat_a), (f_b, cat_b)):
                 for code in code_factors:
                     if code not in cat:
                         raise KeyError(f"{code!r} not in {cat}.")
+
+    def describe_detailed(self, cats: typing.Dict[str, "Categorization"]) -> str:
+        """Detailed human-readable description of the conversion rules."""
+        cat_a, cat_b = self._get_categorizations(cats)
+        ret = f"# Mapping between {cat_a} and {cat_b}\n\n"
+
+        ret += "## Simple direct mappings\n\n"
+        for f_a, f_b in self.conversion_factors:
+            if len(f_a) == 1 and len(f_b) == 1:
+                node_a = cat_a[next(iter(f_a))]
+                ret += f"<{cat_a}> {node_a}\n"
+                node_b = cat_b[next(iter(f_b))]
+                ret += f"<{cat_b}> {node_b}\n\n"
+
+        ret += f"## One-to-many mappings - one {cat_a} to many {cat_b}\n\n"
+        for f_a, f_b in self.conversion_factors:
+            if len(f_a) == 1 and len(f_b) != 1:
+                code_a = next(iter(f_a))
+                node_a = cat_a[code_a]
+                ret += f"<{cat_a}> {node_a}\n"
+                b = [f"<{cat_b}> {cat_b[x]}" for x in f_b]
+                ret += "\n".join(b) + "\n\n"
+
+        ret += f"## One-to-many-mappings - many {cat_a} to one {cat_b}\n\n"
+        for f_a, f_b in self.conversion_factors:
+            if len(f_a) != 1 and len(f_b) == 1:
+                a = [f"<{cat_a}> {cat_a[x]}" for x in f_a]
+                ret += "\n".join(a) + "\n"
+                code_b = next(iter(f_b))
+                node_b = cat_b[code_b]
+                ret += f"<{cat_b}> {node_b}\n\n"
+
+        ret += "## Many-to-many-mappings\n\n"
+        for f_a, f_b in self.conversion_factors:
+            if len(f_a) != 1 and len(f_b) != 1:
+                a = [f"<{cat_a}> {cat_a[x]}" for x in f_a]
+                ret += "\n".join(a) + "\n"
+                b = [f"<{cat_b}> {cat_b[x]}" for x in f_b]
+                ret += "\n".join(b) + "\n\n"
+
+        ret += "## Unmapped categories\n\n"
+        fs_a = set()
+        fs_b = set()
+        for f_a, f_b in self.conversion_factors:
+            for code in f_a:
+                fs_a.add(cat_a[code])
+            for code in f_b:
+                fs_b.add(cat_b[code])
+        fm_a = set(cat_a.values()) - fs_a
+        fm_b = set(cat_b.values()) - fs_b
+        ret += f"### {cat_a}\n"
+        ret += "\n".join(sorted((str(x) for x in fm_a))) + "\n\n"
+        ret += f"### {cat_b}\n"
+        ret += "\n".join(sorted((str(x) for x in fm_b))) + "\n\n"
+
+        return ret
 
     @classmethod
     def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
