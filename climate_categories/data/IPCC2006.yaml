@@ -3834,8 +3834,8 @@ categories:
     - - 3.B.3.a
       - 3.B.3.b
   3.B.3.a:
-    title: ''
-    comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
+    title: 'Grassland Remaining Grassland'
+    comment: Emissions and removals from grassland remaining
       grassland.
     alternative_codes:
     - 3B3a
