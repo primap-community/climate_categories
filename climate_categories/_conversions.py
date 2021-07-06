@@ -1,5 +1,7 @@
 """Classes to represent conversion rules between categorizations."""
 import csv
+import dataclasses
+import datetime
 import pathlib
 import typing
 from typing import TYPE_CHECKING
@@ -8,6 +10,89 @@ import pyparsing
 
 if TYPE_CHECKING:
     from ._categories import Categorization
+
+
+@dataclasses.dataclass
+class ConversionRule:
+    """Rule to convert between categories from two different categorizations.
+
+    Supports one-to-one relationships, one-to-many relationships in both directions and
+    many-to-many relationships. For each category, a factor is given which can also be
+    negative to model relationships like A = B - C.
+
+    Using auxiliary_categories, a rule can be restricted to specific auxiliary
+    categories only.
+
+    Attributes
+    ----------
+    factors_categories_a : dict mapping codes to factors
+        Map of category codes from the first categorization to factors. For a simple
+        addition, use factor 1, to subtract the category, use factor -1.
+    factors_categories_b : dict mapping codes to factors
+        Map of category codes from the second categorization to factors. For a simple
+        addition, use factor 1, to subtract the category, use factor -1.
+    auxiliary_categories : dict[str, set[str]]
+        Map of auxiliary categorization names to sets of auxiliary category codes. Not
+        all auxiliary categorizations need to be specified, and if an auxiliary
+        categorization is not specified (or an empty set of category codes is given),
+        the validity of the rule is not restricted.
+        If an auxiliary categorization is specified and category codes are given, the
+        rule is only valid for the given category codes. If multiple auxiliary
+        categorizations are given, the rule is only valid if all auxiliary
+        categorizations match.
+    """
+
+    factors_categories_a: typing.Dict[str, int]
+    factors_categories_b: typing.Dict[str, int]
+    auxiliary_categories: typing.Dict[str, typing.Set[str]]
+
+
+class ConversionRules:
+    """Rules for conversion between two (sets of) categorizations."""
+
+    def __init__(
+        self,
+        *,
+        categorization_a_name: str,
+        categorization_b_name: str,
+        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
+        rules: typing.List[ConversionRule],
+        comment: typing.Optional[str] = None,
+        references: typing.Optional[str] = None,
+        institution: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
+        version: typing.Optional[str] = None,
+    ):
+        """Rules for conversion between two categorizations, with support for
+        alternative rules depending on auxiliary categorizations.
+
+        This class supports parsing the rules from a specification file and other
+        operations which can be performed on the pure rules without knowledge of the
+        categorization objects themselves.
+
+        Parameters
+        ----------
+        categorization_a_name : str
+            Name of the first categorization.
+        categorization_b_name : str
+            Name of the second categorization.
+        auxiliary_categorizations_names : list of str, optional
+            Names of the auxiliary categorizations.
+        rules : list of ConversionRule
+            The actual rules for conversion between individual categories or sets of
+            categories.
+        comment : str, optional
+            Notes and explanations for humans.
+        references : str, optional
+            Citable reference(s) for the conversion.
+        institution : str, optional
+            Where the conversion originates.
+        last_update : datetime.date, optional
+            The date of the last change.
+        version : str, optional
+            The version of the ConversionRules, if there are multiple versions.
+        """
+        pass
 
 
 class Conversion:
