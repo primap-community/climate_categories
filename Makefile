@@ -19,10 +19,10 @@ lint: venv ## check style with pre-commit hooks
 	venv/bin/pre-commit run --all-files
 
 test: venv ## run tests quickly with the default Python
-	venv/bin/pytest  --xdoc -rx
+	venv/bin/pytest --xdoc -rx
 
-test-full: venv ## run tests with all Python versions; needs python versions already set up
-	tox
+test-all: venv ## run tests with all Python versions; needs python versions already set up
+	tox -p
 
 coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage run --source climate_categories -m pytest
@@ -64,7 +64,8 @@ venv: setup.py pyproject.toml setup.cfg
 
 update-venv:
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install --upgrade -e .[dev]
+	venv/bin/python -m pip install --upgrade pip wheel
+	venv/bin/python -m pip install --upgrade --upgrade-strategy eager -e .[dev]
 	touch venv
 
 install-pre-commit: update-venv ## install the pre-commit hooks

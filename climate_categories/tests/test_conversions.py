@@ -12,6 +12,7 @@ import climate_categories.tests.data
 
 
 class TestConversions:
+    @pytest.mark.xfail
     def test_good_csv(self):
         fd = importlib.resources.open_text(
             climate_categories.tests.data,
@@ -30,6 +31,7 @@ class TestConversions:
             ({"+": 1, "-": 1}, {"-": 1}),
         ]
 
+    @pytest.mark.xfail
     def test_bad_csv(self):
         fd = importlib.resources.open_text(
             climate_categories.tests.data,

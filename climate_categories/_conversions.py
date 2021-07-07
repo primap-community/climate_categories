@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from ._categories import Categorization
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(frozen=True)
 class ConversionRule:
     """Rule to convert between categories from two different categorizations.
 
@@ -47,58 +47,47 @@ class ConversionRule:
     auxiliary_categories: typing.Dict[str, typing.Set[str]]
 
 
+@dataclasses.dataclass
 class ConversionRules:
-    """Rules for conversion between two (sets of) categorizations."""
+    """Rules for conversion between two categorizations, with support for
+    alternative rules depending on auxiliary categorizations.
 
-    def __init__(
-        self,
-        *,
-        categorization_a_name: str,
-        categorization_b_name: str,
-        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
-        rules: typing.List[ConversionRule],
-        comment: typing.Optional[str] = None,
-        references: typing.Optional[str] = None,
-        institution: typing.Optional[str] = None,
-        last_update: typing.Optional[datetime.date] = None,
-        version: typing.Optional[str] = None,
-    ):
-        """Rules for conversion between two categorizations, with support for
-        alternative rules depending on auxiliary categorizations.
+    This class supports parsing the rules from a specification file and other
+    operations which can be performed on the pure rules without knowledge of the
+    categorization objects themselves.
 
-        This class supports parsing the rules from a specification file and other
-        operations which can be performed on the pure rules without knowledge of the
-        categorization objects themselves.
+    Attributes
+    ----------
+    categorization_a_name : str
+        Name of the first categorization.
+    categorization_b_name : str
+        Name of the second categorization.
+    auxiliary_categorizations_names : list of str, optional
+        Names of the auxiliary categorizations.
+    rules : list of ConversionRule
+        The actual rules for conversion between individual categories or sets of
+        categories.
+    comment : str, optional
+        Notes and explanations for humans.
+    references : str, optional
+        Citable reference(s) for the conversion.
+    institution : str, optional
+        Where the conversion originates.
+    last_update : datetime.date, optional
+        The date of the last change.
+    version : str, optional
+        The version of the ConversionRules, if there are multiple versions.
+    """
 
-        Parameters
-        ----------
-        categorization_a_name : str
-            Name of the first categorization.
-        categorization_b_name : str
-            Name of the second categorization.
-        auxiliary_categorizations_names : list of str, optional
-            Names of the auxiliary categorizations.
-        rules : list of ConversionRule
-            The actual rules for conversion between individual categories or sets of
-            categories.
-        comment : str, optional
-            Notes and explanations for humans.
-        references : str, optional
-            Citable reference(s) for the conversion.
-        institution : str, optional
-            Where the conversion originates.
-        last_update : datetime.date, optional
-            The date of the last change.
-        version : str, optional
-            The version of the ConversionRules, if there are multiple versions.
-        """
-        pass
-
-
-class Conversion:
-    """Rules for conversion between two categorizations.
-
-    #TODO: always take categorization objects, not strs"""
+    categorization_a_name: str
+    categorization_b_name: str
+    rules: typing.List[ConversionRule]
+    auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None
+    comment: typing.Optional[str] = None
+    references: typing.Optional[str] = None
+    institution: typing.Optional[str] = None
+    last_update: typing.Optional[datetime.date] = None
+    version: typing.Optional[str] = None
 
     # Parsing rules for simple formulas in the CSV
     # Supported operators at the moment are plus and minus
@@ -115,6 +104,170 @@ class Conversion:
         + pyparsing.ZeroOrMore(_operator("binary_op") + _category_code("category_code"))
         + pyparsing.StringEnd()
     )
+    _auxiliary_codes = (
+        pyparsing.StringStart()
+        + pyparsing.ZeroOrMore(_category_code("aux_category_code"))
+        + pyparsing.StringEnd()
+    )
+
+    @classmethod
+    def _parse_aux_codes(cls, aux_codes_str: str) -> typing.List[str]:
+        """Parse a whitespace-separated list of auxiliary codes.
+
+        Parameters
+        ----------
+        aux_codes_str: str
+            Category codes separated by whitespace. Alphanumeric category codes can be
+            given directly, other category codes must be quoted using double quotes.
+
+        Returns
+        -------
+        aux_codes: list
+            List of the category codes.
+
+        Examples
+        --------
+        >>> ConversionRules._parse_aux_codes("A B")
+        ['A', 'B']
+        >>> ConversionRules._parse_aux_codes('"a b" c')
+        ['a b', 'c']
+        >>> ConversionRules._parse_aux_codes("")
+        []
+        >>> ConversionRules._parse_aux_codes("A + B")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: 'A + B', error: Expected ...
+        """
+        try:
+            tokens = cls._auxiliary_codes.parseString(aux_codes_str)
+        except pyparsing.ParseException as exc:
+            raise ValueError(
+                f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
+                f" error at char {exc.loc}"
+            )
+        return list(tokens)
+
+    @classmethod
+    def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
+        """Parse a formula into factors for categories.
+
+        Parameters
+        ----------
+        formula: str
+            Formula comprising category codes connected with + or - . Alphanumeric
+            category codes can be given directly, other category codes must be quoted
+            using double quotes.
+
+        Returns
+        -------
+        code_factors: dict
+            mapping of category codes to factors
+
+        Examples
+        --------
+        >>> ConversionRules._parse_formula("A + B")
+        {'A': 1, 'B': 1}
+        >>> ConversionRules._parse_formula("-A+B")
+        {'A': -1, 'B': 1}
+        >>> ConversionRules._parse_formula('"-asdf.#" + B')
+        {'-asdf.#': 1, 'B': 1}
+        >>> ConversionRules._parse_formula(" A  -  B")
+        {'A': 1, 'B': -1}
+        >>> ConversionRules._parse_formula("-A")
+        {'A': -1}
+        >>> ConversionRules._parse_formula('-A+B - "A"')
+        {'A': -2, 'B': 1}
+        >>> ConversionRules._parse_formula("-A-")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: '-A-', error: Expected ...
+        >>> ConversionRules._parse_formula("")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: '', error: Expected ...
+        """
+        try:
+            tokens = cls._formula.parseString(formula)
+        except pyparsing.ParseException as exc:
+            raise ValueError(
+                f"Could not parse: {formula!r}, error: {exc.msg},"
+                f" error at char {exc.loc}"
+            )
+        code_factors = {}
+        # first operator is implicitly a plus, have to handle it specially
+        if "unary_op" in tokens:
+            op = tokens.pop(0)
+        else:
+            op = "+"
+        code = tokens.pop(0)
+        code_factors[code] = cls._operator_factors[op]
+        while tokens:
+            op = tokens.pop(0)
+            code = tokens.pop(0)
+            if code in code_factors:
+                code_factors[code] += cls._operator_factors[op]
+            else:
+                code_factors[code] = cls._operator_factors[op]
+
+        return code_factors
+
+    @classmethod
+    def _from_csv(cls, fd: typing.TextIO) -> "ConversionRules":
+        rules = []
+        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
+        header = next(reader)
+        n_aux = len(header) - 2
+        for i, row in enumerate(reader):
+            try:
+                factors_a = cls._parse_formula(row[0])
+                factors_b = cls._parse_formula(row[-1])
+
+                auxiliary_categories = {}
+                for i_aux in range(n_aux):
+                    categories = row[i_aux + 1]
+                    if categories:
+                        auxiliary_categorization: str = header[i_aux + 1]
+                        auxiliary_categories[auxiliary_categorization] = set(
+                            cls._parse_aux_codes(categories)
+                        )
+
+            except ValueError as err:
+                raise ValueError(f"Error in line {i + 2}: {err}")
+
+            rules.append(
+                ConversionRule(
+                    factors_categories_a=factors_a,
+                    factors_categories_b=factors_b,
+                    auxiliary_categories=auxiliary_categories,
+                )
+            )
+
+        return cls(
+            categorization_a_name=header[0],
+            categorization_b_name=header[-1],
+            rules=rules,
+            auxiliary_categorizations_names=header[1 : n_aux + 1] if n_aux else None,
+            comment="TODO",
+            references="TODO",
+            institution="TODO",
+            last_update="TODO",
+            version="TODO",
+        )
+
+    @classmethod
+    def from_csv(
+        cls, filepath: typing.Union[str, pathlib.Path, typing.TextIO]
+    ) -> "ConversionRules":
+        """Read conversion from comma-separated-values file."""
+        if not isinstance(filepath, (str, pathlib.Path)):
+            return cls._from_csv(filepath)
+        fp = pathlib.Path(filepath)
+        with fp.open(filepath, newline="") as fd:
+            return cls._from_csv(fd)
+
+
+class Conversion:
+    """Rules for conversion between two categorizations."""
 
     def __init__(
         self,
@@ -208,97 +361,3 @@ class Conversion:
         ret += "\n".join(sorted((str(x) for x in fm_b))) + "\n\n"
 
         return ret
-
-    @classmethod
-    def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
-        """Parse a formula into factors for categories.
-
-        Parameters
-        ----------
-        formula: str
-            Formula comprising category codes connected with + or - . Alphanumeric
-            category codes can be given directly, other category codes must be quoted
-            using double quotes.
-
-        Returns
-        -------
-        code_factors: dict
-            mapping of category codes to factors
-
-        Examples
-        --------
-        >>> Conversion._parse_formula("A + B")
-        {'A': 1, 'B': 1}
-        >>> Conversion._parse_formula("-A+B")
-        {'A': -1, 'B': 1}
-        >>> Conversion._parse_formula('"-asdf.#" + B')
-        {'-asdf.#': 1, 'B': 1}
-        >>> Conversion._parse_formula(" A  -  B")
-        {'A': 1, 'B': -1}
-        >>> Conversion._parse_formula("-A")
-        {'A': -1}
-        >>> Conversion._parse_formula('-A+B - "A"')
-        {'A': -2, 'B': 1}
-        >>> Conversion._parse_formula("-A-")
-        Traceback (most recent call last):
-        ...
-        ValueError: Could not parse: '-A-', error: Expected ...
-        >>> Conversion._parse_formula("")
-        Traceback (most recent call last):
-        ...
-        ValueError: Could not parse: '', error: Expected ...
-        """
-        try:
-            tokens = cls._formula.parseString(formula)
-        except pyparsing.ParseException as exc:
-            raise ValueError(
-                f"Could not parse: {formula!r}, error: {exc.msg},"
-                f" error at char {exc.loc}"
-            )
-        code_factors = {}
-        # first operator is implicitly a plus, have to handle it specially
-        if "unary_op" in tokens:
-            op = tokens.pop(0)
-        else:
-            op = "+"
-        code = tokens.pop(0)
-        code_factors[code] = cls._operator_factors[op]
-        while tokens:
-            op = tokens.pop(0)
-            code = tokens.pop(0)
-            if code in code_factors:
-                code_factors[code] += cls._operator_factors[op]
-            else:
-                code_factors[code] = cls._operator_factors[op]
-
-        return code_factors
-
-    @classmethod
-    def _from_csv(cls, fd: typing.TextIO) -> "Conversion":
-        conversion_factors = []
-        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
-        header = next(reader)
-        for i, row in enumerate(reader):
-            try:
-                conversion_factors.append(
-                    (cls._parse_formula(row[0]), cls._parse_formula(row[1]))
-                )
-            except ValueError as err:
-                raise ValueError(f"Error in line {i + 2}: {err}")
-
-        return cls(
-            categorization_a=header[0],
-            categorization_b=header[1],
-            conversion_factors=conversion_factors,
-        )
-
-    @classmethod
-    def from_csv(
-        cls, filepath: typing.Union[str, pathlib.Path, typing.TextIO]
-    ) -> "Conversion":
-        """Read conversion from comma-separated-values file."""
-        if not isinstance(filepath, (str, pathlib.Path)):
-            return cls._from_csv(filepath)
-        fp = pathlib.Path(filepath)
-        with fp.open(filepath, newline="") as fd:
-            return cls._from_csv(fd)
