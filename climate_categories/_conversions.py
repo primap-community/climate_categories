@@ -40,11 +40,14 @@ class ConversionRule:
         rule is only valid for the given category codes. If multiple auxiliary
         categorizations are given, the rule is only valid if all auxiliary
         categorizations match.
+    comment : str
+        A human-readable comment explaining the rule or adding additional information.
     """
 
     factors_categories_a: typing.Dict[str, int]
     factors_categories_b: typing.Dict[str, int]
     auxiliary_categories: typing.Dict[str, typing.Set[str]]
+    comment: str = ""
 
 
 @dataclasses.dataclass
@@ -89,6 +92,7 @@ class ConversionRules:
     last_update: typing.Optional[datetime.date] = None
     version: typing.Optional[str] = None
 
+    _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
     # Parsing rules for simple formulas in the CSV
     # Supported operators at the moment are plus and minus
     _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
@@ -212,46 +216,121 @@ class ConversionRules:
         return code_factors
 
     @classmethod
-    def _from_csv(cls, fd: typing.TextIO) -> "ConversionRules":
+    def _read_csv_meta(cls, reader: csv.reader) -> typing.Dict[str, str]:
+        """Read the metadata section of a CSV conversion specification file. It consists
+        of key, value pairs, one pair on each line. A single empty line terminates the
+        metadata section.
+
+        Parameters
+        ----------
+        reader: a CSV reader object as returned by csv.reader
+            Use a CSV reader object which was not used before to read from. The reader
+            object will be iterated up to the end of the meta data section, so that
+            after calling _read_csv_meta you can directly start reading the data
+            section.
+
+        Returns
+        -------
+        meta_data: dict
+            lineno Mapping of meta data keys to values.
+        """
+        meta_data = {}
+        for row in reader:
+            if not row:
+                break
+            if len(row) < 2:
+                raise ValueError(
+                    f"Meta data specification is incomplete in line {reader.line_num}:"
+                    f" {row!r}."
+                )
+            if len(row) > 2:
+                raise ValueError(
+                    f"Meta data specification has extraneous fields in line"
+                    f" {reader.line_num}:"
+                    f" {row!r}, did you forget to escape a comma?"
+                )
+            if row[0] not in cls._meta_data_keys:
+                raise ValueError(
+                    f"Unknown meta data key in line {reader.line_num}: {row[0]}."
+                )
+
+            meta_data[row[0]] = row[1]
+
+        if "last_update" in meta_data:
+            meta_data["last_update"] = datetime.date.fromisoformat(
+                meta_data["last_update"]
+            )
+        return meta_data
+
+    @classmethod
+    def _read_csv_rules(
+        cls, reader: csv.reader
+    ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRule]]:
+        """Read the data section of a CSV specification file. It consists of a header,
+        followed by rules, with each rule on one line.
+
+        Parameters
+        ----------
+        reader: CSV reader object as returned by csv.reader
+            The reader object must already be advanced to the rules section, so that
+            the first read yields the data header.
+
+        Returns
+        -------
+        a_name, b_name, aux_names, rules: str, str, list, list
+           The name of categorizations A and B, the names of the auxiliary categories,
+           and the parsed rules.
+        """
         rules = []
-        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
         header = next(reader)
-        n_aux = len(header) - 2
-        for i, row in enumerate(reader):
+        a_name = header[0]
+        b_name = header[-2]
+        if header[-1] != "comment":
+            raise ValueError("Last column must be 'comment', but isn't.")
+        aux_names = header[1:-2]
+        n_aux = len(aux_names)
+        for row in reader:
+            irow = iter(row)
+            auxiliary_categories = {}
             try:
-                factors_a = cls._parse_formula(row[0])
-                factors_b = cls._parse_formula(row[-1])
-
-                auxiliary_categories = {}
-                for i_aux in range(n_aux):
-                    categories = row[i_aux + 1]
-                    if categories:
-                        auxiliary_categorization: str = header[i_aux + 1]
-                        auxiliary_categories[auxiliary_categorization] = set(
-                            cls._parse_aux_codes(categories)
-                        )
-
+                factors_a = cls._parse_formula(next(irow))
+                for i in range(n_aux):
+                    aux_codes = cls._parse_aux_codes(next(irow))
+                    if aux_codes:
+                        auxiliary_categories[aux_names[i]] = set(aux_codes)
+                factors_b = cls._parse_formula(next(irow))
             except ValueError as err:
-                raise ValueError(f"Error in line {i + 2}: {err}")
+                raise ValueError(f"Error in line {reader.line_num}: {err}")
+
+            try:
+                comment = next(irow)
+            except StopIteration:
+                comment = ""
 
             rules.append(
                 ConversionRule(
                     factors_categories_a=factors_a,
                     factors_categories_b=factors_b,
                     auxiliary_categories=auxiliary_categories,
+                    comment=comment,
                 )
             )
 
+        return a_name, b_name, aux_names, rules
+
+    @classmethod
+    def _from_csv(cls, fd: typing.TextIO) -> "ConversionRules":
+        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
+
+        meta_data = cls._read_csv_meta(reader)
+        a_name, b_name, aux_names, rules = cls._read_csv_rules(reader)
+
         return cls(
-            categorization_a_name=header[0],
-            categorization_b_name=header[-1],
+            categorization_a_name=a_name,
+            categorization_b_name=b_name,
             rules=rules,
-            auxiliary_categorizations_names=header[1 : n_aux + 1] if n_aux else None,
-            comment="TODO",
-            references="TODO",
-            institution="TODO",
-            last_update="TODO",
-            version="TODO",
+            auxiliary_categorizations_names=aux_names or None,
+            **meta_data,
         )
 
     @classmethod
