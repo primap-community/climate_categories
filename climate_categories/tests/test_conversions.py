@@ -68,12 +68,40 @@ class TestConversions:
             auxiliary_categories={},
         )
 
-    # TODO: failure modes
-    @pytest.mark.xfail
-    def test_bad_csv(self):
-        fd = importlib.resources.open_text(
-            climate_categories.tests.data,
-            "bad_conversion.csv",
-        )
-        with pytest.raises(ValueError, match="line 4"):
-            climate_categories._conversions.Conversion.from_csv(fd)
+    def test_formula_broken(self):
+        csv = ["comment,no comment", "", "A,B,comment", "A.1+,C,broken formula"]
+        with pytest.raises(ValueError, match="line 4.*Could not parse"):
+            climate_categories._conversions.ConversionRules.from_csv(csv)
+
+    def test_meta_data_incomplete(self):
+        csv = ["comment,no comment", "references"]
+        with pytest.raises(
+            ValueError, match="Meta data specification is incomplete in line 2"
+        ):
+            climate_categories._conversions.ConversionRules.from_csv(csv)
+
+    def test_extraneous_comma(self):
+        csv = ["comment,you know, nothing really works"]
+        with pytest.raises(ValueError, match="did you forget to escape a comma?"):
+            climate_categories._conversions.ConversionRules.from_csv(csv)
+
+        csv = ["comment,you know\\, nothing really works", "", "A,B,comment"]
+        cr = climate_categories._conversions.ConversionRules.from_csv(csv)
+        assert cr.comment == "you know, nothing really works"
+
+    def test_unknown_meta_data(self):
+        csv = [
+            "comment,no comment",
+            "interjection,What you guys are referring to as Linux",
+        ]
+        with pytest.raises(
+            ValueError, match="Unknown meta data key in line 2: interjection"
+        ):
+            climate_categories._conversions.ConversionRules.from_csv(csv)
+
+    def test_comment_missing(self):
+        csv = ["comment,no comment", "", "A,aux,B", "A.1,D,A.2"]
+        with pytest.raises(
+            ValueError, match="Last column must be 'comment', but isn't."
+        ):
+            climate_categories._conversions.ConversionRules.from_csv(csv)

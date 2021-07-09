@@ -335,7 +335,8 @@ class ConversionRules:
 
     @classmethod
     def from_csv(
-        cls, filepath: typing.Union[str, pathlib.Path, typing.TextIO]
+        cls,
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO, typing.Iterable[str]],
     ) -> "ConversionRules":
         """Read conversion from comma-separated-values file."""
         if not isinstance(filepath, (str, pathlib.Path)):
