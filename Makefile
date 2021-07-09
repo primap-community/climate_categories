@@ -25,7 +25,7 @@ test-all: venv ## run tests with all Python versions; needs python versions alre
 	tox -p
 
 coverage: venv ## check code coverage quickly with the default Python
-	venv/bin/coverage run --source climate_categories -m pytest
+	venv/bin/coverage run --source climate_categories -m pytest --xdoc -rx
 	venv/bin/coverage report -m
 	venv/bin/coverage html
 

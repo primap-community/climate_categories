@@ -342,8 +342,14 @@ class ConversionRules:
         if not isinstance(filepath, (str, pathlib.Path)):
             return cls._from_csv(filepath)
         fp = pathlib.Path(filepath)
-        with fp.open(filepath, newline="") as fd:
+        with fp.open(newline="") as fd:
             return cls._from_csv(fd)
+
+    def __repr__(self):
+        return (
+            f"<ConversionRules {self.categorization_a_name!r} <->"
+            f" {self.categorization_b_name!r} with {len(self.rules)} rules>"
+        )
 
 
 class Conversion:

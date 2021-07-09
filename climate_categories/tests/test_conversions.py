@@ -14,12 +14,18 @@ from climate_categories._conversions import ConversionRule
 
 
 class TestConversions:
-    def test_good_csv(self):
+    def test_good_csv(self, tmp_path):
+        # write CSV resource to file to test also file opening path
         fd = importlib.resources.open_text(
             climate_categories.tests.data,
             "good_conversion.csv",
         )
-        conv = climate_categories._conversions.ConversionRules.from_csv(fd)
+        temp_csv = tmp_path / "gc.csv"
+        with temp_csv.open("w") as fd2:
+            fd2.write(fd.read())
+
+        # Now actually read from the file
+        conv = climate_categories._conversions.ConversionRules.from_csv(temp_csv)
         assert conv.categorization_a_name == "A"
         assert conv.categorization_b_name == "B"
         assert conv.comment == "A correct conversion specification file"
@@ -67,6 +73,8 @@ class TestConversions:
             factors_categories_b={"-": 1},
             auxiliary_categories={},
         )
+
+        assert repr(conv) == "<ConversionRules 'A' <-> 'B' with 7 rules>"
 
     def test_formula_broken(self):
         csv = ["comment,no comment", "", "A,B,comment", "A.1+,C,broken formula"]
