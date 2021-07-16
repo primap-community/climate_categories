@@ -494,7 +494,6 @@ class TestShowAsTree:
 OT Other top category
 ├1B Category 1B
 ╰2B Category 2B
-
 """
         )
 
@@ -534,7 +533,6 @@ OT Other top category
 OT
 ├1B
 ╰2B
-
 """
         )
 
@@ -559,7 +557,6 @@ OT
 OT Other top category
 ├1B Category 1B
 ╰2B Category 2B
-
 """
         )
 

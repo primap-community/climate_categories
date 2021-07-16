@@ -695,6 +695,49 @@ class HierarchicalCategorization(Categorization):
             )
         )
 
+    def _show_subtree_children(
+        self,
+        children: typing.Iterable[HierarchicalCategory],
+        format_func: typing.Callable,
+        prefix: str,
+        maxdepth: typing.Optional[int],
+    ) -> str:
+        children_sorted = natsort.natsorted(children, key=format_func)
+        r = "".join(
+            self._show_subtree(
+                node=child,
+                prefix=prefix + "│",
+                format_func=format_func,
+                maxdepth=maxdepth,
+            )
+            for child in children_sorted[:-1]
+        )
+        # Last child needs to be called slightly differently
+        r += self._show_subtree(
+            node=children_sorted[-1],
+            prefix=prefix + " ",
+            last=True,
+            format_func=format_func,
+            maxdepth=maxdepth,
+        )
+        return r
+
+    @staticmethod
+    def _render_node(
+        node: HierarchicalCategory,
+        last: bool,
+        prefix: str,
+        format_func: typing.Callable[[HierarchicalCategory], str],
+    ):
+        formatted = format_func(node)
+        if prefix:
+            if last:
+                return f"{prefix[:-1]}╰{formatted}\n"
+            else:
+                return f"{prefix[:-1]}├{formatted}\n"
+        else:
+            return f"{formatted}\n"
+
     def _show_subtree(
         self,
         *,
@@ -704,41 +747,26 @@ class HierarchicalCategorization(Categorization):
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: typing.Optional[int],
     ) -> str:
+        """Recursively-called function to show a subtree starting at the given node."""
+
+        r = self._render_node(node, last=last, prefix=prefix, format_func=format_func)
+
         if maxdepth is not None:
             maxdepth -= 1
-        if prefix:
-            if last:
-                r = f"{prefix[:-1]}╰{format_func(node)}\n"
-            else:
-                r = f"{prefix[:-1]}├{format_func(node)}\n"
-        else:
-            r = f"{format_func(node)}\n"
-
-        if maxdepth is not None and maxdepth == 0:
-            return r
+            if maxdepth == 0:  # maxdepth reached, nothing more to do
+                return r
 
         child_sets = node.children
-        if len(child_sets) == 0:
-            return r
-        elif len(child_sets) == 1:
+        if len(child_sets) == 1:
             children = child_sets[0]
             if children:
-                children_sorted = natsort.natsorted(children, key=format_func)
-                for child in children_sorted[:-1]:
-                    r += self._show_subtree(
-                        node=child,
-                        prefix=prefix + "│",
-                        format_func=format_func,
-                        maxdepth=maxdepth,
-                    )
-                r += self._show_subtree(
-                    node=children_sorted[-1],
-                    prefix=prefix + " ",
-                    last=True,
+                r += self._show_subtree_children(
+                    children=children,
                     format_func=format_func,
                     maxdepth=maxdepth,
+                    prefix=prefix,
                 )
-        else:
+        elif len(child_sets) > 1:
             prefix += "║"
             first = True
             for children in child_sets:
@@ -749,21 +777,13 @@ class HierarchicalCategorization(Categorization):
                     else:
                         r += f"{prefix[:-1]}╠╕\n"
 
-                    children_sorted = natsort.natsorted(children, key=format_func)
-                    for child in children_sorted[:-1]:
-                        r += self._show_subtree(
-                            node=child,
-                            prefix=prefix + "│",
-                            format_func=format_func,
-                            maxdepth=maxdepth,
-                        )
-                    r += self._show_subtree(
-                        node=children_sorted[-1],
-                        prefix=prefix + " ",
-                        last=True,
+                    r += self._show_subtree_children(
+                        children=children,
                         format_func=format_func,
                         maxdepth=maxdepth,
+                        prefix=prefix,
                     )
+
             r += f"{prefix[:-1]}╚═══\n"
 
         return r
@@ -800,15 +820,14 @@ class HierarchicalCategorization(Categorization):
             viewing.
         """
         top_level_nodes = (node for node in self.values() if not node.parents)
-        r = ""
-        for top_level_node in top_level_nodes:
-            r += (
+        return "\n".join(
+            (
                 self._show_subtree(
                     node=top_level_node, format_func=format_func, maxdepth=maxdepth
                 )
-                + "\n"
             )
-        return r
+            for top_level_node in top_level_nodes
+        )
 
     def extend(
         self,
@@ -959,8 +978,7 @@ class HierarchicalCategorization(Categorization):
                 children_dict[setno] = []
             children_dict[setno].append(child)
 
-        children = [set(children_dict[x]) for x in sorted(children_dict.keys())]
-        return children
+        return [set(children_dict[x]) for x in sorted(children_dict.keys())]
 
 
 def from_pickle(
