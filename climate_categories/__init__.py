@@ -22,6 +22,7 @@ cats = {}
 def _read_pickle_hier(name) -> HierarchicalCategorization:
     with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
         _cat = from_pickle(fd)
+    _cat._cats = cats
     cats[_cat.name] = _cat
     return _cat
 
@@ -29,6 +30,7 @@ def _read_pickle_hier(name) -> HierarchicalCategorization:
 def _read_pickle_nh(name) -> Categorization:
     with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
         _cat = from_pickle(fd)
+    _cat._cats = cats
     cats[_cat.name] = _cat
     return _cat
 

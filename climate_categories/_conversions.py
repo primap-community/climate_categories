@@ -1,4 +1,4 @@
-"""Classes to represent conversion rules between categorizations."""
+"""Classes to represent conversions between categorizations."""
 import csv
 import dataclasses
 import datetime
@@ -9,12 +9,13 @@ from typing import TYPE_CHECKING
 import pyparsing
 
 if TYPE_CHECKING:
-    from ._categories import Categorization
+    from ._categories import Categorization, Category
 
 
 @dataclasses.dataclass(frozen=True)
-class ConversionRule:
-    """Rule to convert between categories from two different categorizations.
+class ConversionRuleSpec:
+    """Specification of a rule to convert between categories from two different
+     categorizations.
 
     Supports one-to-one relationships, one-to-many relationships in both directions and
     many-to-many relationships. For each category, a factor is given which can also be
@@ -49,11 +50,156 @@ class ConversionRule:
     auxiliary_categories: typing.Dict[str, typing.Set[str]]
     comment: str = ""
 
+    def hydrate(
+        self,
+        categorization_a: "Categorization",
+        categorization_b: "Categorization",
+        cats: typing.Dict[str, "Categorization"],
+    ) -> "ConversionRule":
+        """Convert this specification into a ConversionRule object with full
+        functionality."""
 
-@dataclasses.dataclass
-class ConversionRules:
-    """Rules for conversion between two categorizations, with support for
-    alternative rules depending on auxiliary categorizations.
+        auxiliary_categories_hydrated = {}
+        for aux_categorization_name, categories in self.auxiliary_categories.items():
+            aux_categorization = cats[aux_categorization_name]
+            auxiliary_categories_hydrated[aux_categorization] = {
+                aux_categorization[code] for code in categories
+            }
+
+        return ConversionRule(
+            factors_categories_a={
+                categorization_a[code]: factor
+                for code, factor in self.factors_categories_a.items()
+            },
+            factors_categories_b={
+                categorization_b[code]: factor
+                for code, factor in self.factors_categories_b.items()
+            },
+            auxiliary_categories=auxiliary_categories_hydrated,
+            comment=self.comment,
+        )
+
+
+@dataclasses.dataclass(frozen=True)
+class ConversionRule:
+    """A rule to convert between categories from two different categorizations.
+
+    Supports one-to-one relationships, one-to-many relationships in both directions and
+    many-to-many relationships. For each category, a factor is given which can also be
+    negative to model relationships like A = B - C.
+
+    Using auxiliary_categories, a rule can be restricted to specific auxiliary
+    categories only.
+
+    Attributes
+    ----------
+    factors_categories_a : dict mapping categories to factors
+        Map of categories from the first categorization to factors. For a simple
+        addition, use factor 1, to subtract the category, use factor -1.
+    factors_categories_b : dict mapping categories to factors
+        Map of categories from the second categorization to factors. For a simple
+        addition, use factor 1, to subtract the category, use factor -1.
+    auxiliary_categories : dict[Categorization, set[Category]]
+        Map of auxiliary categorizations to sets of auxiliary categories. Not
+        all auxiliary categorizations need to be specified, and if an auxiliary
+        categorization is not specified (or an empty set of category codes is given),
+        the validity of the rule is not restricted.
+        If an auxiliary categorization is specified and categories are given, the
+        rule is only valid for the given categories. If multiple auxiliary
+        categorizations are given, the rule is only valid if all auxiliary
+        categorizations match.
+    comment : str
+        A human-readable comment explaining the rule or adding additional information.
+    cardinality_a : str
+        The cardinality of the rule on side a. Is "one" if there is exactly one category
+        in factors_categories_a, and "many" otherwise.
+    cardinality_b : str
+        The cardinality of the rule on side b. Is "one" if there is exactly one category
+        in factors_categories_b, and "many" otherwise.
+    """
+
+    factors_categories_a: typing.Dict["Category", int]
+    factors_categories_b: typing.Dict["Category", int]
+    auxiliary_categories: typing.Dict["Categorization", typing.Set["Category"]]
+    comment: str = ""
+    cardinality_a: str = dataclasses.field(init=False)
+    cardinality_b: str = dataclasses.field(init=False)
+
+    def __post_init__(self):
+        # Have to use object.__setattr__ because the class is frozen. This is fine
+        # because we are in __post_init__, so we operate on a not-yet-finished object
+        object.__setattr__(
+            self,
+            "cardinality_a",
+            "one" if len(self.factors_categories_a) == 1 else "many",
+        )
+        object.__setattr__(
+            self,
+            "cardinality_b",
+            "one" if len(self.factors_categories_b) == 1 else "many",
+        )
+        # Clean up auxiliary categories: empty specs have the same meaning as no spec
+        for key, val in self.auxiliary_categories.items():
+            if not val:
+                del self.auxiliary_categories[key]
+
+    def format_human_readable(self) -> str:
+        """Format the rule for humans."""
+        if self.auxiliary_categories:
+            aux_info = [
+                f"{aux_categorization} in {categories}"
+                for aux_categorization, categories in self.auxiliary_categories.items()
+            ]
+            r = "Only for " + " and ".join(aux_info) + "\n"
+        else:
+            r = ""
+
+        r += "\n".join(
+            (f"{cat.categorization.name} {cat}" for cat in self.factors_categories_a)
+        )
+        r += "\n"
+        r += (
+            "\n".join(
+                (
+                    f"{cat.categorization.name} {cat}"
+                    for cat in self.factors_categories_b
+                )
+            )
+            + "\n"
+        )
+
+        if self.comment:
+            r += f"# Comment: {self.comment!r}\n"
+
+        return r
+
+    def to_spec(self) -> ConversionRuleSpec:
+        """Return a serializable specification.
+
+        Returns
+        -------
+        spec: ConversionRuleSpec
+        """
+        return ConversionRuleSpec(
+            factors_categories_a={
+                category.codes[0]: factor
+                for category, factor in self.factors_categories_a.items()
+            },
+            factors_categories_b={
+                category.codes[0]: factor
+                for category, factor in self.factors_categories_b.items()
+            },
+            auxiliary_categories={
+                categorization.name: {category.codes[0] for category in categories}
+                for categorization, categories in self.auxiliary_categories.items()
+            },
+            comment=self.comment,
+        )
+
+
+class ConversionSpec:
+    """Specification of rules for conversion between two categorizations, with support
+    for alternative rules depending on auxiliary categorizations.
 
     This class supports parsing the rules from a specification file and other
     operations which can be performed on the pure rules without knowledge of the
@@ -67,8 +213,8 @@ class ConversionRules:
         Name of the second categorization.
     auxiliary_categorizations_names : list of str, optional
         Names of the auxiliary categorizations.
-    rules : list of ConversionRule
-        The actual rules for conversion between individual categories or sets of
+    rule_specs : list of ConversionRuleSpec
+        The rule specifications for conversion between individual categories or sets of
         categories.
     comment : str, optional
         Notes and explanations for humans.
@@ -81,16 +227,6 @@ class ConversionRules:
     version : str, optional
         The version of the ConversionRules, if there are multiple versions.
     """
-
-    categorization_a_name: str
-    categorization_b_name: str
-    rules: typing.List[ConversionRule]
-    auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None
-    comment: typing.Optional[str] = None
-    references: typing.Optional[str] = None
-    institution: typing.Optional[str] = None
-    last_update: typing.Optional[datetime.date] = None
-    version: typing.Optional[str] = None
 
     _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
     # Parsing rules for simple formulas in the CSV
@@ -114,6 +250,29 @@ class ConversionRules:
         + pyparsing.StringEnd()
     )
 
+    def __init__(
+        self,
+        *,
+        categorization_a_name: str,
+        categorization_b_name: str,
+        rule_specs: typing.List[ConversionRuleSpec],
+        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
+        comment: typing.Optional[str] = None,
+        references: typing.Optional[str] = None,
+        institution: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
+        version: typing.Optional[str] = None,
+    ):
+        self.categorization_a_name = categorization_a_name
+        self.categorization_b_name = categorization_b_name
+        self.rule_specs = rule_specs
+        self.auxiliary_categorizations_names = auxiliary_categorizations_names
+        self.comment = comment
+        self.references = references
+        self.institution = institution
+        self.last_update = last_update
+        self.version = version
+
     @classmethod
     def _parse_aux_codes(cls, aux_codes_str: str) -> typing.List[str]:
         """Parse a whitespace-separated list of auxiliary codes.
@@ -131,13 +290,13 @@ class ConversionRules:
 
         Examples
         --------
-        >>> ConversionRules._parse_aux_codes("A B")
+        >>> ConversionSpec._parse_aux_codes("A B")
         ['A', 'B']
-        >>> ConversionRules._parse_aux_codes('"a b" c')
+        >>> ConversionSpec._parse_aux_codes('"a b" c')
         ['a b', 'c']
-        >>> ConversionRules._parse_aux_codes("")
+        >>> ConversionSpec._parse_aux_codes("")
         []
-        >>> ConversionRules._parse_aux_codes("A + B")
+        >>> ConversionSpec._parse_aux_codes("A + B")
         Traceback (most recent call last):
         ...
         ValueError: Could not parse: 'A + B', error: Expected ...
@@ -169,23 +328,23 @@ class ConversionRules:
 
         Examples
         --------
-        >>> ConversionRules._parse_formula("A + B")
+        >>> ConversionSpec._parse_formula("A + B")
         {'A': 1, 'B': 1}
-        >>> ConversionRules._parse_formula("-A+B")
+        >>> ConversionSpec._parse_formula("-A+B")
         {'A': -1, 'B': 1}
-        >>> ConversionRules._parse_formula('"-asdf.#" + B')
+        >>> ConversionSpec._parse_formula('"-asdf.#" + B')
         {'-asdf.#': 1, 'B': 1}
-        >>> ConversionRules._parse_formula(" A  -  B")
+        >>> ConversionSpec._parse_formula(" A  -  B")
         {'A': 1, 'B': -1}
-        >>> ConversionRules._parse_formula("-A")
+        >>> ConversionSpec._parse_formula("-A")
         {'A': -1}
-        >>> ConversionRules._parse_formula('-A+B - "A"')
+        >>> ConversionSpec._parse_formula('-A+B - "A"')
         {'A': -2, 'B': 1}
-        >>> ConversionRules._parse_formula("-A-")
+        >>> ConversionSpec._parse_formula("-A-")
         Traceback (most recent call last):
         ...
         ValueError: Could not parse: '-A-', error: Expected ...
-        >>> ConversionRules._parse_formula("")
+        >>> ConversionSpec._parse_formula("")
         Traceback (most recent call last):
         ...
         ValueError: Could not parse: '', error: Expected ...
@@ -265,7 +424,7 @@ class ConversionRules:
     @classmethod
     def _read_csv_rules(
         cls, reader: csv.reader
-    ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRule]]:
+    ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRuleSpec]]:
         """Read the data section of a CSV specification file. It consists of a header,
         followed by rules, with each rule on one line.
 
@@ -277,11 +436,11 @@ class ConversionRules:
 
         Returns
         -------
-        a_name, b_name, aux_names, rules: str, str, list, list
+        a_name, b_name, aux_names, rule_specs: str, str, list, list
            The name of categorizations A and B, the names of the auxiliary categories,
            and the parsed rules.
         """
-        rules = []
+        rule_specs = []
         header = next(reader)
         a_name = header[0]
         b_name = header[-2]
@@ -307,8 +466,8 @@ class ConversionRules:
             except StopIteration:
                 comment = ""
 
-            rules.append(
-                ConversionRule(
+            rule_specs.append(
+                ConversionRuleSpec(
                     factors_categories_a=factors_a,
                     factors_categories_b=factors_b,
                     auxiliary_categories=auxiliary_categories,
@@ -316,19 +475,19 @@ class ConversionRules:
                 )
             )
 
-        return a_name, b_name, aux_names, rules
+        return a_name, b_name, aux_names, rule_specs
 
     @classmethod
-    def _from_csv(cls, fd: typing.TextIO) -> "ConversionRules":
+    def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
 
         meta_data = cls._read_csv_meta(reader)
-        a_name, b_name, aux_names, rules = cls._read_csv_rules(reader)
+        a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(reader)
 
         return cls(
             categorization_a_name=a_name,
             categorization_b_name=b_name,
-            rules=rules,
+            rule_specs=rule_specs,
             auxiliary_categorizations_names=aux_names or None,
             **meta_data,
         )
@@ -337,7 +496,7 @@ class ConversionRules:
     def from_csv(
         cls,
         filepath: typing.Union[str, pathlib.Path, typing.TextIO, typing.Iterable[str]],
-    ) -> "ConversionRules":
+    ) -> "ConversionSpec":
         """Read conversion from comma-separated-values file."""
         if not isinstance(filepath, (str, pathlib.Path)):
             return cls._from_csv(filepath)
@@ -347,103 +506,152 @@ class ConversionRules:
 
     def __repr__(self):
         return (
-            f"<ConversionRules {self.categorization_a_name!r} <->"
-            f" {self.categorization_b_name!r} with {len(self.rules)} rules>"
+            f"<ConversionSpec {self.categorization_a_name!r} <->"
+            f" {self.categorization_b_name!r} with {len(self.rule_specs)} rules>"
+        )
+
+    def hydrate(
+        self,
+        cats: typing.Dict[str, "Categorization"],
+    ) -> "Conversion":
+        """Convert this Specification into a Conversion object with full
+        functionality."""
+        categorization_a = cats[self.categorization_a_name]
+        categorization_b = cats[self.categorization_b_name]
+        auxiliary_categorizations = (
+            [cats[x] for x in self.auxiliary_categorizations_names]
+            if self.auxiliary_categorizations_names
+            else None
+        )
+        return Conversion(
+            categorization_a=categorization_a,
+            categorization_b=categorization_b,
+            rules=[
+                rule_spec.hydrate(
+                    categorization_a=categorization_a,
+                    categorization_b=categorization_b,
+                    cats=cats,
+                )
+                for rule_spec in self.rule_specs
+            ],
+            auxiliary_categorizations=auxiliary_categorizations,
+            comment=self.comment,
+            references=self.references,
+            institution=self.institution,
+            last_update=self.last_update,
+            version=self.version,
         )
 
 
-class Conversion:
-    """Rules for conversion between two categorizations."""
+class Conversion(ConversionSpec):
+    """Conversion between two categorizations.
+
+    This class collects functionality which needs access to the actual categorizations
+    and categories.
+
+    Attributes
+    ----------
+    categorization_a : Categorization
+        The first categorization.
+    categorization_b : Categorization
+        The second categorization.
+    auxiliary_categorizations : list of Categorization, optional
+        The auxiliary categorizations, if any.
+    rules : list of ConversionRule
+        The actual rules for conversion between individual categories or sets of
+        categories.
+    comment : str, optional
+        Notes and explanations for humans.
+    references : str, optional
+        Citable reference(s) for the conversion.
+    institution : str, optional
+        Where the conversion originates.
+    last_update : datetime.date, optional
+        The date of the last change.
+    version : str, optional
+        The version of the ConversionRules, if there are multiple versions.
+    """
 
     def __init__(
         self,
-        categorization_a: str,
-        categorization_b: str,
-        conversion_factors: typing.List[
-            typing.Tuple[typing.Dict[str, int], typing.Dict[str, int]]
-        ],
+        *,
+        categorization_a: "Categorization",
+        categorization_b: "Categorization",
+        rules: typing.List[ConversionRule],
+        auxiliary_categorizations: typing.Optional[
+            typing.List["Categorization"]
+        ] = None,
+        comment: typing.Optional[str] = None,
+        references: typing.Optional[str] = None,
+        institution: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
+        version: typing.Optional[str] = None,
     ):
+        ConversionSpec.__init__(
+            self,
+            categorization_a_name=categorization_a.name,
+            categorization_b_name=categorization_b.name,
+            rule_specs=[rule.to_spec() for rule in rules],
+            auxiliary_categorizations_names=[x.name for x in auxiliary_categorizations]
+            if auxiliary_categorizations
+            else None,
+            comment=comment,
+            references=references,
+            institution=institution,
+            last_update=last_update,
+            version=version,
+        )
         self.categorization_a = categorization_a
         self.categorization_b = categorization_b
-        self.conversion_factors = conversion_factors
-
-    def _get_categorizations(
-        self, cats: typing.Dict[str, "Categorization"]
-    ) -> ("Categorization", "Categorization"):
-        """Returns categorization_a and categorization_b as Categorization objects."""
-        try:
-            cat_a = cats[self.categorization_a]
-        except KeyError:
-            raise KeyError(f"{self.categorization_a!r} not found in categorizations.")
-        try:
-            cat_b = cats[self.categorization_b]
-        except KeyError:
-            raise KeyError(f"{self.categorization_b!r} not found in categorizations.")
-
-        return cat_a, cat_b
+        self.rules = rules
+        self.auxiliary_categorizations = auxiliary_categorizations
 
     def ensure_valid(self, cats: typing.Dict[str, "Categorization"]) -> None:
         """Check if all used codes are contained in the categorizations."""
-        cat_a, cat_b = self._get_categorizations(cats)
+        # TODO
 
-        for f_a, f_b in self.conversion_factors:
-            for code_factors, cat in ((f_a, cat_a), (f_b, cat_b)):
-                for code in code_factors:
-                    if code not in cat:
-                        raise KeyError(f"{code!r} not in {cat}.")
-
-    def describe_detailed(self, cats: typing.Dict[str, "Categorization"]) -> str:
+    def describe_detailed(self) -> str:
         """Detailed human-readable description of the conversion rules."""
-        cat_a, cat_b = self._get_categorizations(cats)
-        ret = f"# Mapping between {cat_a} and {cat_b}\n\n"
+        one_to_one = []
+        one_to_many = []
+        many_to_one = []
+        many_to_many = []
+        cats_a = set()
+        cats_b = set()
+        for rule in self.rules:
+            cats_a.update(rule.factors_categories_a.keys())
+            cats_b.update(rule.factors_categories_b.keys())
+            if rule.cardinality_a == "one" and rule.cardinality_b == "one":
+                one_to_one.append(rule)
+            elif rule.cardinality_a == "one":
+                one_to_many.append(rule)
+            elif rule.cardinality_b == "one":
+                many_to_one.append(rule)
+            else:
+                many_to_many.append(rule)
 
-        ret += "## Simple direct mappings\n\n"
-        for f_a, f_b in self.conversion_factors:
-            if len(f_a) == 1 and len(f_b) == 1:
-                node_a = cat_a[next(iter(f_a))]
-                ret += f"<{cat_a}> {node_a}\n"
-                node_b = cat_b[next(iter(f_b))]
-                ret += f"<{cat_b}> {node_b}\n\n"
+        cat_a, cat_b = self.categorization_a.name, self.categorization_b.name
 
-        ret += f"## One-to-many mappings - one {cat_a} to many {cat_b}\n\n"
-        for f_a, f_b in self.conversion_factors:
-            if len(f_a) == 1 and len(f_b) != 1:
-                code_a = next(iter(f_a))
-                node_a = cat_a[code_a]
-                ret += f"<{cat_a}> {node_a}\n"
-                b = [f"<{cat_b}> {cat_b[x]}" for x in f_b]
-                ret += "\n".join(b) + "\n\n"
+        r = f"# Mapping between {cat_a} and {cat_b}\n\n"
+        r += "## Simple direct mappings\n\n"
+        r += "\n".join(rule.format_human_readable() for rule in one_to_one)
+        r += "\n\n"
+        r += f"## One-to-many mappings - one {cat_a} to many {cat_b}\n\n"
+        r += "\n".join((rule.format_human_readable()) for rule in one_to_many)
+        r += "\n\n"
+        r += f"## Many-to-one mappings - many {cat_a} to one {cat_b}\n\n"
+        r += "\n".join((rule.format_human_readable()) for rule in many_to_one)
+        r += "\n\n"
+        r += f"## Many-to-many mappings - many {cat_a} to many {cat_b}\n\n"
+        r += "\n".join((rule.format_human_readable()) for rule in many_to_many)
+        r += "\n\n"
 
-        ret += f"## One-to-many-mappings - many {cat_a} to one {cat_b}\n\n"
-        for f_a, f_b in self.conversion_factors:
-            if len(f_a) != 1 and len(f_b) == 1:
-                a = [f"<{cat_a}> {cat_a[x]}" for x in f_a]
-                ret += "\n".join(a) + "\n"
-                code_b = next(iter(f_b))
-                node_b = cat_b[code_b]
-                ret += f"<{cat_b}> {node_b}\n\n"
+        r += "## Unmapped categories\n\n"
+        cats_missing_a = set(self.categorization_a.values()) - cats_a
+        cats_missing_b = set(self.categorization_b.values()) - cats_b
+        r += f"### {cat_a}\n"
+        r += "\n".join(sorted((str(x) for x in cats_missing_a))) + "\n\n"
+        r += f"### {cat_b}\n"
+        r += "\n".join(sorted((str(x) for x in cats_missing_b))) + "\n\n"
 
-        ret += "## Many-to-many-mappings\n\n"
-        for f_a, f_b in self.conversion_factors:
-            if len(f_a) != 1 and len(f_b) != 1:
-                a = [f"<{cat_a}> {cat_a[x]}" for x in f_a]
-                ret += "\n".join(a) + "\n"
-                b = [f"<{cat_b}> {cat_b[x]}" for x in f_b]
-                ret += "\n".join(b) + "\n\n"
-
-        ret += "## Unmapped categories\n\n"
-        fs_a = set()
-        fs_b = set()
-        for f_a, f_b in self.conversion_factors:
-            for code in f_a:
-                fs_a.add(cat_a[code])
-            for code in f_b:
-                fs_b.add(cat_b[code])
-        fm_a = set(cat_a.values()) - fs_a
-        fm_b = set(cat_b.values()) - fs_b
-        ret += f"### {cat_a}\n"
-        ret += "\n".join(sorted((str(x) for x in fm_a))) + "\n\n"
-        ret += f"### {cat_b}\n"
-        ret += "\n".join(sorted((str(x) for x in fm_b))) + "\n\n"
-
-        return ret
+        return r

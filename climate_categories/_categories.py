@@ -14,7 +14,7 @@ import strictyaml as sy
 from ruamel.yaml import YAML
 
 from . import data
-from ._conversions import Conversion
+from ._conversions import Conversion, ConversionSpec
 
 
 class Category:
@@ -99,10 +99,7 @@ class Category:
 
     def __lt__(self, other):
         s = natsort.natsorted((self.codes[0], other.codes[0]))
-        if s[0] == self.codes[0] and not self == other:
-            return True
-        else:
-            return False
+        return s[0] == self.codes[0] and self != other
 
 
 class HierarchicalCategory(Category):
@@ -252,6 +249,9 @@ class Categorization:
         self.version = version
 
         self._add_categories(categories)
+
+        # is filled in __init__.py to contain all categorizations
+        self._cats: typing.Dict[str, "Categorization"] = {}
 
     @classmethod
     def from_yaml(
@@ -510,7 +510,7 @@ class Categorization:
         ):
             if importlib.resources.is_resource(data, csv_name):
                 fd = importlib.resources.open_text(data, csv_name)
-                return Conversion.from_csv(fd)
+                return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
         raise KeyError(
             f"Conversion between {self.name} and {other.name} not yet included."
         )
