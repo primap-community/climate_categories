@@ -76,6 +76,7 @@ install-pre-commit: update-venv ## install the pre-commit hooks
 pickles: climate_categories/data/IPCC2006.pickle
 pickles: climate_categories/data/IPCC2006_PRIMAP.pickle
 pickles: climate_categories/data/IPCC1996.pickle
+pickles: climate_categories/data/gas.pickle
 pickles: climate_categories/data/CRFDI.pickle
 pickles: climate_categories/data/CRFDI_class.pickle
 pickles: climate_categories/data/BURDI.pickle
