@@ -253,6 +253,9 @@ class Categorization:
         # is filled in __init__.py to contain all categorizations
         self._cats: typing.Dict[str, "Categorization"] = {}
 
+    def __hash__(self):
+        return hash(self.name)
+
     @classmethod
     def from_yaml(
         cls, filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
