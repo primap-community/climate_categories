@@ -1,5 +1,4 @@
-"""Run this via `make climate_categories/data/PRIMAP_entity.yaml` in the main
-directory."""
+"""Run this via `make climate_categories/data/gas.yaml` in the main directory."""
 
 import pathlib
 
