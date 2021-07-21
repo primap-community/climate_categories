@@ -9,44 +9,38 @@ import openscm_units.data.mixtures
 
 import climate_categories
 
-OUTPATH = pathlib.Path("./climate_categories/data/PRIMAP_entity.yaml")
-OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/PRIMAP_entity.pickle")
+OUTPATH = pathlib.Path("./climate_categories/data/gas.yaml")
+OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/gas.pickle")
 
 
 def main():
     categories = openscm_standard_gases()
     categories.update(openscm_mixtures())
-    categories["emissions"] = {
-        "title": "Emissions of climate-relevant substances",
-        "children": [list(categories.keys())],
-    }
 
     # specific fixes
     categories["OC"]["title"] = "organic carbon"
-    categories["OC"]["comment"] = "Emission rate of organic carbon"
+    categories["OC"]["comment"] = "organic carbon"
 
     categories["VOC"]["title"] = "volatile organic compounds"
-    categories["VOC"][
-        "comment"
-    ] = "Emission rate of non-methane volatile organic compounds"
+    categories["VOC"]["comment"] = "non-methane volatile organic compounds"
 
     spec = {
-        "name": "PRIMAP_entity",
-        "title": "PRIMAP2 entities",
-        "comment": "Entities commonly used in PRIMAP2",
-        "references": "Many emissions entities are derived from openscm_units "
-        "(https://github.com/openscm/openscm-units), other entities "
-        "are collected for PRIMAP2.",
-        "institution": "PIK",
-        "last_update": "2021-03-09",
-        "version": "2",
-        "total_sum": "False",
+        "name": "gas",
+        "title": "climate-forcing gases",
+        "comment": "Gases and other climate-forcing substances",
+        "references": "Derived from openscm_units "
+        "(https://github.com/openscm/openscm-units) 'standard gases' and mixtures.",
+        "last_update": "2021-05-27",
+        "version": "0.3.0",
+        "institution": "openscm",
         "categories": categories,
+        "hierarchical": True,
+        "total_sum": False,
     }
 
-    PRIMAP_entity = climate_categories.HierarchicalCategorization.from_spec(spec)
-    PRIMAP_entity.to_yaml(OUTPATH)
-    PRIMAP_entity.to_pickle(OUTPATH_PICKLE)
+    gas = climate_categories.HierarchicalCategorization.from_spec(spec)
+    gas.to_yaml(OUTPATH)
+    gas.to_pickle(OUTPATH_PICKLE)
 
 
 def openscm_mixtures():
@@ -59,13 +53,11 @@ def openscm_mixtures():
         )
         categories[code] = {
             "title": code,
-            "comment": f"Emissions rate of the refrigerant {code}, which is a mixture "
-            f"of {cstr}.",
-            "info": {"addition_rule": "extensive"},
+            "comment": f"The refrigerant {code}, which is a mixture " f"of {cstr}.",
         }
 
     categories["mixtures"] = {
-        "title": "Emissions of refrigerant mixtures",
+        "title": "refrigerant mixtures",
         "children": [list(categories.keys())],
     }
 
@@ -83,8 +75,6 @@ def openscm_standard_gases():
             title = oscm_gas_spec.replace("_", " ")
             categories[code] = {
                 "title": title,
-                "comment": f"Emission rate of {title}",
-                "info": {"addition_rule": "extensive"},
             }
             if code != oscm_gas_spec and " " not in oscm_gas_spec:
                 categories[code]["alternative_codes"] = [oscm_gas_spec]
@@ -99,12 +89,10 @@ def openscm_standard_gases():
             else:  # derived entity
                 code = oscm_gas_code
                 if len(oscm_altcodes) > 1:
-                    raise ValueError(f"Unexpected entry for {oscm_gas_code}")
+                    raise ValueError(f"Unexpected entry for {code}")
                 title = oscm_altcodes[0].replace("_", " ")
                 categories[code] = {
                     "title": title,
-                    "comment": f"Emission rate of {title}",
-                    "info": {"addition_rule": "extensive"},
                 }
                 if code != oscm_altcodes[0]:
                     categories[code]["alternative_codes"] = oscm_altcodes

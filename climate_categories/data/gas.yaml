@@ -1,0 +1,892 @@
+name: gas
+title: climate-forcing gases
+comment: Gases and other climate-forcing substances
+references: Derived from openscm_units (https://github.com/openscm/openscm-units)
+  'standard gases' and mixtures.
+institution: openscm
+hierarchical: true
+last_update: '2021-05-27'
+version: 0.3.0
+total_sum: false
+categories:
+  C:
+    title: carbon
+    alternative_codes:
+    - carbon
+  CO2:
+    title: carbon dioxide
+    alternative_codes:
+    - carbon_dioxide
+  CH4:
+    title: methane
+    alternative_codes:
+    - methane
+    - HC50
+  N2O:
+    title: nitrous oxide
+    alternative_codes:
+    - nitrous_oxide
+  N2ON:
+    title: nitrous oxide farming style
+    alternative_codes:
+    - nitrous_oxide_farming_style
+  N:
+    title: nitrogen
+    alternative_codes:
+    - nitrogen
+  NO2:
+    title: nitrogen dioxide
+    alternative_codes:
+    - nitrogen_dioxide
+  NOx:
+    title: NOx
+    alternative_codes:
+    - nox
+  NH3:
+    title: NH3
+    alternative_codes:
+    - ammonia
+  S:
+    title: sulfur
+    alternative_codes:
+    - sulfur
+  SO2:
+    title: sulfur dioxide
+    alternative_codes:
+    - sulfur_dioxide
+    - SOx
+  BC:
+    title: black carbon
+    alternative_codes:
+    - black_carbon
+  OC:
+    title: organic carbon
+    comment: organic carbon
+  CO:
+    title: carbon monoxide
+    alternative_codes:
+    - carbon_monoxide
+  VOC:
+    title: volatile organic compounds
+    comment: non-methane volatile organic compounds
+    alternative_codes:
+    - NMVOC
+    - non_methane_volatile_organic_compounds
+  CFC11:
+    title: CFC11
+  CFC12:
+    title: CFC12
+  CFC13:
+    title: CFC13
+  CFC113:
+    title: CFC113
+  CFC114:
+    title: CFC114
+  CFC115:
+    title: CFC115
+  C2H6:
+    title: ethane
+    alternative_codes:
+    - ethane
+    - HC170
+  C3H8:
+    title: propane
+    alternative_codes:
+    - propane
+    - HC290
+  HC600:
+    title: HC600
+    alternative_codes:
+    - butane
+  HC600a:
+    title: HC600a
+    alternative_codes:
+    - isobutane
+  HC601:
+    title: HC601
+    alternative_codes:
+    - pentane
+  HC601a:
+    title: HC601a
+    alternative_codes:
+    - isopentane
+  HCE170:
+    title: HCE170
+  HO1270:
+    title: HO1270
+    alternative_codes:
+    - propene
+  HCFC21:
+    title: HCFC21
+  HCFC22:
+    title: HCFC22
+  HCFC31:
+    title: HCFC31
+  HCFC123:
+    title: HCFC123
+  HCFC124:
+    title: HCFC124
+  HCFC141b:
+    title: HCFC141b
+  HCFC142b:
+    title: HCFC142b
+  HCFC225ca:
+    title: HCFC225ca
+  HCFC225cb:
+    title: HCFC225cb
+  HFC23:
+    title: HFC23
+  HFC32:
+    title: HFC32
+  HFC41:
+    title: HFC41
+  HFC125:
+    title: HFC125
+  HFC134:
+    title: HFC134
+  HFC134a:
+    title: HFC134a
+  HFC143:
+    title: HFC143
+  HFC143a:
+    title: HFC143a
+  HFC152:
+    title: HFC152
+  HFC152a:
+    title: HFC152a
+  HFC161:
+    title: HFC161
+  HFC227ea:
+    title: HFC227ea
+  HFC236cb:
+    title: HFC236cb
+  HFC236ea:
+    title: HFC236ea
+  HFC236fa:
+    title: HFC236fa
+  HFC245ca:
+    title: HFC245ca
+  HFC245fa:
+    title: HFC245fa
+  HFC365mfc:
+    title: HFC365mfc
+  HFC4310mee:
+    title: HFC4310mee
+    alternative_codes:
+    - HFC4310
+  HFC1336mzz:
+    title: HFC1336mzz
+  Halon1201:
+    title: Halon1201
+  Halon1202:
+    title: Halon1202
+  Halon1211:
+    title: Halon1211
+  Halon1301:
+    title: Halon1301
+  Halon2402:
+    title: Halon2402
+  CF4:
+    title: CF4
+  C2F6:
+    title: C2F6
+    alternative_codes:
+    - PFC116
+  cC3F6:
+    title: cC3F6
+  C3F8:
+    title: C3F8
+    alternative_codes:
+    - PFC218
+  cC4F8:
+    title: cC4F8
+    alternative_codes:
+    - PFCC318
+  C4F10:
+    title: C4F10
+  C5F12:
+    title: C5F12
+  C6F14:
+    title: C6F14
+  C7F16:
+    title: C7F16
+  C8F18:
+    title: C8F18
+  C10F18:
+    title: C10F18
+  HFE125:
+    title: HFE125
+  HFE134:
+    title: HFE134
+  HFE143a:
+    title: HFE143a
+  HCFE235da2:
+    title: HCFE235da2
+  HFE245cb2:
+    title: HFE245cb2
+  HFE245fa2:
+    title: HFE245fa2
+  HFE347mcc3:
+    title: HFE347mcc3
+  HFE347pcf2:
+    title: HFE347pcf2
+  HFE356pcc3:
+    title: HFE356pcc3
+  HFE449sl:
+    title: HFE449sl
+  HFE569sf2:
+    title: HFE569sf2
+  HFE4310pccc124:
+    title: HFE4310pccc124
+  HFE236ca12:
+    title: HFE236ca12
+  HFE338pcc13:
+    title: HFE338pcc13
+  HFE227ea:
+    title: HFE227ea
+  HFE236ea2:
+    title: HFE236ea2
+  HFE236fa:
+    title: HFE236fa
+  HFE245fa1:
+    title: HFE245fa1
+  HFE263fb2:
+    title: HFE263fb2
+  HFE329mcc2:
+    title: HFE329mcc2
+  HFE338mcf2:
+    title: HFE338mcf2
+  HFE347mcf2:
+    title: HFE347mcf2
+  HFE356mec3:
+    title: HFE356mec3
+  HFE356pcf2:
+    title: HFE356pcf2
+  HFE356pcf3:
+    title: HFE356pcf3
+  HFE365mcf3:
+    title: HFE365mcf3
+  HFE374pc2:
+    title: HFE374pc2
+  PFPMIE:
+    title: PFPMIE
+  HFO1234yf:
+    title: HFO1234yf
+  HFO1234ze:
+    title: HFO1234ze
+  CCl4:
+    title: CCl4
+  CHCl3:
+    title: CHCl3
+  CH2Cl2:
+    title: CH2Cl2
+  CH3CCl3:
+    title: CH3CCl3
+  CH3Cl:
+    title: CH3Cl
+  CH3Br:
+    title: CH3Br
+  SF5CF3:
+    title: SF5CF3
+  SF6:
+    title: SF6
+  SO2F2:
+    title: SO2F2
+  NF3:
+    title: NF3
+  HCO1130:
+    title: HCO1130
+  CFC400:
+    title: CFC400
+    comment: The refrigerant CFC400, which is a mixture of 50% CFC12, 50% CFC114.
+  HCFC401a:
+    title: HCFC401a
+    comment: The refrigerant HCFC401a, which is a mixture of 53% HCFC22, 13% HFC152a,
+      34% HCFC124.
+  HCFC401b:
+    title: HCFC401b
+    comment: The refrigerant HCFC401b, which is a mixture of 61% HCFC22, 11% HFC152a,
+      28% HCFC124.
+  HCFC401c:
+    title: HCFC401c
+    comment: The refrigerant HCFC401c, which is a mixture of 33% HCFC22, 15% HFC152a,
+      52% HCFC124.
+  HCFC402a:
+    title: HCFC402a
+    comment: The refrigerant HCFC402a, which is a mixture of 60% HFC125, 2% C3H8,
+      38% HCFC22.
+  HCFC402b:
+    title: HCFC402b
+    comment: The refrigerant HCFC402b, which is a mixture of 38% HFC125, 2% C3H8,
+      60% HCFC22.
+  HCFC403a:
+    title: HCFC403a
+    comment: The refrigerant HCFC403a, which is a mixture of 5% C3H8, 75% HCFC22,
+      20% C3F8.
+  HCFC403b:
+    title: HCFC403b
+    comment: The refrigerant HCFC403b, which is a mixture of 5% C3H8, 56% HCFC22,
+      39% C3F8.
+  HFC404a:
+    title: HFC404a
+    comment: The refrigerant HFC404a, which is a mixture of 44% HFC125, 52% HFC143a,
+      4% HFC134a.
+  HCFC405a:
+    title: HCFC405a
+    comment: The refrigerant HCFC405a, which is a mixture of 45% HCFC22, 7% HFC152,
+      5.5% HCFC142b, 42.5% cC4F8.
+  HCFC406a:
+    title: HCFC406a
+    comment: The refrigerant HCFC406a, which is a mixture of 55% HCFC22, 4% HC600a,
+      41% HCFC142b.
+  HFC407a:
+    title: HFC407a
+    comment: The refrigerant HFC407a, which is a mixture of 20% HFC32, 40% HFC125,
+      40% HFC134a.
+  HFC407b:
+    title: HFC407b
+    comment: The refrigerant HFC407b, which is a mixture of 10% HFC32, 70% HFC125,
+      20% HFC134a.
+  HFC407c:
+    title: HFC407c
+    comment: The refrigerant HFC407c, which is a mixture of 23% HFC32, 25% HFC125,
+      52% HFC134a.
+  HFC407d:
+    title: HFC407d
+    comment: The refrigerant HFC407d, which is a mixture of 15% HFC32, 15% HFC125,
+      70% HFC134a.
+  HFC407e:
+    title: HFC407e
+    comment: The refrigerant HFC407e, which is a mixture of 25% HFC32, 15% HFC125,
+      60% HFC134a.
+  HFC407f:
+    title: HFC407f
+    comment: The refrigerant HFC407f, which is a mixture of 30% HFC32, 30% HFC125,
+      40% HFC134a.
+  HFC407g:
+    title: HFC407g
+    comment: The refrigerant HFC407g, which is a mixture of 2.5% HFC32, 2.5% HFC125,
+      95% HFC134a.
+  HFC407h:
+    title: HFC407h
+    comment: The refrigerant HFC407h, which is a mixture of 32.5% HFC32, 15% HFC125,
+      52.5% HFC134a.
+  HFC407i:
+    title: HFC407i
+    comment: The refrigerant HFC407i, which is a mixture of 19.5% HFC32, 8.5% HFC125,
+      72% HFC134a.
+  HCFC408a:
+    title: HCFC408a
+    comment: The refrigerant HCFC408a, which is a mixture of 7% HFC125, 46% HFC143a,
+      47% HCFC22.
+  HCFC409a:
+    title: HCFC409a
+    comment: The refrigerant HCFC409a, which is a mixture of 60% HCFC22, 25% HCFC124,
+      15% HCFC142b.
+  HCFC409b:
+    title: HCFC409b
+    comment: The refrigerant HCFC409b, which is a mixture of 65% HCFC22, 25% HCFC124,
+      10% HCFC142b.
+  HFC410a:
+    title: HFC410a
+    comment: The refrigerant HFC410a, which is a mixture of 50% HFC32, 50% HFC125.
+  HFC410b:
+    title: HFC410b
+    comment: The refrigerant HFC410b, which is a mixture of 45% HFC32, 55% HFC125.
+  HCFO411a:
+    title: HCFO411a
+    comment: The refrigerant HCFO411a, which is a mixture of 1.5% HO1270, 87.5% HCFC22,
+      11% HFC152a.
+  HCFO411b:
+    title: HCFO411b
+    comment: The refrigerant HCFO411b, which is a mixture of 3% HO1270, 94% HCFC22,
+      3% HFC152a.
+  HCFC412a:
+    title: HCFC412a
+    comment: The refrigerant HCFC412a, which is a mixture of 70% HCFC22, 5% C3F8,
+      25% HCFC142b.
+  HFC413a:
+    title: HFC413a
+    comment: The refrigerant HFC413a, which is a mixture of 9% C3F8, 88% HFC134a,
+      3% HC600a.
+  HCFC414a:
+    title: HCFC414a
+    comment: The refrigerant HCFC414a, which is a mixture of 51% HCFC22, 28.5% HCFC124,
+      4% HC600a, 16.5% HCFC142b.
+  HCFC414b:
+    title: HCFC414b
+    comment: The refrigerant HCFC414b, which is a mixture of 50% HCFC22, 39% HCFC124,
+      1.5% HC600a, 9.5% HCFC142b.
+  HCFC415a:
+    title: HCFC415a
+    comment: The refrigerant HCFC415a, which is a mixture of 82% HCFC22, 18% HFC152a.
+  HCFC415b:
+    title: HCFC415b
+    comment: The refrigerant HCFC415b, which is a mixture of 25% HCFC22, 75% HFC152a.
+  HCFC416a:
+    title: HCFC416a
+    comment: The refrigerant HCFC416a, which is a mixture of 59% HFC134a, 39.5% HCFC124,
+      1.5% HC600.
+  HFC417a:
+    title: HFC417a
+    comment: The refrigerant HFC417a, which is a mixture of 46.6% HFC125, 50% HFC134a,
+      3.4% HC600.
+  HFC417b:
+    title: HFC417b
+    comment: The refrigerant HFC417b, which is a mixture of 79% HFC125, 18.3% HFC134a,
+      2.7% HC600.
+  HFC417c:
+    title: HFC417c
+    comment: The refrigerant HFC417c, which is a mixture of 19.5% HFC125, 78.8% HFC134a,
+      1.7% HC600.
+  HCFC418a:
+    title: HCFC418a
+    comment: The refrigerant HCFC418a, which is a mixture of 1.5% C3H8, 96% HCFC22,
+      2.5% HFC152a.
+  HFC419a:
+    title: HFC419a
+    comment: The refrigerant HFC419a, which is a mixture of 77% HFC125, 19% HFC134a,
+      4% HCE170.
+  HFC419b:
+    title: HFC419b
+    comment: The refrigerant HFC419b, which is a mixture of 48.5% HFC125, 48% HFC134a,
+      3.5% HCE170.
+  HCFC420a:
+    title: HCFC420a
+    comment: The refrigerant HCFC420a, which is a mixture of 88% HFC134a, 12% HCFC142b.
+  HFC421a:
+    title: HFC421a
+    comment: The refrigerant HFC421a, which is a mixture of 58% HFC125, 42% HFC134a.
+  HFC421b:
+    title: HFC421b
+    comment: The refrigerant HFC421b, which is a mixture of 85% HFC125, 15% HFC134a.
+  HFC422a:
+    title: HFC422a
+    comment: The refrigerant HFC422a, which is a mixture of 85.1% HFC125, 11.5% HFC134a,
+      3.4% HC600a.
+  HFC422b:
+    title: HFC422b
+    comment: The refrigerant HFC422b, which is a mixture of 55% HFC125, 42% HFC134a,
+      3% HC600a.
+  HFC422c:
+    title: HFC422c
+    comment: The refrigerant HFC422c, which is a mixture of 82% HFC125, 15% HFC134a,
+      3% HC600a.
+  HFC422d:
+    title: HFC422d
+    comment: The refrigerant HFC422d, which is a mixture of 65.1% HFC125, 31.5% HFC134a,
+      3.4% HC600a.
+  HFC422e:
+    title: HFC422e
+    comment: The refrigerant HFC422e, which is a mixture of 58% HFC125, 39.3% HFC134a,
+      2.7% HC600a.
+  HFC423a:
+    title: HFC423a
+    comment: The refrigerant HFC423a, which is a mixture of 52.5% HFC134a, 47.5% HFC227ea.
+  HFC424a:
+    title: HFC424a
+    comment: The refrigerant HFC424a, which is a mixture of 50.5% HFC125, 47.0% HFC134a,
+      0.9% HC600a, 1.0% HC600, 0.6% HC601a.
+  HFC425a:
+    title: HFC425a
+    comment: The refrigerant HFC425a, which is a mixture of 18.5% HFC32, 69.5% HFC134a,
+      12% HFC227ea.
+  HFC426a:
+    title: HFC426a
+    comment: The refrigerant HFC426a, which is a mixture of 5.1% HFC125, 93% HFC134a,
+      1.3% HC600, 0.6% HC601a.
+  HFC427a:
+    title: HFC427a
+    comment: The refrigerant HFC427a, which is a mixture of 15% HFC32, 25% HFC125,
+      10% HFC143a, 50% HFC134a.
+  HFC428a:
+    title: HFC428a
+    comment: The refrigerant HFC428a, which is a mixture of 77.5% HFC125, 20% HFC143a,
+      0.6% C3H8, 1.9% HC600a.
+  HFC429a:
+    title: HFC429a
+    comment: The refrigerant HFC429a, which is a mixture of 60% HCE170, 10% HFC152a,
+      30% HC600a.
+  HFC430a:
+    title: HFC430a
+    comment: The refrigerant HFC430a, which is a mixture of 76% HFC152a, 24% HC600a.
+  HFC431a:
+    title: HFC431a
+    comment: The refrigerant HFC431a, which is a mixture of 71% C3H8, 29% HFC152a.
+  HO432a:
+    title: HO432a
+    comment: The refrigerant HO432a, which is a mixture of 80% HO1270, 20% HCE170.
+  HO433a:
+    title: HO433a
+    comment: The refrigerant HO433a, which is a mixture of 30% HO1270, 70% C3H8.
+  HO433b:
+    title: HO433b
+    comment: The refrigerant HO433b, which is a mixture of 5% HO1270, 95% C3H8.
+  HO433c:
+    title: HO433c
+    comment: The refrigerant HO433c, which is a mixture of 25% HO1270, 75% C3H8.
+  HFC434a:
+    title: HFC434a
+    comment: The refrigerant HFC434a, which is a mixture of 63.2% HFC125, 18% HFC143a,
+      16% HFC134a, 2.8% HC600a.
+  HFC435a:
+    title: HFC435a
+    comment: The refrigerant HFC435a, which is a mixture of 80% HCE170, 20% HFC152a.
+  HC436a:
+    title: HC436a
+    comment: The refrigerant HC436a, which is a mixture of 56% C3H8, 44% HC600a.
+  HC436b:
+    title: HC436b
+    comment: The refrigerant HC436b, which is a mixture of 52% C3H8, 48% HC600a.
+  HC436c:
+    title: HC436c
+    comment: The refrigerant HC436c, which is a mixture of 95% C3H8, 5% HC600a.
+  HFC437a:
+    title: HFC437a
+    comment: The refrigerant HFC437a, which is a mixture of 19.5% HFC125, 78.5% HFC134a,
+      1.4% HC600, 0.6% HC601.
+  HFC438a:
+    title: HFC438a
+    comment: The refrigerant HFC438a, which is a mixture of 8.5% HFC32, 45% HFC125,
+      44.2% HFC134a, 1.7% HC600, 0.6% HC601a.
+  HFC439a:
+    title: HFC439a
+    comment: The refrigerant HFC439a, which is a mixture of 50% HFC32, 47% HFC125,
+      3% HC600a.
+  HFC440a:
+    title: HFC440a
+    comment: The refrigerant HFC440a, which is a mixture of 0.6% C3H8, 1.6% HFC134a,
+      97.8% HFC152a.
+  HC441a:
+    title: HC441a
+    comment: The refrigerant HC441a, which is a mixture of 3.1% C2H6, 54.8% C3H8,
+      6% HC600a, 36.1% HC600.
+  HFC442a:
+    title: HFC442a
+    comment: The refrigerant HFC442a, which is a mixture of 31% HFC32, 31% HFC125,
+      30% HFC134a, 3% HFC152a, 5% HFC227ea.
+  HO443a:
+    title: HO443a
+    comment: The refrigerant HO443a, which is a mixture of 55% HO1270, 40% C3H8, 5%
+      HC600a.
+  HFO444a:
+    title: HFO444a
+    comment: The refrigerant HFO444a, which is a mixture of 12% HFC32, 5% HFC152a,
+      83% HFO1234ze.
+  HFO444b:
+    title: HFO444b
+    comment: The refrigerant HFO444b, which is a mixture of 41.5% HFC32, 10% HFC152a,
+      48.5% HFO1234ze.
+  HFO445a:
+    title: HFO445a
+    comment: The refrigerant HFO445a, which is a mixture of 6% CO2, 9% HFC134a, 85%
+      HFO1234ze.
+  HFO446a:
+    title: HFO446a
+    comment: The refrigerant HFO446a, which is a mixture of 68% HFC32, 29% HFO1234ze,
+      3% HC600.
+  HFO447a:
+    title: HFO447a
+    comment: The refrigerant HFO447a, which is a mixture of 68% HFC32, 3.5% HFC125,
+      28.5% HFO1234ze.
+  HFO447b:
+    title: HFO447b
+    comment: The refrigerant HFO447b, which is a mixture of 68% HFC32, 8% HFC125,
+      24% HFO1234ze.
+  HFO448a:
+    title: HFO448a
+    comment: The refrigerant HFO448a, which is a mixture of 26% HFC32, 26% HFC125,
+      20% HFO1234yf, 21% HFC134a, 7% HFO1234ze.
+  HFO449a:
+    title: HFO449a
+    comment: The refrigerant HFO449a, which is a mixture of 24.3% HFC32, 24.7% HFC125,
+      25.3% HFO1234yf, 25.7% HFC134a.
+  HFO449b:
+    title: HFO449b
+    comment: The refrigerant HFO449b, which is a mixture of 25.2% HFC32, 24.3% HFC125,
+      23.2% HFO1234yf, 27.3% HFC134a.
+  HFO449c:
+    title: HFO449c
+    comment: The refrigerant HFO449c, which is a mixture of 20% HFC32, 20% HFC125,
+      31% HFO1234yf, 29% HFC134a.
+  HFO450a:
+    title: HFO450a
+    comment: The refrigerant HFO450a, which is a mixture of 42% HFC134a, 58% HFO1234ze.
+  HFO451a:
+    title: HFO451a
+    comment: The refrigerant HFO451a, which is a mixture of 89.8% HFO1234yf, 10.2%
+      HFC134a.
+  HFO451b:
+    title: HFO451b
+    comment: The refrigerant HFO451b, which is a mixture of 88.8% HFO1234yf, 11.2%
+      HFC134a.
+  HFO452a:
+    title: HFO452a
+    comment: The refrigerant HFO452a, which is a mixture of 11% HFC32, 59% HFC125,
+      30% HFO1234yf.
+  HFO452b:
+    title: HFO452b
+    comment: The refrigerant HFO452b, which is a mixture of 67% HFC32, 7% HFC125,
+      26% HFO1234yf.
+  HFO452c:
+    title: HFO452c
+    comment: The refrigerant HFO452c, which is a mixture of 12.5% HFC32, 61% HFC125,
+      26.5% HFO1234yf.
+  HFC453a:
+    title: HFC453a
+    comment: The refrigerant HFC453a, which is a mixture of 20% HFC32, 20% HFC125,
+      53.8% HFC134a, 5% HFC227ea, 0.6% HC600, 0.6% HC601a.
+  HFO454a:
+    title: HFO454a
+    comment: The refrigerant HFO454a, which is a mixture of 35% HFC32, 65% HFO1234yf.
+  HFO454b:
+    title: HFO454b
+    comment: The refrigerant HFO454b, which is a mixture of 68.9% HFC32, 31.1% HFO1234yf.
+  HFO454c:
+    title: HFO454c
+    comment: The refrigerant HFO454c, which is a mixture of 21.5% HFC32, 78.5% HFO1234yf.
+  HFO455a:
+    title: HFO455a
+    comment: The refrigerant HFO455a, which is a mixture of 3% CO2, 21.5% HFC32, 75.5%
+      HFO1234yf.
+  HFO456a:
+    title: HFO456a
+    comment: The refrigerant HFO456a, which is a mixture of 6% HFC32, 45% HFC134a,
+      49% HFO1234ze.
+  HFO457a:
+    title: HFO457a
+    comment: The refrigerant HFO457a, which is a mixture of 18% HFC32, 70% HFO1234yf,
+      12% HFC152a.
+  HFC458a:
+    title: HFC458a
+    comment: The refrigerant HFC458a, which is a mixture of 20.5% HFC32, 4% HFC125,
+      61.4% HFC134a, 13.5% HFC227ea, 0.6% HFC236fa.
+  HFO459a:
+    title: HFO459a
+    comment: The refrigerant HFO459a, which is a mixture of 68% HFC32, 26% HFO1234yf,
+      6% HFO1234ze.
+  HFO459b:
+    title: HFO459b
+    comment: The refrigerant HFO459b, which is a mixture of 21% HFC32, 69% HFO1234yf,
+      10% HFO1234ze.
+  HFO460a:
+    title: HFO460a
+    comment: The refrigerant HFO460a, which is a mixture of 12% HFC32, 52% HFC125,
+      14% HFC134a, 22% HFO1234ze.
+  HFO460b:
+    title: HFO460b
+    comment: The refrigerant HFO460b, which is a mixture of 28% HFC32, 25% HFC125,
+      20% HFC134a, 27% HFO1234ze.
+  HFO460c:
+    title: HFO460c
+    comment: The refrigerant HFO460c, which is a mixture of 2.5% HFC32, 2.5% HFC125,
+      46% HFC134a, 49% HFO1234ze.
+  HFC461a:
+    title: HFC461a
+    comment: The refrigerant HFC461a, which is a mixture of 55% HFC125, 5% HFC143a,
+      32% HFC134a, 5% HFC227ea, 3% HC600a.
+  HFC462a:
+    title: HFC462a
+    comment: The refrigerant HFC462a, which is a mixture of 9% HFC32, 42% HFC125,
+      2% HFC143a, 44% HFC134a, 3% HC600.
+  HFO463a:
+    title: HFO463a
+    comment: The refrigerant HFO463a, which is a mixture of 6% CO2, 36% HFC32, 30%
+      HFC125, 14% HFO1234yf, 14% HFC134a.
+  HFO464a:
+    title: HFO464a
+    comment: The refrigerant HFO464a, which is a mixture of 27% HFC32, 27% HFC125,
+      40% HFO1234ze, 6% HFC227ea.
+  HFO465a:
+    title: HFO465a
+    comment: The refrigerant HFO465a, which is a mixture of 21% HFC32, 7.9% C3H8,
+      71.1% HFO1234yf.
+  HCFC500:
+    title: HCFC500
+    comment: The refrigerant HCFC500, which is a mixture of 73.8% CFC12, 26.2% HFC152.
+  HCFC501:
+    title: HCFC501
+    comment: The refrigerant HCFC501, which is a mixture of 75% HCFC22, 25% CFC12.
+  HCFC502:
+    title: HCFC502
+    comment: The refrigerant HCFC502, which is a mixture of 48.8% HCFC22, 51.2% CFC115.
+  HCFC503:
+    title: HCFC503
+    comment: The refrigerant HCFC503, which is a mixture of 40.1% HFC23, 59.9% CFC13.
+  HCFC504:
+    title: HCFC504
+    comment: The refrigerant HCFC504, which is a mixture of 48.2% HFC32, 51.8% CFC115.
+  HCFC505:
+    title: HCFC505
+    comment: The refrigerant HCFC505, which is a mixture of 78% CFC12, 22% HCFC31.
+  HCFC506:
+    title: HCFC506
+    comment: The refrigerant HCFC506, which is a mixture of 55.1% HCFC31, 44.9% CFC114.
+  HFC507a:
+    title: HFC507a
+    comment: The refrigerant HFC507a, which is a mixture of 50% HFC125, 50% HFC143a.
+  HFC508a:
+    title: HFC508a
+    comment: The refrigerant HFC508a, which is a mixture of 39% HFC23, 61% C2F6.
+  HFC508b:
+    title: HFC508b
+    comment: The refrigerant HFC508b, which is a mixture of 46% HFC23, 54% C2F6.
+  HCFC509a:
+    title: HCFC509a
+    comment: The refrigerant HCFC509a, which is a mixture of 44% HCFC22, 56% C3F8.
+  HC510a:
+    title: HC510a
+    comment: The refrigerant HC510a, which is a mixture of 88% HCE170, 12% HC600a.
+  HC511a:
+    title: HC511a
+    comment: The refrigerant HC511a, which is a mixture of 95% C3H8, 5% HCE170.
+  HFC512a:
+    title: HFC512a
+    comment: The refrigerant HFC512a, which is a mixture of 5% HFC134a, 95% HFC152a.
+  HFO513a:
+    title: HFO513a
+    comment: The refrigerant HFO513a, which is a mixture of 56% HFO1234yf, 44% HFC134a.
+  HFO513b:
+    title: HFO513b
+    comment: The refrigerant HFO513b, which is a mixture of 58.5% HFO1234yf, 41.5%
+      HFC134a.
+  HCO514a:
+    title: HCO514a
+    comment: The refrigerant HCO514a, which is a mixture of 74.7% HFC1336mzz, 25.3%
+      HCO1130.
+  HFO515a:
+    title: HFO515a
+    comment: The refrigerant HFO515a, which is a mixture of 88% HFO1234ze, 12% HFC227ea.
+  HFO516a:
+    title: HFO516a
+    comment: The refrigerant HFO516a, which is a mixture of 77.5% HFO1234yf, 8.5%
+      HFC134a, 14% HFC152a.
+  mixtures:
+    title: refrigerant mixtures
+    children:
+    - - CFC400
+      - HC436a
+      - HC436b
+      - HC436c
+      - HC441a
+      - HC510a
+      - HC511a
+      - HCFC401a
+      - HCFC401b
+      - HCFC401c
+      - HCFC402a
+      - HCFC402b
+      - HCFC403a
+      - HCFC403b
+      - HCFC405a
+      - HCFC406a
+      - HCFC408a
+      - HCFC409a
+      - HCFC409b
+      - HCFC412a
+      - HCFC414a
+      - HCFC414b
+      - HCFC415a
+      - HCFC415b
+      - HCFC416a
+      - HCFC418a
+      - HCFC420a
+      - HCFC500
+      - HCFC501
+      - HCFC502
+      - HCFC503
+      - HCFC504
+      - HCFC505
+      - HCFC506
+      - HCFC509a
+      - HCFO411a
+      - HCFO411b
+      - HCO514a
+      - HFC404a
+      - HFC407a
+      - HFC407b
+      - HFC407c
+      - HFC407d
+      - HFC407e
+      - HFC407f
+      - HFC407g
+      - HFC407h
+      - HFC407i
+      - HFC410a
+      - HFC410b
+      - HFC413a
+      - HFC417a
+      - HFC417b
+      - HFC417c
+      - HFC419a
+      - HFC419b
+      - HFC421a
+      - HFC421b
+      - HFC422a
+      - HFC422b
+      - HFC422c
+      - HFC422d
+      - HFC422e
+      - HFC423a
+      - HFC424a
+      - HFC425a
+      - HFC426a
+      - HFC427a
+      - HFC428a
+      - HFC429a
+      - HFC430a
+      - HFC431a
+      - HFC434a
+      - HFC435a
+      - HFC437a
+      - HFC438a
+      - HFC439a
+      - HFC440a
+      - HFC442a
+      - HFC453a
+      - HFC458a
+      - HFC461a
+      - HFC462a
+      - HFC507a
+      - HFC508a
+      - HFC508b
+      - HFC512a
+      - HFO444a
+      - HFO444b
+      - HFO445a
+      - HFO446a
+      - HFO447a
+      - HFO447b
+      - HFO448a
+      - HFO449a
+      - HFO449b
+      - HFO449c
+      - HFO450a
+      - HFO451a
+      - HFO451b
+      - HFO452a
+      - HFO452b
+      - HFO452c
+      - HFO454a
+      - HFO454b
+      - HFO454c
+      - HFO455a
+      - HFO456a
+      - HFO457a
+      - HFO459a
+      - HFO459b
+      - HFO460a
+      - HFO460b
+      - HFO460c
+      - HFO463a
+      - HFO464a
+      - HFO465a
+      - HFO513a
+      - HFO513b
+      - HFO515a
+      - HFO516a
+      - HO432a
+      - HO433a
+      - HO433b
+      - HO433c
+      - HO443a
