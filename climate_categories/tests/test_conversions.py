@@ -112,3 +112,90 @@ class TestConversionSpec:
             ValueError, match="Last column must be 'comment', but isn't."
         ):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
+
+
+class TestConversion:
+    def test_symmetry(self):
+        a = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
+        b = climate_categories.IPCC2006.conversion_to(climate_categories.IPCC1996)
+        assert a == b
+
+    def test_hydrate_describe(self):
+        fd = importlib.resources.open_text(
+            climate_categories.tests.data,
+            "good_conversion.csv",
+        )
+
+        gc = conversions.ConversionSpec.from_csv(fd)
+
+        cats = {
+            cat_name: climate_categories.Categorization.from_yaml(
+                importlib.resources.open_text(
+                    climate_categories.tests.data, f"good_conversion_{cat_name}.yaml"
+                )
+            )
+            for cat_name in ("A", "B", "aux1", "aux2")
+        }
+
+        conv = gc.hydrate(cats)
+        print(conv.describe_detailed())
+
+        assert (
+            conv.describe_detailed()
+            == """# Mapping between A and B
+
+## Simple direct mappings
+
+Only for aux1 in ['3', '4', 'A', 'argl-5'] and aux2 in ['A', 'B', 'B A']
+A A.5 The category A.5, aka b
+B 4 the number four
+
+A argl,5 weirder characters
+B D d
+
+
+## One-to-many mappings - one A to many B
+
+
+
+## Many-to-one mappings - many A to one B
+
+A asdf ASDF
+A fdsa FDSA
+B asdf ASDF
+
+A A.5 The category A.5, aka b
+A argl.5 We are testing weird characters
+A c The sea
+B D d
+# Comment: 'nobody needs argl'
+
+A A.5 The category A.5, aka b
+A argl,5 weirder characters
+A c The sea
+B D d
+
+A A.5 The category A.5, aka b
+A argl"5 stretching the dredibility
+A c The sea
+B D d
+
+A + sure, make the code for your category a plus sign
+A - even better
+B - a minus sign
+
+
+## Many-to-many mappings - many A to many B
+
+
+
+## Unmapped categories
+
+### A
+unmapped it hurts to be forgotten
+
+### B
+
+
+"""
+        )

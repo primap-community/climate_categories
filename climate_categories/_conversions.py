@@ -147,7 +147,7 @@ class ConversionRule:
         """Format the rule for humans."""
         if self.auxiliary_categories:
             aux_info = [
-                f"{aux_categorization} in {categories}"
+                f"{aux_categorization} in {[c.codes[0] for c in sorted(categories)]}"
                 for aux_categorization, categories in self.auxiliary_categories.items()
             ]
             r = "Only for " + " and ".join(aux_info) + "\n"
@@ -655,3 +655,11 @@ class Conversion(ConversionSpec):
         r += "\n".join(sorted((str(x) for x in cats_missing_b))) + "\n\n"
 
         return r
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, Conversion)
+            and self.categorization_a == other.categorization_a
+            and self.categorization_b == other.categorization_b
+            and self.rules == other.rules
+        )
