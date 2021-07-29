@@ -151,6 +151,7 @@ def main():
         "version": "2006",
         "total_sum": True,
         "categories": categories,
+        "canonical_top_level_category": "0",
     }
 
     # individual fixes to data from pdf
@@ -253,6 +254,21 @@ def main():
         "Mixture of above 4 A1 and 4 A2. Countries "
         "that do not have data on division of managed/unmanaged may use this category."
     )
+
+    # Widely used and very useful, even though not included in the official spec
+    spec["categories"]["0"] = {
+        "title": "National Total",
+        "comment": "All emissions and removals",
+        "children": [
+            [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+            ]
+        ],
+    }
 
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

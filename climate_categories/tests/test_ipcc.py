@@ -1,17 +1,16 @@
-import pytest
-
 import climate_categories
 
 
 def test_number_of_categories():
-    assert len(climate_categories.IPCC1996) == 232
-    assert len(climate_categories.IPCC2006) == 289
+    assert len(climate_categories.IPCC1996) == 233
+    assert len(climate_categories.IPCC2006) == 290
 
 
-@pytest.mark.xfail  # no top-level category for IPCC
 def test_levels():
-    assert climate_categories.IPCC2006.level("1") == 1
-    assert climate_categories.IPCC2006.level("1A") == 2
+    assert climate_categories.IPCC1996.level("1") == 2
+    assert climate_categories.IPCC1996.level("1A") == 3
+    assert climate_categories.IPCC2006.level("1") == 2
+    assert climate_categories.IPCC2006.level("1A") == 3
 
 
 def test_consistent():
