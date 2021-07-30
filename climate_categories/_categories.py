@@ -159,6 +159,15 @@ class HierarchicalCategory(Category):
         return self.categorization.parents(self)
 
     @property
+    def ancestors(self) -> typing.Set["HierarchicalCategory"]:
+        """The super-categories where this category or any of its parents is a member
+        of any set of children, transitively.
+
+        Note that all possible ancestors are returned, not only "canonical" ones.
+        """
+        return self.categorization.ancestors(self)
+
+    @property
     def level(self) -> int:
         """The level of the category.
 
@@ -967,6 +976,16 @@ class HierarchicalCategorization(Categorization):
             return self.parents(self._all_codes_map[cat])
 
         return set(self._graph.predecessors(cat))
+
+    def ancestors(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> typing.Set[HierarchicalCategory]:
+        """All ancestors of the given category, i.e. the direct parents and their
+        parents, etc."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.ancestors(self._all_codes_map[cat])
+
+        return set(nx.ancestors(self._graph, cat))
 
     def children(
         self, cat: typing.Union[str, HierarchicalCategory]

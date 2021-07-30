@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 import pyparsing
 
 if TYPE_CHECKING:
-    from ._categories import Categorization, Category
+    from ._categories import Categorization, Category, HierarchicalCategory
 
 
 @dataclasses.dataclass(frozen=True)
@@ -78,6 +78,232 @@ class ConversionRuleSpec:
             auxiliary_categories=auxiliary_categories_hydrated,
             comment=self.comment,
         )
+
+    # Parsing rules for simple formulas from str
+    # Supported operators at the moment are plus and minus
+    _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
+    _operator_factors = {"+": 1, "-": -1}
+    _factor_operators = {1: "+", -1: "-"}
+    # alphanumeric category codes can be given directly, others have to be quoted
+    _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
+        quoteChar='"', escChar="\\"
+    )
+    _formula = (
+        pyparsing.StringStart()
+        + pyparsing.Optional(_operator("unary_op"))
+        + _category_code("category_code")
+        + pyparsing.ZeroOrMore(_operator("binary_op") + _category_code("category_code"))
+        + pyparsing.StringEnd()
+    )
+    _auxiliary_codes = (
+        pyparsing.StringStart()
+        + pyparsing.ZeroOrMore(_category_code("aux_category_code"))
+        + pyparsing.StringEnd()
+    )
+
+    @classmethod
+    def _parse_aux_codes(cls, aux_codes_str: str) -> typing.List[str]:
+        """Parse a whitespace-separated list of auxiliary codes.
+
+        Parameters
+        ----------
+        aux_codes_str: str
+            Category codes separated by whitespace. Alphanumeric category codes can be
+            given directly, other category codes must be quoted using double quotes.
+
+        Returns
+        -------
+        aux_codes: list
+            List of the category codes.
+
+        Examples
+        --------
+        >>> ConversionRuleSpec._parse_aux_codes("A B")
+        ['A', 'B']
+        >>> ConversionRuleSpec._parse_aux_codes('"a b" c')
+        ['a b', 'c']
+        >>> ConversionRuleSpec._parse_aux_codes("")
+        []
+        >>> ConversionRuleSpec._parse_aux_codes("A + B")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: 'A + B', error: Expected ...
+        """
+        try:
+            tokens = cls._auxiliary_codes.parseString(aux_codes_str)
+        except pyparsing.ParseException as exc:
+            raise ValueError(
+                f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
+                f" error at char {exc.loc}"
+            )
+        return list(tokens)
+
+    @classmethod
+    def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
+        """Parse a formula into factors for categories.
+
+        Parameters
+        ----------
+        formula: str
+            Formula comprising category codes connected with + or - . Alphanumeric
+            category codes can be given directly, other category codes must be quoted
+            using double quotes.
+
+        Returns
+        -------
+        code_factors: dict
+            mapping of category codes to factors
+
+        Examples
+        --------
+        >>> ConversionRuleSpec._parse_formula("A + B")
+        {'A': 1, 'B': 1}
+        >>> ConversionRuleSpec._parse_formula("-A+B")
+        {'A': -1, 'B': 1}
+        >>> ConversionRuleSpec._parse_formula('"-asdf.#" + B')
+        {'-asdf.#': 1, 'B': 1}
+        >>> ConversionRuleSpec._parse_formula(" A  -  B")
+        {'A': 1, 'B': -1}
+        >>> ConversionRuleSpec._parse_formula("-A")
+        {'A': -1}
+        >>> ConversionRuleSpec._parse_formula('-A+B - "A"')
+        {'A': -2, 'B': 1}
+        >>> ConversionRuleSpec._parse_formula("-A-")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: '-A-', error: Expected ...
+        >>> ConversionRuleSpec._parse_formula("")
+        Traceback (most recent call last):
+        ...
+        ValueError: Could not parse: '', error: Expected ...
+        """
+        try:
+            tokens = cls._formula.parseString(formula)
+        except pyparsing.ParseException as exc:
+            raise ValueError(
+                f"Could not parse: {formula!r}, error: {exc.msg},"
+                f" error at char {exc.loc}"
+            )
+        code_factors = {}
+        # first operator is implicitly a plus, have to handle it specially
+        if "unary_op" in tokens:
+            op = tokens.pop(0)
+        else:
+            op = "+"
+        code = tokens.pop(0)
+        code_factors[code] = cls._operator_factors[op]
+        while tokens:
+            op = tokens.pop(0)
+            code = tokens.pop(0)
+            if code in code_factors:
+                code_factors[code] += cls._operator_factors[op]
+            else:
+                code_factors[code] = cls._operator_factors[op]
+
+        return code_factors
+
+    @classmethod
+    def from_csv_row(
+        cls, irow: typing.Iterator[str], aux_names: typing.List[str]
+    ) -> "ConversionRuleSpec":
+        """Parse a ConversionRuleSpec from a row in a CSV file.
+
+        Parameters
+        ----------
+        irow: iterable of str
+            An iterable (e.g. list) of strings. The first string is the formula for
+            the left side (categorization_a), then come the specifications for
+            auxiliary categories, with as many fields as there are aux_names, then
+            comes the forumla for the right side (categorization_b), and finally an
+            optional comment.
+        aux_names: list of str
+            List of names of the auxiliary categorizations.
+
+        Returns
+        -------
+        self: ConversionRuleSpec
+            The parsed ConverionRuleSpec.
+        """
+
+        n_aux = len(aux_names)
+
+        auxiliary_categories = {}
+        factors_a = cls._parse_formula(next(irow))
+        for i in range(n_aux):
+            aux_codes = cls._parse_aux_codes(next(irow))
+            if aux_codes:
+                auxiliary_categories[aux_names[i]] = set(aux_codes)
+        factors_b = cls._parse_formula(next(irow))
+
+        try:
+            comment = next(irow)
+        except StopIteration:
+            comment = ""
+
+        return cls(
+            factors_categories_a=factors_a,
+            factors_categories_b=factors_b,
+            auxiliary_categories=auxiliary_categories,
+            comment=comment,
+        )
+
+    @classmethod
+    def _factors_categories_formula(
+        cls, factors_categories: typing.Dict[str, int]
+    ) -> str:
+        formula = ""
+        first = True
+        for category, factor in factors_categories.items():
+            while factor != 0:
+                if factor > 0:
+                    op = "+"
+                    factor -= 1
+                else:
+                    op = "-"
+                    factor += 1
+
+                if first:
+                    if op == "+":
+                        formula += cls._escape_code(category)
+                    first = False
+                else:
+                    formula += f" {op} {cls._escape_code(category)}"
+        return formula
+
+    @staticmethod
+    def _escape_code(code: str) -> str:
+        """Escape a category code for serialization.
+
+        Examples
+        --------
+        >>> ConversionRuleSpec._escape_code("A")
+        'A'
+        >>> ConversionRuleSpec._escape_code("2.A")
+        '2.A'
+        >>> ConversionRuleSpec._escape_code("$1")
+        '"$1"'
+        >>> ConversionRuleSpec._escape_code('"')
+        '"\\\\""'
+        """
+        if code.isalnum() or code.replace(".", "").isalnum():
+            return code
+        # replace:
+        # \ -> \\
+        # " -> \"
+        esc = code.replace("\\", "\\\\").replace('"', '\\"')
+        return f'"{esc}"'
+
+    def to_csv_row(self) -> typing.List[str]:
+        """Return a representation of this rule suitable for writing to a CSV file."""
+        row = [self._factors_categories_formula(self.factors_categories_a)]
+        for aux_categories in self.auxiliary_categories.values():
+            row.append(" ".join(map(self._escape_code, aux_categories)))
+        row.append(self._factors_categories_formula(self.factors_categories_b))
+        row.append(self.comment)
+        return row
+
+    def __str__(self) -> str:
+        return ",".join(self.to_csv_row())
 
 
 @dataclasses.dataclass(frozen=True)
@@ -196,6 +422,9 @@ class ConversionRule:
             comment=self.comment,
         )
 
+    def __str__(self):
+        return str(self.to_spec())
+
 
 class ConversionSpec:
     """Specification of rules for conversion between two categorizations, with support
@@ -229,26 +458,6 @@ class ConversionSpec:
     """
 
     _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
-    # Parsing rules for simple formulas in the CSV
-    # Supported operators at the moment are plus and minus
-    _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
-    _operator_factors = {"+": 1, "-": -1}
-    # alphanumeric category codes can be given directly, others have to be quoted
-    _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
-        quoteChar='"', escChar="\\"
-    )
-    _formula = (
-        pyparsing.StringStart()
-        + pyparsing.Optional(_operator("unary_op"))
-        + _category_code("category_code")
-        + pyparsing.ZeroOrMore(_operator("binary_op") + _category_code("category_code"))
-        + pyparsing.StringEnd()
-    )
-    _auxiliary_codes = (
-        pyparsing.StringStart()
-        + pyparsing.ZeroOrMore(_category_code("aux_category_code"))
-        + pyparsing.StringEnd()
-    )
 
     def __init__(
         self,
@@ -272,107 +481,6 @@ class ConversionSpec:
         self.institution = institution
         self.last_update = last_update
         self.version = version
-
-    @classmethod
-    def _parse_aux_codes(cls, aux_codes_str: str) -> typing.List[str]:
-        """Parse a whitespace-separated list of auxiliary codes.
-
-        Parameters
-        ----------
-        aux_codes_str: str
-            Category codes separated by whitespace. Alphanumeric category codes can be
-            given directly, other category codes must be quoted using double quotes.
-
-        Returns
-        -------
-        aux_codes: list
-            List of the category codes.
-
-        Examples
-        --------
-        >>> ConversionSpec._parse_aux_codes("A B")
-        ['A', 'B']
-        >>> ConversionSpec._parse_aux_codes('"a b" c')
-        ['a b', 'c']
-        >>> ConversionSpec._parse_aux_codes("")
-        []
-        >>> ConversionSpec._parse_aux_codes("A + B")
-        Traceback (most recent call last):
-        ...
-        ValueError: Could not parse: 'A + B', error: Expected ...
-        """
-        try:
-            tokens = cls._auxiliary_codes.parseString(aux_codes_str)
-        except pyparsing.ParseException as exc:
-            raise ValueError(
-                f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
-                f" error at char {exc.loc}"
-            )
-        return list(tokens)
-
-    @classmethod
-    def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
-        """Parse a formula into factors for categories.
-
-        Parameters
-        ----------
-        formula: str
-            Formula comprising category codes connected with + or - . Alphanumeric
-            category codes can be given directly, other category codes must be quoted
-            using double quotes.
-
-        Returns
-        -------
-        code_factors: dict
-            mapping of category codes to factors
-
-        Examples
-        --------
-        >>> ConversionSpec._parse_formula("A + B")
-        {'A': 1, 'B': 1}
-        >>> ConversionSpec._parse_formula("-A+B")
-        {'A': -1, 'B': 1}
-        >>> ConversionSpec._parse_formula('"-asdf.#" + B')
-        {'-asdf.#': 1, 'B': 1}
-        >>> ConversionSpec._parse_formula(" A  -  B")
-        {'A': 1, 'B': -1}
-        >>> ConversionSpec._parse_formula("-A")
-        {'A': -1}
-        >>> ConversionSpec._parse_formula('-A+B - "A"')
-        {'A': -2, 'B': 1}
-        >>> ConversionSpec._parse_formula("-A-")
-        Traceback (most recent call last):
-        ...
-        ValueError: Could not parse: '-A-', error: Expected ...
-        >>> ConversionSpec._parse_formula("")
-        Traceback (most recent call last):
-        ...
-        ValueError: Could not parse: '', error: Expected ...
-        """
-        try:
-            tokens = cls._formula.parseString(formula)
-        except pyparsing.ParseException as exc:
-            raise ValueError(
-                f"Could not parse: {formula!r}, error: {exc.msg},"
-                f" error at char {exc.loc}"
-            )
-        code_factors = {}
-        # first operator is implicitly a plus, have to handle it specially
-        if "unary_op" in tokens:
-            op = tokens.pop(0)
-        else:
-            op = "+"
-        code = tokens.pop(0)
-        code_factors[code] = cls._operator_factors[op]
-        while tokens:
-            op = tokens.pop(0)
-            code = tokens.pop(0)
-            if code in code_factors:
-                code_factors[code] += cls._operator_factors[op]
-            else:
-                code_factors[code] = cls._operator_factors[op]
-
-        return code_factors
 
     @classmethod
     def _read_csv_meta(cls, reader: csv.reader) -> typing.Dict[str, str]:
@@ -447,33 +555,14 @@ class ConversionSpec:
         if header[-1] != "comment":
             raise ValueError("Last column must be 'comment', but isn't.")
         aux_names = header[1:-2]
-        n_aux = len(aux_names)
         for row in reader:
             irow = iter(row)
-            auxiliary_categories = {}
             try:
-                factors_a = cls._parse_formula(next(irow))
-                for i in range(n_aux):
-                    aux_codes = cls._parse_aux_codes(next(irow))
-                    if aux_codes:
-                        auxiliary_categories[aux_names[i]] = set(aux_codes)
-                factors_b = cls._parse_formula(next(irow))
+                rule_specs.append(
+                    ConversionRuleSpec.from_csv_row(irow, aux_names=aux_names)
+                )
             except ValueError as err:
                 raise ValueError(f"Error in line {reader.line_num}: {err}")
-
-            try:
-                comment = next(irow)
-            except StopIteration:
-                comment = ""
-
-            rule_specs.append(
-                ConversionRuleSpec(
-                    factors_categories_a=factors_a,
-                    factors_categories_b=factors_b,
-                    auxiliary_categories=auxiliary_categories,
-                    comment=comment,
-                )
-            )
 
         return a_name, b_name, aux_names, rule_specs
 
@@ -543,6 +632,34 @@ class ConversionSpec:
         )
 
 
+@dataclasses.dataclass(frozen=True)
+class OvercountingProblem:
+    """A suspected overcounting problem."""
+
+    category: "HierarchicalCategory"
+    ancestral_sets_projected: typing.List[typing.Set["HierarchicalCategory"]]
+    rules: typing.List[ConversionRule]
+
+    def __str__(self):
+        hull: typing.Set["HierarchicalCategory"] = set().union(
+            *self.ancestral_sets_projected
+        )
+        leaves = []
+        for category in hull:
+            if not category.children:
+                leaves.append(category)
+            else:
+                children = set().union(*category.children)
+                if all(child not in hull for child in children):
+                    leaves.append(category)
+
+        return (
+            f"{self.category!r} is possibly counted multiple times"
+            f"\ninvolved mapped categories: {leaves!r} (showing lowest level only)"
+            f"\ninvolved rules: {[str(rule) for rule in self.rules]}"
+        )
+
+
 class Conversion(ConversionSpec):
     """Conversion between two categorizations.
 
@@ -606,10 +723,6 @@ class Conversion(ConversionSpec):
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
 
-    def ensure_valid(self, cats: typing.Dict[str, "Categorization"]) -> None:
-        """Check if all used codes are contained in the categorizations."""
-        # TODO
-
     def describe_detailed(self) -> str:
         """Detailed human-readable description of the conversion rules."""
         one_to_one = []
@@ -655,6 +768,99 @@ class Conversion(ConversionSpec):
         r += "\n".join(sorted((str(x) for x in cats_missing_b))) + "\n\n"
 
         return r
+
+    def find_over_counting_problems(self) -> typing.List[OvercountingProblem]:
+        """Check if any category from one side is counted more than once on the
+        other side.
+
+        Note that the algorithm at the moment can't reliably detect all over counting
+        problems and also some suspected problems might be fine under closer
+        examination, so use this function only to generate hints for possible problems.
+
+        Returns
+        -------
+        problems: list of OvercountingProblem objects
+            All detected suspected problems.
+        """
+        for categorization in self.categorization_a, self.categorization_b:
+            if not categorization.hierarchical:
+                raise ValueError(
+                    f"{categorization} is not hierarchical, without "
+                    f"a hierarchy, overcounting can not be evaluated."
+                )
+            if not categorization.total_sum:
+                raise ValueError(
+                    f"For {categorization} it is not specified that the"
+                    f"sum of a set of children equals the parent, so"
+                    f"overcounting can not be evaluated."
+                )
+
+        problems = []
+        for categorization in self.categorization_a, self.categorization_b:
+            for category in categorization.values():
+                prob = self._check_overcounting_category(category)
+                if prob:
+                    problems.append(prob)
+
+        return problems
+
+    def _check_overcounting_category(
+        self, category: "HierarchicalCategory"
+    ) -> typing.Optional[OvercountingProblem]:
+        # TODO ALGO idea:
+        # A(c) sei die Abstammungslinie einer Kategorie c, also die Menge aller
+        # Vorfahren plus der Kategorie selbst.
+        # P(A(c)) sei die Projektion von der Abstammungslinie von c (in die andere
+        # Kategorisierung)
+        # AA(P(A(c))) sei die Menge aller Abstammungslinien der Elemente von P(A(c))
+        # Dann muss das größte Element in AA gleich sein mit der Vereinigung aller
+        # Elemente von AA.
+
+        # The set of all ancestors of the category plus the category itself
+        ancestral_set = {category}
+        ancestral_set.update(category.ancestors)
+
+        # The projection of the ancestral set into the other categorization
+        projected_ancestral_set: typing.Set["HierarchicalCategory"] = set()
+        relevant_rules = []
+        for rule in self.rules:
+            # for now, skip rules which are valid only for some aux categories
+            if rule.auxiliary_categories:
+                continue
+            # for now, only use simple summation factors
+            categories_a: typing.Set["HierarchicalCategory"] = {
+                cat for cat, factor in rule.factors_categories_a.items() if factor == 1
+            }
+            categories_b: typing.Set["HierarchicalCategory"] = {
+                cat for cat, factor in rule.factors_categories_b.items() if factor == 1
+            }
+            if categories_a.intersection(ancestral_set):
+                projected_ancestral_set.update(categories_b)
+                relevant_rules.append(rule)
+
+        # The ancestral sets of the projected categories
+        ancestral_sets_projected = []
+        for c in projected_ancestral_set:
+            ancestral_set_projected = {c}
+            ancestral_set_projected.update(c.ancestors)
+            ancestral_sets_projected.append(ancestral_set_projected)
+
+        if not ancestral_sets_projected:
+            return
+
+        # Now, the union of the projected ancestral sets (the hull) must be identical to
+        # the
+        # largest projected ancestral sets, otherwise there is a branching in the
+        # projection, i.e. different leave nodes are included in the projected
+        # ancestral set, which means we have overcounting.
+        hull = set().union(*ancestral_sets_projected)
+        largest = max(ancestral_sets_projected, key=len)
+        if hull != largest:
+            return OvercountingProblem(
+                category=category,
+                ancestral_sets_projected=ancestral_sets_projected,
+                rules=relevant_rules,
+            )
 
     def __eq__(self, other):
         return (
