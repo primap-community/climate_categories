@@ -31,11 +31,11 @@ repos:
     hooks:
       - id: doc8
   - repo: https://github.com/PyCQA/isort
-    rev: '5.9.2'
+    rev: '5.9.3'
     hooks:
       - id: isort
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: '1.0.0'
+    rev: '1.1.0'
     hooks:
       - id: nbqa-black
         args: [ --nbqa-mutate, --line-length=75 ]
