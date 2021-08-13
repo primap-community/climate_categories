@@ -49,6 +49,8 @@ class ConversionRuleSpec:
     factors_categories_b: typing.Dict[str, int]
     auxiliary_categories: typing.Dict[str, typing.Set[str]]
     comment: str = ""
+    csv_line_number: typing.Optional[int] = None
+    csv_original_text: typing.Optional[str] = None
 
     def hydrate(
         self,
@@ -77,6 +79,8 @@ class ConversionRuleSpec:
             },
             auxiliary_categories=auxiliary_categories_hydrated,
             comment=self.comment,
+            csv_line_number=self.csv_line_number,
+            csv_original_text=self.csv_original_text,
         )
 
     # Parsing rules for simple formulas from str
@@ -204,7 +208,10 @@ class ConversionRuleSpec:
 
     @classmethod
     def from_csv_row(
-        cls, irow: typing.Iterator[str], aux_names: typing.List[str]
+        cls,
+        irow: typing.Iterator[str],
+        aux_names: typing.List[str],
+        line_number: typing.Optional[int] = None,
     ) -> "ConversionRuleSpec":
         """Parse a ConversionRuleSpec from a row in a CSV file.
 
@@ -214,10 +221,12 @@ class ConversionRuleSpec:
             An iterable (e.g. list) of strings. The first string is the formula for
             the left side (categorization_a), then come the specifications for
             auxiliary categories, with as many fields as there are aux_names, then
-            comes the forumla for the right side (categorization_b), and finally an
+            comes the formula for the right side (categorization_b), and finally an
             optional comment.
         aux_names: list of str
             List of names of the auxiliary categorizations.
+        line_number: int, optional
+            The line number within the CSV, used for nicer error messages if available.
 
         Returns
         -------
@@ -226,18 +235,19 @@ class ConversionRuleSpec:
         """
 
         n_aux = len(aux_names)
+        row = list(irow)
 
         auxiliary_categories = {}
-        factors_a = cls._parse_formula(next(irow))
+        factors_a = cls._parse_formula(row[0])
         for i in range(n_aux):
-            aux_codes = cls._parse_aux_codes(next(irow))
+            aux_codes = cls._parse_aux_codes(row[i + 1])
             if aux_codes:
                 auxiliary_categories[aux_names[i]] = set(aux_codes)
-        factors_b = cls._parse_formula(next(irow))
+        factors_b = cls._parse_formula(row[n_aux + 1])
 
         try:
-            comment = next(irow)
-        except StopIteration:
+            comment = row[n_aux + 2]
+        except IndexError:
             comment = ""
 
         return cls(
@@ -245,6 +255,8 @@ class ConversionRuleSpec:
             factors_categories_b=factors_b,
             auxiliary_categories=auxiliary_categories,
             comment=comment,
+            csv_line_number=line_number,
+            csv_original_text=",".join(row),
         )
 
     @classmethod
@@ -303,6 +315,8 @@ class ConversionRuleSpec:
         return row
 
     def __str__(self) -> str:
+        if self.csv_original_text is not None:
+            return self.csv_original_text
         return ",".join(self.to_csv_row())
 
 
@@ -348,6 +362,8 @@ class ConversionRule:
     factors_categories_b: typing.Dict["Category", int]
     auxiliary_categories: typing.Dict["Categorization", typing.Set["Category"]]
     comment: str = ""
+    csv_line_number: typing.Optional[int] = None
+    csv_original_text: typing.Optional[str] = None
     cardinality_a: str = dataclasses.field(init=False)
     cardinality_b: str = dataclasses.field(init=False)
 
@@ -420,10 +436,21 @@ class ConversionRule:
                 for categorization, categories in self.auxiliary_categories.items()
             },
             comment=self.comment,
+            csv_line_number=self.csv_line_number,
+            csv_original_text=self.csv_original_text,
         )
 
     def __str__(self):
         return str(self.to_spec())
+
+    def format_with_lineno(self) -> str:
+        """Human-readable string representation of the rule with information in which
+        line in the CSV file it was defined, if that is available."""
+        s = f"<Rule '{self!s}'"
+        if self.csv_line_number is not None:
+            s += f" from line {self.csv_line_number}"
+        s += ">"
+        return s
 
 
 class ConversionSpec:
@@ -559,7 +586,9 @@ class ConversionSpec:
             irow = iter(row)
             try:
                 rule_specs.append(
-                    ConversionRuleSpec.from_csv_row(irow, aux_names=aux_names)
+                    ConversionRuleSpec.from_csv_row(
+                        irow, aux_names=aux_names, line_number=reader.line_num
+                    )
                 )
             except ValueError as err:
                 raise ValueError(f"Error in line {reader.line_num}: {err}")
@@ -653,10 +682,13 @@ class OvercountingProblem:
                 if all(child not in hull for child in children):
                     leaves.append(category)
 
+        involved_rules_str = ", ".join(
+            (rule.format_with_lineno() for rule in self.rules)
+        )
         return (
             f"{self.category!r} is possibly counted multiple times"
             f"\ninvolved mapped categories: {leaves!r} (showing lowest level only)"
-            f"\ninvolved rules: {[str(rule) for rule in self.rules]}"
+            f"\ninvolved rules: {involved_rules_str}."
         )
 
 
@@ -782,6 +814,8 @@ class Conversion(ConversionSpec):
         problems: list of OvercountingProblem objects
             All detected suspected problems.
         """
+        # TODO: properly find B problems.
+        # TODO: probably easiest by implementing a "reversed" function.
         for categorization in self.categorization_a, self.categorization_b:
             if not categorization.hierarchical:
                 raise ValueError(

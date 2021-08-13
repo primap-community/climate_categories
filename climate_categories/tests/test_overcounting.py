@@ -88,6 +88,11 @@ def test_simple_overcounting(simple_conversion_specs):
     convs.append(["2", "1"])
     conv = specs_to_conversion(cat_a, cat_b, convs)
     problems = conv.find_over_counting_problems()
-    for problem in problems:
-        print(problem)
-    assert not problems
+    problematic_categories = [problem.category for problem in problems]
+    assert conv.categorization_a["2"] in problematic_categories
+    assert conv.categorization_a["2.A"] in problematic_categories
+    assert conv.categorization_a["2.B"] in problematic_categories
+
+    assert conv.categorization_b["1"] in problematic_categories
+    assert conv.categorization_b["1.A"] in problematic_categories
+    assert conv.categorization_b["1.B"] in problematic_categories

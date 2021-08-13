@@ -37,6 +37,8 @@ class TestConversionSpec:
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
             auxiliary_categories={},
+            csv_line_number=7,
+            csv_original_text="asdf + fdsa,,,asdf",
         )
         assert conv.rule_specs[1] == conversions.ConversionRuleSpec(
             factors_categories_a={"A.5": 1},
@@ -45,32 +47,44 @@ class TestConversionSpec:
                 "aux1": {"3", "4", "A", "argl-5"},
                 "aux2": {"B A", "A", "B"},
             },
+            csv_line_number=8,
+            csv_original_text='A.5,3 4 A "argl-5", "B A" B A,4',
         )
         assert conv.rule_specs[2] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl.5": 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={},
             comment="nobody needs argl",
+            csv_line_number=9,
+            csv_original_text='b + "argl.5" + c,,,D,nobody needs argl',
         )
         assert conv.rule_specs[3] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl,5": 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={},
+            csv_line_number=10,
+            csv_original_text='b + "argl,5" + c,,,D',
         )
         assert conv.rule_specs[4] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={},
+            csv_line_number=11,
+            csv_original_text='b + "argl\\"5" + c,,,D',
         )
         assert conv.rule_specs[5] == conversions.ConversionRuleSpec(
             factors_categories_a={"argl,5": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={},
+            csv_line_number=12,
+            csv_original_text='"argl,5",,,D',
         )
         assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
             factors_categories_a={"+": 1, "-": -1},
             factors_categories_b={"-": 1},
             auxiliary_categories={},
+            csv_line_number=13,
+            csv_original_text='"+" - "-",,,"-"',
         )
 
         assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 7 rules>"
