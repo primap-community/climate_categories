@@ -24,8 +24,9 @@ def simple_conversion_specs():
             "2": {"title": "two", "children": [["2.A", "2.B"]]},
             "1.A": {"title": "one-A"},
             "1.B": {"title": "one-B"},
-            "2.A": {"title": "two-A"},
+            "2.A": {"title": "two-A", "children": [["2.A.1"]]},
             "2.B": {"title": "two-B"},
+            "2.A.1": {"title": "two-A-one"},
         },
     }
     cat_b = {
@@ -41,11 +42,13 @@ def simple_conversion_specs():
         "categories": {
             "0": {"title": "total", "children": [["1", "2"]]},
             "1": {"title": "one", "children": [["1.A", "1.B"]]},
-            "2": {"title": "two", "children": [["2.A", "2.B"]]},
+            "2": {"title": "two", "children": [["2.A"]]},
             "1.A": {"title": "one-A"},
             "1.B": {"title": "one-B"},
-            "2.A": {"title": "two-A"},
-            "2.B": {"title": "two-B"},
+            "2.A": {"title": "two-A", "children": [["2.A.1", "2.A.2"]]},
+            "2.A.1": {"title": "two-A-one", "children": [["2.A.1.a"]]},
+            "2.A.2": {"title": "two-A-two"},
+            "2.A.1.a": {"title": "two-A-one-a"},
         },
     }
     convs = [
@@ -55,6 +58,9 @@ def simple_conversion_specs():
         ["1.B", "1.B"],
         ["2", "2"],
         ["2.A + 2.B", "2.A"],
+        ["2.A", "2.A.1"],
+        ["2.A.1", "2.A.1.a"],
+        ["2.B", "2.A.2"],
     ]
     return cat_a, cat_b, convs
 
@@ -81,8 +87,10 @@ def specs_to_conversion(cat_a_spec, cat_b_spec, convs_spec) -> conversions.Conve
 def test_no_overcounting(simple_conversion_specs):
     conv = specs_to_conversion(*simple_conversion_specs)
     assert not conv.find_over_counting_problems()
+    assert not conv.reversed().find_over_counting_problems()
 
 
+# TODO: make better tests
 def test_simple_overcounting(simple_conversion_specs):
     cat_a, cat_b, convs = simple_conversion_specs
     convs.append(["2", "1"])

@@ -128,34 +128,55 @@ class TestConversionSpec:
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
 
+def load_conversion_from_csv(fname: str):
+    fd = importlib.resources.open_text(
+        climate_categories.tests.data,
+        fname,
+    )
+
+    gc = conversions.ConversionSpec.from_csv(fd)
+
+    cats = {
+        cat_name: climate_categories.Categorization.from_yaml(
+            importlib.resources.open_text(
+                climate_categories.tests.data, f"good_conversion_{cat_name}.yaml"
+            )
+        )
+        for cat_name in ("A", "B", "aux1", "aux2")
+    }
+
+    return gc.hydrate(cats)
+
+
+@pytest.fixture
+def good_conversion():
+    return load_conversion_from_csv("good_conversion.csv")
+
+
+@pytest.fixture
+def good_conversion_reversed():
+    return load_conversion_from_csv("good_conversion_reversed.csv")
+
+
 class TestConversion:
     def test_symmetry(self):
         a = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
         b = climate_categories.IPCC2006.conversion_to(climate_categories.IPCC1996)
-        assert a == b
+        assert a == b.reversed()
+        assert a == a.reversed().reversed()
 
-    def test_hydrate_describe(self):
-        fd = importlib.resources.open_text(
-            climate_categories.tests.data,
-            "good_conversion.csv",
-        )
+    def test_reverse(
+        self,
+        good_conversion: conversions.Conversion,
+        good_conversion_reversed: conversions.Conversion,
+    ):
+        assert good_conversion.reversed() == good_conversion_reversed
+        assert good_conversion_reversed.reversed() == good_conversion
 
-        gc = conversions.ConversionSpec.from_csv(fd)
-
-        cats = {
-            cat_name: climate_categories.Categorization.from_yaml(
-                importlib.resources.open_text(
-                    climate_categories.tests.data, f"good_conversion_{cat_name}.yaml"
-                )
-            )
-            for cat_name in ("A", "B", "aux1", "aux2")
-        }
-
-        conv = gc.hydrate(cats)
-        print(conv.describe_detailed())
+    def test_hydrate_describe(self, good_conversion: conversions.Conversion):
 
         assert (
-            conv.describe_detailed()
+            good_conversion.describe_detailed()
             == """# Mapping between A and B
 
 ## Simple direct mappings

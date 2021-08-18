@@ -168,6 +168,13 @@ class HierarchicalCategory(Category):
         return self.categorization.ancestors(self)
 
     @property
+    def descendants(self) -> typing.Set["HierarchicalCategory"]:
+        """The sets of subcategories comprising this category directly or indirectly.
+
+        Note that all possible descendants are returned, not only "canonical" ones."""
+        return self.categorization.descendants(self)
+
+    @property
     def level(self) -> int:
         """The level of the category.
 
@@ -515,15 +522,18 @@ class Categorization:
     def conversion_to(self, other: "Categorization") -> Conversion:
         """Get conversion to other categorization.
 
-        If conversion rules for this conversion are not included, raises KeyError."""
-        for csv_name in (
-            f"conversion.{self.name}.{other.name}.csv",
-            f"conversion.{other.name}.{self.name}.csv",
-        ):
-            if importlib.resources.is_resource(data, csv_name):
-                fd = importlib.resources.open_text(data, csv_name)
-                return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
-        raise KeyError(
+        If conversion rules for this conversion are not included, raises
+        NotImplementedError."""
+        forward_csv_name = f"conversion.{self.name}.{other.name}.csv"
+        if importlib.resources.is_resource(data, forward_csv_name):
+            fd = importlib.resources.open_text(data, forward_csv_name)
+            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
+        reversed_csv_name = f"conversion.{other.name}.{self.name}.csv"
+        if importlib.resources.is_resource(data, reversed_csv_name):
+            fd = importlib.resources.open_text(data, reversed_csv_name)
+            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats).reversed()
+
+        raise NotImplementedError(
             f"Conversion between {self.name} and {other.name} not yet included."
         )
 
@@ -1001,6 +1011,14 @@ class HierarchicalCategorization(Categorization):
             children_dict[setno].append(child)
 
         return [set(children_dict[x]) for x in sorted(children_dict.keys())]
+
+    def descendants(self, cat: typing.Union[str, HierarchicalCategory]):
+        """All descendants of the given category, i.e. the direct children and their
+        children, etc."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.descendants(self._all_codes_map[cat])
+
+        return set(nx.descendants(self._graph, cat))
 
 
 def from_pickle(

@@ -385,6 +385,26 @@ class ConversionRule:
             if not val:
                 del self.auxiliary_categories[key]
 
+    def __eq__(self, other: "ConversionRule"):
+        return (
+            self.factors_categories_a == other.factors_categories_a
+            and self.factors_categories_b == other.factors_categories_b
+            and self.auxiliary_categories == other.auxiliary_categories
+            and self.comment == other.comment
+        )
+
+    def reversed(self) -> "ConversionRule":
+        """Return the ConversionRule with categorization_a and categorization_b
+        swapped."""
+        return ConversionRule(
+            factors_categories_a=self.factors_categories_b,
+            factors_categories_b=self.factors_categories_a,
+            auxiliary_categories=self.auxiliary_categories,
+            comment=self.comment,
+            csv_line_number=self.csv_line_number,
+            csv_original_text=self.csv_original_text,
+        )
+
     def format_human_readable(self) -> str:
         """Format the rule for humans."""
         if self.auxiliary_categories:
@@ -666,28 +686,16 @@ class OvercountingProblem:
     """A suspected overcounting problem."""
 
     category: "HierarchicalCategory"
-    ancestral_sets_projected: typing.List[typing.Set["HierarchicalCategory"]]
+    leave_node_groups: typing.List[typing.Set["HierarchicalCategory"]]
     rules: typing.List[ConversionRule]
 
     def __str__(self):
-        hull: typing.Set["HierarchicalCategory"] = set().union(
-            *self.ancestral_sets_projected
-        )
-        leaves = []
-        for category in hull:
-            if not category.children:
-                leaves.append(category)
-            else:
-                children = set().union(*category.children)
-                if all(child not in hull for child in children):
-                    leaves.append(category)
-
         involved_rules_str = ", ".join(
             (rule.format_with_lineno() for rule in self.rules)
         )
         return (
             f"{self.category!r} is possibly counted multiple times"
-            f"\ninvolved mapped categories: {leaves!r} (showing lowest level only)"
+            f"\ninvolved leave groups categories: {self.leave_node_groups!r}"
             f"\ninvolved rules: {involved_rules_str}."
         )
 
@@ -755,6 +763,26 @@ class Conversion(ConversionSpec):
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
 
+    def reversed(self) -> "Conversion":
+        """Returns the Conversion with categorization_a and categorization_b swapped."""
+        return Conversion(
+            categorization_a=self.categorization_b,
+            categorization_b=self.categorization_a,
+            rules=[rule.reversed() for rule in self.rules],
+            auxiliary_categorizations=self.auxiliary_categorizations,
+            comment=self.comment,
+            references=self.references,
+            institution=self.institution,
+            last_update=self.last_update,
+            version=self.version,
+        )
+
+    def __repr__(self):
+        return (
+            f"<Conversion {self.categorization_a_name!r} <->"
+            f" {self.categorization_b_name!r} with {len(self.rule_specs)} rules>"
+        )
+
     def describe_detailed(self) -> str:
         """Detailed human-readable description of the conversion rules."""
         one_to_one = []
@@ -814,8 +842,6 @@ class Conversion(ConversionSpec):
         problems: list of OvercountingProblem objects
             All detected suspected problems.
         """
-        # TODO: properly find B problems.
-        # TODO: probably easiest by implementing a "reversed" function.
         for categorization in self.categorization_a, self.categorization_b:
             if not categorization.hierarchical:
                 raise ValueError(
@@ -841,59 +867,118 @@ class Conversion(ConversionSpec):
     def _check_overcounting_category(
         self, category: "HierarchicalCategory"
     ) -> typing.Optional[OvercountingProblem]:
-        # TODO ALGO idea:
-        # A(c) sei die Abstammungslinie einer Kategorie c, also die Menge aller
-        # Vorfahren plus der Kategorie selbst.
-        # P(A(c)) sei die Projektion von der Abstammungslinie von c (in die andere
-        # Kategorisierung)
-        # AA(P(A(c))) sei die Menge aller Abstammungslinien der Elemente von P(A(c))
-        # Dann muss das größte Element in AA gleich sein mit der Vereinigung aller
-        # Elemente von AA.
+        """Finds possible overcounting problems for the specified category.
 
-        # The set of all ancestors of the category plus the category itself
+        Parameters
+        ----------
+        category: HierarchicalCategory
+            The category to check.
+
+        Notes
+        -----
+        The algorithm is:
+
+        Definition:
+        The ancestral set A(c) of a category c is the set
+        comprising the category, its parents, and all members of the ancestral set of
+        each of its parents.
+
+        Definition:
+        The descendents D(c) of a category c are the children of c, and all
+        descendents of the children of c.
+
+        Definition:
+        The projection P_S(c) of a category c using the conversion S is the set of
+        categories which receive at least a part of the contents of category c according
+        to the rules of conversion S.
+        I assume without loss of generality that c is part of the left-hand-side
+        Categorization of S.
+        Then, assuming that the conversion S only contains simple sums
+        without repeated categories in its rules, it follows that P_S(c) is the set of
+        categories which are in the right hand side of rules in S where c is in the
+        left hand side.
+
+        Definition:
+        The ancestral projections PA_S(c) of a category c using the conversion S is the
+        set of projections of the ancestral set, i.e.
+        PA_S(c) = {P_S(a) for a in A(c)}
+
+        Definition:
+        The hull hull(MM) of the set MM, which is comprised of sets itself, is the union
+        of all members of MM.
+
+        Definition:
+        A largest element max(MM) of the set MM, which is comprised of sets itself, is
+        an element with the highest number of elements.
+
+        Definition:
+        The leave node groups L(MM) of a set MM, which is comprised of sets itself, are
+        the sets in MM which have only members that have no descendant in hull(MM).
+        L(MM) = {M in MM and
+           (for all members c of M:
+               for all descendants d of c:
+                d not in hull(MM)
+           )}
+
+        Then, an overcounting problem is found for category c if
+        hull(L(PA_S(c))) != max(L(PA_S(C)))
+        """
+
+        # A(c)
         ancestral_set = {category}
         ancestral_set.update(category.ancestors)
 
-        # The projection of the ancestral set into the other categorization
-        projected_ancestral_set: typing.Set["HierarchicalCategory"] = set()
+        # PA_S(c)
+        projected_ancestral_set: typing.List[typing.Set["HierarchicalCategory"]] = []
         relevant_rules = []
         for rule in self.rules:
-            # for now, skip rules which are valid only for some aux categories
+            # TODO: for now, skip rules which are valid only for some aux categories
             if rule.auxiliary_categories:
                 continue
-            # for now, only use simple summation factors
+            # TODO: for now, only use simple summation factors
             categories_a: typing.Set["HierarchicalCategory"] = {
                 cat for cat, factor in rule.factors_categories_a.items() if factor == 1
             }
             categories_b: typing.Set["HierarchicalCategory"] = {
                 cat for cat, factor in rule.factors_categories_b.items() if factor == 1
             }
-            if categories_a.intersection(ancestral_set):
-                projected_ancestral_set.update(categories_b)
+            if category in self.categorization_a.values():
+                initial = categories_a
+                image = categories_b
+            else:
+                initial = categories_b
+                image = categories_a
+
+            if initial.intersection(ancestral_set):
+                projected_ancestral_set.append(image)
                 relevant_rules.append(rule)
 
-        # The ancestral sets of the projected categories
-        ancestral_sets_projected = []
-        for c in projected_ancestral_set:
-            ancestral_set_projected = {c}
-            ancestral_set_projected.update(c.ancestors)
-            ancestral_sets_projected.append(ancestral_set_projected)
-
-        if not ancestral_sets_projected:
+        if not projected_ancestral_set:  # trivial
             return
 
-        # Now, the union of the projected ancestral sets (the hull) must be identical to
-        # the
-        # largest projected ancestral sets, otherwise there is a branching in the
-        # projection, i.e. different leave nodes are included in the projected
-        # ancestral set, which means we have overcounting.
-        hull = set().union(*ancestral_sets_projected)
-        largest = max(ancestral_sets_projected, key=len)
-        if hull != largest:
+        # hull(PA_S(c))
+        hull: typing.Set["HierarchicalCategory"] = set().union(*projected_ancestral_set)
+
+        # L(PA_S(c))
+        def leave_node_group(
+            categories: typing.Iterable["HierarchicalCategory"],
+        ) -> bool:
+            for c in categories:
+                for d in c.descendants:
+                    if d in hull:
+                        return False
+            return True
+
+        leave_node_groups = [m for m in projected_ancestral_set if leave_node_group(m)]
+
+        leave_hull = set().union(*leave_node_groups)
+        largest = max(leave_node_groups, key=len)
+
+        if leave_hull != largest:
             return OvercountingProblem(
                 category=category,
-                ancestral_sets_projected=ancestral_sets_projected,
                 rules=relevant_rules,
+                leave_node_groups=leave_node_groups,
             )
 
     def __eq__(self, other):
