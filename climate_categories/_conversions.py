@@ -241,8 +241,7 @@ class ConversionRuleSpec:
         factors_a = cls._parse_formula(row[0])
         for i in range(n_aux):
             aux_codes = cls._parse_aux_codes(row[i + 1])
-            if aux_codes:
-                auxiliary_categories[aux_names[i]] = set(aux_codes)
+            auxiliary_categories[aux_names[i]] = set(aux_codes)
         factors_b = cls._parse_formula(row[n_aux + 1])
 
         try:
@@ -309,7 +308,7 @@ class ConversionRuleSpec:
         """Return a representation of this rule suitable for writing to a CSV file."""
         row = [self._factors_categories_formula(self.factors_categories_a)]
         for aux_categories in self.auxiliary_categories.values():
-            row.append(" ".join(map(self._escape_code, aux_categories)))
+            row.append(" ".join(sorted(map(self._escape_code, aux_categories))))
         row.append(self._factors_categories_formula(self.factors_categories_b))
         row.append(self.comment)
         return row
@@ -380,10 +379,6 @@ class ConversionRule:
             "cardinality_b",
             "one" if len(self.factors_categories_b) == 1 else "many",
         )
-        # Clean up auxiliary categories: empty specs have the same meaning as no spec
-        for key, val in self.auxiliary_categories.items():
-            if not val:
-                del self.auxiliary_categories[key]
 
     def __eq__(self, other: "ConversionRule"):
         return (
@@ -407,7 +402,7 @@ class ConversionRule:
 
     def format_human_readable(self) -> str:
         """Format the rule for humans."""
-        if self.auxiliary_categories:
+        if any(self.auxiliary_categories.values()):
             aux_info = [
                 f"{aux_categorization} in {[c.codes[0] for c in sorted(categories)]}"
                 for aux_categorization, categories in self.auxiliary_categories.items()
@@ -682,7 +677,7 @@ class ConversionSpec:
 
 
 @dataclasses.dataclass(frozen=True)
-class OvercountingProblem:
+class OverCountingProblem:
     """A suspected overcounting problem."""
 
     category: "HierarchicalCategory"
@@ -693,9 +688,10 @@ class OvercountingProblem:
         involved_rules_str = ", ".join(
             (rule.format_with_lineno() for rule in self.rules)
         )
+        sorted_leave_node_groups = [sorted(g) for g in self.leave_node_groups]
         return (
             f"{self.category!r} is possibly counted multiple times"
-            f"\ninvolved leave groups categories: {self.leave_node_groups!r}"
+            f"\ninvolved leave groups categories: {sorted_leave_node_groups!r}"
             f"\ninvolved rules: {involved_rules_str}."
         )
 
@@ -829,7 +825,7 @@ class Conversion(ConversionSpec):
 
         return r
 
-    def find_over_counting_problems(self) -> typing.List[OvercountingProblem]:
+    def find_over_counting_problems(self) -> typing.List[OverCountingProblem]:
         """Check if any category from one side is counted more than once on the
         other side.
 
@@ -846,13 +842,13 @@ class Conversion(ConversionSpec):
             if not categorization.hierarchical:
                 raise ValueError(
                     f"{categorization} is not hierarchical, without "
-                    f"a hierarchy, overcounting can not be evaluated."
+                    f"a hierarchy, over counting can not be evaluated."
                 )
             if not categorization.total_sum:
                 raise ValueError(
-                    f"For {categorization} it is not specified that the"
-                    f"sum of a set of children equals the parent, so"
-                    f"overcounting can not be evaluated."
+                    f"For {categorization} it is not specified that the "
+                    f"sum of a set of children equals the parent, so "
+                    f"over counting can not be evaluated."
                 )
 
         problems = []
@@ -866,7 +862,7 @@ class Conversion(ConversionSpec):
 
     def _check_overcounting_category(
         self, category: "HierarchicalCategory"
-    ) -> typing.Optional[OvercountingProblem]:
+    ) -> typing.Optional[OverCountingProblem]:
         """Finds possible overcounting problems for the specified category.
 
         Parameters
@@ -975,7 +971,7 @@ class Conversion(ConversionSpec):
         largest = max(leave_node_groups, key=len)
 
         if leave_hull != largest:
-            return OvercountingProblem(
+            return OverCountingProblem(
                 category=category,
                 rules=relevant_rules,
                 leave_node_groups=leave_node_groups,

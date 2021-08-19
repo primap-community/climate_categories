@@ -84,14 +84,13 @@ def specs_to_conversion(cat_a_spec, cat_b_spec, convs_spec) -> conversions.Conve
     )
 
 
-def test_no_overcounting(simple_conversion_specs):
+def test_no_over_counting(simple_conversion_specs):
     conv = specs_to_conversion(*simple_conversion_specs)
     assert not conv.find_over_counting_problems()
     assert not conv.reversed().find_over_counting_problems()
 
 
-# TODO: make better tests
-def test_simple_overcounting(simple_conversion_specs):
+def test_simple_over_counting(simple_conversion_specs):
     cat_a, cat_b, convs = simple_conversion_specs
     convs.append(["2", "1"])
     conv = specs_to_conversion(cat_a, cat_b, convs)
@@ -99,8 +98,81 @@ def test_simple_overcounting(simple_conversion_specs):
     problematic_categories = [problem.category for problem in problems]
     assert conv.categorization_a["2"] in problematic_categories
     assert conv.categorization_a["2.A"] in problematic_categories
+    assert conv.categorization_a["2.A.1"] in problematic_categories
     assert conv.categorization_a["2.B"] in problematic_categories
 
     assert conv.categorization_b["1"] in problematic_categories
     assert conv.categorization_b["1.A"] in problematic_categories
     assert conv.categorization_b["1.B"] in problematic_categories
+    assert len(problems) == 7
+
+
+def test_sum_over_counting(simple_conversion_specs):
+    cat_a, cat_b, convs = simple_conversion_specs
+    cat_b["categories"]["1.C"] = {"title": "one-C"}
+    cat_b["categories"]["1"]["children"][0].append("1.C")
+    convs.append(["1.A + 1.B", "1.C"])
+    conv = specs_to_conversion(cat_a, cat_b, convs)
+    problems = conv.find_over_counting_problems()
+    problematic_categories = [problem.category for problem in problems]
+    assert len(problems) == 2
+    assert conv.categorization_a["1.A"] in problematic_categories
+    assert conv.categorization_a["1.B"] in problematic_categories
+
+
+def test_sum_no_over_counting(simple_conversion_specs):
+    cat_a, cat_b, convs = simple_conversion_specs
+    convs.append(["1.A + 1.B", "1"])
+    conv = specs_to_conversion(cat_a, cat_b, convs)
+    problems = conv.find_over_counting_problems()
+    assert not problems
+
+
+def test_not_hierarchical(simple_conversion_specs):
+    cat_a_spec, cat_b_spec, convs_spec = simple_conversion_specs
+    for cat in cat_a_spec["categories"].values():
+        try:
+            del cat["children"]
+        except KeyError:
+            pass
+    for cat in cat_b_spec["categories"].values():
+        try:
+            del cat["children"]
+        except KeyError:
+            pass
+    cat_a_spec["hierarchical"] = False
+    cat_b_spec["hierarchical"] = False
+
+    cat_a = climate_categories.Categorization.from_spec(cat_a_spec)
+    cat_b = climate_categories.Categorization.from_spec(cat_b_spec)
+
+    conv = conversions.Conversion(
+        categorization_a=cat_a,
+        categorization_b=cat_b,
+        rules=[
+            conversions.ConversionRuleSpec.from_csv_row(
+                iter(row), aux_names=[]
+            ).hydrate(
+                categorization_a=cat_a,
+                categorization_b=cat_b,
+                cats=climate_categories.cats,
+            )
+            for row in convs_spec
+        ],
+    )
+
+    with pytest.raises(ValueError, match="is not hierarchical"):
+        conv.find_over_counting_problems()
+
+
+def test_not_total_sum(simple_conversion_specs):
+    cat_a_spec, cat_b_spec, convs_spec = simple_conversion_specs
+    cat_a_spec["total_sum"] = False
+    conv = specs_to_conversion(
+        cat_a_spec=cat_a_spec, cat_b_spec=cat_b_spec, convs_spec=convs_spec
+    )
+    with pytest.raises(
+        ValueError,
+        match="it is not specified that the sum of a set of children equals the parent",
+    ):
+        conv.find_over_counting_problems()

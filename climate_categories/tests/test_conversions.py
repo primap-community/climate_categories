@@ -12,6 +12,82 @@ import climate_categories.tests
 import climate_categories.tests.data
 
 
+class TestConversionRuleSpec:
+    def test_to_csv_row(self):
+        crs = conversions.ConversionRuleSpec(
+            factors_categories_a={"A": 1, "B": -1},
+            factors_categories_b={"C": 1},
+            auxiliary_categories={"aux": {"auxB", "auxA"}},
+            comment="nice comment",
+        )
+        assert crs.to_csv_row() == [
+            "A - B",
+            "auxA auxB",
+            "C",
+            "nice comment",
+        ]
+
+    def test_str(self):
+        crs = conversions.ConversionRuleSpec(
+            factors_categories_a={"A": 1, "B": -1},
+            factors_categories_b={"C": 1},
+            auxiliary_categories={"aux": set()},
+            comment="nice comment",
+        )
+        assert str(crs) == "A - B,,C,nice comment"
+        crs_csv = conversions.ConversionRuleSpec(
+            factors_categories_a={"A": 1, "B": -1},
+            factors_categories_b={"C": 1},
+            auxiliary_categories={"aux": {"auxB", "auxA"}},
+            comment="nice comment",
+            csv_original_text='A-B, auxB auxA, "C",nice comment',
+            csv_line_number=4,
+        )
+        assert str(crs_csv) == 'A-B, auxB auxA, "C",nice comment'
+
+
+class TestConversionRule:
+    def test_str(self):
+        C96 = climate_categories.IPCC1996
+        C06 = climate_categories.IPCC2006
+        gas = climate_categories.gas
+        cr = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={gas: set()},
+            comment="nice comment",
+        )
+        assert str(cr) == "1 - 2,,3,nice comment"
+
+        reparsed = conversions.ConversionRuleSpec.from_csv_row(
+            str(cr).split(","), ["gas"]
+        ).hydrate(C96, C06, {"gas": gas})
+        assert reparsed == cr
+
+        cr_csv = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={gas: {gas["CO2"]}},
+            comment="nice comment",
+            csv_original_text='"1"-"2", CO2 , "3",nice comment',
+            csv_line_number=4,
+        )
+        assert str(cr_csv) == '"1"-"2", CO2 , "3",nice comment'
+
+    def test_format_with_lineno(self):
+        C96 = climate_categories.IPCC1996
+        C06 = climate_categories.IPCC2006
+        gas = climate_categories.gas
+        cr = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={gas: set()},
+            comment="nice comment",
+            csv_line_number=4,
+        )
+        assert cr.format_with_lineno() == "<Rule '1 - 2,,3,nice comment' from line 4>"
+
+
 class TestConversionSpec:
     def test_good_csv(self, tmp_path):
         # write CSV resource to file to test also file opening path
@@ -36,7 +112,7 @@ class TestConversionSpec:
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             csv_line_number=7,
             csv_original_text="asdf + fdsa,,,asdf",
         )
@@ -53,7 +129,7 @@ class TestConversionSpec:
         assert conv.rule_specs[2] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl.5": 1, "c": 1},
             factors_categories_b={"D": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             comment="nobody needs argl",
             csv_line_number=9,
             csv_original_text='b + "argl.5" + c,,,D,nobody needs argl',
@@ -61,28 +137,28 @@ class TestConversionSpec:
         assert conv.rule_specs[3] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl,5": 1, "c": 1},
             factors_categories_b={"D": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             csv_line_number=10,
             csv_original_text='b + "argl,5" + c,,,D',
         )
         assert conv.rule_specs[4] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             csv_line_number=11,
             csv_original_text='b + "argl\\"5" + c,,,D',
         )
         assert conv.rule_specs[5] == conversions.ConversionRuleSpec(
             factors_categories_a={"argl,5": 1},
             factors_categories_b={"D": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             csv_line_number=12,
             csv_original_text='"argl,5",,,D',
         )
         assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
             factors_categories_a={"+": 1, "-": -1},
             factors_categories_b={"-": 1},
-            auxiliary_categories={},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
             csv_line_number=13,
             csv_original_text='"+" - "-",,,"-"',
         )
@@ -173,7 +249,10 @@ class TestConversion:
         assert good_conversion.reversed() == good_conversion_reversed
         assert good_conversion_reversed.reversed() == good_conversion
 
-    def test_hydrate_describe(self, good_conversion: conversions.Conversion):
+    def test_repr(self, good_conversion: conversions.Conversion):
+        assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 7 rules>"
+
+    def test_describe(self, good_conversion: conversions.Conversion):
 
         assert (
             good_conversion.describe_detailed()
@@ -234,3 +313,26 @@ unmapped it hurts to be forgotten
 
 """
         )
+
+
+def test_over_counting_problem():
+    C96 = climate_categories.IPCC1996
+    C06 = climate_categories.IPCC2006
+    OP = conversions.OverCountingProblem(
+        category=C96["1"],
+        leave_node_groups=[{C06["1"], C06["2"]}],
+        rules=[
+            conversions.ConversionRule(
+                factors_categories_a={C96["1"]: 1},
+                factors_categories_b={C06["1"]: 1, C06["2"]: 1},
+                auxiliary_categories={},
+            )
+        ],
+    )
+
+    assert (
+        str(OP)
+        == """<IPCC1996: '1'> is possibly counted multiple times
+involved leave groups categories: [[<IPCC2006: '1'>, <IPCC2006: '2'>]]
+involved rules: <Rule '1,1 + 2,'>."""
+    )
