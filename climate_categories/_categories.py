@@ -45,6 +45,7 @@ class Category:
             self.info = {}
         else:
             self.info = info
+        self._hash = None
 
     @classmethod
     def from_spec(cls, code: str, spec: typing.Dict, categorization: "Categorization"):
@@ -95,7 +96,9 @@ class Category:
         return f"<{self.categorization.name}: {self.codes[0]!r}>"
 
     def __hash__(self):
-        return hash(self.categorization.name + self.codes[0])
+        if self._hash is None:
+            self._hash = hash(self.categorization.name + self.codes[0])
+        return self._hash
 
     def __lt__(self, other):
         s = natsort.natsorted((self.codes[0], other.codes[0]))

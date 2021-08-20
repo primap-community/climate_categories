@@ -18,3 +18,22 @@ def test_consistent():
         if "corresponding_categories_IPCC1996" in cat.info:
             for ccat in cat.info["corresponding_categories_IPCC1996"]:
                 assert ccat in climate_categories.IPCC1996
+
+
+def test_conversion():
+    conv = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
+    problems = conv.find_over_counting_problems()
+    problematic_categories = list(
+        sorted([problem.category.codes[0] for problem in problems])
+    )
+
+    assert problematic_categories == [
+        "2.B.7",
+        "2.B.9",
+        "2.B.9.a",
+        "2.B.9.b",
+        "6.A.1",
+        "6.A.2",
+        "6.A.3",
+        "6.B.3",
+    ]

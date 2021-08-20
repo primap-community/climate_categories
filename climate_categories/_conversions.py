@@ -853,15 +853,80 @@ class Conversion(ConversionSpec):
 
         problems = []
         for categorization in self.categorization_a, self.categorization_b:
+            descendants = {}  # used to cache costly descendant evaluation
             for category in categorization.values():
-                prob = self._check_overcounting_category(category)
+                prob = self._check_over_counting_category(
+                    category, categorization, descendants
+                )
                 if prob:
                     problems.append(prob)
 
         return problems
 
-    def _check_overcounting_category(
-        self, category: "HierarchicalCategory"
+    @staticmethod
+    def leave_node_group(
+        categories: typing.Iterable["HierarchicalCategory"],
+        hull: typing.Set[str],
+        descendants: typing.Dict[str, typing.Iterable[str]],
+    ) -> bool:
+        for c in categories:
+            # Use cached descendants information if it is available, compute and cache
+            # it otherwise
+            try:
+                desc = descendants[c.codes[0]]
+            except KeyError:
+                desc = {d.codes[0] for d in c.descendants}
+                descendants[c.codes[0]] = desc
+
+            for d in desc:
+                if d in hull:
+                    return False
+        return True
+
+    def _relevant_rules(
+        self,
+        categories: typing.Set["HierarchicalCategory"],
+        source_categorization: "Categorization",
+    ) -> typing.List[ConversionRule]:
+        """Returns all rules which involve the given categories.
+
+        Parameters
+        ----------
+        categories: set of HierarchicalCategory
+            The categories to limit the rules to.
+        source_categorization: Categorization
+            The categorization that the categories are part of, either
+            self.categorization_a and self.categorization_b.
+
+        Returns
+        -------
+        relevant_rules:
+            All rules which touch the given categories.
+        """
+        relevant_rules = []
+        for rule in self.rules:
+            # TODO: for now, skip rules which are valid only for some aux categories
+            if any(rule.auxiliary_categories.values()):
+                continue
+
+            if source_categorization == self.categorization_a:
+                fc = rule.factors_categories_a
+            else:
+                fc = rule.factors_categories_b
+
+            # TODO: for now, only use simple summation factors
+            rule_source_categories = {cat for cat, factor in fc.items() if factor == 1}
+
+            if categories.intersection(rule_source_categories):
+                relevant_rules.append(rule)
+
+        return relevant_rules
+
+    def _check_over_counting_category(
+        self,
+        category: "HierarchicalCategory",
+        source_categorization: "Categorization",
+        descendants: typing.Dict[str, typing.Set[str]],
     ) -> typing.Optional[OverCountingProblem]:
         """Finds possible overcounting problems for the specified category.
 
@@ -869,6 +934,13 @@ class Conversion(ConversionSpec):
         ----------
         category: HierarchicalCategory
             The category to check.
+        source_categorization: Categorization
+            The categorization which contains the category (either self.categorization_a
+            or self.categorization_b).
+        descendants: dict
+            Caching dict with descendant information. Before calculating potentially
+            costly descendant information, it will be taken from this dict. If new
+            descendant information is calculated, it will be put into this dict.
 
         Notes
         -----
@@ -916,61 +988,50 @@ class Conversion(ConversionSpec):
                 d not in hull(MM)
            )}
 
-        Then, an overcounting problem is found for category c if
+        Then, an over counting problem is found for category c if
         hull(L(PA_S(c))) != max(L(PA_S(C)))
         """
 
         # A(c)
-        ancestral_set = {category}
-        ancestral_set.update(category.ancestors)
+        ancestral_set = set(category.ancestors)
+        ancestral_set.add(category)
 
         # PA_S(c)
+        relevant_rules = self._relevant_rules(
+            categories=ancestral_set, source_categorization=source_categorization
+        )
         projected_ancestral_set: typing.List[typing.Set["HierarchicalCategory"]] = []
-        relevant_rules = []
-        for rule in self.rules:
-            # TODO: for now, skip rules which are valid only for some aux categories
-            if rule.auxiliary_categories:
-                continue
-            # TODO: for now, only use simple summation factors
-            categories_a: typing.Set["HierarchicalCategory"] = {
-                cat for cat, factor in rule.factors_categories_a.items() if factor == 1
-            }
-            categories_b: typing.Set["HierarchicalCategory"] = {
-                cat for cat, factor in rule.factors_categories_b.items() if factor == 1
-            }
-            if category in self.categorization_a.values():
-                initial = categories_a
-                image = categories_b
+        for rule in relevant_rules:
+            if source_categorization == self.categorization_a:
+                fc = rule.factors_categories_b
             else:
-                initial = categories_b
-                image = categories_a
-
-            if initial.intersection(ancestral_set):
-                projected_ancestral_set.append(image)
-                relevant_rules.append(rule)
+                fc = rule.factors_categories_a
+            target_categories = {cat for cat, factor in fc.items() if factor == 1}
+            projected_ancestral_set.append(target_categories)
 
         if not projected_ancestral_set:  # trivial
             return
 
+        # for performance, use codes (which are guaranteed to be unique within a
+        # categorization) for the comparisons here
+        projected_ancestral_set_codes = [
+            {c.codes[0] for c in group} for group in projected_ancestral_set
+        ]
+
         # hull(PA_S(c))
-        hull: typing.Set["HierarchicalCategory"] = set().union(*projected_ancestral_set)
+        hull: typing.Set[str] = set().union(*projected_ancestral_set_codes)
 
         # L(PA_S(c))
-        def leave_node_group(
-            categories: typing.Iterable["HierarchicalCategory"],
-        ) -> bool:
-            for c in categories:
-                for d in c.descendants:
-                    if d in hull:
-                        return False
-            return True
-
-        leave_node_groups = [m for m in projected_ancestral_set if leave_node_group(m)]
+        leave_node_groups = [
+            m
+            for m in projected_ancestral_set
+            if self.leave_node_group(m, hull, descendants)
+        ]
 
         leave_hull = set().union(*leave_node_groups)
         largest = max(leave_node_groups, key=len)
 
-        if leave_hull != largest:
+        if len(leave_hull) != len(largest):
             return OverCountingProblem(
                 category=category,
                 rules=relevant_rules,

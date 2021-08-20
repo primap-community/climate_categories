@@ -107,6 +107,41 @@ def test_simple_over_counting(simple_conversion_specs):
     assert len(problems) == 7
 
 
+def test_over_counting_aux(simple_conversion_specs):
+    cat_a_spec, cat_b_spec, convs_spec = simple_conversion_specs
+    convs_spec.append(["2", "1"])
+    for c in convs_spec:
+        c.insert(1, "")
+    cat_a = climate_categories.HierarchicalCategorization.from_spec(cat_a_spec)
+    cat_b = climate_categories.HierarchicalCategorization.from_spec(cat_b_spec)
+    conv = conversions.Conversion(
+        categorization_a=cat_a,
+        categorization_b=cat_b,
+        rules=[
+            conversions.ConversionRuleSpec.from_csv_row(
+                iter(row), aux_names=["gas"]
+            ).hydrate(
+                categorization_a=cat_a,
+                categorization_b=cat_b,
+                cats=climate_categories.cats,
+            )
+            for row in convs_spec
+        ],
+    )
+
+    problems = conv.find_over_counting_problems()
+    problematic_categories = [problem.category for problem in problems]
+    assert conv.categorization_a["2"] in problematic_categories
+    assert conv.categorization_a["2.A"] in problematic_categories
+    assert conv.categorization_a["2.A.1"] in problematic_categories
+    assert conv.categorization_a["2.B"] in problematic_categories
+
+    assert conv.categorization_b["1"] in problematic_categories
+    assert conv.categorization_b["1.A"] in problematic_categories
+    assert conv.categorization_b["1.B"] in problematic_categories
+    assert len(problems) == 7
+
+
 def test_sum_over_counting(simple_conversion_specs):
     cat_a, cat_b, convs = simple_conversion_specs
     cat_b["categories"]["1.C"] = {"title": "one-C"}
