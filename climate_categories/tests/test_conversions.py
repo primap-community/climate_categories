@@ -47,6 +47,10 @@ class TestConversionRuleSpec:
 
 
 class TestConversionRule:
+    def test_not_implemented(self):
+        with pytest.raises(NotImplementedError):
+            climate_categories.IPCC1996.conversion_to(climate_categories.gas)
+
     def test_str(self):
         C96 = climate_categories.IPCC1996
         C06 = climate_categories.IPCC2006
@@ -108,7 +112,7 @@ class TestConversionSpec:
         assert conv.references == "expert judgement"
         assert conv.last_update == datetime.date(2099, 12, 31)
         assert conv.auxiliary_categorizations_names == ["aux1", "aux2"]
-        assert len(conv.rule_specs) == 7
+        assert len(conv.rule_specs) == 8
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
@@ -162,8 +166,15 @@ class TestConversionSpec:
             csv_line_number=13,
             csv_original_text='"+" - "-",,,"-"',
         )
+        assert conv.rule_specs[7] == conversions.ConversionRuleSpec(
+            factors_categories_a={"b": 1},
+            factors_categories_b={"asdf": 1, "4": 1},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
+            csv_line_number=14,
+            csv_original_text="b,,,asdf+4",
+        )
 
-        assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 7 rules>"
+        assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 8 rules>"
 
     def test_formula_broken(self):
         csv = ["comment,no comment", "", "A,B,comment", "A.1+,C,broken formula"]
@@ -250,7 +261,7 @@ class TestConversion:
         assert good_conversion_reversed.reversed() == good_conversion
 
     def test_repr(self, good_conversion: conversions.Conversion):
-        assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 7 rules>"
+        assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 8 rules>"
 
     def test_describe(self, good_conversion: conversions.Conversion):
 
@@ -270,6 +281,9 @@ B D d
 
 ## One-to-many mappings - one A to many B
 
+A A.5 The category A.5, aka b
+B asdf ASDF
+B 4 the number four
 
 
 ## Many-to-one mappings - many A to one B

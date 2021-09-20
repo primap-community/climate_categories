@@ -268,6 +268,16 @@ class TestHierarchical:
         assert HierCat.level("0X3") == 2
         assert HierCat.level("1B") == 3
 
+        assert HierCat.ancestors("1A") == {HierCat["1"], HierCat["0"], HierCat["0X3"]}
+        assert HierCat.descendants("0X3") == {
+            HierCat["1"],
+            HierCat["2"],
+            HierCat["1A"],
+            HierCat["1B"],
+            HierCat["2A"],
+            HierCat["2B"],
+        }
+
         with pytest.raises(
             ValueError,
             match="'OT' is not a transitive child of the canonical top level '0'.",
