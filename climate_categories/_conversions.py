@@ -864,11 +864,32 @@ class Conversion(ConversionSpec):
         return problems
 
     @staticmethod
-    def leave_node_group(
+    def _leave_node_group(
         categories: typing.Iterable["HierarchicalCategory"],
         hull: typing.Set[str],
         descendants: typing.Dict[str, typing.Iterable[str]],
     ) -> bool:
+        """Are all of the given categories leave nodes of the given hull?
+
+        Parameters
+        ----------
+        categories: list of HierarchicalCategory objects
+            Categories that will be checked. If any of the categories has descendants
+            outside of the hull, the function will return False.
+        hull: set of strings
+            Set of primary codes of HierarchicalCategories, which define the hull
+            that will be used to check the categories.
+        descendants: dict[str, list[str]]
+            Mapping of primary codes of parent HierarchicalCategories to the codes
+            of their descendants. Will be filled with additional mappings if they are
+            computed. Re-use the dictionary for better performance.
+
+        Returns
+        -------
+        all_leave: bool
+            If all categories are leave categories within the given hull, returns True.
+            Otherwise, returns false.
+        """
         for c in categories:
             # Use cached descendants information if it is available, compute and cache
             # it otherwise
@@ -928,7 +949,7 @@ class Conversion(ConversionSpec):
         source_categorization: "Categorization",
         descendants: typing.Dict[str, typing.Set[str]],
     ) -> typing.Optional[OverCountingProblem]:
-        """Finds possible overcounting problems for the specified category.
+        """Finds possible over counting problems for the specified category.
 
         Parameters
         ----------
@@ -1025,7 +1046,7 @@ class Conversion(ConversionSpec):
         leave_node_groups = [
             m
             for m in projected_ancestral_set
-            if self.leave_node_group(m, hull, descendants)
+            if self._leave_node_group(m, hull, descendants)
         ]
 
         leave_hull = set().union(*leave_node_groups)
