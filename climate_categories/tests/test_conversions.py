@@ -350,3 +350,18 @@ def test_over_counting_problem():
 involved leave groups categories: [[<IPCC2006: '1'>, <IPCC2006: '2'>]]
 involved rules: <Rule '1,1 + 2,'>."""
     )
+
+
+def test_relevant_rules():
+    C96 = climate_categories.IPCC1996
+    C06 = climate_categories.IPCC2006
+
+    conv = C96.conversion_to(C06)
+
+    assert conv.relevant_rules({C96["1"], C96["2"]}) == conv.relevant_rules(
+        {C96["1"], C96["2"]}, source_categorization=C96
+    )
+
+    assert len(conv.relevant_rules({C96["4.D"]})) == 1
+    assert len(conv.relevant_rules({C96["4.B.10"]}, simple_sums_only=True)) == 1
+    assert conv.relevant_rules(set()) == []

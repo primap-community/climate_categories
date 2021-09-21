@@ -53,6 +53,23 @@ parsing StrictYaml files is not very efficient, the categories should be also st
 as pickle files using the ``to_pickle`` instance method and parsed from the pickled
 files on import.
 
+New conversions
+~~~~~~~~~~~~~~~
+
+Especially welcome as well are new conversions between categorizations, which are not
+included in climate_categories so far. Pull requests and issue reports at github are
+very welcome!
+
+The conversions are read from CSV files located at ``climate_categories/data/``.
+You can write a CSV definition by hand, but ideally, conversions are also generated
+from some canonical source automatically, so that the generation is reproducible and
+transparent.
+As the scripts to generate categorizations, the scripts to generate conversion files are
+located in the ``data_generation`` folder and write their results directly to
+``climate_categories/data/``.
+
+Conversion files are read on demand and therefore no pickle files need to be generated.
+
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 

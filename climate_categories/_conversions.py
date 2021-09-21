@@ -262,6 +262,18 @@ class ConversionRuleSpec:
     def _factors_categories_formula(
         cls, factors_categories: typing.Dict[str, int]
     ) -> str:
+        """Serialize a dict mapping categories to factors to a formula string.
+
+        Parameters
+        ----------
+        factors_categories: dict
+            Mapping of categories to factors.
+
+        Returns
+        -------
+        formula: str
+            String representation of the input.
+        """
         formula = ""
         first = True
         for category, factor in factors_categories.items():
@@ -468,7 +480,59 @@ class ConversionRule:
         return s
 
 
-class ConversionSpec:
+class ConversionBase:
+    """Common base of ConversionSpec and Conversion.
+
+    Mainly used to hold a single definition of the metadata attributes
+
+    Attributes
+    ----------
+    categorization_a_name : str
+        Name of the first categorization.
+    categorization_b_name : str
+        Name of the second categorization.
+    auxiliary_categorizations_names : list of str, optional
+        Names of the auxiliary categorizations.
+    rule_specs : list of ConversionRuleSpec
+        The rule specifications for conversion between individual categories or sets of
+        categories.
+    comment : str, optional
+        Notes and explanations for humans.
+    references : str, optional
+        Citable reference(s) for the conversion.
+    institution : str, optional
+        Where the conversion originates.
+    last_update : datetime.date, optional
+        The date of the last change.
+    version : str, optional
+        The version of the ConversionRules, if there are multiple versions.
+    """
+
+    def __init__(
+        self,
+        *,
+        categorization_a_name: str,
+        categorization_b_name: str,
+        rule_specs: typing.List[ConversionRuleSpec],
+        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
+        comment: typing.Optional[str] = None,
+        references: typing.Optional[str] = None,
+        institution: typing.Optional[str] = None,
+        last_update: typing.Optional[datetime.date] = None,
+        version: typing.Optional[str] = None,
+    ):
+        self.categorization_a_name = categorization_a_name
+        self.categorization_b_name = categorization_b_name
+        self.rule_specs = rule_specs
+        self.auxiliary_categorizations_names = auxiliary_categorizations_names
+        self.comment = comment
+        self.references = references
+        self.institution = institution
+        self.last_update = last_update
+        self.version = version
+
+
+class ConversionSpec(ConversionBase):
     """Specification of rules for conversion between two categorizations, with support
     for alternative rules depending on auxiliary categorizations.
 
@@ -514,15 +578,18 @@ class ConversionSpec:
         last_update: typing.Optional[datetime.date] = None,
         version: typing.Optional[str] = None,
     ):
-        self.categorization_a_name = categorization_a_name
-        self.categorization_b_name = categorization_b_name
-        self.rule_specs = rule_specs
-        self.auxiliary_categorizations_names = auxiliary_categorizations_names
-        self.comment = comment
-        self.references = references
-        self.institution = institution
-        self.last_update = last_update
-        self.version = version
+        ConversionBase.__init__(
+            self,
+            categorization_a_name=categorization_a_name,
+            categorization_b_name=categorization_b_name,
+            rule_specs=rule_specs,
+            auxiliary_categorizations_names=auxiliary_categorizations_names,
+            comment=comment,
+            references=references,
+            institution=institution,
+            last_update=last_update,
+            version=version,
+        )
 
     @classmethod
     def _read_csv_meta(cls, reader: csv.reader) -> typing.Dict[str, str]:
@@ -678,7 +745,7 @@ class ConversionSpec:
 
 @dataclasses.dataclass(frozen=True)
 class OverCountingProblem:
-    """A suspected overcounting problem."""
+    """A suspected over counting problem."""
 
     category: "HierarchicalCategory"
     leave_node_groups: typing.List[typing.Set["HierarchicalCategory"]]
@@ -696,7 +763,7 @@ class OverCountingProblem:
         )
 
 
-class Conversion(ConversionSpec):
+class Conversion(ConversionBase):
     """Conversion between two categorizations.
 
     This class collects functionality which needs access to the actual categorizations
@@ -740,7 +807,7 @@ class Conversion(ConversionSpec):
         last_update: typing.Optional[datetime.date] = None,
         version: typing.Optional[str] = None,
     ):
-        ConversionSpec.__init__(
+        ConversionBase.__init__(
             self,
             categorization_a_name=categorization_a.name,
             categorization_b_name=categorization_b.name,
@@ -835,7 +902,7 @@ class Conversion(ConversionSpec):
 
         Returns
         -------
-        problems: list of OvercountingProblem objects
+        problems: list of OverCountingProblem objects
             All detected suspected problems.
         """
         for categorization in self.categorization_a, self.categorization_b:
@@ -904,10 +971,11 @@ class Conversion(ConversionSpec):
                     return False
         return True
 
-    def _relevant_rules(
+    def relevant_rules(
         self,
         categories: typing.Set["HierarchicalCategory"],
-        source_categorization: "Categorization",
+        source_categorization: typing.Optional["Categorization"] = None,
+        simple_sums_only: bool = False,
     ) -> typing.List[ConversionRule]:
         """Returns all rules which involve the given categories.
 
@@ -915,9 +983,12 @@ class Conversion(ConversionSpec):
         ----------
         categories: set of HierarchicalCategory
             The categories to limit the rules to.
-        source_categorization: Categorization
+        source_categorization: Categorization, optional
             The categorization that the categories are part of, either
-            self.categorization_a and self.categorization_b.
+            self.categorization_a or self.categorization_b.
+        simple_sums_only: bool, default False
+            If true, only consider rules where the given categories enter as simple
+            summands (i.e. with a factor of 1).
 
         Returns
         -------
@@ -925,18 +996,24 @@ class Conversion(ConversionSpec):
             All rules which touch the given categories.
         """
         relevant_rules = []
-        for rule in self.rules:
-            # TODO: for now, skip rules which are valid only for some aux categories
-            if any(rule.auxiliary_categories.values()):
-                continue
+        if not categories:
+            return relevant_rules
 
+        if source_categorization is None:
+            source_categorization = next(iter(categories)).categorization
+
+        for rule in self.rules:
             if source_categorization == self.categorization_a:
                 fc = rule.factors_categories_a
             else:
                 fc = rule.factors_categories_b
 
-            # TODO: for now, only use simple summation factors
-            rule_source_categories = {cat for cat, factor in fc.items() if factor == 1}
+            if simple_sums_only:
+                rule_source_categories = {
+                    cat for cat, factor in fc.items() if factor == 1
+                }
+            else:
+                rule_source_categories = {cat for cat, factor in fc.items()}
 
             if categories.intersection(rule_source_categories):
                 relevant_rules.append(rule)
@@ -1018,9 +1095,17 @@ class Conversion(ConversionSpec):
         ancestral_set.add(category)
 
         # PA_S(c)
-        relevant_rules = self._relevant_rules(
-            categories=ancestral_set, source_categorization=source_categorization
+        relevant_rules = self.relevant_rules(
+            categories=ancestral_set,
+            source_categorization=source_categorization,
+            simple_sums_only=True,
         )
+        # TODO: for now, only use rules that don't have aux categories
+        relevant_rules = [
+            rule
+            for rule in relevant_rules
+            if not any(rule.auxiliary_categories.values())
+        ]
         projected_ancestral_set: typing.List[typing.Set["HierarchicalCategory"]] = []
         for rule in relevant_rules:
             if source_categorization == self.categorization_a:

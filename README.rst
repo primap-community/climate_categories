@@ -35,6 +35,11 @@ GCB              Global Carbon Budget CO2 emission categories
 gas              Gases and other climate-forcing substances
 ===============  ==================================================================
 
+Included conversions between categorizations
+--------------------------------------------
+
+* IPCC1996 <-> IPCC2006
+
 Status
 ------
 Climate categories is still in development and the API and names of categorizations
