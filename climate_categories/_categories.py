@@ -815,17 +815,21 @@ class HierarchicalCategorization(Categorization):
 
     def show_as_tree(
         self,
+        *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: typing.Optional[int] = None,
+        root: typing.Optional[typing.Union[HierarchicalCategory, str]] = None,
     ) -> str:
         """Format the hierarchy as a tree.
 
-        Starting from top-level categories (i.e. categories without parents), the full
-        tree of categories is show, with children connected to their parents using
-        lines. If a parent category has one set of children, the children are connected
-        to each other and the parent with a simple line. If a parent category has
-        multiple sets of children, the sets are connected to parent with double lines
-        and the children in a set are connected to each other with simple lines.
+        Starting from the given root, or - if no root is given - the top-level
+        categories (i.e. categories without parents), the tree of categories that are
+        transitive children of the root is show, with children connected to their
+        parents using lines. If a parent category has one set of children, the children
+        are connected to each other and the parent with a simple line. If a parent
+        category has multiple sets of children, the sets are connected to parent with
+        double lines and the children in a set are connected to each other with simple
+        lines.
 
         Parameters
         ----------
@@ -837,6 +841,10 @@ class HierarchicalCategorization(Categorization):
             category are used.
         maxdepth: int, optional
             Maximum depth to show in the tree. By default, goes to arbitrary depth.
+        root: HierarchicalCategory or str, optional
+            HierarchicalCategory object or code to use as the top-most category.
+            If not given, the whole tree is shown, starting from all categories without
+            parents.
 
         Returns
         -------
@@ -844,7 +852,12 @@ class HierarchicalCategorization(Categorization):
             Representation of the hierarchy as formatted string. print() it for optimal
             viewing.
         """
-        top_level_nodes = (node for node in self.values() if not node.parents)
+        if root is None:
+            top_level_nodes = (node for node in self.values() if not node.parents)
+        else:
+            if not isinstance(root, HierarchicalCategory):
+                root = self[root]
+            top_level_nodes = [root]
         return "\n".join(
             (
                 self._show_subtree(

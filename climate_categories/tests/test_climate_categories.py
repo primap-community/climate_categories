@@ -570,6 +570,15 @@ OT Other top category
 """
         )
 
+    def test_root(self, HierCat):
+        assert (
+            HierCat.show_as_tree(root="1")
+            == """1 Category 1
+├1A Category 1A
+╰1B Category 1B
+"""
+        )
+
 
 class TestIO:
     def test_spec_misses_hierarchical(self, spec_simple):
