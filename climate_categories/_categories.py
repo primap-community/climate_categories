@@ -793,14 +793,19 @@ class HierarchicalCategorization(Categorization):
                 )
         elif len(child_sets) > 1:
             prefix += "║"
-            first = True
+            i = 1
             for children in child_sets:
                 if children:
-                    if first:
-                        r += f"{prefix[:-1]}╠╤══\n"
-                        first = False
+                    if i == 1:
+                        r += (
+                            f"{prefix[:-1]}╠╤══ ('{format_func(node)}'s children,"
+                            f" option 1)\n"
+                        )
                     else:
-                        r += f"{prefix[:-1]}╠╕\n"
+                        r += (
+                            f"{prefix[:-1]}╠╕ ('{format_func(node)}'s children,"
+                            f" option {i})\n"
+                        )
 
                     r += self._show_subtree_children(
                         children=children,
@@ -808,6 +813,7 @@ class HierarchicalCategorization(Categorization):
                         maxdepth=maxdepth,
                         prefix=prefix,
                     )
+                    i += 1
 
             r += f"{prefix[:-1]}╚═══\n"
 

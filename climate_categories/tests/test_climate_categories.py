@@ -472,7 +472,7 @@ class TestShowAsTree:
         assert (
             HierCat.show_as_tree()
             == """0 Category 0
-╠╤══
+╠╤══ ('0 Category 0's children, option 1)
 ║├1 Category 1
 ║│├1A Category 1A
 ║│╰1B Category 1B
@@ -481,7 +481,7 @@ class TestShowAsTree:
 ║│╰2B Category 2B
 ║╰3 Category 3
 ║ ╰3A Category 3A
-╠╕
+╠╕ ('0 Category 0's children, option 2)
 ║├0X3 Total excluding category 3
 ║│├1 Category 1
 ║││├1A Category 1A
@@ -491,7 +491,7 @@ class TestShowAsTree:
 ║│ ╰2B Category 2B
 ║╰3 Category 3
 ║ ╰3A Category 3A
-╠╕
+╠╕ ('0 Category 0's children, option 3)
 ║├1A Category 1A
 ║├1B Category 1B
 ║├2 Category 2
@@ -511,7 +511,7 @@ OT Other top category
         assert (
             HierCat.show_as_tree(format_func=lambda x: x.codes[0])
             == """0
-╠╤══
+╠╤══ ('0's children, option 1)
 ║├1
 ║│├1A
 ║│╰1B
@@ -520,7 +520,7 @@ OT Other top category
 ║│╰2B
 ║╰3
 ║ ╰3A
-╠╕
+╠╕ ('0's children, option 2)
 ║├0X3
 ║│├1
 ║││├1A
@@ -530,7 +530,7 @@ OT Other top category
 ║│ ╰2B
 ║╰3
 ║ ╰3A
-╠╕
+╠╕ ('0's children, option 3)
 ║├1A
 ║├1B
 ║├2
@@ -550,14 +550,14 @@ OT
         assert (
             HierCat.show_as_tree(maxdepth=2)
             == """0 Category 0
-╠╤══
+╠╤══ ('0 Category 0's children, option 1)
 ║├1 Category 1
 ║├2 Category 2
 ║╰3 Category 3
-╠╕
+╠╕ ('0 Category 0's children, option 2)
 ║├0X3 Total excluding category 3
 ║╰3 Category 3
-╠╕
+╠╕ ('0 Category 0's children, option 3)
 ║├1A Category 1A
 ║├1B Category 1B
 ║├2 Category 2
