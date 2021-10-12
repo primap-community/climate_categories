@@ -2,11 +2,10 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.5.3 (2021-10-12)
+------------------
 
 * Add gas categorization which includes commonly used climate forcing substances.
-
 
 0.5.2 (2021-05-18)
 ------------------
