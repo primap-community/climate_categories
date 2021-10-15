@@ -1,7 +1,6 @@
 """Run this via `make climate_categories/data/RCMIP.yaml` in the main directory."""
 
 import pathlib
-from pprint import pprint
 
 import pandas as pd
 from utils import download_cached
@@ -26,12 +25,20 @@ def main():
 
     categories["MAGICC AFOLU"] = {
         "title": "MAGICC AFOLU",
-        "comment": "emissions from agriculture, forestry and other land use (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural sector (hence not identical to WG3 AFOLU)",
+        "comment": (
+            "emissions from agriculture, forestry and other land use (IPCC"
+            " category 3), excluding any fossil-fuel based emissions in the"
+            " Agricultural sector (hence not identical to WG3 AFOLU)"
+        ),
     }
 
     categories["MAGICC Fossil and Industrial"] = {
         "title": "MAGICC Fossil and Industrial",
-        "comment": "emissions from energy use on supply and demand side (IPCC category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category 4) and other (IPCC category 5)",
+        "comment": (
+            "emissions from energy use on supply and demand side (IPCC "
+            "category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC "
+            "category 4) and other (IPCC category 5)"
+        ),
         "children": [[]],
     }
 
@@ -54,9 +61,23 @@ def main():
 
     spec = {
         "name": "RCMIP",
-        "title": "Emissions categories from the Reduced Complexity Model Intercomparison Project (RCMIP)",
+        "title": (
+            "Emissions categories from the Reduced Complexity Model "
+            "Intercomparison Project (RCMIP)"
+        ),
         "comment": "",
-        "references": "Nicholls, Z. R. J., Meinshausen, M., Lewis, J., Gieseke, R., Dommenget, D., Dorheim, K., Fan, C.-S., Fuglestvedt, J. S., Gasser, T., Golüke, U., Goodwin, P., Hartin, C., Hope, A. P., Kriegler, E., Leach, N. J., Marchegiani, D., McBride, L. A., Quilcaille, Y., Rogelj, J., Salawitch, R. J., Samset, B. H., Sandstad, M., Shiklomanov, A. N., Skeie, R. B., Smith, C. J., Smith, S., Tanaka, K., Tsutsui, J., and Xie, Z.: Reduced Complexity Model Intercomparison Project Phase 1: introduction and evaluation of global-mean temperature response, Geosci. Model Dev., 13, 5175–5190, https://doi.org/10.5194/gmd-13-5175-2020, 2020.",
+        "references": (
+            "Nicholls, Z. R. J., Meinshausen, M., Lewis, J., Gieseke, R., "
+            "Dommenget, D., Dorheim, K., Fan, C.-S., Fuglestvedt, J. S., Gasser, T., "
+            "Golüke, U., Goodwin, P., Hartin, C., Hope, A. P., Kriegler, E., Leach, "
+            "N. J., Marchegiani, D., McBride, L. A., Quilcaille, Y., Rogelj, J., "
+            "Salawitch, R. J., Samset, B. H., Sandstad, M., Shiklomanov, A. N., "
+            "Skeie, R. B., Smith, C. J., Smith, S., Tanaka, K., Tsutsui, J., "
+            "and Xie, Z.: Reduced Complexity Model Intercomparison Project Phase 1:"
+            " introduction and evaluation of global-mean temperature response, "
+            "Geosci. Model Dev., 13, 5175–5190, "
+            "https://doi.org/10.5194/gmd-13-5175-2020, 2020."
+        ),
         "institution": "RCMIP",
         "last_update": "2020-09-21",
         "hierarchical": True,
