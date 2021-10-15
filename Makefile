@@ -73,6 +73,7 @@ install-pre-commit: update-venv ## install the pre-commit hooks
 %.pickle: %.yaml
 	venv/bin/python data_generation/convert_yaml_to_pickle.py $< $@
 
+pickles: climate_categories/data/GCB.pickle
 pickles: climate_categories/data/IPCC2006.pickle
 pickles: climate_categories/data/IPCC2006_PRIMAP.pickle
 pickles: climate_categories/data/IPCC1996.pickle
