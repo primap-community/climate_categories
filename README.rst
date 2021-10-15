@@ -30,6 +30,7 @@ BURDI            BUR GHG emission categories (DI query interface)
 BURDI_class      BUR GHG emission categories (DI query interface) + classifications
 CRFDI            CRF GHG emission categories (DI query interface)
 CRFDI_class      CRF GHG emission categories (DI query interface) + classifications
+GCB              Global Carbon Budget CO2 emission categories
 gas              Gases and other climate-forcing substances
 ===============  ==================================================================
 
@@ -41,6 +42,8 @@ are still subject to change.
 License
 -------
 Copyright 2021, Potsdam-Institut für Klimafolgenforschung e.V.
+
+Copyright 2021, Robert Gieseke
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
 file except in compliance with the License. You may obtain a copy of the License at

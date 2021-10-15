@@ -5,6 +5,7 @@ Changelog
 Unreleased
 ----------
 
+* Add Global Carbon Budget categorization
 
 0.5.3 (2021-10-12)
 ------------------
