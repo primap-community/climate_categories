@@ -41,6 +41,7 @@ CRFDI = _read_pickle_hier("CRFDI")
 CRFDI_class = _read_pickle_hier("CRFDI_class")
 BURDI = _read_pickle_hier("BURDI")
 BURDI_class = _read_pickle_hier("BURDI_class")
+RCMIP = _read_pickle_hier("RCMIP")
 gas = _read_pickle_hier("gas")
 
 

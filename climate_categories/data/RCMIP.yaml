@@ -1,0 +1,307 @@
+name: RCMIP
+title: Emissions categories from the Reduced Complexity Model Intercomparison Project
+  (RCMIP)
+comment: ''
+references: 'Nicholls, Z. R. J., Meinshausen, M., Lewis, J., Gieseke, R., Dommenget,
+  D., Dorheim, K., Fan, C.-S., Fuglestvedt, J. S., Gasser, T., Golüke, U., Goodwin,
+  P., Hartin, C., Hope, A. P., Kriegler, E., Leach, N. J., Marchegiani, D., McBride,
+  L. A., Quilcaille, Y., Rogelj, J., Salawitch, R. J., Samset, B. H., Sandstad, M.,
+  Shiklomanov, A. N., Skeie, R. B., Smith, C. J., Smith, S., Tanaka, K., Tsutsui,
+  J., and Xie, Z.: Reduced Complexity Model Intercomparison Project Phase 1: introduction
+  and evaluation of global-mean temperature response, Geosci. Model Dev., 13, 5175–5190,
+  https://doi.org/10.5194/gmd-13-5175-2020, 2020.'
+institution: RCMIP
+hierarchical: true
+last_update: '2020-09-21'
+version: v5.1.0
+total_sum: false
+categories:
+  Emissions:
+    title: RCMIP Emissions
+    children:
+    - - BC
+      - CH4
+      - CO
+      - CO2
+      - F-Gases
+      - Montreal Gases
+      - N2O
+      - NH3
+      - NOx
+      - OC
+      - Sulfur
+      - VOC
+  MAGICC AFOLU:
+    title: MAGICC AFOLU
+    comment: emissions from agriculture, forestry and other land use (IPCC category
+      3), excluding any fossil-fuel based emissions in the Agricultural sector (hence
+      not identical to WG3 AFOLU)
+  MAGICC Fossil and Industrial:
+    title: MAGICC Fossil and Industrial
+    comment: emissions from energy use on supply and demand side (IPCC category 1A,
+      1B), industrial processes (IPCC category 2), waste (IPCC category 4) and other
+      (IPCC category 5)
+  Other:
+    title: Other
+    comment: emissions from other sources
+  BC:
+    title: Emissions|BC
+    comment: total black carbon emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  CH4:
+    title: Emissions|CH4
+    comment: total methane emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  CO:
+    title: Emissions|CO
+    comment: total carbon monoxide emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  CO2:
+    title: Emissions|CO2
+    comment: total carbon dioxide emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  F-Gases:
+    title: Emissions|F-Gases
+    comment: 'total F-gas emissions, including sulfur hexafluoride (SF6), nitrogen
+      trifluoride (NF3), sulfuryl fluoride (SO2F2), hydrofluorocarbons (HFCs), perfluorocarbons
+      (PFCs) '
+    children:
+    - - HFC
+      - NF3
+      - PFC
+      - SF6
+      - SO2F2
+  HFC:
+    title: Emissions|F-Gases|HFC
+    comment: equivalent species total emissions of hydrofluorocarbons (HFCs and HCFCs),
+      provided as aggregate CO2-equivalents
+    children:
+    - - HFC125
+      - HFC134a
+      - HFC143a
+      - HFC152a
+      - HFC227ea
+      - HFC23
+      - HFC236fa
+      - HFC245fa
+      - HFC32
+      - HFC365mfc
+      - HFC4310mee
+  HFC125:
+    title: Emissions|F-Gases|HFC|HFC125
+    comment: total emissions of HFC125
+  HFC134a:
+    title: Emissions|F-Gases|HFC|HFC134a
+    comment: total emissions of HFC134a
+  HFC143a:
+    title: Emissions|F-Gases|HFC|HFC143a
+    comment: total emissions of HFC143a
+  HFC152a:
+    title: Emissions|F-Gases|HFC|HFC152a
+    comment: total emissions of HFC152a
+  HFC227ea:
+    title: Emissions|F-Gases|HFC|HFC227ea
+    comment: total emissions of HFC227ea
+  HFC23:
+    title: Emissions|F-Gases|HFC|HFC23
+    comment: total emissions of HFC23
+  HFC236fa:
+    title: Emissions|F-Gases|HFC|HFC236fa
+    comment: total emissions of HFC236fa
+  HFC245fa:
+    title: Emissions|F-Gases|HFC|HFC245fa
+    comment: total emissions of HFC245fa
+  HFC32:
+    title: Emissions|F-Gases|HFC|HFC32
+    comment: total emissions of HFC32
+  HFC365mfc:
+    title: Emissions|F-Gases|HFC|HFC365mfc
+    comment: total emissions of HFC365mfc
+  HFC4310mee:
+    title: Emissions|F-Gases|HFC|HFC4310mee
+    comment: total emissions of HFC43-10mee
+  NF3:
+    title: Emissions|F-Gases|NF3
+    comment: total emissions of nitrogen trifluoride (NF3)
+  PFC:
+    title: Emissions|F-Gases|PFC
+    comment: equivalent species total emissions of perfluorocarbons (PFCs, as defined
+      by Table 8.A.1 of AR5), provided as aggregate CF4-equivalents
+    children:
+    - - C2F6
+      - C3F8
+      - C4F10
+      - C5F12
+      - C6F14
+      - C7F16
+      - C8F18
+      - CF4
+      - cC4F8
+  C2F6:
+    title: Emissions|F-Gases|PFC|C2F6
+    comment: total emissions of C2F6
+  C3F8:
+    title: Emissions|F-Gases|PFC|C3F8
+    comment: total emissions of C3F8
+  C4F10:
+    title: Emissions|F-Gases|PFC|C4F10
+    comment: total emissions of C4F10
+  C5F12:
+    title: Emissions|F-Gases|PFC|C5F12
+    comment: total emissions of C5F12
+  C6F14:
+    title: Emissions|F-Gases|PFC|C6F14
+    comment: total emissions of C6F14
+  C7F16:
+    title: Emissions|F-Gases|PFC|C7F16
+    comment: total emissions of C7F16
+  C8F18:
+    title: Emissions|F-Gases|PFC|C8F18
+    comment: total emissions of C8F18
+  cC4F8:
+    title: Emissions|F-Gases|PFC|cC4F8
+    comment: total emissions of c-C4F8
+  CF4:
+    title: Emissions|F-Gases|PFC|CF4
+    comment: total emissions of CF4
+  SF6:
+    title: Emissions|F-Gases|SF6
+    comment: total emissions of sulfur hexafluoride (SF6)
+  SO2F2:
+    title: Emissions|F-Gases|SO2F2
+    comment: total emissions of sulfuryl fluoride (SO2F2)
+  Montreal Gases:
+    title: Emissions|Montreal Gases
+    comment: equivalent species total Montreal gas emissions, provided as CFC-11 equivalents
+    children:
+    - - CCl4
+      - CFC
+      - CH2Cl2
+      - CH3Br
+      - CH3CCl3
+      - CH3Cl
+      - CHCl3
+      - HCFC141b
+      - HCFC142b
+      - HCFC22
+      - Halon1202
+      - Halon1211
+      - Halon1301
+      - Halon2402
+  CCl4:
+    title: Emissions|Montreal Gases|CCl4
+    comment: total emissions of CCl4
+  CFC:
+    title: Emissions|Montreal Gases|CFC
+    comment: equivalent species total CFC emissions, provided as CFC-11 equivalents
+    children:
+    - - CFC11
+      - CFC113
+      - CFC114
+      - CFC115
+      - CFC12
+  CFC11:
+    title: Emissions|Montreal Gases|CFC|CFC11
+    comment: total emissions of CFC11
+  CFC113:
+    title: Emissions|Montreal Gases|CFC|CFC113
+    comment: total emissions of CFC113
+  CFC114:
+    title: Emissions|Montreal Gases|CFC|CFC114
+    comment: total emissions of CFC114
+  CFC115:
+    title: Emissions|Montreal Gases|CFC|CFC115
+    comment: total emissions of CFC115
+  CFC12:
+    title: Emissions|Montreal Gases|CFC|CFC12
+    comment: total emissions of CFC12
+  CH2Cl2:
+    title: Emissions|Montreal Gases|CH2Cl2
+    comment: total emissions of CH2Cl2
+  CH3Br:
+    title: Emissions|Montreal Gases|CH3Br
+    comment: total emissions of CH3Br
+  CH3CCl3:
+    title: Emissions|Montreal Gases|CH3CCl3
+    comment: total emissions of CH3CCl3
+  CH3Cl:
+    title: Emissions|Montreal Gases|CH3Cl
+    comment: total emissions of CH3Cl
+  CHCl3:
+    title: Emissions|Montreal Gases|CHCl3
+    comment: total emissions of CHCl3
+  Halon1202:
+    title: Emissions|Montreal Gases|Halon1202
+    comment: total emissions of Halon-1202
+  Halon1211:
+    title: Emissions|Montreal Gases|Halon1211
+    comment: total emissions of Halon-1211
+  Halon1301:
+    title: Emissions|Montreal Gases|Halon1301
+    comment: total emissions of Halon-1301
+  Halon2402:
+    title: Emissions|Montreal Gases|Halon2402
+    comment: total emissions of Halon-2402
+  HCFC141b:
+    title: Emissions|Montreal Gases|HCFC141b
+    comment: total emissions of HCFC141b
+  HCFC142b:
+    title: Emissions|Montreal Gases|HCFC142b
+    comment: total emissions of HCFC22
+  HCFC22:
+    title: Emissions|Montreal Gases|HCFC22
+    comment: total emissions of HCFC22
+  N2O:
+    title: Emissions|N2O
+    comment: total nitrogen emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  NH3:
+    title: Emissions|NH3
+    comment: total ammonia emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  NOx:
+    title: Emissions|NOx
+    comment: total nitrous oxide emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  OC:
+    title: Emissions|OC
+    comment: total organic carbon emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  Sulfur:
+    title: Emissions|Sulfur
+    comment: total sulfur (as a precursor for sulfates) emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
+  VOC:
+    title: Emissions|VOC
+    comment: total (non-methane) volatile organic compounds emissions
+    children:
+    - - MAGICC AFOLU
+      - MAGICC Fossil and Industrial
+      - Other
