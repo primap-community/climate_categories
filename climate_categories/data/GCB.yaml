@@ -1,0 +1,32 @@
+name: gcb
+title: Global Carbon Budget
+comment: Fossil CO2 emissions
+references: |
+  "Andrew, Robbie M., & Peters, Glen P. (2021). The Global Carbon Project's fossil CO2 emissions dataset (2021v34) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.5569235"
+institution: Global Carbon Project
+hierarchical: true
+last_update: "2021-10-15"
+version: 2021v34
+total_sum: true
+categories:
+  Total:
+    title: "Total fossil CO2 emissions"
+    children:
+      - - Coal
+        - Oil
+        - Gas
+        - Cement
+        - Flaring
+        - Other
+  Coal:
+    title: "Fossil CO2 emissions from Coal"
+  Gas:
+    title: "Fossil CO2 emissions from Gas"
+  Oil:
+    title: "Fossil CO2 emissions from Oil"
+  Cement:
+    title: "Fossil CO2 emissions from Cement"
+  Flaring:
+    title: "Fossil CO2 emissions from Flaring"
+  Other:
+    title: "Fossil CO2 emissions from Other"
