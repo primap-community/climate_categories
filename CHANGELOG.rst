@@ -2,10 +2,10 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.5.4 (2021-10-18)
+------------------
 
-* Add Global Carbon Budget categorization
+* Add Global Carbon Budget categorization.
 
 0.5.3 (2021-10-12)
 ------------------
