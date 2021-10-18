@@ -91,3 +91,6 @@ climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py data_generati
 
 climate_categories/data/%.yaml: data_generation/%.py
 	venv/bin/python $<
+
+README.rst:  CHANGELOG.rst  ## Update the citation information from zenodo
+	venv/bin/python update_citation_info.py

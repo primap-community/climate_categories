@@ -42,6 +42,10 @@ search = 'pik-primap/climate_categories: Version {current_version}.'
 name = "lint"
 cmd = "make lint"
 
+[[before_commit]]
+name = "update changelog"
+cmd = "venv/bin/python update_changelog.py {new_version}"
+
 # Or run some commands after the git tag and the branch
 # have been pushed:
 #  [[after_push]]
