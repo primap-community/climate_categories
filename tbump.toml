@@ -48,6 +48,7 @@ cmd = "venv/bin/python update_changelog.py {new_version}"
 
 # Or run some commands after the git tag and the branch
 # have been pushed:
-#  [[after_push]]
-#  name = "publish"
-#  cmd = "./publish.sh"
+
+[[after_push]]
+name = "release on github"
+cmd = "gh release create --repo pik-primap/primap2 v{new_version} --title 'PRIMAP2 Version {new_version}' --notes-file .changelog_latest_version.rst"
