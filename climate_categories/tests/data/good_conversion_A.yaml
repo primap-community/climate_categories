@@ -1,0 +1,31 @@
+name: A
+title: A categorization that will be converted
+comment: A categorization that will be converted to B
+references: doi:00000/00000
+institution: PIK
+last_update: 2021-02-23
+hierarchical: no
+version: 1
+categories:
+  asdf:
+    title: ASDF
+  fdsa:
+    title: FDSA
+  A.5:
+    title: The category A.5, aka b
+    alternative_codes:
+      - b
+  c:
+    title: The sea
+  argl.5:
+    title: We are testing weird characters
+  argl,5:
+    title: weirder characters
+  argl"5:
+    title: stretching the dredibility
+  +:
+    title: sure, make the code for your category a plus sign
+  "-":
+    title: even better
+  unmapped:
+    title: it hurts to be forgotten

@@ -24,16 +24,11 @@ def split_code_name(code_name):
     for si in s:
         if code_ended:
             name_parts.append(si)
+        elif si.isdigit() or len(si) <= 2 or (len(si) > 2 and si == "iii"):
+            code_parts.append(si)
         else:
-            if si.isdigit():
-                code_parts.append(si)
-            elif len(si) <= 2:
-                code_parts.append(si)
-            elif si == "iii":
-                code_parts.append(si)
-            else:
-                code_ended = True
-                name_parts.append(si)
+            code_ended = True
+            name_parts.append(si)
     return code_parts, " ".join(name_parts)
 
 
@@ -156,17 +151,22 @@ def main():
         "version": "2006",
         "total_sum": True,
         "categories": categories,
+        "canonical_top_level_category": "0",
     }
 
     # individual fixes to data from pdf
     spec["categories"]["1"]["title"] = "Energy"
+    spec["categories"]["1.A.1.a.ii"][
+        "title"
+    ] = "Combined Heat and Power Generation (CHP)"
+
     spec["categories"]["1.A.2.m"]["title"] = "Non-Specified Industry"
     spec["categories"]["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = [
         "1A3e"
     ]
-    spec["categories"]["1.A.1.a.ii"][
-        "title"
-    ] = "Combined Heat and Power Generation (CHP)"
+    spec["categories"]["1.A.4.c.ii"]["info"]["corresponding_categories_IPCC1996"] = [
+        "1A4cii"
+    ]
 
     del spec["categories"]["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
     del spec["categories"]["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
@@ -218,6 +218,11 @@ def main():
         "5D",
     ]
 
+    spec["categories"]["3.B.3.a"]["title"] = "Grassland Remaining Grassland"
+    spec["categories"]["3.B.3.a"][
+        "comment"
+    ] = "Emissions and removals from grassland remaining grassland."
+
     spec["categories"]["3.B.3.b"][
         "comment"
     ] = "Emissions and removals from land converted to grassland."
@@ -249,6 +254,21 @@ def main():
         "Mixture of above 4 A1 and 4 A2. Countries "
         "that do not have data on division of managed/unmanaged may use this category."
     )
+
+    # Widely used and very useful, even though not included in the official spec
+    spec["categories"]["0"] = {
+        "title": "National Total",
+        "comment": "All emissions and removals",
+        "children": [
+            [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+            ]
+        ],
+    }
 
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

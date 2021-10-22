@@ -12,9 +12,10 @@ import importlib.resources
 import typing
 
 from . import _categories, data, search
+from ._categories import Categorization  # noqa: F401
 from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
-from ._categories import Categorization, HierarchicalCategorization, from_pickle
+from ._categories import HierarchicalCategorization, from_pickle
 
 cats = {}
 
@@ -22,21 +23,25 @@ cats = {}
 def _read_pickle_hier(name) -> HierarchicalCategorization:
     with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
         _cat = from_pickle(fd)
+    _cat._cats = cats
     cats[_cat.name] = _cat
     return _cat
 
 
-def _read_pickle_nh(name) -> Categorization:
-    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
-        _cat = from_pickle(fd)
-    cats[_cat.name] = _cat
-    return _cat
+# not used at the moment, uncomment if needed for non-hierarchical Categorizations
+# def _read_pickle_nh(name) -> Categorization:
+#    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
+#        _cat = from_pickle(fd)
+#    _cat._cats = cats
+#    cats[_cat.name] = _cat
+#    return _cat
 
 
 # do this explicitly to help static analysis tools
 IPCC1996 = _read_pickle_hier("IPCC1996")
 IPCC2006 = _read_pickle_hier("IPCC2006")
 IPCC2006_PRIMAP = _read_pickle_hier("IPCC2006_PRIMAP")
+CRF1999 = _read_pickle_hier("CRF1999")
 CRFDI = _read_pickle_hier("CRFDI")
 CRFDI_class = _read_pickle_hier("CRFDI_class")
 BURDI = _read_pickle_hier("BURDI")

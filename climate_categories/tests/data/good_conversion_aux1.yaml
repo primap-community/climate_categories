@@ -1,0 +1,17 @@
+name: aux1
+title: THE first auxiliary categorization
+comment: A categorization that will be used as auxiliary categorization in a conversion
+references: doi:00000/00000
+institution: PIK
+last_update: 2021-02-23
+hierarchical: no
+version: 1
+categories:
+  3:
+    title: drei
+  4:
+    title: the number four
+  A:
+    title: d
+  "argl-5":
+    title: yeah, about that minus sign

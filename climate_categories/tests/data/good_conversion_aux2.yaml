@@ -1,0 +1,15 @@
+name: aux2
+title: The little brother of aux1
+comment: A categorization that will be used as auxiliary categorization in a conversion
+references: doi:00000/00000
+institution: PIK
+last_update: 2021-02-23
+hierarchical: no
+version: 1
+categories:
+  A:
+    title: a alone
+  B:
+    title: b alone
+  "B A":
+    title: haha, a whitespace in a category code!
