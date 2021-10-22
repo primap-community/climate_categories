@@ -15,8 +15,8 @@ with open("CHANGELOG.rst", "w") as fd, open(
     fd.writelines(old_content[:4])
 
     # New version
-    new_version = f"{version} ({datetime.date.today().isoformat()})\n"
-    new_version += "-" * len(version) + "\n"
+    headline = f"{version} ({datetime.date.today().isoformat()})"
+    new_version = f"{headline}\n" + "-" * len(headline) + "\n"
     ch_dir = pathlib.Path("changelog_unreleased")
     for changelog_file in ch_dir.iterdir():
         new_version += changelog_file.read_text()
