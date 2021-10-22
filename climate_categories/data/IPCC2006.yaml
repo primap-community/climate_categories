@@ -11,6 +11,15 @@ version: '2006'
 total_sum: true
 canonical_top_level_category: '0'
 categories:
+  '0':
+    title: National Total
+    comment: All emissions and removals
+    children:
+    - - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
   '1':
     title: Energy
     comment: This category includes all GHG emissions arising from combustion and
@@ -4705,12 +4714,3 @@ categories:
     info:
       corresponding_categories_IPCC1996:
       - '7'
-  '0':
-    title: National Total
-    comment: All emissions and removals
-    children:
-    - - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'

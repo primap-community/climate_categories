@@ -40,5 +40,5 @@ def test_conversion():
 
     # still a lot of unmapped categories )-:
     missing96, missing06 = conv.find_unmapped_categories()
-    assert len(missing96) == 72
-    assert len(missing06) == 111
+    assert len(missing96) == 71
+    assert len(missing06) == 110

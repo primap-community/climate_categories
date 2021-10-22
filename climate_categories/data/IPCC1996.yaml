@@ -11,6 +11,17 @@ version: '1996'
 total_sum: true
 canonical_top_level_category: '0'
 categories:
+  '0':
+    title: National Total
+    comment: All emissions and removals
+    children:
+    - - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
   '1':
     title: Energy
     comment: Total emission of all greenhouse gases from stationary and mobile energy
@@ -1805,14 +1816,3 @@ categories:
     comment: Efforts should be made to fit all emission sources/sinks into the six
       categories described above. If it is impossible to do so, however, this category
       may be used, accompanied by a detailed explanation of the source/sink activity.
-  '0':
-    title: National Total
-    comment: All emissions and removals
-    children:
-    - - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-      - '6'
-      - '7'

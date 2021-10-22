@@ -114,7 +114,7 @@ def main():
         name=name,
         title=title,
         comment=comment,
-        last_update=datetime.date.today(),
+        last_update=datetime.date.fromisoformat("2021-10-12"),
         categories=categories,
         children=children,
     )

@@ -2,6 +2,7 @@
 
 import itertools
 import pathlib
+import typing
 
 import camelot
 from utils import download_cached, title_case
@@ -32,34 +33,28 @@ def split_code_name(code_name):
     return code_parts, " ".join(name_parts)
 
 
-def main():
-    download_cached(URL, INPATH)
-
+def parse_pdfs(inpath: str) -> typing.List[typing.Tuple[str, str, str, str]]:
     t = camelot.read_pdf(
-        str(INPATH),
+        inpath,
         pages="10-33",
         flavor="stream",
         table_areas=["74,744,527,35"],
         columns=["251,468,498"],
         row_tol=3,
     )
-
     tend = camelot.read_pdf(
-        str(INPATH),
+        inpath,
         pages="34",
         flavor="stream",
         table_areas=["74,744,527,410"],
         columns=["251,468,498"],
         row_tol=3,
     )
-
     cats_raw = []
-
     full_code_name = None
     full_definition = None
     full_code_96 = None
     full_gases = None
-
     for table in itertools.chain(t, tend):
         for i, row in table.df.iterrows():
             code_name, definition, code_96, gases = row
@@ -85,11 +80,12 @@ def main():
                     full_gases = f"{full_gases}{gases}"
                 else:
                     full_gases = f"{full_gases} {gases}"
-
     cats_raw.append((full_code_name, full_definition, full_code_96, full_gases))
+    return cats_raw
 
-    categories = {}
 
+def parse_categories(cats_raw) -> typing.Dict[str, typing.Any]:
+    categories: typing.Dict[str, typing.Any] = {}
     for code_name, definition, code_96, gases in cats_raw:
         code_parts, title = split_code_name(code_name)
         # error in pdf
@@ -124,16 +120,35 @@ def main():
             categories[code]["info"]["corresponding_categories_IPCC1996"] = [
                 x.strip().replace(" ", "") for x in code_96.split(",")
             ]
+    return categories
 
+
+def add_relationships(categories):
     for parent_code in categories:
         prefix = parent_code + "."
         children = []
         for child_code in categories:
-
             if child_code.startswith(prefix) and "." not in child_code[len(prefix) :]:
                 children.append(child_code)
         if children:
             categories[parent_code]["children"] = [children]
+
+
+def main():
+    download_cached(URL, INPATH)
+    cats_raw = parse_pdfs(str(INPATH))
+
+    # Widely used and very useful, even though not included in the official spec
+    categories: typing.Dict[str, typing.Any] = {
+        "0": {
+            "title": "National Total",
+            "comment": "All emissions and removals",
+            "children": [["1", "2", "3", "4", "5"]],
+        }
+    }
+
+    categories.update(parse_categories(cats_raw))
+    add_relationships(categories)
 
     spec = {
         "name": "IPCC2006",
@@ -155,30 +170,25 @@ def main():
     }
 
     # individual fixes to data from pdf
-    spec["categories"]["1"]["title"] = "Energy"
-    spec["categories"]["1.A.1.a.ii"][
-        "title"
-    ] = "Combined Heat and Power Generation (CHP)"
+    categories = spec["categories"]
+    categories["1"]["title"] = "Energy"
+    categories["1.A.1.a.ii"]["title"] = "Combined Heat and Power Generation (CHP)"
 
-    spec["categories"]["1.A.2.m"]["title"] = "Non-Specified Industry"
-    spec["categories"]["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = [
-        "1A3e"
-    ]
-    spec["categories"]["1.A.4.c.ii"]["info"]["corresponding_categories_IPCC1996"] = [
-        "1A4cii"
-    ]
+    categories["1.A.2.m"]["title"] = "Non-Specified Industry"
+    categories["1.A.3.e"]["info"]["corresponding_categories_IPCC1996"] = ["1A3e"]
+    categories["1.A.4.c.ii"]["info"]["corresponding_categories_IPCC1996"] = ["1A4cii"]
 
-    del spec["categories"]["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
-    del spec["categories"]["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
-    del spec["categories"]["1.B.2.b.iii.3"]["info"]["corresponding_categories_IPCC1996"]
+    del categories["1.B.2.b.iii.1"]["info"]["corresponding_categories_IPCC1996"]
+    del categories["1.B.2.b.iii.2"]["info"]["corresponding_categories_IPCC1996"]
+    del categories["1.B.2.b.iii.3"]["info"]["corresponding_categories_IPCC1996"]
 
-    spec["categories"]["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
-    spec["categories"]["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [
+    categories["2.A.3"]["info"]["gases"] = ["CO2", "CH4"]
+    categories["2.A.3"]["info"]["corresponding_categories_IPCC1996"] = [
         "2A3",
         "2A4",
     ]
 
-    spec["categories"]["2.A.4"]["info"]["gases"] = [
+    categories["2.A.4"]["info"]["gases"] = [
         "CO2",
         "CH4",
         "NOx",
@@ -186,15 +196,15 @@ def main():
         "NMVOC",
         "SO2",
     ]
-    spec["categories"]["2.A.4"]["info"]["corresponding_categories_IPCC1996"] = [
+    categories["2.A.4"]["info"]["corresponding_categories_IPCC1996"] = [
         "2A3",
         "2A4",
     ]
 
-    spec["categories"]["2.B.3"]["info"]["gases"] = ["N2O", "CO2", "CH4", "NOx"]
+    categories["2.B.3"]["info"]["gases"] = ["N2O", "CO2", "CH4", "NOx"]
 
     for cat in ("3.B.1", "3.B.1.b"):
-        spec["categories"][cat]["info"]["gases"] = [
+        categories[cat]["info"]["gases"] = [
             "CO2",
             "CH4",
             "N2O",
@@ -203,13 +213,13 @@ def main():
             "NMVOC",
             "SO2",
         ]
-        spec["categories"][cat]["info"]["corresponding_categories_IPCC1996"] = [
+        categories[cat]["info"]["corresponding_categories_IPCC1996"] = [
             "5A",
             "5C",
             "5D",
         ]
 
-    spec["categories"]["3.B.3"]["info"]["corresponding_categories_IPCC1996"] = [
+    categories["3.B.3"]["info"]["corresponding_categories_IPCC1996"] = [
         "4D",
         "4E",
         "5A",
@@ -218,28 +228,28 @@ def main():
         "5D",
     ]
 
-    spec["categories"]["3.B.3.a"]["title"] = "Grassland Remaining Grassland"
-    spec["categories"]["3.B.3.a"][
+    categories["3.B.3.a"]["title"] = "Grassland Remaining Grassland"
+    categories["3.B.3.a"][
         "comment"
     ] = "Emissions and removals from grassland remaining grassland."
 
-    spec["categories"]["3.B.3.b"][
+    categories["3.B.3.b"][
         "comment"
     ] = "Emissions and removals from land converted to grassland."
-    spec["categories"]["3.B.3.b"]["info"]["corresponding_categories_IPCC1996"] = [
+    categories["3.B.3.b"]["info"]["corresponding_categories_IPCC1996"] = [
         "5B",
         "5C",
         "5D",
     ]
 
-    spec["categories"]["3.C.1.c"]["title"] = "Biomass Burning in Grasslands"
-    spec["categories"]["3.C.1.c"]["comment"] = (
+    categories["3.C.1.c"]["title"] = "Biomass Burning in Grasslands"
+    categories["3.C.1.c"]["comment"] = (
         "Emissions from biomass burning that include N2O and CH4 in grasslands."
         " CO2 emissions are included here only if emissions are not included in"
         " 3B3 categories as carbon stock changes."
     )
 
-    spec["categories"]["4"]["info"]["gases"] = [
+    categories["4"]["info"]["gases"] = [
         "CO2",
         "CH4",
         "N2O",
@@ -249,26 +259,11 @@ def main():
         "SO2",
     ]
 
-    spec["categories"]["4.A.3"]["title"] = "Uncategorised Waste Disposal Sites"
-    spec["categories"]["4.A.3"]["comment"] = (
+    categories["4.A.3"]["title"] = "Uncategorised Waste Disposal Sites"
+    categories["4.A.3"]["comment"] = (
         "Mixture of above 4 A1 and 4 A2. Countries "
         "that do not have data on division of managed/unmanaged may use this category."
     )
-
-    # Widely used and very useful, even though not included in the official spec
-    spec["categories"]["0"] = {
-        "title": "National Total",
-        "comment": "All emissions and removals",
-        "children": [
-            [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-            ]
-        ],
-    }
 
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
