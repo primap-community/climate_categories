@@ -294,6 +294,7 @@ B D d
 ## One-to-many mappings - one A to many B
 
 A A.5 The category A.5, aka b
+⮁
 B asdf ASDF
 B 4 the number four
 
@@ -302,26 +303,31 @@ B 4 the number four
 
 A asdf ASDF
 A fdsa FDSA
+⮁
 B asdf ASDF
 
 A A.5 The category A.5, aka b
 A argl.5 We are testing weird characters
 A c The sea
+⮁
 B D d
 # Comment: 'nobody needs argl'
 
 A A.5 The category A.5, aka b
 A argl,5 weirder characters
 A c The sea
+⮁
 B D d
 
 A A.5 The category A.5, aka b
 A argl"5 stretching the dredibility
 A c The sea
+⮁
 B D d
 
 A + sure, make the code for your category a plus sign
 A - even better
+⮁
 B - a minus sign
 
 
@@ -330,6 +336,7 @@ B - a minus sign
 A A.5 The category A.5, aka b
 A argl"5 stretching the dredibility
 A c The sea
+⮁
 B D d
 B E e
 

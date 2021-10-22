@@ -412,8 +412,21 @@ class ConversionRule:
             csv_original_text=self.csv_original_text,
         )
 
-    def format_human_readable(self) -> str:
-        """Format the rule for humans."""
+    def format_human_readable(self, categorization_separator: str = "⮁\n") -> str:
+        """Format the rule for humans.
+
+        Parameters
+        ----------
+        categorization_separator: str, optional
+            The categorization_separator is printed between the categories from
+            the source categorization and the categories from the target categorization
+            to make the difference clear.
+
+        Returns
+        -------
+        human_readable: str
+            The rule in a format optimized for error-free parsing by humans.
+        """
         if any(self.auxiliary_categories.values()):
             aux_info = [
                 f"{aux_categorization} in {[c.codes[0] for c in sorted(categories)]}"
@@ -427,15 +440,11 @@ class ConversionRule:
             (f"{cat.categorization.name} {cat}" for cat in self.factors_categories_a)
         )
         r += "\n"
-        r += (
-            "\n".join(
-                (
-                    f"{cat.categorization.name} {cat}"
-                    for cat in self.factors_categories_b
-                )
-            )
-            + "\n"
+        r += categorization_separator
+        r += "\n".join(
+            (f"{cat.categorization.name} {cat}" for cat in self.factors_categories_b)
         )
+        r += "\n"
 
         if self.comment:
             r += f"# Comment: {self.comment!r}\n"
@@ -870,7 +879,10 @@ class Conversion(ConversionBase):
 
         r = f"# Mapping between {cat_a} and {cat_b}\n\n"
         r += "## Simple direct mappings\n\n"
-        r += "\n".join(rule.format_human_readable() for rule in one_to_one)
+        r += "\n".join(
+            rule.format_human_readable(categorization_separator="")
+            for rule in one_to_one
+        )
         r += "\n\n"
         r += f"## One-to-many mappings - one {cat_a} to many {cat_b}\n\n"
         r += "\n".join((rule.format_human_readable()) for rule in one_to_many)
