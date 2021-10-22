@@ -412,6 +412,16 @@ class ConversionRule:
             csv_original_text=self.csv_original_text,
         )
 
+    @staticmethod
+    def _format_factor_category_human_readable(
+        factor: int, category: "Category"
+    ) -> str:
+        """Format a single category and its factor for humans."""
+        if factor == 1:
+            return f"{category.categorization.name} {category}"
+        else:
+            return f"{factor} * {category.categorization.name} {category}"
+
     def format_human_readable(self, categorization_separator: str = "⮁\n") -> str:
         """Format the rule for humans.
 
@@ -437,12 +447,14 @@ class ConversionRule:
             r = ""
 
         r += "\n".join(
-            (f"{cat.categorization.name} {cat}" for cat in self.factors_categories_a)
+            self._format_factor_category_human_readable(f, cat)
+            for cat, f in self.factors_categories_a.items()
         )
         r += "\n"
         r += categorization_separator
         r += "\n".join(
-            (f"{cat.categorization.name} {cat}" for cat in self.factors_categories_b)
+            self._format_factor_category_human_readable(f, cat)
+            for cat, f in self.factors_categories_b.items()
         )
         r += "\n"
 
@@ -856,7 +868,15 @@ class Conversion(ConversionBase):
         )
 
     def describe_detailed(self) -> str:
-        """Detailed human-readable description of the conversion rules."""
+        """Detailed human-readable description of the conversion rules.
+
+        Sections are added for direct one-to-one mappings, one-to-many mappings,
+        many-to-one mappings, and many-to-many mappings, respectively.
+
+        Factors are shown at the start of the line if they don't equal 1, like this:
+        -1 * IPCC1996 4 Agriculture
+        to indicate that category 4 should be subtracted.
+        """
         one_to_one = []
         one_to_many = []
         many_to_one = []

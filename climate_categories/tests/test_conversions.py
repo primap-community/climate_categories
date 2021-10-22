@@ -326,7 +326,7 @@ A c The sea
 B D d
 
 A + sure, make the code for your category a plus sign
-A - even better
+-1 * A - even better
 ⮁
 B - a minus sign
 
