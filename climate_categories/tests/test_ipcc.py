@@ -22,11 +22,11 @@ def test_consistent():
 
 def test_conversion():
     conv = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
+
     problems = conv.find_over_counting_problems()
     problematic_categories = list(
         sorted([problem.category.codes[0] for problem in problems])
     )
-
     assert problematic_categories == [
         "2.B.7",
         "2.B.9",
@@ -37,3 +37,8 @@ def test_conversion():
         "6.A.3",
         "6.B.3",
     ]
+
+    # still a lot of unmapped categories )-:
+    missing96, missing06 = conv.find_unmapped_categories()
+    assert len(missing96) == 72
+    assert len(missing06) == 111

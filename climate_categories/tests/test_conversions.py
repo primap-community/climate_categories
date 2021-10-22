@@ -264,6 +264,11 @@ class TestConversion:
         b = climate_categories.IPCC1996.conversion_to("IPCC2006")
         assert a == b
 
+    def test_find_unmapped_categories(self, good_conversion: conversions.Conversion):
+        missing_a, missing_b = good_conversion.find_unmapped_categories()
+        assert missing_a == {good_conversion.categorization_a["unmapped"]}
+        assert missing_b == set()
+
     def test_reverse(
         self,
         good_conversion: conversions.Conversion,

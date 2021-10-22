@@ -924,6 +924,27 @@ class Conversion(ConversionBase):
 
         return r
 
+    def find_unmapped_categories(
+        self,
+    ) -> (typing.Set["Category"], typing.Set["Category"]):
+        """Find categories for which no rule exists to map them.
+
+        Returns
+        -------
+        missing_categories_a, missing_categories_b: set, set
+            A list of categories missing from categorization_a and categorization_b,
+            respectively.
+        """
+        cats_a = set()
+        cats_b = set()
+        for rule in self.rules:
+            cats_a.update(rule.factors_categories_a.keys())
+            cats_b.update(rule.factors_categories_b.keys())
+
+        cats_missing_a = set(self.categorization_a.values()) - cats_a
+        cats_missing_b = set(self.categorization_b.values()) - cats_b
+        return cats_missing_a, cats_missing_b
+
     def find_over_counting_problems(self) -> typing.List[OverCountingProblem]:
         """Check if any category from one side is counted more than once on the
         other side.
