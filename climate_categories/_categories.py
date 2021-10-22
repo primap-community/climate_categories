@@ -522,22 +522,27 @@ class Categorization:
             return False
         return self._primary_code_map == other._primary_code_map
 
-    def conversion_to(self, other: "Categorization") -> Conversion:
+    def conversion_to(self, other: typing.Union["Categorization", str]) -> Conversion:
         """Get conversion to other categorization.
 
         If conversion rules for this conversion are not included, raises
         NotImplementedError."""
-        forward_csv_name = f"conversion.{self.name}.{other.name}.csv"
+        if isinstance(other, str):
+            other_name = other
+        else:
+            other_name = other.name
+
+        forward_csv_name = f"conversion.{self.name}.{other_name}.csv"
         if importlib.resources.is_resource(data, forward_csv_name):
             fd = importlib.resources.open_text(data, forward_csv_name)
             return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
-        reversed_csv_name = f"conversion.{other.name}.{self.name}.csv"
+        reversed_csv_name = f"conversion.{other_name}.{self.name}.csv"
         if importlib.resources.is_resource(data, reversed_csv_name):
             fd = importlib.resources.open_text(data, reversed_csv_name)
             return ConversionSpec.from_csv(fd).hydrate(cats=self._cats).reversed()
 
         raise NotImplementedError(
-            f"Conversion between {self.name} and {other.name} not yet included."
+            f"Conversion between {self.name} and {other_name} not yet included."
         )
 
 

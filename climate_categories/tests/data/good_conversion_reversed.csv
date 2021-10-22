@@ -9,6 +9,7 @@ asdf,,,asdf + fdsa
 D,,,b + "argl.5" + c,nobody needs argl
 D,,,b + "argl\,5" + c
 D,,,b + "argl\\"5" + c
+D+E,,,b + "argl\\"5" + c
 D,,,"argl\,5"
 "-",,,"+" - "-"
 asdf+4,,,b

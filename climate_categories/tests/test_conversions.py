@@ -112,7 +112,7 @@ class TestConversionSpec:
         assert conv.references == "expert judgement"
         assert conv.last_update == datetime.date(2099, 12, 31)
         assert conv.auxiliary_categorizations_names == ["aux1", "aux2"]
-        assert len(conv.rule_specs) == 8
+        assert len(conv.rule_specs) == 9
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
@@ -153,28 +153,35 @@ class TestConversionSpec:
             csv_original_text='b + "argl\\"5" + c,,,D',
         )
         assert conv.rule_specs[5] == conversions.ConversionRuleSpec(
+            factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
+            factors_categories_b={"D": 1, "E": 1},
+            auxiliary_categories={"aux1": set(), "aux2": set()},
+            csv_line_number=12,
+            csv_original_text='b + "argl\\"5" + c,,,D+E',
+        )
+        assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
             factors_categories_a={"argl,5": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=12,
+            csv_line_number=13,
             csv_original_text='"argl,5",,,D',
         )
-        assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
+        assert conv.rule_specs[7] == conversions.ConversionRuleSpec(
             factors_categories_a={"+": 1, "-": -1},
             factors_categories_b={"-": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=13,
+            csv_line_number=14,
             csv_original_text='"+" - "-",,,"-"',
         )
-        assert conv.rule_specs[7] == conversions.ConversionRuleSpec(
+        assert conv.rule_specs[8] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1},
             factors_categories_b={"asdf": 1, "4": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=14,
+            csv_line_number=15,
             csv_original_text="b,,,asdf+4",
         )
 
-        assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 8 rules>"
+        assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 9 rules>"
 
     def test_formula_broken(self):
         csv = ["comment,no comment", "", "A,B,comment", "A.1+,C,broken formula"]
@@ -252,6 +259,11 @@ class TestConversion:
         assert a == b.reversed()
         assert a == a.reversed().reversed()
 
+    def test_str_arg(self):
+        a = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
+        b = climate_categories.IPCC1996.conversion_to("IPCC2006")
+        assert a == b
+
     def test_reverse(
         self,
         good_conversion: conversions.Conversion,
@@ -261,7 +273,7 @@ class TestConversion:
         assert good_conversion_reversed.reversed() == good_conversion
 
     def test_repr(self, good_conversion: conversions.Conversion):
-        assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 8 rules>"
+        assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 9 rules>"
 
     def test_describe(self, good_conversion: conversions.Conversion):
 
@@ -315,6 +327,11 @@ B - a minus sign
 
 ## Many-to-many mappings - many A to many B
 
+A A.5 The category A.5, aka b
+A argl"5 stretching the dredibility
+A c The sea
+B D d
+B E e
 
 
 ## Unmapped categories
