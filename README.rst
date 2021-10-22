@@ -65,6 +65,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2021-10-18).
-pik-primap/climate_categories: Version 0.6.0.
-Zenodo. https://doi.org/10.5281/zenodo.5576231
+Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2021-10-22).
+pik-primap/climate_categories: PRIMAP2 Version 0.6.0.
+Zenodo. https://doi.org/10.5281/zenodo.5593206
