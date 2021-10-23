@@ -2,7 +2,7 @@
 github_url = "https://github.com/pik-primap/climate_categories/"
 
 [version]
-current = "0.5.3"
+current = "0.6.0"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before
@@ -42,8 +42,13 @@ search = 'pik-primap/climate_categories: Version {current_version}.'
 name = "lint"
 cmd = "make lint"
 
+[[before_commit]]
+name = "update changelog"
+cmd = "venv/bin/python update_changelog.py {new_version}"
+
 # Or run some commands after the git tag and the branch
 # have been pushed:
-#  [[after_push]]
-#  name = "publish"
-#  cmd = "./publish.sh"
+
+[[after_push]]
+name = "release on github"
+cmd = "gh release create --repo pik-primap/primap2 v{new_version} --title 'PRIMAP2 Version {new_version}' --notes-file .changelog_latest_version.rst"

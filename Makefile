@@ -19,13 +19,13 @@ lint: venv ## check style with pre-commit hooks
 	venv/bin/pre-commit run --all-files
 
 test: venv ## run tests quickly with the default Python
-	venv/bin/pytest  --xdoc -rx
+	venv/bin/pytest --xdoc -rx
 
-test-full: venv ## run tests with all Python versions; needs python versions already set up
-	tox
+test-all: venv ## run tests with all Python versions; needs python versions already set up
+	tox -p
 
 coverage: venv ## check code coverage quickly with the default Python
-	venv/bin/coverage run --source climate_categories -m pytest
+	venv/bin/coverage run --source climate_categories -m pytest --xdoc -rx
 	venv/bin/coverage report -m
 	venv/bin/coverage html
 
@@ -64,7 +64,8 @@ venv: setup.py pyproject.toml setup.cfg
 
 update-venv:
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install --upgrade -e .[dev]
+	venv/bin/python -m pip install --upgrade pip wheel
+	venv/bin/python -m pip install --upgrade --upgrade-strategy eager -e .[dev]
 	touch venv
 
 install-pre-commit: update-venv ## install the pre-commit hooks
@@ -78,6 +79,7 @@ pickles: climate_categories/data/GCB.pickle
 pickles: climate_categories/data/IPCC2006.pickle
 pickles: climate_categories/data/IPCC2006_PRIMAP.pickle
 pickles: climate_categories/data/IPCC1996.pickle
+pickles: climate_categories/data/CRF1999.pickle
 pickles: climate_categories/data/gas.pickle
 pickles: climate_categories/data/CRFDI.pickle
 pickles: climate_categories/data/CRFDI_class.pickle
@@ -96,3 +98,6 @@ climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py data_generati
 
 climate_categories/data/%.yaml: data_generation/%.py
 	venv/bin/python $<
+
+README.rst:  CHANGELOG.rst .changelog_latest_version.rst  ## Update the citation information from zenodo
+	venv/bin/python update_citation_info.py

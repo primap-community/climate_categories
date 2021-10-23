@@ -1,6 +1,8 @@
 """Classes to represent and query categorical systems."""
 
 import datetime
+import importlib
+import importlib.resources
 import pathlib
 import pickle
 import typing
@@ -10,6 +12,9 @@ import networkx as nx
 import pandas
 import strictyaml as sy
 from ruamel.yaml import YAML
+
+from . import data
+from ._conversions import Conversion, ConversionSpec
 
 
 class Category:
@@ -40,6 +45,7 @@ class Category:
             self.info = {}
         else:
             self.info = info
+        self._hash = None
 
     @classmethod
     def from_spec(cls, code: str, spec: typing.Dict, categorization: "Categorization"):
@@ -90,14 +96,13 @@ class Category:
         return f"<{self.categorization.name}: {self.codes[0]!r}>"
 
     def __hash__(self):
-        return hash(self.categorization.name + self.codes[0])
+        if self._hash is None:
+            self._hash = hash(self.categorization.name + self.codes[0])
+        return self._hash
 
     def __lt__(self, other):
         s = natsort.natsorted((self.codes[0], other.codes[0]))
-        if s[0] == self.codes[0] and not self == other:
-            return True
-        else:
-            return False
+        return s[0] == self.codes[0] and self != other
 
 
 class HierarchicalCategory(Category):
@@ -155,6 +160,22 @@ class HierarchicalCategory(Category):
         Note that all possible parents are returned, not "canonical" parents.
         """
         return self.categorization.parents(self)
+
+    @property
+    def ancestors(self) -> typing.Set["HierarchicalCategory"]:
+        """The super-categories where this category or any of its parents is a member
+        of any set of children, transitively.
+
+        Note that all possible ancestors are returned, not only "canonical" ones.
+        """
+        return self.categorization.ancestors(self)
+
+    @property
+    def descendants(self) -> typing.Set["HierarchicalCategory"]:
+        """The sets of subcategories comprising this category directly or indirectly.
+
+        Note that all possible descendants are returned, not only "canonical" ones."""
+        return self.categorization.descendants(self)
 
     @property
     def level(self) -> int:
@@ -247,6 +268,12 @@ class Categorization:
         self.version = version
 
         self._add_categories(categories)
+
+        # is filled in __init__.py to contain all categorizations
+        self._cats: typing.Dict[str, "Categorization"] = {}
+
+    def __hash__(self):
+        return hash(self.name)
 
     @classmethod
     def from_yaml(
@@ -495,6 +522,29 @@ class Categorization:
             return False
         return self._primary_code_map == other._primary_code_map
 
+    def conversion_to(self, other: typing.Union["Categorization", str]) -> Conversion:
+        """Get conversion to other categorization.
+
+        If conversion rules for this conversion are not included, raises
+        NotImplementedError."""
+        if isinstance(other, str):
+            other_name = other
+        else:
+            other_name = other.name
+
+        forward_csv_name = f"conversion.{self.name}.{other_name}.csv"
+        if importlib.resources.is_resource(data, forward_csv_name):
+            fd = importlib.resources.open_text(data, forward_csv_name)
+            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
+        reversed_csv_name = f"conversion.{other_name}.{self.name}.csv"
+        if importlib.resources.is_resource(data, reversed_csv_name):
+            fd = importlib.resources.open_text(data, reversed_csv_name)
+            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats).reversed()
+
+        raise NotImplementedError(
+            f"Conversion between {self.name} and {other_name} not yet included."
+        )
+
 
 class HierarchicalCategorization(Categorization):
     """In a hierarchical categorization, descendants and ancestors (parents and
@@ -675,6 +725,49 @@ class HierarchicalCategorization(Categorization):
             )
         )
 
+    def _show_subtree_children(
+        self,
+        children: typing.Iterable[HierarchicalCategory],
+        format_func: typing.Callable,
+        prefix: str,
+        maxdepth: typing.Optional[int],
+    ) -> str:
+        children_sorted = natsort.natsorted(children, key=format_func)
+        r = "".join(
+            self._show_subtree(
+                node=child,
+                prefix=prefix + "│",
+                format_func=format_func,
+                maxdepth=maxdepth,
+            )
+            for child in children_sorted[:-1]
+        )
+        # Last child needs to be called slightly differently
+        r += self._show_subtree(
+            node=children_sorted[-1],
+            prefix=prefix + " ",
+            last=True,
+            format_func=format_func,
+            maxdepth=maxdepth,
+        )
+        return r
+
+    @staticmethod
+    def _render_node(
+        node: HierarchicalCategory,
+        last: bool,
+        prefix: str,
+        format_func: typing.Callable[[HierarchicalCategory], str],
+    ):
+        formatted = format_func(node)
+        if prefix:
+            if last:
+                return f"{prefix[:-1]}╰{formatted}\n"
+            else:
+                return f"{prefix[:-1]}├{formatted}\n"
+        else:
+            return f"{formatted}\n"
+
     def _show_subtree(
         self,
         *,
@@ -684,83 +777,70 @@ class HierarchicalCategorization(Categorization):
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: typing.Optional[int],
     ) -> str:
+        """Recursively-called function to show a subtree starting at the given node."""
+
+        r = self._render_node(node, last=last, prefix=prefix, format_func=format_func)
+
         if maxdepth is not None:
             maxdepth -= 1
-        if prefix:
-            if last:
-                r = f"{prefix[:-1]}╰{format_func(node)}\n"
-            else:
-                r = f"{prefix[:-1]}├{format_func(node)}\n"
-        else:
-            r = f"{format_func(node)}\n"
-
-        if maxdepth is not None and maxdepth == 0:
-            return r
+            if maxdepth == 0:  # maxdepth reached, nothing more to do
+                return r
 
         child_sets = node.children
-        if len(child_sets) == 0:
-            return r
-        elif len(child_sets) == 1:
+        if len(child_sets) == 1:
             children = child_sets[0]
             if children:
-                children_sorted = natsort.natsorted(children, key=format_func)
-                for child in children_sorted[:-1]:
-                    r += self._show_subtree(
-                        node=child,
-                        prefix=prefix + "│",
-                        format_func=format_func,
-                        maxdepth=maxdepth,
-                    )
-                r += self._show_subtree(
-                    node=children_sorted[-1],
-                    prefix=prefix + " ",
-                    last=True,
+                r += self._show_subtree_children(
+                    children=children,
                     format_func=format_func,
                     maxdepth=maxdepth,
+                    prefix=prefix,
                 )
-        else:
+        elif len(child_sets) > 1:
             prefix += "║"
-            first = True
+            i = 1
             for children in child_sets:
                 if children:
-                    if first:
-                        r += f"{prefix[:-1]}╠╤══\n"
-                        first = False
-                    else:
-                        r += f"{prefix[:-1]}╠╕\n"
-
-                    children_sorted = natsort.natsorted(children, key=format_func)
-                    for child in children_sorted[:-1]:
-                        r += self._show_subtree(
-                            node=child,
-                            prefix=prefix + "│",
-                            format_func=format_func,
-                            maxdepth=maxdepth,
+                    if i == 1:
+                        r += (
+                            f"{prefix[:-1]}╠╤══ ('{format_func(node)}'s children,"
+                            f" option 1)\n"
                         )
-                    r += self._show_subtree(
-                        node=children_sorted[-1],
-                        prefix=prefix + " ",
-                        last=True,
+                    else:
+                        r += (
+                            f"{prefix[:-1]}╠╕ ('{format_func(node)}'s children,"
+                            f" option {i})\n"
+                        )
+
+                    r += self._show_subtree_children(
+                        children=children,
                         format_func=format_func,
                         maxdepth=maxdepth,
+                        prefix=prefix,
                     )
+                    i += 1
+
             r += f"{prefix[:-1]}╚═══\n"
 
         return r
 
     def show_as_tree(
         self,
+        *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: typing.Optional[int] = None,
+        root: typing.Optional[typing.Union[HierarchicalCategory, str]] = None,
     ) -> str:
         """Format the hierarchy as a tree.
 
-        Starting from top-level categories (i.e. categories without parents), the full
-        tree of categories is show, with children connected to their parents using
-        lines. If a parent category has one set of children, the children are connected
-        to each other and the parent with a simple line. If a parent category has
-        multiple sets of children, the sets are connected to parent with double lines
-        and the children in a set are connected to each other with simple lines.
+        Starting from the given root, or - if no root is given - the top-level
+        categories (i.e. categories without parents), the tree of categories that are
+        transitive children of the root is show, with children connected to their
+        parents using lines. If a parent category has one set of children, the children
+        are connected to each other and the parent with a simple line. If a parent
+        category has multiple sets of children, the sets are connected to parent with
+        double lines and the children in a set are connected to each other with simple
+        lines.
 
         Parameters
         ----------
@@ -772,6 +852,10 @@ class HierarchicalCategorization(Categorization):
             category are used.
         maxdepth: int, optional
             Maximum depth to show in the tree. By default, goes to arbitrary depth.
+        root: HierarchicalCategory or str, optional
+            HierarchicalCategory object or code to use as the top-most category.
+            If not given, the whole tree is shown, starting from all categories without
+            parents.
 
         Returns
         -------
@@ -779,16 +863,20 @@ class HierarchicalCategorization(Categorization):
             Representation of the hierarchy as formatted string. print() it for optimal
             viewing.
         """
-        top_level_nodes = (node for node in self.values() if not node.parents)
-        r = ""
-        for top_level_node in top_level_nodes:
-            r += (
+        if root is None:
+            top_level_nodes = (node for node in self.values() if not node.parents)
+        else:
+            if not isinstance(root, HierarchicalCategory):
+                root = self[root]
+            top_level_nodes = [root]
+        return "\n".join(
+            (
                 self._show_subtree(
                     node=top_level_node, format_func=format_func, maxdepth=maxdepth
                 )
-                + "\n"
             )
-        return r
+            for top_level_node in top_level_nodes
+        )
 
     def extend(
         self,
@@ -926,6 +1014,16 @@ class HierarchicalCategorization(Categorization):
 
         return set(self._graph.predecessors(cat))
 
+    def ancestors(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> typing.Set[HierarchicalCategory]:
+        """All ancestors of the given category, i.e. the direct parents and their
+        parents, etc."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.ancestors(self._all_codes_map[cat])
+
+        return set(nx.ancestors(self._graph, cat))
+
     def children(
         self, cat: typing.Union[str, HierarchicalCategory]
     ) -> typing.List[typing.Set[HierarchicalCategory]]:
@@ -939,8 +1037,15 @@ class HierarchicalCategorization(Categorization):
                 children_dict[setno] = []
             children_dict[setno].append(child)
 
-        children = [set(children_dict[x]) for x in sorted(children_dict.keys())]
-        return children
+        return [set(children_dict[x]) for x in sorted(children_dict.keys())]
+
+    def descendants(self, cat: typing.Union[str, HierarchicalCategory]):
+        """All descendants of the given category, i.e. the direct children and their
+        children, etc."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.descendants(self._all_codes_map[cat])
+
+        return set(nx.descendants(self._graph, cat))
 
 
 def from_pickle(

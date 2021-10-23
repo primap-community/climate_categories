@@ -30,6 +30,7 @@ repos:
     rev: '0.9.1'
     hooks:
       - id: doc8
+        additional_dependencies: ['pygments-csv-lexer']
   - repo: https://github.com/PyCQA/isort
     rev: '5.9.3'
     hooks:

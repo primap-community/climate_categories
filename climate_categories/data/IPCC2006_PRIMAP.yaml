@@ -6,11 +6,22 @@ comment: IPCC classification of green-house gas emissions into categories, 2006 
 references: ''
 institution: PIK
 hierarchical: true
-last_update: '2021-05-18'
+last_update: '2021-10-12'
 version: '2006'
 total_sum: true
 canonical_top_level_category: '0'
 categories:
+  '0':
+    title: National Total
+    comment: All emissions and removals
+    children:
+    - - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+    - - M.0.EL
+      - M.LULUCF
   '1':
     title: Energy
     comment: This category includes all GHG emissions arising from combustion and
@@ -1032,7 +1043,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3e
+      - 1A4cii
   1.A.4.c.iii:
     title: Fishing (Mobile Combustion)
     comment: Emissions from fuels combusted for inland, coastal and deep-sea fishing.
@@ -3861,9 +3872,8 @@ categories:
     - - 3.B.3.a
       - 3.B.3.b
   3.B.3.a:
-    title: ''
-    comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
-      grassland.
+    title: Grassland Remaining Grassland
+    comment: Emissions and removals from grassland remaining grassland.
     alternative_codes:
     - 3B3a
     info:
@@ -4732,17 +4742,6 @@ categories:
     info:
       corresponding_categories_IPCC1996:
       - '7'
-  '0':
-    title: TOTAL
-    comment: All emissions and removals
-    children:
-    - - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-    - - M.0.EL
-      - M.LULUCF
   M.0.EL:
     title: Total emissions excluding LULUCF
     comment: All emissions and removals except for Land Use, Land Use Change, and

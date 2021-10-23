@@ -1,0 +1,3 @@
+refactor:
+  skip:
+    - assign-if-exp

@@ -53,6 +53,23 @@ parsing StrictYaml files is not very efficient, the categories should be also st
 as pickle files using the ``to_pickle`` instance method and parsed from the pickled
 files on import.
 
+New conversions
+~~~~~~~~~~~~~~~
+
+Especially welcome as well are new conversions between categorizations, which are not
+included in climate_categories so far. Pull requests and issue reports at github are
+very welcome!
+
+The conversions are read from CSV files located at ``climate_categories/data/``.
+You can write a CSV definition by hand, but ideally, conversions are also generated
+from some canonical source automatically, so that the generation is reproducible and
+transparent.
+As the scripts to generate categorizations, the scripts to generate conversion files are
+located in the ``data_generation`` folder and write their results directly to
+``climate_categories/data/``.
+
+Conversion files are read on demand and therefore no pickle files need to be generated.
+
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
@@ -120,7 +137,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring and check the generated
    API documentation.
-3. The pull request should work for Python 3.7, and 3.8.
+3. The pull request will be tested on python 3.7, 3.8, 3.9, and 3.10.
 
 Deploying
 ---------
@@ -130,14 +147,10 @@ Deploying
 A reminder for the maintainers on how to deploy.
 
 1.  Commit all your changes.
-2.  Replace the unreleased entry in CHANGELOG.rst with your target version number.
-3.  Run ``tbump X.Y.Z``.
-4.  Go to github and make a release from the tag.
-    Use "Version x.y.z" as the release title, and the changelog entries as the release
-    description.
-    Creating the github release will automatically trigger
-    a release on zenodo.
-5.  Run ``make update-citation`` to update the citation information in the README.
-6.  Upload the release to pyPI: ``make release``
-7.  To prepare for future development, add a new "unreleased" section to CHANGELOG.rst,
-    and commit the result.
+2.  Run ``tbump X.Y.Z``.
+3.  Wait a bit that the release on github and zenodo is created.
+4.  Run ``make README.rst`` to update the citation information in the README from the
+    zenodo API. Check if the version is actually correct, otherwise grab a tea and
+    wait a little more for zenodo to mint the new version. Once it worked, commit the
+    change.
+5.  Upload the release to pyPI: ``make release``

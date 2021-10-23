@@ -1,6 +1,7 @@
 """Run this via `make climate_categories/data/IPCC1996.yaml` in the main directory."""
 
 import pathlib
+import typing
 
 import camelot
 from utils import download_cached, title_case
@@ -263,7 +264,17 @@ def main():
     ts = read_pdf(INPATH)
     rows = combine_rows(ts)
     cats_raw = parse_codes(rows)
-    categories = parse_categories(cats_raw)
+
+    # Widely used and very useful, even though not included in the official spec
+    categories: typing.Dict[str, typing.Any] = {
+        "0": {
+            "title": "National Total",
+            "comment": "All emissions and removals",
+            "children": [["1", "2", "3", "4", "5", "6", "7"]],
+        }
+    }
+
+    categories.update(parse_categories(cats_raw))
     add_relationships(categories)
 
     spec = {
@@ -281,16 +292,16 @@ def main():
         "version": "1996",
         "total_sum": True,
         "categories": categories,
+        "canonical_top_level_category": "0",
     }
 
-    spec["categories"]["1.A.1"]["comment"] = spec["categories"]["1.A.1"][
-        "comment"
-    ].replace("energyproducing", "energy producing")
+    categories = spec["categories"]
+    categories["1.A.1"]["comment"] = categories["1.A.1"]["comment"].replace(
+        "energyproducing", "energy producing"
+    )
 
-    spec["categories"]["1.A.2"]["title"] = "Manufacturing Industries and Construction"
-    spec["categories"]["1.A.2"]["comment"] = spec["categories"]["1.A.2"][
-        "comment"
-    ].replace(
+    categories["1.A.2"]["title"] = "Manufacturing Industries and Construction"
+    categories["1.A.2"]["comment"] = categories["1.A.2"]["comment"].replace(
         "Emissions from the industry sector should be specified by subsectors that "
         "correspond to the International Standard Industrial Classification of All "
         "Economic Activities (ISIC).",
@@ -301,13 +312,16 @@ def main():
         " Series M No. 4, Rev. 3, United Nations, New York, 1990].",
     )
 
-    spec["categories"]["1.A.5"]["title"] = "Other"
+    categories["1.A.5"]["title"] = "Other"
 
-    spec["categories"]["2.C.4"][
-        "title"
-    ] = "SF6 used in Aluminium and Magnesium Foundries"
+    categories["2.C.4"]["title"] = "SF6 used in Aluminium and Magnesium Foundries"
 
-    spec["categories"]["5.A.5"]["comment"] = (
+    categories["4.B.10"]["title"] = "Anaerobic Lagoons"
+
+    categories["4.C.3.a"]["title"] = "Water Depth 50-100 cm"
+    categories["4.C.3.b"]["title"] = "Water Depth > 100 cm"
+
+    categories["5.A.5"]["comment"] = (
         "Emissions and removals of CO2 from other biomass categories, including"
         " village and farm trees, etc."
         " This category"
@@ -321,7 +335,7 @@ def main():
         " “Other.”"
     )
 
-    spec["categories"]["5.D"]["title"] = "CO2 Emissions and Removals From Soil"
+    categories["5.D"]["title"] = "CO2 Emissions and Removals From Soil"
 
     IPCC1996 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

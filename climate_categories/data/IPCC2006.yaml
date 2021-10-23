@@ -9,7 +9,17 @@ hierarchical: true
 last_update: '2010-06-30'
 version: '2006'
 total_sum: true
+canonical_top_level_category: '0'
 categories:
+  '0':
+    title: National Total
+    comment: All emissions and removals
+    children:
+    - - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
   '1':
     title: Energy
     comment: This category includes all GHG emissions arising from combustion and
@@ -1017,7 +1027,7 @@ categories:
       - NMVOC
       - SO2
       corresponding_categories_IPCC1996:
-      - 1A3e
+      - 1A4cii
   1.A.4.c.iii:
     title: Fishing (Mobile Combustion)
     comment: Emissions from fuels combusted for inland, coastal and deep-sea fishing.
@@ -3834,9 +3844,8 @@ categories:
     - - 3.B.3.a
       - 3.B.3.b
   3.B.3.a:
-    title: ''
-    comment: Grassland Remaining Grassland Emissions and removals from grassland remaining
-      grassland.
+    title: Grassland Remaining Grassland
+    comment: Emissions and removals from grassland remaining grassland.
     alternative_codes:
     - 3B3a
     info:

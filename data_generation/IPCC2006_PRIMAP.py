@@ -12,7 +12,6 @@ OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006_PRIMAP.yaml")
 
 def main():
     categories = {
-        "0": {"title": "TOTAL", "comment": "All emissions and removals"},
         "M.0.EL": {
             "title": "Total emissions excluding LULUCF",
             "comment": "All emissions and removals except for Land Use, Land "
@@ -68,7 +67,6 @@ def main():
         },
     }
     children = [
-        ("0", ("1", "2", "3", "4", "5")),
         ("0", ("M.0.EL", "M.LULUCF")),
         ("M.0.EL", ("1", "2", "M.AG", "4", "5")),
         ("1.A.1.bc", ("1.A.1.b", "1.A.1.c")),
@@ -116,7 +114,7 @@ def main():
         name=name,
         title=title,
         comment=comment,
-        last_update=datetime.date.today(),
+        last_update=datetime.date.fromisoformat("2021-10-12"),
         categories=categories,
         children=children,
     )

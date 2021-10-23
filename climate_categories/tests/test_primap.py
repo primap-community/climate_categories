@@ -3,7 +3,7 @@ import climate_categories
 
 def test_number_of_categories():
     assert (
-        len(climate_categories.IPCC2006_PRIMAP) == len(climate_categories.IPCC2006) + 14
+        len(climate_categories.IPCC2006_PRIMAP) == len(climate_categories.IPCC2006) + 13
     )
 
 

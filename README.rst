@@ -26,6 +26,7 @@ Name             Title
 IPCC1996         IPCC GHG emission categories (1996)
 IPCC2006         IPCC GHG emission categories (2006)
 IPCC2006_PRIMAP  IPCC GHG emission categories (2006) with additional categories
+CRF1999          Common Reporting Format GHG emissions categories (1999)
 BURDI            BUR GHG emission categories (DI query interface)
 BURDI_class      BUR GHG emission categories (DI query interface) + classifications
 CRFDI            CRF GHG emission categories (DI query interface)
@@ -33,6 +34,11 @@ CRFDI_class      CRF GHG emission categories (DI query interface) + classificati
 GCB              Global Carbon Budget CO2 emission categories
 gas              Gases and other climate-forcing substances
 ===============  ==================================================================
+
+Included conversions between categorizations
+--------------------------------------------
+
+* IPCC1996 <-> IPCC2006
 
 Status
 ------
@@ -59,6 +65,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, and Johannes Gütschow. (2021-10-12).
-pik-primap/climate_categories: Version 0.5.3.
-Zenodo. https://doi.org/10.5281/zenodo.5564217
+Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2021-10-22).
+pik-primap/climate_categories: PRIMAP2 Version 0.6.0.
+Zenodo. https://doi.org/10.5281/zenodo.5593206
