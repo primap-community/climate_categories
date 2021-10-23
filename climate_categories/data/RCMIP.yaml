@@ -19,289 +19,417 @@ categories:
   Emissions:
     title: RCMIP Emissions
     children:
-    - - BC
-      - CH4
-      - CO
-      - CO2
-      - F-Gases
-      - Montreal Gases
-      - N2O
-      - NH3
-      - NOx
-      - OC
-      - Sulfur
-      - VOC
-  MAGICC AFOLU:
-    title: MAGICC AFOLU
-    comment: emissions from agriculture, forestry and other land use (IPCC category
-      3), excluding any fossil-fuel based emissions in the Agricultural sector (hence
-      not identical to WG3 AFOLU)
-  MAGICC Fossil and Industrial:
-    title: MAGICC Fossil and Industrial
-    comment: emissions from energy use on supply and demand side (IPCC category 1A,
-      1B), industrial processes (IPCC category 2), waste (IPCC category 4) and other
-      (IPCC category 5)
-  Other:
-    title: Other
-    comment: emissions from other sources
-  BC:
+    - - Emissions|BC
+      - Emissions|CH4
+      - Emissions|CO
+      - Emissions|CO2
+      - Emissions|F-Gases
+      - Emissions|Montreal Gases
+      - Emissions|N2O
+      - Emissions|NH3
+      - Emissions|NOx
+      - Emissions|OC
+      - Emissions|Sulfur
+      - Emissions|VOC
+  Emissions|BC:
     title: Emissions|BC
     comment: total black carbon emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  CH4:
+    - - Emissions|BC|MAGICC AFOLU
+      - Emissions|BC|MAGICC Fossil and Industrial
+      - Emissions|BC|Other
+  Emissions|BC|MAGICC AFOLU:
+    title: Emissions|BC|MAGICC AFOLU
+    comment: black carbon emissions from agriculture, forestry and other land use
+      (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural
+      sector (hence not identical to WG3 AFOLU)
+  Emissions|BC|MAGICC Fossil and Industrial:
+    title: Emissions|BC|MAGICC Fossil and Industrial
+    comment: black carbon emissions from energy use on supply and demand side (IPCC
+      category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category
+      4) and other (IPCC category 5)
+  Emissions|BC|Other:
+    title: Emissions|BC|Other
+    comment: black carbon emissions from other sources (please provide a definition
+      of other sources in this category in the 'comments' tab)
+  Emissions|CH4:
     title: Emissions|CH4
     comment: total methane emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  CO:
+    - - Emissions|CH4|MAGICC AFOLU
+      - Emissions|CH4|MAGICC Fossil and Industrial
+      - Emissions|CH4|Other
+  Emissions|CH4|MAGICC AFOLU:
+    title: Emissions|CH4|MAGICC AFOLU
+    comment: methane emissions from agriculture, forestry and other land use (IPCC
+      category 3), excluding any fossil-fuel based emissions in the Agricultural sector
+      (hence not identical to WG3 AFOLU)
+  Emissions|CH4|MAGICC Fossil and Industrial:
+    title: Emissions|CH4|MAGICC Fossil and Industrial
+    comment: methane emissions from energy use on supply and demand side (IPCC category
+      1A, 1B), industrial processes (IPCC category 2), waste (IPCC category 4) and
+      other (IPCC category 5)
+  Emissions|CH4|Other:
+    title: Emissions|CH4|Other
+    comment: methane emissions from other sources (please provide a definition of
+      other sources in this category in the 'comments' tab)
+  Emissions|CO:
     title: Emissions|CO
     comment: total carbon monoxide emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  CO2:
+    - - Emissions|CO|MAGICC AFOLU
+      - Emissions|CO|MAGICC Fossil and Industrial
+      - Emissions|CO|Other
+  Emissions|CO|MAGICC AFOLU:
+    title: Emissions|CO|MAGICC AFOLU
+    comment: carbon monoxide emissions from agriculture, forestry and other land use
+      (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural
+      sector (hence not identical to WG3 AFOLU)
+  Emissions|CO|MAGICC Fossil and Industrial:
+    title: Emissions|CO|MAGICC Fossil and Industrial
+    comment: carbon monoxide emissions from energy use on supply and demand side (IPCC
+      category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category
+      4) and other (IPCC category 5)
+  Emissions|CO|Other:
+    title: Emissions|CO|Other
+    comment: carbon monoxide emissions from other sources (please provide a definition
+      of other sources in this category in the 'comments' tab)
+  Emissions|CO2:
     title: Emissions|CO2
     comment: total carbon dioxide emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  F-Gases:
+    - - Emissions|CO2|MAGICC AFOLU
+      - Emissions|CO2|MAGICC Fossil and Industrial
+      - Emissions|CO2|Other
+  Emissions|CO2|MAGICC AFOLU:
+    title: Emissions|CO2|MAGICC AFOLU
+    comment: carbon dioxide emissions from agriculture, forestry and other land use
+      (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural
+      sector (hence not identical to WG3 AFOLU)
+  Emissions|CO2|MAGICC Fossil and Industrial:
+    title: Emissions|CO2|MAGICC Fossil and Industrial
+    comment: carbon dioxide emissions from energy use on supply and demand side (IPCC
+      category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category
+      4) and other (IPCC category 5)
+  Emissions|CO2|Other:
+    title: Emissions|CO2|Other
+    comment: carbon dioxide emissions from other sources (please provide a definition
+      of other sources in this category in the 'comments' tab)
+  Emissions|F-Gases:
     title: Emissions|F-Gases
     comment: 'total F-gas emissions, including sulfur hexafluoride (SF6), nitrogen
       trifluoride (NF3), sulfuryl fluoride (SO2F2), hydrofluorocarbons (HFCs), perfluorocarbons
       (PFCs) '
     children:
-    - - HFC
-      - NF3
-      - PFC
-      - SF6
-      - SO2F2
-  HFC:
+    - - Emissions|F-Gases|HFC
+      - Emissions|F-Gases|NF3
+      - Emissions|F-Gases|PFC
+      - Emissions|F-Gases|SF6
+      - Emissions|F-Gases|SO2F2
+  Emissions|F-Gases|HFC:
     title: Emissions|F-Gases|HFC
     comment: equivalent species total emissions of hydrofluorocarbons (HFCs and HCFCs),
       provided as aggregate CO2-equivalents
     children:
-    - - HFC125
-      - HFC134a
-      - HFC143a
-      - HFC152a
-      - HFC227ea
-      - HFC23
-      - HFC236fa
-      - HFC245fa
-      - HFC32
-      - HFC365mfc
-      - HFC4310mee
-  HFC125:
+    - - Emissions|F-Gases|HFC|HFC125
+      - Emissions|F-Gases|HFC|HFC134a
+      - Emissions|F-Gases|HFC|HFC143a
+      - Emissions|F-Gases|HFC|HFC152a
+      - Emissions|F-Gases|HFC|HFC227ea
+      - Emissions|F-Gases|HFC|HFC23
+      - Emissions|F-Gases|HFC|HFC236fa
+      - Emissions|F-Gases|HFC|HFC245fa
+      - Emissions|F-Gases|HFC|HFC32
+      - Emissions|F-Gases|HFC|HFC365mfc
+      - Emissions|F-Gases|HFC|HFC4310mee
+  Emissions|F-Gases|HFC|HFC125:
     title: Emissions|F-Gases|HFC|HFC125
     comment: total emissions of HFC125
-  HFC134a:
+  Emissions|F-Gases|HFC|HFC134a:
     title: Emissions|F-Gases|HFC|HFC134a
     comment: total emissions of HFC134a
-  HFC143a:
+  Emissions|F-Gases|HFC|HFC143a:
     title: Emissions|F-Gases|HFC|HFC143a
     comment: total emissions of HFC143a
-  HFC152a:
+  Emissions|F-Gases|HFC|HFC152a:
     title: Emissions|F-Gases|HFC|HFC152a
     comment: total emissions of HFC152a
-  HFC227ea:
+  Emissions|F-Gases|HFC|HFC227ea:
     title: Emissions|F-Gases|HFC|HFC227ea
     comment: total emissions of HFC227ea
-  HFC23:
+  Emissions|F-Gases|HFC|HFC23:
     title: Emissions|F-Gases|HFC|HFC23
     comment: total emissions of HFC23
-  HFC236fa:
+  Emissions|F-Gases|HFC|HFC236fa:
     title: Emissions|F-Gases|HFC|HFC236fa
     comment: total emissions of HFC236fa
-  HFC245fa:
+  Emissions|F-Gases|HFC|HFC245fa:
     title: Emissions|F-Gases|HFC|HFC245fa
     comment: total emissions of HFC245fa
-  HFC32:
+  Emissions|F-Gases|HFC|HFC32:
     title: Emissions|F-Gases|HFC|HFC32
     comment: total emissions of HFC32
-  HFC365mfc:
+  Emissions|F-Gases|HFC|HFC365mfc:
     title: Emissions|F-Gases|HFC|HFC365mfc
     comment: total emissions of HFC365mfc
-  HFC4310mee:
+  Emissions|F-Gases|HFC|HFC4310mee:
     title: Emissions|F-Gases|HFC|HFC4310mee
     comment: total emissions of HFC43-10mee
-  NF3:
+  Emissions|F-Gases|NF3:
     title: Emissions|F-Gases|NF3
     comment: total emissions of nitrogen trifluoride (NF3)
-  PFC:
+  Emissions|F-Gases|PFC:
     title: Emissions|F-Gases|PFC
     comment: equivalent species total emissions of perfluorocarbons (PFCs, as defined
       by Table 8.A.1 of AR5), provided as aggregate CF4-equivalents
     children:
-    - - C2F6
-      - C3F8
-      - C4F10
-      - C5F12
-      - C6F14
-      - C7F16
-      - C8F18
-      - CF4
-      - cC4F8
-  C2F6:
+    - - Emissions|F-Gases|PFC|C2F6
+      - Emissions|F-Gases|PFC|C3F8
+      - Emissions|F-Gases|PFC|C4F10
+      - Emissions|F-Gases|PFC|C5F12
+      - Emissions|F-Gases|PFC|C6F14
+      - Emissions|F-Gases|PFC|C7F16
+      - Emissions|F-Gases|PFC|C8F18
+      - Emissions|F-Gases|PFC|CF4
+      - Emissions|F-Gases|PFC|cC4F8
+  Emissions|F-Gases|PFC|C2F6:
     title: Emissions|F-Gases|PFC|C2F6
     comment: total emissions of C2F6
-  C3F8:
+  Emissions|F-Gases|PFC|C3F8:
     title: Emissions|F-Gases|PFC|C3F8
     comment: total emissions of C3F8
-  C4F10:
+  Emissions|F-Gases|PFC|C4F10:
     title: Emissions|F-Gases|PFC|C4F10
     comment: total emissions of C4F10
-  C5F12:
+  Emissions|F-Gases|PFC|C5F12:
     title: Emissions|F-Gases|PFC|C5F12
     comment: total emissions of C5F12
-  C6F14:
+  Emissions|F-Gases|PFC|C6F14:
     title: Emissions|F-Gases|PFC|C6F14
     comment: total emissions of C6F14
-  C7F16:
+  Emissions|F-Gases|PFC|C7F16:
     title: Emissions|F-Gases|PFC|C7F16
     comment: total emissions of C7F16
-  C8F18:
+  Emissions|F-Gases|PFC|C8F18:
     title: Emissions|F-Gases|PFC|C8F18
     comment: total emissions of C8F18
-  cC4F8:
+  Emissions|F-Gases|PFC|cC4F8:
     title: Emissions|F-Gases|PFC|cC4F8
     comment: total emissions of c-C4F8
-  CF4:
+  Emissions|F-Gases|PFC|CF4:
     title: Emissions|F-Gases|PFC|CF4
     comment: total emissions of CF4
-  SF6:
+  Emissions|F-Gases|SF6:
     title: Emissions|F-Gases|SF6
     comment: total emissions of sulfur hexafluoride (SF6)
-  SO2F2:
+  Emissions|F-Gases|SO2F2:
     title: Emissions|F-Gases|SO2F2
     comment: total emissions of sulfuryl fluoride (SO2F2)
-  Montreal Gases:
+  Emissions|Montreal Gases:
     title: Emissions|Montreal Gases
     comment: equivalent species total Montreal gas emissions, provided as CFC-11 equivalents
     children:
-    - - CCl4
-      - CFC
-      - CH2Cl2
-      - CH3Br
-      - CH3CCl3
-      - CH3Cl
-      - CHCl3
-      - HCFC141b
-      - HCFC142b
-      - HCFC22
-      - Halon1202
-      - Halon1211
-      - Halon1301
-      - Halon2402
-  CCl4:
+    - - Emissions|Montreal Gases|CCl4
+      - Emissions|Montreal Gases|CFC
+      - Emissions|Montreal Gases|CH2Cl2
+      - Emissions|Montreal Gases|CH3Br
+      - Emissions|Montreal Gases|CH3CCl3
+      - Emissions|Montreal Gases|CH3Cl
+      - Emissions|Montreal Gases|CHCl3
+      - Emissions|Montreal Gases|HCFC141b
+      - Emissions|Montreal Gases|HCFC142b
+      - Emissions|Montreal Gases|HCFC22
+      - Emissions|Montreal Gases|Halon1202
+      - Emissions|Montreal Gases|Halon1211
+      - Emissions|Montreal Gases|Halon1301
+      - Emissions|Montreal Gases|Halon2402
+  Emissions|Montreal Gases|CCl4:
     title: Emissions|Montreal Gases|CCl4
     comment: total emissions of CCl4
-  CFC:
+  Emissions|Montreal Gases|CFC:
     title: Emissions|Montreal Gases|CFC
     comment: equivalent species total CFC emissions, provided as CFC-11 equivalents
     children:
-    - - CFC11
-      - CFC113
-      - CFC114
-      - CFC115
-      - CFC12
-  CFC11:
+    - - Emissions|Montreal Gases|CFC|CFC11
+      - Emissions|Montreal Gases|CFC|CFC113
+      - Emissions|Montreal Gases|CFC|CFC114
+      - Emissions|Montreal Gases|CFC|CFC115
+      - Emissions|Montreal Gases|CFC|CFC12
+  Emissions|Montreal Gases|CFC|CFC11:
     title: Emissions|Montreal Gases|CFC|CFC11
     comment: total emissions of CFC11
-  CFC113:
+  Emissions|Montreal Gases|CFC|CFC113:
     title: Emissions|Montreal Gases|CFC|CFC113
     comment: total emissions of CFC113
-  CFC114:
+  Emissions|Montreal Gases|CFC|CFC114:
     title: Emissions|Montreal Gases|CFC|CFC114
     comment: total emissions of CFC114
-  CFC115:
+  Emissions|Montreal Gases|CFC|CFC115:
     title: Emissions|Montreal Gases|CFC|CFC115
     comment: total emissions of CFC115
-  CFC12:
+  Emissions|Montreal Gases|CFC|CFC12:
     title: Emissions|Montreal Gases|CFC|CFC12
     comment: total emissions of CFC12
-  CH2Cl2:
+  Emissions|Montreal Gases|CH2Cl2:
     title: Emissions|Montreal Gases|CH2Cl2
     comment: total emissions of CH2Cl2
-  CH3Br:
+  Emissions|Montreal Gases|CH3Br:
     title: Emissions|Montreal Gases|CH3Br
     comment: total emissions of CH3Br
-  CH3CCl3:
+  Emissions|Montreal Gases|CH3CCl3:
     title: Emissions|Montreal Gases|CH3CCl3
     comment: total emissions of CH3CCl3
-  CH3Cl:
+  Emissions|Montreal Gases|CH3Cl:
     title: Emissions|Montreal Gases|CH3Cl
     comment: total emissions of CH3Cl
-  CHCl3:
+  Emissions|Montreal Gases|CHCl3:
     title: Emissions|Montreal Gases|CHCl3
     comment: total emissions of CHCl3
-  Halon1202:
+  Emissions|Montreal Gases|Halon1202:
     title: Emissions|Montreal Gases|Halon1202
     comment: total emissions of Halon-1202
-  Halon1211:
+  Emissions|Montreal Gases|Halon1211:
     title: Emissions|Montreal Gases|Halon1211
     comment: total emissions of Halon-1211
-  Halon1301:
+  Emissions|Montreal Gases|Halon1301:
     title: Emissions|Montreal Gases|Halon1301
     comment: total emissions of Halon-1301
-  Halon2402:
+  Emissions|Montreal Gases|Halon2402:
     title: Emissions|Montreal Gases|Halon2402
     comment: total emissions of Halon-2402
-  HCFC141b:
+  Emissions|Montreal Gases|HCFC141b:
     title: Emissions|Montreal Gases|HCFC141b
     comment: total emissions of HCFC141b
-  HCFC142b:
+  Emissions|Montreal Gases|HCFC142b:
     title: Emissions|Montreal Gases|HCFC142b
     comment: total emissions of HCFC22
-  HCFC22:
+  Emissions|Montreal Gases|HCFC22:
     title: Emissions|Montreal Gases|HCFC22
     comment: total emissions of HCFC22
-  N2O:
+  Emissions|N2O:
     title: Emissions|N2O
     comment: total nitrogen emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  NH3:
+    - - Emissions|N2O|MAGICC AFOLU
+      - Emissions|N2O|MAGICC Fossil and Industrial
+      - Emissions|N2O|Other
+  Emissions|N2O|MAGICC AFOLU:
+    title: Emissions|N2O|MAGICC AFOLU
+    comment: nitrogen emissions from agriculture, forestry and other land use (IPCC
+      category 3), excluding any fossil-fuel based emissions in the Agricultural sector
+      (hence not identical to WG3 AFOLU)
+  Emissions|N2O|MAGICC Fossil and Industrial:
+    title: Emissions|N2O|MAGICC Fossil and Industrial
+    comment: nitrogen emissions from energy use on supply and demand side (IPCC category
+      1A, 1B), industrial processes (IPCC category 2), waste (IPCC category 4) and
+      other (IPCC category 5)
+  Emissions|N2O|Other:
+    title: Emissions|N2O|Other
+    comment: nitrogen emissions from other sources (please provide a definition of
+      other sources in this category in the 'comments' tab)
+  Emissions|NH3:
     title: Emissions|NH3
     comment: total ammonia emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  NOx:
+    - - Emissions|NH3|MAGICC AFOLU
+      - Emissions|NH3|MAGICC Fossil and Industrial
+      - Emissions|NH3|Other
+  Emissions|NH3|MAGICC AFOLU:
+    title: Emissions|NH3|MAGICC AFOLU
+    comment: ammonia emissions from agriculture, forestry and other land use (IPCC
+      category 3), excluding any fossil-fuel based emissions in the Agricultural sector
+      (hence not identical to WG3 AFOLU)
+  Emissions|NH3|MAGICC Fossil and Industrial:
+    title: Emissions|NH3|MAGICC Fossil and Industrial
+    comment: ammonia emissions from energy use on supply and demand side (IPCC category
+      1A, 1B), industrial processes (IPCC category 2), waste (IPCC category 4) and
+      other (IPCC category 5)
+  Emissions|NH3|Other:
+    title: Emissions|NH3|Other
+    comment: ammonia emissions from other sources (please provide a definition of
+      other sources in this category in the 'comments' tab)
+  Emissions|NOx:
     title: Emissions|NOx
     comment: total nitrous oxide emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  OC:
+    - - Emissions|NOx|MAGICC AFOLU
+      - Emissions|NOx|MAGICC Fossil and Industrial
+      - Emissions|NOx|Other
+  Emissions|NOx|MAGICC AFOLU:
+    title: Emissions|NOx|MAGICC AFOLU
+    comment: nitrous oxide emissions from agriculture, forestry and other land use
+      (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural
+      sector (hence not identical to WG3 AFOLU)
+  Emissions|NOx|MAGICC Fossil and Industrial:
+    title: Emissions|NOx|MAGICC Fossil and Industrial
+    comment: nitrous oxide emissions from energy use on supply and demand side (IPCC
+      category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category
+      4) and other (IPCC category 5)
+  Emissions|NOx|Other:
+    title: Emissions|NOx|Other
+    comment: nitrous oxide emissions from other sources (please provide a definition
+      of other sources in this category in the 'comments' tab)
+  Emissions|OC:
     title: Emissions|OC
     comment: total organic carbon emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  Sulfur:
+    - - Emissions|OC|MAGICC AFOLU
+      - Emissions|OC|MAGICC Fossil and Industrial
+      - Emissions|OC|Other
+  Emissions|OC|MAGICC AFOLU:
+    title: Emissions|OC|MAGICC AFOLU
+    comment: organic carbon emissions from agriculture, forestry and other land use
+      (IPCC category 3), excluding any fossil-fuel based emissions in the Agricultural
+      sector (hence not identical to WG3 AFOLU)
+  Emissions|OC|MAGICC Fossil and Industrial:
+    title: Emissions|OC|MAGICC Fossil and Industrial
+    comment: organic carbon emissions from energy use on supply and demand side (IPCC
+      category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC category
+      4) and other (IPCC category 5)
+  Emissions|OC|Other:
+    title: Emissions|OC|Other
+    comment: organic carbon emissions from other sources (please provide a definition
+      of other sources in this category in the 'comments' tab)
+  Emissions|Sulfur:
     title: Emissions|Sulfur
     comment: total sulfur (as a precursor for sulfates) emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
-  VOC:
+    - - Emissions|Sulfur|MAGICC AFOLU
+      - Emissions|Sulfur|MAGICC Fossil and Industrial
+      - Emissions|Sulfur|Other
+  Emissions|Sulfur|MAGICC AFOLU:
+    title: Emissions|Sulfur|MAGICC AFOLU
+    comment: sulfur (as a precursor for sulfates) emissions from agriculture, forestry
+      and other land use (IPCC category 3), excluding any fossil-fuel based emissions
+      in the Agricultural sector (hence not identical to WG3 AFOLU)
+  Emissions|Sulfur|MAGICC Fossil and Industrial:
+    title: Emissions|Sulfur|MAGICC Fossil and Industrial
+    comment: sulfur (as a precursor for sulfates) emissions from energy use on supply
+      and demand side (IPCC category 1A, 1B), industrial processes (IPCC category
+      2), waste (IPCC category 4) and other (IPCC category 5)
+  Emissions|Sulfur|Other:
+    title: Emissions|Sulfur|Other
+    comment: sulfur (as a precursor for sulfates) emissions from other sources (please
+      provide a definition of other sources in this category in the 'comments' tab)
+  Emissions|VOC:
     title: Emissions|VOC
     comment: total (non-methane) volatile organic compounds emissions
     children:
-    - - MAGICC AFOLU
-      - MAGICC Fossil and Industrial
-      - Other
+    - - Emissions|VOC|MAGICC AFOLU
+      - Emissions|VOC|MAGICC Fossil and Industrial
+      - Emissions|VOC|Other
+  Emissions|VOC|MAGICC AFOLU:
+    title: Emissions|VOC|MAGICC AFOLU
+    comment: (non-methane) volatile organic compounds emissions from agriculture,
+      forestry and other land use (IPCC category 3), excluding any fossil-fuel based
+      emissions in the Agricultural sector (hence not identical to WG3 AFOLU)
+  Emissions|VOC|MAGICC Fossil and Industrial:
+    title: Emissions|VOC|MAGICC Fossil and Industrial
+    comment: (non-methane) volatile organic compounds emissions from energy use on
+      supply and demand side (IPCC category 1A, 1B), industrial processes (IPCC category
+      2), waste (IPCC category 4) and other (IPCC category 5)
+  Emissions|VOC|Other:
+    title: Emissions|VOC|Other
+    comment: (non-methane) volatile organic compounds emissions from other sources
+      (please provide a definition of other sources in this category in the 'comments'
+      tab)

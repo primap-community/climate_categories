@@ -23,33 +23,14 @@ def main():
 
     categories["Emissions"] = {"title": "RCMIP Emissions", "children": [[]]}
 
-    categories["MAGICC AFOLU"] = {
-        "title": "MAGICC AFOLU",
-        "comment": (
-            "emissions from agriculture, forestry and other land use (IPCC"
-            " category 3), excluding any fossil-fuel based emissions in the"
-            " Agricultural sector (hence not identical to WG3 AFOLU)"
-        ),
-    }
-
-    categories["MAGICC Fossil and Industrial"] = {
-        "title": "MAGICC Fossil and Industrial",
-        "comment": (
-            "emissions from energy use on supply and demand side (IPCC "
-            "category 1A, 1B), industrial processes (IPCC category 2), waste (IPCC "
-            "category 4) and other (IPCC category 5)"
-        ),
-        "children": [[]],
-    }
-
-    categories["Other"] = {"title": "Other", "comment": "emissions from other sources"}
-
     definitions = pd.read_excel(INPATH, sheet_name="variable_definitions")
 
     for _, item in definitions[definitions.Category == "Emissions"].iterrows():
 
-        species = item.Variable.rsplit("|", maxsplit=1)[-1]
-        parent = item.Variable.rsplit("|", maxsplit=2)[-2]
+        species = item.Variable
+        print(species)
+        parent = item.Variable.rsplit("|", maxsplit=1)[0]
+        print(parent)
         if species not in categories:
             categories[species] = {
                 "title": item.Variable,
