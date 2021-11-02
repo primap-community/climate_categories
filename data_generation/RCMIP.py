@@ -72,7 +72,7 @@ def main():
         "last_update": "2020-09-21",
         "hierarchical": True,
         "version": "v5.1.0",
-        "total_sum": False,
+        "total_sum": True,
         "categories": categories,
     }
 

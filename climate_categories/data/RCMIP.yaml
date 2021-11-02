@@ -17,7 +17,7 @@ institution: RCMIP
 hierarchical: true
 last_update: '2020-09-21'
 version: v5.1.0
-total_sum: false
+total_sum: true
 categories:
   Emissions:
     title: RCMIP Emissions
