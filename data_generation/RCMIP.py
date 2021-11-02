@@ -1,6 +1,7 @@
 """Run this via `make climate_categories/data/RCMIP.yaml` in the main directory."""
 
 import pathlib
+import re
 
 import pandas as pd
 from utils import download_cached
@@ -15,6 +16,14 @@ URL = (
 INPATH = pathlib.Path(f"./data_generation/{RCMIP_SUBMISSIONS_TEMPLATE}")
 OUTPATH = pathlib.Path("./climate_categories/data/RCMIP.yaml")
 
+comment = """
+
+
+AFOLU in the SSPDb is AFOLU minus any agriculture
+related fossil fuel based emissions hence is not the same as the
+WG3 AFOLU definition. Rather AFOLU in the SSPDb is AFOLU as expected by
+MAGICC (i.e. exluding agriculture related fossil fuel use), hence
+we call it MAGICC AFOLU."""
 
 def main():
     download_cached(URL, INPATH)
@@ -33,7 +42,7 @@ def main():
         print(parent)
         if species not in categories:
             categories[species] = {
-                "title": item.Variable,
+                "title": re.sub(r'\([^)]*\)', '', item.Definition).replace(" ,", ",").replace("  ", " "),
                 "comment": item.Definition,
                 "children": [[]],
             }
@@ -46,7 +55,7 @@ def main():
             "Emissions categories from the Reduced Complexity Model "
             "Intercomparison Project (RCMIP)"
         ),
-        "comment": "",
+        "comment": comment,
         "references": (
             "Nicholls, Z. R. J., Meinshausen, M., Lewis, J., Gieseke, R., "
             "Dommenget, D., Dorheim, K., Fan, C.-S., Fuglestvedt, J. S., Gasser, T., "
