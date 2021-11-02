@@ -25,6 +25,7 @@ WG3 AFOLU definition. Rather AFOLU in the SSPDb is AFOLU as expected by
 MAGICC (i.e. exluding agriculture related fossil fuel use), hence
 we call it MAGICC AFOLU."""
 
+
 def main():
     download_cached(URL, INPATH)
 
@@ -42,7 +43,9 @@ def main():
         print(parent)
         if species not in categories:
             categories[species] = {
-                "title": re.sub(r'\([^)]*\)', '', item.Definition).replace(" ,", ",").replace("  ", " "),
+                "title": re.sub(r"\([^)]*\)", "", item.Definition)
+                .replace(" ,", ",")
+                .replace("  ", " "),
                 "comment": item.Definition,
                 "children": [[]],
             }
