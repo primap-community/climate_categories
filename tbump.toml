@@ -51,4 +51,4 @@ cmd = "venv/bin/python update_changelog.py {new_version}"
 
 [[after_push]]
 name = "release on github"
-cmd = "gh release create --repo pik-primap/primap2 v{new_version} --title 'PRIMAP2 Version {new_version}' --notes-file .changelog_latest_version.rst"
+cmd = "gh release create --repo pik-primap/climate_categories v{new_version} --title 'climate_categories Version {new_version}' --notes-file .changelog_latest_version.rst"
