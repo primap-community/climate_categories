@@ -16,10 +16,7 @@ URL = (
 INPATH = pathlib.Path(f"./data_generation/{RCMIP_SUBMISSIONS_TEMPLATE}")
 OUTPATH = pathlib.Path("./climate_categories/data/RCMIP.yaml")
 
-comment = """
-
-
-AFOLU in the SSPDb is AFOLU minus any agriculture
+comment = """AFOLU in the SSPDb is AFOLU minus any agriculture
 related fossil fuel based emissions hence is not the same as the
 WG3 AFOLU definition. Rather AFOLU in the SSPDb is AFOLU as expected by
 MAGICC (i.e. exluding agriculture related fossil fuel use), hence
