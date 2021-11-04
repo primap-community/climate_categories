@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.6.1 (2021-11-04)
+------------------
+ * Add emissions categorization from the `Reduced Complexity Model Intercomparison Project (RCMIP) <https://www.rcmip.org/>`_. Thanks to Robert Gieseke for the contribution and Zeb Nicholls for input.
+
 0.6.0 (2021-10-22)
 ------------------
 * Automate changelog generation from snippets - avoids resolving merge conflicts
