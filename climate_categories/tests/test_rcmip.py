@@ -2,9 +2,7 @@ import climate_categories
 
 
 def test_number_of_categories():
-    assert (
-        len(climate_categories.RCMIP) == 87  # 86 from Excel sheet + top level
-        )
+    assert len(climate_categories.RCMIP) == 87  # 86 from Excel sheet + top level
 
 
 def test_levels():

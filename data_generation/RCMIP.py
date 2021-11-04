@@ -168,7 +168,7 @@ def main():
         "version": "v5.1.0",
         "total_sum": True,
         "categories": categories,
-        "canonical_top_level_category": 'Emissions'
+        "canonical_top_level_category": "Emissions",
     }
 
     RCMIP = climate_categories.HierarchicalCategorization.from_spec(spec)
