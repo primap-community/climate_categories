@@ -18,6 +18,7 @@ hierarchical: true
 last_update: '2020-09-21'
 version: v5.1.0
 total_sum: true
+canonical_top_level_category: Emissions
 categories:
   Emissions:
     title: RCMIP Emissions
