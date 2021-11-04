@@ -32,7 +32,7 @@ BURDI_class      BUR GHG emission categories (DI query interface) + classificati
 CRFDI            CRF GHG emission categories (DI query interface)
 CRFDI_class      CRF GHG emission categories (DI query interface) + classifications
 GCB              Global Carbon Budget CO2 emission categories
-RCMIP            RCMIP emisisons categories
+RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
 ===============  ==================================================================
 
