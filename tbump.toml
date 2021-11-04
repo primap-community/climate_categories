@@ -32,7 +32,7 @@ search = '__version__ = "{current_version}"'
 
 [[file]]
 src = "README.rst"
-search = 'pik-primap/climate_categories: Version {current_version}.'
+search = 'pik-primap/climate_categories: climate_categories Version {current_version}.'
 
 # You can specify a list of commands to
 # run after the files have been patched
