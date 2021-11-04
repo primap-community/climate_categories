@@ -1,1 +1,1 @@
- * Add emissions categorization from the `Reduced Complexity Model Intercomparison Project (RCMIP) <https://www.rcmip.org/>`_.
+ * Add emissions categorization from the `Reduced Complexity Model Intercomparison Project (RCMIP) <https://www.rcmip.org/>`_. Thanks to Robert Gieseke for the contribution and Zeb Nicholls for input.
