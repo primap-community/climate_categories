@@ -74,6 +74,7 @@ install-pre-commit: update-venv ## install the pre-commit hooks
 %.pickle: %.yaml
 	venv/bin/python data_generation/convert_yaml_to_pickle.py $< $@
 
+pickles: climate_categories/data/RCMIP.pickle
 pickles: climate_categories/data/GCB.pickle
 pickles: climate_categories/data/IPCC2006.pickle
 pickles: climate_categories/data/IPCC2006_PRIMAP.pickle
@@ -84,6 +85,10 @@ pickles: climate_categories/data/CRFDI.pickle
 pickles: climate_categories/data/CRFDI_class.pickle
 pickles: climate_categories/data/BURDI.pickle
 pickles: climate_categories/data/BURDI_class.pickle ## re-generate pickles from yamls
+
+
+climate_categories/data/RCMIP.yaml: data_generation/RCMIP.py data_generation/utils.py
+	venv/bin/python data_generation/RCMIP.py
 
 climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py data_generation/utils.py
 	venv/bin/python data_generation/IPCC2006.py
