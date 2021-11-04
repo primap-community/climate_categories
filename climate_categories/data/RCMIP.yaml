@@ -54,8 +54,7 @@ categories:
       4) and other (IPCC category 5)
   Emissions|BC|Other:
     title: Black carbon emissions from other sources
-    comment: black carbon emissions from other sources (please provide a definition
-      of other sources in this category in the 'comments' tab)
+    comment: black carbon emissions from other sources (please provide a definition)
   Emissions|CH4:
     title: Methane emissions
     comment: total methane emissions
@@ -75,8 +74,7 @@ categories:
       other (IPCC category 5)
   Emissions|CH4|Other:
     title: Methane emissions from other sources
-    comment: methane emissions from other sources (please provide a definition of
-      other sources in this category in the 'comments' tab)
+    comment: methane emissions from other sources (please provide a definition)
   Emissions|CO:
     title: Carbon monoxide emissions
     comment: total carbon monoxide emissions
@@ -96,8 +94,7 @@ categories:
       4) and other (IPCC category 5)
   Emissions|CO|Other:
     title: Carbon monoxide emissions from other sources
-    comment: carbon monoxide emissions from other sources (please provide a definition
-      of other sources in this category in the 'comments' tab)
+    comment: carbon monoxide emissions from other sources (please provide a definition)
   Emissions|CO2:
     title: Carbon dioxide emissions
     comment: total carbon dioxide emissions
@@ -117,8 +114,7 @@ categories:
       4) and other (IPCC category 5)
   Emissions|CO2|Other:
     title: Carbon dioxide emissions from other sources
-    comment: carbon dioxide emissions from other sources (please provide a definition
-      of other sources in this category in the 'comments' tab)
+    comment: carbon dioxide emissions from other sources (please provide a definition)
   Emissions|F-Gases:
     title: F-gas emissions
     comment: 'total F-gas emissions, including sulfur hexafluoride (SF6), nitrogen
@@ -329,8 +325,7 @@ categories:
       other (IPCC category 5)
   Emissions|N2O|Other:
     title: Nitrogen emissions from other sources
-    comment: nitrogen emissions from other sources (please provide a definition of
-      other sources in this category in the 'comments' tab)
+    comment: nitrogen emissions from other sources (please provide a definition)
   Emissions|NH3:
     title: Ammonia emissions
     comment: total ammonia emissions
@@ -350,8 +345,7 @@ categories:
       other (IPCC category 5)
   Emissions|NH3|Other:
     title: Ammonia emissions from other sources
-    comment: ammonia emissions from other sources (please provide a definition of
-      other sources in this category in the 'comments' tab)
+    comment: ammonia emissions from other sources (please provide a definition)
   Emissions|NOx:
     title: Nitrous oxide emissions
     comment: total nitrous oxide emissions
@@ -371,8 +365,7 @@ categories:
       4) and other (IPCC category 5)
   Emissions|NOx|Other:
     title: Nitrous oxide emissions from other sources
-    comment: nitrous oxide emissions from other sources (please provide a definition
-      of other sources in this category in the 'comments' tab)
+    comment: nitrous oxide emissions from other sources (please provide a definition)
   Emissions|OC:
     title: Organic carbon emissions
     comment: total organic carbon emissions
@@ -392,8 +385,7 @@ categories:
       4) and other (IPCC category 5)
   Emissions|OC|Other:
     title: Organic carbon emissions from other sources
-    comment: organic carbon emissions from other sources (please provide a definition
-      of other sources in this category in the 'comments' tab)
+    comment: organic carbon emissions from other sources (please provide a definition)
   Emissions|Sulfur:
     title: Sulfur emissions
     comment: total sulfur (as a precursor for sulfates) emissions
@@ -414,7 +406,7 @@ categories:
   Emissions|Sulfur|Other:
     title: Sulfur emissions from other sources
     comment: sulfur (as a precursor for sulfates) emissions from other sources (please
-      provide a definition of other sources in this category in the 'comments' tab)
+      provide a definition)
   Emissions|VOC:
     title: (Non-methane) volatile organic compounds emissions
     comment: total (non-methane) volatile organic compounds emissions
@@ -435,5 +427,4 @@ categories:
   Emissions|VOC|Other:
     title: (Non-methane) volatile organic compounds emissions from other sources
     comment: (non-methane) volatile organic compounds emissions from other sources
-      (please provide a definition of other sources in this category in the 'comments'
-      tab)
+      (please provide a definition)

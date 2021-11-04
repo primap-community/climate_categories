@@ -134,10 +134,15 @@ def main():
         print(species)
         parent = item.Variable.rsplit("|", maxsplit=1)[0]
         print(parent)
+        item_comment = item.Definition.replace(
+            "(please provide a definition of other sources in this category in the "
+            "'comments' tab)",
+            "(please provide a definition)",
+        )
         if species not in categories:
             categories[species] = {
                 "title": titles[species.rsplit("Emissions|", maxsplit=1)[1]],
-                "comment": item.Definition,
+                "comment": item_comment,
                 "children": [[]],
             }
         if species not in categories[parent]["children"][0]:
