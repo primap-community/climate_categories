@@ -367,6 +367,11 @@ class ConversionRule:
     cardinality_b : str
         The cardinality of the rule on side b. Is "one" if there is exactly one category
         in factors_categories_b, and "many" otherwise.
+    is_restricted : bool
+        The rule is restricted if and only if for at least one auxiliary categorization
+        at least one category is specified, so that the rule is only valid for a
+        subset of cases. Otherwise, the rule is unrestricted and valid for all
+        cases.
     """
 
     factors_categories_a: typing.Dict["Category", int]
@@ -377,6 +382,7 @@ class ConversionRule:
     csv_original_text: typing.Optional[str] = None
     cardinality_a: str = dataclasses.field(init=False)
     cardinality_b: str = dataclasses.field(init=False)
+    is_restricted: bool = dataclasses.field(init=False)
 
     def __post_init__(self):
         # Have to use object.__setattr__ because the class is frozen. This is fine
@@ -390,6 +396,9 @@ class ConversionRule:
             self,
             "cardinality_b",
             "one" if len(self.factors_categories_b) == 1 else "many",
+        )
+        object.__setattr__(
+            self, "is_restricted", any(self.auxiliary_categories.values())
         )
 
     def __eq__(self, other: "ConversionRule"):
@@ -1154,11 +1163,7 @@ class Conversion(ConversionBase):
             simple_sums_only=True,
         )
         # TODO: for now, only use rules that don't have aux categories
-        relevant_rules = [
-            rule
-            for rule in relevant_rules
-            if not any(rule.auxiliary_categories.values())
-        ]
+        relevant_rules = [rule for rule in relevant_rules if not rule.is_restricted]
         projected_ancestral_set: typing.List[typing.Set["HierarchicalCategory"]] = []
         for rule in relevant_rules:
             if source_categorization == self.categorization_a:
