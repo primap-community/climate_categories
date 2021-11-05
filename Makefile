@@ -48,7 +48,7 @@ update-citation: ## Update the citation information from zenodo
 release: dist ## package and upload a release
 	venv/bin/twine upload dist/*
 
-dist: clean venv pickles ## builds source and wheel package
+dist: clean venv ## builds source and wheel package
 	venv/bin/python -m build
 	ls -l dist
 
