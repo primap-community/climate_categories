@@ -1,5 +1,4 @@
 """Run this via `make climate_categories/data/BURDI.yaml` in the main directory."""
-import datetime
 import pathlib
 
 import natsort
@@ -143,7 +142,7 @@ def main():
         "https://unfccc.int/files/meetings/workshops/other_meetings/application/pdf/"
         "dec17-cp.pdf",
         "institution": "UNFCCC",
-        "last_update": datetime.date.today().isoformat(),
+        "last_update": "2021-11-05",
         "hierarchical": True,
         "total_sum": True,
         "categories": categories,

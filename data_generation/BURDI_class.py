@@ -1,5 +1,6 @@
 """Run this via `make climate_categories/data/BURDI_class.yaml` in the main directory.
 """
+import datetime
 import pathlib
 
 import numpy as np
@@ -71,6 +72,7 @@ def main():
         title=" + classifications",
         comment=" extended by sub-classifications also provided by the DI flexible "
         "query interface",
+        last_update=datetime.date.fromisoformat("2021-11-05"),
     )
     BURDI_class.institution = "UNFCCC"
     BURDI_class.references = (

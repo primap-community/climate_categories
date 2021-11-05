@@ -1,5 +1,6 @@
 """Run this via `make climate_categories/data/CRFDI_class.yaml` in the main directory.
 """
+import datetime
 import pathlib
 
 import numpy as np
@@ -123,6 +124,7 @@ def main():
         title=" + classifications",
         comment=" extended by sub-classifications also provided by the DI flexible "
         "query interface",
+        last_update=datetime.date.fromisoformat("2021-11-05"),
     )
     CRFDI_class.institution = "UNFCCC"
     CRFDI_class.references = (

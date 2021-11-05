@@ -1,5 +1,4 @@
 """Run this via `make climate_categories/data/CRFDI.yaml` in the main directory."""
-import datetime
 import pathlib
 
 import natsort
@@ -135,7 +134,7 @@ def main():
         "references": "https://unfccc.int/process-and-meetings/"
         "transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7",
         "institution": "UNFCCC",
-        "last_update": datetime.date.today().isoformat(),
+        "last_update": "2021-11-05",
         "hierarchical": True,
         "total_sum": True,
         "categories": categories,
