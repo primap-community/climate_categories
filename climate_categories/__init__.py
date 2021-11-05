@@ -13,6 +13,8 @@ import typing
 
 from . import _categories, data, search
 from ._categories import Categorization  # noqa: F401
+from ._categories import Category  # noqa: F401
+from ._categories import HierarchicalCategory  # noqa: F401
 from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
 from ._categories import HierarchicalCategorization, from_pickle
