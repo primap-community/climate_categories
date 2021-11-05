@@ -47,10 +47,6 @@ class TestConversionRuleSpec:
 
 
 class TestConversionRule:
-    def test_not_implemented(self):
-        with pytest.raises(NotImplementedError):
-            climate_categories.IPCC1996.conversion_to(climate_categories.gas)
-
     def test_str(self):
         C96 = climate_categories.IPCC1996
         C06 = climate_categories.IPCC2006
@@ -90,6 +86,40 @@ class TestConversionRule:
             csv_line_number=4,
         )
         assert cr.format_with_lineno() == "<Rule '1 - 2,,3,nice comment' from line 4>"
+
+    def test_cardinality(self):
+        C96 = climate_categories.IPCC1996
+        C06 = climate_categories.IPCC2006
+        cr = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={},
+            comment="",
+            csv_line_number=4,
+        )
+        assert cr.cardinality_a == "many"
+        assert cr.cardinality_b == "one"
+
+    def test_restricted(self):
+        C96 = climate_categories.IPCC1996
+        C06 = climate_categories.IPCC2006
+        gas = climate_categories.gas
+        unrestricted = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={},
+            comment="",
+            csv_line_number=4,
+        )
+        restricted = conversions.ConversionRule(
+            factors_categories_a={C96["1"]: 1, C96["2"]: -1},
+            factors_categories_b={C06["3"]: 1},
+            auxiliary_categories={gas: set("NO2")},
+            comment="",
+            csv_line_number=4,
+        )
+        assert not unrestricted.is_restricted
+        assert restricted.is_restricted
 
 
 class TestConversionSpec:
@@ -253,6 +283,10 @@ def good_conversion_reversed():
 
 
 class TestConversion:
+    def test_not_implemented(self):
+        with pytest.raises(NotImplementedError):
+            climate_categories.IPCC1996.conversion_to(climate_categories.gas)
+
     def test_symmetry(self):
         a = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
         b = climate_categories.IPCC2006.conversion_to(climate_categories.IPCC1996)
