@@ -15,6 +15,7 @@ URL = (
 )
 INPATH = pathlib.Path("./data_generation/IPCC2006.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006.yaml")
+OUTPATH_PY = pathlib.Path("./climate_categories/data/IPCC2006.py")
 
 
 def split_code_name(code_name):
@@ -268,6 +269,7 @@ def main():
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC2006.to_yaml(OUTPATH)
+    IPCC2006.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

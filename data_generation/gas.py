@@ -9,7 +9,7 @@ import openscm_units.data.mixtures
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/gas.yaml")
-OUTPATH_PICKLE = pathlib.Path("./climate_categories/data/gas.pickle")
+OUTPATH_PY = pathlib.Path("./climate_categories/data/gas.py")
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
 
     gas = climate_categories.HierarchicalCategorization.from_spec(spec)
     gas.to_yaml(OUTPATH)
-    gas.to_pickle(OUTPATH_PICKLE)
+    gas.to_python(OUTPATH_PY)
 
 
 def openscm_mixtures():

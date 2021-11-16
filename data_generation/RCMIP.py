@@ -14,7 +14,7 @@ URL = (
 )
 INPATH = pathlib.Path(f"./data_generation/{RCMIP_SUBMISSIONS_TEMPLATE}")
 OUTPATH = pathlib.Path("./climate_categories/data/RCMIP.yaml")
-OUTPATH_PY = pathlib.Path("./climate_categories/data/_rcmip.py")
+OUTPATH_PY = pathlib.Path("./climate_categories/data/RCMIP.py")
 
 comment = """AFOLU in the SSPDb is AFOLU minus any agriculture
 related fossil fuel based emissions hence is not the same as the
@@ -180,8 +180,7 @@ def main():
     RCMIP = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     RCMIP.to_yaml(OUTPATH)
-    with open(OUTPATH_PY, "w") as f:
-        f.write(f"spec = {repr(spec)}")
+    RCMIP.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

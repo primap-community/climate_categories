@@ -6,6 +6,7 @@ import pathlib
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006_PRIMAP.yaml")
+OUTPATH_PY = pathlib.Path("./climate_categories/data/IPCC2006_PRIMAP.py")
 
 # IPCC2006 categorization amended with custom categories
 
@@ -122,6 +123,7 @@ def main():
     ipcc2006_primap.canonical_top_level_category = ipcc2006_primap["0"]
 
     ipcc2006_primap.to_yaml(OUTPATH)
+    ipcc2006_primap.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

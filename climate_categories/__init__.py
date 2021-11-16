@@ -19,12 +19,17 @@ from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
 from ._categories import HierarchicalCategorization, from_pickle
 from ._conversions import Conversion, ConversionRule  # noqa: F401
-from .data import _rcmip
 
 cats = {}
 
 
-def _read_pickle_hier(name) -> HierarchicalCategorization:
+def _read_py_hier(name) -> HierarchicalCategorization:
+    _mod = importlib.import_module(f".data.{name}", package="climate_categories")
+    _cat = HierarchicalCategorization.from_spec(_mod.spec)
+    _cat._cats = cats
+    cats[_cat.name] = _cat
+    return _cat
+    return
     with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
         _cat = from_pickle(fd)
     _cat._cats = cats
@@ -42,18 +47,17 @@ def _read_pickle_hier(name) -> HierarchicalCategorization:
 
 
 # do this explicitly to help static analysis tools
-IPCC1996 = _read_pickle_hier("IPCC1996")
-IPCC2006 = _read_pickle_hier("IPCC2006")
-IPCC2006_PRIMAP = _read_pickle_hier("IPCC2006_PRIMAP")
-CRF1999 = _read_pickle_hier("CRF1999")
-CRFDI = _read_pickle_hier("CRFDI")
-CRFDI_class = _read_pickle_hier("CRFDI_class")
-BURDI = _read_pickle_hier("BURDI")
-BURDI_class = _read_pickle_hier("BURDI_class")
-GCB = _read_pickle_hier("GCB")
-
-RCMIP = HierarchicalCategorization.from_spec(_rcmip.spec)
-gas = _read_pickle_hier("gas")
+IPCC1996 = _read_py_hier("IPCC1996")
+IPCC2006 = _read_py_hier("IPCC2006")
+IPCC2006_PRIMAP = _read_py_hier("IPCC2006_PRIMAP")
+CRF1999 = _read_py_hier("CRF1999")
+CRFDI = _read_py_hier("CRFDI")
+CRFDI_class = _read_py_hier("CRFDI_class")
+BURDI = _read_py_hier("BURDI")
+BURDI_class = _read_py_hier("BURDI_class")
+GCB = _read_py_hier("GCB")
+RCMIP = _read_py_hier("RCMIP")
+gas = _read_py_hier("gas")
 
 
 def find_code(code: str) -> typing.Set[_categories.Category]:

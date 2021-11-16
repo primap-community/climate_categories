@@ -11,6 +11,7 @@ import natsort
 import networkx as nx
 import pandas
 import strictyaml as sy
+from black import Mode, format_str
 from ruamel.yaml import YAML
 
 from . import data
@@ -351,6 +352,12 @@ class Categorization:
         yaml.default_flow_style = False
         with open(filepath, "w") as fd:
             yaml.dump(spec, fd)
+
+    def to_python(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+        """Write spec to a Python file."""
+        spec = self.to_spec()
+        with open(filepath, "w") as f:
+            f.write(f"spec = {format_str(repr(spec), mode=Mode())}")
 
     def to_pickle(self, filepath: typing.Union[str, pathlib.Path]) -> None:
         """Serialize to a file using python's pickle."""
