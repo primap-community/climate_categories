@@ -19,6 +19,7 @@ from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
 from ._categories import HierarchicalCategorization, from_pickle
 from ._conversions import Conversion, ConversionRule  # noqa: F401
+from .data import _rcmip
 
 cats = {}
 
@@ -50,7 +51,8 @@ CRFDI_class = _read_pickle_hier("CRFDI_class")
 BURDI = _read_pickle_hier("BURDI")
 BURDI_class = _read_pickle_hier("BURDI_class")
 GCB = _read_pickle_hier("GCB")
-RCMIP = _read_pickle_hier("RCMIP")
+
+RCMIP = HierarchicalCategorization.from_spec(_rcmip.spec)
 gas = _read_pickle_hier("gas")
 
 
