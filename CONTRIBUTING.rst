@@ -50,8 +50,8 @@ do that efficiently with caching).
 
 Because all Categorizations are read in when importing ``climate_categories`` and
 parsing StrictYaml files is not very efficient, the categories should be also stored
-as pickle files using the ``to_pickle`` instance method and parsed from the pickled
-files on import.
+as cached Python files using the ``to_python`` instance method.
+Run `make cache` to generate these from the YAML files.
 
 New conversions
 ~~~~~~~~~~~~~~~
