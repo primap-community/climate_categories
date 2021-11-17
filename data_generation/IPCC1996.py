@@ -11,7 +11,6 @@ import climate_categories
 URL = "https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch1ri.pdf"
 INPATH = pathlib.Path("./data_generation/IPCC1996.pdf")
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC1996.yaml")
-OUTPATH_PY = pathlib.Path("./climate_categories/data/IPCC1996.py")
 
 
 def parse_pages(fpath, pages, areas, columns) -> list:
@@ -341,7 +340,6 @@ def main():
     IPCC1996 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC1996.to_yaml(OUTPATH)
-    IPCC1996.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

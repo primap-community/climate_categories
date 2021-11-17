@@ -6,7 +6,6 @@ import pathlib
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/CRF1999.yaml")
-OUTPATH_PY = pathlib.Path("./climate_categories/data/CRF1999.py")
 
 
 def main():
@@ -468,7 +467,6 @@ def main():
     CRF1999 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     CRF1999.to_yaml(OUTPATH)
-    CRF1999.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv pickles test test-full lint coverage release update-citation
+.PHONY: clean docs help update-venv cache test test-full lint coverage release update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -71,10 +71,22 @@ update-venv:
 install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install
 
+cache: climate_categories/data/RCMIP.py
+cache: climate_categories/data/GCB.py
+cache: climate_categories/data/IPCC2006.py
+cache: climate_categories/data/IPCC2006_PRIMAP.py
+cache: climate_categories/data/IPCC1996.py
+cache: climate_categories/data/CRF1999.py
+cache: climate_categories/data/gas.py
+cache: climate_categories/data/CRFDI.py
+cache: climate_categories/data/CRFDI_class.py
+cache: climate_categories/data/BURDI.py
+cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
+
 climate_categories/data/%.yaml: data_generation/%.py
 	venv/bin/python $<
 
-climate_categories/data/GCB.py: climate_categories/data/GCB.yaml
+climate_categories/data/%.py: climate_categories/data/%.yaml
 	venv/bin/python data_generation/convert_yaml_to_python.py $< $@
 
 README.rst:  CHANGELOG.rst .changelog_latest_version.rst  ## Update the citation information from zenodo

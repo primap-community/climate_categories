@@ -9,7 +9,6 @@ import unfccc_di_api
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/CRFDI_class.yaml")
-OUTPATH_PY = pathlib.Path("./climate_categories/data/CRFDI_class.py")
 
 
 def parse_classifications(rao):
@@ -135,7 +134,6 @@ def main():
     CRFDI_class.total_sum = False  # unfortunately, not generally true anymore
 
     CRFDI_class.to_yaml(OUTPATH)
-    CRFDI_class.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 

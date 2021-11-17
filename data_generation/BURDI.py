@@ -8,7 +8,6 @@ from unfccc_di_api import UNFCCCApiReader
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/BURDI.yaml")
-OUTPATH_PY = pathlib.Path("./climate_categories/data/BURDI.py")
 
 # there are some categories with different IDs, but the same code and title.
 # These are the categories directly under the top-level totals (e.g. 1. Energy),
@@ -153,7 +152,6 @@ def main():
     CRFDI = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     CRFDI.to_yaml(OUTPATH)
-    CRFDI.to_python(OUTPATH_PY)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 
