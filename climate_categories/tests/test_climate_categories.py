@@ -603,6 +603,9 @@ class TestIO:
         assert fs.keys() == SimpleCat.keys()
         assert list(fs.values()) == list(SimpleCat.values())
 
+    def test_to_python(self, tmpdir, HierCat):
+        HierCat.to_python(tmpdir / "any_cat.py")
+
     def test_roundtrip(self, tmpdir, any_cat):
         any_cat.to_yaml(tmpdir / "any_cat.yaml")
         any_cat_r = climate_categories.from_yaml(tmpdir / "any_cat.yaml")
