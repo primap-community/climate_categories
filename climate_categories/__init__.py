@@ -30,12 +30,6 @@ def _read_py_hier(name) -> HierarchicalCategorization:
     cats[_cat.name] = _cat
     return _cat
     return
-    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
-        _cat = from_pickle(fd)
-    _cat._cats = cats
-    cats[_cat.name] = _cat
-    return _cat
-
 
 # not used at the moment, uncomment if needed for non-hierarchical Categorizations
 # def _read_pickle_nh(name) -> Categorization:
