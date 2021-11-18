@@ -196,7 +196,7 @@ class ConversionRuleSpec:
             op = "+"
         code = tokens.pop(0)
         code_factors[code] = cls._operator_factors[op]
-        while tokens:
+        while len(tokens):
             op = tokens.pop(0)
             code = tokens.pop(0)
             if code in code_factors:

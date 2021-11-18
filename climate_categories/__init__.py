@@ -11,50 +11,44 @@ import importlib
 import importlib.resources
 import typing
 
-from . import _categories, data, search
+from . import data  # noqa: F401
+from . import search
 from ._categories import Categorization  # noqa: F401
 from ._categories import Category  # noqa: F401
 from ._categories import HierarchicalCategory  # noqa: F401
+from ._categories import from_pickle  # noqa: F401
+from ._categories import from_python  # noqa: F401
 from ._categories import from_spec  # noqa: F401
 from ._categories import from_yaml  # noqa: F401
-from ._categories import HierarchicalCategorization, from_pickle
+from ._categories import HierarchicalCategorization
 from ._conversions import Conversion, ConversionRule  # noqa: F401
 
 cats = {}
 
 
-def _read_pickle_hier(name) -> HierarchicalCategorization:
-    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
-        _cat = from_pickle(fd)
-    _cat._cats = cats
-    cats[_cat.name] = _cat
-    return _cat
-
-
-# not used at the moment, uncomment if needed for non-hierarchical Categorizations
-# def _read_pickle_nh(name) -> Categorization:
-#    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
-#        _cat = from_pickle(fd)
-#    _cat._cats = cats
-#    cats[_cat.name] = _cat
-#    return _cat
+def _read_py_hier(name) -> HierarchicalCategorization:
+    mod = importlib.import_module(f".data.{name}", package="climate_categories")
+    cat = HierarchicalCategorization.from_spec(mod.spec)
+    cat._cats = cats
+    cats[cat.name] = cat
+    return cat
 
 
 # do this explicitly to help static analysis tools
-IPCC1996 = _read_pickle_hier("IPCC1996")
-IPCC2006 = _read_pickle_hier("IPCC2006")
-IPCC2006_PRIMAP = _read_pickle_hier("IPCC2006_PRIMAP")
-CRF1999 = _read_pickle_hier("CRF1999")
-CRFDI = _read_pickle_hier("CRFDI")
-CRFDI_class = _read_pickle_hier("CRFDI_class")
-BURDI = _read_pickle_hier("BURDI")
-BURDI_class = _read_pickle_hier("BURDI_class")
-GCB = _read_pickle_hier("GCB")
-RCMIP = _read_pickle_hier("RCMIP")
-gas = _read_pickle_hier("gas")
+IPCC1996 = _read_py_hier("IPCC1996")
+IPCC2006 = _read_py_hier("IPCC2006")
+IPCC2006_PRIMAP = _read_py_hier("IPCC2006_PRIMAP")
+CRF1999 = _read_py_hier("CRF1999")
+CRFDI = _read_py_hier("CRFDI")
+CRFDI_class = _read_py_hier("CRFDI_class")
+BURDI = _read_py_hier("BURDI")
+BURDI_class = _read_py_hier("BURDI_class")
+GCB = _read_py_hier("GCB")
+RCMIP = _read_py_hier("RCMIP")
+gas = _read_py_hier("gas")
 
 
-def find_code(code: str) -> typing.Set[_categories.Category]:
+def find_code(code: str) -> typing.Set[Category]:
     """Search for the given code in all included categorizations."""
     return search.search_code(code, cats.values())
 

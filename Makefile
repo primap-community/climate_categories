@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv pickles test test-full lint coverage release update-citation
+.PHONY: clean docs help update-venv cache test test-full lint coverage release update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -71,33 +71,23 @@ update-venv:
 install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install
 
-%.pickle: %.yaml
-	venv/bin/python data_generation/convert_yaml_to_pickle.py $< $@
+cache: climate_categories/data/RCMIP.py
+cache: climate_categories/data/GCB.py
+cache: climate_categories/data/IPCC2006.py
+cache: climate_categories/data/IPCC2006_PRIMAP.py
+cache: climate_categories/data/IPCC1996.py
+cache: climate_categories/data/CRF1999.py
+cache: climate_categories/data/gas.py
+cache: climate_categories/data/CRFDI.py
+cache: climate_categories/data/CRFDI_class.py
+cache: climate_categories/data/BURDI.py
+cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
 
-pickles: climate_categories/data/RCMIP.pickle
-pickles: climate_categories/data/GCB.pickle
-pickles: climate_categories/data/IPCC2006.pickle
-pickles: climate_categories/data/IPCC2006_PRIMAP.pickle
-pickles: climate_categories/data/IPCC1996.pickle
-pickles: climate_categories/data/CRF1999.pickle
-pickles: climate_categories/data/gas.pickle
-pickles: climate_categories/data/CRFDI.pickle
-pickles: climate_categories/data/CRFDI_class.pickle
-pickles: climate_categories/data/BURDI.pickle
-pickles: climate_categories/data/BURDI_class.pickle ## re-generate pickles from yamls
-
-
-climate_categories/data/RCMIP.yaml: data_generation/RCMIP.py data_generation/utils.py
-	venv/bin/python data_generation/RCMIP.py
-
-climate_categories/data/IPCC2006.yaml: data_generation/IPCC2006.py data_generation/utils.py
-	venv/bin/python data_generation/IPCC2006.py
-
-climate_categories/data/IPCC1996.yaml: data_generation/IPCC1996.py data_generation/utils.py
-	venv/bin/python data_generation/IPCC1996.py
-
-climate_categories/data/%.yaml: data_generation/%.py
+climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	venv/bin/python $<
+
+climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
+	venv/bin/python data_generation/convert_yaml_to_python.py $< $@
 
 README.rst:  CHANGELOG.rst .changelog_latest_version.rst  ## Update the citation information from zenodo
 	venv/bin/python update_citation_info.py
