@@ -83,10 +83,10 @@ cache: climate_categories/data/CRFDI_class.py
 cache: climate_categories/data/BURDI.py
 cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
 
-climate_categories/data/%.yaml: data_generation/%.py
+climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	venv/bin/python $<
 
-climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/utils.py climate_categories/_categories.py
+climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
 	venv/bin/python data_generation/convert_yaml_to_python.py $< $@
 
 README.rst:  CHANGELOG.rst .changelog_latest_version.rst  ## Update the citation information from zenodo
