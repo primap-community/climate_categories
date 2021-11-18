@@ -31,6 +31,7 @@ def _read_py_hier(name) -> HierarchicalCategorization:
     return _cat
     return
 
+
 # not used at the moment, uncomment if needed for non-hierarchical Categorizations
 # def _read_pickle_nh(name) -> Categorization:
 #    with importlib.resources.open_binary(data, f"{name}.pickle") as fd:
