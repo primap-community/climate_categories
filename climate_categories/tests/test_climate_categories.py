@@ -617,9 +617,18 @@ class TestIO:
         assert any_cat == any_cat_p
         assert list(any_cat.values()) == list(any_cat_p.values())
 
+        any_cat.to_python(tmpdir / "any_cat.py")
+        any_cat_py = climate_categories.from_python(tmpdir / "any_cat.py")
+        assert any_cat == any_cat_py
+        assert list(any_cat.values()) == list(any_cat_py.values())
+
         assert climate_categories.from_pickle(
             tmpdir / "any_cat.pickle"
         ) == climate_categories.Categorization.from_pickle(tmpdir / "any_cat.pickle")
+
+        assert climate_categories.from_python(
+            tmpdir / "any_cat.py"
+        ) == climate_categories.Categorization.from_python(tmpdir / "any_cat.py")
 
     def test_roundtrip_hierarchical(self, tmpdir, HierCat):
         HierCat.to_yaml(tmpdir / "HierCat.yaml")

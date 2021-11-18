@@ -318,6 +318,16 @@ class Categorization:
         provided file. Only load from pickle files that you trust."""
         return from_pickle(filepath)
 
+    @staticmethod
+    def from_python(
+        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+    ) -> "Categorization":
+        """De-serialize Categorization from a file written by to_python.
+
+        Note that this executes the python cache file. Only load from python cache files
+        you trust."""
+        return from_python(filepath)
+
     def to_spec(self) -> typing.Dict[str, typing.Any]:
         """Turn this categorization into a specification dictionary ready to be written
         to a yaml file.
@@ -1075,6 +1085,29 @@ def from_pickle(
             spec = pickle.load(fd)
 
     return from_spec(spec)
+
+
+def from_python(
+    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+) -> typing.Union[Categorization, HierarchicalCategorization]:
+    """Read Categorization or HierarchicalCategorization from a python cache file.
+
+    Note that this executes the python cache file. Only load from python cache files
+    you trust."""
+    try:
+        python_code = filepath.read()
+        filepath.seek(0)
+    except AttributeError:
+        with open(filepath) as fd:
+            python_code = fd.read()
+    variables = {}
+    exec(python_code, variables)
+    spec = variables["spec"]
+    if spec["hierarchical"]:
+        cls = HierarchicalCategorization
+    else:
+        cls = Categorization
+    return cls.from_spec(spec)
 
 
 def from_spec(
