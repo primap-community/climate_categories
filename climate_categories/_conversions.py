@@ -3,7 +3,6 @@ import csv
 import dataclasses
 import datetime
 import pathlib
-import re
 import typing
 from typing import TYPE_CHECKING
 
