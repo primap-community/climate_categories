@@ -6,6 +6,7 @@ import importlib.resources
 from io import StringIO
 
 import pytest
+import strictyaml as sy
 
 import climate_categories
 import climate_categories._conversions as conversions
@@ -141,7 +142,7 @@ class TestConversionSpec:
         assert conv.comment == "A correct conversion specification file"
         assert conv.version == "1.2.3.4"
         assert conv.references == "expert judgement"
-        assert conv.last_update == datetime.date(2099, 12, 31)
+        assert conv.last_update == datetime.datetime(2099, 12, 31, 0, 0)
         assert conv.auxiliary_categorizations_names == ["aux1", "aux2"]
         assert len(conv.rule_specs) == 9
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(
@@ -228,9 +229,7 @@ class TestConversionSpec:
             "# comment: no comment\n"
             "# interjection: What you guys are referring to as Linux\n"
         )
-        with pytest.raises(
-            ValueError, match="Unknown meta data key in line 2: interjection"
-        ):
+        with pytest.raises(sy.exceptions.YAMLValidationError):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_comment_missing(self):

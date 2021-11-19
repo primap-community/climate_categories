@@ -7,7 +7,7 @@ import typing
 from typing import TYPE_CHECKING
 
 import pyparsing
-from ruamel.yaml import YAML
+import strictyaml as sy
 
 if TYPE_CHECKING:
     from ._categories import Categorization, Category, HierarchicalCategory
@@ -596,6 +596,16 @@ class ConversionSpec(ConversionBase):
 
     _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
 
+    _strictyaml_metadata_schema = sy.Map(
+        {
+            sy.Optional("comment"): sy.Str(),
+            sy.Optional("references"): sy.Str(),
+            sy.Optional("institution"): sy.Str(),
+            sy.Optional("last_update"): sy.Datetime(),
+            sy.Optional("version"): sy.Str(),
+        }
+    )
+
     def __init__(
         self,
         *,
@@ -651,8 +661,8 @@ class ConversionSpec(ConversionBase):
             last_pos = fd.tell()
             line = fd.readline()
         fd.seek(last_pos)
-        yaml = YAML()
-        meta_data = yaml.load(yaml_header)
+        print(yaml_header)
+        meta_data = sy.load(yaml_header, schema=cls._strictyaml_metadata_schema).data
         for idx, key in enumerate(meta_data.keys()):
             if key not in cls._meta_data_keys:
                 raise ValueError(f"Unknown meta data key in line {idx + 1}: {key}.")
@@ -701,7 +711,6 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
         meta_data = cls._read_csv_meta(fd)
-
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
         a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(reader)
 
