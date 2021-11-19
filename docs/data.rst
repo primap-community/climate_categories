@@ -185,8 +185,8 @@ Example
 
 .. code-block:: csv
 
-    comment: an example conversion
-    institution: PIK
+    # comment: an example conversion
+    # institution: PIK
     IPCC1996,gas,IPCC2006,comment
     4 + 5,,3,Both sectors were combined
     4.D,N2O,3.C.4 + 3.C.5,N2O emissions are separated into own categories
