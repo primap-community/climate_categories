@@ -221,7 +221,7 @@ class TestConversionSpec:
             "A,species,B,comment\n"
             "A.1+,something,C,broken formula\n"
         )
-        with pytest.raises(ValueError, match="line 2.*Could not parse"):
+        with pytest.raises(ValueError, match="line 3.*Could not parse"):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_unknown_meta_data(self):

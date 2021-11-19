@@ -650,6 +650,8 @@ class ConversionSpec(ConversionBase):
         -------
         meta_data: dict
             Mapping of meta data keys to values.
+        linecount: int
+            Count of lines of the metadata block
         """
         meta_data = {}
         yaml_header = ""
@@ -663,11 +665,11 @@ class ConversionSpec(ConversionBase):
         fd.seek(last_pos)
         meta_data = sy.load(yaml_header, schema=cls._strictyaml_metadata_schema).data
 
-        return meta_data
+        return meta_data, yaml_header.count("\n")
 
     @classmethod
     def _read_csv_rules(
-        cls, reader: csv.reader
+        cls, reader: csv.reader, offset: int
     ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRuleSpec]]:
         """Read the data section of a CSV specification file. It consists of a header,
         followed by rules, with each rule on one line.
@@ -677,6 +679,7 @@ class ConversionSpec(ConversionBase):
         reader: CSV reader object as returned by csv.reader
             The reader object must already be advanced to the rules section, so that
             the first read yields the data header.
+        offset: Number of lines of the metadata block.
 
         Returns
         -------
@@ -700,15 +703,17 @@ class ConversionSpec(ConversionBase):
                     )
                 )
             except ValueError as err:
-                raise ValueError(f"Error in line {reader.line_num}: {err}")
+                raise ValueError(f"Error in line {reader.line_num + offset}: {err}")
 
         return a_name, b_name, aux_names, rule_specs
 
     @classmethod
     def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
-        meta_data = cls._read_csv_meta(fd)
+        meta_data, len_meta_data = cls._read_csv_meta(fd)
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
-        a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(reader)
+        a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(
+            reader, len_meta_data
+        )
 
         return cls(
             categorization_a_name=a_name,
