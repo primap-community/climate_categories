@@ -3,10 +3,12 @@ import csv
 import dataclasses
 import datetime
 import pathlib
+import re
 import typing
 from typing import TYPE_CHECKING
 
 import pyparsing
+from ruamel.yaml import YAML
 
 if TYPE_CHECKING:
     from ._categories import Categorization, Category, HierarchicalCategory
@@ -622,50 +624,39 @@ class ConversionSpec(ConversionBase):
         )
 
     @classmethod
-    def _read_csv_meta(cls, reader: csv.reader) -> typing.Dict[str, str]:
+    def _read_csv_meta(cls, fd: typing.TextIO):
         """Read the metadata section of a CSV conversion specification file. It consists
-        of key, value pairs, one pair on each line. A single empty line terminates the
-        metadata section.
+        of YAML key, value pairs, one pair on each line separated by a clon.
+        Each line is prefixed with the comment char "#".
 
         Parameters
         ----------
-        reader: a CSV reader object as returned by csv.reader
-            Use a CSV reader object which was not used before to read from. The reader
-            object will be iterated up to the end of the meta data section, so that
-            after calling _read_csv_meta you can directly start reading the data
-            section.
+        fd: a CSV file object
+            Use a file object which was not used before to read from.
+            The file object will be iterated up to the end of the meta data
+            section, so that after calling _read_csv_meta you can directly
+            start reading the data section.
 
         Returns
         -------
         meta_data: dict
-            lineno Mapping of meta data keys to values.
+            Mapping of meta data keys to values.
         """
         meta_data = {}
-        for row in reader:
-            if not row:
-                break
-            if len(row) < 2:
-                raise ValueError(
-                    f"Meta data specification is incomplete in line {reader.line_num}:"
-                    f" {row!r}."
-                )
-            if len(row) > 2:
-                raise ValueError(
-                    f"Meta data specification has extraneous fields in line"
-                    f" {reader.line_num}:"
-                    f" {row!r}, did you forget to escape a comma?"
-                )
-            if row[0] not in cls._meta_data_keys:
-                raise ValueError(
-                    f"Unknown meta data key in line {reader.line_num}: {row[0]}."
-                )
+        yaml_header = ""
+        last_pos = fd.tell()
+        line = fd.readline()
+        while line.startswith("#"):
+            yaml_header += re.sub(r"^#\s?", "", line)
+            last_pos = fd.tell()
+            line = fd.readline()
+        fd.seek(last_pos)
+        yaml = YAML()
+        meta_data = yaml.load(yaml_header)
+        for idx, key in enumerate(meta_data.keys()):
+            if key not in cls._meta_data_keys:
+                raise ValueError(f"Unknown meta data key in line {idx + 1}: {key}.")
 
-            meta_data[row[0]] = row[1]
-
-        if "last_update" in meta_data:
-            meta_data["last_update"] = datetime.date.fromisoformat(
-                meta_data["last_update"]
-            )
         return meta_data
 
     @classmethod
@@ -709,9 +700,9 @@ class ConversionSpec(ConversionBase):
 
     @classmethod
     def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
-        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
+        meta_data = cls._read_csv_meta(fd)
 
-        meta_data = cls._read_csv_meta(reader)
+        reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
         a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(reader)
 
         return cls(
