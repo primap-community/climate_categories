@@ -662,9 +662,6 @@ class ConversionSpec(ConversionBase):
             line = fd.readline()
         fd.seek(last_pos)
         meta_data = sy.load(yaml_header, schema=cls._strictyaml_metadata_schema).data
-        for idx, key in enumerate(meta_data.keys()):
-            if key not in cls._meta_data_keys:
-                raise ValueError(f"Unknown meta data key in line {idx + 1}: {key}.")
 
         return meta_data
 
