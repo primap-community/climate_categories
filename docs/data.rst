@@ -139,7 +139,7 @@ Two consecutive backslashes are read as a single backslash.
 
 The file consists of a YAML meta data block at the start of the file, and a data block
 following it.
-The YAML meta data block lines start with the commnet char '#'.
+The YAML meta data block lines start with the comment char '#'.
 
 Meta data block
 ---------------
