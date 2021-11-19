@@ -647,7 +647,8 @@ class ConversionSpec(ConversionBase):
         last_pos = fd.tell()
         line = fd.readline()
         while line.startswith("#"):
-            yaml_header += re.sub(r"^#\s?", "", line)
+            # remove leading comment and whitespace
+            yaml_header += line[1:].lstrip()
             last_pos = fd.tell()
             line = fd.readline()
         fd.seek(last_pos)
