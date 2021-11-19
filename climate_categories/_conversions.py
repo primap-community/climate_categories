@@ -661,7 +661,6 @@ class ConversionSpec(ConversionBase):
             last_pos = fd.tell()
             line = fd.readline()
         fd.seek(last_pos)
-        print(yaml_header)
         meta_data = sy.load(yaml_header, schema=cls._strictyaml_metadata_schema).data
         for idx, key in enumerate(meta_data.keys()):
             if key not in cls._meta_data_keys:
