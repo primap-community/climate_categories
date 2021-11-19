@@ -234,7 +234,6 @@ class TestConversionSpec:
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_comment_missing(self):
-        # csv = ["comment: no comment", "A,aux,B", "A.1,D,A.2"]
         csv = StringIO("# comment: no comment\n" "A,aux,B\n" "A.1,D,A.2\n")
         with pytest.raises(
             ValueError, match="Last column must be 'comment', but isn't."
