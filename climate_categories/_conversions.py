@@ -626,7 +626,7 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def _read_csv_meta(cls, fd: typing.TextIO):
         """Read the metadata section of a CSV conversion specification file. It consists
-        of YAML key, value pairs, one pair on each line separated by a clon.
+        of YAML key, value pairs, one pair on each line separated by a colon.
         Each line is prefixed with the comment char "#".
 
         Parameters
