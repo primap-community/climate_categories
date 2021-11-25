@@ -1,0 +1,14 @@
+# comment: A broken conversion specification file
+# version: 1.2.3.4
+# references: expert judgement
+# last_update: 2099-12-31
+A,aux1,aux2,B,comment
+asdf + fdsa,,,asdf
+A.5,3 4 A "argl-5", "B A" B A,4
+b + "argl.5" + c,,,D,nobody needs argl
+b + "argl\,5" + c,,,D
+b + "argl\\"5" + not_allowed,,,D
+b + "argl\\"5" + c,,,D+E
+"argl\,5",,,D
+"+" - "-",,,"-"
+b,,,asdf+4

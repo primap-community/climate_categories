@@ -65,24 +65,42 @@ class ConversionRuleSpec:
         auxiliary_categories_hydrated = {}
         for aux_categorization_name, categories in self.auxiliary_categories.items():
             aux_categorization = cats[aux_categorization_name]
-            auxiliary_categories_hydrated[aux_categorization] = {
-                aux_categorization[code] for code in categories
-            }
+            auxiliary_categories_hydrated[
+                aux_categorization
+            ] = self._hydrate_handle_errors(categories, aux_categorization)
 
         return ConversionRule(
-            factors_categories_a={
-                categorization_a[code]: factor
-                for code, factor in self.factors_categories_a.items()
-            },
-            factors_categories_b={
-                categorization_b[code]: factor
-                for code, factor in self.factors_categories_b.items()
-            },
+            factors_categories_a=self._hydrate_handle_errors(
+                self.factors_categories_a, categorization_a
+            ),
+            factors_categories_b=self._hydrate_handle_errors(
+                self.factors_categories_b, categorization_b
+            ),
             auxiliary_categories=auxiliary_categories_hydrated,
             comment=self.comment,
             csv_line_number=self.csv_line_number,
             csv_original_text=self.csv_original_text,
         )
+
+    def _hydrate_handle_errors(
+        self,
+        to_hydrate: typing.Union[typing.Dict[str, int], typing.Set[str]],
+        categorization: "Categorization",
+    ) -> typing.Union[typing.Dict["Category", int], typing.Set["Category"]]:
+        """Hydrate a dict/set while nicely handling errors."""
+        try:
+            if isinstance(to_hydrate, dict):
+                return {
+                    categorization[code]: factor for code, factor in to_hydrate.items()
+                }
+            else:
+                return {categorization[code] for code in to_hydrate}
+        except KeyError as err:
+            code = err.args[0]
+            raise ValueError(
+                f"Error in line {self.csv_line_number}: {code!r} not in"
+                f" {categorization}."
+            )
 
     # Parsing rules for simple formulas from str
     # Supported operators at the moment are plus and minus

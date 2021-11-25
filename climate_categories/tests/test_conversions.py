@@ -302,6 +302,16 @@ class TestConversion:
     def test_repr(self, good_conversion: conversions.Conversion):
         assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 9 rules>"
 
+    def test_not_allowed(self):
+        with pytest.raises(ValueError, match="Error in line 10: Could not parse:"):
+            load_conversion_from_csv("broken_conversion_not_allowed.csv")
+
+    def test_not_existing(self):
+        with pytest.raises(
+            ValueError, match="Error in line 10: 'notexisting' not in A"
+        ):
+            load_conversion_from_csv("broken_conversion_not_existing.csv")
+
     def test_describe(self, good_conversion: conversions.Conversion):
 
         assert (
