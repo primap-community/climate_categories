@@ -680,7 +680,8 @@ class ConversionSpec(ConversionBase):
         reader: CSV reader object as returned by csv.reader
             The reader object must already be advanced to the rules section, so that
             the first read yields the data header.
-        offset: Number of lines of the metadata block.
+        offset: int
+            Number of lines of the metadata block.
 
         Returns
         -------
@@ -696,9 +697,7 @@ class ConversionSpec(ConversionBase):
             raise ValueError("Last column must be 'comment', but isn't.")
         aux_names = header[1:-2]
         for row in reader:
-            line_num = reader.line_num
-            if offset is not None:
-                line_num += offset  # YAML metadata block
+            line_num = reader.line_num + offset
             irow = iter(row)
             try:
                 rule_specs.append(
@@ -707,7 +706,7 @@ class ConversionSpec(ConversionBase):
                     )
                 )
             except ValueError as err:
-                raise ValueError(f"Error in line {reader.line_num + offset}: {err}")
+                raise ValueError(f"Error in line {line_num}: {err}")
 
         return a_name, b_name, aux_names, rule_specs
 
