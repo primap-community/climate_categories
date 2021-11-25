@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.7.1 (2021-11-25)
+------------------
+* Change conversion metadata format to use comment chars and a YAML header.
+
 0.7.0 (2021-11-25)
 ------------------
 * Use Python files instead of pickle objects for caching
