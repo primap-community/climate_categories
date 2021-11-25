@@ -149,7 +149,7 @@ class TestConversionSpec:
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=2,
+            csv_line_number=6,
             csv_original_text="asdf + fdsa,,,asdf",
         )
         assert conv.rule_specs[1] == conversions.ConversionRuleSpec(
@@ -159,7 +159,7 @@ class TestConversionSpec:
                 "aux1": {"3", "4", "A", "argl-5"},
                 "aux2": {"B A", "A", "B"},
             },
-            csv_line_number=3,
+            csv_line_number=7,
             csv_original_text='A.5,3 4 A "argl-5", "B A" B A,4',
         )
         assert conv.rule_specs[2] == conversions.ConversionRuleSpec(
@@ -167,49 +167,49 @@ class TestConversionSpec:
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
             comment="nobody needs argl",
-            csv_line_number=4,
+            csv_line_number=8,
             csv_original_text='b + "argl.5" + c,,,D,nobody needs argl',
         )
         assert conv.rule_specs[3] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl,5": 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=5,
+            csv_line_number=9,
             csv_original_text='b + "argl,5" + c,,,D',
         )
         assert conv.rule_specs[4] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=6,
+            csv_line_number=10,
             csv_original_text='b + "argl\\"5" + c,,,D',
         )
         assert conv.rule_specs[5] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1, "E": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=7,
+            csv_line_number=11,
             csv_original_text='b + "argl\\"5" + c,,,D+E',
         )
         assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
             factors_categories_a={"argl,5": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=8,
+            csv_line_number=12,
             csv_original_text='"argl,5",,,D',
         )
         assert conv.rule_specs[7] == conversions.ConversionRuleSpec(
             factors_categories_a={"+": 1, "-": -1},
             factors_categories_b={"-": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=9,
+            csv_line_number=13,
             csv_original_text='"+" - "-",,,"-"',
         )
         assert conv.rule_specs[8] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1},
             factors_categories_b={"asdf": 1, "4": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=10,
+            csv_line_number=14,
             csv_original_text="b,,,asdf+4",
         )
 

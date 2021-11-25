@@ -213,6 +213,7 @@ class ConversionRuleSpec:
         irow: typing.Iterator[str],
         aux_names: typing.List[str],
         line_number: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
     ) -> "ConversionRuleSpec":
         """Parse a ConversionRuleSpec from a row in a CSV file.
 
@@ -695,11 +696,14 @@ class ConversionSpec(ConversionBase):
             raise ValueError("Last column must be 'comment', but isn't.")
         aux_names = header[1:-2]
         for row in reader:
+            line_num = reader.line_num
+            if offset is not None:
+                line_num += offset  # YAML metadata block
             irow = iter(row)
             try:
                 rule_specs.append(
                     ConversionRuleSpec.from_csv_row(
-                        irow, aux_names=aux_names, line_number=reader.line_num
+                        irow, aux_names=aux_names, line_number=line_num
                     )
                 )
             except ValueError as err:
