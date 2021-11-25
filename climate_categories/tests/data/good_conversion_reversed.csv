@@ -1,8 +1,7 @@
-comment,A correct conversion specification file
-version,1.2.3.4
-references,expert judgement
-last_update,2099-12-31
-
+# comment: A correct conversion specification file
+# version: 1.2.3.4
+# references: expert judgement
+# last_update: 2099-12-31
 B,aux1,aux2,A,comment
 asdf,,,asdf + fdsa
 4,3 4 A "argl-5", "B A" B A,A.5

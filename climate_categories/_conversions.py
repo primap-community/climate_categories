@@ -7,6 +7,7 @@ import typing
 from typing import TYPE_CHECKING
 
 import pyparsing
+import strictyaml as sy
 
 if TYPE_CHECKING:
     from ._categories import Categorization, Category, HierarchicalCategory
@@ -64,24 +65,42 @@ class ConversionRuleSpec:
         auxiliary_categories_hydrated = {}
         for aux_categorization_name, categories in self.auxiliary_categories.items():
             aux_categorization = cats[aux_categorization_name]
-            auxiliary_categories_hydrated[aux_categorization] = {
-                aux_categorization[code] for code in categories
-            }
+            auxiliary_categories_hydrated[
+                aux_categorization
+            ] = self._hydrate_handle_errors(categories, aux_categorization)
 
         return ConversionRule(
-            factors_categories_a={
-                categorization_a[code]: factor
-                for code, factor in self.factors_categories_a.items()
-            },
-            factors_categories_b={
-                categorization_b[code]: factor
-                for code, factor in self.factors_categories_b.items()
-            },
+            factors_categories_a=self._hydrate_handle_errors(
+                self.factors_categories_a, categorization_a
+            ),
+            factors_categories_b=self._hydrate_handle_errors(
+                self.factors_categories_b, categorization_b
+            ),
             auxiliary_categories=auxiliary_categories_hydrated,
             comment=self.comment,
             csv_line_number=self.csv_line_number,
             csv_original_text=self.csv_original_text,
         )
+
+    def _hydrate_handle_errors(
+        self,
+        to_hydrate: typing.Union[typing.Dict[str, int], typing.Set[str]],
+        categorization: "Categorization",
+    ) -> typing.Union[typing.Dict["Category", int], typing.Set["Category"]]:
+        """Hydrate a dict/set while nicely handling errors."""
+        try:
+            if isinstance(to_hydrate, dict):
+                return {
+                    categorization[code]: factor for code, factor in to_hydrate.items()
+                }
+            else:
+                return {categorization[code] for code in to_hydrate}
+        except KeyError as err:
+            code = err.args[0]
+            raise ValueError(
+                f"Error in line {self.csv_line_number}: {code!r} not in"
+                f" {categorization}."
+            )
 
     # Parsing rules for simple formulas from str
     # Supported operators at the moment are plus and minus
@@ -212,6 +231,7 @@ class ConversionRuleSpec:
         irow: typing.Iterator[str],
         aux_names: typing.List[str],
         line_number: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
     ) -> "ConversionRuleSpec":
         """Parse a ConversionRuleSpec from a row in a CSV file.
 
@@ -595,6 +615,16 @@ class ConversionSpec(ConversionBase):
 
     _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
 
+    _strictyaml_metadata_schema = sy.Map(
+        {
+            sy.Optional("comment"): sy.Str(),
+            sy.Optional("references"): sy.Str(),
+            sy.Optional("institution"): sy.Str(),
+            sy.Optional("last_update"): sy.Datetime(),
+            sy.Optional("version"): sy.Str(),
+        }
+    )
+
     def __init__(
         self,
         *,
@@ -622,55 +652,43 @@ class ConversionSpec(ConversionBase):
         )
 
     @classmethod
-    def _read_csv_meta(cls, reader: csv.reader) -> typing.Dict[str, str]:
+    def _read_csv_meta(cls, fd: typing.TextIO):
         """Read the metadata section of a CSV conversion specification file. It consists
-        of key, value pairs, one pair on each line. A single empty line terminates the
-        metadata section.
+        of YAML key, value pairs, one pair on each line separated by a colon.
+        Each line is prefixed with the comment char "#".
 
         Parameters
         ----------
-        reader: a CSV reader object as returned by csv.reader
-            Use a CSV reader object which was not used before to read from. The reader
-            object will be iterated up to the end of the meta data section, so that
-            after calling _read_csv_meta you can directly start reading the data
-            section.
+        fd: a CSV file object
+            Use a file object which was not used before to read from.
+            The file object will be iterated up to the end of the meta data
+            section, so that after calling _read_csv_meta you can directly
+            start reading the data section.
 
         Returns
         -------
         meta_data: dict
-            lineno Mapping of meta data keys to values.
+            Mapping of meta data keys to values.
+        linecount: int
+            Count of lines of the metadata block
         """
         meta_data = {}
-        for row in reader:
-            if not row:
-                break
-            if len(row) < 2:
-                raise ValueError(
-                    f"Meta data specification is incomplete in line {reader.line_num}:"
-                    f" {row!r}."
-                )
-            if len(row) > 2:
-                raise ValueError(
-                    f"Meta data specification has extraneous fields in line"
-                    f" {reader.line_num}:"
-                    f" {row!r}, did you forget to escape a comma?"
-                )
-            if row[0] not in cls._meta_data_keys:
-                raise ValueError(
-                    f"Unknown meta data key in line {reader.line_num}: {row[0]}."
-                )
+        yaml_header = ""
+        last_pos = fd.tell()
+        line = fd.readline()
+        while line.startswith("#"):
+            # remove leading comment and whitespace
+            yaml_header += line[1:].lstrip()
+            last_pos = fd.tell()
+            line = fd.readline()
+        fd.seek(last_pos)
+        meta_data = sy.load(yaml_header, schema=cls._strictyaml_metadata_schema).data
 
-            meta_data[row[0]] = row[1]
-
-        if "last_update" in meta_data:
-            meta_data["last_update"] = datetime.date.fromisoformat(
-                meta_data["last_update"]
-            )
-        return meta_data
+        return meta_data, yaml_header.count("\n")
 
     @classmethod
     def _read_csv_rules(
-        cls, reader: csv.reader
+        cls, reader: csv.reader, offset: int
     ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRuleSpec]]:
         """Read the data section of a CSV specification file. It consists of a header,
         followed by rules, with each rule on one line.
@@ -680,6 +698,8 @@ class ConversionSpec(ConversionBase):
         reader: CSV reader object as returned by csv.reader
             The reader object must already be advanced to the rules section, so that
             the first read yields the data header.
+        offset: int
+            Number of lines of the metadata block.
 
         Returns
         -------
@@ -695,24 +715,26 @@ class ConversionSpec(ConversionBase):
             raise ValueError("Last column must be 'comment', but isn't.")
         aux_names = header[1:-2]
         for row in reader:
+            line_num = reader.line_num + offset
             irow = iter(row)
             try:
                 rule_specs.append(
                     ConversionRuleSpec.from_csv_row(
-                        irow, aux_names=aux_names, line_number=reader.line_num
+                        irow, aux_names=aux_names, line_number=line_num
                     )
                 )
             except ValueError as err:
-                raise ValueError(f"Error in line {reader.line_num}: {err}")
+                raise ValueError(f"Error in line {line_num}: {err}")
 
         return a_name, b_name, aux_names, rule_specs
 
     @classmethod
     def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
+        meta_data, len_meta_data = cls._read_csv_meta(fd)
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
-
-        meta_data = cls._read_csv_meta(reader)
-        a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(reader)
+        a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(
+            reader, len_meta_data
+        )
 
         return cls(
             categorization_a_name=a_name,

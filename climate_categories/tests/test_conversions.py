@@ -3,8 +3,10 @@
 import datetime
 import importlib
 import importlib.resources
+from io import StringIO
 
 import pytest
+import strictyaml as sy
 
 import climate_categories
 import climate_categories._conversions as conversions
@@ -140,14 +142,14 @@ class TestConversionSpec:
         assert conv.comment == "A correct conversion specification file"
         assert conv.version == "1.2.3.4"
         assert conv.references == "expert judgement"
-        assert conv.last_update == datetime.date(2099, 12, 31)
+        assert conv.last_update == datetime.datetime(2099, 12, 31, 0, 0)
         assert conv.auxiliary_categorizations_names == ["aux1", "aux2"]
         assert len(conv.rule_specs) == 9
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(
             factors_categories_a={"asdf": 1, "fdsa": 1},
             factors_categories_b={"asdf": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=7,
+            csv_line_number=6,
             csv_original_text="asdf + fdsa,,,asdf",
         )
         assert conv.rule_specs[1] == conversions.ConversionRuleSpec(
@@ -157,7 +159,7 @@ class TestConversionSpec:
                 "aux1": {"3", "4", "A", "argl-5"},
                 "aux2": {"B A", "A", "B"},
             },
-            csv_line_number=8,
+            csv_line_number=7,
             csv_original_text='A.5,3 4 A "argl-5", "B A" B A,4',
         )
         assert conv.rule_specs[2] == conversions.ConversionRuleSpec(
@@ -165,87 +167,73 @@ class TestConversionSpec:
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
             comment="nobody needs argl",
-            csv_line_number=9,
+            csv_line_number=8,
             csv_original_text='b + "argl.5" + c,,,D,nobody needs argl',
         )
         assert conv.rule_specs[3] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, "argl,5": 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=10,
+            csv_line_number=9,
             csv_original_text='b + "argl,5" + c,,,D',
         )
         assert conv.rule_specs[4] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=11,
+            csv_line_number=10,
             csv_original_text='b + "argl\\"5" + c,,,D',
         )
         assert conv.rule_specs[5] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1, 'argl"5': 1, "c": 1},
             factors_categories_b={"D": 1, "E": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=12,
+            csv_line_number=11,
             csv_original_text='b + "argl\\"5" + c,,,D+E',
         )
         assert conv.rule_specs[6] == conversions.ConversionRuleSpec(
             factors_categories_a={"argl,5": 1},
             factors_categories_b={"D": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=13,
+            csv_line_number=12,
             csv_original_text='"argl,5",,,D',
         )
         assert conv.rule_specs[7] == conversions.ConversionRuleSpec(
             factors_categories_a={"+": 1, "-": -1},
             factors_categories_b={"-": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=14,
+            csv_line_number=13,
             csv_original_text='"+" - "-",,,"-"',
         )
         assert conv.rule_specs[8] == conversions.ConversionRuleSpec(
             factors_categories_a={"b": 1},
             factors_categories_b={"asdf": 1, "4": 1},
             auxiliary_categories={"aux1": set(), "aux2": set()},
-            csv_line_number=15,
+            csv_line_number=14,
             csv_original_text="b,,,asdf+4",
         )
 
         assert repr(conv) == "<ConversionSpec 'A' <-> 'B' with 9 rules>"
 
     def test_formula_broken(self):
-        csv = ["comment,no comment", "", "A,B,comment", "A.1+,C,broken formula"]
-        with pytest.raises(ValueError, match="line 4.*Could not parse"):
+        csv = StringIO(
+            "# comment: no comment\n"
+            "A,species,B,comment\n"
+            "A.1+,something,C,broken formula\n"
+        )
+        with pytest.raises(ValueError, match="line 3.*Could not parse"):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
-
-    def test_meta_data_incomplete(self):
-        csv = ["comment,no comment", "references"]
-        with pytest.raises(
-            ValueError, match="Meta data specification is incomplete in line 2"
-        ):
-            climate_categories._conversions.ConversionSpec.from_csv(csv)
-
-    def test_extraneous_comma(self):
-        csv = ["comment,you know, nothing really works"]
-        with pytest.raises(ValueError, match="did you forget to escape a comma?"):
-            climate_categories._conversions.ConversionSpec.from_csv(csv)
-
-        csv = ["comment,you know\\, nothing really works", "", "A,B,comment"]
-        cr = climate_categories._conversions.ConversionSpec.from_csv(csv)
-        assert cr.comment == "you know, nothing really works"
 
     def test_unknown_meta_data(self):
-        csv = [
-            "comment,no comment",
-            "interjection,What you guys are referring to as Linux",
-        ]
-        with pytest.raises(
-            ValueError, match="Unknown meta data key in line 2: interjection"
-        ):
+        csv = StringIO(
+            "# comment: no comment\n"
+            "# interjection: What you guys are referring to as Linux\n"
+        )
+        with pytest.raises(sy.exceptions.YAMLValidationError):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_comment_missing(self):
-        csv = ["comment,no comment", "", "A,aux,B", "A.1,D,A.2"]
+        csv = StringIO("# comment: no comment\n" "A,aux,B\n" "A.1,D,A.2\n")
         with pytest.raises(
             ValueError, match="Last column must be 'comment', but isn't."
         ):
@@ -313,6 +301,16 @@ class TestConversion:
 
     def test_repr(self, good_conversion: conversions.Conversion):
         assert repr(good_conversion) == "<Conversion 'A' <-> 'B' with 9 rules>"
+
+    def test_not_allowed(self):
+        with pytest.raises(ValueError, match="Error in line 10: Could not parse:"):
+            load_conversion_from_csv("broken_conversion_not_allowed.csv")
+
+    def test_not_existing(self):
+        with pytest.raises(
+            ValueError, match="Error in line 10: 'notexisting' not in A"
+        ):
+            load_conversion_from_csv("broken_conversion_not_existing.csv")
 
     def test_describe(self, good_conversion: conversions.Conversion):
 

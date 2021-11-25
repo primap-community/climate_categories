@@ -137,15 +137,15 @@ separated value files with a tightly specified format.
 Commas separate fields, and can be escaped using a backslash.
 Two consecutive backslashes are read as a single backslash.
 
-The file consists of a meta data block at the start of the file, and a data block
+The file consists of a YAML meta data block at the start of the file, and a data block
 following it.
-The two blocks are separated by an empty line.
+The YAML meta data block lines start with the comment char '#'.
 
 Meta data block
 ---------------
 
 The meta data bloc consists of key-value pairs, one on each line, key and value
-separated by a comma.
+separated by a colon.
 All meta data are optional, the allowed keys are:
 
 ============  ====  ==========================================  ========================================
@@ -185,9 +185,8 @@ Example
 
 .. code-block:: csv
 
-    comment,an example conversion
-    institution,PIK
-
+    # comment: an example conversion
+    # institution: PIK
     IPCC1996,gas,IPCC2006,comment
     4 + 5,,3,Both sectors were combined
     4.D,N2O,3.C.4 + 3.C.5,N2O emissions are separated into own categories
