@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.7.0 (2021-11-25)
+------------------
+* Use Python files instead of pickle objects for caching
+
 0.6.3 (2021-11-05)
 ------------------
 * Export Category and HierarchicalCategory types.
