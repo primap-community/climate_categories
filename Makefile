@@ -77,6 +77,7 @@ cache: climate_categories/data/IPCC2006.py
 cache: climate_categories/data/IPCC2006_PRIMAP.py
 cache: climate_categories/data/IPCC1996.py
 cache: climate_categories/data/CRF1999.py
+cache: climate_categories/data/CRF2013.py
 cache: climate_categories/data/gas.py
 cache: climate_categories/data/CRFDI.py
 cache: climate_categories/data/CRFDI_class.py

@@ -7,6 +7,7 @@ def test_search():
         climate_categories.IPCC2006["1.A"],
         climate_categories.IPCC2006_PRIMAP["1.A"],
         climate_categories.CRF1999["1.A"],
+        climate_categories.CRF2013["1.A"],
         climate_categories.CRFDI["1.A"],
         climate_categories.CRFDI_class["1.A"],
         climate_categories.BURDI["1.A"],
