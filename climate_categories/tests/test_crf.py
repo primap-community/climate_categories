@@ -3,7 +3,7 @@ import climate_categories
 
 def test_number_of_categories():
     assert len(climate_categories.CRF1999) == 400
-    assert len(climate_categories.CRF2013) == 725
+    assert len(climate_categories.CRF2013) == 727
 
 
 def test_levels():

@@ -1683,35 +1683,39 @@ spec = {
         "M.Info.CCS": {
             "title": "CO2 Transport and Storage - information Items",
             "alternative_codes": ["M Info CCS", "MInfoCCS"],
+            "children": [["M.Info.CCS.A", "M.Info.CCS.B"]],
+        },
+        "M.Info.CCS.A": {
+            "title": "CO2 Transport and Storage - information Items - Total A",
+            "alternative_codes": ["M Info CCS A", "MInfoCCSA"],
+            "children": [["M.Info.CCS.A.TACS", "M.Info.CCS.A.TAIS"]],
+        },
+        "M.Info.CCS.B": {
+            "title": "CO2 Transport and Storage - information Items - Total B",
+            "alternative_codes": ["M Info CCS B", "MInfoCCSB"],
             "children": [
-                [
-                    "M.Info.CCS.TACS",
-                    "M.Info.CCS.TAES",
-                    "M.Info.CCS.TAI",
-                    "M.Info.CCS.TAIS",
-                    "M.Info.CCS.TLTIS",
-                ]
+                ["M.Info.CCS.B.TAES", "M.Info.CCS.B.TAI", "M.Info.CCS.B.TLTIS"]
             ],
         },
-        "M.Info.CCS.TACS": {
+        "M.Info.CCS.A.TACS": {
             "title": "Total Amount Captured for Storage",
-            "alternative_codes": ["M Info CCS TACS", "MInfoCCSTACS"],
+            "alternative_codes": ["M Info CCS A TACS", "MInfoCCSATACS"],
         },
-        "M.Info.CCS.TAIS": {
+        "M.Info.CCS.A.TAIS": {
             "title": "Total Amount of Imports for Storage",
-            "alternative_codes": ["M Info CCS TAIS", "MInfoCCSTAIS"],
+            "alternative_codes": ["M Info CCS A TAIS", "MInfoCCSATAIS"],
         },
-        "M.Info.CCS.TAES": {
+        "M.Info.CCS.B.TAES": {
             "title": "Total Amount of Exports for Storage",
-            "alternative_codes": ["M Info CCS TAES", "MInfoCCSTAES"],
+            "alternative_codes": ["M Info CCS B TAES", "MInfoCCSBTAES"],
         },
-        "M.Info.CCS.TAI": {
+        "M.Info.CCS.B.TAI": {
             "title": "Tota Amount of CO2 Injected at Storage Sites",
-            "alternative_codes": ["M Info CCS TAI", "MInfoCCSTAI"],
+            "alternative_codes": ["M Info CCS B TAI", "MInfoCCSBTAI"],
         },
-        "M.Info.CCS.TLTIS": {
+        "M.Info.CCS.B.TLTIS": {
             "title": "Total Leakage from Transport, Injection and Storage",
-            "alternative_codes": ["M Info CCS TLTIS", "MInfoCCSTLTIS"],
+            "alternative_codes": ["M Info CCS B TLTIS", "MInfoCCSBTLTIS"],
         },
         "M.Memo": {
             "title": "Memo Items",

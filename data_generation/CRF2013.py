@@ -344,19 +344,32 @@ def main():
         "title": "CO2 Transport and Storage - information Items",
         "children": [
             [
-                "M.Info.CCS.TACS",
-                "M.Info.CCS.TAIS",
-                "M.Info.CCS.TAES",
-                "M.Info.CCS.TAI",
-                "M.Info.CCS.TLTIS",
+                "M.Info.CCS.A",
+                "M.Info.CCS.B",
             ]
         ],
     }
-    ncats["M.Info.CCS.TACS"] = {"title": "Total Amount Captured for Storage"}
-    ncats["M.Info.CCS.TAIS"] = {"title": "Total Amount of Imports for Storage"}
-    ncats["M.Info.CCS.TAES"] = {"title": "Total Amount of Exports for Storage"}
-    ncats["M.Info.CCS.TAI"] = {"title": "Tota Amount of CO2 Injected at Storage Sites"}
-    ncats["M.Info.CCS.TLTIS"] = {
+    ncats["M.Info.CCS.A"] = {
+        "title": "CO2 Transport and Storage - information Items - Total A",
+        "children": [["M.Info.CCS.A.TACS", "M.Info.CCS.A.TAIS"]],
+    }
+    ncats["M.Info.CCS.B"] = {
+        "title": "CO2 Transport and Storage - information Items - Total B",
+        "children": [
+            [
+                "M.Info.CCS.B.TAES",
+                "M.Info.CCS.B.TAI",
+                "M.Info.CCS.B.TLTIS",
+            ]
+        ],
+    }
+    ncats["M.Info.CCS.A.TACS"] = {"title": "Total Amount Captured for Storage"}
+    ncats["M.Info.CCS.A.TAIS"] = {"title": "Total Amount of Imports for Storage"}
+    ncats["M.Info.CCS.B.TAES"] = {"title": "Total Amount of Exports for Storage"}
+    ncats["M.Info.CCS.B.TAI"] = {
+        "title": "Tota Amount of CO2 Injected at Storage Sites"
+    }
+    ncats["M.Info.CCS.B.TLTIS"] = {
         "title": "Total Leakage from Transport, Injection and Storage"
     }
 
