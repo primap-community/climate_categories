@@ -10,7 +10,15 @@ OUTPATH = pathlib.Path("./climate_categories/data/CRF2013.yaml")
 
 def main():
     """Create the CRF2013 categorization from the IPCC2006 categorization, which was
-    also used by the UNFCCC to develop CRF2013. TODO: info on details
+    also used by the UNFCCC to develop CRF2013. The sectors 3 (Agriculture),
+    4 (LULUCF) and 5 (Waste) are rebuilt from scratch because agriculture
+    and LUULCF are combined in one category in IPCC2006 but split in two categories
+    here. The sector codes follow the codes used in the tables where possible
+    and in consequence do not follow a consistent pattern.
+    This categorization follows the template tables (adding subcatetegories for
+    consistency in a few places). To read all submitted data an extended
+    terminology is needed for each submission year.
+
     """
     spec = climate_categories.IPCC2006.to_spec()
 
@@ -356,7 +364,7 @@ def main():
     # we add some additional structure to the memo items here
     ncats["M.Memo"] = {
         "title": "Memo Items",
-        "children": [["M.Memo.Int", "M.Memo.Mult"]],  # "M.Memo.Bio"]],
+        "children": [["M.Memo.Int", "M.Memo.Mult", "M.Memo.CO2Cap", "M.Memo.Bio"]],
     }
     ncats["M.Memo.Int"] = {
         "title": "International Bunkers",
@@ -365,7 +373,13 @@ def main():
     ncats["M.Memo.Int.Avi"] = {"title": "International Aviation (Aviation Bunkers)"}
     ncats["M.Memo.Int.Mar"] = {"title": "International Navigation (Marine Bunkers)"}
     ncats["M.Memo.Mult"] = {"title": "Multilateral Operations"}
-    # ncats["M.Memo.Bio"] = {"title": "CO2 Emissions from Biomass"}
+    ncats["M.Memo.Bio"] = {"title": "CO2 Emissions from Biomass"}
+    ncats["M.Memo.CO2Cap"] = {
+        "title": "CO2 captured",
+        "children": [["M.Memo.CO2Cap.Dom", "M.Memo.CO2Cap.Exp"]],
+    }
+    ncats["M.Memo.CO2Cap.Dom"] = {"title": "For Domestic Storage"}
+    ncats["M.Memo.CO2Cap.Exp"] = {"title": "For Storage in Other Countries"}
 
     # Table2(I)s1/2 - just summary tables. use detailed tables instead
 
@@ -387,9 +401,7 @@ def main():
         "children": [["2.B.8.g.i", "2.B.8.g.ii"]],
     }
     ncats["2.B.8.g.i"] = {"title": "Styrene"}
-    ncats["2.B.8.g.ii"] = {
-        "title": "Other (please specify)"
-    }  # TODO: check if reported or just subitems
+    ncats["2.B.8.g.ii"] = {"title": "Other (please specify)"}
     # 2.B.9 is missing in this table as it's f-gases only
 
     # Table2(I).A-Hs1 - More industrial sectors
@@ -498,14 +510,10 @@ def main():
     ncats["3.A.1.Ba"] = {"title": "Mature Dairy Cattle"}
     ncats["3.A.1.Bb"] = {"title": "Other Mature Cattle"}
     ncats["3.A.1.Bc"] = {"title": "Growing Cattle"}
-    # TODO: option C needs to be filled with what countries actually report
+    # option C needs to be filled with what countries actually report
     # will be one grouping per country that reports in option c
-    # option c for australia
-    ncats["3.A.1"]["children"].append(["3.A.1.Ca", "3.A.1.Cb", "3.A.1.Cc"])
-    ncats["3.A.1.Ca"] = {"title": "Dairy Cattle"}
-    ncats["3.A.1.Cb"] = {"title": "Beef Cattle - Pasture"}
-    ncats["3.A.1.Cc"] = {"title": "Beef Cattle - Feedlot"}
-
+    # these willm be added in the submission year specific
+    # terminologies
     ncats["3.A.2"] = {"title": "Sheep"}
     ncats["3.A.3"] = {"title": "Swine"}
     ncats["3.A.4"] = {
@@ -545,16 +553,12 @@ def main():
     ncats["3.B.1.Ba"] = {"title": "Mature Dairy Cattle"}
     ncats["3.B.1.Bb"] = {"title": "Other Mature Cattle"}
     ncats["3.B.1.Bc"] = {"title": "Growing Cattle"}
-    # TODO: option C needs to be filled with what countries actually report
+    # option C needs to be filled with what countries actually report
     # will be one grouping per country that reports in option c
-    # option c for australia
-    ncats["3.B.1"]["children"].append(["3.B.1.Ca", "3.B.1.Cb", "3.B.1.Cc"])
-    ncats["3.B.1.Ca"] = {"title": "Dairy Cattle"}
-    ncats["3.B.1.Cb"] = {"title": "Beef Cattle - Pasture"}
-    ncats["3.B.1.Cc"] = {"title": "Beef Cattle - Feedlot"}
-
-    ncats["3.B.2"] = {"title": "Sheep"}  # TODO: possibly subsectors in reporte data
-    ncats["3.B.3"] = {"title": "Swine"}  # TODO: possibly subsectors in reporte data
+    # these willm be added in the submission year specific
+    # terminologies
+    ncats["3.B.2"] = {"title": "Sheep"}  # possibly subsectors in reporte data
+    ncats["3.B.3"] = {"title": "Swine"}  # possibly subsectors in reporte data
     ncats["3.B.4"] = {
         "title": "Other Livestock",
         "children": [[f"3.B.4.{x}" for x in "abcdefgh"]],
@@ -590,7 +594,9 @@ def main():
         "children": [["3.C.1.a", "3.C.1.b"]],
     }
     ncats["3.C.1.a"] = {"title": "Continuously Flooded"}
-    ncats["3.C.1.b"] = {"title": "Intermittently Flooded"}  # TODO: possible subsectors
+    ncats["3.C.1.b"] = {
+        "title": "Intermittently Flooded"
+    }  # possible subsectors in reported data
     ncats["3.C.2"] = {
         "title": "Rein-Fed",
         "children": [["3.C.2.a", "3.C.2.b"]],
@@ -645,8 +651,8 @@ def main():
         "title": "Prescribed Burning of Savannahs",
         "children": [["3.E.1", "3.E.2"]],
     }
-    ncats["3.E.1"] = {"title": "Forest Land"}  # TODO: possibly subsectors in reporting
-    ncats["3.E.2"] = {"title": "Grassland"}  # TODO: possibly subsectors in reporting
+    ncats["3.E.1"] = {"title": "Forest Land"}  # possibly subsectors in reporting
+    ncats["3.E.2"] = {"title": "Grassland"}  # possibly subsectors in reporting
 
     # Table3F - Field burning of Argricultural Residue
     ncats["3.F"] = {
@@ -661,10 +667,8 @@ def main():
     ncats["3.F.1.b"] = {"title": "Barley"}
     ncats["3.F.1.c"] = {"title": "Maize"}
     ncats["3.F.1.d"] = {"title": "Other (Please Specify)"}
-    ncats["3.F.2"] = {"title": "Pulses"}  # TODO: possible subsectors in reporting
-    ncats["3.F.3"] = {
-        "title": "Tubers and Roots"
-    }  # TODO: possible subsectors in reporting
+    ncats["3.F.2"] = {"title": "Pulses"}  # possible subsectors in reporting
+    ncats["3.F.3"] = {"title": "Tubers and Roots"}  # possible subsectors in reporting
     ncats["3.F.4"] = {"title": "Sugar Cane"}
     ncats["3.F.5"] = {"title": "Other (Please Specify)"}
 
@@ -1256,8 +1260,7 @@ def main():
     ncats["M.4.1.a"] = {"title": "Atmospheric Deposition"}
     ncats["M.4.1.b"] = {"title": "Nitrogen Leaching and Run-Off"}
 
-    # Table4(v) - TODO: find a way to read the data as sectors are the same
-    #  as in Table4(III)
+    # Table4(v)
     ncats["4(V)"] = {
         "title": "LULUCF: Biomass Burning (Table 4(V)",
         "children": [
@@ -1451,7 +1454,7 @@ def main():
     ncats["4.GC.1.1.c"] = {"title": "Other Wood Products"}
     ncats["4.GC.1.2"] = {"title": "Paper and Paperboard"}
     ncats["4.GC.1.3"] = {"title": "Other (Please Specify)"}
-    # TODO: information item
+    # information items are ignored for now
 
     # Table 4.Gs2 - Do not read
 
@@ -1492,7 +1495,14 @@ def main():
     ncats["5.D.2"] = {"title": "Industrial Wastewater"}
     ncats["5.D.3"] = {"title": "Other"}
     ncats["5.E"] = {"title": "Other (please specify)"}
-    # TODO: memo items
+    ncats["M.Memo"]["children"][0].append("M.Memo.LTSW")
+    ncats["M.Memo.LTSW"] = {"title": "Long Term Storage of C in Waste Disposal Sites"}
+    ncats["M.Memo"]["children"][0].append("M.Memo.ACLT")
+    ncats["M.Memo.ACLT"] = {"title": "Annual Change in Long-Term Storage"}
+    ncats["M.Memo"]["children"][0].append("M.Memo.ACLTHWP")
+    ncats["M.Memo.ACLTHWP"] = {
+        "title": "Annual Change in Total Long-Term C Storage in HWP Waste"
+    }
 
     # Table 5.A - Solid Waste Disposal
     ncats["5.A.1"]["children"] = [["5.A.1.a", "5.A.1.b"]]
@@ -1578,12 +1588,6 @@ def main():
         "children": [["1", "2", "3", "4", "5"]],
     }
 
-    ncats["M.Memo"]["children"][0].append("M.Memo.Bio")
-    ncats["M.Memo.Bio"] = {"title": "CO2 Emissions from Biomass"}
-    ncats["M.Memo"]["children"][0].append("M.Memo.CO2Cap")
-    ncats["M.Memo.CO2Cap"] = {"title": "CO2 captured"}
-    ncats["M.Memo"]["children"][0].append("M.Memo.LTSW")
-    ncats["M.Memo.LTSW"] = {"title": "Long Term Storage of C in Waste Disposal Sites"}
     ncats["M.Memo"]["children"][0].append("M.Memo.IndN2O")
     ncats["M.Memo.IndN2O"] = {"title": "Indirect N2O "}
     ncats["M.Memo"]["children"][0].append("M.Memo.IndCO2")

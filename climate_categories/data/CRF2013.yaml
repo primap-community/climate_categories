@@ -2847,7 +2847,9 @@ categories:
     - M Memo
     - MMemo
     children:
-    - - M.Memo.Bio
+    - - M.Memo.ACLT
+      - M.Memo.ACLTHWP
+      - M.Memo.Bio
       - M.Memo.CO2Cap
       - M.Memo.IndCO2
       - M.Memo.IndN2O
@@ -2877,6 +2879,29 @@ categories:
     alternative_codes:
     - M Memo Mult
     - MMemoMult
+  M.Memo.Bio:
+    title: CO2 Emissions from Biomass
+    alternative_codes:
+    - M Memo Bio
+    - MMemoBio
+  M.Memo.CO2Cap:
+    title: CO2 captured
+    alternative_codes:
+    - M Memo CO2Cap
+    - MMemoCO2Cap
+    children:
+    - - M.Memo.CO2Cap.Dom
+      - M.Memo.CO2Cap.Exp
+  M.Memo.CO2Cap.Dom:
+    title: For Domestic Storage
+    alternative_codes:
+    - M Memo CO2Cap Dom
+    - MMemoCO2CapDom
+  M.Memo.CO2Cap.Exp:
+    title: For Storage in Other Countries
+    alternative_codes:
+    - M Memo CO2Cap Exp
+    - MMemoCO2CapExp
   2.B.4.a:
     title: Caprolactam
     alternative_codes:
@@ -3149,9 +3174,6 @@ categories:
     - - 3.A.1.Ba
       - 3.A.1.Bb
       - 3.A.1.Bc
-    - - 3.A.1.Ca
-      - 3.A.1.Cb
-      - 3.A.1.Cc
   3.A.1.Aa:
     title: Dairy Cattle
     alternative_codes:
@@ -3177,21 +3199,6 @@ categories:
     alternative_codes:
     - 3 A 1 Bc
     - 3A1Bc
-  3.A.1.Ca:
-    title: Dairy Cattle
-    alternative_codes:
-    - 3 A 1 Ca
-    - 3A1Ca
-  3.A.1.Cb:
-    title: Beef Cattle - Pasture
-    alternative_codes:
-    - 3 A 1 Cb
-    - 3A1Cb
-  3.A.1.Cc:
-    title: Beef Cattle - Feedlot
-    alternative_codes:
-    - 3 A 1 Cc
-    - 3A1Cc
   3.A.2:
     title: Sheep
     alternative_codes:
@@ -3309,9 +3316,6 @@ categories:
     - - 3.B.1.Ba
       - 3.B.1.Bb
       - 3.B.1.Bc
-    - - 3.B.1.Ca
-      - 3.B.1.Cb
-      - 3.B.1.Cc
   3.B.1.Aa:
     title: Dairy Cattle
     alternative_codes:
@@ -3337,21 +3341,6 @@ categories:
     alternative_codes:
     - 3 B 1 Bc
     - 3B1Bc
-  3.B.1.Ca:
-    title: Dairy Cattle
-    alternative_codes:
-    - 3 B 1 Ca
-    - 3B1Ca
-  3.B.1.Cb:
-    title: Beef Cattle - Pasture
-    alternative_codes:
-    - 3 B 1 Cb
-    - 3B1Cb
-  3.B.1.Cc:
-    title: Beef Cattle - Feedlot
-    alternative_codes:
-    - 3 B 1 Cc
-    - 3B1Cc
   3.B.2:
     title: Sheep
     alternative_codes:
@@ -5871,6 +5860,21 @@ categories:
     alternative_codes:
     - 5 E
     - 5E
+  M.Memo.LTSW:
+    title: Long Term Storage of C in Waste Disposal Sites
+    alternative_codes:
+    - M Memo LTSW
+    - MMemoLTSW
+  M.Memo.ACLT:
+    title: Annual Change in Long-Term Storage
+    alternative_codes:
+    - M Memo ACLT
+    - MMemoACLT
+  M.Memo.ACLTHWP:
+    title: Annual Change in Total Long-Term C Storage in HWP Waste
+    alternative_codes:
+    - M Memo ACLTHWP
+    - MMemoACLTHWP
   5.A.1.a:
     title: Anaerobic
     alternative_codes:
@@ -6043,21 +6047,6 @@ categories:
       - '3'
       - '4'
       - '5'
-  M.Memo.Bio:
-    title: CO2 Emissions from Biomass
-    alternative_codes:
-    - M Memo Bio
-    - MMemoBio
-  M.Memo.CO2Cap:
-    title: CO2 captured
-    alternative_codes:
-    - M Memo CO2Cap
-    - MMemoCO2Cap
-  M.Memo.LTSW:
-    title: Long Term Storage of C in Waste Disposal Sites
-    alternative_codes:
-    - M Memo LTSW
-    - MMemoLTSW
   M.Memo.IndN2O:
     title: 'Indirect N2O '
     alternative_codes:

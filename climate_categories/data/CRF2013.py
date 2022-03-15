@@ -1718,6 +1718,8 @@ spec = {
             "alternative_codes": ["M Memo", "MMemo"],
             "children": [
                 [
+                    "M.Memo.ACLT",
+                    "M.Memo.ACLTHWP",
                     "M.Memo.Bio",
                     "M.Memo.CO2Cap",
                     "M.Memo.IndCO2",
@@ -1744,6 +1746,23 @@ spec = {
         "M.Memo.Mult": {
             "title": "Multilateral Operations",
             "alternative_codes": ["M Memo Mult", "MMemoMult"],
+        },
+        "M.Memo.Bio": {
+            "title": "CO2 Emissions from Biomass",
+            "alternative_codes": ["M Memo Bio", "MMemoBio"],
+        },
+        "M.Memo.CO2Cap": {
+            "title": "CO2 captured",
+            "alternative_codes": ["M Memo CO2Cap", "MMemoCO2Cap"],
+            "children": [["M.Memo.CO2Cap.Dom", "M.Memo.CO2Cap.Exp"]],
+        },
+        "M.Memo.CO2Cap.Dom": {
+            "title": "For Domestic Storage",
+            "alternative_codes": ["M Memo CO2Cap Dom", "MMemoCO2CapDom"],
+        },
+        "M.Memo.CO2Cap.Exp": {
+            "title": "For Storage in Other Countries",
+            "alternative_codes": ["M Memo CO2Cap Exp", "MMemoCO2CapExp"],
         },
         "2.B.4.a": {"title": "Caprolactam", "alternative_codes": ["2 B 4 a", "2B4a"]},
         "2.B.4.b": {"title": "Glyoxal", "alternative_codes": ["2 B 4 b", "2B4b"]},
@@ -1909,7 +1928,6 @@ spec = {
             "children": [
                 ["3.A.1.Aa", "3.A.1.Ab"],
                 ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"],
-                ["3.A.1.Ca", "3.A.1.Cb", "3.A.1.Cc"],
             ],
         },
         "3.A.1.Aa": {
@@ -1931,18 +1949,6 @@ spec = {
         "3.A.1.Bc": {
             "title": "Growing Cattle",
             "alternative_codes": ["3 A 1 Bc", "3A1Bc"],
-        },
-        "3.A.1.Ca": {
-            "title": "Dairy Cattle",
-            "alternative_codes": ["3 A 1 Ca", "3A1Ca"],
-        },
-        "3.A.1.Cb": {
-            "title": "Beef Cattle - Pasture",
-            "alternative_codes": ["3 A 1 Cb", "3A1Cb"],
-        },
-        "3.A.1.Cc": {
-            "title": "Beef Cattle - Feedlot",
-            "alternative_codes": ["3 A 1 Cc", "3A1Cc"],
         },
         "3.A.2": {"title": "Sheep", "alternative_codes": ["3 A 2", "3A2"]},
         "3.A.3": {"title": "Swine", "alternative_codes": ["3 A 3", "3A3"]},
@@ -2004,7 +2010,6 @@ spec = {
             "children": [
                 ["3.B.1.Aa", "3.B.1.Ab"],
                 ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"],
-                ["3.B.1.Ca", "3.B.1.Cb", "3.B.1.Cc"],
             ],
         },
         "3.B.1.Aa": {
@@ -2026,18 +2031,6 @@ spec = {
         "3.B.1.Bc": {
             "title": "Growing Cattle",
             "alternative_codes": ["3 B 1 Bc", "3B1Bc"],
-        },
-        "3.B.1.Ca": {
-            "title": "Dairy Cattle",
-            "alternative_codes": ["3 B 1 Ca", "3B1Ca"],
-        },
-        "3.B.1.Cb": {
-            "title": "Beef Cattle - Pasture",
-            "alternative_codes": ["3 B 1 Cb", "3B1Cb"],
-        },
-        "3.B.1.Cc": {
-            "title": "Beef Cattle - Feedlot",
-            "alternative_codes": ["3 B 1 Cc", "3B1Cc"],
         },
         "3.B.2": {"title": "Sheep", "alternative_codes": ["3 B 2", "3B2"]},
         "3.B.3": {"title": "Swine", "alternative_codes": ["3 B 3", "3B3"]},
@@ -3767,6 +3760,18 @@ spec = {
         },
         "5.D.3": {"title": "Other", "alternative_codes": ["5 D 3", "5D3"]},
         "5.E": {"title": "Other (please specify)", "alternative_codes": ["5 E", "5E"]},
+        "M.Memo.LTSW": {
+            "title": "Long Term Storage of C in Waste Disposal Sites",
+            "alternative_codes": ["M Memo LTSW", "MMemoLTSW"],
+        },
+        "M.Memo.ACLT": {
+            "title": "Annual Change in Long-Term Storage",
+            "alternative_codes": ["M Memo ACLT", "MMemoACLT"],
+        },
+        "M.Memo.ACLTHWP": {
+            "title": "Annual Change in Total Long-Term C Storage in HWP Waste",
+            "alternative_codes": ["M Memo ACLTHWP", "MMemoACLTHWP"],
+        },
         "5.A.1.a": {"title": "Anaerobic", "alternative_codes": ["5 A 1 a", "5A1a"]},
         "5.A.1.b": {"title": "Semi-Aerobic", "alternative_codes": ["5 A 1 b", "5A1b"]},
         "5.B.1.a": {
@@ -3898,18 +3903,6 @@ spec = {
         "0": {
             "title": "Total National Emissions and Removals",
             "children": [["1", "2", "3", "4", "5"]],
-        },
-        "M.Memo.Bio": {
-            "title": "CO2 Emissions from Biomass",
-            "alternative_codes": ["M Memo Bio", "MMemoBio"],
-        },
-        "M.Memo.CO2Cap": {
-            "title": "CO2 captured",
-            "alternative_codes": ["M Memo CO2Cap", "MMemoCO2Cap"],
-        },
-        "M.Memo.LTSW": {
-            "title": "Long Term Storage of C in Waste Disposal Sites",
-            "alternative_codes": ["M Memo LTSW", "MMemoLTSW"],
         },
         "M.Memo.IndN2O": {
             "title": "Indirect N2O ",
