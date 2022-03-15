@@ -4,6 +4,7 @@ import datetime
 import pathlib
 
 import numpy as np
+import treelib
 import unfccc_di_api
 
 import climate_categories
@@ -80,7 +81,10 @@ def parse_refrigerant_measures(rao: unfccc_di_api.UNFCCCSingleCategoryApiReader)
 
         new_children_for_category = []
         for mid in sorted(measure_ids):
-            measure = rao.measure_tree[mid].tag
+            try:
+                measure = rao.measure_tree[mid].tag
+            except treelib.tree.NodeIDAbsentError:
+                continue
             if measure not in refrigerant_emission_measures:
                 continue
             short_mid = refrigerant_emission_measures[measure]
