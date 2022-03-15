@@ -16,8 +16,11 @@ def main():
     here. The sector codes follow the codes used in the tables where possible
     and in consequence do not follow a consistent pattern.
     This categorization follows the template tables (adding subcategories for
-    consistency in a few places). To read all submitted data an extended
-    terminology is needed for each submission year.
+    consistency in a few places). To read all submitted data including country specific
+    subsectors in "Other" categories, an extended terminology is needed. With each
+    submission round (e.g. 2021) these subsectors change, thus a submission-year
+    specific extended terminology might be needed to avoid cluttered sector 
+    specifications.
 
     """
     spec = climate_categories.IPCC2006.to_spec()
