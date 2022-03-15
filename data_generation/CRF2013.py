@@ -19,7 +19,7 @@ def main():
     consistency in a few places). To read all submitted data including country specific
     subsectors in "Other" categories, an extended terminology is needed. With each
     submission round (e.g. 2021) these subsectors change, thus a submission-year
-    specific extended terminology might be needed to avoid cluttered sector 
+    specific extended terminology might be needed to avoid cluttered sector
     specifications.
 
     """
