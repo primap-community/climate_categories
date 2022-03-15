@@ -15,7 +15,7 @@ def main():
     and LUULCF are combined in one category in IPCC2006 but split in two categories
     here. The sector codes follow the codes used in the tables where possible
     and in consequence do not follow a consistent pattern.
-    This categorization follows the template tables (adding subcatetegories for
+    This categorization follows the template tables (adding subcategories for
     consistency in a few places). To read all submitted data an extended
     terminology is needed for each submission year.
 
