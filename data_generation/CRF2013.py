@@ -1475,7 +1475,7 @@ def main():
     # Table 4.Gs2 - Do not read
 
     # Table5 - Waste
-    # remove Waste as category 4 as it's category 5 in the cRF tables
+    # remove Waste as category 4 as it's category 5 in the CRF tables
     cats_to_remove = [cat for cat in cats.keys() if cat[0] in ["4", "5"]]
     for cat in cats_to_remove:
         del cats[cat]
