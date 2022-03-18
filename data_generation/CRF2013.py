@@ -626,7 +626,7 @@ def main():
     ncats["3.C.3.a"] = {"title": "Water Depth 50-100 cm"}
     ncats["3.C.3.b"] = {"title": "Water Depth > 100 cm"}
     ncats["3.C.4"] = {"title": "Other (Please Specify)"}
-    # ignore the rows "Upland Rice" and "Total"as they don't contain emissions  data
+    # ignore the rows "Upland Rice" and "Total" as they don't contain emissions data
 
     # Table3.D - Direct and indirect N2O emissions from agricultural soils
     # we follow the numbering of subsectors in the table despite it not
