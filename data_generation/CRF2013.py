@@ -701,7 +701,7 @@ def main():
 
     # Table4 - LULUCF overview
     # as the detailed tables use different hierarchies we only have the sectors
-    # of this table in the mail LULUCF hierarchy
+    # of this table in the main LULUCF hierarchy
     # we have to add a subsector for indirect N2O though as it is not included in
     # any of the subsectors
     # total LULUCF
