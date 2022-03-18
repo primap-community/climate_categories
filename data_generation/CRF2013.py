@@ -574,7 +574,7 @@ def main():
     # these will be added in the submission year specific
     # terminologies
     ncats["3.B.2"] = {"title": "Sheep"}  # possibly subsectors in reported data
-    ncats["3.B.3"] = {"title": "Swine"}  # possibly subsectors in reporte data
+    ncats["3.B.3"] = {"title": "Swine"}  # possibly subsectors in reported data
     ncats["3.B.4"] = {
         "title": "Other Livestock",
         "children": [[f"3.B.4.{x}" for x in "abcdefgh"]],
