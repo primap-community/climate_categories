@@ -526,9 +526,10 @@ def main():
     ncats["3.A.1.Ba"] = {"title": "Mature Dairy Cattle"}
     ncats["3.A.1.Bb"] = {"title": "Other Mature Cattle"}
     ncats["3.A.1.Bc"] = {"title": "Growing Cattle"}
+    ncats["3.A.1.C"] = {"title": "Other (as specified in table 3(I).A)"}
     # option C needs to be filled with what countries actually report
     # will be one grouping per country that reports in option c
-    # these willm be added in the submission year specific
+    # these will be added in the submission year specific
     # terminologies
     ncats["3.A.2"] = {"title": "Sheep"}
     ncats["3.A.3"] = {"title": "Swine"}
@@ -569,6 +570,7 @@ def main():
     ncats["3.B.1.Ba"] = {"title": "Mature Dairy Cattle"}
     ncats["3.B.1.Bb"] = {"title": "Other Mature Cattle"}
     ncats["3.B.1.Bc"] = {"title": "Growing Cattle"}
+    ncats["3.B.1.C"] = {"title": "Other (as specified in table 3(I).B)"}
     # option C needs to be filled with what countries actually report
     # will be one grouping per country that reports in option c
     # these willm be added in the submission year specific
