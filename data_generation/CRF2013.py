@@ -573,10 +573,10 @@ def main():
     ncats["3.B.1.C"] = {"title": "Other (as specified in table 3(I).B)"}
     # option C needs to be filled with what countries actually report
     # will be one grouping per country that reports in option c
-    # these willm be added in the submission year specific
+    # these will be added in the submission year specific
     # terminologies
-    ncats["3.B.2"] = {"title": "Sheep"}  # possibly subsectors in reporte data
-    ncats["3.B.3"] = {"title": "Swine"}  # possibly subsectors in reporte data
+    ncats["3.B.2"] = {"title": "Sheep"}  # possibly subsectors in reported data
+    ncats["3.B.3"] = {"title": "Swine"}  # possibly subsectors in reported data
     ncats["3.B.4"] = {
         "title": "Other Livestock",
         "children": [[f"3.B.4.{x}" for x in "abcdefgh"]],
@@ -628,7 +628,7 @@ def main():
     ncats["3.C.3.a"] = {"title": "Water Depth 50-100 cm"}
     ncats["3.C.3.b"] = {"title": "Water Depth > 100 cm"}
     ncats["3.C.4"] = {"title": "Other (Please Specify)"}
-    # ignore the rows "Upland Rice" and "Total"as they don't contain emissions  data
+    # ignore the rows "Upland Rice" and "Total" as they don't contain emissions data
 
     # Table3.D - Direct and indirect N2O emissions from agricultural soils
     # we follow the numbering of subsectors in the table despite it not
@@ -703,7 +703,7 @@ def main():
 
     # Table4 - LULUCF overview
     # as the detailed tables use different hierarchies we only have the sectors
-    # of this table in the mail LULUCF hierarchy
+    # of this table in the main LULUCF hierarchy
     # we have to add a subsector for indirect N2O though as it is not included in
     # any of the subsectors
     # total LULUCF
@@ -1477,7 +1477,7 @@ def main():
     # Table 4.Gs2 - Do not read
 
     # Table5 - Waste
-    # remove Waste as category 4 as it's category 5 in the cRF tables
+    # remove Waste as category 4 as it's category 5 in the CRF tables
     cats_to_remove = [cat for cat in cats.keys() if cat[0] in ["4", "5"]]
     for cat in cats_to_remove:
         del cats[cat]
