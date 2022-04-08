@@ -71,6 +71,7 @@ update-venv:
 install-pre-commit: update-venv ## install the pre-commit hooks
 	venv/bin/pre-commit install
 
+cache: climate_categories/data/AR6_SCEN_DB.py
 cache: climate_categories/data/RCMIP.py
 cache: climate_categories/data/GCB.py
 cache: climate_categories/data/IPCC2006.py

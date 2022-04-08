@@ -33,6 +33,7 @@ CRFDI            CRF GHG emission categories (DI query interface)
 CRFDI_class      CRF GHG emission categories (DI query interface) + classifications
 GCB              Global Carbon Budget CO2 emission categories
 RCMIP            RCMIP emissions categories
+AR6_SCEN_DB      AR6 Scenario Database variables
 gas              Gases and other climate-forcing substances
 ===============  ==================================================================
 

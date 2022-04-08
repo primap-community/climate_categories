@@ -45,6 +45,7 @@ BURDI = _read_py_hier("BURDI")
 BURDI_class = _read_py_hier("BURDI_class")
 GCB = _read_py_hier("GCB")
 RCMIP = _read_py_hier("RCMIP")
+AR6_SCEN_DB = _read_py_hier("AR6_SCEN_DB")
 gas = _read_py_hier("gas")
 
 
