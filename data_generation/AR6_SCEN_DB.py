@@ -1,4 +1,5 @@
-"""Run this via `make climate_categories/data/AR6_SCEN_DB.yaml` in the main directory."""
+"""Run this via `make climate_categories/data/AR6_SCEN_DB.yaml`
+   in the main directory."""
 
 import pathlib
 
@@ -7,15 +8,25 @@ import pandas as pd
 import climate_categories
 
 # Input file extracted with
-# df = pd.read_csv("AR6_Scenarios_Database_World_v1.0/AR6_Scenarios_Database_World_v1.0.csv")
-# df[["Variable", "Unit"]].drop_duplicates().sort_values("Variable").to_csv("ar6-variables.csv", index=False)
+# df = pd.read_csv(
+#     "AR6_Scenarios_Database_World_v1.0/AR6_Scenarios_Database_World_v1.0.csv")
+# df[["Variable", "Unit"]].drop_duplicates().sort_values(
+#     "Variable").to_csv("ar6-variables.csv", index=False)
 
-INPATH = pathlib.Path(f"./data_generation/ar6-variables.csv")
+INPATH = pathlib.Path("./data_generation/ar6-variables.csv")
 OUTPATH = pathlib.Path("./climate_categories/data/AR6_SCEN_DB.yaml")
 
 comment = """Variables in the AR6 Scenario Database
 
-Edward Byers, Volker Krey, Elmar Kriegler, Keywan Riahi, Roberto Schaeffer, Jarmo Kikstra, Robin Lamboll, Zebedee Nicholls, Marit Sanstad, Chris Smith, Kaj-Ivar van der Wijst, Franck Lecocq, Joana Portugal-Pereira, Yamina Saheb, Anders Strømann, Harald Winkler, Cornelia Auer, Elina Brutschin, Claire Lepault, Eduardo Müller-Casseres, Matthew Gidden, Daniel Huppmann, Peter Kolp, Giacomo Marangoni, Michaela Werning, Katherine Calvin, Celine Guivarch, Tomoko Hasegawa, Glen Peters, Julia Steinberger, Massimo Tavoni, Detlef von Vuuren, Piers Forster, Jared Lewis, Malte Meinshausen, Joeri Rogelj, Bjorn Samset, Ragnhild Skeie, Alaa Al Khourdajie.
+Edward Byers, Volker Krey, Elmar Kriegler, Keywan Riahi, Roberto Schaeffer,
+Jarmo Kikstra, Robin Lamboll, Zebedee Nicholls, Marit Sanstad, Chris Smith,
+Kaj-Ivar van der Wijst, Franck Lecocq, Joana Portugal-Pereira, Yamina Saheb,
+Anders Strømann, Harald Winkler, Cornelia Auer, Elina Brutschin, Claire Lepault,
+Eduardo Müller-Casseres, Matthew Gidden, Daniel Huppmann, Peter Kolp, Giacomo
+Marangoni, Michaela Werning, Katherine Calvin, Celine Guivarch, Tomoko Hasegawa,
+Glen Peters, Julia Steinberger, Massimo Tavoni, Detlef von Vuuren, Piers Forster,
+Jared Lewis, Malte Meinshausen, Joeri Rogelj, Bjorn Samset, Ragnhild Skeie, Alaa
+Al Khourdajie.
 AR6 Scenarios Database hosted by IIASA
 International Institute for Applied Systems Analysis, 2022.
 doi: 10.5281/zenodo.5886912 | url: data.ene.iiasa.ac.at/ar6/"""
