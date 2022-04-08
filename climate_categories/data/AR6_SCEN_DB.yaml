@@ -1,15 +1,15 @@
 name: AR6_SCEN_DB
 title: Categories from the AR6 Scenario Database
 comment: "Variables in the AR6 Scenario Database\n\nEdward Byers, Volker Krey, Elmar\
-  \ Kriegler, Keywan Riahi, Roberto Schaeffer, Jarmo Kikstra, Robin Lamboll, Zebedee\
-  \ Nicholls, Marit Sanstad, Chris Smith, Kaj-Ivar van der Wijst, Franck Lecocq, Joana\
-  \ Portugal-Pereira, Yamina Saheb, Anders Strømann, Harald Winkler, Cornelia Auer,\
-  \ Elina Brutschin, Claire Lepault, Eduardo Müller-Casseres, Matthew Gidden, Daniel\
-  \ Huppmann, Peter Kolp, Giacomo Marangoni, Michaela Werning, Katherine Calvin, Celine\
-  \ Guivarch, Tomoko Hasegawa, Glen Peters, Julia Steinberger, Massimo Tavoni, Detlef\
-  \ von Vuuren, Piers Forster, Jared Lewis, Malte Meinshausen, Joeri Rogelj, Bjorn\
-  \ Samset, Ragnhild Skeie, Alaa Al Khourdajie.\nAR6 Scenarios Database hosted by\
-  \ IIASA\nInternational Institute for Applied Systems Analysis, 2022.\ndoi: 10.5281/zenodo.5886912\
+  \ Kriegler, Keywan Riahi, Roberto Schaeffer,\nJarmo Kikstra, Robin Lamboll, Zebedee\
+  \ Nicholls, Marit Sanstad, Chris Smith,\nKaj-Ivar van der Wijst, Franck Lecocq,\
+  \ Joana Portugal-Pereira, Yamina Saheb,\nAnders Strømann, Harald Winkler, Cornelia\
+  \ Auer, Elina Brutschin, Claire Lepault,\nEduardo Müller-Casseres, Matthew Gidden,\
+  \ Daniel Huppmann, Peter Kolp, Giacomo\nMarangoni, Michaela Werning, Katherine Calvin,\
+  \ Celine Guivarch, Tomoko Hasegawa,\nGlen Peters, Julia Steinberger, Massimo Tavoni,\
+  \ Detlef von Vuuren, Piers Forster,\nJared Lewis, Malte Meinshausen, Joeri Rogelj,\
+  \ Bjorn Samset, Ragnhild Skeie, Alaa\nAl Khourdajie.\nAR6 Scenarios Database hosted\
+  \ by IIASA\nInternational Institute for Applied Systems Analysis, 2022.\ndoi: 10.5281/zenodo.5886912\
   \ | url: data.ene.iiasa.ac.at/ar6/"
 references: "Edward Byers, Volker Krey, Elmar Kriegler, Keywan Riahi, et al.\nAR6\
   \ Scenarios Database hosted by IIASA\nInternational Institute for Applied Systems\
@@ -25,42 +25,33 @@ categories:
     info:
       unit: million t DM/yr
     children:
-    - - Agricultural Demand
-      - Agricultural Demand|Crops
+    - - Agricultural Demand|Crops
       - Agricultural Demand|Livestock
   Agricultural Production:
     title: Agricultural Production
     info:
       unit: million t DM/yr
     children:
-    - - Agricultural Production
-      - Agricultural Production|Energy
+    - - Agricultural Production|Energy
       - Agricultural Production|Non-Energy
   Capital Formation:
     title: Capital Formation
     info:
       unit: billion US$2010/yr
-    children:
-    - - Capital Formation
   Capital Stock:
     title: Capital Stock
     info:
       unit: billion US$2010/yr
-    children:
-    - - Capital Stock
   Consumption:
     title: Consumption
     info:
       unit: billion US$2010/yr
-    children:
-    - - Consumption
   Employment:
     title: Employment
     info:
       unit: million
     children:
-    - - Employment
-      - Employment|Agriculture
+    - - Employment|Agriculture
       - Employment|Industry
       - Employment|Service
   Export:
@@ -68,8 +59,7 @@ categories:
     info:
       unit: billion US$2010/yr
     children:
-    - - Export
-      - Export|Agriculture
+    - - Export|Agriculture
       - Export|Energy
       - Export|Industry
       - Export|Other
@@ -78,8 +68,7 @@ categories:
     info:
       unit: EJ/yr
     children:
-    - - Final Energy
-      - Final Energy|Electricity
+    - - Final Energy|Electricity
       - Final Energy|Gases
       - Final Energy|Geothermal
       - Final Energy|Heat
@@ -98,23 +87,20 @@ categories:
     info:
       unit: kcal/cap/day
     children:
-    - - Food Demand
-      - Food Demand|Crops
+    - - Food Demand|Crops
       - Food Demand|Livestock
   Food Energy Supply:
     title: Food Energy Supply
     info:
       unit: EJ/yr
     children:
-    - - Food Energy Supply
-      - Food Energy Supply|Livestock
+    - - Food Energy Supply|Livestock
   Forcing:
     title: Forcing
     info:
       unit: W/m2
     children:
-    - - Forcing
-      - Forcing|Aerosol
+    - - Forcing|Aerosol
       - Forcing|Albedo Change and Mineral Dust
       - Forcing|CH4
       - Forcing|CO2
@@ -129,8 +115,7 @@ categories:
     info:
       unit: billion US$2010/yr
     children:
-    - - Import
-      - Import|Agriculture
+    - - Import|Agriculture
       - Import|Energy
       - Import|Industry
       - Import|Other
@@ -139,16 +124,14 @@ categories:
     info:
       unit: billion US$2010/yr
     children:
-    - - Investment
-      - Investment|Energy Efficiency
+    - - Investment|Energy Efficiency
       - Investment|Energy Supply
   Land Cover:
     title: Land Cover
     info:
       unit: million ha
     children:
-    - - Land Cover
-      - Land Cover|Built-up Area
+    - - Land Cover|Built-up Area
       - Land Cover|Cropland
       - Land Cover|Forest
       - Land Cover|Other Arable Land
@@ -159,8 +142,7 @@ categories:
     info:
       unit: million
     children:
-    - - Population
-      - Population|Electricity Access
+    - - Population|Electricity Access
       - Population|Extreme poverty
       - Population|Female
       - Population|Male
@@ -174,8 +156,7 @@ categories:
     info:
       unit: EJ/yr
     children:
-    - - Primary Energy
-      - Primary Energy|Biomass
+    - - Primary Energy|Biomass
       - Primary Energy|Coal
       - Primary Energy|Fossil
       - Primary Energy|Gas
@@ -195,8 +176,7 @@ categories:
     info:
       unit: EJ/yr
     children:
-    - - Secondary Energy
-      - Secondary Energy|Electricity
+    - - Secondary Energy|Electricity
       - Secondary Energy|Gases
       - Secondary Energy|Heat
       - Secondary Energy|Hydrogen
@@ -207,22 +187,18 @@ categories:
     title: Trade
     info:
       unit: billion US$2010/yr
-    children:
-    - - Trade
   Unemployment:
     title: Unemployment
     info:
       unit: million
     children:
-    - - Unemployment
-      - Unemployment|Rate
+    - - Unemployment|Rate
   Water Consumption:
     title: Water Consumption
     info:
       unit: km3/yr
     children:
-    - - Water Consumption
-      - Water Consumption|Electricity
+    - - Water Consumption|Electricity
       - Water Consumption|Electricity w/o Hydro
       - Water Consumption|Extraction
       - Water Consumption|Gases
@@ -237,8 +213,7 @@ categories:
     info:
       unit: km3/yr
     children:
-    - - Water Withdrawal
-      - Water Withdrawal|Electricity
+    - - Water Withdrawal|Electricity
       - Water Withdrawal|Extraction
       - Water Withdrawal|Gases
       - Water Withdrawal|Heat

@@ -43,21 +43,22 @@ def main():
     for _, item in variables.iterrows():
 
         species = item.Variable
-        parent = item.Variable.rsplit("|", maxsplit=1)[0]
-
         if species not in categories:
             categories[species] = {
                 "title": species,
                 "info": {"unit": item.Unit},
                 "children": [[]],
             }
-        if parent not in categories:
-            categories[parent] = {
-                "title": parent,
-                "children": [[]],
-            }
-        if species not in categories[parent]["children"][0]:
-            categories[parent]["children"][0].append(species)
+        if "|" in species:
+            parent = item.Variable.rsplit("|", maxsplit=1)[0]
+
+            if parent not in categories:
+                categories[parent] = {
+                    "title": parent,
+                    "children": [[]],
+                }
+            if species not in categories[parent]["children"][0]:
+                categories[parent]["children"][0].append(species)
 
     spec = {
         "name": "AR6_SCEN_DB",
