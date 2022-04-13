@@ -616,7 +616,7 @@ def main():
         "title": "Intermittently Flooded"
     }  # possible subsectors in reported data
     ncats["3.C.2"] = {
-        "title": "Rein-Fed",
+        "title": "Rain-Fed",
         "children": [["3.C.2.a", "3.C.2.b"]],
     }
     ncats["3.C.2.a"] = {"title": "Flood-Prone"}
