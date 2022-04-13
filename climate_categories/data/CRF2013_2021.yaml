@@ -742,6 +742,8 @@ categories:
     - - 1.A.5.a.i
       - 1.A.5.a.ii
       - 1.A.5.a.iii
+      - 1.A.5.a.iv
+      - 1.A.5.a.v
   1.A.5.b:
     title: Mobile
     comment: Emissions from vehicles and other machinery, marine and aviation (not
@@ -2389,6 +2391,9 @@ categories:
     children:
     - - 1.A.3.b.v.1
       - 1.A.3.b.v.10
+      - 1.A.3.b.v.11
+      - 1.A.3.b.v.12
+      - 1.A.3.b.v.13
       - 1.A.3.b.v.2
       - 1.A.3.b.v.3
       - 1.A.3.b.v.4
@@ -2422,8 +2427,6 @@ categories:
     alternative_codes:
     - 1 A 4 a iii
     - 1A4aiii
-    children:
-    - - 1.A.4.a.iii.1
   1.A.4.b.i:
     title: Stationary Combustion
     alternative_codes:
@@ -2439,6 +2442,8 @@ categories:
     alternative_codes:
     - 1 A 4 b iii
     - 1A4biii
+    children:
+    - - 1.A.4.b.iii.1
   M.Info:
     title: Information Items
     alternative_codes:
@@ -2874,10 +2879,12 @@ categories:
       - 1.B.2.d.ii
       - 1.B.2.d.iii
       - 1.B.2.d.iv
+      - 1.B.2.d.ix
       - 1.B.2.d.v
       - 1.B.2.d.vi
       - 1.B.2.d.vii
       - 1.B.2.d.viii
+      - 1.B.2.d.x
   M.Info.CCS:
     title: CO2 Transport and Storage - information Items
     alternative_codes:
@@ -3889,6 +3896,9 @@ categories:
       - 3.J.3
       - 3.J.4
       - 3.J.5
+      - 3.J.6
+      - 3.J.7
+      - 3.J.8
       - 3.J.9
   '4':
     title: Total LULUCF
@@ -6047,6 +6057,12 @@ categories:
     - 5E
     children:
     - - 5.E.1
+      - 5.E.2
+      - 5.E.3
+      - 5.E.4
+      - 5.E.5
+      - 5.E.6
+      - 5.E.7
   M.Memo.LTSW:
     title: Long Term Storage of C in Waste Disposal Sites
     alternative_codes:
@@ -6087,6 +6103,7 @@ categories:
       - 5.B.1.b.ii
       - 5.B.1.b.iii
       - 5.B.1.b.iv
+      - 5.B.1.b.ix
       - 5.B.1.b.v
       - 5.B.1.b.vi
       - 5.B.1.b.vii
@@ -6475,11 +6492,11 @@ categories:
     alternative_codes:
     - 1 A 3 e ii 4
     - 1A3eii4
-  1.A.4.a.iii.1:
+  1.A.4.b.iii.1:
     title: Residential
     alternative_codes:
-    - 1 A 4 a iii 1
-    - 1A4aiii1
+    - 1 A 4 b iii 1
+    - 1A4biii1
   1.A.5.a.i:
     title: Military Fuel Use
     alternative_codes:
@@ -6536,7 +6553,7 @@ categories:
     - 1 A 5 b vi
     - 1A5bvi
   1.A.5.b.vii:
-    title: Lubricants used in 2-strike engines
+    title: Lubricants used in 2-stroke engines
     alternative_codes:
     - 1 A 5 b vii
     - 1A5bvii
@@ -7021,7 +7038,7 @@ categories:
     - 3 E 1 a
     - 3E1a
   3.E.1.b:
-    title: Savan na Grassland
+    title: Savanna Grassland
     alternative_codes:
     - 3 E 1 b
     - 3E1b

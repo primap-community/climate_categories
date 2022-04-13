@@ -154,7 +154,9 @@ def main():
             "1.A.3.b.v.8",
             "1.A.3.b.v.9",
             "1.A.3.b.v.10",
-            "1.A.3.b.v.10",
+            "1.A.3.b.v.11",
+            "1.A.3.b.v.12",
+            "1.A.3.b.v.13",
         ]
     ]
     ncats["1.A.3.b.v.1"] = {
@@ -189,7 +191,15 @@ def main():
     cats["1.A.4.b.iii"]["children"] = [["1.A.4.b.iii.1"]]
     ncats["1.A.4.b.iii.1"] = {"title": "Residential"}  # CYP
 
-    cats["1.A.5.a"]["children"] = [["1.A.5.a.i", "1.A.5.a.ii", "1.A.5.a.iii"]]
+    cats["1.A.5.a"]["children"] = [
+        [
+            "1.A.5.a.i",
+            "1.A.5.a.ii",
+            "1.A.5.a.iii",
+            "1.A.5.a.iv",
+            "1.A.5.a.v",
+        ]
+    ]
     ncats["1.A.5.a.i"] = {"title": "Military Fuel Use"}  # GBK, GBR
     # name for NOR, HUN is "Military"
     ncats["1.A.5.a.ii"] = {"title": "Other non-specified"}  # ESP
@@ -264,6 +274,8 @@ def main():
             "1.B.2.d.vi",
             "1.B.2.d.vii",
             "1.B.2.d.viii",
+            "1.B.2.d.ix",
+            "1.B.2.d.x",
         ]
     ]
     ncats["1.B.2.d.i"] = {"title": "Groundwater Extraction and CO2 Mining"}  # HUN
@@ -480,11 +492,13 @@ def main():
     cats["3.J"]["children"][0].append("3.J.5")
     ncats["3.J.5"] = {"title": "OTs and CDs - other"}
     # Germany other categories
-    cats["3.J"]["children"][0].append("3.J.3")
+    cats["3.J"]["children"][0].append("3.J.6")
     ncats["3.J.6"] = {"title": "Digestate renewable raw material (storage of N)"}
+    cats["3.J"]["children"][0].append("3.J.7")
     ncats["3.J.7"] = {
         "title": "Digestate renewable raw material (atmospheric deposition)"
     }
+    cats["3.J"]["children"][0].append("3.J.8")
     ncats["3.J.8"] = {
         "title": "Digestate renewable raw material (storage of dry matter)"
     }
@@ -530,7 +544,7 @@ def main():
 
     # entries under H. Other
     cats["4.H"]["children"] = [[f"4.H.{i}" for i in range(1, 10)]]
-    # some of the subcategoories refer to categories already included above
+    # some of the subcategories refer to categories already included above
     # but are used to report non-CO2 emissions
     ncats["4.H.1"] = {"title": "Land converted to Settlement"}  # JPN
     ncats["4.H.2"] = {"title": "Settlements Remaining Settlement"}  # USA, DEU, GBR
@@ -546,7 +560,17 @@ def main():
     # name for SWE is "All Other"
 
     # Table 5
-    cats["5.E"]["children"] = [["5.E.1", "5.E.1", "5.E.1", "5.E.1"]]
+    cats["5.E"]["children"] = [
+        [
+            "5.E.1",
+            "5.E.2",
+            "5.E.3",
+            "5.E.4",
+            "5.E.5",
+            "5.E.6",
+            "5.E.7",
+        ]
+    ]
     ncats["5.E.1"] = {"title": "Recycling activities"}  # NLD
     ncats["5.E.2"] = {"title": "Mechanical-Biological Treatment MBT"}  # DEU
     ncats["5.E.3"] = {"title": "Accidental fires"}  # DEU, DKE, DNK, DNM
@@ -568,7 +592,7 @@ def main():
             "5.B.1.b.vi",
             "5.B.1.b.vii",
             "5.B.1.b.viii",
-            "5.B.1.b.iv",
+            "5.B.1.b.ix",
             "5.B.1.b.x",
             "5.B.1.b.xi",
             "5.B.1.b.xii",

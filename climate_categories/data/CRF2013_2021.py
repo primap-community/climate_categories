@@ -358,7 +358,9 @@ spec = {
                 "gases": ["CO2", "CH4", "N2O", "NOx", "CO", "NMVOC", "SO2"],
                 "corresponding_categories_IPCC1996": ["1A5a"],
             },
-            "children": [["1.A.5.a.i", "1.A.5.a.ii", "1.A.5.a.iii"]],
+            "children": [
+                ["1.A.5.a.i", "1.A.5.a.ii", "1.A.5.a.iii", "1.A.5.a.iv", "1.A.5.a.v"]
+            ],
         },
         "1.A.5.b": {
             "title": "Mobile",
@@ -1370,6 +1372,9 @@ spec = {
                 [
                     "1.A.3.b.v.1",
                     "1.A.3.b.v.10",
+                    "1.A.3.b.v.11",
+                    "1.A.3.b.v.12",
+                    "1.A.3.b.v.13",
                     "1.A.3.b.v.2",
                     "1.A.3.b.v.3",
                     "1.A.3.b.v.4",
@@ -1400,7 +1405,6 @@ spec = {
         "1.A.4.a.iii": {
             "title": "Other (please specify)",
             "alternative_codes": ["1 A 4 a iii", "1A4aiii"],
-            "children": [["1.A.4.a.iii.1"]],
         },
         "1.A.4.b.i": {
             "title": "Stationary Combustion",
@@ -1413,6 +1417,7 @@ spec = {
         "1.A.4.b.iii": {
             "title": "Other (please specify)",
             "alternative_codes": ["1 A 4 b iii", "1A4biii"],
+            "children": [["1.A.4.b.iii.1"]],
         },
         "M.Info": {
             "title": "Information Items",
@@ -1740,10 +1745,12 @@ spec = {
                     "1.B.2.d.ii",
                     "1.B.2.d.iii",
                     "1.B.2.d.iv",
+                    "1.B.2.d.ix",
                     "1.B.2.d.v",
                     "1.B.2.d.vi",
                     "1.B.2.d.vii",
                     "1.B.2.d.viii",
+                    "1.B.2.d.x",
                 ]
             ],
         },
@@ -2404,7 +2411,19 @@ spec = {
         "3.J": {
             "title": "Other (Please Specify)",
             "alternative_codes": ["3 J", "3J"],
-            "children": [["3.J.1", "3.J.2", "3.J.3", "3.J.4", "3.J.5", "3.J.9"]],
+            "children": [
+                [
+                    "3.J.1",
+                    "3.J.2",
+                    "3.J.3",
+                    "3.J.4",
+                    "3.J.5",
+                    "3.J.6",
+                    "3.J.7",
+                    "3.J.8",
+                    "3.J.9",
+                ]
+            ],
         },
         "4": {
             "title": "Total LULUCF",
@@ -3942,7 +3961,9 @@ spec = {
         "5.E": {
             "title": "Other (please specify)",
             "alternative_codes": ["5 E", "5E"],
-            "children": [["5.E.1"]],
+            "children": [
+                ["5.E.1", "5.E.2", "5.E.3", "5.E.4", "5.E.5", "5.E.6", "5.E.7"]
+            ],
         },
         "M.Memo.LTSW": {
             "title": "Long Term Storage of C in Waste Disposal Sites",
@@ -3971,6 +3992,7 @@ spec = {
                     "5.B.1.b.ii",
                     "5.B.1.b.iii",
                     "5.B.1.b.iv",
+                    "5.B.1.b.ix",
                     "5.B.1.b.v",
                     "5.B.1.b.vi",
                     "5.B.1.b.vii",
@@ -4311,9 +4333,9 @@ spec = {
             "title": "Non-Transportation Mobile",
             "alternative_codes": ["1 A 3 e ii 4", "1A3eii4"],
         },
-        "1.A.4.a.iii.1": {
+        "1.A.4.b.iii.1": {
             "title": "Residential",
-            "alternative_codes": ["1 A 4 a iii 1", "1A4aiii1"],
+            "alternative_codes": ["1 A 4 b iii 1", "1A4biii1"],
         },
         "1.A.5.a.i": {
             "title": "Military Fuel Use",
@@ -4360,7 +4382,7 @@ spec = {
             "alternative_codes": ["1 A 5 b vi", "1A5bvi"],
         },
         "1.A.5.b.vii": {
-            "title": "Lubricants used in 2-strike engines",
+            "title": "Lubricants used in 2-stroke engines",
             "alternative_codes": ["1 A 5 b vii", "1A5bvii"],
         },
         "1.A.5.b.viii": {
@@ -4736,7 +4758,7 @@ spec = {
             "alternative_codes": ["3 E 1 a", "3E1a"],
         },
         "3.E.1.b": {
-            "title": "Savan na Grassland",
+            "title": "Savanna Grassland",
             "alternative_codes": ["3 E 1 b", "3E1b"],
         },
         "3.E.1.c": {"title": "Luxembourg", "alternative_codes": ["3 E 1 c", "3E1c"]},
