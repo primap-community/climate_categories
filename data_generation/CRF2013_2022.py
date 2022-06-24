@@ -58,6 +58,29 @@ def main():
     # go through the specifications table by table
     # --------
 
+    # Table 1.A(a)s3
+    # Airport ground activities for AUT mapped to 1.A.3.e.ii.2 (aircraft support
+    # vehicles)
+    # Other under ii. Other (please specify) for ROU mapped to 1.A.3.e.ii.3
+
+    # Table 1.A(a)s4
+    # "i. Mobile (aviation component)" for CZE mapped to 1.A.5.b.vi
+    # "iii. Mobile (other)" for CZE mapped to 1.A.5.b.iv
+
+    # Table 1.B.1
+    # ['Other', ['1.B.1.c.v'], 1],  # ROU, new in 2022
+
+    # Table 1.B.2
+    # ['flue gas desulfurisation', ['1.B.2.d.xi'], 1],  # GBR, GBK, new in 2022
+
+    # Table5
+    # ['5.E.1 Industrial Wastewater', ['5.E.8']],  # CAN, new in 2022
+
+    # Table 5.B
+    # ['Livestock manure co-digested', ['5.B.2.b.xiii'], 2] DEU
+    # ['Waste water', ['5.B.2.b.xiv'], 2],  # NOR, new in 2022
+
+    # ##############################33
     # Table 1s1
     # nothing to add
 
@@ -581,9 +604,10 @@ def main():
     ncats["5.E.4"] = {"title": "Decomposition of Petroleum-Derived Surfactants"}  # JPN
     ncats["5.E.5"] = {"title": "Other non-specified"}  # USA
     # name for CZE is "Other waste"
-    # name for EST, NOR is "Other"
     ncats["5.E.6"] = {"title": "Biogas burning without energy recovery"}  # PRT
     ncats["5.E.7"] = {"title": "Sludge spreading"}  # ESP
+    ncats["5.E.8"] = {"title": "Industrial Wastewater"}  # CAN
+    ncats["5.E.9"] = {"title": "Accidental Fires at SWDS"}  # AUS
 
     # Table 5.B
     cats["5.B.1.b"]["children"] = [
