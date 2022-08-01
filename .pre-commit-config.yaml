@@ -19,15 +19,15 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.3.4
+    rev: v0.3.5
     hooks:
       - id: blackdoc
   - repo: https://github.com/PyCQA/flake8
-    rev: '4.0.1'
+    rev: '5.0.2'
     hooks:
       - id: flake8
   - repo: https://github.com/PyCQA/doc8
-    rev: '0.11.2'
+    rev: 'v1.0.0'
     hooks:
       - id: doc8
         additional_dependencies: ['pygments-csv-lexer']
