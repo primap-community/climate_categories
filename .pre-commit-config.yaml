@@ -27,16 +27,16 @@ repos:
     hooks:
       - id: flake8
   - repo: https://github.com/PyCQA/doc8
-    rev: 'v1.0.0'
+    rev: 'v1.1.1'
     hooks:
       - id: doc8
         additional_dependencies: ['pygments-csv-lexer']
   - repo: https://github.com/PyCQA/isort
-    rev: 'v5.11.3'
+    rev: '5.11.4'
     hooks:
       - id: isort
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: '1.5.3'
+    rev: '1.6.0'
     hooks:
       - id: nbqa-black
         args: [ --nbqa-mutate, --line-length=75 ]
