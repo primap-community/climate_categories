@@ -42,6 +42,6 @@ repos:
         args: [ --nbqa-mutate, --line-length=75 ]
       - id: nbqa-check-ast
   - repo: https://github.com/asottile/blacken-docs
-    rev: 'v1.12.1'
+    rev: '1.13.0'
     hooks:
       - id: blacken-docs
