@@ -32,7 +32,7 @@ repos:
       - id: doc8
         additional_dependencies: ['pygments-csv-lexer']
   - repo: https://github.com/PyCQA/isort
-    rev: '5.11.4'
+    rev: '5.12.0'
     hooks:
       - id: isort
   - repo: https://github.com/nbQA-dev/nbQA
