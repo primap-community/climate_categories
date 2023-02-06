@@ -129,7 +129,6 @@ def main():
     definitions = pd.read_excel(INPATH, sheet_name="variable_definitions")
 
     for _, item in definitions[definitions.Category == "Emissions"].iterrows():
-
         species = item.Variable
         print(species)
         parent = item.Variable.rsplit("|", maxsplit=1)[0]

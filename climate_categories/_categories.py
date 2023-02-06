@@ -1054,7 +1054,7 @@ class HierarchicalCategorization(Categorization):
             return self.children(self._all_codes_map[cat])
 
         children_dict = {}
-        for (_, child, setno) in self._graph.edges(cat, "set"):
+        for _, child, setno in self._graph.edges(cat, "set"):
             if setno not in children_dict:
                 children_dict[setno] = []
             children_dict[setno].append(child)

@@ -66,7 +66,7 @@ def openscm_standard_gases():
     # This is not public API, will have to fix it when openscm_units changes
     sg = openscm_units._unit_registry._STANDARD_GASES
 
-    for (oscm_gas_code, oscm_gas_spec) in sg.items():
+    for oscm_gas_code, oscm_gas_spec in sg.items():
         if isinstance(oscm_gas_spec, str):  # base entity
             code = oscm_gas_code
             title = oscm_gas_spec.replace("_", " ")
