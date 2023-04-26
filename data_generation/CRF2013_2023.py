@@ -1,4 +1,4 @@
-"""Run this via `make climate_categories/data/CRF2013_2021.yaml` in the main
+"""Run this via `make climate_categories/data/CRF2013_2023.yaml` in the main
 directory."""
 
 import pathlib
@@ -9,7 +9,7 @@ OUTPATH = pathlib.Path("./climate_categories/data/CRF2013_2023.yaml")
 
 
 def main():
-    """Create the CRF2013_2021 categorization from the CRF2013 categorization.
+    """Create the CRF2013_2023 categorization from the CRF2013 categorization.
     No categories are removed. Several country specific categories are added.
     Where different countries have added equivalent categories these have
     been grouped into one category.
@@ -586,6 +586,8 @@ def main():
             "5.E.5",
             "5.E.6",
             "5.E.7",
+            "5.E.8",
+            "5.E.9",
         ]
     ]
     ncats["5.E.1"] = {"title": "Recycling activities"}  # NLD
