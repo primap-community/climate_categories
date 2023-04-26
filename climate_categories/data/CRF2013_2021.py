@@ -1914,7 +1914,7 @@ spec = {
             "alternative_codes": ["2 B 9 a i", "2B9ai"],
         },
         "2.B.9.a.ii": {
-            "title": "Other (Please Specify",
+            "title": "Other (Please Specify)",
             "alternative_codes": ["2 B 9 a ii", "2B9aii"],
         },
         "2.B.9.b.i": {
@@ -2006,6 +2006,7 @@ spec = {
             "children": [
                 ["3.A.1.Aa", "3.A.1.Ab"],
                 ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"],
+                ["3.A.1.C"],
                 ["3.A.1.C-AUS-a", "3.A.1.C-AUS-b", "3.A.1.C-AUS-c"],
                 [
                     "3.A.1.C-MLT-a",
@@ -2129,6 +2130,7 @@ spec = {
             "children": [
                 ["3.B.1.Aa", "3.B.1.Ab"],
                 ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"],
+                ["3.B.1.C"],
                 ["3.B.1.C-AUS-a", "3.B.1.C-AUS-b", "3.B.1.C-AUS-c"],
                 [
                     "3.B.1.C-MLT-a",
@@ -2341,7 +2343,7 @@ spec = {
         },
         "3.D.a.7": {"title": "Other", "alternative_codes": ["3 D a 7", "3Da7"]},
         "3.D.b": {
-            "title": "Indirect N2O Emissions from Managed Soils ",
+            "title": "Indirect N2O Emissions from Managed Soils",
             "alternative_codes": ["3 D b", "3Db"],
             "children": [["3.D.b.1", "3.D.b.2"]],
         },
@@ -3540,7 +3542,7 @@ spec = {
             "alternative_codes": ["M 4 1 b", "M41b"],
         },
         "4(V)": {
-            "title": "LULUCF: Biomass Burning (Table 4(V)",
+            "title": "LULUCF: Biomass Burning (Table 4(V))",
             "children": [
                 ["4(V).A", "4(V).B", "4(V).C", "4(V).D", "4(V).E", "4(V).F", "4(V).H"]
             ],
@@ -4199,7 +4201,7 @@ spec = {
             "children": [["1", "2", "3", "4", "5"]],
         },
         "M.Memo.IndN2O": {
-            "title": "Indirect N2O ",
+            "title": "Indirect N2O",
             "alternative_codes": ["M Memo IndN2O", "MMemoIndN2O"],
         },
         "M.Memo.IndCO2": {
