@@ -146,7 +146,7 @@ def parse_codes(rows):
     parent_code = ""
     parent_roman_code = ""
     running_number = 1
-    for (code_title, definition) in rows:
+    for code_title, definition in rows:
         if code_title.startswith(" 1 A 2\nb "):
             code_raw = code_title[:8]
             title = code_title[9:]
@@ -221,7 +221,7 @@ def parse_codes(rows):
 
 def parse_categories(cats_raw):
     cats = {}
-    for (code, title, definition) in cats_raw:
+    for code, title, definition in cats_raw:
         if "(" in title and "ISIC" in title and not definition:
             title, definition = title.split("(")
             definition = definition[:-1]

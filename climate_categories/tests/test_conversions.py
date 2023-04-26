@@ -313,7 +313,6 @@ class TestConversion:
             load_conversion_from_csv("broken_conversion_not_existing.csv")
 
     def test_describe(self, good_conversion: conversions.Conversion):
-
         assert (
             good_conversion.describe_detailed()
             == """# Mapping between A and B
