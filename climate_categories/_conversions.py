@@ -6,6 +6,7 @@ import pathlib
 import typing
 from typing import TYPE_CHECKING
 
+import immutables
 import pyparsing
 import strictyaml as sy
 
@@ -46,9 +47,9 @@ class ConversionRuleSpec:
         A human-readable comment explaining the rule or adding additional information.
     """
 
-    factors_categories_a: typing.Dict[str, int]
-    factors_categories_b: typing.Dict[str, int]
-    auxiliary_categories: typing.Dict[str, typing.Set[str]]
+    factors_categories_a: dict[str, int]
+    factors_categories_b: dict[str, int]
+    auxiliary_categories: dict[str, set[str]]
     comment: str = ""
     csv_line_number: typing.Optional[int] = None
     csv_original_text: typing.Optional[str] = None
@@ -57,7 +58,7 @@ class ConversionRuleSpec:
         self,
         categorization_a: "Categorization",
         categorization_b: "Categorization",
-        cats: typing.Dict[str, "Categorization"],
+        cats: dict[str, "Categorization"],
     ) -> "ConversionRule":
         """Convert this specification into a ConversionRule object with full
         functionality."""
@@ -82,11 +83,23 @@ class ConversionRuleSpec:
             csv_original_text=self.csv_original_text,
         )
 
+    @typing.overload
+    def _hydrate_handle_errors(
+        self, to_hydrate: dict[str, int], categorization: "Categorization"
+    ) -> dict["Category", int]:
+        ...
+
+    @typing.overload
+    def _hydrate_handle_errors(
+        self, to_hydrate: set[str], categorization: "Categorization"
+    ) -> set["Category"]:
+        ...
+
     def _hydrate_handle_errors(
         self,
-        to_hydrate: typing.Union[typing.Dict[str, int], typing.Set[str]],
+        to_hydrate: typing.Union[dict[str, int], set[str]],
         categorization: "Categorization",
-    ) -> typing.Union[typing.Dict["Category", int], typing.Set["Category"]]:
+    ) -> typing.Union[dict["Category", int], set["Category"]]:
         """Hydrate a dict/set while nicely handling errors."""
         try:
             if isinstance(to_hydrate, dict):
@@ -100,13 +113,13 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Error in line {self.csv_line_number}: {code!r} not in"
                 f" {categorization}."
-            )
+            ) from None
 
     # Parsing rules for simple formulas from str
     # Supported operators at the moment are plus and minus
     _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
-    _operator_factors = {"+": 1, "-": -1}
-    _factor_operators = {1: "+", -1: "-"}
+    _operator_factors = immutables.Map({"+": 1, "-": -1})
+    _factor_operators = immutables.Map({1: "+", -1: "-"})
     # alphanumeric category codes can be given directly, others have to be quoted
     _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
         quoteChar='"', escChar="\\"
@@ -125,7 +138,7 @@ class ConversionRuleSpec:
     )
 
     @classmethod
-    def _parse_aux_codes(cls, aux_codes_str: str) -> typing.List[str]:
+    def _parse_aux_codes(cls, aux_codes_str: str) -> list[str]:
         """Parse a whitespace-separated list of auxiliary codes.
 
         Parameters
@@ -158,11 +171,11 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
                 f" error at char {exc.loc}"
-            )
+            ) from None
         return list(tokens)
 
     @classmethod
-    def _parse_formula(cls, formula: str) -> typing.Dict[str, int]:
+    def _parse_formula(cls, formula: str) -> dict[str, int]:
         """Parse a formula into factors for categories.
 
         Parameters
@@ -206,15 +219,14 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Could not parse: {formula!r}, error: {exc.msg},"
                 f" error at char {exc.loc}"
-            )
-        code_factors = {}
+            ) from None
         # first operator is implicitly a plus, have to handle it specially
         if "unary_op" in tokens:
             op = tokens.pop(0)
         else:
             op = "+"
         code = tokens.pop(0)
-        code_factors[code] = cls._operator_factors[op]
+        code_factors = {code: cls._operator_factors[op]}
         while len(tokens):
             op = tokens.pop(0)
             code = tokens.pop(0)
@@ -229,7 +241,7 @@ class ConversionRuleSpec:
     def from_csv_row(
         cls,
         irow: typing.Iterator[str],
-        aux_names: typing.List[str],
+        aux_names: list[str],
         line_number: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
     ) -> "ConversionRuleSpec":
@@ -279,9 +291,7 @@ class ConversionRuleSpec:
         )
 
     @classmethod
-    def _factors_categories_formula(
-        cls, factors_categories: typing.Dict[str, int]
-    ) -> str:
+    def _factors_categories_formula(cls, factors_categories: dict[str, int]) -> str:
         """Serialize a dict mapping categories to factors to a formula string.
 
         Parameters
@@ -336,13 +346,17 @@ class ConversionRuleSpec:
         esc = code.replace("\\", "\\\\").replace('"', '\\"')
         return f'"{esc}"'
 
-    def to_csv_row(self) -> typing.List[str]:
+    def to_csv_row(self) -> list[str]:
         """Return a representation of this rule suitable for writing to a CSV file."""
         row = [self._factors_categories_formula(self.factors_categories_a)]
         for aux_categories in self.auxiliary_categories.values():
             row.append(" ".join(sorted(map(self._escape_code, aux_categories))))
-        row.append(self._factors_categories_formula(self.factors_categories_b))
-        row.append(self.comment)
+        row.extend(
+            (
+                self._factors_categories_formula(self.factors_categories_b),
+                self.comment,
+            )
+        )
         return row
 
     def __str__(self) -> str:
@@ -394,9 +408,9 @@ class ConversionRule:
         cases.
     """
 
-    factors_categories_a: typing.Dict["Category", int]
-    factors_categories_b: typing.Dict["Category", int]
-    auxiliary_categories: typing.Dict["Categorization", typing.Set["Category"]]
+    factors_categories_a: dict["Category", int]
+    factors_categories_b: dict["Category", int]
+    auxiliary_categories: dict["Categorization", set["Category"]]
     comment: str = ""
     csv_line_number: typing.Optional[int] = None
     csv_original_text: typing.Optional[str] = None
@@ -421,7 +435,9 @@ class ConversionRule:
             self, "is_restricted", any(self.auxiliary_categories.values())
         )
 
-    def __eq__(self, other: "ConversionRule"):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, ConversionRule):
+            return NotImplemented
         return (
             self.factors_categories_a == other.factors_categories_a
             and self.factors_categories_b == other.factors_categories_b
@@ -563,8 +579,8 @@ class ConversionBase:
         *,
         categorization_a_name: str,
         categorization_b_name: str,
-        rule_specs: typing.List[ConversionRuleSpec],
-        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
+        rule_specs: list[ConversionRuleSpec],
+        auxiliary_categorizations_names: typing.Optional[list[str]] = None,
         comment: typing.Optional[str] = None,
         references: typing.Optional[str] = None,
         institution: typing.Optional[str] = None,
@@ -630,8 +646,8 @@ class ConversionSpec(ConversionBase):
         *,
         categorization_a_name: str,
         categorization_b_name: str,
-        rule_specs: typing.List[ConversionRuleSpec],
-        auxiliary_categorizations_names: typing.Optional[typing.List[str]] = None,
+        rule_specs: list[ConversionRuleSpec],
+        auxiliary_categorizations_names: typing.Optional[list[str]] = None,
         comment: typing.Optional[str] = None,
         references: typing.Optional[str] = None,
         institution: typing.Optional[str] = None,
@@ -672,7 +688,6 @@ class ConversionSpec(ConversionBase):
         linecount: int
             Count of lines of the metadata block
         """
-        meta_data = {}
         yaml_header = ""
         last_pos = fd.tell()
         line = fd.readline()
@@ -689,7 +704,7 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def _read_csv_rules(
         cls, reader: csv.reader, offset: int
-    ) -> typing.Tuple[str, str, typing.List[str], typing.List[ConversionRuleSpec]]:
+    ) -> tuple[str, str, list[str], list[ConversionRuleSpec]]:
         """Read the data section of a CSV specification file. It consists of a header,
         followed by rules, with each rule on one line.
 
@@ -708,7 +723,7 @@ class ConversionSpec(ConversionBase):
            and the parsed rules.
         """
         rule_specs = []
-        header = next(reader)
+        header: list[str] = next(reader)
         a_name = header[0]
         b_name = header[-2]
         if header[-1] != "comment":
@@ -724,12 +739,15 @@ class ConversionSpec(ConversionBase):
                     )
                 )
             except ValueError as err:
-                raise ValueError(f"Error in line {line_num}: {err}")
+                raise ValueError(f"Error in line {line_num}: {err}") from None
 
         return a_name, b_name, aux_names, rule_specs
 
     @classmethod
-    def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
+    def _from_csv(
+        cls,
+        fd: typing.TextIO,
+    ) -> "ConversionSpec":
         meta_data, len_meta_data = cls._read_csv_meta(fd)
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
         a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(
@@ -747,7 +765,7 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def from_csv(
         cls,
-        filepath: typing.Union[str, pathlib.Path, typing.TextIO, typing.Iterable[str]],
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
     ) -> "ConversionSpec":
         """Read conversion from comma-separated-values file."""
         if not isinstance(filepath, (str, pathlib.Path)):
@@ -764,7 +782,7 @@ class ConversionSpec(ConversionBase):
 
     def hydrate(
         self,
-        cats: typing.Dict[str, "Categorization"],
+        cats: dict[str, "Categorization"],
     ) -> "Conversion":
         """Convert this Specification into a Conversion object with full
         functionality."""
@@ -800,13 +818,11 @@ class OverCountingProblem:
     """A suspected over counting problem."""
 
     category: "HierarchicalCategory"
-    leave_node_groups: typing.List[typing.Set["HierarchicalCategory"]]
-    rules: typing.List[ConversionRule]
+    leave_node_groups: list[set["HierarchicalCategory"]]
+    rules: list[ConversionRule]
 
     def __str__(self):
-        involved_rules_str = ", ".join(
-            (rule.format_with_lineno() for rule in self.rules)
-        )
+        involved_rules_str = ", ".join(rule.format_with_lineno() for rule in self.rules)
         sorted_leave_node_groups = [sorted(g) for g in self.leave_node_groups]
         return (
             f"{self.category!r} is possibly counted multiple times"
@@ -849,10 +865,8 @@ class Conversion(ConversionBase):
         *,
         categorization_a: "Categorization",
         categorization_b: "Categorization",
-        rules: typing.List[ConversionRule],
-        auxiliary_categorizations: typing.Optional[
-            typing.List["Categorization"]
-        ] = None,
+        rules: list[ConversionRule],
+        auxiliary_categorizations: typing.Optional[list["Categorization"]] = None,
         comment: typing.Optional[str] = None,
         references: typing.Optional[str] = None,
         institution: typing.Optional[str] = None,
@@ -912,8 +926,8 @@ class Conversion(ConversionBase):
         one_to_many = []
         many_to_one = []
         many_to_many = []
-        cats_a = set()
-        cats_b = set()
+        cats_a: set["Category"] = set()
+        cats_b: set["Category"] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -949,15 +963,15 @@ class Conversion(ConversionBase):
         cats_missing_a = set(self.categorization_a.values()) - cats_a
         cats_missing_b = set(self.categorization_b.values()) - cats_b
         r += f"### {cat_a}\n"
-        r += "\n".join(sorted((str(x) for x in cats_missing_a))) + "\n\n"
+        r += "\n".join(sorted(str(x) for x in cats_missing_a)) + "\n\n"
         r += f"### {cat_b}\n"
-        r += "\n".join(sorted((str(x) for x in cats_missing_b))) + "\n\n"
+        r += "\n".join(sorted(str(x) for x in cats_missing_b)) + "\n\n"
 
         return r
 
     def find_unmapped_categories(
         self,
-    ) -> (typing.Set["Category"], typing.Set["Category"]):
+    ) -> tuple[set["Category"], set["Category"]]:
         """Find categories for which no rule exists to map them.
 
         Returns
@@ -966,8 +980,8 @@ class Conversion(ConversionBase):
             A list of categories missing from categorization_a and categorization_b,
             respectively.
         """
-        cats_a = set()
-        cats_b = set()
+        cats_a: set["Category"] = set()
+        cats_b: set["Category"] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -976,7 +990,7 @@ class Conversion(ConversionBase):
         cats_missing_b = set(self.categorization_b.values()) - cats_b
         return cats_missing_a, cats_missing_b
 
-    def find_over_counting_problems(self) -> typing.List[OverCountingProblem]:
+    def find_over_counting_problems(self) -> list[OverCountingProblem]:
         """Check if any category from one side is counted more than once on the
         other side.
 
@@ -995,7 +1009,7 @@ class Conversion(ConversionBase):
                     f"{categorization} is not hierarchical, without "
                     f"a hierarchy, over counting can not be evaluated."
                 )
-            if not categorization.total_sum:
+            if not categorization.total_sum:  # type: ignore
                 raise ValueError(
                     f"For {categorization} it is not specified that the "
                     f"sum of a set of children equals the parent, so "
@@ -1004,10 +1018,11 @@ class Conversion(ConversionBase):
 
         problems = []
         for categorization in self.categorization_a, self.categorization_b:
-            descendants = {}  # used to cache costly descendant evaluation
+            # used to cache costly descendant evaluation
+            descendants: dict[str, set[str]] = {}
             for category in categorization.values():
                 prob = self._check_over_counting_category(
-                    category, categorization, descendants
+                    category, categorization, descendants  # type: ignore
                 )
                 if prob:
                     problems.append(prob)
@@ -1017,8 +1032,8 @@ class Conversion(ConversionBase):
     @staticmethod
     def _leave_node_group(
         categories: typing.Iterable["HierarchicalCategory"],
-        hull: typing.Set[str],
-        descendants: typing.Dict[str, typing.Iterable[str]],
+        hull: set[str],
+        descendants: dict[str, set[str]],
     ) -> bool:
         """Are all of the given categories leave nodes of the given hull?
 
@@ -1057,10 +1072,10 @@ class Conversion(ConversionBase):
 
     def relevant_rules(
         self,
-        categories: typing.Set["HierarchicalCategory"],
+        categories: set["HierarchicalCategory"],
         source_categorization: typing.Optional["Categorization"] = None,
         simple_sums_only: bool = False,
-    ) -> typing.List[ConversionRule]:
+    ) -> list[ConversionRule]:
         """Returns all rules which involve the given categories.
 
         Parameters
@@ -1079,7 +1094,7 @@ class Conversion(ConversionBase):
         relevant_rules:
             All rules which touch the given categories.
         """
-        relevant_rules = []
+        relevant_rules: list[ConversionRule] = []
         if not categories:
             return relevant_rules
 
@@ -1108,7 +1123,7 @@ class Conversion(ConversionBase):
         self,
         category: "HierarchicalCategory",
         source_categorization: "Categorization",
-        descendants: typing.Dict[str, typing.Set[str]],
+        descendants: dict[str, set[str]],
     ) -> typing.Optional[OverCountingProblem]:
         """Finds possible over counting problems for the specified category.
 
@@ -1186,17 +1201,17 @@ class Conversion(ConversionBase):
         )
         # TODO: for now, only use rules that don't have aux categories
         relevant_rules = [rule for rule in relevant_rules if not rule.is_restricted]
-        projected_ancestral_set: typing.List[typing.Set["HierarchicalCategory"]] = []
+        projected_ancestral_set: list[set["HierarchicalCategory"]] = []
         for rule in relevant_rules:
             if source_categorization == self.categorization_a:
                 fc = rule.factors_categories_b
             else:
                 fc = rule.factors_categories_a
             target_categories = {cat for cat, factor in fc.items() if factor == 1}
-            projected_ancestral_set.append(target_categories)
+            projected_ancestral_set.append(target_categories)  # type: ignore
 
         if not projected_ancestral_set:  # trivial
-            return
+            return None
 
         # for performance, use codes (which are guaranteed to be unique within a
         # categorization) for the comparisons here
@@ -1205,7 +1220,7 @@ class Conversion(ConversionBase):
         ]
 
         # hull(PA_S(c))
-        hull: typing.Set[str] = set().union(*projected_ancestral_set_codes)
+        hull: set[str] = set().union(*projected_ancestral_set_codes)
 
         # L(PA_S(c))
         leave_node_groups = [
@@ -1223,6 +1238,8 @@ class Conversion(ConversionBase):
                 rules=relevant_rules,
                 leave_node_groups=leave_node_groups,
             )
+        else:
+            return None
 
     def __eq__(self, other):
         return (

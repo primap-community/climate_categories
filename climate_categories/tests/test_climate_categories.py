@@ -80,8 +80,8 @@ class TestSimple:
             SimpleCat["unnumbered"],
         ]
 
-        assert not SimpleCat["1"] == "1"
-        assert not SimpleCat["1"] == SimpleCat["2"]
+        assert SimpleCat["1"] != "1"
+        assert SimpleCat["1"] != SimpleCat["2"]
         assert SimpleCat["1"] == SimpleCat["1"]
         ext = SimpleCat.extend(
             name="ext",
@@ -451,7 +451,7 @@ class TestHierarchical:
     def test_level_error(self, HierCat: climate_categories.HierarchicalCategorization):
         HierCat.canonical_top_level_category = None
         with pytest.raises(ValueError, match="Can not calculate the level"):
-            HierCat["1"].level
+            _ = HierCat["1"].level
 
     def test_parents_code(self, HierCat):
         assert HierCat.parents(HierCat["1"]) == HierCat.parents("1")
@@ -643,17 +643,15 @@ class TestIO:
             match="unexpected key not in schema 'reefrences'",
         ):
             climate_categories.HierarchicalCategorization.from_yaml(
-                importlib.resources.open_text(
-                    climate_categories.tests.data,
-                    "broken_hierarchical_categorization.yaml",
-                )
+                importlib.resources.files("climate_categories.tests.data")
+                .joinpath("broken_hierarchical_categorization.yaml")
+                .open()
             )
 
     def test_broken_hierarchical(self):
         with pytest.raises(ValueError, match="'hierarchical' must be "):
             climate_categories.from_yaml(
-                importlib.resources.open_text(
-                    climate_categories.tests.data,
-                    "broken_simple_categorization.yaml",
-                )
+                importlib.resources.files("climate_categories.tests.data")
+                .joinpath("broken_simple_categorization.yaml")
+                .open()
             )

@@ -16,7 +16,7 @@ Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. ({new_da
 Zenodo. {new_link}
 """
 
-with open("README.rst", "r") as fd:
+with open("README.rst") as fd:
     old_content = fd.read().splitlines(keepends=True)
 
 with open("README.rst", "w") as fd:

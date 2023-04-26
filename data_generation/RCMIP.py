@@ -163,7 +163,7 @@ def main():
             "Skeie, R. B., Smith, C. J., Smith, S., Tanaka, K., Tsutsui, J., "
             "and Xie, Z.: Reduced Complexity Model Intercomparison Project Phase 1:"
             " introduction and evaluation of global-mean temperature response, "
-            "Geosci. Model Dev., 13, 5175–5190, "
+            "Geosci. Model Dev., 13, 5175-5190, "
             "https://doi.org/10.5194/gmd-13-5175-2020, 2020."
         ),
         "institution": "RCMIP",

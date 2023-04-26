@@ -9,19 +9,21 @@ __version__ = "0.7.1"
 
 import importlib
 import importlib.resources
-import typing
 
-from . import data  # noqa: F401
-from . import search
-from ._categories import Categorization  # noqa: F401
-from ._categories import Category  # noqa: F401
-from ._categories import HierarchicalCategory  # noqa: F401
-from ._categories import from_pickle  # noqa: F401
-from ._categories import from_python  # noqa: F401
-from ._categories import from_spec  # noqa: F401
-from ._categories import from_yaml  # noqa: F401
-from ._categories import HierarchicalCategorization
-from ._conversions import Conversion, ConversionRule  # noqa: F401
+from . import (
+    search,
+)
+from ._categories import (
+    Categorization,
+    Category,
+    HierarchicalCategorization,
+    HierarchicalCategory,
+    from_pickle,
+    from_python,
+    from_spec,
+    from_yaml,
+)
+from ._conversions import Conversion, ConversionRule
 
 cats = {}
 
@@ -52,7 +54,7 @@ RCMIP = _read_py_hier("RCMIP")
 gas = _read_py_hier("gas")
 
 
-def find_code(code: str) -> typing.Set[Category]:
+def find_code(code: str) -> set[Category]:
     """Search for the given code in all included categorizations."""
     return search.search_code(code, cats.values())
 
@@ -69,4 +71,6 @@ __all__ = [
     "from_pickle",
     "from_spec",
     "from_yaml",
-] + list(cats.keys())
+    "from_python",
+    *list(cats.keys()),
+]

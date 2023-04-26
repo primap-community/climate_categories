@@ -127,13 +127,14 @@ class TestConversionRule:
 class TestConversionSpec:
     def test_good_csv(self, tmp_path):
         # write CSV resource to file to test also file opening path
-        fd = importlib.resources.open_text(
-            climate_categories.tests.data,
-            "good_conversion.csv",
+        good_csv = (
+            importlib.resources.files("climate_categories.tests.data")
+            .joinpath("good_conversion.csv")
+            .open()
         )
         temp_csv = tmp_path / "gc.csv"
         with temp_csv.open("w") as fd2:
-            fd2.write(fd.read())
+            fd2.write(good_csv.read())
 
         # Now actually read from the file
         conv = conversions.ConversionSpec.from_csv(temp_csv)
@@ -241,18 +242,18 @@ class TestConversionSpec:
 
 
 def load_conversion_from_csv(fname: str):
-    fd = importlib.resources.open_text(
-        climate_categories.tests.data,
-        fname,
+    fd = (
+        importlib.resources.files("climate_categories.tests.data")
+        .joinpath(fname)
+        .open()
     )
-
     gc = conversions.ConversionSpec.from_csv(fd)
 
     cats = {
         cat_name: climate_categories.Categorization.from_yaml(
-            importlib.resources.open_text(
-                climate_categories.tests.data, f"good_conversion_{cat_name}.yaml"
-            )
+            importlib.resources.files("climate_categories.tests.data")
+            .joinpath(f"good_conversion_{cat_name}.yaml")
+            .open()
         )
         for cat_name in ("A", "B", "aux1", "aux2")
     }

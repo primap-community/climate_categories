@@ -91,7 +91,7 @@ def combine_rows(ts):
         definition_previously_empty = True
         current_code_name = None
         current_definition = None
-        for i, (code_name, definition) in table.df.iterrows():
+        for _, (code_name, definition) in table.df.iterrows():
             if (
                 code_name.startswith("Time period is an important element in")
                 or code_name.startswith("categories.  For example, the IPCC default")
@@ -250,7 +250,7 @@ def parse_categories(cats_raw):
 
 def add_relationships(categories):
     for parent_code in categories:
-        prefix = parent_code + "."
+        prefix = f"{parent_code}."
         children = []
         for child_code in categories:
             if child_code.startswith(prefix) and "." not in child_code[len(prefix) :]:
@@ -266,7 +266,7 @@ def main():
     cats_raw = parse_codes(rows)
 
     # Widely used and very useful, even though not included in the official spec
-    categories: typing.Dict[str, typing.Any] = {
+    categories: dict[str, typing.Any] = {
         "0": {
             "title": "National Total",
             "comment": "All emissions and removals",
