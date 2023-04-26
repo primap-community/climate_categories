@@ -643,17 +643,15 @@ class TestIO:
             match="unexpected key not in schema 'reefrences'",
         ):
             climate_categories.HierarchicalCategorization.from_yaml(
-                importlib.resources.open_text(
-                    climate_categories.tests.data,
-                    "broken_hierarchical_categorization.yaml",
-                )
+                importlib.resources.files("climate_categories.tests.data")
+                .joinpath("broken_hierarchical_categorization.yaml")
+                .open()
             )
 
     def test_broken_hierarchical(self):
         with pytest.raises(ValueError, match="'hierarchical' must be "):
             climate_categories.from_yaml(
-                importlib.resources.open_text(
-                    climate_categories.tests.data,
-                    "broken_simple_categorization.yaml",
-                )
+                importlib.resources.files("climate_categories.tests.data")
+                .joinpath("broken_simple_categorization.yaml")
+                .open()
             )

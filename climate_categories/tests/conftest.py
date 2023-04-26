@@ -10,9 +10,9 @@ import climate_categories.tests.data
 
 def read_cat(fragment):
     return climate_categories.from_yaml(
-        importlib.resources.open_text(
-            climate_categories.tests.data, f"{fragment}_categorization.yaml"
-        )
+        importlib.resources.files("climate_categories.tests.data")
+        .joinpath(f"{fragment}_categorization.yaml")
+        .open("r")
     )
 
 

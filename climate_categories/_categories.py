@@ -555,14 +555,17 @@ class Categorization:
         else:
             other_name = other.name
 
-        forward_csv_name = f"conversion.{self.name}.{other_name}.csv"
-        if importlib.resources.is_resource(data, forward_csv_name):
-            fd = importlib.resources.open_text(data, forward_csv_name)
-            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats)
-        reversed_csv_name = f"conversion.{other_name}.{self.name}.csv"
-        if importlib.resources.is_resource(data, reversed_csv_name):
-            fd = importlib.resources.open_text(data, reversed_csv_name)
-            return ConversionSpec.from_csv(fd).hydrate(cats=self._cats).reversed()
+        data_files = importlib.resources.files(data)
+        forward_file = data_files / f"conversion.{self.name}.{other_name}.csv"
+        if forward_file.is_file():
+            return ConversionSpec.from_csv(forward_file.open()).hydrate(cats=self._cats)
+        reverse_file = data_files / f"conversion.{other_name}.{self.name}.csv"
+        if reverse_file.is_file():
+            return (
+                ConversionSpec.from_csv(reverse_file.open())
+                .hydrate(cats=self._cats)
+                .reversed()
+            )
 
         raise NotImplementedError(
             f"Conversion between {self.name} and {other_name} not yet included."
