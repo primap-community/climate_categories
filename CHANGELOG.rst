@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.8.1 (2023-04-26)
+------------------
+* regenerate data included in the package to benefit
+  from latest fixes in data generation scripts.
+
 0.8.0 (2023-04-26)
 ------------------
 * Add updated CRF2013 terminologies for 2021, 2022, and 2023 submission rounds
