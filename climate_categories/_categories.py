@@ -36,8 +36,8 @@ class Category:
         codes: tuple[str],
         categorization: "Categorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: typing.Union[None, str] = None,
+        info: typing.Union[None, dict] = None,
     ):
         self.codes = codes
         self.title = title
@@ -125,8 +125,8 @@ class HierarchicalCategory(Category):
         codes: tuple[str],
         categorization: "HierarchicalCategorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: typing.Union[None, str] = None,
+        info: typing.Union[None, dict] = None,
     ):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
@@ -257,7 +257,7 @@ class Categorization:
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: typing.Union[None, str] = None,
     ):
         self._primary_code_map = {}
         self._all_codes_map = {}
@@ -441,12 +441,12 @@ class Categorization:
     def _extend_prepare(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: typing.Union[None, dict[str, dict]] = None,
+        alternative_codes: typing.Union[None, dict[str, str]] = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: typing.Union[None, str] = None,
+        comment: typing.Union[None, str] = None,
+        last_update: typing.Union[datetime.date] = None,
     ) -> dict[str, typing.Any]:
         spec = self.to_spec()
 
@@ -484,12 +484,12 @@ class Categorization:
     def extend(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: typing.Union[None, dict[str, dict]] = None,
+        alternative_codes: typing.Union[None, dict[str, str]] = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: typing.Union[None, str] = None,
+        comment: typing.Union[None, str] = None,
+        last_update: typing.Union[None, datetime.date] = None,
     ) -> "Categorization":
         """Extend the categorization with additional categories, yielding a new
         categorization.
@@ -643,9 +643,9 @@ class HierarchicalCategorization(Categorization):
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: typing.Union[None, str] = None,
         total_sum: bool,
-        canonical_top_level_category: None | str = None,
+        canonical_top_level_category: typing.Union[None, str] = None,
     ):
         self._graph = nx.MultiDiGraph()
         Categorization.__init__(
@@ -661,7 +661,9 @@ class HierarchicalCategorization(Categorization):
         )
         self.total_sum = total_sum
         if canonical_top_level_category is None:
-            self.canonical_top_level_category: None | HierarchicalCategory = None
+            self.canonical_top_level_category: typing.Union[
+                None, HierarchicalCategory
+            ] = None
         else:
             self.canonical_top_level_category = self._all_codes_map[
                 canonical_top_level_category
@@ -749,7 +751,7 @@ class HierarchicalCategorization(Categorization):
         children: typing.Iterable[HierarchicalCategory],
         format_func: typing.Callable,
         prefix: str,
-        maxdepth: None | int,
+        maxdepth: typing.Union[None, int],
     ) -> str:
         children_sorted = natsort.natsorted(children, key=format_func)
         r = "".join(
@@ -794,7 +796,7 @@ class HierarchicalCategorization(Categorization):
         prefix="",
         last=False,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int,
+        maxdepth: typing.Union[None, int],
     ) -> str:
         """Recursively-called function to show a subtree starting at the given node."""
 
@@ -847,8 +849,8 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int = None,
-        root: None | HierarchicalCategory | str = None,
+        maxdepth: typing.Union[None, int] = None,
+        root: typing.Union[None, HierarchicalCategory, str] = None,
     ) -> str:
         """Format the hierarchy as a tree.
 
@@ -900,13 +902,13 @@ class HierarchicalCategorization(Categorization):
     def extend(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
-        children: None | list[tuple] = None,
+        categories: typing.Union[None, dict[str, dict]] = None,
+        alternative_codes: typing.Union[None, dict[str, str]] = None,
+        children: typing.Union[None, list[tuple]] = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: typing.Union[None, str] = None,
+        comment: typing.Union[None, str] = None,
+        last_update: typing.Union[None, datetime.date] = None,
     ) -> "HierarchicalCategorization":
         """Extend the categorization with additional categories and relationships,
         yielding a new categorization.
