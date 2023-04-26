@@ -266,7 +266,7 @@ def main():
     cats_raw = parse_codes(rows)
 
     # Widely used and very useful, even though not included in the official spec
-    categories: typing.Dict[str, typing.Any] = {
+    categories: dict[str, typing.Any] = {
         "0": {
             "title": "National Total",
             "comment": "All emissions and removals",

@@ -33,7 +33,7 @@ def split_code_name(code_name):
     return code_parts, " ".join(name_parts)
 
 
-def parse_pdfs(inpath: str) -> typing.List[typing.Tuple[str, str, str, str]]:
+def parse_pdfs(inpath: str) -> list[tuple[str, str, str, str]]:
     t = camelot.read_pdf(
         inpath,
         pages="10-33",
@@ -84,8 +84,8 @@ def parse_pdfs(inpath: str) -> typing.List[typing.Tuple[str, str, str, str]]:
     return cats_raw
 
 
-def parse_categories(cats_raw) -> typing.Dict[str, typing.Any]:
-    categories: typing.Dict[str, typing.Any] = {}
+def parse_categories(cats_raw) -> dict[str, typing.Any]:
+    categories: dict[str, typing.Any] = {}
     for code_name, definition, code_96, gases in cats_raw:
         code_parts, title = split_code_name(code_name)
         # error in pdf
@@ -139,7 +139,7 @@ def main():
     cats_raw = parse_pdfs(str(INPATH))
 
     # Widely used and very useful, even though not included in the official spec
-    categories: typing.Dict[str, typing.Any] = {
+    categories: dict[str, typing.Any] = {
         "0": {
             "title": "National Total",
             "comment": "All emissions and removals",
