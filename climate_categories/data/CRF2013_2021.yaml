@@ -1,0 +1,7492 @@
+name: CRF2013_2021
+title: Common Reporting Format GHG emissions categories (2013). Extended for 2021
+  CRF submissions.
+comment: Classification of green-house gas emissions and removals into categories
+  for use in annual inventories using the Common Reporting Format as specified in
+  the UNFCCC guidelines on reporting and review as decided in the ninetenth session
+  of the Conference of the Parties in 2013. This specification extend the CRF2013
+  specification by country specific categories from the 2021 submissions.
+references: United Nations 2013, Decision 24/CP.19 - Revision of the UNFCCC reporting
+  guidelines on annual inventories for Parties included in Annex I to the Convention.
+  Documented in the 'Report of the Conference of the Parties on its nineteenth session,
+  held in Warsaw from 11 to 23 November 2013' available at https://unfccc.int/resource/docs/2013/cop19/eng/10a03.pdf.
+  https://unfccc.int/ghg-inventories-annex-i-parties/2021
+institution: UN
+hierarchical: true
+last_update: '2021-04-12'
+version: 2013-2021
+total_sum: true
+canonical_top_level_category: '0'
+categories:
+  '1':
+    title: Energy
+    comment: This category includes all GHG emissions arising from combustion and
+      fugitive releases of fuels. Emissions from the non-energy uses of fuels are
+      generally not included here, but reported under Industrial Processes and Product
+      Use Sector.
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+    children:
+    - - 1.A
+      - 1.B
+      - 1.C
+  1.A:
+    title: Fuel Combustion Activities
+    comment: Emissions from the intentional oxidation of materials within an apparatus
+      that is designed to raise heat and provide it either as heat or as mechanical
+      work to a process or for use away from the apparatus.
+    alternative_codes:
+    - 1A
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A
+    children:
+    - - 1.A.1
+      - 1.A.2
+      - 1.A.3
+      - 1.A.4
+      - 1.A.5
+    - - 1.A-ref
+  1.A.1:
+    title: Energy Industries
+    comment: Comprises  emissions  from  fuels  combusted  by  the  fuel extraction
+      or energy-producing industries.
+    alternative_codes:
+    - 1A1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1
+    children:
+    - - 1.A.1.a
+      - 1.A.1.b
+      - 1.A.1.c
+  1.A.1.a:
+    title: Public electricity and heat production
+    comment: Sum of emissions from main activity producers of electricity generation,
+      combined heat and power generation, and heat plants. Main activity producers
+      (formerly known as public utilities) are defined as those undertakings whose
+      primary activity is to supply the public. They may be in public or private ownership.
+      Emissions from own on-site use of fuel should be included. Emissions from autoproducers
+      (undertakings which generate electricity/heat wholly or partly for their own
+      use, as an activity that supports their primary activity) should be assigned
+      to the sector where they were generated and not under 1 A 1 a. Autoproducers
+      may be in public or private ownership.
+    alternative_codes:
+    - 1A1a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+    children:
+    - - 1.A.1.a.i
+      - 1.A.1.a.ii
+      - 1.A.1.a.iii
+      - 1.A.1.a.iv
+  1.A.1.a.i:
+    title: Electricity Generation
+    comment: Comprises emissions from all fuel use for electricity generation from
+      main activity producers except those from combined heat and power plants.
+    alternative_codes:
+    - 1A1ai
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1ai
+  1.A.1.a.ii:
+    title: Combined Heat and Power Generation (CHP)
+    comment: Emissions from production of both heat and electrical power from main
+      activity producers for sale to the public, at a single CHP facility.
+    alternative_codes:
+    - 1A1aii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1aii
+  1.A.1.a.iii:
+    title: Heat Plants
+    comment: Production of heat from main activity producers for sale by pipe network.
+    alternative_codes:
+    - 1A1aiii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1aiii
+  1.A.1.b:
+    title: Petroleum Refining
+    comment: All combustion activities supporting the refining of petroleum products
+      including on-site combustion for the generation of electricity and heat for
+      own use. Does not include evaporative emissions occurring at the refinery. These
+      emissions should be reported separately under 1 B 2 a.
+    alternative_codes:
+    - 1A1b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1b
+  1.A.1.c:
+    title: Manufacture of Solid Fuels and Other Energy Industries
+    comment: Combustion emissions from fuel use during the manufacture of secondary
+      and tertiary products from solid fuels including production of charcoal. Emissions
+      from own on-site fuel use should be included. Also includes combustion for the
+      generation of electricity and heat for own use in these industries.
+    alternative_codes:
+    - 1A1c
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1c
+    children:
+    - - 1.A.1.c.i
+      - 1.A.1.c.ii
+  1.A.1.c.i:
+    title: Manufacture of Solid Fuels
+    comment: Emissions arising from fuel combustion for the production of coke, brown
+      coal briquettes and patent fuel.
+    alternative_codes:
+    - 1A1ci
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1ci
+  1.A.1.c.ii:
+    title: Other Energy Industries
+    comment: Combustion emissions arising from the energy-producing industries own
+      (on-site) energy use not mentioned above or for which separate data are not
+      available. This includes the emissions from own-energy use for the production
+      of charcoal, bagasse, saw dust, cotton stalks and carbonizing of biofuels as
+      well as fuel used for coal mining, oil and gas extraction and the processing
+      and upgrading of natural gas. This category also includes emissions from pre-combustion
+      processing for CO2 capture and storage. Combustion emissions from pipeline transport
+      should be reported under 1 A 3 e.
+    alternative_codes:
+    - 1A1cii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A1cii
+    children:
+    - - 1.A.1.c.ii.1
+      - 1.A.1.c.ii.2
+      - 1.A.1.c.ii.3
+  1.A.2:
+    title: Manufacturing Industries and Construction
+    comment: Emissions from combustion of fuels in industry. Also includes combustion
+      for the generation of electricity and heat for own use in these industries.
+      Emissions from fuel combustion in coke ovens within the iron and steel industry
+      should be reported under 1 A 1 c and not within manufacturing industry. Emissions
+      from the industry sector should be specified by sub-categories that correspond
+      to the International Standard Industrial Classification of all Economic Activities
+      (ISIC). Energy used for transport by industry should not be reported here but
+      under Transport (1 A 3). Emissions arising from off-road and other mobile machinery
+      in industry should, if possible, be broken out as a separate subcategory. For
+      each country, the emissions from the largest fuel-consuming industrial categories
+      ISIC should be reported, as well as those from significant emitters of pollutants.
+      A suggested list of categories is outlined below.
+    alternative_codes:
+    - 1A2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2
+    children:
+    - - 1.A.2.a
+      - 1.A.2.b
+      - 1.A.2.c
+      - 1.A.2.d
+      - 1.A.2.e
+      - 1.A.2.f
+      - 1.A.2.g
+  1.A.2.a:
+    title: Iron and Steel
+    comment: ISIC Group 271 and Class 2731.
+    alternative_codes:
+    - 1A2a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+  1.A.2.b:
+    title: Non-Ferrous Metals
+    comment: ISIC Group 272 and Class 2732.
+    alternative_codes:
+    - 1A2b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2b
+  1.A.2.c:
+    title: Chemicals
+    comment: ISIC Division 24.
+    alternative_codes:
+    - 1A2c
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2c
+  1.A.2.d:
+    title: Pulp, Paper and Print
+    comment: ISIC Divisions 21 and 22.
+    alternative_codes:
+    - 1A2d
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2d
+  1.A.2.e:
+    title: Food Processing, Beverages and Tobacco
+    comment: ISIC Divisions 15 and 16.
+    alternative_codes:
+    - 1A2e
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2e
+  1.A.2.f:
+    title: Non-Metallic Minerals
+    comment: Includes products such as glass ceramic, cement, etc. ISIC Division 26.
+    alternative_codes:
+    - 1A2f
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A2f
+  1.A.3:
+    title: Transport
+    comment: Emissions from the combustion and evaporation of fuel for all transport
+      activity (excluding military transport), regardless of the sector, specified
+      by sub-categories below. Emissions from fuel sold to any air or marine vessel
+      engaged in international transport (1 A 3 a i and 1 A 3 d i) should as far as
+      possible be excluded from the totals and subtotals in this category and should
+      be reported separately.
+    alternative_codes:
+    - 1A3
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3
+    children:
+    - - 1.A.3.a
+      - 1.A.3.b
+      - 1.A.3.c
+      - 1.A.3.d
+      - 1.A.3.e
+  1.A.3.b:
+    title: Road Transportation
+    comment: All combustion and evaporative emissions arising from fuel use in road
+      vehicles, including the use of agricultural vehicles on paved roads.
+    alternative_codes:
+    - 1A3b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3b
+    children:
+    - - 1.A.3.b.i
+      - 1.A.3.b.ii
+      - 1.A.3.b.iii
+      - 1.A.3.b.iv
+      - 1.A.3.b.v
+  1.A.3.b.i:
+    title: Cars
+    comment: Emissions from automobiles so designated in the vehicle registering country
+      primarily for transport of persons and normally having a capacity of 12 persons
+      or fewer.
+    alternative_codes:
+    - 1A3bi
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3bi
+  1.A.3.b.ii:
+    title: Light-Duty Trucks
+    comment: Emissions from vehicles so designated in the vehicle registering country
+      primarily for transportation of light- weight cargo or which are equipped with
+      special features such as four-wheel drive for off-road operation. The gross
+      vehicle weight normally ranges up to 3500-3900 kg or less.
+    alternative_codes:
+    - 1A3bii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3bii
+      - 1A3bi
+  1.A.3.b.iii:
+    title: Heavy-Duty Trucks and Buses
+    comment: Emissions from any vehicles so designated in the vehicle registering
+      country. Normally the gross vehicle weight ranges from 3500-3900 kg or more
+      for heavy duty trucks and the buses are rated to carry more than 12 persons.
+    alternative_codes:
+    - 1A3biii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3biii
+  1.A.3.b.iv:
+    title: Motorcycles
+    comment: Emissions from any motor vehicle designed to travel with not more than
+      three wheels in contact with the ground and weighing less than 680 kg.
+    alternative_codes:
+    - 1A3biv
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3biv
+  1.A.3.c:
+    title: Railways
+    comment: Emissions from railway transport for both freight and passenger traffic
+      routes.
+    alternative_codes:
+    - 1A3c
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3c
+  1.A.3.e:
+    title: Other Transportation
+    comment: Combustion emissions from all remaining transport activities including
+      pipeline transportation, ground activities in airports and harbours, and off-road
+      activities not otherwise reported under 1 A 4 c Agriculture or 1 A 2. Manufacturing
+      Industries and Construction. Military transport should be reported under 1 A
+      5 (see 1 A 5 Non- specified).
+    alternative_codes:
+    - 1A3e
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3e
+    children:
+    - - 1.A.3.e.i
+      - 1.A.3.e.ii
+  1.A.3.e.i:
+    title: Pipeline Transport
+    comment: Combustion related emissions from the operation of pump stations and
+      maintenance of pipelines. Transport via pipelines includes transport of gases,
+      liquids, slurry and other commodities via pipelines. Distribution of natural
+      or manufactured gas, water or steam from the distributor to final users is excluded
+      and should be reported in 1 A 1 c ii or 1 A 4 a.
+    alternative_codes:
+    - 1A3ei
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3e
+  1.A.3.e.ii:
+    title: Off-Road
+    comment: Combustion emissions from Other Transportation excluding Pipeline Transport.
+    alternative_codes:
+    - 1A3eii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A3e
+    children:
+    - - 1.A.3.e.ii.1
+      - 1.A.3.e.ii.2
+      - 1.A.3.e.ii.3
+      - 1.A.3.e.ii.4
+  1.A.4:
+    title: Other Sectors
+    comment: Emissions from combustion activities as described below, including combustion
+      for the generation of electricity and heat for own use in these sectors.
+    alternative_codes:
+    - 1A4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4
+    children:
+    - - 1.A.4.a
+      - 1.A.4.b
+      - 1.A.4.c
+  1.A.4.a:
+    title: Commercial/Institutional
+    comment: Emissions from fuel combustion in commercial and institutional buildings;
+      all activities included in ISIC Divisions 41,50, 51, 52, 55, 63-67, 70-75, 80,
+      85, 90-93 and 99.
+    alternative_codes:
+    - 1A4a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4a
+    children:
+    - - 1.A.4.a.i
+      - 1.A.4.a.ii
+      - 1.A.4.a.iii
+  1.A.4.b:
+    title: Residential
+    comment: All emissions from fuel combustion in households.
+    alternative_codes:
+    - 1A4b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4b
+    children:
+    - - 1.A.4.b.i
+      - 1.A.4.b.ii
+      - 1.A.4.b.iii
+  1.A.4.c:
+    title: Agriculture/Forestry/Fishing/Fish Farms
+    comment: Emissions from fuel combustion in agriculture, forestry, fishing and
+      fishing industries such as fish farms. Activities included in ISIC Divisions
+      01, 02 and 05. Highway agricultural transportation is excluded.
+    alternative_codes:
+    - 1A4c
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4c
+    children:
+    - - 1.A.4.c.i
+      - 1.A.4.c.ii
+      - 1.A.4.c.iii
+  1.A.4.c.i:
+    title: Stationary
+    comment: Emissions from fuels combusted in pumps, grain drying, horticultural
+      greenhouses and other agriculture, forestry or stationary combustion in the
+      fishing industry.
+    alternative_codes:
+    - 1A4ci
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4ci
+  1.A.4.c.ii:
+    title: Off-Road Vehicles and Other Machinery
+    comment: Emissions from fuels combusted in traction vehicles on farm land and
+      in forests.
+    alternative_codes:
+    - 1A4cii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4cii
+  1.A.4.c.iii:
+    title: Fishing
+    comment: Emissions from fuels combusted for inland, coastal and deep-sea fishing.
+      Fishing should cover vessels of all flags that have refuelled in the country
+      (include international fishing).
+    alternative_codes:
+    - 1A4ciii
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A4ciii
+  1.A.5:
+    title: Other (not specified elsewhere)
+    children:
+    - - 1.A.5.a
+      - 1.A.5.b
+  1.A.5.a:
+    title: Stationary
+    comment: Emissions from fuel combustion in stationary sources that are not specified
+      elsewhere.
+    alternative_codes:
+    - 1A5a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A5a
+    children:
+    - - 1.A.5.a.i
+      - 1.A.5.a.ii
+      - 1.A.5.a.iii
+      - 1.A.5.a.iv
+      - 1.A.5.a.v
+  1.A.5.b:
+    title: Mobile
+    comment: Emissions from vehicles and other machinery, marine and aviation (not
+      included in 1 A 4 c ii or elsewhere).
+    alternative_codes:
+    - 1A5b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 1A5b
+    children:
+    - - 1.A.5.b.i
+      - 1.A.5.b.ii
+      - 1.A.5.b.iii
+      - 1.A.5.b.iv
+      - 1.A.5.b.ix
+      - 1.A.5.b.v
+      - 1.A.5.b.vi
+      - 1.A.5.b.vii
+      - 1.A.5.b.viii
+      - 1.A.5.b.x
+      - 1.A.5.b.xi
+      - 1.A.5.b.xii
+      - 1.A.5.b.xiii
+  1.B:
+    title: Fugitive Emissions from Fuels
+    comment: Includes all intentional and unintentional emissions from the extraction,
+      processing, storage and transport of fuel to the point of final use.
+    alternative_codes:
+    - 1B
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B
+    children:
+    - - 1.B.1
+      - 1.B.2
+  1.B.1:
+    title: Solid Fuels
+    comment: Includes all intentional and unintentional emissions from the extraction,
+      processing, storage and transport of fuel to the point of final use.
+    alternative_codes:
+    - 1B1
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1
+    children:
+    - - 1.B.1.a
+      - 1.B.1.b
+      - 1.B.1.c
+  1.B.1.a:
+    title: Coal Mining and Handling
+    comment: Includes all fugitive emissions from coal.
+    alternative_codes:
+    - 1B1a
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1a
+    children:
+    - - 1.B.1.a.i
+      - 1.B.1.a.ii
+  1.B.1.a.i:
+    title: Underground Mines
+    comment: Includes all emissions arising from mining, post-mining, abandoned mines
+      and flaring of drained methane.
+    alternative_codes:
+    - 1B1ai
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1ai
+    children:
+    - - 1.B.1.a.i.1
+      - 1.B.1.a.i.2
+      - 1.B.1.a.i.3
+  1.B.1.a.i.1:
+    title: Mining
+    comment: Includes all seam gas emissions vented to atmosphere from coal mine ventilation
+      air and degasification systems.
+    alternative_codes:
+    - 1B1ai1
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1ai
+  1.B.1.a.i.2:
+    title: Post-Mining Seam Gas Emissions
+    comment: Includes methane and CO2 emitted after coal has been mined, brought to
+      the surface and subsequently processed, stored and transported.
+    alternative_codes:
+    - 1B1ai2
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1ai
+  1.B.1.a.i.3:
+    title: Abandoned Underground Mines
+    comment: Includes methane emissions from abandoned underground mines.
+    alternative_codes:
+    - 1B1ai3
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1ai
+  1.B.1.a.ii:
+    title: Surface Mines
+    comment: Includes all seam gas emissions arising from surface  coal mining.
+    alternative_codes:
+    - 1B1aii
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1aii
+    children:
+    - - 1.B.1.a.ii.1
+      - 1.B.1.a.ii.2
+  1.B.1.a.ii.1:
+    title: Mining
+    comment: Includes methane and CO2 emitted during mining from breakage of coal
+      and associated strata and leakage from the pit floor and high wall.
+    alternative_codes:
+    - 1B1aii1
+    info:
+      gases:
+      - CO2
+      - CH4
+  1.B.1.a.ii.2:
+    title: Post-Mining Seam Gas Emissions
+    comment: Includes methane and CO2 emitted after coal has been mined, subsequently
+      processed, stored and transported.
+    alternative_codes:
+    - 1B1aii2
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 1B1aii
+  1.B.2:
+    title: Oil and Natural Gas
+    comment: Comprises fugitive emissions from all oil and natural gas activities.
+      The primary sources of these emissions may include fugitive equipment leaks,
+      evaporation losses, venting, flaring and accidental releases.
+    alternative_codes:
+    - 1B2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2
+    children:
+    - - 1.B.2.a
+      - 1.B.2.b
+      - 1.B.2.c
+      - 1.B.2.d
+  1.B.2.a:
+    title: Oil
+    comment: Comprises emissions from venting, flaring and all other fugitive sources
+      associated with the exploration, production, transmission, upgrading, and refining
+      of crude oil and distribution of crude oil products.
+    alternative_codes:
+    - 1B2a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2a
+    children:
+    - - 1.B.2.a.1
+      - 1.B.2.a.2
+      - 1.B.2.a.3
+      - 1.B.2.a.4
+      - 1.B.2.a.5
+      - 1.B.2.a.6
+  1.B.2.b:
+    title: Natural Gas
+    comment: Comprises emissions from venting, flaring and all other fugitive sources
+      associated with the exploration, production, processing, transmission, storage
+      and distribution of natural gas (including both associated and non-associated
+      gas).
+    alternative_codes:
+    - 1B2b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 1B2b
+    children:
+    - - 1.B.2.b.1
+      - 1.B.2.b.2
+      - 1.B.2.b.3
+      - 1.B.2.b.4
+      - 1.B.2.b.5
+      - 1.B.2.b.6
+  1.C:
+    title: Carbon Dioxide Transport and Storage
+    comment: Carbon dioxide (CO2) capture and storage (CCS) involves the capture of
+      CO2 from anthropogenic sources, its transport to a storage location and its
+      long-term isolation from the atmosphere.  Emissions associated with CO2 transport,
+      injection and storage are covered under category 1C.  Emissions (and reductions)
+      associated with CO2 capture should be reported under the IPCC Sector in which
+      capture takes place (e.g. Fuel Combustion or Industrial Activities).
+    alternative_codes:
+    - 1C
+    info:
+      gases:
+      - CO2
+    children:
+    - - 1.C.1
+      - 1.C.2
+      - 1.C.3
+  1.C.1:
+    title: Transport of CO2
+    comment: This comprises fugitive emissions from the systems used to transport
+      captured CO2 from the source to the injection site. These emissions may comprise
+      losses due to fugitive equipment leaks, venting and releases due to pipeline
+      ruptures or other accidental releases (e.g., temporary storage).
+    alternative_codes:
+    - 1C1
+    info:
+      gases:
+      - CO2
+    children:
+    - - 1.C.1.a
+      - 1.C.1.b
+      - 1.C.1.c
+  1.C.1.a:
+    title: Pipelines
+    comment: Fugitive emissions from the pipeline system used to transport CO2 to
+      the injection site.
+    alternative_codes:
+    - 1C1a
+    info:
+      gases:
+      - CO2
+  1.C.1.b:
+    title: Ships
+    comment: Fugitive emissions from the ships used to transport CO2 to the injection
+      site.
+    alternative_codes:
+    - 1C1b
+    info:
+      gases:
+      - CO2
+  1.C.1.c:
+    title: Other (Please Specify)
+    comment: Fugitive emissions from other systems used to transport CO2 to the injection
+      site and temporary storage
+    alternative_codes:
+    - 1C1c
+    info:
+      gases:
+      - CO2
+  1.C.2:
+    title: Injection and Storage
+    comment: Fugitive emissions from activities and equipment at the injection site
+      and those from the end containment once the CO2 is placed in storage.
+    alternative_codes:
+    - 1C2
+    info:
+      gases:
+      - CO2
+    children:
+    - - 1.C.2.a
+      - 1.C.2.b
+  1.C.2.a:
+    title: Injection
+    comment: Fugitive emissions from activities and equipment at the injection site.
+    alternative_codes:
+    - 1C2a
+    info:
+      gases:
+      - CO2
+  1.C.2.b:
+    title: Storage
+    comment: Fugitive emissions from the end equipment once the CO2 is placed in storage.
+    alternative_codes:
+    - 1C2b
+    info:
+      gases:
+      - CO2
+  1.C.3:
+    title: Other
+    comment: Any other emissions from CCS not reported elsewhere.
+    alternative_codes:
+    - 1C3
+    info:
+      gases:
+      - CO2
+  '2':
+    title: Industrial Processes and Product Use
+    comment: Emissions from industrial processes and product use, excluding those
+      related to energy combustion (reported under 1A), extraction, processing and
+      transport of fuels (reported under 1B) and CO2 transport, injection and storage
+      (reported under 1C).
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+    children:
+    - - 2.A
+      - 2.B
+      - 2.C
+      - 2.D
+      - 2.E
+      - 2.F
+      - 2.G
+      - 2.H
+  2.A:
+    title: Mineral Industry
+    alternative_codes:
+    - 2A
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2A
+    children:
+    - - 2.A.1
+      - 2.A.2
+      - 2.A.3
+      - 2.A.4
+  2.A.1:
+    title: Cement Production
+    comment: 'Process-related emissions from the production of various types of cement
+      (ISIC: D2694).'
+    alternative_codes:
+    - 2A1
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 2A1
+  2.A.2:
+    title: Lime Production
+    comment: 'Process-related emissions from the production of various types of lime
+      (ISIC: D2694).'
+    alternative_codes:
+    - 2A2
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 2A2
+  2.A.3:
+    title: Glass Production
+    comment: 'Process-related emissions from the production of various types of glass
+      (ISIC: D2610).'
+    alternative_codes:
+    - 2A3
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 2A3
+      - 2A4
+  2.A.4:
+    title: Other Process Uses of Carbonates
+    comment: Includes limestone, dolomite and other carbonates etc. Emissions from
+      the use of limestone, dolomite and other carbonates should be included in the
+      industrial source category where they are emitted. Therefore, for example, where
+      a carbonate is used as a flux for iron and steel production, resultant emissions
+      should be reported under 2C1 “Iron and Steel Production” rather than this subcategory.
+    alternative_codes:
+    - 2A4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2A3
+      - 2A4
+    children:
+    - - 2.A.4.a
+      - 2.A.4.b
+      - 2.A.4.c
+      - 2.A.4.d
+  2.A.4.a:
+    title: Ceramics
+    comment: 'Process-related emissions from the production of bricks and roof tiles,
+      vitrified clay pipes, refractory products, expanded clay products, wall and
+      floor tiles, table and ornamental ware (household ceramics), sanitary ware,
+      technical ceramics, and inorganic bonded abrasives (ISIC: D2691, D2692 and D2693).'
+    alternative_codes:
+    - 2A4a
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 2A3
+  2.A.4.b:
+    title: Other Uses of Soda Ash
+    comment: This should include emissions from soda ash use that are not included
+      elsewhere. For example, soda ash used for glass should be reported in 2A3.
+    alternative_codes:
+    - 2A4b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2A4
+  2.A.4.c:
+    title: Non Metallurgical Magnesia Production
+    comment: This source category should include emissions from magnesia production
+      that are not included elsewhere. For example, where magnesia production is used
+      for primary and secondary magnesium production, emissions should be reported
+      in relevant source category in Metals.
+    alternative_codes:
+    - 2A4c
+    info:
+      gases:
+      - CO2
+      - CH4
+      corresponding_categories_IPCC1996:
+      - 2A3
+  2.A.4.d:
+    title: Other (Please Specify)
+    comment: Process-related emissions reported under this sub-category should include
+      all other miscellaneous uses of limestone, dolomite and other carbonates, except
+      from uses already listed in the sub-categories above, and uses as fluxes or
+      slagging agents in the Metals and Chemicals industries, or for the liming of
+      soils and wetlands in Agriculture, Forestry and Other Land Uses (ISIC D269).
+    alternative_codes:
+    - 2A4d
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2A3
+  2.B:
+    title: Chemical Industry
+    alternative_codes:
+    - 2B
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B
+      - 2A4
+      - 3C
+    children:
+    - - 2.B.1
+      - 2.B.10
+      - 2.B.2
+      - 2.B.3
+      - 2.B.4
+      - 2.B.5
+      - 2.B.6
+      - 2.B.7
+      - 2.B.8
+      - 2.B.9
+  2.B.1:
+    title: Ammonia Production
+    comment: Ammonia (NH3) is a major industrial chemical and the most important nitrogenous
+      material produced. Ammonia gas is used directly as a fertilizer, in heat treating,
+      paper pulping, nitric acid and nitrates manufacture, nitric acid ester and nitro
+      compound manufacture, explosives of various types, and as a refrigerant. Amines,
+      amides, and miscellaneous other organic compounds, such as urea, are made from
+      ammonia. The main greenhouse gas emitted from NH3 production is CO2. CO2 used
+      in the production of urea, a downstream process, should be subtracted from the
+      CO2 generated and accounted for in the AFOLU Sector.
+    alternative_codes:
+    - 2B1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B1
+  2.B.2:
+    title: Nitric Acid Production
+    comment: Nitric acid is used as a raw material mainly in the manufacture of nitrogenous-based
+      fertiliser.  Nitric acid may also be used in the production of adipic acid and
+      explosives (e.g., dynamite), for metal etching and in the processing of ferrous
+      metals. The main greenhouse gas emitted from HNO3 production is nitrous oxide.
+    alternative_codes:
+    - 2B2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B2
+  2.B.3:
+    title: Adipic Acid Production
+    comment: Adipic acid is used in the manufacture of a large number of products
+      including synthetic fibres, coatings, plastics, urethane foams, elastomers and
+      synthetic lubricants. The production of Nylon 6.6 accounts for the bulk of adipic
+      acid use. The main greenhouse gas emitted from adipic acid production is nitrous
+      oxide.
+    alternative_codes:
+    - 2B3
+    info:
+      gases:
+      - N2O
+      - CO2
+      - CH4
+      - NOx
+      corresponding_categories_IPCC1996:
+      - 2B3
+  2.B.4:
+    title: Caprolactam, Glyoxal and Glyoxylic Acid Production
+    comment: Most of the annual production of caprolactam (NH(CH2)5CO) is consumed
+      as the monomer for nylon-6 fibres and plastics, with a substantial proportion
+      of the fibre used in carpet manufacturing. All commercial processes for the
+      manufacture of caprolactam are based on either toluene or benzene. This subcategory
+      also covers production of glyoxal (ethanedial) and glyoxylic acid production.
+      The main greenhouse gas emitted from this subcategory is nitrous oxide.
+    alternative_codes:
+    - 2B4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B5
+    children:
+    - - 2.B.4.a
+      - 2.B.4.b
+      - 2.B.4.c
+  2.B.5:
+    title: Carbide Production
+    comment: The production of carbide can result in emissions of CO2, CH4, CO and
+      SO2. Silicon carbide is a significant artificial abrasive. It is produced from
+      silica sand or quartz and petroleum coke. Calcium carbide is used in the production
+      of acetylene, in the manufacture of cyanamide (a minor historical use), and
+      as a reductant in electric arc steel furnaces. It is made from calcium carbonate
+      (limestone) and carbon-containing reductant (petroleum coke).
+    alternative_codes:
+    - 2B5
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B4
+    children:
+    - - 2.B.5.a
+      - 2.B.5.b
+  2.B.6:
+    title: Titanium Dioxide Production
+    comment: Titanium dioxide (TiO2) is the most important white pigment. The main
+      use is in paint manufacture followed by paper, plastics, rubber, ceramics, fabrics,
+      floor covering, printing ink, and other miscellaneous uses. The main production
+      process is the chloride route, giving rise to CO2 emissions that are likely
+      to be significant. This category also includes synthetic rutile production using
+      the Becher process, and titanium slag production, both of which are reduction
+      processes using fossil fuels and resulting in CO2 emissions. Synthetic rutile
+      is the major input to TiO2 production using the chloride route.
+    alternative_codes:
+    - 2B6
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.7:
+    title: Soda Ash Production
+    comment: Soda ash (sodium carbonate, Na2CO3) is a white crystalline solid that
+      is used as a raw material in a large number of industries including glass manufacture,
+      soap and detergents, pulp and paper production and water treatment. Emissions
+      of CO2 from the production of soda ash vary dependent on the manufacturing process.
+      Four different processes may be used to produce soda ash. Three of these processes,
+      monohydrate, sodium sesquicarbonate (trona) and direct carbonation, are referred
+      to as natural processes. The fourth, the Solvay process, is classified as a
+      synthetic process.
+    alternative_codes:
+    - 2B7
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2A4
+  2.B.8:
+    title: Petrochemical and Carbon Black Production
+    alternative_codes:
+    - 2B8
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B5
+    children:
+    - - 2.B.8.a
+      - 2.B.8.b
+      - 2.B.8.c
+      - 2.B.8.d
+      - 2.B.8.e
+      - 2.B.8.f
+      - 2.B.8.g
+  2.B.8.a:
+    title: Methanol
+    comment: Methanol production covers production of methanol from fossil fuel feedstocks
+      [natural gas, petroleum, coal] using steam reforming or partial oxidation processes.  Production
+      of methanol from biogenic feedstocks (e.g., by fermentation) is not included
+      in this source category.
+    alternative_codes:
+    - 2B8a
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.8.b:
+    title: Ethylene
+    comment: Ethylene production covers production of ethylene from fossil fuel-derived
+      feedstocks at petrochemical plants by the steam cracking process.  Production
+      of ethylene from processes situation within the boundaries of petroleum refineries
+      is not included in this source category.  The greenhouse gases produced from
+      ethylene production are carbon dioxide and methane.
+    alternative_codes:
+    - 2B8b
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.8.c:
+    title: Ethylene Dichloride and Vinyl Chloride Monomer
+    comment: Ethylene dichloride and vinyl chloride monomer production covers production
+      of ethylene dichloride by direct oxidation or oxychloination of ethylene, and
+      the production of vinyl chloride monomer from ethylene dichloride.   The greenhouse
+      gases produced from production of ethylene dichloride production and vinyl chloride
+      monomer production are carbon dioxide and methane.
+    alternative_codes:
+    - 2B8c
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - CO
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.8.d:
+    title: Ethylene Oxide
+    comment: Ethylene oxide production covers production of ethylene oxide by reaction
+      of ethylene and oxygen by catalytic oxidation.   The greenhouse gases produced
+      from ethylene oxide production are carbon dioxide and methane.
+    alternative_codes:
+    - 2B8d
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.8.e:
+    title: Acrylonitrile
+    comment: Acrylonitrile production covers production of acrylonitrile from ammoxidation
+      of propylene, and associated production of acetonitrile and hydrogen cyanide
+      from the ammoxidation process.  The greenhouse gases produced from production
+      of acrylonitrile are carbon dioxide and methane.
+    alternative_codes:
+    - 2B8e
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NMVOC
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.B.8.f:
+    title: Carbon Black
+    comment: Carbon black production covers production of carbon black from fossil
+      fuel-derived feedstocks (petroleum or coal- derived carbon black feedstock,
+      natural gas, acetylene). Production of carbon black from biogenic feedstocks
+      is not included in this source category.
+    alternative_codes:
+    - 2B8f
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B5
+      - 3C
+  2.B.9:
+    title: Fluorochemical Production
+    alternative_codes:
+    - 2B9
+    info:
+      gases:
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2E
+    children:
+    - - 2.B.9.a
+      - 2.B.9.b
+  2.B.9.a:
+    title: By-Product Emissions
+    comment: Fluorochemical Production covers the complete range of fluorochemicals,
+      whether or not the principal products are greenhouse gases. Emissions encompass
+      HFCs, PFCs, SF6 and all other halogenated gases with global warming potential
+      listed in IPCC assessment reports. The most significant by-product emission
+      is that of HFC-23 from the manufacture of HCFC-22 and this is described separately.
+    alternative_codes:
+    - 2B9a
+    info:
+      gases:
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - '2E1'
+    children:
+    - - 2.B.9.a.i
+      - 2.B.9.a.ii
+  2.B.9.b:
+    title: Fugitive Emissions
+    comment: These are emissions of the principal product from the process to manufacture
+      it and so fluorochemical production in this context is limited to HFCs, PFCs,
+      SF6 and other halogenated gases with global warming potential listed in IPCC
+      assessment reports.
+    alternative_codes:
+    - 2B9b
+    info:
+      gases:
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - '2E2'
+    children:
+    - - 2.B.9.b.i
+      - 2.B.9.b.ii
+      - 2.B.9.b.iii
+  2.B.10:
+    title: Other (Please Specify)
+    comment: For example, gases with global warming potential listed in IPCC assessment
+      reports that do not fall within any categories above could be reported here,
+      if they are estimated.
+    alternative_codes:
+    - 2B10
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2B5
+  2.C:
+    title: Metal Industry
+    alternative_codes:
+    - 2C
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C
+    children:
+    - - 2.C.1
+      - 2.C.2
+      - 2.C.3
+      - 2.C.4
+      - 2.C.5
+      - 2.C.6
+      - 2.C.7
+  2.C.1:
+    title: Iron and Steel Production
+    comment: Carbon dioxide is the predominant gas emitted from the production of
+      iron and steel.  The sources of the carbon dioxide emissions include that from
+      carbon-containing reducing agents such as coke and pulverized coal, and, from
+      minerals such as limestone and dolomite added.
+    alternative_codes:
+    - 2C1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C1
+    children:
+    - - 2.C.1.a
+      - 2.C.1.b
+      - 2.C.1.c
+      - 2.C.1.d
+      - 2.C.1.e
+      - 2.C.1.f
+  2.C.2:
+    title: Ferroalloys Production
+    comment: Ferroalloys production covers emissions from primary metallurgical reduction
+      production of the most common ferroalloys, i.e. ferro-silicon, silicon metal,
+      ferro-manganese, silicon manganese, and ferro-chromium, excluding those emissions
+      relating to fuel use. From the production of these alloys, carbon dioxide (CO2),
+      nitrous oxide (N2O), and methane (CH4) originating from ore- and reductant raw
+      materials, is emitted.
+    alternative_codes:
+    - 2C2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C2
+  2.C.3:
+    title: Aluminium Production
+    comment: Aluminium Production covers primary production of aluminium, except the
+      emissions related to the use of fuel. Carbon dioxide emissions result from the
+      electrochemical reduction reaction of alumina with a carbon-based anode. Tetrafluoromethane
+      (CF4) and hexafluoroethane (C2F6) are also produced intermittently.  No greenhouse
+      gases are produced in recycling of aluminium other than from the fuels uses
+      for metal remelting. Sulphur hexafluoride (SF6) emissions are not associated
+      with primary aluminium production; however, casting of some high magnesium containing
+      alloys does result in SF6 emissions and these emissions are accounted for in
+      Section 2C4, Magnesium Production.
+    alternative_codes:
+    - 2C3
+    info:
+      gases:
+      - CO2
+      - CH4
+      - PFCs
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C3
+    children:
+    - - 2.C.3.a
+      - 2.C.3.b
+  2.C.4:
+    title: Magnesium Production
+    comment: Magnesium production covers GHG emissions related to both primary magnesium
+      production as well as oxidation protection of magnesium metal during processing
+      (recycling and casting), excluding those emissions relating to fuel use. In
+      the primary production of magnesium, carbon dioxide (CO2) is emitted during
+      calcination of dolomite and magnesite raw materials. Primary production of magnesium
+      from non-carbonate raw materials does not emit carbon dioxide. In the processing
+      of liquid magnesium, cover gases containing carbon dioxide (CO2), sulphur hexafluoride
+      (SF6), the hydrofluorocarbon HFC 134a or the fluorinated ketone FK 5-1-12 (
+      C3F7C(O)C2F5) may be used. Partial thermal decomposition and/or reaction between
+      these compounds and liquid magnesium generates secondary compounds such as perfluorocarbons
+      (PFCs), which are emitted in addition to unreacted cover gas constituents.
+    alternative_codes:
+    - 2C4
+    info:
+      gases:
+      - CO2
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C4
+  2.C.5:
+    title: Lead Production
+    comment: Lead production covers production by the sintering/smelting process as
+      well as direct smelting.  Carbon dioxide emissions result as a product of the
+      use of a variety of carbon-based reducing agents in both production processes.
+    alternative_codes:
+    - 2C5
+    info:
+      gases:
+      - CO2
+      corresponding_categories_IPCC1996:
+      - 2C5
+  2.C.6:
+    title: Zinc Production
+    comment: Zinc production covers emissions from both primary production of zinc
+      from ore as well as recovery of zinc from scrap metals, excluding emissions
+      related to fuel use. Following calcination, zinc metal is produced through one
+      of three methods; 1-electro-thermic distillation, 2-pyro- metallurgical smelting
+      or 3-electrolysis.  If method 1 or 2 is used, carbon dioxide (CO2) is emitted.
+      Method 3 does not result in carbon dioxide emissions. Recovery of zinc from
+      metal scrap often uses the same methods as primary production and may thus produce
+      carbon dioxide emissions, which is included in this section.
+    alternative_codes:
+    - 2C6
+    info:
+      gases:
+      - CO2
+      corresponding_categories_IPCC1996:
+      - 2C5
+  2.C.7:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2C7
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2C5
+  2.D:
+    title: Non-Energy Products from Fuels and Solvent Use
+    comment: The use of oil products and coal-derived oils primarily intended for
+      purposes other than combustion.
+    alternative_codes:
+    - 2D
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - '1'
+      - 2A5
+      - 2A6
+      - '3'
+    children:
+    - - 2.D.1
+      - 2.D.2
+      - 2.D.3
+  2.D.1:
+    title: Lubricant Use
+    comment: Lubricating oils, heat transfer oils, cutting oils and greases.
+    alternative_codes:
+    - 2D1
+    info:
+      gases:
+      - CO2
+      corresponding_categories_IPCC1996:
+      - '1'
+      - '3'
+  2.D.2:
+    title: Paraffin Wax Use
+    comment: Oil-derived waxes such as petroleum jelly, paraffin waxes and other waxes.
+    alternative_codes:
+    - 2D2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      corresponding_categories_IPCC1996:
+      - '1'
+      - '3'
+  2.E:
+    title: Electronics Industry
+    alternative_codes:
+    - 2E
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - PFCs
+      - HFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+    children:
+    - - 2.E.1
+      - 2.E.2
+      - 2.E.3
+      - 2.E.4
+      - 2.E.5
+  2.E.1:
+    title: Integrated Circuit or Semiconductor
+    comment: Emissions of CF4, C2F6, C3F8, c-C4F8, C4F6, C4F8O, C5F8, CHF3, CH2F2,
+      NF3 and SF6 from uses of these gases in Integrated Circuit (IC) manufacturing
+      in rapidly evolving ways and in varying amounts, which depend on product (e.g.,
+      memory or logic devices) and equipment manufacturer.
+    alternative_codes:
+    - '2E1'
+    info:
+      gases:
+      - CO2
+      - N2O
+      - PFCs
+      - HFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.E.2:
+    title: TFT Flat Panel Display
+    comment: Uses and emissions of predominantly CF4, CHF3, NF3 and SF6 during the
+      fabrication of thin-film transistors (TFTs) on glass substrates for flat panel
+      display manufacture. In addition to these gases, C2F6, C3F8 and c-C4F8 may also
+      be used and emitted during the manufacture of thin and smart displays.
+    alternative_codes:
+    - '2E2'
+    info:
+      gases:
+      - PFCs
+      - HFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.E.3:
+    title: Photovoltaics
+    comment: Photovoltaic cell manufacture may use and emit CF4 and C2F6 among others.
+    alternative_codes:
+    - '2E3'
+    info:
+      gases:
+      - PFCs
+      - HFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.E.4:
+    title: Heat Transfer Fluid
+    comment: Heat transfer fluids, which include several fully fluorinated carbon
+      compounds (either in pure form or in mixtures) with six or more carbon atoms,
+      used and emitted during IC manufacture, testing and assembly. They are used
+      in chillers, temperature shock testers and vapour phase reflow soldering.
+    alternative_codes:
+    - '2E4'
+    info:
+      gases:
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.E.5:
+    title: Other (Please Specify)
+    alternative_codes:
+    - '2E5'
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.F:
+    title: Product Uses as Substitutes for Ozone Depleting Substances
+    alternative_codes:
+    - 2F
+    info:
+      gases:
+      - CO2
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F
+    children:
+    - - 2.F.1
+      - 2.F.2
+      - 2.F.3
+      - 2.F.4
+      - 2.F.5
+      - 2.F.6
+  2.F.1:
+    title: Refrigeration and Air Conditioning
+    comment: Refrigeration and air-conditioning systems are usually classified in
+      six application domains or categories.  These categories utilise different technologies
+      such as heat exchangers, expansion devices, pipings and compressors. The six
+      application domains are domestic refrigeration, commercial refrigeration, industrial
+      processes, transport refrigeration, stationary air conditioning, mobile air-
+      conditioning systems. For all these applications, various HFCs are selectively
+      replacing CFCs and HCFCs.  For example, in developed countries, HFC-134a has
+      replaced CFC-12 in domestic refrigeration and mobile air conditioning systems,
+      and blends of HFCs such as R-407C (HFC-32/HFC-125/HFC-134a) and R-410A (HFC-32/HFC-
+      125) are replacing HCFC-22 mainly in stationary air conditioning.  Other, non
+      HFC substances are used to replace CFCs and HCFCs such as iso-butane in domestic
+      refrigeration or ammonia in industrial refrigeration. HFC- 152a is also being
+      considered for mobile air conditioning in several regions.
+    alternative_codes:
+    - 2F1
+    info:
+      gases:
+      - CO2
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F1
+    children:
+    - - 2.F.1.a
+      - 2.F.1.b
+      - 2.F.1.c
+      - 2.F.1.d
+      - 2.F.1.e
+      - 2.F.1.f
+  2.F.2:
+    title: Foam Blowing Agents
+    comment: HFCs are being used as replacements for CFCs and HCFCs in foams, particularly
+      in closed-cell insulation applications. Compounds that are being used include
+      HFC- 245fa, HFC-365mfc, HFC-227ea, HFC-134a, and HFC- 152a. The processes and
+      applications for which these various HFCs are being used include insulation
+      boards and panels, pipe sections, sprayed systems and one- component gap filling
+      foams. For open-cell foams, such as integral skin products for automotive steering
+      wheels and facias, emissions of HFCs used as blowing agents are likely to occur
+      during the manufacturing process. In closed- cell foam, emissions not only occur
+      during the manufacturing phase, but usually extend into the in-use phase and
+      often the majority of emission occurs at the end- of-life (de-commissioning
+      losses). Accordingly, emissions can occur over a period of up to 50 years or
+      even longer.
+    alternative_codes:
+    - 2F2
+    info:
+      gases:
+      - CO2
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F2
+  2.F.3:
+    title: Fire Protection
+    comment: 'There are two general types of fire protection (fire suppression) equipment
+      that use greenhouse gases as partial replacements for halons: portable (streaming)
+      equipment, and fixed (flooding) equipment. The non-ozone depleting, industrial
+      gases HFCs, PFCs and more recently a fluoroketone are mainly used as substitutes
+      for halons, typically halon 1301, in flooding equipment.  PFCs played an early
+      role in halon 1301 replacement but current use is limited to replenishment of
+      previously installed systems. HFCs in portable equipment, typically replacing
+      halon 1211, are available but have achieved very limited market acceptance due
+      primarily to their high cost.  PFC use in new portable extinguishers is currently
+      limited to a small amount (few percent) in an HCFC blend.'
+    alternative_codes:
+    - 2F3
+    info:
+      gases:
+      - CO2
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F3
+  2.F.4:
+    title: Aerosols
+    comment: Most aerosol packages now contain hydrocarbon (HC) as propellants but,
+      in a small fraction of the total, HFCs and PFCs may be used as propellants or
+      solvents. Emissions from aerosols usually occur shortly after production, on
+      average six months after sale. During the use of aerosols, 100% of the chemical
+      is emitted. The 5 main sources are metered dose inhalers (MDIs), personal care
+      products (e.g. hair care, deodorant, shaving cream), household products (e.g.
+      air-fresheners, oven and fabric cleaners), industrial products (e.g. special
+      cleaning sprays such as those for operating electrical contact, lubricants,
+      pipe-freezers) and other general products (e.g. silly string, tire inflators,
+      claxons), although in some regions the use of such general products is restricted.
+      The HFCs currently used as propellants are HFC 134a, HFC 227ea, and HFC 152a.
+      The substance HFC 43 10mee and a PFC, perfluorohexane, are used as solvents
+      in industrial aerosol products.
+    alternative_codes:
+    - 2F4
+    info:
+      gases:
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F4
+    children:
+    - - 2.F.4.a
+      - 2.F.4.b
+  2.F.5:
+    title: Solvents
+    comment: HFCs and, to a much lesser extent PFCs, are being used as substitutes
+      for ozone depleting substances (most notably CFC-113). Typical HFCs used are
+      HFC-365mfc and HFC-43-10mee. Use of these fluorinated replacements is much less
+      widespread than the ozone depleting substances they replace. Re-capture and
+      re-use is also much more widely practiced The primary areas of use are precision
+      cleaning, electronics cleaning, metal cleaning and deposition applications.
+      Emissions from aerosols containing solvents should be reported undercategory
+      2F4 "Aerosols" rather than under this category.
+    alternative_codes:
+    - 2F5
+    info:
+      gases:
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F5
+  2.F.6:
+    title: Other Applications (Please Specify)
+    comment: The properties of ozone depleting substances have made them attractive
+      for a variety of niche applications not covered in other sub-source categories.
+      These include electronics testing, heat transfer, dielectric fluid and medical
+      applications. The properties of HFCs and PFCs are equally attractive in some
+      of these sectors and they have been adopted as substitutes. There are also some
+      historical uses of PFCs, as well as emerging use of HFCs, in these applications.
+      These applications have leakage rates ranging from 100% emissive in year of
+      application to around 1% per annum.
+    alternative_codes:
+    - 2F6
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+    children:
+    - - 2.F.6.a
+      - 2.F.6.b
+  2.G:
+    title: Other Product Manufacture and Use
+    alternative_codes:
+    - 2G
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - HFCs
+      - PFCs
+      - SF6
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+      - 3D
+    children:
+    - - 2.G.1
+      - 2.G.2
+      - 2.G.3
+      - 2.G.4
+  2.G.1:
+    title: Electrical Equipment
+    comment: Electrical equipment is used in the transmission and distribution of
+      electricity above 1 kV. SF6 is used in gas- insulated switchgear (GIS), gas
+      circuit breakers (GCB), gas-insulated transformers (GIT), gas-insulated lines
+      (GIL), outdoor gas-insulated instrument transformers, reclosers, switches, ring
+      main units and other equipment.
+    alternative_codes:
+    - 2G1
+    info:
+      gases:
+      - SF6
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.G.2:
+    title: SF6 and PFCs from Other Product Uses
+    alternative_codes:
+    - 2G2
+    info:
+      gases:
+      - SF6
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+    children:
+    - - 2.G.2.a
+      - 2.G.2.b
+      - 2.G.2.c
+      - 2.G.2.d
+      - 2.G.2.e
+  2.G.2.a:
+    title: Military Applications
+    comment: Military applications include AWACS, which are military reconnaissance
+      planes of the Boeing E-3A type.  In AWACS (and possibly other reconnaissance
+      planes), the SF6 is used as an insulating gas in the radar system.
+    alternative_codes:
+    - 2G2a
+    info:
+      gases:
+      - SF6
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.G.2.b:
+    title: Accelerators
+    comment: Particle accelerators are used for research purposes (at universities
+      and research institutions), for industrial applications (in cross-linking polymers
+      for cable insulation and for rubber parts and hoses), and in medical (radiotherapy)
+      applications.
+    alternative_codes:
+    - 2G2b
+    info:
+      gases:
+      - SF6
+      - PFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+  2.G.3:
+    title: N2O from Product Uses
+    alternative_codes:
+    - 2G3
+    info:
+      gases:
+      - N2O
+      corresponding_categories_IPCC1996:
+      - 3D
+    children:
+    - - 2.G.3.a
+      - 2.G.3.b
+  2.G.3.a:
+    title: Medical Applications
+    comment: 'This source covers evaporative emissions of nitrous oxide (N2O) that
+      arise from medical applications (anaesthetic use, analgesic use and veterinary
+      use). N2O is used during anaesthesia for two reasons: a) as an anaesthetic and
+      analgesic and as b) a carrier gas for volatile fluorinated hydrocarbon anaesthetics
+      such as isoflurane, sevoflurane and desflurane.'
+    alternative_codes:
+    - 2G3a
+    info:
+      gases:
+      - N2O
+      corresponding_categories_IPCC1996:
+      - 3D
+  2.G.4:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2G4
+    info:
+      gases:
+      - CO2
+      - CH4
+      - HFCs
+      - other halogenated gases
+      corresponding_categories_IPCC1996:
+      - 2F6
+      - 3D
+  2.H:
+    title: Other
+    alternative_codes:
+    - 2H
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2D1
+      - 2D2
+      - 2G
+    children:
+    - - 2.H.1
+      - 2.H.2
+      - 2.H.3
+  2.H.1:
+    title: Pulp and Paper Industry
+    alternative_codes:
+    - 2H1
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2D1
+  2.H.2:
+    title: Food and Beverages Industry
+    alternative_codes:
+    - 2H2
+    info:
+      gases:
+      - CO2
+      - CH4
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2D2
+  2.H.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2H3
+    info:
+      gases:
+      - CO2
+      - CH4
+      - N2O
+      - NOx
+      - CO
+      - NMVOC
+      - SO2
+      corresponding_categories_IPCC1996:
+      - 2G
+  1.A.1.a.iv:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 1 A 1 a iv
+    - 1A1aiv
+    children:
+    - - 1.A.1.a.iv.1
+      - 1.A.1.a.iv.2
+      - 1.A.1.a.iv.3
+      - 1.A.1.a.iv.4
+  1.A.2.g:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 1 A 2 g
+    - 1A2g
+    children:
+    - - 1.A.2.g.i
+      - 1.A.2.g.ii
+      - 1.A.2.g.iii
+      - 1.A.2.g.iv
+      - 1.A.2.g.v
+      - 1.A.2.g.vi
+      - 1.A.2.g.vii
+      - 1.A.2.g.viii
+  1.A.2.g.i:
+    title: Manufacturing of Machinery
+    alternative_codes:
+    - 1 A 2 g i
+    - 1A2gi
+  1.A.2.g.ii:
+    title: Manufacturing of Transport Equipment
+    alternative_codes:
+    - 1 A 2 g ii
+    - 1A2gii
+  1.A.2.g.iii:
+    title: Mining (Excluding Fuels) and Quarrying
+    alternative_codes:
+    - 1 A 2 g iii
+    - 1A2giii
+  1.A.2.g.iv:
+    title: Wood and Wood Products
+    alternative_codes:
+    - 1 A 2 g iv
+    - 1A2giv
+  1.A.2.g.v:
+    title: Construction
+    alternative_codes:
+    - 1 A 2 g v
+    - 1A2gv
+  1.A.2.g.vi:
+    title: Textile and Leather
+    alternative_codes:
+    - 1 A 2 g vi
+    - 1A2gvi
+  1.A.2.g.vii:
+    title: Off-Road Vehicles and Other Machinery
+    alternative_codes:
+    - 1 A 2 g vii
+    - 1A2gvii
+  1.A.2.g.viii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 1 A 2 g viii
+    - 1A2gviii
+    children:
+    - - 1.A.2.g.viii.1
+      - 1.A.2.g.viii.10
+      - 1.A.2.g.viii.2
+      - 1.A.2.g.viii.3
+      - 1.A.2.g.viii.4
+      - 1.A.2.g.viii.5
+      - 1.A.2.g.viii.6
+      - 1.A.2.g.viii.7
+      - 1.A.2.g.viii.8
+      - 1.A.2.g.viii.9
+  1.A.3.b.v:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 1 A 3 b v
+    - 1A3bv
+    children:
+    - - 1.A.3.b.v.1
+      - 1.A.3.b.v.10
+      - 1.A.3.b.v.11
+      - 1.A.3.b.v.12
+      - 1.A.3.b.v.13
+      - 1.A.3.b.v.2
+      - 1.A.3.b.v.3
+      - 1.A.3.b.v.4
+      - 1.A.3.b.v.5
+      - 1.A.3.b.v.6
+      - 1.A.3.b.v.7
+      - 1.A.3.b.v.8
+      - 1.A.3.b.v.9
+  1.A.3.a:
+    title: Domestic Aviation
+    alternative_codes:
+    - 1 A 3 a
+    - 1A3a
+  1.A.3.d:
+    title: Domestic Navigation
+    alternative_codes:
+    - 1 A 3 d
+    - 1A3d
+  1.A.4.a.i:
+    title: Stationary Combustion
+    alternative_codes:
+    - 1 A 4 a i
+    - 1A4ai
+  1.A.4.a.ii:
+    title: Off-Road Vehicles and Other Machinery
+    alternative_codes:
+    - 1 A 4 a ii
+    - 1A4aii
+  1.A.4.a.iii:
+    title: Other (please specify)
+    alternative_codes:
+    - 1 A 4 a iii
+    - 1A4aiii
+  1.A.4.b.i:
+    title: Stationary Combustion
+    alternative_codes:
+    - 1 A 4 b i
+    - 1A4bi
+  1.A.4.b.ii:
+    title: Off-Road Vehicles and Other Machinery
+    alternative_codes:
+    - 1 A 4 b ii
+    - 1A4bii
+  1.A.4.b.iii:
+    title: Other (please specify)
+    alternative_codes:
+    - 1 A 4 b iii
+    - 1A4biii
+    children:
+    - - 1.A.4.b.iii.1
+  M.Info:
+    title: Information Items
+    alternative_codes:
+    - M Info
+    - MInfo
+    children:
+    - - M.Info.CCS
+      - M.Info.WI
+  M.Info.WI:
+    title: Waste Incineration with energy recovery included as
+    alternative_codes:
+    - M Info WI
+    - MInfoWI
+    children:
+    - - M.Info.WI.Bio
+      - M.Info.WI.FF
+  M.Info.WI.Bio:
+    title: Biomass
+    alternative_codes:
+    - M Info WI Bio
+    - MInfoWIBio
+  M.Info.WI.FF:
+    title: Fossil Fuels
+    alternative_codes:
+    - M Info WI FF
+    - MInfoWIFF
+  1.A-ref:
+    title: Reference Approach
+    alternative_codes:
+    - 1 A-ref
+    - 1A-ref
+    children:
+    - - 1.A-ref.1
+      - 1.A-ref.2
+  1.A-ref.1:
+    title: Fossil Fuel
+    alternative_codes:
+    - 1 A-ref 1
+    - 1A-ref1
+    children:
+    - - 1.A-ref.1.a
+      - 1.A-ref.1.b
+      - 1.A-ref.1.c
+      - 1.A-ref.1.d
+  1.A-ref.1.a:
+    title: Liquid Fossil
+    alternative_codes:
+    - 1 A-ref 1 a
+    - 1A-ref1a
+    children:
+    - - 1.A-ref.1.a.i
+      - 1.A-ref.1.a.ii
+  1.A-ref.1.a.i:
+    title: Primary Fuels
+    alternative_codes:
+    - 1 A-ref 1 a i
+    - 1A-ref1ai
+    children:
+    - - 1.A-ref.1.a.i.1
+      - 1.A-ref.1.a.i.2
+      - 1.A-ref.1.a.i.3
+  1.A-ref.1.a.i.1:
+    title: Crude Oil
+    alternative_codes:
+    - 1 A-ref 1 a i 1
+    - 1A-ref1ai1
+  1.A-ref.1.a.i.2:
+    title: Orimulsion
+    alternative_codes:
+    - 1 A-ref 1 a i 2
+    - 1A-ref1ai2
+  1.A-ref.1.a.i.3:
+    title: Natural Gas Liquids
+    alternative_codes:
+    - 1 A-ref 1 a i 3
+    - 1A-ref1ai3
+  1.A-ref.1.a.ii:
+    title: Secondary Fuels
+    alternative_codes:
+    - 1 A-ref 1 a ii
+    - 1A-ref1aii
+    children:
+    - - 1.A-ref.1.a.ii.1
+      - 1.A-ref.1.a.ii.10
+      - 1.A-ref.1.a.ii.11
+      - 1.A-ref.1.a.ii.12
+      - 1.A-ref.1.a.ii.13
+      - 1.A-ref.1.a.ii.14
+      - 1.A-ref.1.a.ii.2
+      - 1.A-ref.1.a.ii.3
+      - 1.A-ref.1.a.ii.4
+      - 1.A-ref.1.a.ii.5
+      - 1.A-ref.1.a.ii.6
+      - 1.A-ref.1.a.ii.7
+      - 1.A-ref.1.a.ii.8
+      - 1.A-ref.1.a.ii.9
+  1.A-ref.1.a.ii.1:
+    title: Gasoline
+    alternative_codes:
+    - 1 A-ref 1 a ii 1
+    - 1A-ref1aii1
+  1.A-ref.1.a.ii.2:
+    title: Jet Kerosene
+    alternative_codes:
+    - 1 A-ref 1 a ii 2
+    - 1A-ref1aii2
+  1.A-ref.1.a.ii.3:
+    title: Other Kerosene
+    alternative_codes:
+    - 1 A-ref 1 a ii 3
+    - 1A-ref1aii3
+  1.A-ref.1.a.ii.4:
+    title: Shale Oil
+    alternative_codes:
+    - 1 A-ref 1 a ii 4
+    - 1A-ref1aii4
+  1.A-ref.1.a.ii.5:
+    title: Gas / Diesel Oil
+    alternative_codes:
+    - 1 A-ref 1 a ii 5
+    - 1A-ref1aii5
+  1.A-ref.1.a.ii.6:
+    title: Residual Fuel Oil
+    alternative_codes:
+    - 1 A-ref 1 a ii 6
+    - 1A-ref1aii6
+  1.A-ref.1.a.ii.7:
+    title: Liquefied Petroleum Gases (LPG)
+    alternative_codes:
+    - 1 A-ref 1 a ii 7
+    - 1A-ref1aii7
+  1.A-ref.1.a.ii.8:
+    title: Ethane
+    alternative_codes:
+    - 1 A-ref 1 a ii 8
+    - 1A-ref1aii8
+  1.A-ref.1.a.ii.9:
+    title: Naphtha
+    alternative_codes:
+    - 1 A-ref 1 a ii 9
+    - 1A-ref1aii9
+  1.A-ref.1.a.ii.10:
+    title: Bitumen
+    alternative_codes:
+    - 1 A-ref 1 a ii 10
+    - 1A-ref1aii10
+  1.A-ref.1.a.ii.11:
+    title: Lubricants
+    alternative_codes:
+    - 1 A-ref 1 a ii 11
+    - 1A-ref1aii11
+  1.A-ref.1.a.ii.12:
+    title: Petroleum Coke
+    alternative_codes:
+    - 1 A-ref 1 a ii 12
+    - 1A-ref1aii12
+  1.A-ref.1.a.ii.13:
+    title: Refinery Feedstocks
+    alternative_codes:
+    - 1 A-ref 1 a ii 13
+    - 1A-ref1aii13
+  1.A-ref.1.a.ii.14:
+    title: Other Oil
+    alternative_codes:
+    - 1 A-ref 1 a ii 14
+    - 1A-ref1aii14
+  1.A-ref.1.b:
+    title: Solid Fossil
+    alternative_codes:
+    - 1 A-ref 1 b
+    - 1A-ref1b
+    children:
+    - - 1.A-ref.1.b.i
+      - 1.A-ref.1.b.ii
+  1.A-ref.1.b.i:
+    title: Primary Fuels
+    alternative_codes:
+    - 1 A-ref 1 b i
+    - 1A-ref1bi
+    children:
+    - - 1.A-ref.1.b.i.1
+      - 1.A-ref.1.b.i.2
+      - 1.A-ref.1.b.i.3
+      - 1.A-ref.1.b.i.4
+      - 1.A-ref.1.b.i.5
+      - 1.A-ref.1.b.i.6
+  1.A-ref.1.b.i.1:
+    title: Anthracite
+    alternative_codes:
+    - 1 A-ref 1 b i 1
+    - 1A-ref1bi1
+  1.A-ref.1.b.i.2:
+    title: Coking Coal
+    alternative_codes:
+    - 1 A-ref 1 b i 2
+    - 1A-ref1bi2
+  1.A-ref.1.b.i.3:
+    title: Other Bituminous Coal
+    alternative_codes:
+    - 1 A-ref 1 b i 3
+    - 1A-ref1bi3
+  1.A-ref.1.b.i.4:
+    title: Sub-Bituminous Coal
+    alternative_codes:
+    - 1 A-ref 1 b i 4
+    - 1A-ref1bi4
+  1.A-ref.1.b.i.5:
+    title: Lignite
+    alternative_codes:
+    - 1 A-ref 1 b i 5
+    - 1A-ref1bi5
+  1.A-ref.1.b.i.6:
+    title: Oil Shale and Tar Sand
+    alternative_codes:
+    - 1 A-ref 1 b i 6
+    - 1A-ref1bi6
+  1.A-ref.1.b.ii:
+    title: Secondary Fuels
+    alternative_codes:
+    - 1 A-ref 1 b ii
+    - 1A-ref1bii
+    children:
+    - - 1.A-ref.1.b.ii.1
+      - 1.A-ref.1.b.ii.2
+      - 1.A-ref.1.b.ii.3
+  1.A-ref.1.b.ii.1:
+    title: BKB & Patent Fuel
+    alternative_codes:
+    - 1 A-ref 1 b ii 1
+    - 1A-ref1bii1
+  1.A-ref.1.b.ii.2:
+    title: Coke Oven / Gas Coke
+    alternative_codes:
+    - 1 A-ref 1 b ii 2
+    - 1A-ref1bii2
+  1.A-ref.1.b.ii.3:
+    title: Coal Tar
+    alternative_codes:
+    - 1 A-ref 1 b ii 3
+    - 1A-ref1bii3
+  1.A-ref.1.c:
+    title: Gaseous Fossil
+    alternative_codes:
+    - 1 A-ref 1 c
+    - 1A-ref1c
+    children:
+    - - 1.A-ref.1.c.i
+  1.A-ref.1.c.i:
+    title: Natural Gas (Dry)
+    alternative_codes:
+    - 1 A-ref 1 c i
+    - 1A-ref1ci
+  1.A-ref.1.d:
+    title: Other Fossil Fuels
+    alternative_codes:
+    - 1 A-ref 1 d
+    - 1A-ref1d
+    children:
+    - - 1.A-ref.1.d.i
+  1.A-ref.1.d.i:
+    title: Peat
+    alternative_codes:
+    - 1 A-ref 1 d i
+    - 1A-ref1di
+  1.A-ref.2:
+    title: Biomass
+    alternative_codes:
+    - 1 A-ref 2
+    - 1A-ref2
+    children:
+    - - 1.A-ref.2.a
+      - 1.A-ref.2.b
+      - 1.A-ref.2.c
+      - 1.A-ref.2.d
+  1.A-ref.2.a:
+    title: Solid Biomass
+    alternative_codes:
+    - 1 A-ref 2 a
+    - 1A-ref2a
+  1.A-ref.2.b:
+    title: Liquid Biomass
+    alternative_codes:
+    - 1 A-ref 2 b
+    - 1A-ref2b
+  1.A-ref.2.c:
+    title: Gas Biomass
+    alternative_codes:
+    - 1 A-ref 2 c
+    - 1A-ref2c
+  1.A-ref.2.d:
+    title: Other non-Fossil Fuels (Biogenic Waste)
+    alternative_codes:
+    - 1 A-ref 2 d
+    - 1A-ref2d
+  1.B.1.b:
+    title: Solid Fuel Transformation
+    alternative_codes:
+    - 1 B 1 b
+    - 1B1b
+  1.B.1.c:
+    title: Other (please specify)
+    alternative_codes:
+    - 1 B 1 c
+    - 1B1c
+    children:
+    - - 1.B.1.c.i
+      - 1.B.1.c.ii
+      - 1.B.1.c.iii
+      - 1.B.1.c.iv
+  1.B.2.a.1:
+    title: Exploration
+    alternative_codes:
+    - 1 B 2 a 1
+    - 1B2a1
+  1.B.2.a.2:
+    title: Production
+    alternative_codes:
+    - 1 B 2 a 2
+    - 1B2a2
+  1.B.2.a.3:
+    title: Transport
+    alternative_codes:
+    - 1 B 2 a 3
+    - 1B2a3
+  1.B.2.a.4:
+    title: Refining / Storage
+    alternative_codes:
+    - 1 B 2 a 4
+    - 1B2a4
+  1.B.2.a.5:
+    title: Distribution of Oil Products
+    alternative_codes:
+    - 1 B 2 a 5
+    - 1B2a5
+  1.B.2.a.6:
+    title: Other
+    alternative_codes:
+    - 1 B 2 a 6
+    - 1B2a6
+  1.B.2.b.1:
+    title: Exploration
+    alternative_codes:
+    - 1 B 2 b 1
+    - 1B2b1
+  1.B.2.b.2:
+    title: Production
+    alternative_codes:
+    - 1 B 2 b 2
+    - 1B2b2
+  1.B.2.b.3:
+    title: Processing
+    alternative_codes:
+    - 1 B 2 b 3
+    - 1B2b3
+  1.B.2.b.4:
+    title: Transmission and Storage
+    alternative_codes:
+    - 1 B 2 b 4
+    - 1B2b4
+  1.B.2.b.5:
+    title: Distribution
+    alternative_codes:
+    - 1 B 2 b 5
+    - 1B2b5
+  1.B.2.b.6:
+    title: Other
+    alternative_codes:
+    - 1 B 2 b 6
+    - 1B2b6
+  1.B.2.c:
+    title: Venting and Flaring
+    alternative_codes:
+    - 1 B 2 c
+    - 1B2c
+    children:
+    - - 1.B.2.c-fla
+      - 1.B.2.c-ven
+  1.B.2.c-ven:
+    title: Venting
+    alternative_codes:
+    - 1 B 2 c-ven
+    - 1B2c-ven
+    children:
+    - - 1.B.2.c-ven.i
+      - 1.B.2.c-ven.ii
+      - 1.B.2.c-ven.iii
+  1.B.2.c-ven.i:
+    title: Oil
+    alternative_codes:
+    - 1 B 2 c-ven i
+    - 1B2c-veni
+  1.B.2.c-ven.ii:
+    title: Gas
+    alternative_codes:
+    - 1 B 2 c-ven ii
+    - 1B2c-venii
+  1.B.2.c-ven.iii:
+    title: Combined
+    alternative_codes:
+    - 1 B 2 c-ven iii
+    - 1B2c-veniii
+  1.B.2.c-fla:
+    title: Flaring
+    alternative_codes:
+    - 1 B 2 c-fla
+    - 1B2c-fla
+    children:
+    - - 1.B.2.c-fla.i
+      - 1.B.2.c-fla.ii
+      - 1.B.2.c-fla.iii
+  1.B.2.c-fla.i:
+    title: Oil
+    alternative_codes:
+    - 1 B 2 c-fla i
+    - 1B2c-flai
+  1.B.2.c-fla.ii:
+    title: Gas
+    alternative_codes:
+    - 1 B 2 c-fla ii
+    - 1B2c-flaii
+  1.B.2.c-fla.iii:
+    title: Combined
+    alternative_codes:
+    - 1 B 2 c-fla iii
+    - 1B2c-flaiii
+  1.B.2.d:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 1 B 2 d
+    - 1B2d
+    children:
+    - - 1.B.2.d.i
+      - 1.B.2.d.ii
+      - 1.B.2.d.iii
+      - 1.B.2.d.iv
+      - 1.B.2.d.ix
+      - 1.B.2.d.v
+      - 1.B.2.d.vi
+      - 1.B.2.d.vii
+      - 1.B.2.d.viii
+      - 1.B.2.d.x
+  M.Info.CCS:
+    title: CO2 Transport and Storage - information Items
+    alternative_codes:
+    - M Info CCS
+    - MInfoCCS
+    children:
+    - - M.Info.CCS.A
+      - M.Info.CCS.B
+  M.Info.CCS.A:
+    title: CO2 Transport and Storage - information Items - Total A
+    alternative_codes:
+    - M Info CCS A
+    - MInfoCCSA
+    children:
+    - - M.Info.CCS.A.TACS
+      - M.Info.CCS.A.TAIS
+  M.Info.CCS.B:
+    title: CO2 Transport and Storage - information Items - Total B
+    alternative_codes:
+    - M Info CCS B
+    - MInfoCCSB
+    children:
+    - - M.Info.CCS.B.TAES
+      - M.Info.CCS.B.TAI
+      - M.Info.CCS.B.TLTIS
+  M.Info.CCS.A.TACS:
+    title: Total Amount Captured for Storage
+    alternative_codes:
+    - M Info CCS A TACS
+    - MInfoCCSATACS
+  M.Info.CCS.A.TAIS:
+    title: Total Amount of Imports for Storage
+    alternative_codes:
+    - M Info CCS A TAIS
+    - MInfoCCSATAIS
+  M.Info.CCS.B.TAES:
+    title: Total Amount of Exports for Storage
+    alternative_codes:
+    - M Info CCS B TAES
+    - MInfoCCSBTAES
+  M.Info.CCS.B.TAI:
+    title: Tota Amount of CO2 Injected at Storage Sites
+    alternative_codes:
+    - M Info CCS B TAI
+    - MInfoCCSBTAI
+  M.Info.CCS.B.TLTIS:
+    title: Total Leakage from Transport, Injection and Storage
+    alternative_codes:
+    - M Info CCS B TLTIS
+    - MInfoCCSBTLTIS
+  M.Memo:
+    title: Memo Items
+    alternative_codes:
+    - M Memo
+    - MMemo
+    children:
+    - - M.Memo.ACLT
+      - M.Memo.ACLTHWP
+      - M.Memo.Bio
+      - M.Memo.CO2Cap
+      - M.Memo.IndCO2
+      - M.Memo.IndN2O
+      - M.Memo.Int
+      - M.Memo.LTSW
+      - M.Memo.Mult
+  M.Memo.Int:
+    title: International Bunkers
+    alternative_codes:
+    - M Memo Int
+    - MMemoInt
+    children:
+    - - M.Memo.Int.Avi
+      - M.Memo.Int.Mar
+  M.Memo.Int.Avi:
+    title: International Aviation (Aviation Bunkers)
+    alternative_codes:
+    - M Memo Int Avi
+    - MMemoIntAvi
+  M.Memo.Int.Mar:
+    title: International Navigation (Marine Bunkers)
+    alternative_codes:
+    - M Memo Int Mar
+    - MMemoIntMar
+  M.Memo.Mult:
+    title: Multilateral Operations
+    alternative_codes:
+    - M Memo Mult
+    - MMemoMult
+  M.Memo.Bio:
+    title: CO2 Emissions from Biomass
+    alternative_codes:
+    - M Memo Bio
+    - MMemoBio
+  M.Memo.CO2Cap:
+    title: CO2 captured
+    alternative_codes:
+    - M Memo CO2Cap
+    - MMemoCO2Cap
+    children:
+    - - M.Memo.CO2Cap.Dom
+      - M.Memo.CO2Cap.Exp
+  M.Memo.CO2Cap.Dom:
+    title: For Domestic Storage
+    alternative_codes:
+    - M Memo CO2Cap Dom
+    - MMemoCO2CapDom
+  M.Memo.CO2Cap.Exp:
+    title: For Storage in Other Countries
+    alternative_codes:
+    - M Memo CO2Cap Exp
+    - MMemoCO2CapExp
+  2.B.4.a:
+    title: Caprolactam
+    alternative_codes:
+    - 2 B 4 a
+    - 2B4a
+  2.B.4.b:
+    title: Glyoxal
+    alternative_codes:
+    - 2 B 4 b
+    - 2B4b
+  2.B.4.c:
+    title: Glyoxylic Acid
+    alternative_codes:
+    - 2 B 4 c
+    - 2B4c
+  2.B.5.a:
+    title: Silicon Carbide
+    alternative_codes:
+    - 2 B 5 a
+    - 2B5a
+  2.B.5.b:
+    title: Calcium Carbide
+    alternative_codes:
+    - 2 B 5 b
+    - 2B5b
+  2.B.8.g:
+    title: Other
+    alternative_codes:
+    - 2 B 8 g
+    - 2B8g
+    children:
+    - - 2.B.8.g.i
+      - 2.B.8.g.ii
+  2.B.8.g.i:
+    title: Styrene
+    alternative_codes:
+    - 2 B 8 g i
+    - 2B8gi
+  2.B.8.g.ii:
+    title: Other (please specify)
+    alternative_codes:
+    - 2 B 8 g ii
+    - 2B8gii
+  2.C.1.a:
+    title: Steel
+    alternative_codes:
+    - 2 C 1 a
+    - 2C1a
+  2.C.1.b:
+    title: Pig Iron
+    alternative_codes:
+    - 2 C 1 b
+    - 2C1b
+  2.C.1.c:
+    title: Direct Reduced Iron
+    alternative_codes:
+    - 2 C 1 c
+    - 2C1c
+  2.C.1.d:
+    title: Sinter
+    alternative_codes:
+    - 2 C 1 d
+    - 2C1d
+  2.C.1.e:
+    title: Pellet
+    alternative_codes:
+    - 2 C 1 e
+    - 2C1e
+  2.C.1.f:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2 C 1 f
+    - 2C1f
+  2.D.3:
+    title: Other (please specify)
+    alternative_codes:
+    - 2 D 3
+    - 2D3
+    children:
+    - - 2.D.3.a
+      - 2.D.3.b
+      - 2.D.3.c
+      - 2.D.3.d
+  2.D.3.a:
+    title: Solvent use
+    alternative_codes:
+    - 2 D 3 a
+    - 2D3a
+  2.D.3.b:
+    title: Road Paving with Asphlat
+    alternative_codes:
+    - 2 D 3 b
+    - 2D3b
+  2.D.3.c:
+    title: Asphalt Toofing
+    alternative_codes:
+    - 2 D 3 c
+    - 2D3c
+  2.D.3.d:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2 D 3 d
+    - 2D3d
+  2.G.3.b:
+    title: Other
+    alternative_codes:
+    - 2 G 3 b
+    - 2G3b
+    children:
+    - - 2.G.3.b.i
+      - 2.G.3.b.ii
+  2.G.3.b.i:
+    title: Propellant for Pressure and Aerosol Products
+    alternative_codes:
+    - 2 G 3 b i
+    - 2G3bi
+  2.G.3.b.ii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2 G 3 b ii
+    - 2G3bii
+  2.B.9.a.i:
+    title: Production of HCFC-22
+    alternative_codes:
+    - 2 B 9 a i
+    - 2B9ai
+  2.B.9.a.ii:
+    title: Other (Please Specify
+    alternative_codes:
+    - 2 B 9 a ii
+    - 2B9aii
+  2.B.9.b.i:
+    title: Production of HFC-134a
+    alternative_codes:
+    - 2 B 9 b i
+    - 2B9bi
+  2.B.9.b.ii:
+    title: Production of SF6
+    alternative_codes:
+    - 2 B 9 b ii
+    - 2B9bii
+  2.B.9.b.iii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2 B 9 b iii
+    - 2B9biii
+  2.C.3.a:
+    title: By-Product Emissions
+    alternative_codes:
+    - 2 C 3 a
+    - 2C3a
+  2.C.3.b:
+    title: F-Gases Used in Foundries
+    alternative_codes:
+    - 2 C 3 b
+    - 2C3b
+  2.F.1.a:
+    title: Commercial Refrigeration
+    alternative_codes:
+    - 2 F 1 a
+    - 2F1a
+  2.F.1.b:
+    title: Domestic Refrigeration
+    alternative_codes:
+    - 2 F 1 b
+    - 2F1b
+  2.F.1.c:
+    title: Industrial Refrigeration
+    alternative_codes:
+    - 2 F 1 c
+    - 2F1c
+  2.F.1.d:
+    title: Transport Refrigeration
+    alternative_codes:
+    - 2 F 1 d
+    - 2F1d
+  2.F.1.e:
+    title: Mobile Air-Conditioning
+    alternative_codes:
+    - 2 F 1 e
+    - 2F1e
+  2.F.1.f:
+    title: Stationary Air-Conditioning
+    alternative_codes:
+    - 2 F 1 f
+    - 2F1f
+  2.F.4.a:
+    title: Metered dose Inhalers
+    alternative_codes:
+    - 2 F 4 a
+    - 2F4a
+  2.F.4.b:
+    title: Others (Please Specify)
+    alternative_codes:
+    - 2 F 4 b
+    - 2F4b
+  2.F.6.a:
+    title: Emissive
+    alternative_codes:
+    - 2 F 6 a
+    - 2F6a
+  2.F.6.b:
+    title: Contained
+    alternative_codes:
+    - 2 F 6 b
+    - 2F6b
+  2.G.2.c:
+    title: Soundproof Windows
+    alternative_codes:
+    - 2 G 2 c
+    - 2G2c
+  2.G.2.d:
+    title: 'Adiabatic Properties: Shoes and Tyres'
+    alternative_codes:
+    - 2 G 2 d
+    - 2G2d
+  2.G.2.e:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 2 G 2 e
+    - 2G2e
+  '3':
+    title: Total Agriculture
+    children:
+    - - 3.A
+      - 3.B
+      - 3.C
+      - 3.D
+      - 3.E
+      - 3.F
+      - 3.G
+      - 3.H
+      - 3.I
+      - 3.J
+    - - 3.C
+      - 3.D
+      - 3.E
+      - 3.F
+      - 3.G
+      - 3.H
+      - 3.I
+      - 3.J
+      - M.3.LV
+  M.3.LV:
+    title: Livestock
+    alternative_codes:
+    - M 3 LV
+    - M3LV
+    children:
+    - - 3.A
+      - 3.B
+  3.A:
+    title: Enteric Fermentation
+    alternative_codes:
+    - 3 A
+    - 3A
+    children:
+    - - 3.A.1
+      - 3.A.2
+      - 3.A.3
+      - 3.A.4
+  3.A.1:
+    title: Cattle
+    alternative_codes:
+    - 3 A 1
+    - 3A1
+    children:
+    - - 3.A.1.Aa
+      - 3.A.1.Ab
+    - - 3.A.1.Ba
+      - 3.A.1.Bb
+      - 3.A.1.Bc
+    - - 3.A.1.C-AUS-a
+      - 3.A.1.C-AUS-b
+      - 3.A.1.C-AUS-c
+    - - 3.A.1.C-MLT-a
+      - 3.A.1.C-MLT-b
+      - 3.A.1.C-MLT-c
+      - 3.A.1.C-MLT-d
+      - 3.A.1.C-MLT-e
+    - - 3.A.1.C-LUX-a
+      - 3.A.1.C-LUX-b
+      - 3.A.1.C-LUX-c
+      - 3.A.1.C-LUX-d
+      - 3.A.1.C-LUX-e
+      - 3.A.1.C-LUX-f
+    - - 3.A.1.C-POL-a
+      - 3.A.1.C-POL-b
+      - 3.A.1.C-POL-c
+      - 3.A.1.C-POL-d
+      - 3.A.1.C-POL-e
+    - - 3.A.1.C-SVN-a
+      - 3.A.1.C-SVN-b
+      - 3.A.1.C-SVN-c
+    - - 3.A.1.C-USA-a
+      - 3.A.1.C-USA-b
+      - 3.A.1.C-USA-c
+      - 3.A.1.C-USA-d
+      - 3.A.1.C-USA-e
+      - 3.A.1.C-USA-f
+      - 3.A.1.C-USA-g
+      - 3.A.1.C-USA-h
+      - 3.A.1.C-USA-i
+      - 3.A.1.C-USA-j
+      - 3.A.1.C-USA-k
+  3.A.1.Aa:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 A 1 Aa
+    - 3A1Aa
+  3.A.1.Ab:
+    title: Non-Dairy Cattle
+    alternative_codes:
+    - 3 A 1 Ab
+    - 3A1Ab
+  3.A.1.Ba:
+    title: Mature Dairy Cattle
+    alternative_codes:
+    - 3 A 1 Ba
+    - 3A1Ba
+  3.A.1.Bb:
+    title: Other Mature Cattle
+    alternative_codes:
+    - 3 A 1 Bb
+    - 3A1Bb
+  3.A.1.Bc:
+    title: Growing Cattle
+    alternative_codes:
+    - 3 A 1 Bc
+    - 3A1Bc
+  3.A.1.C:
+    title: Other (as specified in table 3(I).A)
+    alternative_codes:
+    - 3 A 1 C
+    - 3A1C
+  3.A.2:
+    title: Sheep
+    alternative_codes:
+    - 3 A 2
+    - 3A2
+  3.A.3:
+    title: Swine
+    alternative_codes:
+    - 3 A 3
+    - 3A3
+  3.A.4:
+    title: Other Livestock
+    alternative_codes:
+    - 3 A 4
+    - 3A4
+    children:
+    - - 3.A.4.a
+      - 3.A.4.b
+      - 3.A.4.c
+      - 3.A.4.d
+      - 3.A.4.e
+      - 3.A.4.f
+      - 3.A.4.g
+      - 3.A.4.h
+  3.A.4.a:
+    title: Buffalo
+    alternative_codes:
+    - 3 A 4 a
+    - 3A4a
+  3.A.4.b:
+    title: Camels
+    alternative_codes:
+    - 3 A 4 b
+    - 3A4b
+  3.A.4.c:
+    title: Deer
+    alternative_codes:
+    - 3 A 4 c
+    - 3A4c
+  3.A.4.d:
+    title: Goats
+    alternative_codes:
+    - 3 A 4 d
+    - 3A4d
+  3.A.4.e:
+    title: Horses
+    alternative_codes:
+    - 3 A 4 e
+    - 3A4e
+  3.A.4.f:
+    title: Mules and Asses
+    alternative_codes:
+    - 3 A 4 f
+    - 3A4f
+  3.A.4.g:
+    title: Poultry
+    alternative_codes:
+    - 3 A 4 g
+    - 3A4g
+  3.A.4.h:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 A 4 h
+    - 3A4h
+    children:
+    - - 3.A.4.h.i
+      - 3.A.4.h.ii
+      - 3.A.4.h.iii
+      - 3.A.4.h.iv
+      - 3.A.4.h.v
+  3.A.4.h.i:
+    title: Rabbit
+    alternative_codes:
+    - 3 A 4 h i
+    - 3A4hi
+  3.A.4.h.ii:
+    title: Reindeer
+    alternative_codes:
+    - 3 A 4 h ii
+    - 3A4hii
+  3.A.4.h.iii:
+    title: Ostrich
+    alternative_codes:
+    - 3 A 4 h iii
+    - 3A4hiii
+  3.A.4.h.iv:
+    title: Fur-bearing Animals
+    alternative_codes:
+    - 3 A 4 h iv
+    - 3A4hiv
+  3.A.4.h.v:
+    title: Other
+    alternative_codes:
+    - 3 A 4 h v
+    - 3A4hv
+  3.B:
+    title: Manure Management
+    alternative_codes:
+    - 3 B
+    - 3B
+    children:
+    - - 3.B.1
+      - 3.B.2
+      - 3.B.3
+      - 3.B.4
+      - 3.B.5
+  3.B.1:
+    title: Cattle
+    alternative_codes:
+    - 3 B 1
+    - 3B1
+    children:
+    - - 3.B.1.Aa
+      - 3.B.1.Ab
+    - - 3.B.1.Ba
+      - 3.B.1.Bb
+      - 3.B.1.Bc
+    - - 3.B.1.C-AUS-a
+      - 3.B.1.C-AUS-b
+      - 3.B.1.C-AUS-c
+    - - 3.B.1.C-MLT-a
+      - 3.B.1.C-MLT-b
+      - 3.B.1.C-MLT-c
+      - 3.B.1.C-MLT-d
+      - 3.B.1.C-MLT-e
+    - - 3.B.1.C-LUX-a
+      - 3.B.1.C-LUX-b
+      - 3.B.1.C-LUX-c
+      - 3.B.1.C-LUX-d
+      - 3.B.1.C-LUX-e
+      - 3.B.1.C-LUX-f
+    - - 3.B.1.C-POL-a
+      - 3.B.1.C-POL-b
+    - - 3.B.1.C-SVN-a
+      - 3.B.1.C-SVN-b
+      - 3.B.1.C-SVN-c
+    - - 3.B.1.C-USA-a
+      - 3.B.1.C-USA-b
+      - 3.B.1.C-USA-c
+      - 3.B.1.C-USA-d
+      - 3.B.1.C-USA-e
+      - 3.B.1.C-USA-f
+      - 3.B.1.C-USA-g
+      - 3.B.1.C-USA-h
+      - 3.B.1.C-USA-i
+      - 3.B.1.C-USA-j
+      - 3.B.1.C-USA-k
+      - 3.B.1.C-USA-l
+      - 3.B.1.C-USA-m
+  3.B.1.Aa:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 B 1 Aa
+    - 3B1Aa
+  3.B.1.Ab:
+    title: Non-Dairy Cattle
+    alternative_codes:
+    - 3 B 1 Ab
+    - 3B1Ab
+  3.B.1.Ba:
+    title: Mature Dairy Cattle
+    alternative_codes:
+    - 3 B 1 Ba
+    - 3B1Ba
+  3.B.1.Bb:
+    title: Other Mature Cattle
+    alternative_codes:
+    - 3 B 1 Bb
+    - 3B1Bb
+  3.B.1.Bc:
+    title: Growing Cattle
+    alternative_codes:
+    - 3 B 1 Bc
+    - 3B1Bc
+  3.B.1.C:
+    title: Other (as specified in table 3(I).B)
+    alternative_codes:
+    - 3 B 1 C
+    - 3B1C
+  3.B.2:
+    title: Sheep
+    alternative_codes:
+    - 3 B 2
+    - 3B2
+  3.B.3:
+    title: Swine
+    alternative_codes:
+    - 3 B 3
+    - 3B3
+  3.B.4:
+    title: Other Livestock
+    alternative_codes:
+    - 3 B 4
+    - 3B4
+    children:
+    - - 3.B.4.a
+      - 3.B.4.b
+      - 3.B.4.c
+      - 3.B.4.d
+      - 3.B.4.e
+      - 3.B.4.f
+      - 3.B.4.g
+      - 3.B.4.h
+  3.B.4.a:
+    title: Buffalo
+    alternative_codes:
+    - 3 B 4 a
+    - 3B4a
+  3.B.4.b:
+    title: Camels
+    alternative_codes:
+    - 3 B 4 b
+    - 3B4b
+  3.B.4.c:
+    title: Deer
+    alternative_codes:
+    - 3 B 4 c
+    - 3B4c
+  3.B.4.d:
+    title: Goats
+    alternative_codes:
+    - 3 B 4 d
+    - 3B4d
+  3.B.4.e:
+    title: Horses
+    alternative_codes:
+    - 3 B 4 e
+    - 3B4e
+  3.B.4.f:
+    title: Mules and Asses
+    alternative_codes:
+    - 3 B 4 f
+    - 3B4f
+  3.B.4.g:
+    title: Poultry
+    alternative_codes:
+    - 3 B 4 g
+    - 3B4g
+  3.B.4.h:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 B 4 h
+    - 3B4h
+    children:
+    - - 3.B.4.h.i
+      - 3.B.4.h.ii
+      - 3.B.4.h.iii
+      - 3.B.4.h.iv
+      - 3.B.4.h.v
+  3.B.4.h.i:
+    title: Rabbit
+    alternative_codes:
+    - 3 B 4 h i
+    - 3B4hi
+  3.B.4.h.ii:
+    title: Reindeer
+    alternative_codes:
+    - 3 B 4 h ii
+    - 3B4hii
+  3.B.4.h.iii:
+    title: Ostrich
+    alternative_codes:
+    - 3 B 4 h iii
+    - 3B4hiii
+  3.B.4.h.iv:
+    title: Fur-bearing Animals
+    alternative_codes:
+    - 3 B 4 h iv
+    - 3B4hiv
+  3.B.4.h.v:
+    title: Other
+    alternative_codes:
+    - 3 B 4 h v
+    - 3B4hv
+  3.B.5:
+    title: Indirect N2O emissions
+    alternative_codes:
+    - 3 B 5
+    - 3B5
+  3.C:
+    title: Rice Cultivation
+    alternative_codes:
+    - 3 C
+    - 3C
+    children:
+    - - 3.C.1
+      - 3.C.2
+      - 3.C.3
+      - 3.C.4
+  3.C.1:
+    title: Irrigated
+    alternative_codes:
+    - 3 C 1
+    - 3C1
+    children:
+    - - 3.C.1.a
+      - 3.C.1.b
+  3.C.1.a:
+    title: Continuously Flooded
+    alternative_codes:
+    - 3 C 1 a
+    - 3C1a
+  3.C.1.b:
+    title: Intermittently Flooded
+    alternative_codes:
+    - 3 C 1 b
+    - 3C1b
+    children:
+    - - 3.C.1.b.i
+      - 3.C.1.b.ii
+  3.C.2:
+    title: Rain-Fed
+    alternative_codes:
+    - 3 C 2
+    - 3C2
+    children:
+    - - 3.C.2.a
+      - 3.C.2.b
+  3.C.2.a:
+    title: Flood-Prone
+    alternative_codes:
+    - 3 C 2 a
+    - 3C2a
+  3.C.2.b:
+    title: Drought-Prone
+    alternative_codes:
+    - 3 C 2 b
+    - 3C2b
+  3.C.3:
+    title: Deep Water
+    alternative_codes:
+    - 3 C 3
+    - 3C3
+    children:
+    - - 3.C.3.a
+      - 3.C.3.b
+  3.C.3.a:
+    title: Water Depth 50-100 cm
+    alternative_codes:
+    - 3 C 3 a
+    - 3C3a
+  3.C.3.b:
+    title: Water Depth > 100 cm
+    alternative_codes:
+    - 3 C 3 b
+    - 3C3b
+  3.C.4:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 C 4
+    - 3C4
+    children:
+    - - 3.C.4.a
+  3.D:
+    title: Agricultural Soils
+    alternative_codes:
+    - 3 D
+    - 3D
+    children:
+    - - 3.D.a
+      - 3.D.b
+  3.D.a:
+    title: Direct N2O emissions from managed soils
+    alternative_codes:
+    - 3 D a
+    - 3Da
+    children:
+    - - 3.D.a.1
+      - 3.D.a.2
+      - 3.D.a.3
+      - 3.D.a.4
+      - 3.D.a.5
+      - 3.D.a.6
+      - 3.D.a.7
+  3.D.a.1:
+    title: Inorganic N Fertilizers
+    alternative_codes:
+    - 3 D a 1
+    - 3Da1
+  3.D.a.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 3 D a 2
+    - 3Da2
+    children:
+    - - 3.D.a.2.a
+      - 3.D.a.2.b
+      - 3.D.a.2.c
+  3.D.a.2.a:
+    title: Animal Manure Applied to Soils
+    alternative_codes:
+    - 3 D a 2 a
+    - 3Da2a
+  3.D.a.2.b:
+    title: Sewage Sludge Applied to Soils
+    alternative_codes:
+    - 3 D a 2 b
+    - 3Da2b
+  3.D.a.2.c:
+    title: Other Organic Fertilizer Applied to Soils
+    alternative_codes:
+    - 3 D a 2 c
+    - 3Da2c
+  3.D.a.3:
+    title: Urine and Dung Deposited by Grazing Animals
+    alternative_codes:
+    - 3 D a 3
+    - 3Da3
+  3.D.a.4:
+    title: Crop Residues
+    alternative_codes:
+    - 3 D a 4
+    - 3Da4
+  3.D.a.5:
+    title: Mineralization/immobilization associated with loss/gain of soil organic
+      matter
+    alternative_codes:
+    - 3 D a 5
+    - 3Da5
+  3.D.a.6:
+    title: Cultivation of Organic Soils (i.e. Histosols)
+    alternative_codes:
+    - 3 D a 6
+    - 3Da6
+  3.D.a.7:
+    title: Other
+    alternative_codes:
+    - 3 D a 7
+    - 3Da7
+  3.D.b:
+    title: 'Indirect N2O Emissions from Managed Soils '
+    alternative_codes:
+    - 3 D b
+    - 3Db
+    children:
+    - - 3.D.b.1
+      - 3.D.b.2
+  3.D.b.1:
+    title: Atmospheric Deposition
+    alternative_codes:
+    - 3 D b 1
+    - 3Db1
+  3.D.b.2:
+    title: Nitrogen Leaching and Run-Off
+    alternative_codes:
+    - 3 D b 2
+    - 3Db2
+  3.E:
+    title: Prescribed Burning of Savannahs
+    alternative_codes:
+    - 3 E
+    - 3E
+    children:
+    - - 3.E.1
+      - 3.E.2
+  3.E.1:
+    title: Forest Land
+    alternative_codes:
+    - 3 E 1
+    - '3E1'
+    children:
+    - - 3.E.1.a
+      - 3.E.1.b
+      - 3.E.1.c
+      - 3.E.1.d
+  3.E.2:
+    title: Grassland
+    alternative_codes:
+    - 3 E 2
+    - '3E2'
+    children:
+    - - 3.E.2.a
+      - 3.E.2.b
+      - 3.E.2.c
+      - 3.E.2.d
+      - 3.E.2.e
+      - 3.E.2.f
+      - 3.E.2.g
+  3.F:
+    title: Field burning of Agricultural Residues
+    alternative_codes:
+    - 3 F
+    - 3F
+    children:
+    - - 3.F.1
+      - 3.F.2
+      - 3.F.3
+      - 3.F.4
+      - 3.F.5
+  3.F.1:
+    title: Cereals
+    alternative_codes:
+    - 3 F 1
+    - 3F1
+    children:
+    - - 3.F.1.a
+      - 3.F.1.b
+      - 3.F.1.c
+      - 3.F.1.d
+  3.F.1.a:
+    title: Wheat
+    alternative_codes:
+    - 3 F 1 a
+    - 3F1a
+  3.F.1.b:
+    title: Barley
+    alternative_codes:
+    - 3 F 1 b
+    - 3F1b
+  3.F.1.c:
+    title: Maize
+    alternative_codes:
+    - 3 F 1 c
+    - 3F1c
+  3.F.1.d:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 F 1 d
+    - 3F1d
+  3.F.2:
+    title: Pulses
+    alternative_codes:
+    - 3 F 2
+    - 3F2
+  3.F.3:
+    title: Tubers and Roots
+    alternative_codes:
+    - 3 F 3
+    - 3F3
+  3.F.4:
+    title: Sugar Cane
+    alternative_codes:
+    - 3 F 4
+    - 3F4
+  3.F.5:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 F 5
+    - 3F5
+  3.G:
+    title: Liming
+    alternative_codes:
+    - 3 G
+    - 3G
+    children:
+    - - 3.G.1
+      - 3.G.2
+  3.G.1:
+    title: Limestone CaCO3
+    alternative_codes:
+    - 3 G 1
+    - 3G1
+  3.G.2:
+    title: Dolomite CaMg(CO3)2
+    alternative_codes:
+    - 3 G 2
+    - 3G2
+  3.H:
+    title: Urea Application
+    alternative_codes:
+    - 3 H
+    - 3H
+  3.I:
+    title: Other Carbon-Containing Fertilizers
+    alternative_codes:
+    - 3 I
+    - 3I
+  3.J:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 3 J
+    - 3J
+    children:
+    - - 3.J.1
+      - 3.J.2
+      - 3.J.3
+      - 3.J.4
+      - 3.J.5
+      - 3.J.6
+      - 3.J.7
+      - 3.J.8
+      - 3.J.9
+  '4':
+    title: Total LULUCF
+    children:
+    - - 4.A
+      - 4.B
+      - 4.C
+      - 4.D
+      - 4.E
+      - 4.F
+      - 4.G
+      - 4.H
+      - M.4.I
+    - - 4(I)
+      - 4(II)
+      - 4(III)
+      - 4(V)
+      - 4A-F
+  4.A:
+    title: Forest Land
+    alternative_codes:
+    - 4 A
+    - 4A
+    children:
+    - - 4(II).A
+      - 4.A.1
+      - 4.A.2
+    - - 4(I).A
+      - 4(II).A
+      - 4(III).A
+      - 4(V).A
+      - 4A-F.A
+  4.A.1:
+    title: Forest Land Remaining Forest Land
+    alternative_codes:
+    - 4 A 1
+    - 4A1
+    children:
+    - - 4(I).A.1
+      - 4(III).A.1
+      - 4(V).A.1
+      - 4A-F.A.1
+  4.A.2:
+    title: Land Converted to Forest Land
+    alternative_codes:
+    - 4 A 2
+    - 4A2
+    children:
+    - - 4(I).A.2
+      - 4(III).A.2
+      - 4(V).A.2
+      - 4A-F.A.2
+  4.B:
+    title: Cropland
+    alternative_codes:
+    - 4 B
+    - 4B
+    children:
+    - - 4(II).B
+      - 4.B.1
+      - 4.B.2
+    - - 4(II).B
+      - 4(III).B
+      - 4(V).B
+      - 4A-F.B
+  4.B.1:
+    title: Cropland Remaining Cropland
+    alternative_codes:
+    - 4 B 1
+    - 4B1
+    children:
+    - - 4(III).B.1
+      - 4(V).B.1
+      - 4A-F.B.1
+  4.B.2:
+    title: Land Converted to Cropland
+    alternative_codes:
+    - 4 B 2
+    - 4B2
+    children:
+    - - 4(III).B.2
+      - 4(V).B.2
+      - 4A-F.B.2
+  4.C:
+    title: Grassland
+    alternative_codes:
+    - 4 C
+    - 4C
+    children:
+    - - 4(II).C
+      - 4.C.1
+      - 4.C.2
+    - - 4(II).C
+      - 4(III).C
+      - 4(V).C
+      - 4A-F.C
+  4.C.1:
+    title: Grassland Remaining Grassland
+    alternative_codes:
+    - 4 C 1
+    - 4C1
+    children:
+    - - 4(III).C.1
+      - 4(V).C.1
+      - 4A-F.C.1
+  4.C.2:
+    title: Land Converted to Grassland
+    alternative_codes:
+    - 4 C 2
+    - 4C2
+    children:
+    - - 4(III).C.2
+      - 4(V).C.2
+      - 4A-F.C.2
+  4.D:
+    title: Wetlands
+    alternative_codes:
+    - 4 D
+    - 4D
+    children:
+    - - 4(II).D
+      - 4.D.1
+      - 4.D.2
+    - - 4(I).D
+      - 4(II).D
+      - 4(III).D
+      - 4(V).D
+      - 4A-F.D
+  4.D.1:
+    title: Wetlands Remaining Wetlands
+    alternative_codes:
+    - 4 D 1
+    - 4D1
+    children:
+    - - 4(I).D.1
+      - 4(III).D.1
+      - 4(V).D.1
+      - 4A-F.D.1
+  4.D.2:
+    title: Land Converted to Wetlands
+    alternative_codes:
+    - 4 D 2
+    - 4D2
+    children:
+    - - 4(I).D.2
+      - 4(III).D.2
+      - 4(V).D.2
+      - 4A-F.D.2
+  4.E:
+    title: Settlements
+    alternative_codes:
+    - 4 E
+    - 4E
+    children:
+    - - 4.E.1
+      - 4.E.2
+    - - 4(I).E
+      - 4(III).E
+      - 4(V).E
+      - 4A-F.E
+  4.E.1:
+    title: Settlements Remaining Settlements
+    alternative_codes:
+    - 4 E 1
+    - '4E1'
+    children:
+    - - 4(I).E.1
+      - 4(III).E.1
+      - 4(V).E.1
+      - 4A-F.E.1
+  4.E.2:
+    title: Land Converted to Settlements
+    alternative_codes:
+    - 4 E 2
+    - '4E2'
+    children:
+    - - 4(I).E.2
+      - 4(III).E.2
+      - 4(V).E.2
+      - 4A-F.E.2
+  4.F:
+    title: Other Land
+    alternative_codes:
+    - 4 F
+    - 4F
+    children:
+    - - 4.F.1
+      - 4.F.2
+    - - 4(III).F
+      - 4(V).F
+      - 4A-F.F
+  4.F.1:
+    title: Other Land Remaining Other Land
+    alternative_codes:
+    - 4 F 1
+    - 4F1
+    children:
+    - - 4(III).F.1
+      - 4(V).F.1
+      - 4A-F.F.1
+  4.F.2:
+    title: Land Converted to Other Land
+    alternative_codes:
+    - 4 F 2
+    - 4F2
+    children:
+    - - 4(III).F.2
+      - 4(V).F.2
+      - 4A-F.F.2
+  4.G:
+    title: Harvested Wood Products
+    alternative_codes:
+    - 4 G
+    - 4G
+    children:
+    - - 4.GA
+    - - 4.GB
+    - - 4.GC
+  4.H:
+    title: Other ( Please Specify)
+    alternative_codes:
+    - 4 H
+    - 4H
+    children:
+    - - 4.H.1
+      - 4.H.2
+      - 4.H.3
+      - 4.H.4
+      - 4.H.5
+      - 4.H.6
+      - 4.H.7
+      - 4.H.8
+      - 4.H.9
+  4A-F:
+    title: LULUCF data by land type. CRF Tables 4.a - 4.G
+    children:
+    - - 4A-F.A
+      - 4A-F.B
+      - 4A-F.C
+      - 4A-F.D
+      - 4A-F.E
+      - 4A-F.F
+  4A-F.A:
+    title: Total Forest Land
+    alternative_codes:
+    - 4A-F A
+    - 4A-FA
+    children:
+    - - 4A-F.A.1
+      - 4A-F.A.2
+  4A-F.A.1:
+    title: Forest Land Remaining Forest Land
+    alternative_codes:
+    - 4A-F A 1
+    - 4A-FA1
+  4A-F.A.2:
+    title: Land Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2
+    - 4A-FA2
+    children:
+    - - 4A-F.A.2.1
+      - 4A-F.A.2.2
+      - 4A-F.A.2.3
+      - 4A-F.A.2.4
+      - 4A-F.A.2.5
+  4A-F.A.2.1:
+    title: Gropland Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2 1
+    - 4A-FA21
+  4A-F.A.2.2:
+    title: Grassland Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2 2
+    - 4A-FA22
+  4A-F.A.2.3:
+    title: Wetlands Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2 3
+    - 4A-FA23
+  4A-F.A.2.4:
+    title: Settlements Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2 4
+    - 4A-FA24
+  4A-F.A.2.5:
+    title: Other Land Converted to Forest Land
+    alternative_codes:
+    - 4A-F A 2 5
+    - 4A-FA25
+  4A-F.B:
+    title: Total Cropland
+    alternative_codes:
+    - 4A-F B
+    - 4A-FB
+    children:
+    - - 4A-F.B.1
+      - 4A-F.B.2
+  4A-F.B.1:
+    title: Cropland Remaining Cropland
+    alternative_codes:
+    - 4A-F B 1
+    - 4A-FB1
+  4A-F.B.2:
+    title: Land Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2
+    - 4A-FB2
+    children:
+    - - 4A-F.B.2.1
+      - 4A-F.B.2.2
+      - 4A-F.B.2.3
+      - 4A-F.B.2.4
+      - 4A-F.B.2.5
+  4A-F.B.2.1:
+    title: Forest Land Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2 1
+    - 4A-FB21
+  4A-F.B.2.2:
+    title: Grassland Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2 2
+    - 4A-FB22
+  4A-F.B.2.3:
+    title: Wetlands Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2 3
+    - 4A-FB23
+  4A-F.B.2.4:
+    title: Settlements Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2 4
+    - 4A-FB24
+  4A-F.B.2.5:
+    title: Other Land Converted to Cropland
+    alternative_codes:
+    - 4A-F B 2 5
+    - 4A-FB25
+  4A-F.C:
+    title: Total Grassland
+    alternative_codes:
+    - 4A-F C
+    - 4A-FC
+    children:
+    - - 4A-F.C.1
+      - 4A-F.C.2
+  4A-F.C.1:
+    title: Grassland Remaining Grassland
+    alternative_codes:
+    - 4A-F C 1
+    - 4A-FC1
+  4A-F.C.2:
+    title: Land Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2
+    - 4A-FC2
+    children:
+    - - 4A-F.C.2.1
+      - 4A-F.C.2.2
+      - 4A-F.C.2.3
+      - 4A-F.C.2.4
+      - 4A-F.C.2.5
+  4A-F.C.2.1:
+    title: Forest Land Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2 1
+    - 4A-FC21
+  4A-F.C.2.2:
+    title: Cropland Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2 2
+    - 4A-FC22
+  4A-F.C.2.3:
+    title: Wetlands Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2 3
+    - 4A-FC23
+  4A-F.C.2.4:
+    title: Settlements Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2 4
+    - 4A-FC24
+  4A-F.C.2.5:
+    title: Other Land Converted to Grassland
+    alternative_codes:
+    - 4A-F C 2 5
+    - 4A-FC25
+  4A-F.D:
+    title: Total Wetlands
+    alternative_codes:
+    - 4A-F D
+    - 4A-FD
+    children:
+    - - 4A-F.D.1
+      - 4A-F.D.2
+  4A-F.D.1:
+    title: Wetlands Remaining Wetlands
+    alternative_codes:
+    - 4A-F D 1
+    - 4A-FD1
+    children:
+    - - 4A-F.D.1.1
+      - 4A-F.D.1.2
+      - 4A-F.D.1.3
+  4A-F.D.1.1:
+    title: Peat Extraction Remaining Peat Extraction
+    alternative_codes:
+    - 4A-F D 1 1
+    - 4A-FD11
+  4A-F.D.1.2:
+    title: Flooded Land Remaining Flooded Land
+    alternative_codes:
+    - 4A-F D 1 2
+    - 4A-FD12
+  4A-F.D.1.3:
+    title: Other Wetlands Remaining Other Wetlands
+    alternative_codes:
+    - 4A-F D 1 3
+    - 4A-FD13
+  4A-F.D.2:
+    title: Land Converted to Wetlands
+    alternative_codes:
+    - 4A-F D 2
+    - 4A-FD2
+    children:
+    - - 4A-F.D.2.1
+      - 4A-F.D.2.2
+      - 4A-F.D.2.3
+  4A-F.D.2.1:
+    title: Land Converted to Peat Extraction
+    alternative_codes:
+    - 4A-F D 2 1
+    - 4A-FD21
+  4A-F.D.2.2:
+    title: Land Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2
+    - 4A-FD22
+    children:
+    - - 4A-F.D.2.2.1
+      - 4A-F.D.2.2.2
+      - 4A-F.D.2.2.3
+      - 4A-F.D.2.2.4
+      - 4A-F.D.2.2.5
+  4A-F.D.2.2.1:
+    title: Forest Land Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2 1
+    - 4A-FD221
+  4A-F.D.2.2.2:
+    title: Cropland Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2 2
+    - 4A-FD222
+  4A-F.D.2.2.3:
+    title: Grassland Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2 3
+    - 4A-FD223
+  4A-F.D.2.2.4:
+    title: Settlements Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2 4
+    - 4A-FD224
+  4A-F.D.2.2.5:
+    title: Other Land Converted to Flooded Land
+    alternative_codes:
+    - 4A-F D 2 2 5
+    - 4A-FD225
+  4A-F.D.2.3:
+    title: Land Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3
+    - 4A-FD23
+    children:
+    - - 4A-F.D.2.3.1
+      - 4A-F.D.2.3.2
+      - 4A-F.D.2.3.3
+      - 4A-F.D.2.3.4
+      - 4A-F.D.2.3.5
+  4A-F.D.2.3.1:
+    title: Forest Land Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3 1
+    - 4A-FD231
+  4A-F.D.2.3.2:
+    title: Cropland Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3 2
+    - 4A-FD232
+  4A-F.D.2.3.3:
+    title: Grassland Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3 3
+    - 4A-FD233
+  4A-F.D.2.3.4:
+    title: Settlements Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3 4
+    - 4A-FD234
+  4A-F.D.2.3.5:
+    title: Other Land Converted to Other Wetlands
+    alternative_codes:
+    - 4A-F D 2 3 5
+    - 4A-FD235
+  4A-F.E:
+    title: Total Settlements
+    alternative_codes:
+    - 4A-F E
+    - 4A-FE
+    children:
+    - - 4A-F.E.1
+      - 4A-F.E.2
+  4A-F.E.1:
+    title: Settlements Remaining Settlements
+    alternative_codes:
+    - 4A-F E 1
+    - 4A-FE1
+  4A-F.E.2:
+    title: Land Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2
+    - 4A-FE2
+    children:
+    - - 4A-F.E.2.1
+      - 4A-F.E.2.2
+      - 4A-F.E.2.3
+      - 4A-F.E.2.4
+      - 4A-F.E.2.5
+  4A-F.E.2.1:
+    title: Forest Land Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2 1
+    - 4A-FE21
+  4A-F.E.2.2:
+    title: Cropland Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2 2
+    - 4A-FE22
+  4A-F.E.2.3:
+    title: Grassland Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2 3
+    - 4A-FE23
+  4A-F.E.2.4:
+    title: Wetlands Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2 4
+    - 4A-FE24
+  4A-F.E.2.5:
+    title: Other Land Converted to Settlements
+    alternative_codes:
+    - 4A-F E 2 5
+    - 4A-FE25
+  4A-F.F:
+    title: Total Other Land
+    alternative_codes:
+    - 4A-F F
+    - 4A-FF
+    children:
+    - - 4A-F.F.1
+      - 4A-F.F.2
+  4A-F.F.1:
+    title: Other Land Remaining Other Land
+    alternative_codes:
+    - 4A-F F 1
+    - 4A-FF1
+  4A-F.F.2:
+    title: Land Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2
+    - 4A-FF2
+    children:
+    - - 4A-F.F.2.1
+      - 4A-F.F.2.2
+      - 4A-F.F.2.3
+      - 4A-F.F.2.4
+      - 4A-F.F.2.5
+  4A-F.F.2.1:
+    title: Forest Land Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2 1
+    - 4A-FF21
+  4A-F.F.2.2:
+    title: Cropland Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2 2
+    - 4A-FF22
+  4A-F.F.2.3:
+    title: Grassland Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2 3
+    - 4A-FF23
+  4A-F.F.2.4:
+    title: Wetlands Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2 4
+    - 4A-FF24
+  4A-F.F.2.5:
+    title: Settlements Converted to Other Land
+    alternative_codes:
+    - 4A-F F 2 5
+    - 4A-FF25
+  4(I):
+    title: LULUCF - Direct N2O from nitrogen inputs to managed soils (Table 4(I)
+    children:
+    - - 4(I).A
+      - 4(I).D
+      - 4(I).E
+      - 4(I).H
+  4(I).A:
+    title: Forest Land
+    alternative_codes:
+    - 4(I) A
+    - 4(I)A
+    children:
+    - - 4(I).A.1
+      - 4(I).A.2
+  4(I).A.1:
+    title: Forest Land Remaining Forest Land
+    alternative_codes:
+    - 4(I) A 1
+    - 4(I)A1
+    children:
+    - - 4(I).A.1.1
+      - 4(I).A.1.2
+  4(I).A.1.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) A 1 1
+    - 4(I)A11
+  4(I).A.1.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) A 1 2
+    - 4(I)A12
+  4(I).A.2:
+    title: Land Converted to Forest Land
+    alternative_codes:
+    - 4(I) A 2
+    - 4(I)A2
+    children:
+    - - 4(I).A.2.1
+      - 4(I).A.2.2
+  4(I).A.2.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) A 2 1
+    - 4(I)A21
+  4(I).A.2.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) A 2 2
+    - 4(I)A22
+  4(I).D:
+    title: Wetlands
+    alternative_codes:
+    - 4(I) D
+    - 4(I)D
+    children:
+    - - 4(I).D.1
+      - 4(I).D.2
+  4(I).D.1:
+    title: Wetlands Remaining Wetlands
+    alternative_codes:
+    - 4(I) D 1
+    - 4(I)D1
+    children:
+    - - 4(I).D.1.1
+      - 4(I).D.1.2
+  4(I).D.1.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) D 1 1
+    - 4(I)D11
+  4(I).D.1.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) D 1 2
+    - 4(I)D12
+  4(I).D.2:
+    title: Land Converted to Wetlands
+    alternative_codes:
+    - 4(I) D 2
+    - 4(I)D2
+    children:
+    - - 4(I).D.2.1
+      - 4(I).D.2.2
+  4(I).D.2.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) D 2 1
+    - 4(I)D21
+  4(I).D.2.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) D 2 2
+    - 4(I)D22
+  4(I).E:
+    title: Settlements
+    alternative_codes:
+    - 4(I) E
+    - 4(I)E
+    children:
+    - - 4(I).E.1
+      - 4(I).E.2
+  4(I).E.1:
+    title: Settlements Remaining Settlements
+    alternative_codes:
+    - 4(I) E 1
+    - 4(I)E1
+    children:
+    - - 4(I).E.1.1
+      - 4(I).E.1.2
+  4(I).E.1.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) E 1 1
+    - 4(I)E11
+  4(I).E.1.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) E 1 2
+    - 4(I)E12
+  4(I).E.2:
+    title: Land Converted to Settlements
+    alternative_codes:
+    - 4(I) E 2
+    - 4(I)E2
+    children:
+    - - 4(I).E.2.1
+      - 4(I).E.2.2
+  4(I).E.2.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) E 2 1
+    - 4(I)E21
+  4(I).E.2.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) E 2 2
+    - 4(I)E22
+  4(I).H:
+    title: Other (Please specify)
+    alternative_codes:
+    - 4(I) H
+    - 4(I)H
+    children:
+    - - 4(I).H.1
+      - 4(I).H.2
+  4(I).H.1:
+    title: Inorganic N Fertilizer
+    alternative_codes:
+    - 4(I) H 1
+    - 4(I)H1
+  4(I).H.2:
+    title: Organic N Fertilizer
+    alternative_codes:
+    - 4(I) H 2
+    - 4(I)H2
+  4(II):
+    title: LULUCF - Emissions and removals from drainage and rewetting and other management
+      of organic and mineral soils  (Table 4(II))
+    children:
+    - - 4(II).A
+      - 4(II).B
+      - 4(II).C
+      - 4(II).D
+      - 4(II).H
+  4(II).A:
+    title: Forest Land
+    alternative_codes:
+    - 4(II) A
+    - 4(II)A
+    children:
+    - - 4(II).A.1
+      - 4(II).A.2
+  4(II).A.1:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) A 1
+    - 4(II)A1
+    children:
+    - - 4(II).A.1.a
+      - 4(II).A.1.b
+      - 4(II).A.1.c
+  4(II).A.1.a:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) A 1 a
+    - 4(II)A1a
+  4(II).A.1.b:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) A 1 b
+    - 4(II)A1b
+  4(II).A.1.c:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) A 1 c
+    - 4(II)A1c
+  4(II).A.2:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) A 2
+    - 4(II)A2
+    children:
+    - - 4(II).A.2.a
+      - 4(II).A.2.b
+  4(II).A.2.a:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) A 2 a
+    - 4(II)A2a
+  4(II).A.2.b:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) A 2 b
+    - 4(II)A2b
+  4(II).B:
+    title: Cropland
+    alternative_codes:
+    - 4(II) B
+    - 4(II)B
+    children:
+    - - 4(II).B.1
+      - 4(II).B.2
+  4(II).B.1:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) B 1
+    - 4(II)B1
+    children:
+    - - 4(II).B.1.a
+      - 4(II).B.1.b
+      - 4(II).B.1.c
+  4(II).B.1.a:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) B 1 a
+    - 4(II)B1a
+  4(II).B.1.b:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) B 1 b
+    - 4(II)B1b
+  4(II).B.1.c:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) B 1 c
+    - 4(II)B1c
+  4(II).B.2:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) B 2
+    - 4(II)B2
+    children:
+    - - 4(II).B.2.a
+      - 4(II).B.2.b
+  4(II).B.2.a:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) B 2 a
+    - 4(II)B2a
+  4(II).B.2.b:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) B 2 b
+    - 4(II)B2b
+  4(II).C:
+    title: Grassland
+    alternative_codes:
+    - 4(II) C
+    - 4(II)C
+    children:
+    - - 4(II).C.1
+      - 4(II).C.2
+  4(II).C.1:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) C 1
+    - 4(II)C1
+    children:
+    - - 4(II).C.1.a
+      - 4(II).C.1.b
+      - 4(II).C.1.c
+  4(II).C.1.a:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) C 1 a
+    - 4(II)C1a
+  4(II).C.1.b:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) C 1 b
+    - 4(II)C1b
+  4(II).C.1.c:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) C 1 c
+    - 4(II)C1c
+  4(II).C.2:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) C 2
+    - 4(II)C2
+    children:
+    - - 4(II).C.2.a
+      - 4(II).C.2.b
+  4(II).C.2.a:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) C 2 a
+    - 4(II)C2a
+  4(II).C.2.b:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) C 2 b
+    - 4(II)C2b
+  4(II).D:
+    title: Wetlands
+    alternative_codes:
+    - 4(II) D
+    - 4(II)D
+    children:
+    - - 4(II).D.1
+      - 4(II).D.2
+      - 4(II).D.3
+  4(II).D.1:
+    title: Peat Extraction Lands
+    alternative_codes:
+    - 4(II) D 1
+    - 4(II)D1
+    children:
+    - - 4(II).D.1.a
+      - 4(II).D.1.b
+  4(II).D.1.a:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) D 1 a
+    - 4(II)D1a
+    children:
+    - - 4(II).D.1.a.i
+      - 4(II).D.1.a.ii
+      - 4(II).D.1.a.iii
+  4(II).D.1.a.i:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) D 1 a i
+    - 4(II)D1ai
+  4(II).D.1.a.ii:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) D 1 a ii
+    - 4(II)D1aii
+  4(II).D.1.a.iii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 1 a iii
+    - 4(II)D1aiii
+  4(II).D.1.b:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) D 1 b
+    - 4(II)D1b
+    children:
+    - - 4(II).D.1.b.i
+      - 4(II).D.1.b.ii
+  4(II).D.1.b.i:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) D 1 b i
+    - 4(II)D1bi
+  4(II).D.1.b.ii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 1 b ii
+    - 4(II)D1bii
+  4(II).D.2:
+    title: Flooded Lands
+    alternative_codes:
+    - 4(II) D 2
+    - 4(II)D2
+    children:
+    - - 4(II).D.2.a
+      - 4(II).D.2.b
+  4(II).D.2.a:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) D 2 a
+    - 4(II)D2a
+    children:
+    - - 4(II).D.2.a.i
+      - 4(II).D.2.a.ii
+      - 4(II).D.2.a.iii
+  4(II).D.2.a.i:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) D 2 a i
+    - 4(II)D2ai
+  4(II).D.2.a.ii:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) D 2 a ii
+    - 4(II)D2aii
+  4(II).D.2.a.iii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 2 a iii
+    - 4(II)D2aiii
+  4(II).D.2.b:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) D 2 b
+    - 4(II)D2b
+    children:
+    - - 4(II).D.2.b.i
+      - 4(II).D.2.b.ii
+  4(II).D.2.b.i:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) D 2 b i
+    - 4(II)D2bi
+  4(II).D.2.b.ii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 2 b ii
+    - 4(II)D2bii
+  4(II).D.3:
+    title: Other Wetlands
+    alternative_codes:
+    - 4(II) D 3
+    - 4(II)D3
+    children:
+    - - 4(II).D.3.a
+      - 4(II).D.3.b
+  4(II).D.3.a:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) D 3 a
+    - 4(II)D3a
+    children:
+    - - 4(II).D.3.a.i
+      - 4(II).D.3.a.ii
+      - 4(II).D.3.a.iii
+  4(II).D.3.a.i:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) D 3 a i
+    - 4(II)D3ai
+  4(II).D.3.a.ii:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) D 3 a ii
+    - 4(II)D3aii
+  4(II).D.3.a.iii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 3 a iii
+    - 4(II)D3aiii
+  4(II).D.3.b:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) D 3 b
+    - 4(II)D3b
+    children:
+    - - 4(II).D.3.b.i
+      - 4(II).D.3.b.ii
+  4(II).D.3.b.i:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) D 3 b i
+    - 4(II)D3bi
+  4(II).D.3.b.ii:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) D 3 b ii
+    - 4(II)D3bii
+  4(II).H:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) H
+    - 4(II)H
+    children:
+    - - 4(II).H.1
+      - 4(II).H.2
+  4(II).H.1:
+    title: Total Organic Soils
+    alternative_codes:
+    - 4(II) H 1
+    - 4(II)H1
+    children:
+    - - 4(II).H.1.a
+      - 4(II).H.1.b
+      - 4(II).H.1.c
+  4(II).H.1.a:
+    title: Drained Organic Soils
+    alternative_codes:
+    - 4(II) H 1 a
+    - 4(II)H1a
+  4(II).H.1.b:
+    title: Rewetted Organic Soils
+    alternative_codes:
+    - 4(II) H 1 b
+    - 4(II)H1b
+  4(II).H.1.c:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) H 1 c
+    - 4(II)H1c
+  4(II).H.2:
+    title: Total Mineral Soils
+    alternative_codes:
+    - 4(II) H 2
+    - 4(II)H2
+    children:
+    - - 4(II).H.2.a
+      - 4(II).H.2.b
+  4(II).H.2.a:
+    title: Rewetted Mineral Soils
+    alternative_codes:
+    - 4(II) H 2 a
+    - 4(II)H2a
+  4(II).H.2.b:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(II) H 2 b
+    - 4(II)H2b
+  4(III):
+    title: LULUCF - Direct N2O Eemissions from Nitrogen (N) Mineralization/Immobilization
+      Associated with Loss/Gain of Soil Organic Matter Resulting from Change of Land
+      Use or Management of Mineral Soils (Table 4(III))
+    children:
+    - - 4(III).A
+      - 4(III).B
+      - 4(III).C
+      - 4(III).D
+      - 4(III).E
+      - 4(III).F
+  4(III).A:
+    title: Forest Land
+    alternative_codes:
+    - 4(III) A
+    - 4(III)A
+    children:
+    - - 4(III).A.1
+      - 4(III).A.2
+  4(III).A.1:
+    title: Forest Land Remaining Forest Land
+    alternative_codes:
+    - 4(III) A 1
+    - 4(III)A1
+  4(III).A.2:
+    title: Land Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2
+    - 4(III)A2
+    children:
+    - - 4(III).A.2.1
+      - 4(III).A.2.2
+      - 4(III).A.2.3
+      - 4(III).A.2.4
+      - 4(III).A.2.5
+  4(III).A.2.1:
+    title: Gropland Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2 1
+    - 4(III)A21
+  4(III).A.2.2:
+    title: Grassland Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2 2
+    - 4(III)A22
+  4(III).A.2.3:
+    title: Wetlands Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2 3
+    - 4(III)A23
+  4(III).A.2.4:
+    title: Settlements Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2 4
+    - 4(III)A24
+  4(III).A.2.5:
+    title: Other Land Converted to Forest Land
+    alternative_codes:
+    - 4(III) A 2 5
+    - 4(III)A25
+  4(III).B:
+    title: Cropland
+    alternative_codes:
+    - 4(III) B
+    - 4(III)B
+    children:
+    - - 4(III).B.1
+      - 4(III).B.2
+  4(III).B.1:
+    title: Cropland Remaining Cropland
+    alternative_codes:
+    - 4(III) B 1
+    - 4(III)B1
+  4(III).B.2:
+    title: Land Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2
+    - 4(III)B2
+    children:
+    - - 4(III).B.2.1
+      - 4(III).B.2.2
+      - 4(III).B.2.3
+      - 4(III).B.2.4
+      - 4(III).B.2.5
+  4(III).B.2.1:
+    title: Forest Land Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2 1
+    - 4(III)B21
+  4(III).B.2.2:
+    title: Grassland Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2 2
+    - 4(III)B22
+  4(III).B.2.3:
+    title: Wetlands Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2 3
+    - 4(III)B23
+  4(III).B.2.4:
+    title: Settlements Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2 4
+    - 4(III)B24
+  4(III).B.2.5:
+    title: Other Land Converted to Cropland
+    alternative_codes:
+    - 4(III) B 2 5
+    - 4(III)B25
+  4(III).C:
+    title: Grassland
+    alternative_codes:
+    - 4(III) C
+    - 4(III)C
+    children:
+    - - 4(III).C.1
+      - 4(III).C.2
+  4(III).C.1:
+    title: Grassland Remaining Grassland
+    alternative_codes:
+    - 4(III) C 1
+    - 4(III)C1
+  4(III).C.2:
+    title: Land Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2
+    - 4(III)C2
+    children:
+    - - 4(III).C.2.1
+      - 4(III).C.2.2
+      - 4(III).C.2.3
+      - 4(III).C.2.4
+      - 4(III).C.2.5
+  4(III).C.2.1:
+    title: Forest Land Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2 1
+    - 4(III)C21
+  4(III).C.2.2:
+    title: Cropland Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2 2
+    - 4(III)C22
+  4(III).C.2.3:
+    title: Wetlands Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2 3
+    - 4(III)C23
+  4(III).C.2.4:
+    title: Settlements Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2 4
+    - 4(III)C24
+  4(III).C.2.5:
+    title: Other Land Converted to Grassland
+    alternative_codes:
+    - 4(III) C 2 5
+    - 4(III)C25
+  4(III).D:
+    title: Wetlands
+    alternative_codes:
+    - 4(III) D
+    - 4(III)D
+    children:
+    - - 4(III).D.1
+      - 4(III).D.2
+  4(III).D.1:
+    title: Wetlands Remaining Wetlands
+    alternative_codes:
+    - 4(III) D 1
+    - 4(III)D1
+    children:
+    - - 4(III).D.1.1
+      - 4(III).D.1.2
+      - 4(III).D.1.3
+  4(III).D.1.1:
+    title: Peat Extraction Remaining Peat Extraction
+    alternative_codes:
+    - 4(III) D 1 1
+    - 4(III)D11
+  4(III).D.1.2:
+    title: Flooded Land Remaining Flooded Land
+    alternative_codes:
+    - 4(III) D 1 2
+    - 4(III)D12
+  4(III).D.1.3:
+    title: Other Wetlands Remaining Other Wetlands
+    alternative_codes:
+    - 4(III) D 1 3
+    - 4(III)D13
+  4(III).D.2:
+    title: Land Converted to Wetlands
+    alternative_codes:
+    - 4(III) D 2
+    - 4(III)D2
+    children:
+    - - 4(III).D.2.1
+      - 4(III).D.2.2
+      - 4(III).D.2.3
+  4(III).D.2.1:
+    title: Land Converted to Peat Extraction
+    alternative_codes:
+    - 4(III) D 2 1
+    - 4(III)D21
+  4(III).D.2.2:
+    title: Land Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2
+    - 4(III)D22
+    children:
+    - - 4(III).D.2.2.1
+      - 4(III).D.2.2.2
+      - 4(III).D.2.2.3
+      - 4(III).D.2.2.4
+      - 4(III).D.2.2.5
+  4(III).D.2.2.1:
+    title: Forest Land Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2 1
+    - 4(III)D221
+  4(III).D.2.2.2:
+    title: Cropland Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2 2
+    - 4(III)D222
+  4(III).D.2.2.3:
+    title: Grassland Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2 3
+    - 4(III)D223
+  4(III).D.2.2.4:
+    title: Settlements Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2 4
+    - 4(III)D224
+  4(III).D.2.2.5:
+    title: Other Land Converted to Flooded Land
+    alternative_codes:
+    - 4(III) D 2 2 5
+    - 4(III)D225
+  4(III).D.2.3:
+    title: Land Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3
+    - 4(III)D23
+    children:
+    - - 4(III).D.2.3.1
+      - 4(III).D.2.3.2
+      - 4(III).D.2.3.3
+      - 4(III).D.2.3.4
+      - 4(III).D.2.3.5
+  4(III).D.2.3.1:
+    title: Forest Land Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3 1
+    - 4(III)D231
+  4(III).D.2.3.2:
+    title: Cropland Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3 2
+    - 4(III)D232
+  4(III).D.2.3.3:
+    title: Grassland Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3 3
+    - 4(III)D233
+  4(III).D.2.3.4:
+    title: Settlements Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3 4
+    - 4(III)D234
+  4(III).D.2.3.5:
+    title: Other Land Converted to Other Wetlands
+    alternative_codes:
+    - 4(III) D 2 3 5
+    - 4(III)D235
+  4(III).E:
+    title: Settlements
+    alternative_codes:
+    - 4(III) E
+    - 4(III)E
+    children:
+    - - 4(III).E.1
+      - 4(III).E.2
+  4(III).E.1:
+    title: Settlements Remaining Settlements
+    alternative_codes:
+    - 4(III) E 1
+    - 4(III)E1
+  4(III).E.2:
+    title: Land Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2
+    - 4(III)E2
+    children:
+    - - 4(III).E.2.1
+      - 4(III).E.2.2
+      - 4(III).E.2.3
+      - 4(III).E.2.4
+      - 4(III).E.2.5
+  4(III).E.2.1:
+    title: Forest Land Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2 1
+    - 4(III)E21
+  4(III).E.2.2:
+    title: Cropland Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2 2
+    - 4(III)E22
+  4(III).E.2.3:
+    title: Grassland Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2 3
+    - 4(III)E23
+  4(III).E.2.4:
+    title: Wetlands Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2 4
+    - 4(III)E24
+  4(III).E.2.5:
+    title: Other Land Converted to Settlements
+    alternative_codes:
+    - 4(III) E 2 5
+    - 4(III)E25
+  4(III).F:
+    title: Other Land
+    alternative_codes:
+    - 4(III) F
+    - 4(III)F
+    children:
+    - - 4(III).F.1
+      - 4(III).F.2
+  4(III).F.1:
+    title: Other Land Remaining Other Land
+    alternative_codes:
+    - 4(III) F 1
+    - 4(III)F1
+  4(III).F.2:
+    title: Land Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2
+    - 4(III)F2
+    children:
+    - - 4(III).F.2.1
+      - 4(III).F.2.2
+      - 4(III).F.2.3
+      - 4(III).F.2.4
+      - 4(III).F.2.5
+  4(III).F.2.1:
+    title: Forest Land Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2 1
+    - 4(III)F21
+  4(III).F.2.2:
+    title: Cropland Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2 2
+    - 4(III)F22
+  4(III).F.2.3:
+    title: Grassland Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2 3
+    - 4(III)F23
+  4(III).F.2.4:
+    title: Wetlands Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2 4
+    - 4(III)F24
+  4(III).F.2.5:
+    title: Other Land Converted to Other Land
+    alternative_codes:
+    - 4(III) F 2 5
+    - 4(III)F25
+  M.4.I:
+    title: Indirect N2O Emissions From Managed Soils
+    alternative_codes:
+    - M 4 I
+    - M4I
+    children:
+    - - M.4.1.a
+      - M.4.1.b
+  M.4.1.a:
+    title: Atmospheric Deposition
+    alternative_codes:
+    - M 4 1 a
+    - M41a
+  M.4.1.b:
+    title: Nitrogen Leaching and Run-Off
+    alternative_codes:
+    - M 4 1 b
+    - M41b
+  4(V):
+    title: 'LULUCF: Biomass Burning (Table 4(V)'
+    children:
+    - - 4(V).A
+      - 4(V).B
+      - 4(V).C
+      - 4(V).D
+      - 4(V).E
+      - 4(V).F
+      - 4(V).H
+  4(V).A:
+    title: Forest Land
+    alternative_codes:
+    - 4(V) A
+    - 4(V)A
+    children:
+    - - 4(V).A.1
+      - 4(V).A.2
+  4(V).A.1:
+    title: Forest Land Remaining Forest Land
+    alternative_codes:
+    - 4(V) A 1
+    - 4(V)A1
+    children:
+    - - 4(V).A.1.a
+      - 4(V).A.1.b
+  4(V).A.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) A 1 a
+    - 4(V)A1a
+  4(V).A.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) A 1 b
+    - 4(V)A1b
+  4(V).A.2:
+    title: Land Converted to Forest Land
+    alternative_codes:
+    - 4(V) A 2
+    - 4(V)A2
+    children:
+    - - 4(V).A.2.a
+      - 4(V).A.2.b
+  4(V).A.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) A 2 a
+    - 4(V)A2a
+  4(V).A.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) A 2 b
+    - 4(V)A2b
+  4(V).B:
+    title: Cropland
+    alternative_codes:
+    - 4(V) B
+    - 4(V)B
+    children:
+    - - 4(V).B.1
+      - 4(V).B.2
+  4(V).B.1:
+    title: Cropland Remaining Cropland
+    alternative_codes:
+    - 4(V) B 1
+    - 4(V)B1
+    children:
+    - - 4(V).B.1.a
+      - 4(V).B.1.b
+  4(V).B.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) B 1 a
+    - 4(V)B1a
+  4(V).B.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) B 1 b
+    - 4(V)B1b
+  4(V).B.2:
+    title: Land Converted to Cropland
+    alternative_codes:
+    - 4(V) B 2
+    - 4(V)B2
+    children:
+    - - 4(V).B.2.a
+      - 4(V).B.2.b
+  4(V).B.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) B 2 a
+    - 4(V)B2a
+  4(V).B.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) B 2 b
+    - 4(V)B2b
+  4(V).C:
+    title: Grassland
+    alternative_codes:
+    - 4(V) C
+    - 4(V)C
+    children:
+    - - 4(V).C.1
+      - 4(V).C.2
+  4(V).C.1:
+    title: Grassland Remaining Grassland
+    alternative_codes:
+    - 4(V) C 1
+    - 4(V)C1
+    children:
+    - - 4(V).C.1.a
+      - 4(V).C.1.b
+  4(V).C.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) C 1 a
+    - 4(V)C1a
+  4(V).C.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) C 1 b
+    - 4(V)C1b
+  4(V).C.2:
+    title: Land Converted to Grassland
+    alternative_codes:
+    - 4(V) C 2
+    - 4(V)C2
+    children:
+    - - 4(V).C.2.a
+      - 4(V).C.2.b
+  4(V).C.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) C 2 a
+    - 4(V)C2a
+  4(V).C.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) C 2 b
+    - 4(V)C2b
+  4(V).D:
+    title: Wetlands
+    alternative_codes:
+    - 4(V) D
+    - 4(V)D
+    children:
+    - - 4(V).D.1
+      - 4(V).D.2
+  4(V).D.1:
+    title: Wetlands Remaining Wetlands
+    alternative_codes:
+    - 4(V) D 1
+    - 4(V)D1
+    children:
+    - - 4(V).D.1.a
+      - 4(V).D.1.b
+  4(V).D.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) D 1 a
+    - 4(V)D1a
+  4(V).D.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) D 1 b
+    - 4(V)D1b
+  4(V).D.2:
+    title: Land Converted to Wetlands
+    alternative_codes:
+    - 4(V) D 2
+    - 4(V)D2
+    children:
+    - - 4(V).D.2.a
+      - 4(V).D.2.b
+  4(V).D.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) D 2 a
+    - 4(V)D2a
+  4(V).D.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) D 2 b
+    - 4(V)D2b
+  4(V).E:
+    title: Settlements
+    alternative_codes:
+    - 4(V) E
+    - 4(V)E
+    children:
+    - - 4(V).E.1
+      - 4(V).E.2
+  4(V).E.1:
+    title: Settlements Remaining Settlements
+    alternative_codes:
+    - 4(V) E 1
+    - 4(V)E1
+    children:
+    - - 4(V).E.1.a
+      - 4(V).E.1.b
+  4(V).E.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) E 1 a
+    - 4(V)E1a
+  4(V).E.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) E 1 b
+    - 4(V)E1b
+  4(V).E.2:
+    title: Land Converted to Settlements
+    alternative_codes:
+    - 4(V) E 2
+    - 4(V)E2
+    children:
+    - - 4(V).E.2.a
+      - 4(V).E.2.b
+  4(V).E.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) E 2 a
+    - 4(V)E2a
+  4(V).E.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) E 2 b
+    - 4(V)E2b
+  4(V).F:
+    title: Other Land
+    alternative_codes:
+    - 4(V) F
+    - 4(V)F
+    children:
+    - - 4(V).F.1
+      - 4(V).F.2
+  4(V).F.1:
+    title: Other Land Remaining Other Land
+    alternative_codes:
+    - 4(V) F 1
+    - 4(V)F1
+    children:
+    - - 4(V).F.1.a
+      - 4(V).F.1.b
+  4(V).F.1.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) F 1 a
+    - 4(V)F1a
+  4(V).F.1.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) F 1 b
+    - 4(V)F1b
+  4(V).F.2:
+    title: Land Converted to Other Land
+    alternative_codes:
+    - 4(V) F 2
+    - 4(V)F2
+    children:
+    - - 4(V).F.2.a
+      - 4(V).F.2.b
+  4(V).F.2.a:
+    title: Controlled Burning
+    alternative_codes:
+    - 4(V) F 2 a
+    - 4(V)F2a
+  4(V).F.2.b:
+    title: Wildfires
+    alternative_codes:
+    - 4(V) F 2 b
+    - 4(V)F2b
+  4(V).H:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4(V) H
+    - 4(V)H
+  4.GA:
+    title: Harvested Wood Products - Approach A
+    alternative_codes:
+    - 4 GA
+    - 4GA
+    children:
+    - - 4.GA.1
+  4.GA.1:
+    title: Total HWP consumed domestically
+    alternative_codes:
+    - 4 GA 1
+    - 4GA1
+    children:
+    - - 4.GA.1.1
+      - 4.GA.1.2
+      - 4.GA.1.3
+  4.GA.1.1:
+    title: Solid Wood
+    alternative_codes:
+    - 4 GA 1 1
+    - 4GA11
+    children:
+    - - 4.GA.1.1.a
+      - 4.GA.1.1.b
+      - 4.GA.1.1.c
+  4.GA.1.1.a:
+    title: Sawnwood
+    alternative_codes:
+    - 4 GA 1 1 a
+    - 4GA11a
+  4.GA.1.1.b:
+    title: Wood Panels
+    alternative_codes:
+    - 4 GA 1 1 b
+    - 4GA11b
+  4.GA.1.1.c:
+    title: Other Wood Products
+    alternative_codes:
+    - 4 GA 1 1 c
+    - 4GA11c
+  4.GA.1.2:
+    title: Paper and Paperboard
+    alternative_codes:
+    - 4 GA 1 2
+    - 4GA12
+  4.GA.1.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4 GA 1 3
+    - 4GA13
+  4.GB:
+    title: Harvested Wood Products - Approach B
+    alternative_codes:
+    - 4 GB
+    - 4GB
+    children:
+    - - 4.GB.1
+      - 4.GB.2
+      - 4.GB.3
+  4.GB.1:
+    title: Total HWP from domestic harvest
+    alternative_codes:
+    - 4 GB 1
+    - 4GB1
+    children:
+    - - 4.GB.1.1
+      - 4.GB.1.2
+      - 4.GB.1.3
+  4.GB.1.1:
+    title: Solid Wood
+    alternative_codes:
+    - 4 GB 1 1
+    - 4GB11
+    children:
+    - - 4.GB.1.1.a
+      - 4.GB.1.1.b
+      - 4.GB.1.1.c
+  4.GB.1.1.a:
+    title: Sawnwood
+    alternative_codes:
+    - 4 GB 1 1 a
+    - 4GB11a
+  4.GB.1.1.b:
+    title: Wood Panels
+    alternative_codes:
+    - 4 GB 1 1 b
+    - 4GB11b
+  4.GB.1.1.c:
+    title: Other Wood Products
+    alternative_codes:
+    - 4 GB 1 1 c
+    - 4GB11c
+  4.GB.1.2:
+    title: Paper and Paperboard
+    alternative_codes:
+    - 4 GB 1 2
+    - 4GB12
+  4.GB.1.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4 GB 1 3
+    - 4GB13
+  4.GB.2:
+    title: HWP produced and consumed domestically
+    alternative_codes:
+    - 4 GB 2
+    - 4GB2
+    children:
+    - - 4.GB.2.1
+      - 4.GB.2.2
+      - 4.GB.2.3
+  4.GB.2.1:
+    title: Solid Wood
+    alternative_codes:
+    - 4 GB 2 1
+    - 4GB21
+    children:
+    - - 4.GB.2.1.a
+      - 4.GB.2.1.b
+      - 4.GB.2.1.c
+  4.GB.2.1.a:
+    title: Sawnwood
+    alternative_codes:
+    - 4 GB 2 1 a
+    - 4GB21a
+  4.GB.2.1.b:
+    title: Wood Panels
+    alternative_codes:
+    - 4 GB 2 1 b
+    - 4GB21b
+  4.GB.2.1.c:
+    title: Other Wood Products
+    alternative_codes:
+    - 4 GB 2 1 c
+    - 4GB21c
+  4.GB.2.2:
+    title: Paper and Paperboard
+    alternative_codes:
+    - 4 GB 2 2
+    - 4GB22
+  4.GB.2.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4 GB 2 3
+    - 4GB23
+  4.GB.3:
+    title: HWP produced and exported
+    alternative_codes:
+    - 4 GB 3
+    - 4GB3
+    children:
+    - - 4.GB.3.1
+      - 4.GB.3.2
+      - 4.GB.3.3
+  4.GB.3.1:
+    title: Solid Wood
+    alternative_codes:
+    - 4 GB 3 1
+    - 4GB31
+    children:
+    - - 4.GB.3.1.a
+      - 4.GB.3.1.b
+      - 4.GB.3.1.c
+  4.GB.3.1.a:
+    title: Sawnwood
+    alternative_codes:
+    - 4 GB 3 1 a
+    - 4GB31a
+  4.GB.3.1.b:
+    title: Wood Panels
+    alternative_codes:
+    - 4 GB 3 1 b
+    - 4GB31b
+  4.GB.3.1.c:
+    title: Other Wood Products
+    alternative_codes:
+    - 4 GB 3 1 c
+    - 4GB31c
+  4.GB.3.2:
+    title: Paper and Paperboard
+    alternative_codes:
+    - 4 GB 3 2
+    - 4GB32
+  4.GB.3.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4 GB 3 3
+    - 4GB33
+  4.GC:
+    title: Harvested Wood Products - Approach C
+    alternative_codes:
+    - 4 GC
+    - 4GC
+    children:
+    - - 4.GC.1
+  4.GC.1:
+    title: Total
+    alternative_codes:
+    - 4 GC 1
+    - 4GC1
+    children:
+    - - 4.GC.1.1
+      - 4.GC.1.2
+      - 4.GC.1.3
+  4.GC.1.1:
+    title: Solid Wood
+    alternative_codes:
+    - 4 GC 1 1
+    - 4GC11
+    children:
+    - - 4.GC.1.1.a
+      - 4.GC.1.1.b
+      - 4.GC.1.1.c
+  4.GC.1.1.a:
+    title: Sawnwood
+    alternative_codes:
+    - 4 GC 1 1 a
+    - 4GC11a
+  4.GC.1.1.b:
+    title: Wood Panels
+    alternative_codes:
+    - 4 GC 1 1 b
+    - 4GC11b
+  4.GC.1.1.c:
+    title: Other Wood Products
+    alternative_codes:
+    - 4 GC 1 1 c
+    - 4GC11c
+  4.GC.1.2:
+    title: Paper and Paperboard
+    alternative_codes:
+    - 4 GC 1 2
+    - 4GC12
+  4.GC.1.3:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 4 GC 1 3
+    - 4GC13
+  '5':
+    title: Waste
+    children:
+    - - 5.A
+      - 5.B
+      - 5.C
+      - 5.D
+      - 5.E
+  5.A:
+    title: Solid Waste Disposal
+    alternative_codes:
+    - 5 A
+    - 5A
+    children:
+    - - 5.A.1
+      - 5.A.2
+      - 5.A.3
+  5.A.1:
+    title: Managed Waste Disposal Sites
+    alternative_codes:
+    - 5 A 1
+    - 5A1
+    children:
+    - - 5.A.1.a
+      - 5.A.1.b
+  5.A.2:
+    title: Unmanaged Waste Disposal Sites
+    alternative_codes:
+    - 5 A 2
+    - 5A2
+  5.A.3:
+    title: Uncategorized Waste Disposal Sites
+    alternative_codes:
+    - 5 A 3
+    - 5A3
+  5.B:
+    title: Biological Treatment of Solid Waste
+    alternative_codes:
+    - 5 B
+    - 5B
+    children:
+    - - 5.B.1
+      - 5.B.2
+  5.B.1:
+    title: Composting
+    alternative_codes:
+    - 5 B 1
+    - 5B1
+    children:
+    - - 5.B.1.a
+      - 5.B.1.b
+  5.B.2:
+    title: Anaerobic Digestion at Biogas Facilities
+    alternative_codes:
+    - 5 B 2
+    - 5B2
+    children:
+    - - 5.B.2.a
+      - 5.B.2.b
+  5.C:
+    title: Incineration and Open Burning of Waste
+    alternative_codes:
+    - 5 C
+    - 5C
+    children:
+    - - 5.C.1
+      - 5.C.2
+  5.C.1:
+    title: Waste Incineration
+    alternative_codes:
+    - 5 C 1
+    - 5C1
+    children:
+    - - 5.C.1.a
+      - 5.C.1.b
+  5.C.2:
+    title: Open Burning of Waste
+    alternative_codes:
+    - 5 C 2
+    - 5C2
+    children:
+    - - 5.C.2.a
+      - 5.C.2.b
+  5.D:
+    title: Wastewater Treatment and Discharge
+    alternative_codes:
+    - 5 D
+    - 5D
+    children:
+    - - 5.D.1
+      - 5.D.2
+      - 5.D.3
+  5.D.1:
+    title: Domestic Wastewater
+    alternative_codes:
+    - 5 D 1
+    - 5D1
+  5.D.2:
+    title: Industrial Wastewater
+    alternative_codes:
+    - 5 D 2
+    - 5D2
+  5.D.3:
+    title: Other
+    alternative_codes:
+    - 5 D 3
+    - 5D3
+    children:
+    - - 5.D.3.a
+      - 5.D.3.b
+      - 5.D.3.c
+      - 5.D.3.d
+  5.E:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 E
+    - 5E
+    children:
+    - - 5.E.1
+      - 5.E.2
+      - 5.E.3
+      - 5.E.4
+      - 5.E.5
+      - 5.E.6
+      - 5.E.7
+  M.Memo.LTSW:
+    title: Long Term Storage of C in Waste Disposal Sites
+    alternative_codes:
+    - M Memo LTSW
+    - MMemoLTSW
+  M.Memo.ACLT:
+    title: Annual Change in Long-Term Storage
+    alternative_codes:
+    - M Memo ACLT
+    - MMemoACLT
+  M.Memo.ACLTHWP:
+    title: Annual Change in Total Long-Term C Storage in HWP Waste
+    alternative_codes:
+    - M Memo ACLTHWP
+    - MMemoACLTHWP
+  5.A.1.a:
+    title: Anaerobic
+    alternative_codes:
+    - 5 A 1 a
+    - 5A1a
+  5.A.1.b:
+    title: Semi-Aerobic
+    alternative_codes:
+    - 5 A 1 b
+    - 5A1b
+  5.B.1.a:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 B 1 a
+    - 5B1a
+  5.B.1.b:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 B 1 b
+    - 5B1b
+    children:
+    - - 5.B.1.b.i
+      - 5.B.1.b.ii
+      - 5.B.1.b.iii
+      - 5.B.1.b.iv
+      - 5.B.1.b.ix
+      - 5.B.1.b.v
+      - 5.B.1.b.vi
+      - 5.B.1.b.vii
+      - 5.B.1.b.viii
+      - 5.B.1.b.x
+      - 5.B.1.b.xi
+      - 5.B.1.b.xii
+      - 5.B.1.b.xiii
+      - 5.B.1.b.xiv
+      - 5.B.1.b.xix
+      - 5.B.1.b.xv
+      - 5.B.1.b.xvi
+      - 5.B.1.b.xvii
+      - 5.B.1.b.xviii
+  5.B.2.a:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 B 2 a
+    - 5B2a
+  5.B.2.b:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 5 B 2 b
+    - 5B2b
+    children:
+    - - 5.B.2.b.i
+      - 5.B.2.b.ii
+      - 5.B.2.b.iii
+      - 5.B.2.b.iv
+      - 5.B.2.b.ix
+      - 5.B.2.b.v
+      - 5.B.2.b.vi
+      - 5.B.2.b.vii
+      - 5.B.2.b.viii
+      - 5.B.2.b.x
+      - 5.B.2.b.xi
+      - 5.B.2.b.xii
+  5.C.1.a:
+    title: Biogenic
+    alternative_codes:
+    - 5 C 1 a
+    - 5C1a
+    children:
+    - - 5.C.1.a.i
+      - 5.C.1.a.ii
+  5.C.1.a.i:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 C 1 a i
+    - 5C1ai
+  5.C.1.a.ii:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 C 1 a ii
+    - 5C1aii
+    children:
+    - - 5.C.1.a.ii.1
+      - 5.C.1.a.ii.2
+      - 5.C.1.a.ii.3
+      - 5.C.1.a.ii.4
+      - 5.C.1.a.ii.5
+  5.C.1.a.ii.1:
+    title: Industrial Solid Waste
+    alternative_codes:
+    - 5 C 1 a ii 1
+    - 5C1aii1
+  5.C.1.a.ii.2:
+    title: Hazardous Waste
+    alternative_codes:
+    - 5 C 1 a ii 2
+    - 5C1aii2
+  5.C.1.a.ii.3:
+    title: Clinical Waste
+    alternative_codes:
+    - 5 C 1 a ii 3
+    - 5C1aii3
+  5.C.1.a.ii.4:
+    title: Sewage Sludge
+    alternative_codes:
+    - 5 C 1 a ii 4
+    - 5C1aii4
+  5.C.1.a.ii.5:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 5 C 1 a ii 5
+    - 5C1aii5
+    children:
+    - - 5.C.1.a.ii.5.a
+      - 5.C.1.a.ii.5.b
+      - 5.C.1.a.ii.5.c
+      - 5.C.1.a.ii.5.d
+      - 5.C.1.a.ii.5.e
+      - 5.C.1.a.ii.5.f
+      - 5.C.1.a.ii.5.g
+  5.C.1.b:
+    title: Non-Biogenic
+    alternative_codes:
+    - 5 C 1 b
+    - 5C1b
+    children:
+    - - 5.C.1.b.i
+      - 5.C.1.b.ii
+  5.C.1.b.i:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 C 1 b i
+    - 5C1bi
+  5.C.1.b.ii:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 C 1 b ii
+    - 5C1bii
+    children:
+    - - 5.C.1.b.ii.1
+      - 5.C.1.b.ii.2
+      - 5.C.1.b.ii.3
+      - 5.C.1.b.ii.4
+      - 5.C.1.b.ii.5
+  5.C.1.b.ii.1:
+    title: Industrial Solid Waste
+    alternative_codes:
+    - 5 C 1 b ii 1
+    - 5C1bii1
+  5.C.1.b.ii.2:
+    title: Hazardous Waste
+    alternative_codes:
+    - 5 C 1 b ii 2
+    - 5C1bii2
+  5.C.1.b.ii.3:
+    title: Clinical Waste
+    alternative_codes:
+    - 5 C 1 b ii 3
+    - 5C1bii3
+  5.C.1.b.ii.4:
+    title: Sewage Sludge
+    alternative_codes:
+    - 5 C 1 b ii 4
+    - 5C1bii4
+  5.C.1.b.ii.5:
+    title: Other (Please Specify)
+    alternative_codes:
+    - 5 C 1 b ii 5
+    - 5C1bii5
+    children:
+    - - 5.C.1.b.ii.5.a
+      - 5.C.1.b.ii.5.b
+      - 5.C.1.b.ii.5.c
+      - 5.C.1.b.ii.5.d
+      - 5.C.1.b.ii.5.e
+      - 5.C.1.b.ii.5.f
+  5.C.2.a:
+    title: Biogenic
+    alternative_codes:
+    - 5 C 2 a
+    - 5C2a
+    children:
+    - - 5.C.2.a.i
+      - 5.C.2.a.ii
+  5.C.2.a.i:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 C 2 a i
+    - 5C2ai
+  5.C.2.a.ii:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 C 2 a ii
+    - 5C2aii
+    children:
+    - - 5.C.2.a.ii.1
+      - 5.C.2.a.ii.2
+      - 5.C.2.a.ii.3
+      - 5.C.2.a.ii.4
+      - 5.C.2.a.ii.5
+      - 5.C.2.a.ii.6
+  5.C.2.b:
+    title: Non-Biogenic
+    alternative_codes:
+    - 5 C 2 b
+    - 5C2b
+    children:
+    - - 5.C.2.b.i
+      - 5.C.2.b.ii
+  5.C.2.b.i:
+    title: Municipal Solid Waste
+    alternative_codes:
+    - 5 C 2 b i
+    - 5C2bi
+  5.C.2.b.ii:
+    title: Other (please specify)
+    alternative_codes:
+    - 5 C 2 b ii
+    - 5C2bii
+    children:
+    - - 5.C.2.b.ii.1
+      - 5.C.2.b.ii.2
+      - 5.C.2.b.ii.3
+      - 5.C.2.b.ii.4
+      - 5.C.2.b.ii.5
+      - 5.C.2.b.ii.6
+  '0':
+    title: Total National Emissions and Removals
+    children:
+    - - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+  M.Memo.IndN2O:
+    title: 'Indirect N2O '
+    alternative_codes:
+    - M Memo IndN2O
+    - MMemoIndN2O
+  M.Memo.IndCO2:
+    title: Indirect CO2
+    alternative_codes:
+    - M Memo IndCO2
+    - MMemoIndCO2
+  1.A.1.a.iv.1:
+    title: Methane Cogeneration (Mining)
+    alternative_codes:
+    - 1 A 1 a iv 1
+    - 1A1aiv1
+  1.A.1.a.iv.2:
+    title: Municipal Solid Waste Incineration (Energy use)
+    alternative_codes:
+    - 1 A 1 a iv 2
+    - 1A1aiv2
+  1.A.1.a.iv.3:
+    title: Other
+    alternative_codes:
+    - 1 A 1 a iv 3
+    - 1A1aiv3
+  1.A.1.a.iv.4:
+    title: Total Public Electricity and Heat Production
+    alternative_codes:
+    - 1 A 1 a iv 4
+    - 1A1aiv4
+  1.A.1.c.ii.1:
+    title: Charcoal Production
+    alternative_codes:
+    - 1 A 1 c ii 1
+    - 1A1cii1
+  1.A.1.c.ii.2:
+    title: 1.A.1.c Manufacture of Solid Fuels and Other Energy Industries
+    alternative_codes:
+    - 1 A 1 c ii 2
+    - 1A1cii2
+  1.A.1.c.ii.3:
+    title: Other
+    alternative_codes:
+    - 1 A 1 c ii 3
+    - 1A1cii3
+  1.A.2.g.viii.1:
+    title: Non-specified Industry
+    alternative_codes:
+    - 1 A 2 g viii 1
+    - 1A2gviii1
+  1.A.2.g.viii.2:
+    title: Manufacture and construction Aggregated
+    alternative_codes:
+    - 1 A 2 g viii 2
+    - 1A2gviii2
+  1.A.2.g.viii.3:
+    title: Other manufacturing industries
+    alternative_codes:
+    - 1 A 2 g viii 3
+    - 1A2gviii3
+  1.A.2.g.viii.4:
+    title: Other Industrial Sectors
+    alternative_codes:
+    - 1 A 2 g viii 4
+    - 1A2gviii4
+  1.A.2.g.viii.5:
+    title: Non-CO2 emissions from BFG combustion
+    alternative_codes:
+    - 1 A 2 g viii 5
+    - 1A2gviii5
+  1.A.2.g.viii.6:
+    title: Rubber
+    alternative_codes:
+    - 1 A 2 g viii 6
+    - 1A2gviii6
+  1.A.2.g.viii.7:
+    title: All stationary combustin within CRF 1.A.2.g
+    alternative_codes:
+    - 1 A 2 g viii 7
+    - 1A2gviii7
+  1.A.2.g.viii.8:
+    title: Other stationary combustion
+    alternative_codes:
+    - 1 A 2 g viii 8
+    - 1A2gviii8
+  1.A.2.g.viii.9:
+    title: Other Boilers and Engines Industry
+    alternative_codes:
+    - 1 A 2 g viii 9
+    - 1A2gviii9
+  1.A.2.g.viii.10:
+    title: Other
+    alternative_codes:
+    - 1 A 2 g viii 10
+    - 1A2gviii10
+  1.A.3.b.v.1:
+    title: Road total
+    alternative_codes:
+    - 1 A 3 b v 1
+    - 1A3bv1
+  1.A.3.b.v.2:
+    title: Buses
+    alternative_codes:
+    - 1 A 3 b v 2
+    - 1A3bv2
+  1.A.3.b.v.3:
+    title: All vehicles - biofuel use
+    alternative_codes:
+    - 1 A 3 b v 3
+    - 1A3bv3
+  1.A.3.b.v.4:
+    title: All vehicles - LPG use
+    alternative_codes:
+    - 1 A 3 b v 4
+    - 1A3bv4
+  1.A.3.b.v.5:
+    title: All vehicles - biofuel use (fossil component)
+    alternative_codes:
+    - 1 A 3 b v 5
+    - 1A3bv5
+  1.A.3.b.v.6:
+    title: Propane and Natural Gas Vehicles
+    alternative_codes:
+    - 1 A 3 b v 6
+    - 1A3bv6
+  1.A.3.b.v.7:
+    title: Lubricant Two-Stroke Engines
+    alternative_codes:
+    - 1 A 3 b v 7
+    - 1A3bv7
+  1.A.3.b.v.8:
+    title: Gaseous Fuels
+    alternative_codes:
+    - 1 A 3 b v 8
+    - 1A3bv8
+  1.A.3.b.v.9:
+    title: Other Liquid Fuels
+    alternative_codes:
+    - 1 A 3 b v 9
+    - 1A3bv9
+  1.A.3.b.v.10:
+    title: Biomass
+    alternative_codes:
+    - 1 A 3 b v 10
+    - 1A3bv10
+  1.A.3.b.v.11:
+    title: Evaporative Emissions
+    alternative_codes:
+    - 1 A 3 b v 11
+    - 1A3bv11
+  1.A.3.b.v.12:
+    title: Urea-Based Catalysts
+    alternative_codes:
+    - 1 A 3 b v 12
+    - 1A3bv12
+  1.A.3.b.v.13:
+    title: Other non-specified
+    alternative_codes:
+    - 1 A 3 b v 13
+    - 1A3bv13
+  1.A.3.e.ii.1:
+    title: Off-road vehicles and other machinery
+    alternative_codes:
+    - 1 A 3 e ii 1
+    - 1A3eii1
+  1.A.3.e.ii.2:
+    title: Aircraft support vehicles
+    alternative_codes:
+    - 1 A 3 e ii 2
+    - 1A3eii2
+  1.A.3.e.ii.3:
+    title: Other non-specified
+    alternative_codes:
+    - 1 A 3 e ii 3
+    - 1A3eii3
+  1.A.3.e.ii.4:
+    title: Non-Transportation Mobile
+    alternative_codes:
+    - 1 A 3 e ii 4
+    - 1A3eii4
+  1.A.4.b.iii.1:
+    title: Residential
+    alternative_codes:
+    - 1 A 4 b iii 1
+    - 1A4biii1
+  1.A.5.a.i:
+    title: Military Fuel Use
+    alternative_codes:
+    - 1 A 5 a i
+    - 1A5ai
+  1.A.5.a.ii:
+    title: Other non-specified
+    alternative_codes:
+    - 1 A 5 a ii
+    - 1A5aii
+  1.A.5.a.iii:
+    title: Non-Fuel Use
+    alternative_codes:
+    - 1 A 5 a iii
+    - 1A5aiii
+  1.A.5.a.iv:
+    title: Incineration of Waste
+    alternative_codes:
+    - 1 A 5 a iv
+    - 1A5aiv
+  1.A.5.a.v:
+    title: US Territories
+    alternative_codes:
+    - 1 A 5 a v
+    - 1A5av
+  1.A.5.b.i:
+    title: Military Aviation and Shipping
+    alternative_codes:
+    - 1 A 5 b i
+    - 1A5bi
+  1.A.5.b.ii:
+    title: Military Aviation Component
+    alternative_codes:
+    - 1 A 5 b ii
+    - 1A5bii
+  1.A.5.b.iii:
+    title: Military water-borne component
+    alternative_codes:
+    - 1 A 5 b iii
+    - 1A5biii
+  1.A.5.b.iv:
+    title: Other non-specified
+    alternative_codes:
+    - 1 A 5 b iv
+    - 1A5biv
+  1.A.5.b.v:
+    title: Military Use
+    alternative_codes:
+    - 1 A 5 b v
+    - 1A5bv
+  1.A.5.b.vi:
+    title: Mobile (aviation component)
+    alternative_codes:
+    - 1 A 5 b vi
+    - 1A5bvi
+  1.A.5.b.vii:
+    title: Lubricants used in 2-stroke engines
+    alternative_codes:
+    - 1 A 5 b vii
+    - 1A5bvii
+  1.A.5.b.viii:
+    title: Recreational crafts
+    alternative_codes:
+    - 1 A 5 b viii
+    - 1A5bviii
+  1.A.5.b.ix:
+    title: Military use Jet Kerosene
+    alternative_codes:
+    - 1 A 5 b ix
+    - 1A5bix
+  1.A.5.b.x:
+    title: Military Gasoline
+    alternative_codes:
+    - 1 A 5 b x
+    - 1A5bx
+  1.A.5.b.xi:
+    title: Military Diesel Oil
+    alternative_codes:
+    - 1 A 5 b xi
+    - 1A5bxi
+  1.A.5.b.xii:
+    title: Military Transport
+    alternative_codes:
+    - 1 A 5 b xii
+    - 1A5bxii
+  1.A.5.b.xiii:
+    title: Agriculture and Forestry and Fishing
+    alternative_codes:
+    - 1 A 5 b xiii
+    - 1A5bxiii
+  1.B.1.c.i:
+    title: Flaring
+    alternative_codes:
+    - 1 B 1 c i
+    - 1B1ci
+  1.B.1.c.ii:
+    title: Coal Dumps
+    alternative_codes:
+    - 1 B 1 c ii
+    - 1B1cii
+  1.B.1.c.iii:
+    title: SO2 scrubbing
+    alternative_codes:
+    - 1 B 1 c iii
+    - 1B1ciii
+  1.B.1.c.iv:
+    title: Emission from Coke Oven Gas Subsystem
+    alternative_codes:
+    - 1 B 1 c iv
+    - 1B1civ
+  1.B.2.d.i:
+    title: Groundwater Extraction and CO2 Mining
+    alternative_codes:
+    - 1 B 2 d i
+    - 1B2di
+  1.B.2.d.ii:
+    title: Geothermal
+    alternative_codes:
+    - 1 B 2 d ii
+    - 1B2dii
+  1.B.2.d.iii:
+    title: City Gas Production
+    alternative_codes:
+    - 1 B 2 d iii
+    - 1B2diii
+  1.B.2.d.iv:
+    title: Other
+    alternative_codes:
+    - 1 B 2 d iv
+    - 1B2div
+  1.B.2.d.v:
+    title: Flaring in Refineries
+    alternative_codes:
+    - 1 B 2 d v
+    - 1B2dv
+  1.B.2.d.vi:
+    title: LPG Transport
+    alternative_codes:
+    - 1 B 2 d vi
+    - 1B2dvi
+  1.B.2.d.vii:
+    title: Distribution of Town Gas
+    alternative_codes:
+    - 1 B 2 d vii
+    - 1B2dvii
+  1.B.2.d.viii:
+    title: Petrol Distribution
+    alternative_codes:
+    - 1 B 2 d viii
+    - 1B2dviii
+  1.B.2.d.ix:
+    title: Natural Gas Transport
+    alternative_codes:
+    - 1 B 2 d ix
+    - 1B2dix
+  1.B.2.d.x:
+    title: Natural Gas Exploration - N2O Emissions
+    alternative_codes:
+    - 1 B 2 d x
+    - 1B2dx
+  3.A.1.C-AUS-a:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 A 1 C-AUS-a
+    - 3A1C-AUS-a
+  3.A.1.C-AUS-b:
+    title: Beef Cattle - Pasture
+    alternative_codes:
+    - 3 A 1 C-AUS-b
+    - 3A1C-AUS-b
+  3.A.1.C-AUS-c:
+    title: Beef Cattle - Feedlot
+    alternative_codes:
+    - 3 A 1 C-AUS-c
+    - 3A1C-AUS-c
+  3.B.1.C-AUS-a:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 B 1 C-AUS-a
+    - 3B1C-AUS-a
+  3.B.1.C-AUS-b:
+    title: Beef Cattle - Pasture
+    alternative_codes:
+    - 3 B 1 C-AUS-b
+    - 3B1C-AUS-b
+  3.B.1.C-AUS-c:
+    title: Beef Cattle - Feedlot
+    alternative_codes:
+    - 3 B 1 C-AUS-c
+    - 3B1C-AUS-c
+  3.A.1.C-MLT-a:
+    title: dairy cows
+    alternative_codes:
+    - 3 A 1 C-MLT-a
+    - 3A1C-MLT-a
+  3.A.1.C-MLT-b:
+    title: non-lactating cows
+    alternative_codes:
+    - 3 A 1 C-MLT-b
+    - 3A1C-MLT-b
+  3.A.1.C-MLT-c:
+    title: bulls
+    alternative_codes:
+    - 3 A 1 C-MLT-c
+    - 3A1C-MLT-c
+  3.A.1.C-MLT-d:
+    title: calves
+    alternative_codes:
+    - 3 A 1 C-MLT-d
+    - 3A1C-MLT-d
+  3.A.1.C-MLT-e:
+    title: growing cattle 1-2 years
+    alternative_codes:
+    - 3 A 1 C-MLT-e
+    - 3A1C-MLT-e
+  3.B.1.C-MLT-a:
+    title: dairy cows
+    alternative_codes:
+    - 3 B 1 C-MLT-a
+    - 3B1C-MLT-a
+  3.B.1.C-MLT-b:
+    title: non-lactating cows
+    alternative_codes:
+    - 3 B 1 C-MLT-b
+    - 3B1C-MLT-b
+  3.B.1.C-MLT-c:
+    title: bulls
+    alternative_codes:
+    - 3 B 1 C-MLT-c
+    - 3B1C-MLT-c
+  3.B.1.C-MLT-d:
+    title: calves
+    alternative_codes:
+    - 3 B 1 C-MLT-d
+    - 3B1C-MLT-d
+  3.B.1.C-MLT-e:
+    title: growing cattle 1-2 years
+    alternative_codes:
+    - 3 B 1 C-MLT-e
+    - 3B1C-MLT-e
+  3.A.1.C-LUX-a:
+    title: Bulls
+    alternative_codes:
+    - 3 A 1 C-LUX-a
+    - 3A1C-LUX-a
+  3.A.1.C-LUX-b:
+    title: Calves
+    alternative_codes:
+    - 3 A 1 C-LUX-b
+    - 3A1C-LUX-b
+  3.A.1.C-LUX-c:
+    title: Young Cattle
+    alternative_codes:
+    - 3 A 1 C-LUX-c
+    - 3A1C-LUX-c
+  3.A.1.C-LUX-d:
+    title: Suckler Cows
+    alternative_codes:
+    - 3 A 1 C-LUX-d
+    - 3A1C-LUX-d
+  3.A.1.C-LUX-e:
+    title: Bulls under 2 years
+    alternative_codes:
+    - 3 A 1 C-LUX-e
+    - 3A1C-LUX-e
+  3.A.1.C-LUX-f:
+    title: Dairy Cows
+    alternative_codes:
+    - 3 A 1 C-LUX-f
+    - 3A1C-LUX-f
+  3.B.1.C-LUX-a:
+    title: Bulls
+    alternative_codes:
+    - 3 B 1 C-LUX-a
+    - 3B1C-LUX-a
+  3.B.1.C-LUX-b:
+    title: Calves
+    alternative_codes:
+    - 3 B 1 C-LUX-b
+    - 3B1C-LUX-b
+  3.B.1.C-LUX-c:
+    title: Young Cattle
+    alternative_codes:
+    - 3 B 1 C-LUX-c
+    - 3B1C-LUX-c
+  3.B.1.C-LUX-d:
+    title: Suckler Cows
+    alternative_codes:
+    - 3 B 1 C-LUX-d
+    - 3B1C-LUX-d
+  3.B.1.C-LUX-e:
+    title: Bulls under 2 years
+    alternative_codes:
+    - 3 B 1 C-LUX-e
+    - 3B1C-LUX-e
+  3.B.1.C-LUX-f:
+    title: Dairy Cows
+    alternative_codes:
+    - 3 B 1 C-LUX-f
+    - 3B1C-LUX-f
+  3.A.1.C-POL-a:
+    title: Bulls (older than 2 years)
+    alternative_codes:
+    - 3 A 1 C-POL-a
+    - 3A1C-POL-a
+  3.A.1.C-POL-b:
+    title: Non-dairy Heifers (older than 2 years)
+    alternative_codes:
+    - 3 A 1 C-POL-b
+    - 3A1C-POL-b
+  3.A.1.C-POL-c:
+    title: Non-dairy Young Cattle (younger than 1 year)
+    alternative_codes:
+    - 3 A 1 C-POL-c
+    - 3A1C-POL-c
+  3.A.1.C-POL-d:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 A 1 C-POL-d
+    - 3A1C-POL-d
+  3.A.1.C-POL-e:
+    title: Non-dairy Young Cattle (1-2 years)
+    alternative_codes:
+    - 3 A 1 C-POL-e
+    - 3A1C-POL-e
+  3.B.1.C-POL-a:
+    title: non-dairy Cattle
+    alternative_codes:
+    - 3 B 1 C-POL-a
+    - 3B1C-POL-a
+  3.B.1.C-POL-b:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 B 1 C-POL-b
+    - 3B1C-POL-b
+  3.A.1.C-SVN-a:
+    title: Dairy cows
+    alternative_codes:
+    - 3 A 1 C-SVN-a
+    - 3A1C-SVN-a
+  3.A.1.C-SVN-b:
+    title: Non-dairy cattle
+    alternative_codes:
+    - 3 A 1 C-SVN-b
+    - 3A1C-SVN-b
+  3.A.1.C-SVN-c:
+    title: Other cows
+    alternative_codes:
+    - 3 A 1 C-SVN-c
+    - 3A1C-SVN-c
+  3.B.1.C-SVN-a:
+    title: Dairy cows
+    alternative_codes:
+    - 3 B 1 C-SVN-a
+    - 3B1C-SVN-a
+  3.B.1.C-SVN-b:
+    title: Non-dairy cattle
+    alternative_codes:
+    - 3 B 1 C-SVN-b
+    - 3B1C-SVN-b
+  3.B.1.C-SVN-c:
+    title: Other cows
+    alternative_codes:
+    - 3 B 1 C-SVN-c
+    - 3B1C-SVN-c
+  3.A.1.C-USA-a:
+    title: Steer Stocker
+    alternative_codes:
+    - 3 A 1 C-USA-a
+    - 3A1C-USA-a
+  3.A.1.C-USA-b:
+    title: Heifer Stocker
+    alternative_codes:
+    - 3 A 1 C-USA-b
+    - 3A1C-USA-b
+  3.A.1.C-USA-c:
+    title: Beef Cows
+    alternative_codes:
+    - 3 A 1 C-USA-c
+    - 3A1C-USA-c
+  3.A.1.C-USA-d:
+    title: Dairy Replacements
+    alternative_codes:
+    - 3 A 1 C-USA-d
+    - 3A1C-USA-d
+  3.A.1.C-USA-e:
+    title: Beef Replacements
+    alternative_codes:
+    - 3 A 1 C-USA-e
+    - 3A1C-USA-e
+  3.A.1.C-USA-f:
+    title: Steer Feedlot
+    alternative_codes:
+    - 3 A 1 C-USA-f
+    - 3A1C-USA-f
+  3.A.1.C-USA-g:
+    title: Heifer Feedlot
+    alternative_codes:
+    - 3 A 1 C-USA-g
+    - 3A1C-USA-g
+  3.A.1.C-USA-h:
+    title: Bulls
+    alternative_codes:
+    - 3 A 1 C-USA-h
+    - 3A1C-USA-h
+  3.A.1.C-USA-i:
+    title: Dairy Cows
+    alternative_codes:
+    - 3 A 1 C-USA-i
+    - 3A1C-USA-i
+  3.A.1.C-USA-j:
+    title: Beef Calves
+    alternative_codes:
+    - 3 A 1 C-USA-j
+    - 3A1C-USA-j
+  3.A.1.C-USA-k:
+    title: Dairy Calves
+    alternative_codes:
+    - 3 A 1 C-USA-k
+    - 3A1C-USA-k
+  3.B.1.C-USA-a:
+    title: Steer Stocker
+    alternative_codes:
+    - 3 B 1 C-USA-a
+    - 3B1C-USA-a
+  3.B.1.C-USA-b:
+    title: Heifer Stocker
+    alternative_codes:
+    - 3 B 1 C-USA-b
+    - 3B1C-USA-b
+  3.B.1.C-USA-c:
+    title: Beef Cows
+    alternative_codes:
+    - 3 B 1 C-USA-c
+    - 3B1C-USA-c
+  3.B.1.C-USA-d:
+    title: Dairy Replacements
+    alternative_codes:
+    - 3 B 1 C-USA-d
+    - 3B1C-USA-d
+  3.B.1.C-USA-e:
+    title: Beef Replacements
+    alternative_codes:
+    - 3 B 1 C-USA-e
+    - 3B1C-USA-e
+  3.B.1.C-USA-f:
+    title: Steer Feedlot
+    alternative_codes:
+    - 3 B 1 C-USA-f
+    - 3B1C-USA-f
+  3.B.1.C-USA-g:
+    title: Heifer Feedlot
+    alternative_codes:
+    - 3 B 1 C-USA-g
+    - 3B1C-USA-g
+  3.B.1.C-USA-h:
+    title: Bulls
+    alternative_codes:
+    - 3 B 1 C-USA-h
+    - 3B1C-USA-h
+  3.B.1.C-USA-i:
+    title: Dairy Cows
+    alternative_codes:
+    - 3 B 1 C-USA-i
+    - 3B1C-USA-i
+  3.B.1.C-USA-j:
+    title: Beef Calves
+    alternative_codes:
+    - 3 B 1 C-USA-j
+    - 3B1C-USA-j
+  3.B.1.C-USA-k:
+    title: Dairy Calves
+    alternative_codes:
+    - 3 B 1 C-USA-k
+    - 3B1C-USA-k
+  3.B.1.C-USA-l:
+    title: Dairy Cattle
+    alternative_codes:
+    - 3 B 1 C-USA-l
+    - 3B1C-USA-l
+  3.B.1.C-USA-m:
+    title: Non-Dairy Cattle
+    alternative_codes:
+    - 3 B 1 C-USA-m
+    - 3B1C-USA-m
+  3.J.1:
+    title: NOx from Manure Management
+    alternative_codes:
+    - 3 J 1
+    - 3J1
+  3.J.2:
+    title: Other
+    alternative_codes:
+    - 3 J 2
+    - 3J2
+  3.J.3:
+    title: OTs and CDs - Livestock
+    alternative_codes:
+    - 3 J 3
+    - 3J3
+  3.J.4:
+    title: OTs and CDs - soils
+    alternative_codes:
+    - 3 J 4
+    - 3J4
+  3.J.5:
+    title: OTs and CDs - other
+    alternative_codes:
+    - 3 J 5
+    - 3J5
+  3.J.6:
+    title: Digestate renewable raw material (storage of N)
+    alternative_codes:
+    - 3 J 6
+    - 3J6
+  3.J.7:
+    title: Digestate renewable raw material (atmospheric deposition)
+    alternative_codes:
+    - 3 J 7
+    - 3J7
+  3.J.8:
+    title: Digestate renewable raw material (storage of dry matter)
+    alternative_codes:
+    - 3 J 8
+    - 3J8
+  3.J.9:
+    title: NOx from Livestock
+    alternative_codes:
+    - 3 J 9
+    - 3J9
+  3.C.1.b.i:
+    title: Intermittently flooded Single aeration
+    alternative_codes:
+    - 3 C 1 b i
+    - 3C1bi
+  3.C.1.b.ii:
+    title: Intermittently flooded Multiple aeration
+    alternative_codes:
+    - 3 C 1 b ii
+    - 3C1bii
+  3.C.4.a:
+    title: Other Non-Specified
+    alternative_codes:
+    - 3 C 4 a
+    - 3C4a
+  3.E.1.a:
+    title: Savanna Woodland
+    alternative_codes:
+    - 3 E 1 a
+    - 3E1a
+  3.E.1.b:
+    title: Savanna Grassland
+    alternative_codes:
+    - 3 E 1 b
+    - 3E1b
+  3.E.1.c:
+    title: Luxembourg
+    alternative_codes:
+    - 3 E 1 c
+    - 3E1c
+  3.E.1.d:
+    title: Other non-specified
+    alternative_codes:
+    - 3 E 1 d
+    - 3E1d
+  3.E.2.a:
+    title: Savanna Woodland
+    alternative_codes:
+    - 3 E 2 a
+    - 3E2a
+  3.E.2.b:
+    title: Savanna Grassland
+    alternative_codes:
+    - 3 E 2 b
+    - 3E2b
+  3.E.2.c:
+    title: Temperate Grassland
+    alternative_codes:
+    - 3 E 2 c
+    - 3E2c
+  3.E.2.d:
+    title: Grassland
+    alternative_codes:
+    - 3 E 2 d
+    - 3E2d
+  3.E.2.e:
+    title: Luxembourg
+    alternative_codes:
+    - 3 E 2 e
+    - 3E2e
+  3.E.2.f:
+    title: Other non-specified
+    alternative_codes:
+    - 3 E 2 f
+    - 3E2f
+  3.E.2.g:
+    title: Tussock
+    alternative_codes:
+    - 3 E 2 g
+    - 3E2g
+  4.H.1:
+    title: Land converted to Settlement
+    alternative_codes:
+    - 4 H 1
+    - 4H1
+  4.H.2:
+    title: Settlements Remaining Settlement
+    alternative_codes:
+    - 4 H 2
+    - 4H2
+  4.H.3:
+    title: 4.C Grassland
+    alternative_codes:
+    - 4 H 3
+    - 4H3
+  4.H.4:
+    title: Biogenic NMVOCs from managed forest
+    alternative_codes:
+    - 4 H 4
+    - 4H4
+  4.H.5:
+    title: Reservoir of Petit-Saut in French Guiana
+    alternative_codes:
+    - 4 H 5
+    - 4H5
+  4.H.6:
+    title: N2O Emissions from Aquaculture Use
+    alternative_codes:
+    - 4 H 6
+    - 4H6
+  4.H.7:
+    title: CH4 from artificial water bodies
+    alternative_codes:
+    - 4 H 7
+    - 4H7
+  4.H.8:
+    title: Luxembourg
+    alternative_codes:
+    - 4 H 8
+    - 4H8
+  4.H.9:
+    title: Other
+    alternative_codes:
+    - 4 H 9
+    - 4H9
+  5.E.1:
+    title: Recycling activities
+    alternative_codes:
+    - 5 E 1
+    - '5E1'
+  5.E.2:
+    title: Mechanical-Biological Treatment MBT
+    alternative_codes:
+    - 5 E 2
+    - '5E2'
+  5.E.3:
+    title: Accidental fires
+    alternative_codes:
+    - 5 E 3
+    - '5E3'
+  5.E.4:
+    title: Decomposition of Petroleum-Derived Surfactants
+    alternative_codes:
+    - 5 E 4
+    - '5E4'
+  5.E.5:
+    title: Other non-specified
+    alternative_codes:
+    - 5 E 5
+    - '5E5'
+  5.E.6:
+    title: Biogas burning without energy recovery
+    alternative_codes:
+    - 5 E 6
+    - '5E6'
+  5.E.7:
+    title: Sludge spreading
+    alternative_codes:
+    - 5 E 7
+    - '5E7'
+  5.B.1.b.i:
+    title: Organic wastes households
+    alternative_codes:
+    - 5 B 1 b i
+    - 5B1bi
+  5.B.1.b.ii:
+    title: Organic wastes from gardens and horticulture
+    alternative_codes:
+    - 5 B 1 b ii
+    - 5B1bii
+  5.B.1.b.iii:
+    title: Industrial Solid Waste
+    alternative_codes:
+    - 5 B 1 b iii
+    - 5B1biii
+  5.B.1.b.iv:
+    title: Home composting
+    alternative_codes:
+    - 5 B 1 b iv
+    - 5B1biv
+  5.B.1.b.v:
+    title: Other waste
+    alternative_codes:
+    - 5 B 1 b v
+    - 5B1bv
+  5.B.1.b.vi:
+    title: Sludge
+    alternative_codes:
+    - 5 B 1 b vi
+    - 5B1bvi
+  5.B.1.b.vii:
+    title: Textile
+    alternative_codes:
+    - 5 B 1 b vii
+    - 5B1bvii
+  5.B.1.b.viii:
+    title: Wood
+    alternative_codes:
+    - 5 B 1 b viii
+    - 5B1bviii
+  5.B.1.b.ix:
+    title: Organic
+    alternative_codes:
+    - 5 B 1 b ix
+    - 5B1bix
+  5.B.1.b.x:
+    title: Paper
+    alternative_codes:
+    - 5 B 1 b x
+    - 5B1bx
+  5.B.1.b.xi:
+    title: MBA treated MSW
+    alternative_codes:
+    - 5 B 1 b xi
+    - 5B1bxi
+  5.B.1.b.xii:
+    title: Specific Agricultural and Industrial Waste
+    alternative_codes:
+    - 5 B 1 b xii
+    - 5B1bxii
+  5.B.1.b.xiii:
+    title: Industrial solid waste and constr. waste
+    alternative_codes:
+    - 5 B 1 b xiii
+    - 5B1bxiii
+  5.B.1.b.xiv:
+    title: Municipal sludge
+    alternative_codes:
+    - 5 B 1 b xiv
+    - 5B1bxiv
+  5.B.1.b.xv:
+    title: Industrial sludge
+    alternative_codes:
+    - 5 B 1 b xv
+    - 5B1bxv
+  5.B.1.b.xvi:
+    title: Open air composting
+    alternative_codes:
+    - 5 B 1 b xvi
+    - 5B1bxvi
+  5.B.1.b.xvii:
+    title: Industrial Waste
+    alternative_codes:
+    - 5 B 1 b xvii
+    - 5B1bxvii
+  5.B.1.b.xviii:
+    title: Human Waste and Johkasou sludge
+    alternative_codes:
+    - 5 B 1 b xviii
+    - 5B1bxviii
+  5.B.1.b.xix:
+    title: Food and garden waste
+    alternative_codes:
+    - 5 B 1 b xix
+    - 5B1bxix
+  5.B.2.b.i:
+    title: Organic wastes households
+    alternative_codes:
+    - 5 B 2 b i
+    - 5B2bi
+  5.B.2.b.ii:
+    title: Organic wastes from gardens and horticulture
+    alternative_codes:
+    - 5 B 2 b ii
+    - 5B2bii
+  5.B.2.b.iii:
+    title: Animal manure and other organic waste
+    alternative_codes:
+    - 5 B 2 b iii
+    - 5B2biii
+  5.B.2.b.iv:
+    title: sewage sludge
+    alternative_codes:
+    - 5 B 2 b iv
+    - 5B2biv
+  5.B.2.b.v:
+    title: Other waste
+    alternative_codes:
+    - 5 B 2 b v
+    - 5B2bv
+  5.B.2.b.vi:
+    title: Agricultural biogas facilities
+    alternative_codes:
+    - 5 B 2 b vi
+    - 5B2bvi
+  5.B.2.b.vii:
+    title: Other biogases from anaerobic fermentation
+    alternative_codes:
+    - 5 B 2 b vii
+    - 5B2bvii
+  5.B.2.b.viii:
+    title: Anaerobic Digestion On-Farm and at Wastewater Treatment Facilities
+    alternative_codes:
+    - 5 B 2 b viii
+    - 5B2bviii
+  5.B.2.b.ix:
+    title: Biogenic waste incl. wastes from Agriculture (manure)
+    alternative_codes:
+    - 5 B 2 b ix
+    - 5B2bix
+  5.B.2.b.x:
+    title: Industrial solid waste and constr. waste
+    alternative_codes:
+    - 5 B 2 b x
+    - 5B2bx
+  5.B.2.b.xi:
+    title: Municipal sludge
+    alternative_codes:
+    - 5 B 2 b xi
+    - 5B2bxi
+  5.B.2.b.xii:
+    title: Industrial sludge
+    alternative_codes:
+    - 5 B 2 b xii
+    - 5B2bxii
+  5.C.1.a.ii.5.a:
+    title: Animal cremations
+    alternative_codes:
+    - 5 C 1 a ii 5 a
+    - 5C1aii5a
+  5.C.1.a.ii.5.b:
+    title: Human cremations
+    alternative_codes:
+    - 5 C 1 a ii 5 b
+    - 5C1aii5b
+  5.C.1.a.ii.5.c:
+    title: Cremation
+    alternative_codes:
+    - 5 C 1 a ii 5 c
+    - 5C1aii5c
+  5.C.1.a.ii.5.d:
+    title: Industrial waste
+    alternative_codes:
+    - 5 C 1 a ii 5 d
+    - 5C1aii5d
+  5.C.1.a.ii.5.e:
+    title: Biogenic other waste
+    alternative_codes:
+    - 5 C 1 a ii 5 e
+    - 5C1aii5e
+  5.C.1.a.ii.5.f:
+    title: Sludge
+    alternative_codes:
+    - 5 C 1 a ii 5 f
+    - 5C1aii5f
+  5.C.1.a.ii.5.g:
+    title: Non-fossile liquid waste
+    alternative_codes:
+    - 5 C 1 a ii 5 g
+    - 5C1aii5g
+  5.C.1.b.ii.5.a:
+    title: Quarantine and other waste
+    alternative_codes:
+    - 5 C 1 b ii 5 a
+    - 5C1bii5a
+  5.C.1.b.ii.5.b:
+    title: Industrial waste
+    alternative_codes:
+    - 5 C 1 b ii 5 b
+    - 5C1bii5b
+  5.C.1.b.ii.5.c:
+    title: Chemical waste
+    alternative_codes:
+    - 5 C 1 b ii 5 c
+    - 5C1bii5c
+  5.C.1.b.ii.5.d:
+    title: Flaring in the chemical industry
+    alternative_codes:
+    - 5 C 1 b ii 5 d
+    - 5C1bii5d
+  5.C.1.b.ii.5.e:
+    title: Sludge
+    alternative_codes:
+    - 5 C 1 b ii 5 e
+    - 5C1bii5e
+  5.C.1.b.ii.5.f:
+    title: Solvents
+    alternative_codes:
+    - 5 C 1 b ii 5 f
+    - 5C1bii5f
+  5.C.2.a.ii.1:
+    title: agricultural waste
+    alternative_codes:
+    - 5 C 2 a ii 1
+    - 5C2aii1
+  5.C.2.a.ii.2:
+    title: Natural residues
+    alternative_codes:
+    - 5 C 2 a ii 2
+    - 5C2aii2
+  5.C.2.a.ii.3:
+    title: Wood waste
+    alternative_codes:
+    - 5 C 2 a ii 3
+    - 5C2aii3
+  5.C.2.a.ii.4:
+    title: Bonfires etc.
+    alternative_codes:
+    - 5 C 2 a ii 4
+    - 5C2aii4
+  5.C.2.a.ii.5:
+    title: Other
+    alternative_codes:
+    - 5 C 2 a ii 5
+    - 5C2aii5
+  5.C.2.a.ii.6:
+    title: Industrial Solid Waste
+    alternative_codes:
+    - 5 C 2 a ii 6
+    - 5C2aii6
+  5.C.2.b.ii.1:
+    title: Rural waste
+    alternative_codes:
+    - 5 C 2 b ii 1
+    - 5C2bii1
+  5.C.2.b.ii.2:
+    title: Accidental fires (vehicles)
+    alternative_codes:
+    - 5 C 2 b ii 2
+    - 5C2bii2
+  5.C.2.b.ii.3:
+    title: Accidental fires (buildings)
+    alternative_codes:
+    - 5 C 2 b ii 3
+    - 5C2bii3
+  5.C.2.b.ii.4:
+    title: Bonfires
+    alternative_codes:
+    - 5 C 2 b ii 4
+    - 5C2bii4
+  5.C.2.b.ii.5:
+    title: Other
+    alternative_codes:
+    - 5 C 2 b ii 5
+    - 5C2bii5
+  5.C.2.b.ii.6:
+    title: Industrial Solid Waste
+    alternative_codes:
+    - 5 C 2 b ii 6
+    - 5C2bii6
+  5.D.3.a:
+    title: Other
+    alternative_codes:
+    - 5 D 3 a
+    - 5D3a
+  5.D.3.b:
+    title: Septic tanks
+    alternative_codes:
+    - 5 D 3 b
+    - 5D3b
+  5.D.3.c:
+    title: Wastewater Effluent
+    alternative_codes:
+    - 5 D 3 c
+    - 5D3c
+  5.D.3.d:
+    title: Fish farming
+    alternative_codes:
+    - 5 D 3 d
+    - 5D3d

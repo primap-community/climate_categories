@@ -109,3 +109,6 @@ ENV/
 # IDE settings
 .vscode/
 .idea/
+
+# Information on categorizations
+category_info
