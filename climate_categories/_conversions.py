@@ -82,6 +82,18 @@ class ConversionRuleSpec:
             csv_original_text=self.csv_original_text,
         )
 
+    @typing.overload
+    def _hydrate_handle_errors(
+        self, to_hydrate: dict[str, int], categorization: "Categorization"
+    ) -> dict["Category", int]:
+        ...
+
+    @typing.overload
+    def _hydrate_handle_errors(
+        self, to_hydrate: set[str], categorization: "Categorization"
+    ) -> set["Category"]:
+        ...
+
     def _hydrate_handle_errors(
         self,
         to_hydrate: typing.Union[dict[str, int], set[str]],
@@ -419,7 +431,9 @@ class ConversionRule:
             self, "is_restricted", any(self.auxiliary_categories.values())
         )
 
-    def __eq__(self, other: "ConversionRule"):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, ConversionRule):
+            return NotImplemented
         return (
             self.factors_categories_a == other.factors_categories_a
             and self.factors_categories_b == other.factors_categories_b
@@ -670,7 +684,6 @@ class ConversionSpec(ConversionBase):
         linecount: int
             Count of lines of the metadata block
         """
-        meta_data = {}
         yaml_header = ""
         last_pos = fd.tell()
         line = fd.readline()
@@ -706,7 +719,7 @@ class ConversionSpec(ConversionBase):
            and the parsed rules.
         """
         rule_specs = []
-        header = next(reader)
+        header: list[str] = next(reader)
         a_name = header[0]
         b_name = header[-2]
         if header[-1] != "comment":
@@ -727,7 +740,10 @@ class ConversionSpec(ConversionBase):
         return a_name, b_name, aux_names, rule_specs
 
     @classmethod
-    def _from_csv(cls, fd: typing.TextIO) -> "ConversionSpec":
+    def _from_csv(
+        cls,
+        fd: typing.TextIO,
+    ) -> "ConversionSpec":
         meta_data, len_meta_data = cls._read_csv_meta(fd)
         reader = csv.reader(fd, quoting=csv.QUOTE_NONE, escapechar="\\")
         a_name, b_name, aux_names, rule_specs = cls._read_csv_rules(
@@ -745,7 +761,7 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def from_csv(
         cls,
-        filepath: typing.Union[str, pathlib.Path, typing.TextIO, typing.Iterable[str]],
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
     ) -> "ConversionSpec":
         """Read conversion from comma-separated-values file."""
         if not isinstance(filepath, (str, pathlib.Path)):
@@ -906,8 +922,8 @@ class Conversion(ConversionBase):
         one_to_many = []
         many_to_one = []
         many_to_many = []
-        cats_a = set()
-        cats_b = set()
+        cats_a: set["Category"] = set()
+        cats_b: set["Category"] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -951,7 +967,7 @@ class Conversion(ConversionBase):
 
     def find_unmapped_categories(
         self,
-    ) -> (set["Category"], set["Category"]):
+    ) -> tuple[set["Category"], set["Category"]]:
         """Find categories for which no rule exists to map them.
 
         Returns
@@ -960,8 +976,8 @@ class Conversion(ConversionBase):
             A list of categories missing from categorization_a and categorization_b,
             respectively.
         """
-        cats_a = set()
-        cats_b = set()
+        cats_a: set["Category"] = set()
+        cats_b: set["Category"] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -989,7 +1005,7 @@ class Conversion(ConversionBase):
                     f"{categorization} is not hierarchical, without "
                     f"a hierarchy, over counting can not be evaluated."
                 )
-            if not categorization.total_sum:
+            if not categorization.total_sum:  # type: ignore
                 raise ValueError(
                     f"For {categorization} it is not specified that the "
                     f"sum of a set of children equals the parent, so "
@@ -998,10 +1014,11 @@ class Conversion(ConversionBase):
 
         problems = []
         for categorization in self.categorization_a, self.categorization_b:
-            descendants = {}  # used to cache costly descendant evaluation
+            # used to cache costly descendant evaluation
+            descendants: dict[str, set[str]] = {}
             for category in categorization.values():
                 prob = self._check_over_counting_category(
-                    category, categorization, descendants
+                    category, categorization, descendants  # type: ignore
                 )
                 if prob:
                     problems.append(prob)
@@ -1012,7 +1029,7 @@ class Conversion(ConversionBase):
     def _leave_node_group(
         categories: typing.Iterable["HierarchicalCategory"],
         hull: set[str],
-        descendants: dict[str, typing.Iterable[str]],
+        descendants: dict[str, set[str]],
     ) -> bool:
         """Are all of the given categories leave nodes of the given hull?
 
@@ -1073,7 +1090,7 @@ class Conversion(ConversionBase):
         relevant_rules:
             All rules which touch the given categories.
         """
-        relevant_rules = []
+        relevant_rules: list[ConversionRule] = []
         if not categories:
             return relevant_rules
 
@@ -1187,10 +1204,10 @@ class Conversion(ConversionBase):
             else:
                 fc = rule.factors_categories_a
             target_categories = {cat for cat, factor in fc.items() if factor == 1}
-            projected_ancestral_set.append(target_categories)
+            projected_ancestral_set.append(target_categories)  # type: ignore
 
         if not projected_ancestral_set:  # trivial
-            return
+            return None
 
         # for performance, use codes (which are guaranteed to be unique within a
         # categorization) for the comparisons here
@@ -1217,6 +1234,8 @@ class Conversion(ConversionBase):
                 rules=relevant_rules,
                 leave_node_groups=leave_node_groups,
             )
+        else:
+            return None
 
     def __eq__(self, other):
         return (

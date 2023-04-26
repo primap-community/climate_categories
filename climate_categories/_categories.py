@@ -33,7 +33,7 @@ class Category:
 
     def __init__(
         self,
-        codes: tuple[str],
+        codes: tuple[str, ...],
         categorization: "Categorization",
         title: str,
         comment: typing.Union[None, str] = None,
@@ -63,7 +63,7 @@ class Category:
             info=spec.get("info"),
         )
 
-    def to_spec(self) -> (str, dict[str, typing.Union[str, dict, list]]):
+    def to_spec(self) -> tuple[str, dict[str, typing.Union[str, dict, list]]]:
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -72,7 +72,7 @@ class Category:
             Primary code and specification dict
         """
         code = self.codes[0]
-        spec = {"title": self.title}
+        spec: dict[str, typing.Union[str, dict, list[str]]] = {"title": self.title}
         if self.comment is not None:
             spec["comment"] = self.comment
         if len(self.codes) > 1:
@@ -84,9 +84,9 @@ class Category:
     def __str__(self) -> str:
         return f"{self.codes[0]} {self.title}"
 
-    def __eq__(self, other: "Category"):
+    def __eq__(self, other: object):
         if not isinstance(other, Category):
-            return False
+            return NotImplemented
         return any(x in other.codes for x in self.codes) and (
             self.categorization is other.categorization
             or self.categorization.name.startswith(f"{other.categorization.name}_")
@@ -131,7 +131,7 @@ class HierarchicalCategory(Category):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
 
-    def to_spec(self) -> (str, dict[str, typing.Union[str, dict, list]]):
+    def to_spec(self) -> tuple[str, dict[str, typing.Union[str, dict, list]]]:
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -259,8 +259,8 @@ class Categorization:
         last_update: datetime.date,
         version: typing.Union[None, str] = None,
     ):
-        self._primary_code_map = {}
-        self._all_codes_map = {}
+        self._primary_code_map: dict[str, Category] = {}
+        self._all_codes_map: dict[str, Category] = {}
         self.name = name
         self.references = references
         self.title = title
@@ -349,10 +349,11 @@ class Categorization:
         }
         if self.version is not None:
             spec["version"] = self.version
-        spec["categories"] = {}
+        categories = {}
         for cat in self.values():
             code, cat_spec = cat.to_spec()
-            spec["categories"][code] = cat_spec
+            categories[code] = cat_spec
+        spec["categories"] = categories
 
         return spec
 
@@ -430,7 +431,7 @@ class Categorization:
             comments.append(cat.comment)
             alternative_codes.append(cat.codes[1:])
         return pandas.DataFrame(
-            index=self.keys(),
+            index=list(self.keys()),
             data={
                 "title": titles,
                 "comment": comments,
@@ -446,7 +447,7 @@ class Categorization:
         name: str,
         title: typing.Union[None, str] = None,
         comment: typing.Union[None, str] = None,
-        last_update: typing.Union[datetime.date] = None,
+        last_update: typing.Union[None, datetime.date] = None,
     ) -> dict[str, typing.Any]:
         spec = self.to_spec()
 
