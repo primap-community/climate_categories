@@ -2,6 +2,14 @@
 Changelog
 =========
 
+0.8.0 (2023-04-26)
+------------------
+* Add updated CRF2013 terminologies for 2021, 2022, and 2023 submission rounds
+* The unfccc DI API recently returns unspecified measure IDs.
+  data_generation/CRFDI_class.py was fixed to ignore them.
+* Add CRF2013 terminology for data submitted by AnnexI countries to the UNFCCC
+* Drop support for Python 3.7 and 3.8, add support for Python 3.11
+
 0.7.1 (2021-11-25)
 ------------------
 * Change conversion metadata format to use comment chars and a YAML header.
