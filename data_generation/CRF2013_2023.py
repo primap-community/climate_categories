@@ -23,10 +23,10 @@ def main():
     spec = climate_categories.CRF2013.to_spec()
 
     # Metadata
-    spec["name"] = "CRF2013_2022"
+    spec["name"] = "CRF2013_2023"
     spec["title"] = (
         "Common Reporting Format GHG emissions categories (2013). "
-        "Extended for 2022 CRF submissions."
+        "Extended for 2023 CRF submissions."
     )
     spec["comment"] = (
         "Classification of green-house gas emissions and removals into categories "
@@ -34,7 +34,7 @@ def main():
         "specified in the UNFCCC guidelines on reporting and review as decided "
         "in the ninetenth session of the Conference of the Parties in 2013. "
         "This specification extend the CRF2013 specification by country specific "
-        "categories from the 2022 submissions."
+        "categories from the 2023 submissions."
     )
     spec["references"] = (
         "United Nations 2013, Decision 24/CP.19 - Revision of the UNFCCC reporting "
@@ -42,11 +42,13 @@ def main():
         "Convention. Documented in the 'Report of the Conference of the Parties on "
         "its nineteenth session, held in Warsaw from 11 to 23 November 2013' "
         "available at https://unfccc.int/resource/docs/2013/cop19/eng/10a03.pdf. "
-        "https://unfccc.int/ghg-inventories-annex-i-parties/2022"
+        "https://unfccc.int/process-and-meetings/transparency-and-reporting/"
+        "reporting-and-review-under-the-convention/greenhouse-gas-inventories-annex"
+        "-i-parties/national-inventory-submissions-2023"
     )
     spec["institution"] = "UN"
     spec["last_update"] = "2023-04-24"
-    spec["version"] = "2013-2022"
+    spec["version"] = "2013-2023"
     spec["total_sum"] = True
     spec["canonical_top_level_category"] = "0"
 
@@ -265,6 +267,7 @@ def main():
     ncats["1.B.1.c.i"] = {"title": "Flaring"}  # UKR, AUS
     # name for SWE is "Flaring of gas"
     ncats["1.B.1.c.ii"] = {"title": "Coal Dumps"}  # JPN
+    # for JPN name is "Uncontrolled combustion and burning coal dumps" since 2023
     ncats["1.B.1.c.iii"] = {"title": "SO2 scrubbing"}  # SVN"
     ncats["1.B.1.c.iv"] = {"title": "Emission from Coke Oven Gas Subsystem"}  # POL
     # name for KAZ is "Flaring of coke oven gas"
@@ -590,6 +593,7 @@ def main():
     ncats["5.E.3"] = {"title": "Accidental fires"}  # DEU, DKE, DNK, DNM
     # name for ESP is "Accidential combustion"
     ncats["5.E.4"] = {"title": "Decomposition of Petroleum-Derived Surfactants"}  # JPN
+    # name for JPN since 2023: "Decomposition of Fossil-fuel Derived Surfactants"
     ncats["5.E.5"] = {"title": "Other non-specified"}  # USA
     # name for CZE is "Other waste"
     ncats["5.E.6"] = {"title": "Biogas burning without energy recovery"}  # PRT
@@ -742,17 +746,21 @@ def main():
             "5.C.2.a.ii.4",
             "5.C.2.a.ii.5",
             "5.C.2.a.ii.6",
+            "5.C.2.a.ii.7",
         ]
     ]
     ncats["5.C.2.a.ii.1"] = {"title": "agricultural waste"}  # ITA
     # name for ESP is "Agricultural residues"
+    # name for PRT is "Agriculture residues"
     ncats["5.C.2.a.ii.2"] = {"title": "Natural residues"}  # CHE
     ncats["5.C.2.a.ii.3"] = {"title": "Wood waste"}  # GBR, GBK
     ncats["5.C.2.a.ii.4"] = {"title": "Bonfires etc."}  # DEU
     # name for NLD, ISL is "Bonfires"
     ncats["5.C.2.a.ii.5"] = {"title": "Other"}  # EST
     # name for CZE is  "Other waste"
+    # name for GBR is "Waste"
     ncats["5.C.2.a.ii.6"] = {"title": "Industrial Solid Waste"}  # JPN
+    ncats["5.C.2.a.ii.7"] = {"title": "Vine"}  # AUT
 
     cats["5.C.2.b.ii"]["children"] = [
         [
@@ -770,6 +778,7 @@ def main():
     ncats["5.C.2.b.ii.4"] = {"title": "Bonfires"}  # ISL
     ncats["5.C.2.b.ii.5"] = {"title": "Other"}  # EST
     # name for CZE is  "Other waste"
+    # name for GBR is "Waste"
     ncats["5.C.2.b.ii.6"] = {"title": "Industrial Solid Waste"}  # JPN
 
     # Table5.D
@@ -796,9 +805,9 @@ def main():
 
     cats.update(ncats)
 
-    CRF2013_2022 = climate_categories.HierarchicalCategorization.from_spec(spec)
+    CRF2013_2023 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    CRF2013_2022.to_yaml(OUTPATH)
+    CRF2013_2023.to_yaml(OUTPATH)
 
     climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
 
