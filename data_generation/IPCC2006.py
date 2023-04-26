@@ -56,7 +56,7 @@ def parse_pdfs(inpath: str) -> list[tuple[str, str, str, str]]:
     full_code_96 = None
     full_gases = None
     for table in itertools.chain(t, tend):
-        for i, row in table.df.iterrows():
+        for _, row in table.df.iterrows():
             code_name, definition, code_96, gases = row
             if code_name and code_name[0].isnumeric():
                 # store current and start new category

@@ -1023,7 +1023,7 @@ class HierarchicalCategorization(Categorization):
                     f"{cat.codes[0]!r} is not a transitive child of the "
                     f"canonical top level "
                     f"{self.canonical_top_level_category.codes[0]!r}."
-                )
+                ) from None
 
         return sp + 1
 

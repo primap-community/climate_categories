@@ -6,6 +6,7 @@ import pathlib
 import typing
 from typing import TYPE_CHECKING
 
+import immutables
 import pyparsing
 import strictyaml as sy
 
@@ -112,13 +113,13 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Error in line {self.csv_line_number}: {code!r} not in"
                 f" {categorization}."
-            )
+            ) from None
 
     # Parsing rules for simple formulas from str
     # Supported operators at the moment are plus and minus
     _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
-    _operator_factors = {"+": 1, "-": -1}
-    _factor_operators = {1: "+", -1: "-"}
+    _operator_factors = immutables.Map({"+": 1, "-": -1})
+    _factor_operators = immutables.Map({1: "+", -1: "-"})
     # alphanumeric category codes can be given directly, others have to be quoted
     _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
         quoteChar='"', escChar="\\"
@@ -170,7 +171,7 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
                 f" error at char {exc.loc}"
-            )
+            ) from None
         return list(tokens)
 
     @classmethod
@@ -218,15 +219,14 @@ class ConversionRuleSpec:
             raise ValueError(
                 f"Could not parse: {formula!r}, error: {exc.msg},"
                 f" error at char {exc.loc}"
-            )
-        code_factors = {}
+            ) from None
         # first operator is implicitly a plus, have to handle it specially
         if "unary_op" in tokens:
             op = tokens.pop(0)
         else:
             op = "+"
         code = tokens.pop(0)
-        code_factors[code] = cls._operator_factors[op]
+        code_factors = {code: cls._operator_factors[op]}
         while len(tokens):
             op = tokens.pop(0)
             code = tokens.pop(0)
@@ -351,8 +351,12 @@ class ConversionRuleSpec:
         row = [self._factors_categories_formula(self.factors_categories_a)]
         for aux_categories in self.auxiliary_categories.values():
             row.append(" ".join(sorted(map(self._escape_code, aux_categories))))
-        row.append(self._factors_categories_formula(self.factors_categories_b))
-        row.append(self.comment)
+        row.extend(
+            (
+                self._factors_categories_formula(self.factors_categories_b),
+                self.comment,
+            )
+        )
         return row
 
     def __str__(self) -> str:
@@ -735,7 +739,7 @@ class ConversionSpec(ConversionBase):
                     )
                 )
             except ValueError as err:
-                raise ValueError(f"Error in line {line_num}: {err}")
+                raise ValueError(f"Error in line {line_num}: {err}") from None
 
         return a_name, b_name, aux_names, rule_specs
 

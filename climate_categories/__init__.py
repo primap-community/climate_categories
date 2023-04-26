@@ -10,17 +10,19 @@ __version__ = "0.7.1"
 import importlib
 import importlib.resources
 
-from . import data  # noqa: F401
-from . import search
-from ._categories import Categorization  # noqa: F401
-from ._categories import Category  # noqa: F401
-from ._categories import HierarchicalCategory  # noqa: F401
-from ._categories import from_pickle  # noqa: F401
-from ._categories import from_python  # noqa: F401
-from ._categories import from_spec  # noqa: F401
-from ._categories import from_yaml  # noqa: F401
-from ._categories import HierarchicalCategorization
-from ._conversions import Conversion, ConversionRule  # noqa: F401
+from . import (
+    search,
+)
+from ._categories import (
+    Categorization,
+    Category,
+    HierarchicalCategorization,
+    HierarchicalCategory,
+    from_pickle,
+    from_spec,
+    from_yaml,
+)
+from ._conversions import Conversion, ConversionRule
 
 cats = {}
 
@@ -68,4 +70,5 @@ __all__ = [
     "from_pickle",
     "from_spec",
     "from_yaml",
-] + list(cats.keys())
+    *list(cats.keys()),
+]

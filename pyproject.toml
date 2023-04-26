@@ -6,6 +6,10 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[tool.isort]
-profile = "black"
-multi_line_output = 3
+[tool.ruff]
+extend-exclude = [
+  "climate_categories/data/*.py",
+  "climate_categories/tests/data/*.py"
+]
+extend-select = [ "W", "I", "UP", "B", "NPY", "RUF", "PD" ]
+target-version = "py39"
