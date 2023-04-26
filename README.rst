@@ -30,6 +30,10 @@ CRF1999          Common Reporting Format GHG emissions categories (1999)
 CRF2013          Common Reporting Format GHG emissions categories (2013)
 CRF2013_2021     CRF categories extended with country specific categories from
                  2021 submissions
+CRF2013_2022     CRF categories extended with country specific categories from
+                 2022 submissions
+CRF2013_2023     CRF categories extended with country specific categories from
+                 2023 submissions
 BURDI            BUR GHG emission categories (DI query interface)
 BURDI_class      BUR GHG emission categories (DI query interface) + classifications
 CRFDI            CRF GHG emission categories (DI query interface)

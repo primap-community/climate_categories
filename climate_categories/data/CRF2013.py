@@ -1954,6 +1954,10 @@ spec = {
             "title": "Growing Cattle",
             "alternative_codes": ["3 A 1 Bc", "3A1Bc"],
         },
+        "3.A.1.C": {
+            "title": "Other (as specified in table 3(I).A)",
+            "alternative_codes": ["3 A 1 C", "3A1C"],
+        },
         "3.A.2": {"title": "Sheep", "alternative_codes": ["3 A 2", "3A2"]},
         "3.A.3": {"title": "Swine", "alternative_codes": ["3 A 3", "3A3"]},
         "3.A.4": {
@@ -2036,6 +2040,10 @@ spec = {
             "title": "Growing Cattle",
             "alternative_codes": ["3 B 1 Bc", "3B1Bc"],
         },
+        "3.B.1.C": {
+            "title": "Other (as specified in table 3(I).B)",
+            "alternative_codes": ["3 B 1 C", "3B1C"],
+        },
         "3.B.2": {"title": "Sheep", "alternative_codes": ["3 B 2", "3B2"]},
         "3.B.3": {"title": "Swine", "alternative_codes": ["3 B 3", "3B3"]},
         "3.B.4": {
@@ -2108,7 +2116,7 @@ spec = {
             "alternative_codes": ["3 C 1 b", "3C1b"],
         },
         "3.C.2": {
-            "title": "Rein-Fed",
+            "title": "Rain-Fed",
             "alternative_codes": ["3 C 2", "3C2"],
             "children": [["3.C.2.a", "3.C.2.b"]],
         },

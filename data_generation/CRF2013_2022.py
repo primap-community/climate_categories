@@ -5,7 +5,7 @@ import pathlib
 
 import climate_categories
 
-OUTPATH = pathlib.Path("./climate_categories/data/CRF2013_2021.yaml")
+OUTPATH = pathlib.Path("./climate_categories/data/CRF2013_2022.yaml")
 
 
 def main():

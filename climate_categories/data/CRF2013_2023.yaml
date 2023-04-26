@@ -1,20 +1,20 @@
-name: CRF2013_2021
-title: Common Reporting Format GHG emissions categories (2013). Extended for 2021
+name: CRF2013_2023
+title: Common Reporting Format GHG emissions categories (2013). Extended for 2023
   CRF submissions.
 comment: Classification of green-house gas emissions and removals into categories
   for use in annual inventories using the Common Reporting Format as specified in
   the UNFCCC guidelines on reporting and review as decided in the ninetenth session
   of the Conference of the Parties in 2013. This specification extend the CRF2013
-  specification by country specific categories from the 2021 submissions.
+  specification by country specific categories from the 2023 submissions.
 references: United Nations 2013, Decision 24/CP.19 - Revision of the UNFCCC reporting
   guidelines on annual inventories for Parties included in Annex I to the Convention.
   Documented in the 'Report of the Conference of the Parties on its nineteenth session,
   held in Warsaw from 11 to 23 November 2013' available at https://unfccc.int/resource/docs/2013/cop19/eng/10a03.pdf.
-  https://unfccc.int/ghg-inventories-annex-i-parties/2021
+  https://unfccc.int/process-and-meetings/transparency-and-reporting/reporting-and-review-under-the-convention/greenhouse-gas-inventories-annex-i-parties/national-inventory-submissions-2023
 institution: UN
 hierarchical: true
-last_update: '2021-04-12'
-version: 2013-2021
+last_update: '2023-04-24'
+version: 2013-2023
 total_sum: true
 canonical_top_level_category: '0'
 categories:
@@ -2753,6 +2753,7 @@ categories:
       - 1.B.1.c.ii
       - 1.B.1.c.iii
       - 1.B.1.c.iv
+      - 1.B.1.c.v
   1.B.2.a.1:
     title: Exploration
     alternative_codes:
@@ -2885,6 +2886,7 @@ categories:
       - 1.B.2.d.vii
       - 1.B.2.d.viii
       - 1.B.2.d.x
+      - 1.B.2.d.xi
   M.Info.CCS:
     title: CO2 Transport and Storage - information Items
     alternative_codes:
@@ -6154,6 +6156,8 @@ categories:
       - 5.B.2.b.x
       - 5.B.2.b.xi
       - 5.B.2.b.xii
+      - 5.B.2.b.xiii
+      - 5.B.2.b.xiv
   5.C.1.a:
     title: Biogenic
     alternative_codes:
@@ -6292,6 +6296,7 @@ categories:
       - 5.C.2.a.ii.4
       - 5.C.2.a.ii.5
       - 5.C.2.a.ii.6
+      - 5.C.2.a.ii.7
   5.C.2.b:
     title: Non-Biogenic
     alternative_codes:
@@ -6620,6 +6625,11 @@ categories:
     alternative_codes:
     - 1 B 1 c iv
     - 1B1civ
+  1.B.1.c.v:
+    title: Other
+    alternative_codes:
+    - 1 B 1 c v
+    - 1B1cv
   1.B.2.d.i:
     title: Groundwater Extraction and CO2 Mining
     alternative_codes:
@@ -6670,6 +6680,11 @@ categories:
     alternative_codes:
     - 1 B 2 d x
     - 1B2dx
+  1.B.2.d.xi:
+    title: flue gas desulfurisation
+    alternative_codes:
+    - 1 B 2 d xi
+    - 1B2dxi
   3.A.1.C-AUS-a:
     title: Dairy Cattle
     alternative_codes:
@@ -7190,6 +7205,16 @@ categories:
     alternative_codes:
     - 5 E 7
     - '5E7'
+  5.E.8:
+    title: Industrial Wastewater
+    alternative_codes:
+    - 5 E 8
+    - '5E8'
+  5.E.9:
+    title: Accidental Fires at SWDS
+    alternative_codes:
+    - 5 E 9
+    - '5E9'
   5.B.1.b.i:
     title: Organic wastes households
     alternative_codes:
@@ -7345,6 +7370,16 @@ categories:
     alternative_codes:
     - 5 B 2 b xii
     - 5B2bxii
+  5.B.2.b.xiii:
+    title: Livestock manure co-digested
+    alternative_codes:
+    - 5 B 2 b xiii
+    - 5B2bxiii
+  5.B.2.b.xiv:
+    title: Waste water
+    alternative_codes:
+    - 5 B 2 b xiv
+    - 5B2bxiv
   5.C.1.a.ii.5.a:
     title: Animal cremations
     alternative_codes:
@@ -7440,6 +7475,11 @@ categories:
     alternative_codes:
     - 5 C 2 a ii 6
     - 5C2aii6
+  5.C.2.a.ii.7:
+    title: Vine
+    alternative_codes:
+    - 5 C 2 a ii 7
+    - 5C2aii7
   5.C.2.b.ii.1:
     title: Rural waste
     alternative_codes:
