@@ -9,7 +9,6 @@ __version__ = "0.7.1"
 
 import importlib
 import importlib.resources
-import typing
 
 from . import data  # noqa: F401
 from . import search
@@ -52,7 +51,7 @@ RCMIP = _read_py_hier("RCMIP")
 gas = _read_py_hier("gas")
 
 
-def find_code(code: str) -> typing.Set[Category]:
+def find_code(code: str) -> set[Category]:
     """Search for the given code in all included categorizations."""
     return search.search_code(code, cats.values())
 

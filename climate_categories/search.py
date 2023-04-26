@@ -1,14 +1,10 @@
-from typing import Iterable, Set
+from collections.abc import Iterable
 
 from . import _categories
 
 
 def search_code(
     code: str, cats: Iterable[_categories.Categorization]
-) -> Set[_categories.Category]:
+) -> set[_categories.Category]:
     """Search for the given code in the given categorizations."""
-    res = set()
-    for cat in cats:
-        if code in cat.all_keys():
-            res.add(cat[code])
-    return res
+    return {cat[code] for cat in cats if code in cat.all_keys()}
