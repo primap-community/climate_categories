@@ -519,7 +519,11 @@ def main():
     }
     ncats["3.A.1"] = {
         "title": "Cattle",
-        "children": [["3.A.1.Aa", "3.A.1.Ab"], ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"], ["3.A.1.C"]],
+        "children": [
+            ["3.A.1.Aa", "3.A.1.Ab"],
+            ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"],
+            ["3.A.1.C"],
+        ],
     }
     ncats["3.A.1.Aa"] = {"title": "Dairy Cattle"}
     ncats["3.A.1.Ab"] = {"title": "Non-Dairy Cattle"}
@@ -563,7 +567,11 @@ def main():
     }
     ncats["3.B.1"] = {
         "title": "Cattle",
-        "children": [["3.B.1.Aa", "3.B.1.Ab"], ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"], ["3.B.1.C"]],
+        "children": [
+            ["3.B.1.Aa", "3.B.1.Ab"],
+            ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"],
+            ["3.B.1.C"],
+        ],
     }
     ncats["3.B.1.Aa"] = {"title": "Dairy Cattle"}
     ncats["3.B.1.Ab"] = {"title": "Non-Dairy Cattle"}
