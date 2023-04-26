@@ -457,7 +457,7 @@ def main():
     # Chemical industry: additional subcategories
     cats["2.B.9.a"]["children"] = [["2.B.9.a.i", "2.B.9.a.ii"]]
     ncats["2.B.9.a.i"] = {"title": "Production of HCFC-22"}
-    ncats["2.B.9.a.ii"] = {"title": "Other (Please Specify"}
+    ncats["2.B.9.a.ii"] = {"title": "Other (Please Specify)"}
     cats["2.B.9.b"]["children"] = [["2.B.9.b.i", "2.B.9.b.ii", "2.B.9.b.iii"]]
     ncats["2.B.9.b.i"] = {"title": "Production of HFC-134a"}
     ncats["2.B.9.b.ii"] = {"title": "Production of SF6"}
@@ -519,7 +519,7 @@ def main():
     }
     ncats["3.A.1"] = {
         "title": "Cattle",
-        "children": [["3.A.1.Aa", "3.A.1.Ab"], ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"]],
+        "children": [["3.A.1.Aa", "3.A.1.Ab"], ["3.A.1.Ba", "3.A.1.Bb", "3.A.1.Bc"], ["3.A.1.C"]],
     }
     ncats["3.A.1.Aa"] = {"title": "Dairy Cattle"}
     ncats["3.A.1.Ab"] = {"title": "Non-Dairy Cattle"}
@@ -563,7 +563,7 @@ def main():
     }
     ncats["3.B.1"] = {
         "title": "Cattle",
-        "children": [["3.B.1.Aa", "3.B.1.Ab"], ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"]],
+        "children": [["3.B.1.Aa", "3.B.1.Ab"], ["3.B.1.Ba", "3.B.1.Bb", "3.B.1.Bc"], ["3.B.1.C"]],
     }
     ncats["3.B.1.Aa"] = {"title": "Dairy Cattle"}
     ncats["3.B.1.Ab"] = {"title": "Non-Dairy Cattle"}
@@ -658,7 +658,7 @@ def main():
     ncats["3.D.a.6"] = {"title": "Cultivation of Organic Soils (i.e. Histosols)"}
     ncats["3.D.a.7"] = {"title": "Other"}
     ncats["3.D.b"] = {
-        "title": "Indirect N2O Emissions from Managed Soils ",
+        "title": "Indirect N2O Emissions from Managed Soils",
         "children": [[f"3.D.b.{i}" for i in range(1, 3)]],
     }
     ncats["3.D.b.1"] = {"title": "Atmospheric Deposition"}
@@ -1269,7 +1269,7 @@ def main():
 
     # Table4(iv) - Indirect N2O emissions from managed soils
     # Emissions are included in total LULUCF sums but in none of the
-    # subsectors. Thus we add a subsector has to the hierarchy
+    # subsectors. Thus we add a subsector to the hierarchy
     ncats["4"]["children"][0].append("M.4.I")
     ncats["M.4.I"] = {
         "title": "Indirect N2O Emissions From Managed Soils",
@@ -1280,7 +1280,7 @@ def main():
 
     # Table4(v)
     ncats["4(V)"] = {
-        "title": "LULUCF: Biomass Burning (Table 4(V)",
+        "title": "LULUCF: Biomass Burning (Table 4(V))",
         "children": [
             ["4(V).A", "4(V).B", "4(V).C", "4(V).D", "4(V).E", "4(V).F", "4(V).H"]
         ],
@@ -1607,7 +1607,7 @@ def main():
     }
 
     ncats["M.Memo"]["children"][0].append("M.Memo.IndN2O")
-    ncats["M.Memo.IndN2O"] = {"title": "Indirect N2O "}
+    ncats["M.Memo.IndN2O"] = {"title": "Indirect N2O"}
     ncats["M.Memo"]["children"][0].append("M.Memo.IndCO2")
     ncats["M.Memo.IndCO2"] = {"title": "Indirect CO2"}
 
