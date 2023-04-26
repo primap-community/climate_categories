@@ -19,6 +19,7 @@ from ._categories import (
     HierarchicalCategorization,
     HierarchicalCategory,
     from_pickle,
+    from_python,
     from_spec,
     from_yaml,
 )
@@ -70,5 +71,6 @@ __all__ = [
     "from_pickle",
     "from_spec",
     "from_yaml",
+    "from_python",
     *list(cats.keys()),
 ]
