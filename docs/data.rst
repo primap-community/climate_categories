@@ -183,7 +183,7 @@ codes must be enclosed in ``"`` characters.
 Example
 -------
 
-.. code-block:: csv
+.. code-block:: yaml
 
     # comment: an example conversion
     # institution: PIK
