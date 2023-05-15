@@ -46,7 +46,7 @@ update-citation: ## Update the citation information from zenodo
 	git commit -am 'Update citation information from zenodo.'
 
 release: dist ## package and upload a release
-	venv/bin/twine upload dist/*
+	venv/bin/twine upload --repository climate-categories dist/*
 
 dist: clean venv ## builds source and wheel package
 	venv/bin/python -m build
