@@ -4,6 +4,7 @@ import datetime
 import functools
 import importlib
 import importlib.resources
+import itertools
 import pathlib
 import pickle
 import typing
@@ -178,6 +179,30 @@ class HierarchicalCategory(Category):
 
         Note that all possible descendants are returned, not only "canonical" ones."""
         return self.categorization.descendants(self)
+
+    @property
+    def is_leaf(self) -> bool:
+        """Is this category a leaf category, i.e. without children?"""
+        return not any(self.children)
+
+    @property
+    def leaf_children(self) -> list[set["HierarchicalCategory"]]:
+        """The sets of subcategories which are descendants of this category and do not
+        have children themselves.
+
+        Sets of children are chased separately, so each set of leaf children is
+        self-sufficient to reconstruct this category (if the categorization allows
+        reconstructing categories from their children, i.e. if total_sum is set)."""
+        ret = []
+        for children in self.children:
+            n = []
+            for child in children:
+                if child.is_leaf:
+                    n.append([{child}])
+                else:
+                    n.append(child.leaf_children)
+            ret += [set(itertools.chain(*x)) for x in itertools.product(*n)]
+        return ret
 
     @property
     def level(self) -> int:
@@ -1061,13 +1086,36 @@ class HierarchicalCategorization(Categorization):
 
         return [set(children_dict[x]) for x in sorted(children_dict.keys())]
 
-    def descendants(self, cat: typing.Union[str, HierarchicalCategory]):
+    def descendants(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> set[HierarchicalCategory]:
         """All descendants of the given category, i.e. the direct children and their
         children, etc."""
         if not isinstance(cat, HierarchicalCategory):
             return self.descendants(self._all_codes_map[cat])
 
         return set(nx.descendants(self._graph, cat))
+
+    def is_leaf(self, cat: typing.Union[str, HierarchicalCategory]) -> bool:
+        """Is the category a leaf category, i.e. without children?"""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.is_leaf(self._all_codes_map[cat])
+
+        return cat.is_leaf
+
+    def leaf_children(
+        self, cat: typing.Union[str, HierarchicalCategory]
+    ) -> list[set[HierarchicalCategory]]:
+        """The sets of subcategories which are descendants of the category and do not
+        have children themselves.
+
+        Sets of children are chased separately, so each set of leaf children is
+        self-sufficient to reconstruct this category (if the categorization allows
+        reconstructing categories from their children, i.e. if total_sum is set)."""
+        if not isinstance(cat, HierarchicalCategory):
+            return self.leaf_children(self._all_codes_map[cat])
+
+        return cat.leaf_children
 
 
 def from_pickle(
