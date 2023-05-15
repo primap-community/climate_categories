@@ -2,6 +2,12 @@
 Changelog
 =========
 
+0.8.2 (2023-05-15)
+------------------
+* Remove pygments-csv-lexer dependency for docs building.
+* Add function to find leaf children of a category, useful for re-calculating top-level
+  categories from constituents.
+
 0.8.1 (2023-04-26)
 ------------------
 * regenerate data included in the package to benefit
