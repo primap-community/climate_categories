@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.8.3 (2023-05-23)
+------------------
+* add py.typed file to announce this library is using type hints.
+
 0.8.2 (2023-05-15)
 ------------------
 * Remove pygments-csv-lexer dependency for docs building.
