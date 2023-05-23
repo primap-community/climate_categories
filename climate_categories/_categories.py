@@ -8,6 +8,7 @@ import itertools
 import pathlib
 import pickle
 import typing
+from typing import TypeVar
 
 import natsort
 import networkx as nx
@@ -18,6 +19,9 @@ from ruamel.yaml import YAML
 
 from . import data
 from ._conversions import Conversion, ConversionSpec
+
+# Categorization, or any subclass.
+CategorizationT = TypeVar("CategorizationT", bound="Categorization")
 
 
 class Category:
@@ -304,8 +308,9 @@ class Categorization:
 
     @classmethod
     def from_yaml(
-        cls, filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
-    ) -> "Categorization":
+        cls: type[CategorizationT],
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+    ) -> CategorizationT:
         """Read Categorization from a StrictYaml file."""
         try:
             yaml = sy.load(filepath.read(), schema=cls._strictyaml_schema)
@@ -315,7 +320,9 @@ class Categorization:
         return cls.from_spec(yaml.data)
 
     @classmethod
-    def from_spec(cls, spec: dict[str, typing.Any]) -> "Categorization":
+    def from_spec(
+        cls: type[CategorizationT], spec: dict[str, typing.Any]
+    ) -> CategorizationT:
         """Create Categorization from a Dictionary specification."""
         if spec["hierarchical"] != cls.hierarchical:
             raise ValueError(
@@ -337,7 +344,7 @@ class Categorization:
     @staticmethod
     def from_pickle(
         filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
-    ) -> "Categorization":
+    ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_pickle.
 
         Note that this uses the pickle module, which executes arbitrary code in the
@@ -347,7 +354,7 @@ class Categorization:
     @staticmethod
     def from_python(
         filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
-    ) -> "Categorization":
+    ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_python.
 
         Note that this executes the python cache file. Only load from python cache files
@@ -508,7 +515,7 @@ class Categorization:
         return spec
 
     def extend(
-        self,
+        self: CategorizationT,
         *,
         categories: typing.Union[None, dict[str, dict]] = None,
         alternative_codes: typing.Union[None, dict[str, str]] = None,
@@ -516,7 +523,7 @@ class Categorization:
         title: typing.Union[None, str] = None,
         comment: typing.Union[None, str] = None,
         last_update: typing.Union[None, datetime.date] = None,
-    ) -> "Categorization":
+    ) -> CategorizationT:
         """Extend the categorization with additional categories, yielding a new
         categorization.
 
@@ -708,7 +715,9 @@ class HierarchicalCategorization(Categorization):
         return self._primary_code_map.items()
 
     @classmethod
-    def from_spec(cls, spec: dict[str, typing.Any]) -> "HierarchicalCategorization":
+    def from_spec(
+        cls: type[CategorizationT], spec: dict[str, typing.Any]
+    ) -> CategorizationT:
         """Create Categorization from a Dictionary specification."""
         if spec["hierarchical"] != cls.hierarchical:
             raise ValueError(
@@ -1137,7 +1146,7 @@ def from_pickle(
 
 def from_python(
     filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
-) -> typing.Union[Categorization, HierarchicalCategorization]:
+) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a python cache file.
 
     Note that this executes the python cache file. Only load from python cache files
@@ -1157,9 +1166,7 @@ def from_python(
     return cls.from_spec(spec)
 
 
-def from_spec(
-    spec: dict[str, typing.Any]
-) -> typing.Union[Categorization, HierarchicalCategorization]:
+def from_spec(spec: dict[str, typing.Any]) -> CategorizationT:
     """Create Categorization or HierarchicalCategorization from a dict specification."""
     if spec["hierarchical"]:
         return HierarchicalCategorization.from_spec(spec)
@@ -1168,8 +1175,8 @@ def from_spec(
 
 
 def from_yaml(
-    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
-) -> typing.Union[Categorization, HierarchicalCategorization]:
+    filepath: typing.Union[str, pathlib.Path, typing.TextIO]
+) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a StrictYaml file."""
     try:
         yaml = sy.load(filepath.read())
