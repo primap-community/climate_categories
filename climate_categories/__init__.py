@@ -52,6 +52,7 @@ BURDI_class = _read_py_hier("BURDI_class")
 GCB = _read_py_hier("GCB")
 RCMIP = _read_py_hier("RCMIP")
 gas = _read_py_hier("gas")
+ISO3 = _read_py_hier("ISO3")
 
 
 def find_code(code: str) -> set[Category]:
