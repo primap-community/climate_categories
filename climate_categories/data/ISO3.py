@@ -121,7 +121,11 @@ spec = {
         "BOL": {
             "title": "Bolivia, Plurinational State of",
             "alternative_codes": ["BO", "068"],
-            "info": {"official name": "Plurinational State of Bolivia"},
+            "info": {
+                "official name": "Plurinational State of Bolivia",
+                "common name": "Bolivia",
+                "unfccc_name": "Bolivia (Plurinational State of)",
+            },
         },
         "BRA": {
             "title": "Brazil",
@@ -175,6 +179,7 @@ spec = {
         "COD": {
             "title": "Congo, The Democratic Republic of the",
             "alternative_codes": ["CD", "180"],
+            "info": {"unfccc_name": "Democratic Republic of the Congo"},
         },
         "COG": {
             "title": "Congo",
@@ -304,7 +309,10 @@ spec = {
         "FSM": {
             "title": "Micronesia, Federated States of",
             "alternative_codes": ["FM", "583"],
-            "info": {"official name": "Federated States of Micronesia"},
+            "info": {
+                "official name": "Federated States of Micronesia",
+                "unfccc_name": "Micronesia (Federated States of)",
+            },
         },
         "GAB": {
             "title": "Gabon",
@@ -416,7 +424,11 @@ spec = {
         "IRN": {
             "title": "Iran, Islamic Republic of",
             "alternative_codes": ["IR", "364"],
-            "info": {"official name": "Islamic Republic of Iran"},
+            "info": {
+                "official name": "Islamic Republic of Iran",
+                "common name": "Iran",
+                "unfccc_name": "Iran (Islamic Republic of)",
+            },
         },
         "IRQ": {
             "title": "Iraq",
@@ -472,7 +484,11 @@ spec = {
             "info": {"official name": "Republic of Kiribati"},
         },
         "KNA": {"title": "Saint Kitts and Nevis", "alternative_codes": ["KN", "659"]},
-        "KOR": {"title": "Korea, Republic of", "alternative_codes": ["KR", "410"]},
+        "KOR": {
+            "title": "Korea, Republic of",
+            "alternative_codes": ["KR", "410"],
+            "info": {"common name": "South Korea", "unfccc_name": "Republic of Korea"},
+        },
         "KWT": {
             "title": "Kuwait",
             "alternative_codes": ["KW", "414"],
@@ -481,6 +497,7 @@ spec = {
         "LAO": {
             "title": "Lao People's Democratic Republic",
             "alternative_codes": ["LA", "418"],
+            "info": {"common name": "Laos"},
         },
         "LBN": {
             "title": "Lebanon",
@@ -550,7 +567,7 @@ spec = {
         "MDA": {
             "title": "Moldova, Republic of",
             "alternative_codes": ["MD", "498"],
-            "info": {"official name": "Republic of Moldova"},
+            "info": {"official name": "Republic of Moldova", "common name": "Moldova"},
         },
         "MDG": {
             "title": "Madagascar",
@@ -720,7 +737,10 @@ spec = {
         "PRK": {
             "title": "Korea, Democratic People's Republic of",
             "alternative_codes": ["KP", "408"],
-            "info": {"official name": "Democratic People's Republic of Korea"},
+            "info": {
+                "official name": "Democratic People's Republic of Korea",
+                "common name": "North Korea",
+            },
         },
         "PRT": {
             "title": "Portugal",
@@ -735,7 +755,10 @@ spec = {
         "PSE": {
             "title": "Palestine, State of",
             "alternative_codes": ["PS", "275"],
-            "info": {"official name": "the State of Palestine"},
+            "info": {
+                "official name": "the State of Palestine",
+                "unfccc_name": "State of Palestine",
+            },
         },
         "PYF": {"title": "French Polynesia", "alternative_codes": ["PF", "258"]},
         "QAT": {
@@ -855,7 +878,11 @@ spec = {
             "alternative_codes": ["SC", "690"],
             "info": {"official name": "Republic of Seychelles"},
         },
-        "SYR": {"title": "Syrian Arab Republic", "alternative_codes": ["SY", "760"]},
+        "SYR": {
+            "title": "Syrian Arab Republic",
+            "alternative_codes": ["SY", "760"],
+            "info": {"common name": "Syria"},
+        },
         "TCA": {
             "title": "Turks and Caicos Islands",
             "alternative_codes": ["TC", "796"],
@@ -911,12 +938,18 @@ spec = {
         "TWN": {
             "title": "Taiwan, Province of China",
             "alternative_codes": ["TW", "158"],
-            "info": {"official name": "Taiwan, Province of China"},
+            "info": {
+                "official name": "Taiwan, Province of China",
+                "common name": "Taiwan",
+            },
         },
         "TZA": {
             "title": "Tanzania, United Republic of",
             "alternative_codes": ["TZ", "834"],
-            "info": {"official name": "United Republic of Tanzania"},
+            "info": {
+                "official name": "United Republic of Tanzania",
+                "common name": "Tanzania",
+            },
         },
         "UGA": {
             "title": "Uganda",
@@ -946,6 +979,7 @@ spec = {
         "VAT": {
             "title": "Holy See (Vatican City State)",
             "alternative_codes": ["VA", "336"],
+            "info": {"unfccc_name": "Holy See"},
         },
         "VCT": {
             "title": "Saint Vincent and the Grenadines",
@@ -954,7 +988,11 @@ spec = {
         "VEN": {
             "title": "Venezuela, Bolivarian Republic of",
             "alternative_codes": ["VE", "862"],
-            "info": {"official name": "Bolivarian Republic of Venezuela"},
+            "info": {
+                "official name": "Bolivarian Republic of Venezuela",
+                "common name": "Venezuela",
+                "unfccc_name": "Venezuela (Bolivarian Republic of)",
+            },
         },
         "VGB": {
             "title": "Virgin Islands, British",
@@ -969,7 +1007,10 @@ spec = {
         "VNM": {
             "title": "Viet Nam",
             "alternative_codes": ["VN", "704"],
-            "info": {"official name": "Socialist Republic of Viet Nam"},
+            "info": {
+                "official name": "Socialist Republic of Viet Nam",
+                "common name": "Vietnam",
+            },
         },
         "VUT": {
             "title": "Vanuatu",
@@ -1412,7 +1453,7 @@ spec = {
             ],
         },
         "EU_2020": {
-            "title": "European Union since 2020",
+            "title": "European Union",
             "comment": "The European Union since 2020-02-01 to date. Note that the 'EU' code will always refer to the current EU, use EU_2020 if you need a stable code.",
             "alternative_codes": ["EU27_2020", "EU-27_2020", "EU", "EU27BX"],
             "children": [

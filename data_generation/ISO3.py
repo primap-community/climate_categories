@@ -26,6 +26,7 @@ def main():
     }
     categories = add_eu_categories(categories)
     categories = add_unfccc_categories(categories)
+    categories = add_unfccc_names(categories)
 
     spec = {
         "name": "ISO3",
@@ -48,6 +49,18 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_unfccc_names(categories):
+    categories["BOL"]["info"]["unfccc_name"] = "Bolivia (Plurinational State of)"
+    categories["COD"]["info"] = {"unfccc_name": "Democratic Republic of the Congo"}
+    categories["VAT"]["info"] = {"unfccc_name": "Holy See"}
+    categories["IRN"]["info"]["unfccc_name"] = "Iran (Islamic Republic of)"
+    categories["FSM"]["info"]["unfccc_name"] = "Micronesia (Federated States of)"
+    categories["KOR"]["info"]["unfccc_name"] = "Republic of Korea"
+    categories["PSE"]["info"]["unfccc_name"] = "State of Palestine"
+    categories["VEN"]["info"]["unfccc_name"] = "Venezuela (Bolivarian Republic of)"
+    return categories
 
 
 def add_unfccc_categories(categories):
@@ -332,7 +345,7 @@ def add_eu_categories(categories):
     eu2020_children.remove("GBR")
     # Do not include EU27 as it is unclear what it means
     categories["EU_2020"] = {
-        "title": "European Union since 2020",
+        "title": "European Union",
         "comment": "The European Union since 2020-02-01 to date. Note that the 'EU' "
         "code will always refer to the current EU, use EU_2020 if you need "
         "a stable code.",
@@ -359,8 +372,14 @@ def load_countries() -> (
             "alternative_codes": [country["alpha_2"], country["numeric"]],
         }
 
+        info = {}
         if "official_name" in country:
-            country_spec["info"] = {"official name": country["official_name"]}
+            info["official name"] = country["official_name"]
+        if "common_name" in country:
+            info["common name"] = country["common_name"]
+        if info:
+            country_spec["info"] = info
+
         categories[country["alpha_3"]] = country_spec
 
     return categories

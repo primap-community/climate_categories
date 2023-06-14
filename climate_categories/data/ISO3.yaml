@@ -210,6 +210,8 @@ categories:
     - '068'
     info:
       official name: Plurinational State of Bolivia
+      common name: Bolivia
+      unfccc_name: Bolivia (Plurinational State of)
   BRA:
     title: Brazil
     alternative_codes:
@@ -301,6 +303,8 @@ categories:
     alternative_codes:
     - CD
     - '180'
+    info:
+      unfccc_name: Democratic Republic of the Congo
   COG:
     title: Congo
     alternative_codes:
@@ -504,6 +508,7 @@ categories:
     - '583'
     info:
       official name: Federated States of Micronesia
+      unfccc_name: Micronesia (Federated States of)
   GAB:
     title: Gabon
     alternative_codes:
@@ -690,6 +695,8 @@ categories:
     - '364'
     info:
       official name: Islamic Republic of Iran
+      common name: Iran
+      unfccc_name: Iran (Islamic Republic of)
   IRQ:
     title: Iraq
     alternative_codes:
@@ -785,6 +792,9 @@ categories:
     alternative_codes:
     - KR
     - '410'
+    info:
+      common name: South Korea
+      unfccc_name: Republic of Korea
   KWT:
     title: Kuwait
     alternative_codes:
@@ -797,6 +807,8 @@ categories:
     alternative_codes:
     - LA
     - '418'
+    info:
+      common name: Laos
   LBN:
     title: Lebanon
     alternative_codes:
@@ -898,6 +910,7 @@ categories:
     - '498'
     info:
       official name: Republic of Moldova
+      common name: Moldova
   MDG:
     title: Madagascar
     alternative_codes:
@@ -1172,6 +1185,7 @@ categories:
     - '408'
     info:
       official name: Democratic People's Republic of Korea
+      common name: North Korea
   PRT:
     title: Portugal
     alternative_codes:
@@ -1193,6 +1207,7 @@ categories:
     - '275'
     info:
       official name: the State of Palestine
+      unfccc_name: State of Palestine
   PYF:
     title: French Polynesia
     alternative_codes:
@@ -1383,6 +1398,8 @@ categories:
     alternative_codes:
     - SY
     - '760'
+    info:
+      common name: Syria
   TCA:
     title: Turks and Caicos Islands
     alternative_codes:
@@ -1473,6 +1490,7 @@ categories:
     - '158'
     info:
       official name: Taiwan, Province of China
+      common name: Taiwan
   TZA:
     title: Tanzania, United Republic of
     alternative_codes:
@@ -1480,6 +1498,7 @@ categories:
     - '834'
     info:
       official name: United Republic of Tanzania
+      common name: Tanzania
   UGA:
     title: Uganda
     alternative_codes:
@@ -1523,6 +1542,8 @@ categories:
     alternative_codes:
     - VA
     - '336'
+    info:
+      unfccc_name: Holy See
   VCT:
     title: Saint Vincent and the Grenadines
     alternative_codes:
@@ -1535,6 +1556,8 @@ categories:
     - '862'
     info:
       official name: Bolivarian Republic of Venezuela
+      common name: Venezuela
+      unfccc_name: Venezuela (Bolivarian Republic of)
   VGB:
     title: Virgin Islands, British
     alternative_codes:
@@ -1556,6 +1579,7 @@ categories:
     - '704'
     info:
       official name: Socialist Republic of Viet Nam
+      common name: Vietnam
   VUT:
     title: Vanuatu
     alternative_codes:
@@ -2002,7 +2026,7 @@ categories:
       - SVN
       - SWE
   EU_2020:
-    title: European Union since 2020
+    title: European Union
     comment: The European Union since 2020-02-01 to date. Note that the 'EU' code
       will always refer to the current EU, use EU_2020 if you need a stable code.
     alternative_codes:
