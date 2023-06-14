@@ -4,11 +4,11 @@ Changelog
 
 0.8.5 (2023-05-23)
 ------------------
+* Re-release again.
 
 0.8.4 (2023-05-23)
 ------------------
 * Re-release to make sure py.typed is included in built package.
-
 
 0.8.3 (2023-05-23)
 ------------------
