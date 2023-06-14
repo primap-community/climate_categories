@@ -30,3 +30,11 @@ def test_unfccc():
     assert (
         climate_categories.ISO3["EU"] in climate_categories.ISO3["UNFCCC"].descendants
     )
+
+
+def test_g7g20():
+    # since the EU is a non-enumerated member, G7 has 8 members, G8 has 9.
+    assert len(climate_categories.ISO3["G7"].children[0]) == 8
+    assert len(climate_categories.ISO3["G8"].children[0]) == 9
+    # in the G20, the EU is enumerated
+    assert len(climate_categories.ISO3["G20"].children[0]) == 20

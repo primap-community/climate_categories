@@ -4,7 +4,8 @@ comment: Countries, regions, and other areas. Also includes information on group
   like being included in Annex I of the UN Framework Convention on Climate Change.
 references: 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html; iso-codes
   package, https://salsa.debian.org/iso-codes-team/iso-codes; UNFCCC Parties & Observers,
-  https://unfccc.int/parties-observers; EU members, https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements '
+  https://unfccc.int/parties-observers; EU members, https://ec.europa.eu/eurostat/statistics-explained/;
+  G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20index.php?title=Glossary:EU_enlargements '
 institution: UN
 hierarchical: true
 last_update: '2023-04-27'
@@ -2281,3 +2282,49 @@ categories:
     children:
     - - Annex-I
       - Non-Annex-I
+  G7:
+    title: Group of Seven
+    children:
+    - - CAN
+      - DEU
+      - EU_2020
+      - FRA
+      - GBR
+      - ITA
+      - JPN
+      - USA
+  G8:
+    title: Group of Eight
+    children:
+    - - CAN
+      - DEU
+      - EU_2020
+      - FRA
+      - GBR
+      - ITA
+      - JPN
+      - RUS
+      - USA
+  G20:
+    title: Group of 20
+    children:
+    - - ARG
+      - AUS
+      - BRA
+      - CAN
+      - CHN
+      - DEU
+      - EU_2020
+      - FRA
+      - GBR
+      - IDN
+      - IND
+      - ITA
+      - JPN
+      - KOR
+      - MEX
+      - RUS
+      - SAU
+      - TUR
+      - USA
+      - ZAF

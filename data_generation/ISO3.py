@@ -27,6 +27,7 @@ def main():
     categories = add_eu_categories(categories)
     categories = add_unfccc_categories(categories)
     categories = add_unfccc_names(categories)
+    categories = add_g7g20(categories)
 
     spec = {
         "name": "ISO3",
@@ -37,7 +38,9 @@ def main():
         "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html; "
         "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes; "
         "UNFCCC Parties & Observers, https://unfccc.int/parties-observers; "
-        "EU members, https://ec.europa.eu/eurostat/statistics-explained/"
+        "EU members, https://ec.europa.eu/eurostat/statistics-explained/; "
+        "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/"
+        "g7-und-g20"
         "index.php?title=Glossary:EU_enlargements ",
         "institution": "UN",
         "last_update": "2023-04-27",
@@ -49,6 +52,37 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_g7g20(categories):
+    categories["G7"] = {
+        "title": "Group of Seven",
+        "children": [["DEU", "FRA", "GBR", "ITA", "JPN", "USA", "CAN", "EU"]],
+    }
+    categories["G8"] = {
+        "title": "Group of Eight",
+        "children": [categories["G7"]["children"][0] + ["RUS"]],
+    }
+    categories["G20"] = {
+        "title": "Group of 20",
+        "children": [
+            categories["G8"]["children"][0]
+            + [
+                "ARG",
+                "AUS",
+                "BRA",
+                "CHN",
+                "IND",
+                "IDN",
+                "MEX",
+                "SAU",
+                "ZAF",
+                "KOR",
+                "TUR",
+            ]
+        ],
+    }
+    return categories
 
 
 def add_unfccc_names(categories):
