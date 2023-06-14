@@ -932,7 +932,10 @@ spec = {
         "TUR": {
             "title": "Türkiye",
             "alternative_codes": ["TR", "792"],
-            "info": {"official_name": "Republic of Türkiye"},
+            "info": {
+                "official_name": "Republic of Türkiye",
+                "historical_names": ["Turkey"],
+            },
         },
         "TUV": {"title": "Tuvalu", "alternative_codes": ["TV", "798"]},
         "TWN": {

@@ -29,6 +29,7 @@ def main():
     categories = add_unfccc_names(categories)
     categories = add_g7g20(categories)
     categories = add_oecd(categories)
+    categories = add_historical_names(categories)
 
     spec = {
         "name": "ISO3",
@@ -55,6 +56,11 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_historical_names(categories):
+    categories["TUR"]["info"]["historical_names"] = ["Turkey"]
+    return categories
 
 
 def add_oecd(categories):
