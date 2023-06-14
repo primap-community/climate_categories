@@ -23,14 +23,14 @@ categories:
     - AF
     - '004'
     info:
-      official name: Islamic Republic of Afghanistan
+      official_name: Islamic Republic of Afghanistan
   AGO:
     title: Angola
     alternative_codes:
     - AO
     - '024'
     info:
-      official name: Republic of Angola
+      official_name: Republic of Angola
   AIA:
     title: Anguilla
     alternative_codes:
@@ -47,14 +47,14 @@ categories:
     - AL
     - '008'
     info:
-      official name: Republic of Albania
+      official_name: Republic of Albania
   AND:
     title: Andorra
     alternative_codes:
     - AD
     - '020'
     info:
-      official name: Principality of Andorra
+      official_name: Principality of Andorra
   ARE:
     title: United Arab Emirates
     alternative_codes:
@@ -66,14 +66,14 @@ categories:
     - AR
     - '032'
     info:
-      official name: Argentine Republic
+      official_name: Argentine Republic
   ARM:
     title: Armenia
     alternative_codes:
     - AM
     - '051'
     info:
-      official name: Republic of Armenia
+      official_name: Republic of Armenia
   ASM:
     title: American Samoa
     alternative_codes:
@@ -105,42 +105,42 @@ categories:
     - AT
     - '040'
     info:
-      official name: Republic of Austria
+      official_name: Republic of Austria
   AZE:
     title: Azerbaijan
     alternative_codes:
     - AZ
     - '031'
     info:
-      official name: Republic of Azerbaijan
+      official_name: Republic of Azerbaijan
   BDI:
     title: Burundi
     alternative_codes:
     - BI
     - '108'
     info:
-      official name: Republic of Burundi
+      official_name: Republic of Burundi
   BEL:
     title: Belgium
     alternative_codes:
     - BE
     - '056'
     info:
-      official name: Kingdom of Belgium
+      official_name: Kingdom of Belgium
   BEN:
     title: Benin
     alternative_codes:
     - BJ
     - '204'
     info:
-      official name: Republic of Benin
+      official_name: Republic of Benin
   BES:
     title: Bonaire, Sint Eustatius and Saba
     alternative_codes:
     - BQ
     - '535'
     info:
-      official name: Bonaire, Sint Eustatius and Saba
+      official_name: Bonaire, Sint Eustatius and Saba
   BFA:
     title: Burkina Faso
     alternative_codes:
@@ -152,35 +152,35 @@ categories:
     - BD
     - '050'
     info:
-      official name: People's Republic of Bangladesh
+      official_name: People's Republic of Bangladesh
   BGR:
     title: Bulgaria
     alternative_codes:
     - BG
     - '100'
     info:
-      official name: Republic of Bulgaria
+      official_name: Republic of Bulgaria
   BHR:
     title: Bahrain
     alternative_codes:
     - BH
     - '048'
     info:
-      official name: Kingdom of Bahrain
+      official_name: Kingdom of Bahrain
   BHS:
     title: Bahamas
     alternative_codes:
     - BS
     - '044'
     info:
-      official name: Commonwealth of the Bahamas
+      official_name: Commonwealth of the Bahamas
   BIH:
     title: Bosnia and Herzegovina
     alternative_codes:
     - BA
     - '070'
     info:
-      official name: Republic of Bosnia and Herzegovina
+      official_name: Republic of Bosnia and Herzegovina
   BLM:
     title: Saint Barthélemy
     alternative_codes:
@@ -192,7 +192,7 @@ categories:
     - BY
     - '112'
     info:
-      official name: Republic of Belarus
+      official_name: Republic of Belarus
   BLZ:
     title: Belize
     alternative_codes:
@@ -209,8 +209,8 @@ categories:
     - BO
     - '068'
     info:
-      official name: Plurinational State of Bolivia
-      common name: Bolivia
+      official_name: Plurinational State of Bolivia
+      common_name: Bolivia
       unfccc_name: Bolivia (Plurinational State of)
   BRA:
     title: Brazil
@@ -218,7 +218,7 @@ categories:
     - BR
     - '076'
     info:
-      official name: Federative Republic of Brazil
+      official_name: Federative Republic of Brazil
   BRB:
     title: Barbados
     alternative_codes:
@@ -235,7 +235,7 @@ categories:
     - BT
     - '064'
     info:
-      official name: Kingdom of Bhutan
+      official_name: Kingdom of Bhutan
   BVT:
     title: Bouvet Island
     alternative_codes:
@@ -247,7 +247,7 @@ categories:
     - BW
     - '072'
     info:
-      official name: Republic of Botswana
+      official_name: Republic of Botswana
   CAF:
     title: Central African Republic
     alternative_codes:
@@ -269,35 +269,35 @@ categories:
     - CH
     - '756'
     info:
-      official name: Swiss Confederation
+      official_name: Swiss Confederation
   CHL:
     title: Chile
     alternative_codes:
     - CL
     - '152'
     info:
-      official name: Republic of Chile
+      official_name: Republic of Chile
   CHN:
     title: China
     alternative_codes:
     - CN
     - '156'
     info:
-      official name: People's Republic of China
+      official_name: People's Republic of China
   CIV:
     title: Côte d'Ivoire
     alternative_codes:
     - CI
     - '384'
     info:
-      official name: Republic of Côte d'Ivoire
+      official_name: Republic of Côte d'Ivoire
   CMR:
     title: Cameroon
     alternative_codes:
     - CM
     - '120'
     info:
-      official name: Republic of Cameroon
+      official_name: Republic of Cameroon
   COD:
     title: Congo, The Democratic Republic of the
     alternative_codes:
@@ -311,7 +311,7 @@ categories:
     - CG
     - '178'
     info:
-      official name: Republic of the Congo
+      official_name: Republic of the Congo
   COK:
     title: Cook Islands
     alternative_codes:
@@ -323,42 +323,42 @@ categories:
     - CO
     - '170'
     info:
-      official name: Republic of Colombia
+      official_name: Republic of Colombia
   COM:
     title: Comoros
     alternative_codes:
     - KM
     - '174'
     info:
-      official name: Union of the Comoros
+      official_name: Union of the Comoros
   CPV:
     title: Cabo Verde
     alternative_codes:
     - CV
     - '132'
     info:
-      official name: Republic of Cabo Verde
+      official_name: Republic of Cabo Verde
   CRI:
     title: Costa Rica
     alternative_codes:
     - CR
     - '188'
     info:
-      official name: Republic of Costa Rica
+      official_name: Republic of Costa Rica
   CUB:
     title: Cuba
     alternative_codes:
     - CU
     - '192'
     info:
-      official name: Republic of Cuba
+      official_name: Republic of Cuba
   CUW:
     title: Curaçao
     alternative_codes:
     - CW
     - '531'
     info:
-      official name: Curaçao
+      official_name: Curaçao
   CXR:
     title: Christmas Island
     alternative_codes:
@@ -375,42 +375,42 @@ categories:
     - CY
     - '196'
     info:
-      official name: Republic of Cyprus
+      official_name: Republic of Cyprus
   CZE:
     title: Czechia
     alternative_codes:
     - CZ
     - '203'
     info:
-      official name: Czech Republic
+      official_name: Czech Republic
   DEU:
     title: Germany
     alternative_codes:
     - DE
     - '276'
     info:
-      official name: Federal Republic of Germany
+      official_name: Federal Republic of Germany
   DJI:
     title: Djibouti
     alternative_codes:
     - DJ
     - '262'
     info:
-      official name: Republic of Djibouti
+      official_name: Republic of Djibouti
   DMA:
     title: Dominica
     alternative_codes:
     - DM
     - '212'
     info:
-      official name: Commonwealth of Dominica
+      official_name: Commonwealth of Dominica
   DNK:
     title: Denmark
     alternative_codes:
     - DK
     - '208'
     info:
-      official name: Kingdom of Denmark
+      official_name: Kingdom of Denmark
   DOM:
     title: Dominican Republic
     alternative_codes:
@@ -422,28 +422,28 @@ categories:
     - DZ
     - '012'
     info:
-      official name: People's Democratic Republic of Algeria
+      official_name: People's Democratic Republic of Algeria
   ECU:
     title: Ecuador
     alternative_codes:
     - EC
     - '218'
     info:
-      official name: Republic of Ecuador
+      official_name: Republic of Ecuador
   EGY:
     title: Egypt
     alternative_codes:
     - EG
     - '818'
     info:
-      official name: Arab Republic of Egypt
+      official_name: Arab Republic of Egypt
   ERI:
     title: Eritrea
     alternative_codes:
     - ER
     - '232'
     info:
-      official name: the State of Eritrea
+      official_name: the State of Eritrea
   ESH:
     title: Western Sahara
     alternative_codes:
@@ -455,35 +455,35 @@ categories:
     - ES
     - '724'
     info:
-      official name: Kingdom of Spain
+      official_name: Kingdom of Spain
   EST:
     title: Estonia
     alternative_codes:
     - EE
     - '233'
     info:
-      official name: Republic of Estonia
+      official_name: Republic of Estonia
   ETH:
     title: Ethiopia
     alternative_codes:
     - ET
     - '231'
     info:
-      official name: Federal Democratic Republic of Ethiopia
+      official_name: Federal Democratic Republic of Ethiopia
   FIN:
     title: Finland
     alternative_codes:
     - FI
     - '246'
     info:
-      official name: Republic of Finland
+      official_name: Republic of Finland
   FJI:
     title: Fiji
     alternative_codes:
     - FJ
     - '242'
     info:
-      official name: Republic of Fiji
+      official_name: Republic of Fiji
   FLK:
     title: Falkland Islands (Malvinas)
     alternative_codes:
@@ -495,7 +495,7 @@ categories:
     - FR
     - '250'
     info:
-      official name: French Republic
+      official_name: French Republic
   FRO:
     title: Faroe Islands
     alternative_codes:
@@ -507,7 +507,7 @@ categories:
     - FM
     - '583'
     info:
-      official name: Federated States of Micronesia
+      official_name: Federated States of Micronesia
       unfccc_name: Micronesia (Federated States of)
   GAB:
     title: Gabon
@@ -515,14 +515,14 @@ categories:
     - GA
     - '266'
     info:
-      official name: Gabonese Republic
+      official_name: Gabonese Republic
   GBR:
     title: United Kingdom
     alternative_codes:
     - GB
     - '826'
     info:
-      official name: United Kingdom of Great Britain and Northern Ireland
+      official_name: United Kingdom of Great Britain and Northern Ireland
   GEO:
     title: Georgia
     alternative_codes:
@@ -539,7 +539,7 @@ categories:
     - GH
     - '288'
     info:
-      official name: Republic of Ghana
+      official_name: Republic of Ghana
   GIB:
     title: Gibraltar
     alternative_codes:
@@ -551,7 +551,7 @@ categories:
     - GN
     - '324'
     info:
-      official name: Republic of Guinea
+      official_name: Republic of Guinea
   GLP:
     title: Guadeloupe
     alternative_codes:
@@ -563,28 +563,28 @@ categories:
     - GM
     - '270'
     info:
-      official name: Republic of the Gambia
+      official_name: Republic of the Gambia
   GNB:
     title: Guinea-Bissau
     alternative_codes:
     - GW
     - '624'
     info:
-      official name: Republic of Guinea-Bissau
+      official_name: Republic of Guinea-Bissau
   GNQ:
     title: Equatorial Guinea
     alternative_codes:
     - GQ
     - '226'
     info:
-      official name: Republic of Equatorial Guinea
+      official_name: Republic of Equatorial Guinea
   GRC:
     title: Greece
     alternative_codes:
     - GR
     - '300'
     info:
-      official name: Hellenic Republic
+      official_name: Hellenic Republic
   GRD:
     title: Grenada
     alternative_codes:
@@ -601,7 +601,7 @@ categories:
     - GT
     - '320'
     info:
-      official name: Republic of Guatemala
+      official_name: Republic of Guatemala
   GUF:
     title: French Guiana
     alternative_codes:
@@ -618,14 +618,14 @@ categories:
     - GY
     - '328'
     info:
-      official name: Republic of Guyana
+      official_name: Republic of Guyana
   HKG:
     title: Hong Kong
     alternative_codes:
     - HK
     - '344'
     info:
-      official name: Hong Kong Special Administrative Region of China
+      official_name: Hong Kong Special Administrative Region of China
   HMD:
     title: Heard Island and McDonald Islands
     alternative_codes:
@@ -637,35 +637,35 @@ categories:
     - HN
     - '340'
     info:
-      official name: Republic of Honduras
+      official_name: Republic of Honduras
   HRV:
     title: Croatia
     alternative_codes:
     - HR
     - '191'
     info:
-      official name: Republic of Croatia
+      official_name: Republic of Croatia
   HTI:
     title: Haiti
     alternative_codes:
     - HT
     - '332'
     info:
-      official name: Republic of Haiti
+      official_name: Republic of Haiti
   HUN:
     title: Hungary
     alternative_codes:
     - HU
     - '348'
     info:
-      official name: Hungary
+      official_name: Hungary
   IDN:
     title: Indonesia
     alternative_codes:
     - ID
     - '360'
     info:
-      official name: Republic of Indonesia
+      official_name: Republic of Indonesia
   IMN:
     title: Isle of Man
     alternative_codes:
@@ -677,7 +677,7 @@ categories:
     - IN
     - '356'
     info:
-      official name: Republic of India
+      official_name: Republic of India
   IOT:
     title: British Indian Ocean Territory
     alternative_codes:
@@ -694,8 +694,8 @@ categories:
     - IR
     - '364'
     info:
-      official name: Islamic Republic of Iran
-      common name: Iran
+      official_name: Islamic Republic of Iran
+      common_name: Iran
       unfccc_name: Iran (Islamic Republic of)
   IRQ:
     title: Iraq
@@ -703,28 +703,28 @@ categories:
     - IQ
     - '368'
     info:
-      official name: Republic of Iraq
+      official_name: Republic of Iraq
   ISL:
     title: Iceland
     alternative_codes:
     - IS
     - '352'
     info:
-      official name: Republic of Iceland
+      official_name: Republic of Iceland
   ISR:
     title: Israel
     alternative_codes:
     - IL
     - '376'
     info:
-      official name: State of Israel
+      official_name: State of Israel
   ITA:
     title: Italy
     alternative_codes:
     - IT
     - '380'
     info:
-      official name: Italian Republic
+      official_name: Italian Republic
   JAM:
     title: Jamaica
     alternative_codes:
@@ -741,7 +741,7 @@ categories:
     - JO
     - '400'
     info:
-      official name: Hashemite Kingdom of Jordan
+      official_name: Hashemite Kingdom of Jordan
   JPN:
     title: Japan
     alternative_codes:
@@ -753,35 +753,35 @@ categories:
     - KZ
     - '398'
     info:
-      official name: Republic of Kazakhstan
+      official_name: Republic of Kazakhstan
   KEN:
     title: Kenya
     alternative_codes:
     - KE
     - '404'
     info:
-      official name: Republic of Kenya
+      official_name: Republic of Kenya
   KGZ:
     title: Kyrgyzstan
     alternative_codes:
     - KG
     - '417'
     info:
-      official name: Kyrgyz Republic
+      official_name: Kyrgyz Republic
   KHM:
     title: Cambodia
     alternative_codes:
     - KH
     - '116'
     info:
-      official name: Kingdom of Cambodia
+      official_name: Kingdom of Cambodia
   KIR:
     title: Kiribati
     alternative_codes:
     - KI
     - '296'
     info:
-      official name: Republic of Kiribati
+      official_name: Republic of Kiribati
   KNA:
     title: Saint Kitts and Nevis
     alternative_codes:
@@ -793,7 +793,7 @@ categories:
     - KR
     - '410'
     info:
-      common name: South Korea
+      common_name: South Korea
       unfccc_name: Republic of Korea
   KWT:
     title: Kuwait
@@ -801,35 +801,35 @@ categories:
     - KW
     - '414'
     info:
-      official name: State of Kuwait
+      official_name: State of Kuwait
   LAO:
     title: Lao People's Democratic Republic
     alternative_codes:
     - LA
     - '418'
     info:
-      common name: Laos
+      common_name: Laos
   LBN:
     title: Lebanon
     alternative_codes:
     - LB
     - '422'
     info:
-      official name: Lebanese Republic
+      official_name: Lebanese Republic
   LBR:
     title: Liberia
     alternative_codes:
     - LR
     - '430'
     info:
-      official name: Republic of Liberia
+      official_name: Republic of Liberia
   LBY:
     title: Libya
     alternative_codes:
     - LY
     - '434'
     info:
-      official name: Libya
+      official_name: Libya
   LCA:
     title: Saint Lucia
     alternative_codes:
@@ -841,49 +841,49 @@ categories:
     - LI
     - '438'
     info:
-      official name: Principality of Liechtenstein
+      official_name: Principality of Liechtenstein
   LKA:
     title: Sri Lanka
     alternative_codes:
     - LK
     - '144'
     info:
-      official name: Democratic Socialist Republic of Sri Lanka
+      official_name: Democratic Socialist Republic of Sri Lanka
   LSO:
     title: Lesotho
     alternative_codes:
     - LS
     - '426'
     info:
-      official name: Kingdom of Lesotho
+      official_name: Kingdom of Lesotho
   LTU:
     title: Lithuania
     alternative_codes:
     - LT
     - '440'
     info:
-      official name: Republic of Lithuania
+      official_name: Republic of Lithuania
   LUX:
     title: Luxembourg
     alternative_codes:
     - LU
     - '442'
     info:
-      official name: Grand Duchy of Luxembourg
+      official_name: Grand Duchy of Luxembourg
   LVA:
     title: Latvia
     alternative_codes:
     - LV
     - '428'
     info:
-      official name: Republic of Latvia
+      official_name: Republic of Latvia
   MAC:
     title: Macao
     alternative_codes:
     - MO
     - '446'
     info:
-      official name: Macao Special Administrative Region of China
+      official_name: Macao Special Administrative Region of China
   MAF:
     title: Saint Martin (French part)
     alternative_codes:
@@ -895,85 +895,85 @@ categories:
     - MA
     - '504'
     info:
-      official name: Kingdom of Morocco
+      official_name: Kingdom of Morocco
   MCO:
     title: Monaco
     alternative_codes:
     - MC
     - '492'
     info:
-      official name: Principality of Monaco
+      official_name: Principality of Monaco
   MDA:
     title: Moldova, Republic of
     alternative_codes:
     - MD
     - '498'
     info:
-      official name: Republic of Moldova
-      common name: Moldova
+      official_name: Republic of Moldova
+      common_name: Moldova
   MDG:
     title: Madagascar
     alternative_codes:
     - MG
     - '450'
     info:
-      official name: Republic of Madagascar
+      official_name: Republic of Madagascar
   MDV:
     title: Maldives
     alternative_codes:
     - MV
     - '462'
     info:
-      official name: Republic of Maldives
+      official_name: Republic of Maldives
   MEX:
     title: Mexico
     alternative_codes:
     - MX
     - '484'
     info:
-      official name: United Mexican States
+      official_name: United Mexican States
   MHL:
     title: Marshall Islands
     alternative_codes:
     - MH
     - '584'
     info:
-      official name: Republic of the Marshall Islands
+      official_name: Republic of the Marshall Islands
   MKD:
     title: North Macedonia
     alternative_codes:
     - MK
     - '807'
     info:
-      official name: Republic of North Macedonia
+      official_name: Republic of North Macedonia
   MLI:
     title: Mali
     alternative_codes:
     - ML
     - '466'
     info:
-      official name: Republic of Mali
+      official_name: Republic of Mali
   MLT:
     title: Malta
     alternative_codes:
     - MT
     - '470'
     info:
-      official name: Republic of Malta
+      official_name: Republic of Malta
   MMR:
     title: Myanmar
     alternative_codes:
     - MM
     - '104'
     info:
-      official name: Republic of Myanmar
+      official_name: Republic of Myanmar
   MNE:
     title: Montenegro
     alternative_codes:
     - ME
     - '499'
     info:
-      official name: Montenegro
+      official_name: Montenegro
   MNG:
     title: Mongolia
     alternative_codes:
@@ -985,21 +985,21 @@ categories:
     - MP
     - '580'
     info:
-      official name: Commonwealth of the Northern Mariana Islands
+      official_name: Commonwealth of the Northern Mariana Islands
   MOZ:
     title: Mozambique
     alternative_codes:
     - MZ
     - '508'
     info:
-      official name: Republic of Mozambique
+      official_name: Republic of Mozambique
   MRT:
     title: Mauritania
     alternative_codes:
     - MR
     - '478'
     info:
-      official name: Islamic Republic of Mauritania
+      official_name: Islamic Republic of Mauritania
   MSR:
     title: Montserrat
     alternative_codes:
@@ -1016,14 +1016,14 @@ categories:
     - MU
     - '480'
     info:
-      official name: Republic of Mauritius
+      official_name: Republic of Mauritius
   MWI:
     title: Malawi
     alternative_codes:
     - MW
     - '454'
     info:
-      official name: Republic of Malawi
+      official_name: Republic of Malawi
   MYS:
     title: Malaysia
     alternative_codes:
@@ -1040,7 +1040,7 @@ categories:
     - NA
     - '516'
     info:
-      official name: Republic of Namibia
+      official_name: Republic of Namibia
   NCL:
     title: New Caledonia
     alternative_codes:
@@ -1052,7 +1052,7 @@ categories:
     - NE
     - '562'
     info:
-      official name: Republic of the Niger
+      official_name: Republic of the Niger
   NFK:
     title: Norfolk Island
     alternative_codes:
@@ -1064,49 +1064,49 @@ categories:
     - NG
     - '566'
     info:
-      official name: Federal Republic of Nigeria
+      official_name: Federal Republic of Nigeria
   NIC:
     title: Nicaragua
     alternative_codes:
     - NI
     - '558'
     info:
-      official name: Republic of Nicaragua
+      official_name: Republic of Nicaragua
   NIU:
     title: Niue
     alternative_codes:
     - NU
     - '570'
     info:
-      official name: Niue
+      official_name: Niue
   NLD:
     title: Netherlands
     alternative_codes:
     - NL
     - '528'
     info:
-      official name: Kingdom of the Netherlands
+      official_name: Kingdom of the Netherlands
   NOR:
     title: Norway
     alternative_codes:
     - NO
     - '578'
     info:
-      official name: Kingdom of Norway
+      official_name: Kingdom of Norway
   NPL:
     title: Nepal
     alternative_codes:
     - NP
     - '524'
     info:
-      official name: Federal Democratic Republic of Nepal
+      official_name: Federal Democratic Republic of Nepal
   NRU:
     title: Nauru
     alternative_codes:
     - NR
     - '520'
     info:
-      official name: Republic of Nauru
+      official_name: Republic of Nauru
   NZL:
     title: New Zealand
     alternative_codes:
@@ -1118,21 +1118,21 @@ categories:
     - OM
     - '512'
     info:
-      official name: Sultanate of Oman
+      official_name: Sultanate of Oman
   PAK:
     title: Pakistan
     alternative_codes:
     - PK
     - '586'
     info:
-      official name: Islamic Republic of Pakistan
+      official_name: Islamic Republic of Pakistan
   PAN:
     title: Panama
     alternative_codes:
     - PA
     - '591'
     info:
-      official name: Republic of Panama
+      official_name: Republic of Panama
   PCN:
     title: Pitcairn
     alternative_codes:
@@ -1144,35 +1144,35 @@ categories:
     - PE
     - '604'
     info:
-      official name: Republic of Peru
+      official_name: Republic of Peru
   PHL:
     title: Philippines
     alternative_codes:
     - PH
     - '608'
     info:
-      official name: Republic of the Philippines
+      official_name: Republic of the Philippines
   PLW:
     title: Palau
     alternative_codes:
     - PW
     - '585'
     info:
-      official name: Republic of Palau
+      official_name: Republic of Palau
   PNG:
     title: Papua New Guinea
     alternative_codes:
     - PG
     - '598'
     info:
-      official name: Independent State of Papua New Guinea
+      official_name: Independent State of Papua New Guinea
   POL:
     title: Poland
     alternative_codes:
     - PL
     - '616'
     info:
-      official name: Republic of Poland
+      official_name: Republic of Poland
   PRI:
     title: Puerto Rico
     alternative_codes:
@@ -1184,29 +1184,29 @@ categories:
     - KP
     - '408'
     info:
-      official name: Democratic People's Republic of Korea
-      common name: North Korea
+      official_name: Democratic People's Republic of Korea
+      common_name: North Korea
   PRT:
     title: Portugal
     alternative_codes:
     - PT
     - '620'
     info:
-      official name: Portuguese Republic
+      official_name: Portuguese Republic
   PRY:
     title: Paraguay
     alternative_codes:
     - PY
     - '600'
     info:
-      official name: Republic of Paraguay
+      official_name: Republic of Paraguay
   PSE:
     title: Palestine, State of
     alternative_codes:
     - PS
     - '275'
     info:
-      official name: the State of Palestine
+      official_name: the State of Palestine
       unfccc_name: State of Palestine
   PYF:
     title: French Polynesia
@@ -1219,7 +1219,7 @@ categories:
     - QA
     - '634'
     info:
-      official name: State of Qatar
+      official_name: State of Qatar
   REU:
     title: Réunion
     alternative_codes:
@@ -1241,35 +1241,35 @@ categories:
     - RW
     - '646'
     info:
-      official name: Rwandese Republic
+      official_name: Rwandese Republic
   SAU:
     title: Saudi Arabia
     alternative_codes:
     - SA
     - '682'
     info:
-      official name: Kingdom of Saudi Arabia
+      official_name: Kingdom of Saudi Arabia
   SDN:
     title: Sudan
     alternative_codes:
     - SD
     - '729'
     info:
-      official name: Republic of the Sudan
+      official_name: Republic of the Sudan
   SEN:
     title: Senegal
     alternative_codes:
     - SN
     - '686'
     info:
-      official name: Republic of Senegal
+      official_name: Republic of Senegal
   SGP:
     title: Singapore
     alternative_codes:
     - SG
     - '702'
     info:
-      official name: Republic of Singapore
+      official_name: Republic of Singapore
   SGS:
     title: South Georgia and the South Sandwich Islands
     alternative_codes:
@@ -1296,28 +1296,28 @@ categories:
     - SL
     - '694'
     info:
-      official name: Republic of Sierra Leone
+      official_name: Republic of Sierra Leone
   SLV:
     title: El Salvador
     alternative_codes:
     - SV
     - '222'
     info:
-      official name: Republic of El Salvador
+      official_name: Republic of El Salvador
   SMR:
     title: San Marino
     alternative_codes:
     - SM
     - '674'
     info:
-      official name: Republic of San Marino
+      official_name: Republic of San Marino
   SOM:
     title: Somalia
     alternative_codes:
     - SO
     - '706'
     info:
-      official name: Federal Republic of Somalia
+      official_name: Federal Republic of Somalia
   SPM:
     title: Saint Pierre and Miquelon
     alternative_codes:
@@ -1329,77 +1329,77 @@ categories:
     - RS
     - '688'
     info:
-      official name: Republic of Serbia
+      official_name: Republic of Serbia
   SSD:
     title: South Sudan
     alternative_codes:
     - SS
     - '728'
     info:
-      official name: Republic of South Sudan
+      official_name: Republic of South Sudan
   STP:
     title: Sao Tome and Principe
     alternative_codes:
     - ST
     - '678'
     info:
-      official name: Democratic Republic of Sao Tome and Principe
+      official_name: Democratic Republic of Sao Tome and Principe
   SUR:
     title: Suriname
     alternative_codes:
     - SR
     - '740'
     info:
-      official name: Republic of Suriname
+      official_name: Republic of Suriname
   SVK:
     title: Slovakia
     alternative_codes:
     - SK
     - '703'
     info:
-      official name: Slovak Republic
+      official_name: Slovak Republic
   SVN:
     title: Slovenia
     alternative_codes:
     - SI
     - '705'
     info:
-      official name: Republic of Slovenia
+      official_name: Republic of Slovenia
   SWE:
     title: Sweden
     alternative_codes:
     - SE
     - '752'
     info:
-      official name: Kingdom of Sweden
+      official_name: Kingdom of Sweden
   SWZ:
     title: Eswatini
     alternative_codes:
     - SZ
     - '748'
     info:
-      official name: Kingdom of Eswatini
+      official_name: Kingdom of Eswatini
   SXM:
     title: Sint Maarten (Dutch part)
     alternative_codes:
     - SX
     - '534'
     info:
-      official name: Sint Maarten (Dutch part)
+      official_name: Sint Maarten (Dutch part)
   SYC:
     title: Seychelles
     alternative_codes:
     - SC
     - '690'
     info:
-      official name: Republic of Seychelles
+      official_name: Republic of Seychelles
   SYR:
     title: Syrian Arab Republic
     alternative_codes:
     - SY
     - '760'
     info:
-      common name: Syria
+      common_name: Syria
   TCA:
     title: Turks and Caicos Islands
     alternative_codes:
@@ -1411,28 +1411,28 @@ categories:
     - TD
     - '148'
     info:
-      official name: Republic of Chad
+      official_name: Republic of Chad
   TGO:
     title: Togo
     alternative_codes:
     - TG
     - '768'
     info:
-      official name: Togolese Republic
+      official_name: Togolese Republic
   THA:
     title: Thailand
     alternative_codes:
     - TH
     - '764'
     info:
-      official name: Kingdom of Thailand
+      official_name: Kingdom of Thailand
   TJK:
     title: Tajikistan
     alternative_codes:
     - TJ
     - '762'
     info:
-      official name: Republic of Tajikistan
+      official_name: Republic of Tajikistan
   TKL:
     title: Tokelau
     alternative_codes:
@@ -1449,35 +1449,35 @@ categories:
     - TL
     - '626'
     info:
-      official name: Democratic Republic of Timor-Leste
+      official_name: Democratic Republic of Timor-Leste
   TON:
     title: Tonga
     alternative_codes:
     - TO
     - '776'
     info:
-      official name: Kingdom of Tonga
+      official_name: Kingdom of Tonga
   TTO:
     title: Trinidad and Tobago
     alternative_codes:
     - TT
     - '780'
     info:
-      official name: Republic of Trinidad and Tobago
+      official_name: Republic of Trinidad and Tobago
   TUN:
     title: Tunisia
     alternative_codes:
     - TN
     - '788'
     info:
-      official name: Republic of Tunisia
+      official_name: Republic of Tunisia
   TUR:
     title: Türkiye
     alternative_codes:
     - TR
     - '792'
     info:
-      official name: Republic of Türkiye
+      official_name: Republic of Türkiye
   TUV:
     title: Tuvalu
     alternative_codes:
@@ -1489,23 +1489,23 @@ categories:
     - TW
     - '158'
     info:
-      official name: Taiwan, Province of China
-      common name: Taiwan
+      official_name: Taiwan, Province of China
+      common_name: Taiwan
   TZA:
     title: Tanzania, United Republic of
     alternative_codes:
     - TZ
     - '834'
     info:
-      official name: United Republic of Tanzania
-      common name: Tanzania
+      official_name: United Republic of Tanzania
+      common_name: Tanzania
   UGA:
     title: Uganda
     alternative_codes:
     - UG
     - '800'
     info:
-      official name: Republic of Uganda
+      official_name: Republic of Uganda
   UKR:
     title: Ukraine
     alternative_codes:
@@ -1522,21 +1522,21 @@ categories:
     - UY
     - '858'
     info:
-      official name: Eastern Republic of Uruguay
+      official_name: Eastern Republic of Uruguay
   USA:
     title: United States
     alternative_codes:
     - US
     - '840'
     info:
-      official name: United States of America
+      official_name: United States of America
   UZB:
     title: Uzbekistan
     alternative_codes:
     - UZ
     - '860'
     info:
-      official name: Republic of Uzbekistan
+      official_name: Republic of Uzbekistan
   VAT:
     title: Holy See (Vatican City State)
     alternative_codes:
@@ -1555,8 +1555,8 @@ categories:
     - VE
     - '862'
     info:
-      official name: Bolivarian Republic of Venezuela
-      common name: Venezuela
+      official_name: Bolivarian Republic of Venezuela
+      common_name: Venezuela
       unfccc_name: Venezuela (Bolivarian Republic of)
   VGB:
     title: Virgin Islands, British
@@ -1564,29 +1564,29 @@ categories:
     - VG
     - '092'
     info:
-      official name: British Virgin Islands
+      official_name: British Virgin Islands
   VIR:
     title: Virgin Islands, U.S.
     alternative_codes:
     - VI
     - '850'
     info:
-      official name: Virgin Islands of the United States
+      official_name: Virgin Islands of the United States
   VNM:
     title: Viet Nam
     alternative_codes:
     - VN
     - '704'
     info:
-      official name: Socialist Republic of Viet Nam
-      common name: Vietnam
+      official_name: Socialist Republic of Viet Nam
+      common_name: Vietnam
   VUT:
     title: Vanuatu
     alternative_codes:
     - VU
     - '548'
     info:
-      official name: Republic of Vanuatu
+      official_name: Republic of Vanuatu
   WLF:
     title: Wallis and Futuna
     alternative_codes:
@@ -1598,35 +1598,35 @@ categories:
     - WS
     - '882'
     info:
-      official name: Independent State of Samoa
+      official_name: Independent State of Samoa
   YEM:
     title: Yemen
     alternative_codes:
     - YE
     - '887'
     info:
-      official name: Republic of Yemen
+      official_name: Republic of Yemen
   ZAF:
     title: South Africa
     alternative_codes:
     - ZA
     - '710'
     info:
-      official name: Republic of South Africa
+      official_name: Republic of South Africa
   ZMB:
     title: Zambia
     alternative_codes:
     - ZM
     - '894'
     info:
-      official name: Republic of Zambia
+      official_name: Republic of Zambia
   ZWE:
     title: Zimbabwe
     alternative_codes:
     - ZW
     - '716'
     info:
-      official name: Republic of Zimbabwe
+      official_name: Republic of Zimbabwe
   World:
     title: The world
     alternative_codes:

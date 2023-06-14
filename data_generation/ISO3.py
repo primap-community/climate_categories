@@ -374,9 +374,9 @@ def load_countries() -> (
 
         info = {}
         if "official_name" in country:
-            info["official name"] = country["official_name"]
+            info["official_name"] = country["official_name"]
         if "common_name" in country:
-            info["common name"] = country["common_name"]
+            info["common_name"] = country["common_name"]
         if info:
             country_spec["info"] = info
 
