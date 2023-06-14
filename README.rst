@@ -41,6 +41,7 @@ CRFDI_class      CRF GHG emission categories (DI query interface) + classificati
 GCB              Global Carbon Budget CO2 emission categories
 RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
+ISO3             Countries, country groups, and other areas from ISO 3166
 ===============  ==================================================================
 
 Included conversions between categorizations
