@@ -38,3 +38,7 @@ def test_g7g20():
     assert len(climate_categories.ISO3["G8"].children[0]) == 9
     # in the G20, the EU is enumerated
     assert len(climate_categories.ISO3["G20"].children[0]) == 20
+
+
+def test_oecd():
+    assert len(climate_categories.ISO3["OECD"].leaf_children[0]) == 38

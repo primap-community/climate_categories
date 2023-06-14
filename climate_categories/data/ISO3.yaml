@@ -5,7 +5,8 @@ comment: Countries, regions, and other areas. Also includes information on group
 references: 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html; iso-codes
   package, https://salsa.debian.org/iso-codes-team/iso-codes; UNFCCC Parties & Observers,
   https://unfccc.int/parties-observers; EU members, https://ec.europa.eu/eurostat/statistics-explained/;
-  G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20index.php?title=Glossary:EU_enlargements '
+  G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
+  OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htmindex.php?title=Glossary:EU_enlargements '
 institution: UN
 hierarchical: true
 last_update: '2023-04-27'
@@ -2328,3 +2329,44 @@ categories:
       - TUR
       - USA
       - ZAF
+  OECD:
+    title: Organisation for Economic Co-operation and Development
+    children:
+    - - AUS
+      - AUT
+      - BEL
+      - CAN
+      - CHE
+      - CHL
+      - COL
+      - CRI
+      - CZE
+      - DEU
+      - DNK
+      - ESP
+      - EST
+      - FIN
+      - FRA
+      - GBR
+      - GRC
+      - HUN
+      - IRL
+      - ISL
+      - ISR
+      - ITA
+      - JPN
+      - KOR
+      - LTU
+      - LUX
+      - LVA
+      - MEX
+      - NLD
+      - NOR
+      - NZL
+      - POL
+      - PRT
+      - SVK
+      - SVN
+      - SWE
+      - TUR
+      - USA

@@ -28,6 +28,7 @@ def main():
     categories = add_unfccc_categories(categories)
     categories = add_unfccc_names(categories)
     categories = add_g7g20(categories)
+    categories = add_oecd(categories)
 
     spec = {
         "name": "ISO3",
@@ -40,7 +41,9 @@ def main():
         "UNFCCC Parties & Observers, https://unfccc.int/parties-observers; "
         "EU members, https://ec.europa.eu/eurostat/statistics-explained/; "
         "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/"
-        "g7-und-g20"
+        "g7-und-g20; "
+        "OECD members, https://www.oecd.org/about/document/"
+        "ratification-oecd-convention.htm"
         "index.php?title=Glossary:EU_enlargements ",
         "institution": "UN",
         "last_update": "2023-04-27",
@@ -52,6 +55,55 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_oecd(categories):
+    categories["OECD"] = {
+        "title": "Organisation for Economic Co-operation and Development",
+        "children": [
+            [
+                "AUS",
+                "AUT",
+                "BEL",
+                "CAN",
+                "CHL",
+                "COL",
+                "CRI",
+                "CZE",
+                "DNK",
+                "EST",
+                "FIN",
+                "FRA",
+                "DEU",
+                "GRC",
+                "HUN",
+                "ISL",
+                "IRL",
+                "ISR",
+                "ITA",
+                "JPN",
+                "KOR",
+                "LVA",
+                "LTU",
+                "LUX",
+                "MEX",
+                "NLD",
+                "NZL",
+                "NOR",
+                "POL",
+                "PRT",
+                "SVK",
+                "SVN",
+                "ESP",
+                "SWE",
+                "CHE",
+                "TUR",
+                "GBR",
+                "USA",
+            ]
+        ],
+    }
+    return categories
 
 
 def add_g7g20(categories):
