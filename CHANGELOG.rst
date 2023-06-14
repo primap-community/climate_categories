@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.9.0 (2023-06-14)
+------------------
+* Add ISO3 terminology for countries, areas, and country groups including UNFCCC
+  signatories and Annex-I and Non-Annex-I groups and the evolution of the EU over time.
+
 0.8.5 (2023-05-23)
 ------------------
 * Re-release again.
