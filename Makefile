@@ -94,5 +94,6 @@ climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
 	venv/bin/python data_generation/convert_yaml_to_python.py $< $@
 
-README.rst:  CHANGELOG.rst .changelog_latest_version.rst  ## Update the citation information from zenodo
+.PHONY: README.rst
+README.rst:  ## Update the citation information from zenodo
 	venv/bin/python update_citation_info.py
