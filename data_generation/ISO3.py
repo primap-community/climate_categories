@@ -38,16 +38,14 @@ def main():
         "comment": "Countries, regions, and other areas. Also includes information on "
         "groups like being included in Annex I of the UN Framework Convention on "
         "Climate Change.",
-        "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html; "
-        "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes; "
-        "UNFCCC Parties & Observers, https://unfccc.int/parties-observers; "
-        "EU members, https://ec.europa.eu/eurostat/statistics-explained/"
-        "index.php?title=Glossary:EU_enlargements; ",
-        "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/"
-        "g7-und-g20; "
-        "OECD members, https://www.oecd.org/about/document/"
-        "ratification-oecd-convention.htm; "
-        "AOSIS members, https://www.aosis.org/about/member-states/"
+        "references": """ISO 3166, https://www.iso.org/iso-3166-country-codes.html;
+iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;
+UNFCCC Parties & Observers, https://unfccc.int/parties-observers;
+EU members,
+https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
+G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
+OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
+AOSIS members, https://www.aosis.org/about/member-states/""",
         "institution": "UN",
         "last_update": "2023-04-27",
         "hierarchical": True,
