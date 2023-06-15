@@ -27,6 +27,7 @@ def main():
     categories = add_eu_categories(categories)
     categories = add_unfccc_categories(categories)
     categories = add_unfccc_names(categories)
+    categories = add_aosis(categories)
     categories = add_g7g20(categories)
     categories = add_oecd(categories)
     categories = add_historical_names(categories)
@@ -37,15 +38,14 @@ def main():
         "comment": "Countries, regions, and other areas. Also includes information on "
         "groups like being included in Annex I of the UN Framework Convention on "
         "Climate Change.",
-        "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html; "
-        "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes; "
-        "UNFCCC Parties & Observers, https://unfccc.int/parties-observers; "
-        "EU members, https://ec.europa.eu/eurostat/statistics-explained/; "
-        "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/"
-        "g7-und-g20; "
-        "OECD members, https://www.oecd.org/about/document/"
-        "ratification-oecd-convention.htm"
-        "index.php?title=Glossary:EU_enlargements ",
+        "references": """ISO 3166, https://www.iso.org/iso-3166-country-codes.html;
+iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;
+UNFCCC Parties & Observers, https://unfccc.int/parties-observers;
+EU members,
+https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
+G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
+OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
+AOSIS members, https://www.aosis.org/about/member-states/""",
         "institution": "UN",
         "last_update": "2023-04-27",
         "hierarchical": True,
@@ -56,6 +56,56 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_aosis(categories):
+    categories["AOSIS"] = {
+        "title": "Alliance of Small Island States",
+        "children": [
+            [
+                "ATG",
+                "BHS",
+                "BRB",
+                "BLZ",
+                "CUB",
+                "DMA",
+                "DOM",
+                "GRD",
+                "GUY",
+                "HTI",
+                "JAM",
+                "KNA",
+                "LCA",
+                "VCT",
+                "SUR",
+                "TTO",
+                "COK",
+                "FSM",
+                "FJI",
+                "KIR",
+                "NRU",
+                "NIU",
+                "PLW",
+                "PNG",
+                "MHL",
+                "WSM",
+                "SLB",
+                "TON",
+                "TUV",
+                "VUT",
+                "CPV",
+                "COM",
+                "GNB",
+                "MDV",
+                "MUS",
+                "STP",
+                "SYC",
+                "SGP",
+                "TLS",
+            ]
+        ],
+    }
+    return categories
 
 
 def add_historical_names(categories):
