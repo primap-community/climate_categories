@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.9.1 (2023-06-15)
+------------------
+* Add AOSIS country group to ISO3 categorization.
+
 0.9.0 (2023-06-14)
 ------------------
 * Add ISO3 terminology for countries, areas, and country groups including UNFCCC
