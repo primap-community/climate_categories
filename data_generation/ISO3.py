@@ -27,6 +27,7 @@ def main():
     categories = add_eu_categories(categories)
     categories = add_unfccc_categories(categories)
     categories = add_unfccc_names(categories)
+    categories = add_aosis(categories)
     categories = add_g7g20(categories)
     categories = add_oecd(categories)
     categories = add_historical_names(categories)
@@ -43,7 +44,8 @@ def main():
         "EU members, https://ec.europa.eu/eurostat/statistics-explained/; "
         "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/"
         "g7-und-g20; "
-        "OECD members, https://www.oecd.org/about/document/"
+        "OECD members, https://www.oecd.org/about/document/; "
+        "AOSIS members, https://www.aosis.org/about/member-states/"
         "ratification-oecd-convention.htm"
         "index.php?title=Glossary:EU_enlargements ",
         "institution": "UN",
@@ -56,6 +58,56 @@ def main():
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_aosis(categories):
+    categories["AOSIS"] = {
+        "title": "Alliance of Small Island States",
+        "children": [
+            [
+                "ATG",
+                "BHS",
+                "BRB",
+                "BLZ",
+                "CUB",
+                "DMA",
+                "DOM",
+                "GRD",
+                "GUY",
+                "HTI",
+                "JAM",
+                "KNA",
+                "LCA",
+                "VCT",
+                "SUR",
+                "TTO",
+                "COK",
+                "FSM",
+                "FJI",
+                "KIR",
+                "NRU",
+                "NIU",
+                "PLW",
+                "PNG",
+                "MHL",
+                "WSM",
+                "SLB",
+                "TON",
+                "TUV",
+                "VUT",
+                "CPV",
+                "COM",
+                "GNB",
+                "MDV",
+                "MUS",
+                "STP",
+                "SYC",
+                "SGP",
+                "TLS",
+            ]
+        ],
+    }
+    return categories
 
 
 def add_historical_names(categories):

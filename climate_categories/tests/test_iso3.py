@@ -42,3 +42,7 @@ def test_g7g20():
 
 def test_oecd():
     assert len(climate_categories.ISO3["OECD"].leaf_children[0]) == 38
+
+
+def test_aosis():
+    assert len(climate_categories.ISO3["AOSIS"].leaf_children[0]) == 39

@@ -6,7 +6,7 @@ references: 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html; iso-code
   package, https://salsa.debian.org/iso-codes-team/iso-codes; UNFCCC Parties & Observers,
   https://unfccc.int/parties-observers; EU members, https://ec.europa.eu/eurostat/statistics-explained/;
   G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
-  OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htmindex.php?title=Glossary:EU_enlargements '
+  OECD members, https://www.oecd.org/about/document/; AOSIS members, https://www.aosis.org/about/member-states/ratification-oecd-convention.htmindex.php?title=Glossary:EU_enlargements '
 institution: UN
 hierarchical: true
 last_update: '2023-04-27'
@@ -2285,6 +2285,48 @@ categories:
     children:
     - - Annex-I
       - Non-Annex-I
+  AOSIS:
+    title: Alliance of Small Island States
+    children:
+    - - ATG
+      - BHS
+      - BLZ
+      - BRB
+      - COK
+      - COM
+      - CPV
+      - CUB
+      - DMA
+      - DOM
+      - FJI
+      - FSM
+      - GNB
+      - GRD
+      - GUY
+      - HTI
+      - JAM
+      - KIR
+      - KNA
+      - LCA
+      - MDV
+      - MHL
+      - MUS
+      - NIU
+      - NRU
+      - PLW
+      - PNG
+      - SGP
+      - SLB
+      - STP
+      - SUR
+      - SYC
+      - TLS
+      - TON
+      - TTO
+      - TUV
+      - VCT
+      - VUT
+      - WSM
   G7:
     title: Group of Seven
     children:
