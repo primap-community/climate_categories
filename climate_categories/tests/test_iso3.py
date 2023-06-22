@@ -27,9 +27,16 @@ def test_unfccc():
     assert len(climate_categories.ISO3["Non-Annex-I"].children[0]) == 155
     # leaf children excludes EU, because EU is not a leaf
     assert len(climate_categories.ISO3["UNFCCC"].leaf_children[0]) == 197
+    assert len(climate_categories.ISO3["UNFCCC"].children[0]) == 198
     assert (
-        climate_categories.ISO3["EU"] in climate_categories.ISO3["UNFCCC"].descendants
+        climate_categories.ISO3["EU"] in climate_categories.ISO3["UNFCCC"].children[0]
     )
+    assert climate_categories.ISO3["Annex-I"] in climate_categories.ISO3.descendants(
+        "UNFCCC"
+    )
+    assert climate_categories.ISO3[
+        "Non-Annex-I"
+    ] in climate_categories.ISO3.descendants("UNFCCC")
 
 
 def test_g7g20():
