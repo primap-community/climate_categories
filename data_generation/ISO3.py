@@ -47,9 +47,9 @@ G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
 AOSIS members, https://www.aosis.org/about/member-states/""",
         "institution": "UN",
-        "last_update": "2023-04-27",
+        "last_update": "2023-06-22",
         "hierarchical": True,
-        "version": "2023-04-27",
+        "version": "2023-06-22",
         "total_sum": False,
         "categories": categories,
         "canonical_top_level_category": "WORLD",
@@ -427,7 +427,11 @@ def add_unfccc_categories(categories):
     categories["UNFCCC"] = {
         "title": "Parties to the UNFCCC",
         "comment": "Parties to the UN Framework Convention on Climate Change.",
-        "children": [["Annex-I", "Non-Annex-I"]],
+        "children": [
+            categories["Annex-I"]["children"][0]
+            + categories["Non-Annex-I"]["children"][0],
+            ["Annex-I", "Non-Annex-I"],
+        ],
     }
 
     return categories
