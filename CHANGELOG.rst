@@ -2,6 +2,12 @@
 Changelog
 =========
 
+0.9.2 (2023-06-22)
+------------------
+* ISO3: Add all parties to the UNFCCC as direct children of UNFCCC as first set of
+  children. That way, it is easy to ergonomically get all parties to the UNFCCC without
+  adding up Annex-I and Non-Annex-I parties manually.
+
 0.9.1 (2023-06-15)
 ------------------
 * Add AOSIS country group to ISO3 categorization.
