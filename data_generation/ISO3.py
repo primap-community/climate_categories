@@ -47,9 +47,9 @@ G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
 AOSIS members, https://www.aosis.org/about/member-states/""",
         "institution": "UN",
-        "last_update": "2023-04-27",
+        "last_update": "2023-06-22",
         "hierarchical": True,
-        "version": "2023-04-27",
+        "version": "2023-06-22",
         "total_sum": False,
         "categories": categories,
         "canonical_top_level_category": "WORLD",

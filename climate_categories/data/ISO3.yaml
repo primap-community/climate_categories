@@ -10,8 +10,8 @@ references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-cod
   AOSIS members, https://www.aosis.org/about/member-states/"
 institution: UN
 hierarchical: true
-last_update: '2023-04-27'
-version: '2023-04-27'
+last_update: '2023-06-22'
+version: '2023-06-22'
 total_sum: false
 canonical_top_level_category: World
 categories:

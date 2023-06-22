@@ -7,8 +7,8 @@ spec = {
     "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers, https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n AOSIS members, https://www.aosis.org/about/member-states/",
     "institution": "UN",
     "hierarchical": True,
-    "last_update": "2023-04-27",
-    "version": "2023-04-27",
+    "last_update": "2023-06-22",
+    "version": "2023-06-22",
     "total_sum": False,
     "canonical_top_level_category": "World",
     "categories": {
