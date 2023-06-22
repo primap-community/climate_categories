@@ -427,7 +427,11 @@ def add_unfccc_categories(categories):
     categories["UNFCCC"] = {
         "title": "Parties to the UNFCCC",
         "comment": "Parties to the UN Framework Convention on Climate Change.",
-        "children": [["Annex-I", "Non-Annex-I"]],
+        "children": [
+            categories["Annex-I"]["children"][0]
+            + categories["Non-Annex-I"]["children"][0],
+            ["Annex-I", "Non-Annex-I"],
+        ],
     }
 
     return categories
