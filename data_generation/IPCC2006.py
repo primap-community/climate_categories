@@ -203,6 +203,8 @@ def main():
 
     categories["2.B.3"]["info"]["gases"] = ["N2O", "CO2", "CH4", "NOx"]
 
+    categories["3.A"]["info"]["gases"] = ["N2O", "CH4"]
+
     for cat in ("3.B.1", "3.B.1.b"):
         categories[cat]["info"]["gases"] = [
             "CO2",
