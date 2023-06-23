@@ -42,3 +42,11 @@ def test_conversion():
     missing96, missing06 = conv.find_unmapped_categories()
     assert len(missing96) == 71
     assert len(missing06) == 110
+
+
+def test_n2o_3a():
+    # in the original classification, N2O is missing in 3.A in IPCC2006, although
+    # it is included in 3.A.2. Given IPCC2006 is total_sum, this makes no sense.
+    # we correct this
+    assert "N2O" in climate_categories.IPCC2006["3.A"].info["gases"]
+    assert "N2O" in climate_categories.IPCC2006["3.A.2"].info["gases"]
