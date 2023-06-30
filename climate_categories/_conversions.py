@@ -629,7 +629,13 @@ class ConversionSpec(ConversionBase):
         The version of the ConversionRules, if there are multiple versions.
     """
 
-    _meta_data_keys = ["comment", "references", "institution", "last_update", "version"]
+    _meta_data_keys: typing.ClassVar[list[str]] = [
+        "comment",
+        "references",
+        "institution",
+        "last_update",
+        "version",
+    ]
 
     _strictyaml_metadata_schema = sy.Map(
         {
