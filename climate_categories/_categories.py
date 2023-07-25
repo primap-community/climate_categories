@@ -301,7 +301,7 @@ class Categorization:
         self._add_categories(categories)
 
         # is filled in __init__.py to contain all categorizations
-        self._cats: dict[str, "Categorization"] = {}
+        self._cats: dict[str, Categorization] = {}
 
     def __hash__(self):
         return hash(self.name)

@@ -932,8 +932,8 @@ class Conversion(ConversionBase):
         one_to_many = []
         many_to_one = []
         many_to_many = []
-        cats_a: set["Category"] = set()
-        cats_b: set["Category"] = set()
+        cats_a: set[Category] = set()
+        cats_b: set[Category] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -986,8 +986,8 @@ class Conversion(ConversionBase):
             A list of categories missing from categorization_a and categorization_b,
             respectively.
         """
-        cats_a: set["Category"] = set()
-        cats_b: set["Category"] = set()
+        cats_a: set[Category] = set()
+        cats_b: set[Category] = set()
         for rule in self.rules:
             cats_a.update(rule.factors_categories_a.keys())
             cats_b.update(rule.factors_categories_b.keys())
@@ -1207,7 +1207,7 @@ class Conversion(ConversionBase):
         )
         # TODO: for now, only use rules that don't have aux categories
         relevant_rules = [rule for rule in relevant_rules if not rule.is_restricted]
-        projected_ancestral_set: list[set["HierarchicalCategory"]] = []
+        projected_ancestral_set: list[set[HierarchicalCategory]] = []
         for rule in relevant_rules:
             if source_categorization == self.categorization_a:
                 fc = rule.factors_categories_b

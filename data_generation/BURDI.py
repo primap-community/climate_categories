@@ -89,11 +89,11 @@ def add_relationships(r, categories):
         for nid in categories[code]["info"]["numerical_ids"]:
             try:
                 for child in r.non_annex_one_reader.category_tree.children(int(nid)):
-                    child_code = [
+                    child_code = next(
                         xcode
                         for xcode, x in categories.items()
                         if str(int(child.identifier)) in x["info"]["numerical_ids"]
-                    ][0]
+                    )
                     child_codes.append(child_code)
             except treelib.tree.NodeIDAbsentError:
                 # parent code is not included in the metadata
