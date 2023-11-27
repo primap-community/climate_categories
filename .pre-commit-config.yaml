@@ -33,7 +33,7 @@ repos:
       - id: doc8
         additional_dependencies: ['pygments-csv-lexer']
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: '1.7.0'
+    rev: '1.7.1'
     hooks:
       - id: nbqa-black
         args: [ --nbqa-mutate, --line-length=75 ]
