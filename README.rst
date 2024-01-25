@@ -42,6 +42,7 @@ GCB              Global Carbon Budget CO2 emission categories
 RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
 ISO3             Countries, country groups, and other areas from ISO 3166
+ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
 ===============  ==================================================================
 
 Included conversions between categorizations
@@ -60,7 +61,7 @@ Copyright 2021, Potsdam-Institut für Klimafolgenforschung e.V.
 
 Copyright 2021, Robert Gieseke
 
-Copyright 2023, Climate Resource Pty Ltd
+Copyright 2023-2024, Climate Resource Pty Ltd
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
 file except in compliance with the License. You may obtain a copy of the License at
