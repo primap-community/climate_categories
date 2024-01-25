@@ -79,4 +79,4 @@ If you use this library and want to cite it, please cite it as:
 
 Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2024-01-25).
 pik-primap/climate_categories: climate_categories Version 0.10.1.
-Zenodo. https://doi.org/10.5281/zenodo.10569044
+Zenodo. https://doi.org/10.5281/zenodo.10569100
