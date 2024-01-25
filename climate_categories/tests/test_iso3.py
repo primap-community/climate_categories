@@ -57,6 +57,6 @@ def test_aosis():
 
 def test_gcam():
     assert (
-        len(climate_categories.ISO3_GCAM["GCAM v7.0|Southeast Asia"].leaf_children[0])
+        len(climate_categories.ISO3_GCAM["GCAM 7.0|Southeast Asia"].leaf_children[0])
         == 37
     )
