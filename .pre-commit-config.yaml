@@ -4,41 +4,30 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: 'v4.5.0'
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
       - id: check-added-large-files
       - id: check-ast
-      - id: fix-byte-order-marker
       - id: check-case-conflict
+      - id: check-json
       - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: debug-statements
       - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
       - id: mixed-line-ending
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      # Prevent committing .rej files
+      - id: forbidden-files
+        name: forbidden files
+        entry: found Copier update rejection files; review them and remove them
+        language: fail
+        files: "\\.rej$"
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: 'v0.1.14'
     hooks:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix ]
-  - repo: https://github.com/psf/black
-    rev: '23.12.1'
-    hooks:
-      - id: black
-  - repo: https://github.com/keewis/blackdoc
-    rev: v0.3.9
-    hooks:
-      - id: blackdoc
-  - repo: https://github.com/PyCQA/doc8
-    rev: 'v1.1.1'
-    hooks:
-      - id: doc8
-        additional_dependencies: ['pygments-csv-lexer']
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: '1.7.1'
-    hooks:
-      - id: nbqa-black
-        args: [ --nbqa-mutate, --line-length=75 ]
-      - id: nbqa-check-ast
-  - repo: https://github.com/asottile/blacken-docs
-    rev: '1.16.0'
-    hooks:
-      - id: blacken-docs
+      - id: ruff-format
