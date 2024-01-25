@@ -85,6 +85,7 @@ cache: climate_categories/data/gas.py
 cache: climate_categories/data/CRFDI.py
 cache: climate_categories/data/CRFDI_class.py
 cache: climate_categories/data/ISO3.py
+cache: climate_categories/data/ISO3_GCAM.py
 cache: climate_categories/data/BURDI.py
 cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
 
