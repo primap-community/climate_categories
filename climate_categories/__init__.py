@@ -53,6 +53,7 @@ GCB = _read_py_hier("GCB")
 RCMIP = _read_py_hier("RCMIP")
 gas = _read_py_hier("gas")
 ISO3 = _read_py_hier("ISO3")
+ISO3_GCAM = _read_py_hier("ISO3_GCAM")
 
 
 def find_code(code: str) -> set[Category]:
