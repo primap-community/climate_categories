@@ -2042,9 +2042,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Africa_Eastern": {
+        "GCAM 5.1|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v5.1",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 5.1",
             "children": [
                 [
                     "BDI",
@@ -2063,21 +2063,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Africa_Northern": {
+        "GCAM 5.1|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v5.1",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 5.1",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v5.1|Africa_Southern": {
+        "GCAM 5.1|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v5.1",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 5.1",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v5.1|Africa_Western": {
+        "GCAM 5.1|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v5.1",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 5.1",
             "children": [
                 [
                     "BEN",
@@ -2107,29 +2107,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Argentina": {
+        "GCAM 5.1|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v5.1",
+            "comment": "Region 'Argentina' as defined in GCAM version 5.1",
             "children": [["ARG"]],
         },
-        "GCAM v5.1|Australia_NZ": {
+        "GCAM 5.1|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v5.1",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 5.1",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v5.1|Brazil": {
+        "GCAM 5.1|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v5.1",
+            "comment": "Region 'Brazil' as defined in GCAM version 5.1",
             "children": [["BRA"]],
         },
-        "GCAM v5.1|Canada": {
+        "GCAM 5.1|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v5.1",
+            "comment": "Region 'Canada' as defined in GCAM version 5.1",
             "children": [["CAN"]],
         },
-        "GCAM v5.1|Central America and the Caribbean": {
+        "GCAM 5.1|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v5.1",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 5.1",
             "children": [
                 [
                     "ABW",
@@ -2162,26 +2162,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Central Asia": {
+        "GCAM 5.1|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v5.1",
+            "comment": "Region 'Central Asia' as defined in GCAM version 5.1",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v5.1|China": {
+        "GCAM 5.1|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v5.1",
+            "comment": "Region 'China' as defined in GCAM version 5.1",
             "children": [["CHN"]],
         },
-        "GCAM v5.1|Colombia": {
+        "GCAM 5.1|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v5.1",
+            "comment": "Region 'Colombia' as defined in GCAM version 5.1",
             "children": [["COL"]],
         },
-        "GCAM v5.1|EU-12": {
+        "GCAM 5.1|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v5.1",
+            "comment": "Region 'EU-12' as defined in GCAM version 5.1",
             "children": [
                 [
                     "BGR",
@@ -2199,9 +2199,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|EU-15": {
+        "GCAM 5.1|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v5.1",
+            "comment": "Region 'EU-15' as defined in GCAM version 5.1",
             "children": [
                 [
                     "AND",
@@ -2225,44 +2225,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Europe_Eastern": {
+        "GCAM 5.1|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v5.1",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 5.1",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v5.1|European Free Trade Association": {
+        "GCAM 5.1|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v5.1",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 5.1",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v5.1|Europe_Non_EU": {
+        "GCAM 5.1|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v5.1",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 5.1",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v5.1|India": {
+        "GCAM 5.1|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v5.1",
+            "comment": "Region 'India' as defined in GCAM version 5.1",
             "children": [["IND"]],
         },
-        "GCAM v5.1|Indonesia": {
+        "GCAM 5.1|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v5.1",
+            "comment": "Region 'Indonesia' as defined in GCAM version 5.1",
             "children": [["IDN"]],
         },
-        "GCAM v5.1|Japan": {
+        "GCAM 5.1|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v5.1",
+            "comment": "Region 'Japan' as defined in GCAM version 5.1",
             "children": [["JPN"]],
         },
-        "GCAM v5.1|Mexico": {
+        "GCAM 5.1|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v5.1",
+            "comment": "Region 'Mexico' as defined in GCAM version 5.1",
             "children": [["MEX"]],
         },
-        "GCAM v5.1|Middle East": {
+        "GCAM 5.1|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v5.1",
+            "comment": "Region 'Middle East' as defined in GCAM version 5.1",
             "children": [
                 [
                     "ARE",
@@ -2282,39 +2282,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|Pakistan": {
+        "GCAM 5.1|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v5.1",
+            "comment": "Region 'Pakistan' as defined in GCAM version 5.1",
             "children": [["PAK"]],
         },
-        "GCAM v5.1|Russia": {
+        "GCAM 5.1|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v5.1",
+            "comment": "Region 'Russia' as defined in GCAM version 5.1",
             "children": [["RUS"]],
         },
-        "GCAM v5.1|South Africa": {
+        "GCAM 5.1|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v5.1",
+            "comment": "Region 'South Africa' as defined in GCAM version 5.1",
             "children": [["ZAF"]],
         },
-        "GCAM v5.1|South America_Northern": {
+        "GCAM 5.1|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v5.1",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 5.1",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v5.1|South America_Southern": {
+        "GCAM 5.1|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v5.1",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 5.1",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v5.1|South Asia": {
+        "GCAM 5.1|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v5.1",
+            "comment": "Region 'South Asia' as defined in GCAM version 5.1",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v5.1|Southeast Asia": {
+        "GCAM 5.1|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v5.1",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 5.1",
             "children": [
                 [
                     "ASM",
@@ -2357,24 +2357,24 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.1|South Korea": {
+        "GCAM 5.1|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v5.1",
+            "comment": "Region 'South Korea' as defined in GCAM version 5.1",
             "children": [["KOR"]],
         },
-        "GCAM v5.1|Taiwan": {
+        "GCAM 5.1|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v5.1",
+            "comment": "Region 'Taiwan' as defined in GCAM version 5.1",
             "children": [["TWN"]],
         },
-        "GCAM v5.1|USA": {
+        "GCAM 5.1|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v5.1",
+            "comment": "Region 'USA' as defined in GCAM version 5.1",
             "children": [["USA"]],
         },
-        "GCAM v5.2|Africa_Eastern": {
+        "GCAM 5.2|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v5.2",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 5.2",
             "children": [
                 [
                     "BDI",
@@ -2393,21 +2393,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|Africa_Northern": {
+        "GCAM 5.2|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v5.2",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 5.2",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v5.2|Africa_Southern": {
+        "GCAM 5.2|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v5.2",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 5.2",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v5.2|Africa_Western": {
+        "GCAM 5.2|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v5.2",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 5.2",
             "children": [
                 [
                     "BEN",
@@ -2437,29 +2437,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|Argentina": {
+        "GCAM 5.2|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v5.2",
+            "comment": "Region 'Argentina' as defined in GCAM version 5.2",
             "children": [["ARG"]],
         },
-        "GCAM v5.2|Australia_NZ": {
+        "GCAM 5.2|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v5.2",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 5.2",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v5.2|Brazil": {
+        "GCAM 5.2|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v5.2",
+            "comment": "Region 'Brazil' as defined in GCAM version 5.2",
             "children": [["BRA"]],
         },
-        "GCAM v5.2|Canada": {
+        "GCAM 5.2|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v5.2",
+            "comment": "Region 'Canada' as defined in GCAM version 5.2",
             "children": [["CAN"]],
         },
-        "GCAM v5.2|Central America and the Caribbean": {
+        "GCAM 5.2|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v5.2",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 5.2",
             "children": [
                 [
                     "ABW",
@@ -2492,26 +2492,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|Central Asia": {
+        "GCAM 5.2|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v5.2",
+            "comment": "Region 'Central Asia' as defined in GCAM version 5.2",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v5.2|China": {
+        "GCAM 5.2|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v5.2",
+            "comment": "Region 'China' as defined in GCAM version 5.2",
             "children": [["CHN"]],
         },
-        "GCAM v5.2|Colombia": {
+        "GCAM 5.2|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v5.2",
+            "comment": "Region 'Colombia' as defined in GCAM version 5.2",
             "children": [["COL"]],
         },
-        "GCAM v5.2|EU-12": {
+        "GCAM 5.2|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v5.2",
+            "comment": "Region 'EU-12' as defined in GCAM version 5.2",
             "children": [
                 [
                     "BGR",
@@ -2529,9 +2529,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|EU-15": {
+        "GCAM 5.2|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v5.2",
+            "comment": "Region 'EU-15' as defined in GCAM version 5.2",
             "children": [
                 [
                     "AND",
@@ -2555,44 +2555,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|Europe_Eastern": {
+        "GCAM 5.2|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v5.2",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 5.2",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v5.2|European Free Trade Association": {
+        "GCAM 5.2|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v5.2",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 5.2",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v5.2|Europe_Non_EU": {
+        "GCAM 5.2|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v5.2",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 5.2",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v5.2|India": {
+        "GCAM 5.2|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v5.2",
+            "comment": "Region 'India' as defined in GCAM version 5.2",
             "children": [["IND"]],
         },
-        "GCAM v5.2|Indonesia": {
+        "GCAM 5.2|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v5.2",
+            "comment": "Region 'Indonesia' as defined in GCAM version 5.2",
             "children": [["IDN"]],
         },
-        "GCAM v5.2|Japan": {
+        "GCAM 5.2|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v5.2",
+            "comment": "Region 'Japan' as defined in GCAM version 5.2",
             "children": [["JPN"]],
         },
-        "GCAM v5.2|Mexico": {
+        "GCAM 5.2|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v5.2",
+            "comment": "Region 'Mexico' as defined in GCAM version 5.2",
             "children": [["MEX"]],
         },
-        "GCAM v5.2|Middle East": {
+        "GCAM 5.2|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v5.2",
+            "comment": "Region 'Middle East' as defined in GCAM version 5.2",
             "children": [
                 [
                     "ARE",
@@ -2612,39 +2612,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|Pakistan": {
+        "GCAM 5.2|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v5.2",
+            "comment": "Region 'Pakistan' as defined in GCAM version 5.2",
             "children": [["PAK"]],
         },
-        "GCAM v5.2|Russia": {
+        "GCAM 5.2|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v5.2",
+            "comment": "Region 'Russia' as defined in GCAM version 5.2",
             "children": [["RUS"]],
         },
-        "GCAM v5.2|South Africa": {
+        "GCAM 5.2|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v5.2",
+            "comment": "Region 'South Africa' as defined in GCAM version 5.2",
             "children": [["ZAF"]],
         },
-        "GCAM v5.2|South America_Northern": {
+        "GCAM 5.2|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v5.2",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 5.2",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v5.2|South America_Southern": {
+        "GCAM 5.2|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v5.2",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 5.2",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v5.2|South Asia": {
+        "GCAM 5.2|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v5.2",
+            "comment": "Region 'South Asia' as defined in GCAM version 5.2",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v5.2|Southeast Asia": {
+        "GCAM 5.2|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v5.2",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 5.2",
             "children": [
                 [
                     "ASM",
@@ -2687,24 +2687,24 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.2|South Korea": {
+        "GCAM 5.2|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v5.2",
+            "comment": "Region 'South Korea' as defined in GCAM version 5.2",
             "children": [["KOR"]],
         },
-        "GCAM v5.2|Taiwan": {
+        "GCAM 5.2|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v5.2",
+            "comment": "Region 'Taiwan' as defined in GCAM version 5.2",
             "children": [["TWN"]],
         },
-        "GCAM v5.2|USA": {
+        "GCAM 5.2|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v5.2",
+            "comment": "Region 'USA' as defined in GCAM version 5.2",
             "children": [["USA"]],
         },
-        "GCAM v5.3|Africa_Eastern": {
+        "GCAM 5.3|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v5.3",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 5.3",
             "children": [
                 [
                     "BDI",
@@ -2723,21 +2723,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|Africa_Northern": {
+        "GCAM 5.3|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v5.3",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 5.3",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v5.3|Africa_Southern": {
+        "GCAM 5.3|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v5.3",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 5.3",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v5.3|Africa_Western": {
+        "GCAM 5.3|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v5.3",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 5.3",
             "children": [
                 [
                     "BEN",
@@ -2767,29 +2767,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|Argentina": {
+        "GCAM 5.3|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v5.3",
+            "comment": "Region 'Argentina' as defined in GCAM version 5.3",
             "children": [["ARG"]],
         },
-        "GCAM v5.3|Australia_NZ": {
+        "GCAM 5.3|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v5.3",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 5.3",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v5.3|Brazil": {
+        "GCAM 5.3|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v5.3",
+            "comment": "Region 'Brazil' as defined in GCAM version 5.3",
             "children": [["BRA"]],
         },
-        "GCAM v5.3|Canada": {
+        "GCAM 5.3|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v5.3",
+            "comment": "Region 'Canada' as defined in GCAM version 5.3",
             "children": [["CAN"]],
         },
-        "GCAM v5.3|Central America and the Caribbean": {
+        "GCAM 5.3|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v5.3",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 5.3",
             "children": [
                 [
                     "ABW",
@@ -2822,26 +2822,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|Central Asia": {
+        "GCAM 5.3|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v5.3",
+            "comment": "Region 'Central Asia' as defined in GCAM version 5.3",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v5.3|China": {
+        "GCAM 5.3|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v5.3",
+            "comment": "Region 'China' as defined in GCAM version 5.3",
             "children": [["CHN"]],
         },
-        "GCAM v5.3|Colombia": {
+        "GCAM 5.3|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v5.3",
+            "comment": "Region 'Colombia' as defined in GCAM version 5.3",
             "children": [["COL"]],
         },
-        "GCAM v5.3|EU-12": {
+        "GCAM 5.3|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v5.3",
+            "comment": "Region 'EU-12' as defined in GCAM version 5.3",
             "children": [
                 [
                     "BGR",
@@ -2859,9 +2859,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|EU-15": {
+        "GCAM 5.3|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v5.3",
+            "comment": "Region 'EU-15' as defined in GCAM version 5.3",
             "children": [
                 [
                     "AND",
@@ -2885,44 +2885,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|Europe_Eastern": {
+        "GCAM 5.3|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v5.3",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 5.3",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v5.3|European Free Trade Association": {
+        "GCAM 5.3|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v5.3",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 5.3",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v5.3|Europe_Non_EU": {
+        "GCAM 5.3|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v5.3",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 5.3",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v5.3|India": {
+        "GCAM 5.3|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v5.3",
+            "comment": "Region 'India' as defined in GCAM version 5.3",
             "children": [["IND"]],
         },
-        "GCAM v5.3|Indonesia": {
+        "GCAM 5.3|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v5.3",
+            "comment": "Region 'Indonesia' as defined in GCAM version 5.3",
             "children": [["IDN"]],
         },
-        "GCAM v5.3|Japan": {
+        "GCAM 5.3|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v5.3",
+            "comment": "Region 'Japan' as defined in GCAM version 5.3",
             "children": [["JPN"]],
         },
-        "GCAM v5.3|Mexico": {
+        "GCAM 5.3|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v5.3",
+            "comment": "Region 'Mexico' as defined in GCAM version 5.3",
             "children": [["MEX"]],
         },
-        "GCAM v5.3|Middle East": {
+        "GCAM 5.3|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v5.3",
+            "comment": "Region 'Middle East' as defined in GCAM version 5.3",
             "children": [
                 [
                     "ARE",
@@ -2942,39 +2942,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|Pakistan": {
+        "GCAM 5.3|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v5.3",
+            "comment": "Region 'Pakistan' as defined in GCAM version 5.3",
             "children": [["PAK"]],
         },
-        "GCAM v5.3|Russia": {
+        "GCAM 5.3|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v5.3",
+            "comment": "Region 'Russia' as defined in GCAM version 5.3",
             "children": [["RUS"]],
         },
-        "GCAM v5.3|South Africa": {
+        "GCAM 5.3|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v5.3",
+            "comment": "Region 'South Africa' as defined in GCAM version 5.3",
             "children": [["ZAF"]],
         },
-        "GCAM v5.3|South America_Northern": {
+        "GCAM 5.3|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v5.3",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 5.3",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v5.3|South America_Southern": {
+        "GCAM 5.3|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v5.3",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 5.3",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v5.3|South Asia": {
+        "GCAM 5.3|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v5.3",
+            "comment": "Region 'South Asia' as defined in GCAM version 5.3",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v5.3|Southeast Asia": {
+        "GCAM 5.3|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v5.3",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 5.3",
             "children": [
                 [
                     "ASM",
@@ -3017,24 +3017,24 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.3|South Korea": {
+        "GCAM 5.3|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v5.3",
+            "comment": "Region 'South Korea' as defined in GCAM version 5.3",
             "children": [["KOR"]],
         },
-        "GCAM v5.3|Taiwan": {
+        "GCAM 5.3|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v5.3",
+            "comment": "Region 'Taiwan' as defined in GCAM version 5.3",
             "children": [["TWN"]],
         },
-        "GCAM v5.3|USA": {
+        "GCAM 5.3|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v5.3",
+            "comment": "Region 'USA' as defined in GCAM version 5.3",
             "children": [["USA"]],
         },
-        "GCAM v5.4|Africa_Eastern": {
+        "GCAM 5.4|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v5.4",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 5.4",
             "children": [
                 [
                     "BDI",
@@ -3053,21 +3053,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|Africa_Northern": {
+        "GCAM 5.4|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v5.4",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 5.4",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v5.4|Africa_Southern": {
+        "GCAM 5.4|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v5.4",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 5.4",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v5.4|Africa_Western": {
+        "GCAM 5.4|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v5.4",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 5.4",
             "children": [
                 [
                     "BEN",
@@ -3097,29 +3097,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|Argentina": {
+        "GCAM 5.4|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v5.4",
+            "comment": "Region 'Argentina' as defined in GCAM version 5.4",
             "children": [["ARG"]],
         },
-        "GCAM v5.4|Australia_NZ": {
+        "GCAM 5.4|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v5.4",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 5.4",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v5.4|Brazil": {
+        "GCAM 5.4|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v5.4",
+            "comment": "Region 'Brazil' as defined in GCAM version 5.4",
             "children": [["BRA"]],
         },
-        "GCAM v5.4|Canada": {
+        "GCAM 5.4|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v5.4",
+            "comment": "Region 'Canada' as defined in GCAM version 5.4",
             "children": [["CAN"]],
         },
-        "GCAM v5.4|Central America and the Caribbean": {
+        "GCAM 5.4|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v5.4",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 5.4",
             "children": [
                 [
                     "ABW",
@@ -3152,26 +3152,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|Central Asia": {
+        "GCAM 5.4|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v5.4",
+            "comment": "Region 'Central Asia' as defined in GCAM version 5.4",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v5.4|China": {
+        "GCAM 5.4|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v5.4",
+            "comment": "Region 'China' as defined in GCAM version 5.4",
             "children": [["CHN"]],
         },
-        "GCAM v5.4|Colombia": {
+        "GCAM 5.4|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v5.4",
+            "comment": "Region 'Colombia' as defined in GCAM version 5.4",
             "children": [["COL"]],
         },
-        "GCAM v5.4|EU-12": {
+        "GCAM 5.4|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v5.4",
+            "comment": "Region 'EU-12' as defined in GCAM version 5.4",
             "children": [
                 [
                     "BGR",
@@ -3189,9 +3189,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|EU-15": {
+        "GCAM 5.4|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v5.4",
+            "comment": "Region 'EU-15' as defined in GCAM version 5.4",
             "children": [
                 [
                     "AND",
@@ -3215,44 +3215,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|Europe_Eastern": {
+        "GCAM 5.4|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v5.4",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 5.4",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v5.4|European Free Trade Association": {
+        "GCAM 5.4|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v5.4",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 5.4",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v5.4|Europe_Non_EU": {
+        "GCAM 5.4|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v5.4",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 5.4",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v5.4|India": {
+        "GCAM 5.4|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v5.4",
+            "comment": "Region 'India' as defined in GCAM version 5.4",
             "children": [["IND"]],
         },
-        "GCAM v5.4|Indonesia": {
+        "GCAM 5.4|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v5.4",
+            "comment": "Region 'Indonesia' as defined in GCAM version 5.4",
             "children": [["IDN"]],
         },
-        "GCAM v5.4|Japan": {
+        "GCAM 5.4|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v5.4",
+            "comment": "Region 'Japan' as defined in GCAM version 5.4",
             "children": [["JPN"]],
         },
-        "GCAM v5.4|Mexico": {
+        "GCAM 5.4|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v5.4",
+            "comment": "Region 'Mexico' as defined in GCAM version 5.4",
             "children": [["MEX"]],
         },
-        "GCAM v5.4|Middle East": {
+        "GCAM 5.4|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v5.4",
+            "comment": "Region 'Middle East' as defined in GCAM version 5.4",
             "children": [
                 [
                     "ARE",
@@ -3272,39 +3272,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|Pakistan": {
+        "GCAM 5.4|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v5.4",
+            "comment": "Region 'Pakistan' as defined in GCAM version 5.4",
             "children": [["PAK"]],
         },
-        "GCAM v5.4|Russia": {
+        "GCAM 5.4|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v5.4",
+            "comment": "Region 'Russia' as defined in GCAM version 5.4",
             "children": [["RUS"]],
         },
-        "GCAM v5.4|South Africa": {
+        "GCAM 5.4|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v5.4",
+            "comment": "Region 'South Africa' as defined in GCAM version 5.4",
             "children": [["ZAF"]],
         },
-        "GCAM v5.4|South America_Northern": {
+        "GCAM 5.4|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v5.4",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 5.4",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v5.4|South America_Southern": {
+        "GCAM 5.4|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v5.4",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 5.4",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v5.4|South Asia": {
+        "GCAM 5.4|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v5.4",
+            "comment": "Region 'South Asia' as defined in GCAM version 5.4",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v5.4|Southeast Asia": {
+        "GCAM 5.4|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v5.4",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 5.4",
             "children": [
                 [
                     "ASM",
@@ -3347,24 +3347,24 @@ spec = {
                 ]
             ],
         },
-        "GCAM v5.4|South Korea": {
+        "GCAM 5.4|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v5.4",
+            "comment": "Region 'South Korea' as defined in GCAM version 5.4",
             "children": [["KOR"]],
         },
-        "GCAM v5.4|Taiwan": {
+        "GCAM 5.4|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v5.4",
+            "comment": "Region 'Taiwan' as defined in GCAM version 5.4",
             "children": [["TWN"]],
         },
-        "GCAM v5.4|USA": {
+        "GCAM 5.4|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v5.4",
+            "comment": "Region 'USA' as defined in GCAM version 5.4",
             "children": [["USA"]],
         },
-        "GCAM v6.0|Africa_Eastern": {
+        "GCAM 6.0|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v6.0",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 6.0",
             "children": [
                 [
                     "BDI",
@@ -3383,21 +3383,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|Africa_Northern": {
+        "GCAM 6.0|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v6.0",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 6.0",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v6.0|Africa_Southern": {
+        "GCAM 6.0|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v6.0",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 6.0",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v6.0|Africa_Western": {
+        "GCAM 6.0|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v6.0",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 6.0",
             "children": [
                 [
                     "BEN",
@@ -3427,29 +3427,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|Argentina": {
+        "GCAM 6.0|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v6.0",
+            "comment": "Region 'Argentina' as defined in GCAM version 6.0",
             "children": [["ARG"]],
         },
-        "GCAM v6.0|Australia_NZ": {
+        "GCAM 6.0|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v6.0",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 6.0",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v6.0|Brazil": {
+        "GCAM 6.0|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v6.0",
+            "comment": "Region 'Brazil' as defined in GCAM version 6.0",
             "children": [["BRA"]],
         },
-        "GCAM v6.0|Canada": {
+        "GCAM 6.0|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v6.0",
+            "comment": "Region 'Canada' as defined in GCAM version 6.0",
             "children": [["CAN"]],
         },
-        "GCAM v6.0|Central America and the Caribbean": {
+        "GCAM 6.0|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v6.0",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 6.0",
             "children": [
                 [
                     "ABW",
@@ -3482,26 +3482,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|Central Asia": {
+        "GCAM 6.0|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v6.0",
+            "comment": "Region 'Central Asia' as defined in GCAM version 6.0",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v6.0|China": {
+        "GCAM 6.0|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v6.0",
+            "comment": "Region 'China' as defined in GCAM version 6.0",
             "children": [["CHN"]],
         },
-        "GCAM v6.0|Colombia": {
+        "GCAM 6.0|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v6.0",
+            "comment": "Region 'Colombia' as defined in GCAM version 6.0",
             "children": [["COL"]],
         },
-        "GCAM v6.0|EU-12": {
+        "GCAM 6.0|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v6.0",
+            "comment": "Region 'EU-12' as defined in GCAM version 6.0",
             "children": [
                 [
                     "BGR",
@@ -3519,9 +3519,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|EU-15": {
+        "GCAM 6.0|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v6.0",
+            "comment": "Region 'EU-15' as defined in GCAM version 6.0",
             "children": [
                 [
                     "AND",
@@ -3545,44 +3545,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|Europe_Eastern": {
+        "GCAM 6.0|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v6.0",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 6.0",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v6.0|European Free Trade Association": {
+        "GCAM 6.0|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v6.0",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 6.0",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v6.0|Europe_Non_EU": {
+        "GCAM 6.0|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v6.0",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 6.0",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v6.0|India": {
+        "GCAM 6.0|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v6.0",
+            "comment": "Region 'India' as defined in GCAM version 6.0",
             "children": [["IND"]],
         },
-        "GCAM v6.0|Indonesia": {
+        "GCAM 6.0|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v6.0",
+            "comment": "Region 'Indonesia' as defined in GCAM version 6.0",
             "children": [["IDN"]],
         },
-        "GCAM v6.0|Japan": {
+        "GCAM 6.0|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v6.0",
+            "comment": "Region 'Japan' as defined in GCAM version 6.0",
             "children": [["JPN"]],
         },
-        "GCAM v6.0|Mexico": {
+        "GCAM 6.0|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v6.0",
+            "comment": "Region 'Mexico' as defined in GCAM version 6.0",
             "children": [["MEX"]],
         },
-        "GCAM v6.0|Middle East": {
+        "GCAM 6.0|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v6.0",
+            "comment": "Region 'Middle East' as defined in GCAM version 6.0",
             "children": [
                 [
                     "ARE",
@@ -3602,39 +3602,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|Pakistan": {
+        "GCAM 6.0|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v6.0",
+            "comment": "Region 'Pakistan' as defined in GCAM version 6.0",
             "children": [["PAK"]],
         },
-        "GCAM v6.0|Russia": {
+        "GCAM 6.0|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v6.0",
+            "comment": "Region 'Russia' as defined in GCAM version 6.0",
             "children": [["RUS"]],
         },
-        "GCAM v6.0|South Africa": {
+        "GCAM 6.0|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v6.0",
+            "comment": "Region 'South Africa' as defined in GCAM version 6.0",
             "children": [["ZAF"]],
         },
-        "GCAM v6.0|South America_Northern": {
+        "GCAM 6.0|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v6.0",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 6.0",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v6.0|South America_Southern": {
+        "GCAM 6.0|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v6.0",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 6.0",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v6.0|South Asia": {
+        "GCAM 6.0|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v6.0",
+            "comment": "Region 'South Asia' as defined in GCAM version 6.0",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v6.0|Southeast Asia": {
+        "GCAM 6.0|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v6.0",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 6.0",
             "children": [
                 [
                     "ASM",
@@ -3677,24 +3677,24 @@ spec = {
                 ]
             ],
         },
-        "GCAM v6.0|South Korea": {
+        "GCAM 6.0|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v6.0",
+            "comment": "Region 'South Korea' as defined in GCAM version 6.0",
             "children": [["KOR"]],
         },
-        "GCAM v6.0|Taiwan": {
+        "GCAM 6.0|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v6.0",
+            "comment": "Region 'Taiwan' as defined in GCAM version 6.0",
             "children": [["TWN"]],
         },
-        "GCAM v6.0|USA": {
+        "GCAM 6.0|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v6.0",
+            "comment": "Region 'USA' as defined in GCAM version 6.0",
             "children": [["USA"]],
         },
-        "GCAM v7.0|Africa_Eastern": {
+        "GCAM 7.0|Africa_Eastern": {
             "title": "Africa_Eastern",
-            "comment": "Region 'Africa_Eastern' as defined in GCAM version v7.0",
+            "comment": "Region 'Africa_Eastern' as defined in GCAM version 7.0",
             "children": [
                 [
                     "BDI",
@@ -3713,21 +3713,21 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|Africa_Northern": {
+        "GCAM 7.0|Africa_Northern": {
             "title": "Africa_Northern",
-            "comment": "Region 'Africa_Northern' as defined in GCAM version v7.0",
+            "comment": "Region 'Africa_Northern' as defined in GCAM version 7.0",
             "children": [["DZA", "EGY", "ESH", "LBY", "MAR", "TUN"]],
         },
-        "GCAM v7.0|Africa_Southern": {
+        "GCAM 7.0|Africa_Southern": {
             "title": "Africa_Southern",
-            "comment": "Region 'Africa_Southern' as defined in GCAM version v7.0",
+            "comment": "Region 'Africa_Southern' as defined in GCAM version 7.0",
             "children": [
                 ["AGO", "BWA", "LSO", "MOZ", "MWI", "NAM", "SWZ", "TZA", "ZMB", "ZWE"]
             ],
         },
-        "GCAM v7.0|Africa_Western": {
+        "GCAM 7.0|Africa_Western": {
             "title": "Africa_Western",
-            "comment": "Region 'Africa_Western' as defined in GCAM version v7.0",
+            "comment": "Region 'Africa_Western' as defined in GCAM version 7.0",
             "children": [
                 [
                     "BEN",
@@ -3757,29 +3757,29 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|Argentina": {
+        "GCAM 7.0|Argentina": {
             "title": "Argentina",
-            "comment": "Region 'Argentina' as defined in GCAM version v7.0",
+            "comment": "Region 'Argentina' as defined in GCAM version 7.0",
             "children": [["ARG"]],
         },
-        "GCAM v7.0|Australia_NZ": {
+        "GCAM 7.0|Australia_NZ": {
             "title": "Australia_NZ",
-            "comment": "Region 'Australia_NZ' as defined in GCAM version v7.0",
+            "comment": "Region 'Australia_NZ' as defined in GCAM version 7.0",
             "children": [["AUS", "NZL"]],
         },
-        "GCAM v7.0|Brazil": {
+        "GCAM 7.0|Brazil": {
             "title": "Brazil",
-            "comment": "Region 'Brazil' as defined in GCAM version v7.0",
+            "comment": "Region 'Brazil' as defined in GCAM version 7.0",
             "children": [["BRA"]],
         },
-        "GCAM v7.0|Canada": {
+        "GCAM 7.0|Canada": {
             "title": "Canada",
-            "comment": "Region 'Canada' as defined in GCAM version v7.0",
+            "comment": "Region 'Canada' as defined in GCAM version 7.0",
             "children": [["CAN"]],
         },
-        "GCAM v7.0|Central America and the Caribbean": {
+        "GCAM 7.0|Central America and the Caribbean": {
             "title": "Central America and the Caribbean",
-            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version v7.0",
+            "comment": "Region 'Central America and the Caribbean' as defined in GCAM version 7.0",
             "children": [
                 [
                     "ABW",
@@ -3812,26 +3812,26 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|Central Asia": {
+        "GCAM 7.0|Central Asia": {
             "title": "Central Asia",
-            "comment": "Region 'Central Asia' as defined in GCAM version v7.0",
+            "comment": "Region 'Central Asia' as defined in GCAM version 7.0",
             "children": [
                 ["ARM", "AZE", "GEO", "KAZ", "KGZ", "MNG", "TJK", "TKM", "UZB"]
             ],
         },
-        "GCAM v7.0|China": {
+        "GCAM 7.0|China": {
             "title": "China",
-            "comment": "Region 'China' as defined in GCAM version v7.0",
+            "comment": "Region 'China' as defined in GCAM version 7.0",
             "children": [["CHN"]],
         },
-        "GCAM v7.0|Colombia": {
+        "GCAM 7.0|Colombia": {
             "title": "Colombia",
-            "comment": "Region 'Colombia' as defined in GCAM version v7.0",
+            "comment": "Region 'Colombia' as defined in GCAM version 7.0",
             "children": [["COL"]],
         },
-        "GCAM v7.0|EU-12": {
+        "GCAM 7.0|EU-12": {
             "title": "EU-12",
-            "comment": "Region 'EU-12' as defined in GCAM version v7.0",
+            "comment": "Region 'EU-12' as defined in GCAM version 7.0",
             "children": [
                 [
                     "BGR",
@@ -3849,9 +3849,9 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|EU-15": {
+        "GCAM 7.0|EU-15": {
             "title": "EU-15",
-            "comment": "Region 'EU-15' as defined in GCAM version v7.0",
+            "comment": "Region 'EU-15' as defined in GCAM version 7.0",
             "children": [
                 [
                     "AND",
@@ -3875,44 +3875,44 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|Europe_Eastern": {
+        "GCAM 7.0|Europe_Eastern": {
             "title": "Europe_Eastern",
-            "comment": "Region 'Europe_Eastern' as defined in GCAM version v7.0",
+            "comment": "Region 'Europe_Eastern' as defined in GCAM version 7.0",
             "children": [["BLR", "MDA", "UKR"]],
         },
-        "GCAM v7.0|European Free Trade Association": {
+        "GCAM 7.0|European Free Trade Association": {
             "title": "European Free Trade Association",
-            "comment": "Region 'European Free Trade Association' as defined in GCAM version v7.0",
+            "comment": "Region 'European Free Trade Association' as defined in GCAM version 7.0",
             "children": [["CHE", "ISL", "NOR"]],
         },
-        "GCAM v7.0|Europe_Non_EU": {
+        "GCAM 7.0|Europe_Non_EU": {
             "title": "Europe_Non_EU",
-            "comment": "Region 'Europe_Non_EU' as defined in GCAM version v7.0",
+            "comment": "Region 'Europe_Non_EU' as defined in GCAM version 7.0",
             "children": [["ALB", "BIH", "HRV", "MKD", "MNE", "SRB", "TUR"]],
         },
-        "GCAM v7.0|India": {
+        "GCAM 7.0|India": {
             "title": "India",
-            "comment": "Region 'India' as defined in GCAM version v7.0",
+            "comment": "Region 'India' as defined in GCAM version 7.0",
             "children": [["IND"]],
         },
-        "GCAM v7.0|Indonesia": {
+        "GCAM 7.0|Indonesia": {
             "title": "Indonesia",
-            "comment": "Region 'Indonesia' as defined in GCAM version v7.0",
+            "comment": "Region 'Indonesia' as defined in GCAM version 7.0",
             "children": [["IDN"]],
         },
-        "GCAM v7.0|Japan": {
+        "GCAM 7.0|Japan": {
             "title": "Japan",
-            "comment": "Region 'Japan' as defined in GCAM version v7.0",
+            "comment": "Region 'Japan' as defined in GCAM version 7.0",
             "children": [["JPN"]],
         },
-        "GCAM v7.0|Mexico": {
+        "GCAM 7.0|Mexico": {
             "title": "Mexico",
-            "comment": "Region 'Mexico' as defined in GCAM version v7.0",
+            "comment": "Region 'Mexico' as defined in GCAM version 7.0",
             "children": [["MEX"]],
         },
-        "GCAM v7.0|Middle East": {
+        "GCAM 7.0|Middle East": {
             "title": "Middle East",
-            "comment": "Region 'Middle East' as defined in GCAM version v7.0",
+            "comment": "Region 'Middle East' as defined in GCAM version 7.0",
             "children": [
                 [
                     "ARE",
@@ -3932,39 +3932,39 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|Pakistan": {
+        "GCAM 7.0|Pakistan": {
             "title": "Pakistan",
-            "comment": "Region 'Pakistan' as defined in GCAM version v7.0",
+            "comment": "Region 'Pakistan' as defined in GCAM version 7.0",
             "children": [["PAK"]],
         },
-        "GCAM v7.0|Russia": {
+        "GCAM 7.0|Russia": {
             "title": "Russia",
-            "comment": "Region 'Russia' as defined in GCAM version v7.0",
+            "comment": "Region 'Russia' as defined in GCAM version 7.0",
             "children": [["RUS"]],
         },
-        "GCAM v7.0|South Africa": {
+        "GCAM 7.0|South Africa": {
             "title": "South Africa",
-            "comment": "Region 'South Africa' as defined in GCAM version v7.0",
+            "comment": "Region 'South Africa' as defined in GCAM version 7.0",
             "children": [["ZAF"]],
         },
-        "GCAM v7.0|South America_Northern": {
+        "GCAM 7.0|South America_Northern": {
             "title": "South America_Northern",
-            "comment": "Region 'South America_Northern' as defined in GCAM version v7.0",
+            "comment": "Region 'South America_Northern' as defined in GCAM version 7.0",
             "children": [["GUF", "GUY", "SUR", "VEN"]],
         },
-        "GCAM v7.0|South America_Southern": {
+        "GCAM 7.0|South America_Southern": {
             "title": "South America_Southern",
-            "comment": "Region 'South America_Southern' as defined in GCAM version v7.0",
+            "comment": "Region 'South America_Southern' as defined in GCAM version 7.0",
             "children": [["BOL", "CHL", "ECU", "PER", "PRY", "URY"]],
         },
-        "GCAM v7.0|South Asia": {
+        "GCAM 7.0|South Asia": {
             "title": "South Asia",
-            "comment": "Region 'South Asia' as defined in GCAM version v7.0",
+            "comment": "Region 'South Asia' as defined in GCAM version 7.0",
             "children": [["AFG", "BGD", "BTN", "LKA", "MDV", "NPL"]],
         },
-        "GCAM v7.0|Southeast Asia": {
+        "GCAM 7.0|Southeast Asia": {
             "title": "Southeast Asia",
-            "comment": "Region 'Southeast Asia' as defined in GCAM version v7.0",
+            "comment": "Region 'Southeast Asia' as defined in GCAM version 7.0",
             "children": [
                 [
                     "ASM",
@@ -4007,19 +4007,19 @@ spec = {
                 ]
             ],
         },
-        "GCAM v7.0|South Korea": {
+        "GCAM 7.0|South Korea": {
             "title": "South Korea",
-            "comment": "Region 'South Korea' as defined in GCAM version v7.0",
+            "comment": "Region 'South Korea' as defined in GCAM version 7.0",
             "children": [["KOR"]],
         },
-        "GCAM v7.0|Taiwan": {
+        "GCAM 7.0|Taiwan": {
             "title": "Taiwan",
-            "comment": "Region 'Taiwan' as defined in GCAM version v7.0",
+            "comment": "Region 'Taiwan' as defined in GCAM version 7.0",
             "children": [["TWN"]],
         },
-        "GCAM v7.0|USA": {
+        "GCAM 7.0|USA": {
             "title": "USA",
-            "comment": "Region 'USA' as defined in GCAM version v7.0",
+            "comment": "Region 'USA' as defined in GCAM version 7.0",
             "children": [["USA"]],
         },
     },

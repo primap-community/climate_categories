@@ -18,11 +18,11 @@ def main():
     categories = {}
     children = []
 
-    for gcam_version in tqdm.tqdm(("v5.1", "v5.2", "v5.3", "v5.4", "v6.0", "v7.0")):
-        if gcam_version == "v7.0":
+    for gcam_version in tqdm.tqdm(("5.1", "5.2", "5.3", "5.4", "6.0", "7.0")):
+        if gcam_version == "7.0":
             url = "https://jgcri.github.io/gcam-doc/overview.html"
         else:
-            url = f"https://jgcri.github.io/gcam-doc/{gcam_version}/overview.html"
+            url = f"https://jgcri.github.io/gcam-doc/v{gcam_version}/overview.html"
         gcam_regions_df = pd.read_html(url, match="GCAM Region", header=0, index_col=0)[
             0
         ]
