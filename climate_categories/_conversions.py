@@ -1028,7 +1028,9 @@ class Conversion(ConversionBase):
             descendants: dict[str, set[str]] = {}
             for category in categorization.values():
                 prob = self._check_over_counting_category(
-                    category, categorization, descendants  # type: ignore
+                    category,
+                    categorization,
+                    descendants,  # type: ignore
                 )
                 if prob:
                     problems.append(prob)

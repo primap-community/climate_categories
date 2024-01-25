@@ -343,7 +343,7 @@ class Categorization:
 
     @staticmethod
     def from_pickle(
-        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
     ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_pickle.
 
@@ -353,7 +353,7 @@ class Categorization:
 
     @staticmethod
     def from_python(
-        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
     ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_python.
 
@@ -1128,7 +1128,7 @@ class HierarchicalCategorization(Categorization):
 
 
 def from_pickle(
-    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
 ) -> typing.Union[Categorization, HierarchicalCategorization]:
     """De-serialize Categorization or HierarchicalCategorization from a file written by
     to_pickle.
@@ -1145,7 +1145,7 @@ def from_pickle(
 
 
 def from_python(
-    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]]
+    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
 ) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a python cache file.
 
@@ -1175,7 +1175,7 @@ def from_spec(spec: dict[str, typing.Any]) -> CategorizationT:
 
 
 def from_yaml(
-    filepath: typing.Union[str, pathlib.Path, typing.TextIO]
+    filepath: typing.Union[str, pathlib.Path, typing.TextIO],
 ) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a StrictYaml file."""
     try:
