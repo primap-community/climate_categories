@@ -4,11 +4,11 @@ Changelog
 
 0.10.1 (2024-01-25)
 -------------------
- * ISO3_GCAM: Removed extraneous "v" from version specifications in region codes
+* ISO3_GCAM: Removed extraneous "v" from version specifications in region codes
 
 0.10.0 (2024-01-25)
 -------------------
- * Added ISO3_GCAM categorization which contains regions used in the integrated assessment model GCAM.
+* Added ISO3_GCAM categorization which contains regions used in the integrated assessment model GCAM.
 
 0.9.2 (2023-06-22)
 ------------------
