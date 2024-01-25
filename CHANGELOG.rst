@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.10.0 (2024-01-25)
+-------------------
+ * Added ISO3_GCAM categorization which contains regions used in the integrated assessment model GCAM.
+
 0.9.2 (2023-06-22)
 ------------------
 * ISO3: Add all parties to the UNFCCC as direct children of UNFCCC as first set of
