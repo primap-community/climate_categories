@@ -22,7 +22,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import climate_categories  # noqa: E402
+import climate_categories
 
 # -- General configuration ---------------------------------------------
 
