@@ -1,5 +1,6 @@
 """Run this via `make climate_categories/data/IPCC2006_PRIMAP.yaml` in the main
 directory."""
+
 import datetime
 import pathlib
 

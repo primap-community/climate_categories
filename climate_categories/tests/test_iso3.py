@@ -1,4 +1,5 @@
 """Tests for the 'ISO3' categorization."""
+
 import pytest
 
 import climate_categories

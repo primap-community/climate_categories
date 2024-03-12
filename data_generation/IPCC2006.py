@@ -231,13 +231,13 @@ def main():
     ]
 
     categories["3.B.3.a"]["title"] = "Grassland Remaining Grassland"
-    categories["3.B.3.a"][
-        "comment"
-    ] = "Emissions and removals from grassland remaining grassland."
+    categories["3.B.3.a"]["comment"] = (
+        "Emissions and removals from grassland remaining grassland."
+    )
 
-    categories["3.B.3.b"][
-        "comment"
-    ] = "Emissions and removals from land converted to grassland."
+    categories["3.B.3.b"]["comment"] = (
+        "Emissions and removals from land converted to grassland."
+    )
     categories["3.B.3.b"]["info"]["corresponding_categories_IPCC1996"] = [
         "5B",
         "5C",

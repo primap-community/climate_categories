@@ -8,9 +8,10 @@ version = sys.argv[1]
 with open("CHANGELOG.rst") as fd:
     old_content = fd.read().splitlines(keepends=True)
 
-with open("CHANGELOG.rst", "w") as fd, open(
-    ".changelog_latest_version.rst", "w"
-) as lfd:
+with (
+    open("CHANGELOG.rst", "w") as fd,
+    open(".changelog_latest_version.rst", "w") as lfd,
+):
     # Write header
     fd.writelines(old_content[:4])
 
