@@ -1,4 +1,5 @@
 """Classes to represent conversions between categorizations."""
+
 import csv
 import dataclasses
 import datetime
@@ -66,9 +67,9 @@ class ConversionRuleSpec:
         auxiliary_categories_hydrated = {}
         for aux_categorization_name, categories in self.auxiliary_categories.items():
             aux_categorization = cats[aux_categorization_name]
-            auxiliary_categories_hydrated[
-                aux_categorization
-            ] = self._hydrate_handle_errors(categories, aux_categorization)
+            auxiliary_categories_hydrated[aux_categorization] = (
+                self._hydrate_handle_errors(categories, aux_categorization)
+            )
 
         return ConversionRule(
             factors_categories_a=self._hydrate_handle_errors(
@@ -86,14 +87,12 @@ class ConversionRuleSpec:
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: dict[str, int], categorization: "Categorization"
-    ) -> dict["Category", int]:
-        ...
+    ) -> dict["Category", int]: ...
 
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: set[str], categorization: "Categorization"
-    ) -> set["Category"]:
-        ...
+    ) -> set["Category"]: ...
 
     def _hydrate_handle_errors(
         self,

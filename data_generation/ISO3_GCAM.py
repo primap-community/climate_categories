@@ -1,5 +1,6 @@
 """Run this via `make climate_categories/data/ISO3_GCAM.yaml` in the main
 directory."""
+
 import datetime
 import pathlib
 

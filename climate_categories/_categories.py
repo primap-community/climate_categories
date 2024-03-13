@@ -762,9 +762,9 @@ class HierarchicalCategorization(Categorization):
             spec["version"] = self.version
         spec["total_sum"] = self.total_sum
         if self.canonical_top_level_category is not None:
-            spec[
-                "canonical_top_level_category"
-            ] = self.canonical_top_level_category.codes[0]
+            spec["canonical_top_level_category"] = (
+                self.canonical_top_level_category.codes[0]
+            )
 
         spec["categories"] = {}
         for cat in self.values():

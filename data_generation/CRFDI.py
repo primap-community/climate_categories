@@ -1,4 +1,5 @@
 """Run this via `make climate_categories/data/CRFDI.yaml` in the main directory."""
+
 import pathlib
 
 import natsort
