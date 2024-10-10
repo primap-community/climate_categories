@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv cache test test-full lint coverage release update-citation
+.PHONY: docs help virtual-environment install-pre-commit update-venv cache test test-full lint coverage release update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -21,36 +21,29 @@ lint: venv ## check style with pre-commit hooks
 test: venv ## run tests quickly with the default Python
 	venv/bin/pytest --xdoc -rx
 
-test-all: venv ## run tests with all Python versions; needs python versions already set up
-	tox -p
+test-all: venv ## run tests on every Python version with tox
+	venv/bin/tox -p
 
 coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage run --source climate_categories -m pytest --xdoc -rx
 	venv/bin/coverage report -m
 	venv/bin/coverage html
+	ls htmlcov/index.html
 
-docs: venv ## generate Sphinx HTML documentation
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
+clean-docs: venv ## Remove generated parts of documentation, then build docs
+	. venv/bin/activate ; $(MAKE) -C docs clean
+	. venv/bin/activate ; $(MAKE) -C docs html
 
-servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+docs: venv ## generate Sphinx HTML documentation, including API docs
+	. venv/bin/activate ; $(MAKE) -C docs html
 
-clean: ## clean up after dist
-	rm -rf dist/
-	rm -rf climate_categories.egg-info/
-	rm -rf build/
-
-update-citation: ## Update the citation information from zenodo
-	venv/bin/python update_citation_info.py
-	git commit -am 'Update citation information from zenodo.'
-
-release: dist ## package and upload a release
+release: venv dist ## package and upload a release
 	venv/bin/twine upload --repository climate-categories dist/*
 
 dist: clean venv ## builds source and wheel package
-	venv/bin/python -m build
-	ls -l dist
+	# because we update the citation info after releasing on github and zenodo but
+	# before building for pypi, we need to force the correct version.
+	SETUPTOOLS_SCM_PRETEND_VERSION=0.10.1 venv/bin/python -m build
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
@@ -58,14 +51,16 @@ install: clean ## install the package to the active Python's site-packages
 virtual-environment: venv ## setup a virtual environment for development
 
 venv: setup.py pyproject.toml setup.cfg
-	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install -e .[dev]
+	[ -d venv ] || python3 -m venv --system-site-packages venv
+	venv/bin/python -m pip install --upgrade wheel uv
+	. venv/bin/activate ; venv/bin/uv pip install --upgrade -e .[dev]
 	touch venv
 
-update-venv:
+update-venv: ## update all packages in the development environment
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install --upgrade pip wheel
-	venv/bin/python -m pip install --upgrade --upgrade-strategy eager -e .[dev]
+	venv/bin/python .check_python_version.py
+	venv/bin/python -m pip install --upgrade wheel uv
+	. venv/bin/activate ; venv/bin/uv pip  install --upgrade --resolution highest -e .[dev]
 	touch venv
 
 install-pre-commit: update-venv ## install the pre-commit hooks
