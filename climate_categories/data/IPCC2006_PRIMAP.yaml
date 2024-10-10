@@ -6,7 +6,7 @@ comment: IPCC classification of green-house gas emissions into categories, 2006 
 references: ''
 institution: PIK
 hierarchical: true
-last_update: '2021-10-12'
+last_update: '2024-10-10'
 version: '2006'
 total_sum: true
 canonical_top_level_category: '0'
@@ -3204,6 +3204,7 @@ categories:
     - 3A
     info:
       gases:
+      - N2O
       - CH4
       corresponding_categories_IPCC1996:
       - '4'

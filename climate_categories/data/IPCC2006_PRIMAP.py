@@ -7,7 +7,7 @@ spec = {
     "references": "",
     "institution": "PIK",
     "hierarchical": True,
-    "last_update": "2021-10-12",
+    "last_update": "2024-10-10",
     "version": "2006",
     "total_sum": True,
     "canonical_top_level_category": "0",
@@ -1737,7 +1737,10 @@ spec = {
             "title": "Livestock",
             "comment": "Methane emissions from enteric fermentation, and methane and nitrous oxide emissions from manure management.",
             "alternative_codes": ["3A"],
-            "info": {"gases": ["CH4"], "corresponding_categories_IPCC1996": ["4"]},
+            "info": {
+                "gases": ["N2O", "CH4"],
+                "corresponding_categories_IPCC1996": ["4"],
+            },
             "children": [["3.A.1", "3.A.2"]],
         },
         "3.A.1": {

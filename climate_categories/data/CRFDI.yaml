@@ -2,7 +2,8 @@ name: CRFDI
 title: CRF GHG emission categories (DI query interface)
 comment: Common Reporting Format categories of GHG emissions and removals and some
   other quantities as obtained from the di.unfccc.int flexible query interface
-references: https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
+references:
+  https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
 institution: UNFCCC
 hierarchical: true
 last_update: '2021-11-05'
