@@ -3204,6 +3204,7 @@ categories:
     - 3A
     info:
       gases:
+      - N2O
       - CH4
       corresponding_categories_IPCC1996:
       - '4'
