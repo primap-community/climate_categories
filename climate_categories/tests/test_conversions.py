@@ -426,3 +426,16 @@ def test_relevant_rules():
     assert len(conv.relevant_rules({C96["4.D"]})) == 1
     assert len(conv.relevant_rules({C96["4.B.10"]}, simple_sums_only=True)) == 1
     assert conv.relevant_rules(set()) == []
+
+
+def test_read_csv_in_conversion_class():
+    filepath = importlib.resources.files("climate_categories.data").joinpath(
+        "conversion.IPCC1996.IPCC2006.csv"
+    )
+    conv = conversions.Conversion.from_csv(filepath)
+
+    assert conv.categorization_a_name == "IPCC1996"
+    assert conv.categorization_b_name == "IPCC2006"
+
+    # make sure hydrate() added all the rules
+    assert len(conv.rules) == 153
