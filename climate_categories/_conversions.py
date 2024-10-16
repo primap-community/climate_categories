@@ -67,9 +67,9 @@ class ConversionRuleSpec:
         auxiliary_categories_hydrated = {}
         for aux_categorization_name, categories in self.auxiliary_categories.items():
             aux_categorization = cats[aux_categorization_name]
-            auxiliary_categories_hydrated[aux_categorization] = (
-                self._hydrate_handle_errors(categories, aux_categorization)
-            )
+            auxiliary_categories_hydrated[
+                aux_categorization
+            ] = self._hydrate_handle_errors(categories, aux_categorization)
 
         return ConversionRule(
             factors_categories_a=self._hydrate_handle_errors(
@@ -87,12 +87,14 @@ class ConversionRuleSpec:
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: dict[str, int], categorization: "Categorization"
-    ) -> dict["Category", int]: ...
+    ) -> dict["Category", int]:
+        ...
 
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: set[str], categorization: "Categorization"
-    ) -> set["Category"]: ...
+    ) -> set["Category"]:
+        ...
 
     def _hydrate_handle_errors(
         self,
@@ -896,6 +898,27 @@ class Conversion(ConversionBase):
         self.categorization_b = categorization_b
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
+
+    @classmethod
+    def from_csv(cls, filepath):
+        conv = ConversionSpec.from_csv(filepath)
+
+        def get_cats(cat_names):
+            import climate_categories
+
+            return {
+                cat_name: climate_categories.cats[cat_name] for cat_name in cat_names
+            }
+
+        cat_names = [
+            conv.categorization_a_name,
+            conv.categorization_b_name,
+            *conv.auxiliary_categorizations_names,
+        ]
+
+        cats = get_cats(cat_names)
+
+        return conv.hydrate(cats=cats)
 
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""
