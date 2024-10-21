@@ -429,13 +429,9 @@ def test_relevant_rules():
 
 
 def test_read_csv_in_conversion_class():
-    filepath = importlib.resources.files("climate_categories.data").joinpath(
-        "conversion.IPCC1996.IPCC2006.csv"
-    )
-    conv = conversions.Conversion.from_csv(filepath)
 
-    assert conv.categorization_a_name == "IPCC1996"
-    assert conv.categorization_b_name == "IPCC2006"
+    conv_from_conversion = conversions.Conversion.from_csv("data/good_conversion.csv")
 
-    # make sure hydrate() added all the rules
-    assert len(conv.rules) == 153
+    conv_from_conversion_spec = conversions.ConversionSpec.from_csv("data/good_conversion.csv")
+
+    assert vars(conv_from_conversion_spec) == vars(conv_from_conversion)

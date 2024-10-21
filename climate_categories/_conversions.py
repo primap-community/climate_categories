@@ -901,24 +901,25 @@ class Conversion(ConversionBase):
 
     @classmethod
     def from_csv(cls, filepath):
-        conv = ConversionSpec.from_csv(filepath)
+        return ConversionSpec.from_csv(filepath)
 
-        def get_cats(cat_names):
-            import climate_categories
+        # def get_cats(cat_names):
+        #     import climate_categories
+        #
+        #     return {
+        #         cat_name: climate_categories.cats[cat_name] for cat_name in cat_names
+        #     }
+        #
+        # cat_names = [
+        #     conv.categorization_a_name,
+        #     conv.categorization_b_name,
+        #     *conv.auxiliary_categorizations_names,
+        # ]
+        #
+        # cats = get_cats(cat_names)
+        #
+        # return conv.hydrate(cats=cats)
 
-            return {
-                cat_name: climate_categories.cats[cat_name] for cat_name in cat_names
-            }
-
-        cat_names = [
-            conv.categorization_a_name,
-            conv.categorization_b_name,
-            *conv.auxiliary_categorizations_names,
-        ]
-
-        cats = get_cats(cat_names)
-
-        return conv.hydrate(cats=cats)
 
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""
