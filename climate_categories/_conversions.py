@@ -11,6 +11,8 @@ import immutables
 import pyparsing
 import strictyaml as sy
 
+# import climate_categories
+
 if TYPE_CHECKING:
     from ._categories import Categorization, Category, HierarchicalCategory
 
@@ -899,9 +901,33 @@ class Conversion(ConversionBase):
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
 
-    @classmethod
-    def from_csv(cls, filepath):
-        return ConversionSpec.from_csv(filepath)
+    @staticmethod
+    def from_csv(
+            filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+            # cats : typing.Union[dict[str, Categorization], None] = None,
+            cats = None,
+    ):
+
+        conv = ConversionSpec.from_csv(filepath)
+        def get_cats(cat_names):
+            import climate_categories
+
+            return {
+                cat_name: climate_categories.cats[cat_name] for cat_name in cat_names
+            }
+
+        if not cats:
+            cat_names = [
+                conv.categorization_a_name,
+                conv.categorization_b_name,
+            ]
+
+            if conv.auxiliary_categorizations_names:
+                cat_names = cat_names + conv.auxiliary_categorizations_names
+
+            cats = get_cats(cat_names)
+
+        return conv.hydrate(cats=cats)
 
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""

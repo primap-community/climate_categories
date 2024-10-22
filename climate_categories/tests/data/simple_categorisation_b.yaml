@@ -1,0 +1,27 @@
+name: B
+title: Simple Categorization
+comment: A simple example categorization without relationships between categories
+references: doi:00000/00000
+institution: PIK
+last_update: 2021-02-23
+hierarchical: no
+version: 1
+categories:
+  1:
+    title: Category 1
+    comment: The first category
+    alternative_codes:
+      - A
+      - CatA
+    info:
+      important_data:
+        - A
+        - B
+        - C
+      other_important_thing: ABC
+  2:
+    title: Category 2
+    comment: The second category
+    alternative_codes:
+      - B
+      - CatB
