@@ -429,12 +429,16 @@ def test_relevant_rules():
 
 
 def test_read_csv_in_conversion_class():
-    # generate a conversion from method in Conversion object
-    conv_from_conversion = conversions.Conversion.from_csv("../data/conversion.IPCC1996.IPCC2006.csv")
+    conv_from_conversion = conversions.Conversion.from_csv(
+        "../data/conversion.IPCC1996.IPCC2006.csv"
+    )
 
-    # generate a conversion from method in ConversionSpec object
-    conv_from_conversion_spec = conversions.ConversionSpec.from_csv("../data/conversion.IPCC1996.IPCC2006.csv")
-    conv_from_conversion_spec = conv_from_conversion_spec.hydrate(cats=climate_categories.cats)
+    conv_from_conversion_spec = conversions.ConversionSpec.from_csv(
+        "../data/conversion.IPCC1996.IPCC2006.csv"
+    )
+    conv_from_conversion_spec = conv_from_conversion_spec.hydrate(
+        cats=climate_categories.cats
+    )
 
     assert vars(conv_from_conversion_spec) == vars(conv_from_conversion)
 
@@ -442,28 +446,32 @@ def test_read_csv_in_conversion_class():
 def test_read_conversion_from_csv_with_custom_categorizations():
     categorisation_a = climate_categories.from_yaml("data/simple_categorisation_a.yaml")
 
-    # make categorisation B from yaml
     categorisation_b = climate_categories.from_yaml("data/simple_categorisation_b.yaml")
 
-    cats = {"A" : categorisation_a, "B" : categorisation_b}
+    cats = {"A": categorisation_a, "B": categorisation_b}
 
-    # make conversion from csv
-    conv = climate_categories.Conversion.from_csv("data/simple_conversion.csv", cats=cats)
+    conv = climate_categories.Conversion.from_csv(
+        "data/simple_conversion.csv", cats=cats
+    )
 
     assert conv.categorization_a_name == "A"
     assert conv.categorization_b_name == "B"
 
-def test_read_conversion_from_csv_with_existing_categorizations():
 
-    # make conversion from csv
-    conv = climate_categories.Conversion.from_csv("data/test_conversion_with_existing_categorizations.csv")
+def test_read_conversion_from_csv_with_existing_categorizations():
+    conv = climate_categories.Conversion.from_csv(
+        "data/test_conversion_with_existing_categorizations.csv"
+    )
 
     assert conv.categorization_a_name == "BURDI"
     assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+
 
 def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
-
-    conv = climate_categories.Conversion.from_csv("data/test_conversion_with_existing_categorizations_aux_dims.csv")
+    conv = climate_categories.Conversion.from_csv(
+        "data/test_conversion_with_existing_categorizations_aux_dims.csv"
+    )
 
     assert conv.categorization_a_name == "BURDI"
     assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+    assert conv.auxiliary_categorizations_names == ["gas"]

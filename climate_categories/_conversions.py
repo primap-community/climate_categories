@@ -11,8 +11,6 @@ import immutables
 import pyparsing
 import strictyaml as sy
 
-# import climate_categories
-
 if TYPE_CHECKING:
     from ._categories import Categorization, Category, HierarchicalCategory
 
@@ -904,9 +902,9 @@ class Conversion(ConversionBase):
     @staticmethod
     def from_csv(
             filepath: typing.Union[str, pathlib.Path, typing.TextIO],
-            # cats : typing.Union[dict[str, Categorization], None] = None,
-            cats = None,
-    ):
+            cats : typing.Union[dict[str, "Categorization"], None] = None,
+    ) -> "Conversion":
+        """Read conversion from comma-separated-values file and add categorizations."""
 
         conv = ConversionSpec.from_csv(filepath)
         def get_cats(cat_names):
@@ -923,7 +921,7 @@ class Conversion(ConversionBase):
             ]
 
             if conv.auxiliary_categorizations_names:
-                cat_names = cat_names + conv.auxiliary_categorizations_names
+                cat_names += conv.auxiliary_categorizations_names
 
             cats = get_cats(cat_names)
 
