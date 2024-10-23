@@ -43,7 +43,7 @@ release: venv dist ## package and upload a release
 dist: clean venv ## builds source and wheel package
 	# because we update the citation info after releasing on github and zenodo but
 	# before building for pypi, we need to force the correct version.
-	SETUPTOOLS_SCM_PRETEND_VERSION=0.10.1 venv/bin/python -m build
+	SETUPTOOLS_SCM_PRETEND_VERSION=0.10.2 venv/bin/python -m build
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install

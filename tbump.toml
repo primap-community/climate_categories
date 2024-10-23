@@ -31,6 +31,10 @@ src = "climate_categories/__init__.py"
 search = '__version__ = "{current_version}"'
 
 [[file]]
+src = "Makefile"
+search = '\tSETUPTOOLS_SCM_PRETEND_VERSION={current_version}'
+
+[[file]]
 src = "README.rst"
 search = 'pik-primap/climate_categories: climate_categories Version {current_version}.'
 
