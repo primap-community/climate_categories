@@ -67,9 +67,9 @@ class ConversionRuleSpec:
         auxiliary_categories_hydrated = {}
         for aux_categorization_name, categories in self.auxiliary_categories.items():
             aux_categorization = cats[aux_categorization_name]
-            auxiliary_categories_hydrated[
-                aux_categorization
-            ] = self._hydrate_handle_errors(categories, aux_categorization)
+            auxiliary_categories_hydrated[aux_categorization] = (
+                self._hydrate_handle_errors(categories, aux_categorization)
+            )
 
         return ConversionRule(
             factors_categories_a=self._hydrate_handle_errors(
@@ -87,14 +87,12 @@ class ConversionRuleSpec:
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: dict[str, int], categorization: "Categorization"
-    ) -> dict["Category", int]:
-        ...
+    ) -> dict["Category", int]: ...
 
     @typing.overload
     def _hydrate_handle_errors(
         self, to_hydrate: set[str], categorization: "Categorization"
-    ) -> set["Category"]:
-        ...
+    ) -> set["Category"]: ...
 
     def _hydrate_handle_errors(
         self,
@@ -901,29 +899,16 @@ class Conversion(ConversionBase):
 
     @staticmethod
     def from_csv(
-            filepath: typing.Union[str, pathlib.Path, typing.TextIO],
-            cats : typing.Union[dict[str, "Categorization"], None] = None,
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+        cats: typing.Union[dict[str, "Categorization"], None] = None,
     ) -> "Conversion":
         """Read conversion from comma-separated-values file and add categorizations."""
-
         conv = ConversionSpec.from_csv(filepath)
-        def get_cats(cat_names):
+
+        if cats is None:
             import climate_categories
 
-            return {
-                cat_name: climate_categories.cats[cat_name] for cat_name in cat_names
-            }
-
-        if not cats:
-            cat_names = [
-                conv.categorization_a_name,
-                conv.categorization_b_name,
-            ]
-
-            if conv.auxiliary_categorizations_names:
-                cat_names += conv.auxiliary_categorizations_names
-
-            cats = get_cats(cat_names)
+            cats = climate_categories.cats
 
         return conv.hydrate(cats=cats)
 
