@@ -37,9 +37,9 @@ def main():
             "comment": "Agricultural part of AFOLU excluding livestock",
         },
         "3.A.1.i": {"title": "Poultry", "comment": "From CRF data"},
-        "M.BIO" : {
-            "title" : "CO₂ emissions from biomass burning",
-            "comment" : "CO₂ emissions from biomass burning for energy use",
+        "M.BIO": {
+            "title": "CO₂ emissions from biomass burning",
+            "comment": "CO₂ emissions from biomass burning for energy use",
         },
         "M.BK": {
             "title": "International Bunkers",
