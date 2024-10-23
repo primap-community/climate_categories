@@ -58,7 +58,6 @@ venv: setup.py pyproject.toml setup.cfg
 
 update-venv: ## update all packages in the development environment
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python .check_python_version.py
 	venv/bin/python -m pip install --upgrade wheel uv
 	. venv/bin/activate ; venv/bin/uv pip  install --upgrade --resolution highest -e .[dev]
 	touch venv
