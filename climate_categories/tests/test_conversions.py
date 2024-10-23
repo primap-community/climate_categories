@@ -426,3 +426,60 @@ def test_relevant_rules():
     assert len(conv.relevant_rules({C96["4.D"]})) == 1
     assert len(conv.relevant_rules({C96["4.B.10"]}, simple_sums_only=True)) == 1
     assert conv.relevant_rules(set()) == []
+
+
+def get_test_data_filepath(fname: str):
+    return importlib.resources.files("climate_categories.tests.data").joinpath(fname)
+
+
+def test_read_csv_in_conversion_class():
+    fd = get_test_data_filepath("example_conversion.IPCC1996.IPCC2006.csv")
+
+    conv_from_conversion_spec = conversions.ConversionSpec.from_csv(fd)
+    conv_from_conversion_spec = conv_from_conversion_spec.hydrate(
+        cats=climate_categories.cats
+    )
+
+    conv_from_conversion = conversions.Conversion.from_csv(fd)
+
+    assert vars(conv_from_conversion_spec) == vars(conv_from_conversion)
+
+
+def test_read_conversion_from_csv_with_custom_categorizations():
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {"A": categorisation_a, "B": categorisation_b}
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion.csv"), cats=cats
+    )
+
+    assert conv.categorization_a_name == "A"
+    assert conv.categorization_b_name == "B"
+
+
+def test_read_conversion_from_csv_with_existing_categorizations():
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("test_conversion_with_existing_categorizations.csv")
+    )
+
+    assert conv.categorization_a_name == "BURDI"
+    assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+
+
+def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath(
+            "test_conversion_with_existing_categorizations_aux_dims.csv"
+        )
+    )
+
+    assert conv.categorization_a_name == "BURDI"
+    assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+    assert conv.auxiliary_categorizations_names == ["gas"]

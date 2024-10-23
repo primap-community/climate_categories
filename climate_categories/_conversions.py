@@ -897,6 +897,21 @@ class Conversion(ConversionBase):
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
 
+    @staticmethod
+    def from_csv(
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+        cats: typing.Union[dict[str, "Categorization"], None] = None,
+    ) -> "Conversion":
+        """Read conversion from comma-separated-values file and add categorizations."""
+        conv = ConversionSpec.from_csv(filepath)
+
+        if cats is None:
+            import climate_categories
+
+            cats = climate_categories.cats
+
+        return conv.hydrate(cats=cats)
+
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""
         return Conversion(
