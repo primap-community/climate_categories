@@ -23,7 +23,7 @@ jobs:
         enable-cache: true
         cache-suffix: "${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.resolution }}"
         cache-dependency-glob: "setup.cfg"
-        version: "0.4.9"
+        version: "0.4.25"
 
     - name: Create venv
       run: |
