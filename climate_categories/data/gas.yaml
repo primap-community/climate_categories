@@ -5,8 +5,8 @@ references: Derived from openscm_units (https://github.com/openscm/openscm-units
   'standard gases' and mixtures.
 institution: openscm
 hierarchical: true
-last_update: '2021-05-27'
-version: 0.3.0
+last_update: '2024-10-23'
+version: 0.3.1
 total_sum: false
 categories:
   C:
@@ -248,6 +248,8 @@ categories:
     title: HFE236ea2
   HFE236fa:
     title: HFE236fa
+  HFE254cb2:
+    title: HFE254cb2
   HFE245fa1:
     title: HFE245fa1
   HFE263fb2:
@@ -268,12 +270,32 @@ categories:
     title: HFE365mcf3
   HFE374pc2:
     title: HFE374pc2
+  HFE7100:
+    title: HFE7100
+  HFE7200:
+    title: HFE7200
   PFPMIE:
     title: PFPMIE
   HFO1234yf:
     title: HFO1234yf
   HFO1234ze:
     title: HFO1234ze
+  CHOH:
+    title: CHOH
+  CHOCHF2:
+    title: CHOCHF2
+  CHOCH3:
+    title: CHOCH3
+  CF3:
+    title: CF3
+  CF3I:
+    title: CF3I
+  CFOCH3:
+    title: CFOCH3
+  CF3CH2OH:
+    title: CF3CH2OH
+  CF3CF2CH2OH:
+    title: CF3CF2CH2OH
   CCl4:
     title: CCl4
   CHCl3:
@@ -282,8 +304,14 @@ categories:
     title: CH2Cl2
   CH3CCl3:
     title: CH3CCl3
+  CH3OCH3:
+    title: CH3OCH3
   CH3Cl:
     title: CH3Cl
+  CHBrF2:
+    title: CHBrF2
+  CH2Br2:
+    title: CH2Br2
   CH3Br:
     title: CH3Br
   SF5CF3:
@@ -296,6 +324,12 @@ categories:
     title: NF3
   HCO1130:
     title: HCO1130
+  HGalden1040x:
+    title: HGalden1040x
+  HG10:
+    title: HG10
+  HG01:
+    title: HG01
   CFC400:
     title: CFC400
     comment: The refrigerant CFC400, which is a mixture of 50% CFC12, 50% CFC114.
