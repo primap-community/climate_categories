@@ -1,0 +1,1 @@
+* Use pypdf-table-extraction instead of kamelot for extracting categorizations from pdf files.
