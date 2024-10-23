@@ -2615,6 +2615,10 @@ spec = {
             "title": "International Aviation",
             "comment": "International aviation bunkers. same as 1.A.3.a.i, excluded from CRF total",
         },
+        "M.BIO": {
+            "title": "CO₂ emissions from biomass burning",
+            "comment": "CO₂ emissions from biomass burning for energy use",
+        },
         "M.BK.M": {
             "title": "International Navigation",
             "comment": "International marine bunkers. same as 1.A.3.d.i, excluded from CRF total",
