@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch: # allows you to trigger the workflow run manually
 
 jobs:
   test:
@@ -11,30 +12,47 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ 3.9, "3.10", "3.11"]
+        python-version: [ "3.11", "3.12", "3.13" ]
+        resolution: [ "highest", "lowest-direct" ]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - name: Set up uv and caching
+      uses: astral-sh/setup-uv@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        enable-cache: true
+        cache-suffix: "${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.resolution }}"
+        cache-dependency-glob: "setup.cfg"
+        version: "0.4.25"
 
-    - uses: actions/cache@v2
-      with:
-        path: ${{ env.pythonLocation }}
-        key: ${{ env.pythonLocation }}-${{ hashFiles('setup.cfg') }}
-
-    - name: Install dependencies
+    - name: Create venv
       run: |
-        python -m pip install --upgrade pip wheel
-        pip install --upgrade --upgrade-strategy eager .[test]
+        uv venv --seed --python ${{ matrix.python-version }}
 
-    - name: Test with pytest
+    - name: Install ${{ matrix.resolution }} dependencies
       run: |
-        pytest --xdoc --cov=climate_categories --cov-report=xml
+        uv pip install --resolution ${{ matrix.resolution }} .[test]
+
+    - name: Test with pytest (linux)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        source .venv/bin/activate
+        pytest --xdoc --cov=climate_categories --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
+
+    - name: Test with pytest (windows)
+      if: startsWith(matrix.os, 'windows')
+      run: |
+        .venv\Scripts\activate
+        pytest --xdoc --cov=climate_categories --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v4
       with:
         files: ./coverage.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Upload test results to Codecov
+      if: ${{ !cancelled() }}
+      uses: codecov/test-results-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
