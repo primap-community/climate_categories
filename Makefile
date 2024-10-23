@@ -84,6 +84,24 @@ cache: climate_categories/data/ISO3_GCAM.py
 cache: climate_categories/data/BURDI.py
 cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
 
+data: climate_categories/data/BURDI_class.yaml
+data: climate_categories/data/BURDI.yaml
+data: climate_categories/data/CRF1999.yaml
+data: climate_categories/data/CRF2013_2021.yaml
+data: climate_categories/data/CRF2013_2022.yaml
+data: climate_categories/data/CRF2013_2023.yaml
+data: climate_categories/data/CRF2013.yaml
+data: climate_categories/data/CRFDI_class.yaml
+data: climate_categories/data/CRFDI.yaml
+data: climate_categories/data/gas.yaml
+data: climate_categories/data/IPCC1996.yaml
+data: climate_categories/data/IPCC2006_PRIMAP.yaml
+data: climate_categories/data/IPCC2006.yaml
+data: climate_categories/data/ISO3_GCAM.yaml
+data: climate_categories/data/ISO3.yaml
+data: climate_categories/data/RCMIP.yaml  ## Generate data files
+
+
 climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	venv/bin/python $<
 
