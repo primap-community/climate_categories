@@ -28,8 +28,8 @@ def main():
         "comment": "Gases and other climate-forcing substances",
         "references": "Derived from openscm_units "
         "(https://github.com/openscm/openscm-units) 'standard gases' and mixtures.",
-        "last_update": "2021-05-27",
-        "version": "0.3.0",
+        "last_update": "2024-10-23",
+        "version": "0.3.1",
         "institution": "openscm",
         "categories": categories,
         "hierarchical": True,
