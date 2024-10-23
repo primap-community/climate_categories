@@ -30,6 +30,17 @@ coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage html
 	ls htmlcov/index.html
 
+clean-build: ## remove build artifacts
+	rm -fr build/
+	rm -fr dist/
+	rm -fr .eggs/
+	find . -name '*.egg-info' -exec rm -fr {} +
+	find . -name '*.egg' -exec rm -fr {} +
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
+
 clean-docs: venv ## Remove generated parts of documentation, then build docs
 	. venv/bin/activate ; $(MAKE) -C docs clean
 	. venv/bin/activate ; $(MAKE) -C docs html
@@ -40,7 +51,7 @@ docs: venv ## generate Sphinx HTML documentation, including API docs
 release: venv dist ## package and upload a release
 	venv/bin/twine upload --repository climate-categories dist/*
 
-dist: clean venv ## builds source and wheel package
+dist: clean-build venv ## builds source and wheel package
 	# because we update the citation info after releasing on github and zenodo but
 	# before building for pypi, we need to force the correct version.
 	SETUPTOOLS_SCM_PRETEND_VERSION=0.10.2 venv/bin/python -m build
