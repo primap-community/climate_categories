@@ -2,7 +2,7 @@
 github_url = "https://github.com/pik-primap/climate_categories/"
 
 [version]
-current = "0.10.1"
+current = "0.10.2"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before
@@ -29,6 +29,10 @@ search = 'version = {current_version}'
 [[file]]
 src = "climate_categories/__init__.py"
 search = '__version__ = "{current_version}"'
+
+[[file]]
+src = "Makefile"
+search = '\tSETUPTOOLS_SCM_PRETEND_VERSION={current_version}'
 
 [[file]]
 src = "README.rst"

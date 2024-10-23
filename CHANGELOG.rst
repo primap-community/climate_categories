@@ -2,6 +2,13 @@
 Changelog
 =========
 
+0.10.2 (2024-10-23)
+-------------------
+* Add a method to create a Conversion object from csv
+* Use pypdf-table-extraction instead of camelot for extracting categorizations from pdf files.
+* add M.BIO category
+* Add new gas mixtures to the gas categorization.
+
 0.10.1 (2024-01-25)
 -------------------
 * ISO3_GCAM: Removed extraneous "v" from version specifications in region codes

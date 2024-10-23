@@ -1,1 +1,0 @@
-* Add a method to create a Conversion object from csv
