@@ -433,9 +433,7 @@ def get_test_data_filepath(fname: str):
 
 
 def test_read_csv_in_conversion_class():
-    fd = get_test_data_filepath(
-        "example_conversion.IPCC1996.IPCC2006.csv"
-    )
+    fd = get_test_data_filepath("example_conversion.IPCC1996.IPCC2006.csv")
 
     conv_from_conversion_spec = conversions.ConversionSpec.from_csv(fd)
     conv_from_conversion_spec = conv_from_conversion_spec.hydrate(
@@ -448,9 +446,13 @@ def test_read_csv_in_conversion_class():
 
 
 def test_read_conversion_from_csv_with_custom_categorizations():
-    categorisation_a = climate_categories.from_yaml(get_test_data_filepath("simple_categorisation_a.yaml"))
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
 
-    categorisation_b = climate_categories.from_yaml(get_test_data_filepath("simple_categorisation_b.yaml"))
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
 
     cats = {"A": categorisation_a, "B": categorisation_b}
 
@@ -473,7 +475,9 @@ def test_read_conversion_from_csv_with_existing_categorizations():
 
 def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
     conv = climate_categories.Conversion.from_csv(
-        get_test_data_filepath("test_conversion_with_existing_categorizations_aux_dims.csv")
+        get_test_data_filepath(
+            "test_conversion_with_existing_categorizations_aux_dims.csv"
+        )
     )
 
     assert conv.categorization_a_name == "BURDI"
