@@ -1,1 +1,0 @@
-* Use pypdf-table-extraction instead of camelot for extracting categorizations from pdf files.
