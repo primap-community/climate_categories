@@ -903,6 +903,7 @@ class Conversion(ConversionBase):
         cats: typing.Union[dict[str, "Categorization"], None] = None,
     ) -> "Conversion":
         """Read conversion from comma-separated-values file and add categorizations."""
+
         conv = ConversionSpec.from_csv(filepath)
 
         if cats is None:
