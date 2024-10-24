@@ -146,6 +146,8 @@ Deploying
 
 A reminder for the maintainers on how to deploy.
 
+
+
 1.  Commit all your changes.
 2.  Run ``tbump X.Y.Z``.
 3.  Wait a bit that the release on github and zenodo is created.
@@ -154,3 +156,48 @@ A reminder for the maintainers on how to deploy.
     wait a little more for zenodo to mint the new version. Once it worked, commit the
     change.
 5.  Upload the release to pyPI: ``make release``
+
+
+1 Run ``tbump``
+~~~~~~~~~~~~~~~~
+
+-  commit all your changes
+-  make sure gh is installed on your system https://cli.github.com/
+-  Decide what the new version number should be
+-  For version X.Y.Z - increase X when ??, increase Y when breaking changes are introduced, increase Z for minor changes
+-  Run ``venv/bin/tbump X.Y.Z`` if you don’t have tbump installed globally
+
+
+2. Update the README
+~~~~~~~~~~~~~~~~~~~~
+-  Run ``make README.rst`` to update the citation information in the README from the zenodo API.
+-  Check if the version is actually correct. You can look at the diff for the README and check if the citation info and the date has changed
+-  If it's not updated, grab a tea and wait a little more for zenodo to mint the new version.
+-  Once it's there, push new README to github
+
+3. Publish on PyPi
+~~~~~~~~~~~~~~~~~~~
+
+-  make sure you have a pypi account
+-  make sure you have the rights to publish on pypi, if not ask a
+   project owner to add you
+-  create a file called ``.pypirc`` in your home directory, more info on the pypirc file here https://packaging.python.org/en/latest/specifications/pypirc/
+-  Write the following text in the file:
+
+::
+
+   [distutils]
+     index-servers =
+       climate-categories
+
+   [climate-categories]
+     repository = https://upload.pypi.org/legacy/
+     username = __token__
+     password = pypi-PASSWORD
+
+-  change the password to your personal password (you need to create a new token in your pypi account)
+-  run ``make release``
+-  click on the pypi link in the command line and check if everything
+   makes sense
+-  if something went wrong you can revert the release by clicking
+   options -> yank
