@@ -147,26 +147,16 @@ Deploying
 A reminder for the maintainers on how to deploy.
 
 
-
-1.  Commit all your changes.
-2.  Run ``tbump X.Y.Z``.
-3.  Wait a bit that the release on github and zenodo is created.
-4.  Run ``make README.rst`` to update the citation information in the README from the
-    zenodo API. Check if the version is actually correct, otherwise grab a tea and
-    wait a little more for zenodo to mint the new version. Once it worked, commit the
-    change.
-5.  Upload the release to pyPI: ``make release``
-
-
 1 Run ``tbump``
 ~~~~~~~~~~~~~~~~
 
 -  commit all your changes
--  make sure gh is installed on your system https://cli.github.com/
+-  make sure `gh`_ is installed on your system
 -  Decide what the new version number should be
--  For version X.Y.Z - increase X when ??, increase Y when breaking changes are introduced, increase Z for minor changes
+-  For version X.Y.Z - increase X for a major release, increase Y when breaking changes are introduced, increase Z for minor changes
 -  Run ``venv/bin/tbump X.Y.Z`` if you don’t have tbump installed globally
 
+.. _gh: https://cli.github.com/
 
 2. Update the README
 ~~~~~~~~~~~~~~~~~~~~
@@ -181,8 +171,10 @@ A reminder for the maintainers on how to deploy.
 -  make sure you have a pypi account
 -  make sure you have the rights to publish on pypi, if not ask a
    project owner to add you
--  create a file called ``.pypirc`` in your home directory, more info on the pypirc file here https://packaging.python.org/en/latest/specifications/pypirc/
+-  create a file called ``.pypirc`` in your home directory, more info on the pypirc file `here`_
 -  Write the following text in the file:
+
+.. _here: https://packaging.python.org/en/latest/specifications/pypirc/
 
 ::
 
