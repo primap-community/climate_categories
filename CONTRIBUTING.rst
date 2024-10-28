@@ -147,21 +147,21 @@ Deploying
 A reminder for the maintainers on how to deploy.
 
 
-1 Run ``tbump``
+1. Run ``tbump``
 ~~~~~~~~~~~~~~~~
 
 -  commit all your changes
 -  make sure `gh`_ is installed on your system
 -  Decide what the new version number should be
 -  For version X.Y.Z - increase X for a major release, increase Y when breaking changes are introduced, increase Z for minor changes
--  Run ``venv/bin/tbump X.Y.Z`` if you don’t have tbump installed globally
+-  Run ``venv/bin/tbump X.Y.Z``
 
 .. _gh: https://cli.github.com/
 
 2. Update the README
 ~~~~~~~~~~~~~~~~~~~~
 -  Run ``make README.rst`` to update the citation information in the README from the zenodo API.
--  Check if the version is actually correct. You can look at the diff for the README and check if the citation info and the date has changed
+-  Check if the version is actually correct. You can look at the diff for the README and check if the DOI and the date has changed
 -  If it's not updated, grab a tea and wait a little more for zenodo to mint the new version.
 -  Once it's there, push new README to github
 
@@ -187,7 +187,7 @@ A reminder for the maintainers on how to deploy.
      username = __token__
      password = pypi-PASSWORD
 
--  change the password to your personal password (you need to create a new token in your pypi account)
+-  change the password to your personal token. You can generate the token on the `settings page of climate_categories on pypi <https://pypi.org/manage/project/climate-categories/settings/>`_.
 -  run ``make release``
 -  click on the pypi link in the command line and check if everything
    makes sense
