@@ -70,6 +70,10 @@ def main():
             "comment": "Emissions for Road transportation without the "
             "effect from resuspension of particles.",
         },
+        "3.C.45.AG" : {
+            "title" : "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
+            "comment" : "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
+        },
     }
     children = [
         ("0", ("M.0.EL", "M.LULUCF")),
