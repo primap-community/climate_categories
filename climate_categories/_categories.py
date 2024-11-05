@@ -23,7 +23,6 @@ from ._conversions import Conversion, ConversionSpec
 # Categorization, or any subclass.
 CategorizationT = TypeVar("CategorizationT", bound="Categorization")
 
-
 class Category:
     """A single category."""
 
