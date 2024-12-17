@@ -2644,5 +2644,9 @@ spec = {
             "title" : "Indirect synthetic fertilisers emissions from managed soils",
             "comment" : "The share of emissions that come from synthetic fertilisers",
         },
+        "M.NFC" : {
+            "title" : "Net forest conversion",
+            "comment" : "Needed to map net forest conversion from FAOSTAT dataset",
+        },
     },
 }
