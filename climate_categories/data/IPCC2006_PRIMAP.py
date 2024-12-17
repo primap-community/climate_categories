@@ -2647,6 +2647,9 @@ spec = {
         "M.NFC" : {
             "title" : "Net forest conversion",
             "comment" : "Needed to map net forest conversion from FAOSTAT dataset",
+        "M.3.C.45.AG" : {
+            "title" : "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
+            "comment" : "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
         },
     },
 }
