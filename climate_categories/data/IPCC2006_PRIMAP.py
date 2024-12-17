@@ -2636,5 +2636,13 @@ spec = {
             "title": "Road Transportation no resuspension",
             "comment": "Emissions for Road transportation without the effect from resuspension of particles.",
         },
+        "M.3.C.4.SF" : {
+            "title" : "Direct synthetic fertilisers emissions from managed soils",
+            "comment" : "The share of emissions that come from synthetic fertilisers",
+        },
+        "M.3.C.5.SF" : {
+            "title" : "Indirect synthetic fertilisers emissions from managed soils",
+            "comment" : "The share of emissions that come from synthetic fertilisers",
+        },
     },
 }
