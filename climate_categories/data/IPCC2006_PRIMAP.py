@@ -2636,6 +2636,18 @@ spec = {
             "title": "Road Transportation no resuspension",
             "comment": "Emissions for Road transportation without the effect from resuspension of particles.",
         },
+        "M.3.C.4.SF" : {
+            "title" : "Direct synthetic fertilisers emissions from managed soils",
+            "comment" : "The share of emissions that come from synthetic fertilisers",
+        },
+        "M.3.C.5.SF" : {
+            "title" : "Indirect synthetic fertilisers emissions from managed soils",
+            "comment" : "The share of emissions that come from synthetic fertilisers",
+        },
+        "M.NFC" : {
+            "title" : "Net forest conversion",
+            "comment" : "Needed to map net forest conversion from FAOSTAT dataset",
+        },
         "M.3.C.45.AG" : {
             "title" : "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
             "comment" : "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
