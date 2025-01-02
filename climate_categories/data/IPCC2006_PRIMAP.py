@@ -5,9 +5,9 @@ spec = {
     "title": "IPCC GHG emission categories (2006) with custom categories used in PRIMAP",
     "comment": "IPCC classification of green-house gas emissions into categories, 2006 edition with additional categories needed for analyses and for datasets like PRIMAP-crf or EDGAR v6.0",
     "references": "",
-    "institution": "PIK",
+    "institution": "Climate Resource",
     "hierarchical": True,
-    "last_update": "2024-10-10",
+    "last_update": "2025-02-01",
     "version": "2006",
     "total_sum": True,
     "canonical_top_level_category": "0",
@@ -2591,11 +2591,6 @@ spec = {
         "M.1.B.1.c": {
             "title": "Other emission from solid fuels (CRF)",
             "comment": "Table 1s2: c.  Other (as specified in table 1.B.1)",
-        },
-        "M.AFOLU" : {
-            "title" : "Agriculture + Land Use, Land Use Change, and Forestry",
-            "comment" : "LULUCF + AG",
-            "children" : [["M.LULUCF", "M.AG"]],
         },
         "M.LULUCF": {
             "title": "Land Use, Land Use Change, and Forestry",
