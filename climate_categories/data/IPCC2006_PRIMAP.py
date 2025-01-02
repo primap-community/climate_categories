@@ -2592,6 +2592,11 @@ spec = {
             "title": "Other emission from solid fuels (CRF)",
             "comment": "Table 1s2: c.  Other (as specified in table 1.B.1)",
         },
+        "M.AFOLU" : {
+            "title" : "Agriculture + Land Use, Land Use Change, and Forestry",
+            "comment" : "LULUCF + AG",
+            "children" : [["M.LULUCF", "M.AG"]],
+        },
         "M.LULUCF": {
             "title": "Land Use, Land Use Change, and Forestry",
             "comment": "LULUCF part of AFOLU",
@@ -2651,6 +2656,14 @@ spec = {
         "M.3.C.45.AG" : {
             "title" : "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
             "comment" : "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.1.AG" : {
+            "title" : "The share of agriculture-related emissions of 3.C.1",
+            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.AG" : {
+            "title" : "The share of agriculture-related emissions of 3.C",
+            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
     },
 }

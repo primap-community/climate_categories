@@ -4769,6 +4769,12 @@ categories:
     children:
     - - 3.A
       - M.AG.ELV
+  M.AFOLU:
+    title: Agriculture + Land Use, Land Use Change, and Forestry
+    comment: LULUCF + AG
+    children:
+    - - M.LULUCF
+      - M.AG
   M.AG.ELV:
     title: Agriculture excluding Livestock
     comment: Agricultural part of AFOLU excluding livestock
@@ -4816,3 +4822,9 @@ categories:
   M.NFC:
     title: Net forest conversion
     comment: Needed to map net forest conversion from FAOSTAT dataset
+  M.3.C.AG:
+    title: The share of agriculture-related emissions of 3.C
+    comment: Needed for conversion from FAO to IPCC2006_PRIMAP.
+  M.3.C.1.AG:
+    title: The share of agriculture-related emissions of 3.C.1
+    comment: Needed for conversion from FAO to IPCC2006_PRIMAP.
