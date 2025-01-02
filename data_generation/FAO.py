@@ -1,28 +1,29 @@
 """Run this via `make climate_categories/data/FAO.yaml` in the main
 directory."""
 
+import pathlib
 
 import climate_categories as cc
-import pathlib
 
 OUTPATH = pathlib.Path("./climate_categories/data/FAO.yaml")
 
+
 def main():
     spec = {
-            "name": "FAOSTAT",
-            "title": (
-                "Food and Agriculture Organization of the United Nations (FAO) "
-                "FAOSTAT data set categorisation"
-            ),
-            "comment": "Needed to add FAOSTAT data to PRIMAP-hist",
-            "references": "",
-            "institution": "FAO",
-            "hierarchical": True,
-            "last_update": "2024-12-10",
-            "version": "2024",
-            "total_sum": True,
-            "canonical_top_level_category": "0",
-        }
+        "name": "FAOSTAT",
+        "title": (
+            "Food and Agriculture Organization of the United Nations (FAO) "
+            "FAOSTAT data set categorisation"
+        ),
+        "comment": "Needed to add FAOSTAT data to PRIMAP-hist",
+        "references": "",
+        "institution": "FAO",
+        "hierarchical": True,
+        "last_update": "2024-12-10",
+        "version": "2024",
+        "total_sum": True,
+        "canonical_top_level_category": "0",
+    }
 
     categories = {}
 
