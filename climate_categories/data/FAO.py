@@ -421,18 +421,18 @@ spec = {
         "3.A.4": {
             "title": "Asses enteric fermentation",
             "comment": "Asses enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.A": {
             "title": "Asses",
             "comment": "Asses",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.A.1", "3.A.2", "3.A.3", "3.A.4"]],
         },
         "3.A.1": {
             "title": "Asses manure management",
             "comment": "Asses manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.A.1.a", "3.A.1.b", "3.A.1.c"]],
         },
         "3.A.1.a": {
@@ -507,18 +507,18 @@ spec = {
         "3.B.4": {
             "title": "Camels enteric fermentation",
             "comment": "Camels enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.B": {
             "title": "Camels",
             "comment": "Camels",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.B.1", "3.B.2", "3.B.3", "3.B.4"]],
         },
         "3.B.1": {
             "title": "Camels manure management",
             "comment": "Camels manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.B.1.a", "3.B.1.b", "3.B.1.c"]],
         },
         "3.B.1.a": {
@@ -593,18 +593,18 @@ spec = {
         "3.C.4": {
             "title": "Cattle, dairy enteric fermentation",
             "comment": "Cattle, dairy enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.C": {
             "title": "Cattle, dairy",
             "comment": "Cattle, dairy",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.C.1", "3.C.2", "3.C.3", "3.C.4"]],
         },
         "3.C.1": {
             "title": "Cattle, dairy manure management",
             "comment": "Cattle, dairy manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.C.1.a", "3.C.1.b", "3.C.1.c"]],
         },
         "3.C.1.a": {
@@ -679,18 +679,18 @@ spec = {
         "3.D.4": {
             "title": "Cattle, non-dairy enteric fermentation",
             "comment": "Cattle, non-dairy enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.D": {
             "title": "Cattle, non-dairy",
             "comment": "Cattle, non-dairy",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.D.1", "3.D.2", "3.D.3", "3.D.4"]],
         },
         "3.D.1": {
             "title": "Cattle, non-dairy manure management",
             "comment": "Cattle, non-dairy manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.D.1.a", "3.D.1.b", "3.D.1.c"]],
         },
         "3.D.1.a": {
@@ -765,13 +765,13 @@ spec = {
         "3.E": {
             "title": "Chickens, broilers",
             "comment": "Chickens, broilers",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.E.1", "3.E.2", "3.E.3"]],
         },
         "3.E.1": {
             "title": "Chickens, broilers manure management",
             "comment": "Chickens, broilers manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.E.1.a", "3.E.1.b", "3.E.1.c"]],
         },
         "3.E.1.a": {
@@ -846,13 +846,13 @@ spec = {
         "3.F": {
             "title": "Chickens, layers",
             "comment": "Chickens, layers",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.F.1", "3.F.2", "3.F.3"]],
         },
         "3.F.1": {
             "title": "Chickens, layers manure management",
             "comment": "Chickens, layers manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.F.1.a", "3.F.1.b", "3.F.1.c"]],
         },
         "3.F.1.a": {
@@ -927,18 +927,18 @@ spec = {
         "3.G.4": {
             "title": "Goats enteric fermentation",
             "comment": "Goats enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.G": {
             "title": "Goats",
             "comment": "Goats",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.G.1", "3.G.2", "3.G.3", "3.G.4"]],
         },
         "3.G.1": {
             "title": "Goats manure management",
             "comment": "Goats manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.G.1.a", "3.G.1.b", "3.G.1.c"]],
         },
         "3.G.1.a": {
@@ -1013,18 +1013,18 @@ spec = {
         "3.H.4": {
             "title": "Horses enteric fermentation",
             "comment": "Horses enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.H": {
             "title": "Horses",
             "comment": "Horses",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.H.1", "3.H.2", "3.H.3", "3.H.4"]],
         },
         "3.H.1": {
             "title": "Horses manure management",
             "comment": "Horses manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.H.1.a", "3.H.1.b", "3.H.1.c"]],
         },
         "3.H.1.a": {
@@ -1099,18 +1099,18 @@ spec = {
         "3.I.4": {
             "title": "Mules and hinnies enteric fermentation",
             "comment": "Mules and hinnies enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.I": {
             "title": "Mules and hinnies",
             "comment": "Mules and hinnies",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.I.1", "3.I.2", "3.I.3", "3.I.4"]],
         },
         "3.I.1": {
             "title": "Mules and hinnies manure management",
             "comment": "Mules and hinnies manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.I.1.a", "3.I.1.b", "3.I.1.c"]],
         },
         "3.I.1.a": {
@@ -1185,18 +1185,18 @@ spec = {
         "3.J.4": {
             "title": "Sheep enteric fermentation",
             "comment": "Sheep enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.J": {
             "title": "Sheep",
             "comment": "Sheep",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.J.1", "3.J.2", "3.J.3", "3.J.4"]],
         },
         "3.J.1": {
             "title": "Sheep manure management",
             "comment": "Sheep manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.J.1.a", "3.J.1.b", "3.J.1.c"]],
         },
         "3.J.1.a": {
@@ -1271,18 +1271,18 @@ spec = {
         "3.K.4": {
             "title": "Llamas enteric fermentation",
             "comment": "Llamas enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.K": {
             "title": "Llamas",
             "comment": "Llamas",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.K.1", "3.K.2", "3.K.3", "3.K.4"]],
         },
         "3.K.1": {
             "title": "Llamas manure management",
             "comment": "Llamas manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.K.1.a", "3.K.1.b", "3.K.1.c"]],
         },
         "3.K.1.a": {
@@ -1357,13 +1357,13 @@ spec = {
         "3.L": {
             "title": "Chickens",
             "comment": "Chickens",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.L.1", "3.L.2", "3.L.3"]],
         },
         "3.L.1": {
             "title": "Chickens manure management",
             "comment": "Chickens manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.L.1.a", "3.L.1.b", "3.L.1.c"]],
         },
         "3.L.1.a": {
@@ -1438,13 +1438,13 @@ spec = {
         "3.M": {
             "title": "Poultry Birds",
             "comment": "Poultry Birds",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.M.1", "3.M.2", "3.M.3"]],
         },
         "3.M.1": {
             "title": "Poultry Birds manure management",
             "comment": "Poultry Birds manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.M.1.a", "3.M.1.b", "3.M.1.c"]],
         },
         "3.M.1.a": {
@@ -1519,18 +1519,18 @@ spec = {
         "3.N.4": {
             "title": "Buffalo enteric fermentation",
             "comment": "Buffalo enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.N": {
             "title": "Buffalo",
             "comment": "Buffalo",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.N.1", "3.N.2", "3.N.3", "3.N.4"]],
         },
         "3.N.1": {
             "title": "Buffalo manure management",
             "comment": "Buffalo manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.N.1.a", "3.N.1.b", "3.N.1.c"]],
         },
         "3.N.1.a": {
@@ -1605,13 +1605,13 @@ spec = {
         "3.O": {
             "title": "Ducks",
             "comment": "Ducks",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.O.1", "3.O.2", "3.O.3"]],
         },
         "3.O.1": {
             "title": "Ducks manure management",
             "comment": "Ducks manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.O.1.a", "3.O.1.b", "3.O.1.c"]],
         },
         "3.O.1.a": {
@@ -1686,18 +1686,18 @@ spec = {
         "3.P.4": {
             "title": "Swine, breeding enteric fermentation",
             "comment": "Swine, breeding enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.P": {
             "title": "Swine, breeding",
             "comment": "Swine, breeding",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.P.1", "3.P.2", "3.P.3", "3.P.4"]],
         },
         "3.P.1": {
             "title": "Swine, breeding manure management",
             "comment": "Swine, breeding manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.P.1.a", "3.P.1.b", "3.P.1.c"]],
         },
         "3.P.1.a": {
@@ -1772,18 +1772,18 @@ spec = {
         "3.Q.4": {
             "title": "Swine, market enteric fermentation",
             "comment": "Swine, market enteric fermentation",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": "CH4"},
         },
         "3.Q": {
             "title": "Swine, market",
             "comment": "Swine, market",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.Q.1", "3.Q.2", "3.Q.3", "3.Q.4"]],
         },
         "3.Q.1": {
             "title": "Swine, market manure management",
             "comment": "Swine, market manure management",
-            "info": {"gases": ["CH4"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.Q.1.a", "3.Q.1.b", "3.Q.1.c"]],
         },
         "3.Q.1.a": {
@@ -1858,13 +1858,13 @@ spec = {
         "3.R": {
             "title": "Turkeys",
             "comment": "Turkeys",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.R.1", "3.R.2", "3.R.3"]],
         },
         "3.R.1": {
             "title": "Turkeys manure management",
             "comment": "Turkeys manure management",
-            "info": {"gases": ["N2O"]},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [["3.R.1.a", "3.R.1.b", "3.R.1.c"]],
         },
         "3.R.1.a": {
