@@ -270,23 +270,21 @@ def main():
 
     for animal, code in zip(animals, codes_animals):
         if animal in enteric_fermentation:
-            gases = ["CH4"]
             animal_children = [f"{code}.{i}" for i in "1234"]
             categories[f"{code}.4"] = {
                 "title": f"{animal} enteric fermentation",
                 "comment": f"{animal} enteric fermentation",
                 # "alternative_codes" : code.replace(".", ""),
-                "info": {"gases": gases},
+                "info": {"gases": "CH4"},
             }
         else:
-            gases = ["N2O"]
             animal_children = [f"{code}.{i}" for i in "123"]
 
         categories[code] = {
             "title": animal,
             "comment": animal,
             # "alternative_codes" : code.replace(".", ""),
-            "info": {"gases": gases},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [animal_children],
         }
 
@@ -296,7 +294,7 @@ def main():
             "title": f"{animal} manure management",
             "comment": f"{animal} manure management",
             # "alternative_codes" : code.replace(".", ""),
-            "info": {"gases": gases},
+            "info": {"gases": ["N2O", "CH4"]},
             "children": [manure_management_children],
         }
 
@@ -584,7 +582,7 @@ def main():
     # fao_cats.to_yaml("FAO.yaml")
 
     fao_cats.to_yaml(OUTPATH)
-    # climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    cc.HierarchicalCategorization.from_yaml(OUTPATH)
 
 
 if __name__ == "__main__":
