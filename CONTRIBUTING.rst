@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/pik-primap/climate_categories/issues.
+Report bugs at https://github.com/primap-community/climate_categories/issues.
 
 If you are reporting a bug, please include:
 
@@ -74,14 +74,14 @@ Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
 Climate categories could always use more documentation, whether as part of the
-official Climate categories docs, in docstrings, or even on the web in blog posts,
+official Climate Categories docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
 The best way to send feedback is to file an issue at
-https://github.com/pik-primap/climate_categories/issues.
+https://github.com/primap-community/climate_categories/issues.
 
 If you are proposing a feature:
 
@@ -137,7 +137,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring and check the generated
    API documentation.
-3. The pull request will be tested on python 3.9, 3.10, and 3.11.
 
 Deploying
 ---------
