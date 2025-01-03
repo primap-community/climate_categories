@@ -1,1 +1,1 @@
-Adding category M.3.C.45.AG
+* Added the category M.3.C.45.AG to the IPCC2006_PRIMAP categorisation
