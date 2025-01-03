@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/pik-primap/climate_categories/issues.
+Report bugs at https://github.com/primap-community/climate_categories/issues.
 
 If you are reporting a bug, please include:
 
@@ -74,14 +74,14 @@ Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
 Climate categories could always use more documentation, whether as part of the
-official Climate categories docs, in docstrings, or even on the web in blog posts,
+official Climate Categories docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
 The best way to send feedback is to file an issue at
-https://github.com/pik-primap/climate_categories/issues.
+https://github.com/primap-community/climate_categories/issues.
 
 If you are proposing a feature:
 
