@@ -1,1 +1,1 @@
-* Extend documentation for deployment process
+* Improved the documentation for the deployment process
