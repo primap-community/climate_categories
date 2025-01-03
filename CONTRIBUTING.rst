@@ -137,7 +137,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring and check the generated
    API documentation.
-3. The pull request will be tested on python 3.9, 3.10, and 3.11.
 
 Deploying
 ---------
