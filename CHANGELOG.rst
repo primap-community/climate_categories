@@ -2,6 +2,15 @@
 Changelog
 =========
 
+0.10.3 (2025-01-03)
+-------------------
+* Dropped support for Python 3.9 and 3.10.
+* Added support for Python 3.12 and 3.13.
+* Introduced minimum supported versions of dependencies.
+* Fixed minimum dependencies for Python 3.13.
+* Improved the documentation for the deployment process
+* Added the category M.3.C.45.AG to the IPCC2006_PRIMAP categorisation
+
 0.10.2 (2024-10-23)
 -------------------
 * Add a method to create a Conversion object from csv
