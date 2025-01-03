@@ -483,3 +483,27 @@ def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
     assert conv.categorization_a_name == "BURDI"
     assert conv.categorization_b_name == "IPCC2006_PRIMAP"
     assert conv.auxiliary_categorizations_names == ["gas"]
+
+@pytest.mark.xfail()
+def test_conversion_filter_by_gas():
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {"A" : categorisation_a,
+            "B" : categorisation_b,
+            "gas" : climate_categories.cats["gas"]
+            }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O = conv.filter(by={"gas" : "N2O"})
+
+    assert len(conv_N2O.rules) == 1
+    assert conv_N2O.rules[0].csv_original_text == "2+3,CH4 N2O,2"
