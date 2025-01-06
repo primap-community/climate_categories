@@ -523,7 +523,7 @@ def test_filter_raises_wrong_input_format_error(aux_dim, like, error_message):
         get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
     )
     with pytest.raises(Exception) as e_info:
-        conv_N2O = conv.filter(aux_dim=aux_dim, like=like)
+        conv_N2O = conv.filter(aux_dim=aux_dim, like=like) # noqa: F841
 
     assert str(e_info.value) == error_message
 
