@@ -913,6 +913,7 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
+
     def filter(self, category: str, like: list[str]) -> "Conversion":
         """Filter conversion by auxiliary dimension.
 
@@ -920,7 +921,6 @@ class Conversion(ConversionBase):
 
         Note that this function only allows filtering for one additional dimension.
         """
-
         rules_filtered = []
         # TODO variable naming makes sense?
         for filter in like:

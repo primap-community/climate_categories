@@ -509,12 +509,20 @@ def test_conversion_filter_by_gas():
     assert len(conv_N2O.rules) == 1
     assert conv_N2O.rules[0].csv_original_text == "2+3,CH4 N2O,2"
 
+<<<<<<< HEAD
     conv_CO2 = conv.filter(category="gas", like=["CO2"])
+=======
+    conv_CO2 = conv.filter(by={"gas": "CO2"})
+>>>>>>> 49dccb5b5fac2760928dd390538df96c07aecbac
 
     assert len(conv_CO2.rules) == 1
     assert conv_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
 
+<<<<<<< HEAD
     conv_CH4 = conv.filter(category="gas", like=["CH4"])
+=======
+    conv_CH4 = conv.filter(by={"gas": "CH4"})
+>>>>>>> 49dccb5b5fac2760928dd390538df96c07aecbac
 
     assert len(conv_CH4.rules) == 1
     assert conv_CH4.rules[0].csv_original_text == "2+3,CH4 N2O,2"
