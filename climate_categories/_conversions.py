@@ -913,6 +913,26 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
+    def filter(self, by : dict[str, str]) -> "Conversion":
+
+        rules_filtered = []
+        for aux_category in by.values():
+            for rule in self.rules:
+                if aux_category in rule.csv_original_text:
+                    rules_filtered.append(rule)
+
+        return Conversion(
+            categorization_a=self.categorization_a,
+            categorization_b=self.categorization_b,
+            rules=rules_filtered,
+            auxiliary_categorizations=self.auxiliary_categorizations,
+            comment=self.comment,
+            references=self.references,
+            institution=self.institution,
+            last_update=self.last_update,
+            version=self.version,
+        )
+
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""
         return Conversion(
