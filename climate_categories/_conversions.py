@@ -913,34 +913,72 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-    def filter(self, category: str, like: list[str]) -> "Conversion":
-        """Filter conversion by auxiliary dimension.
-
-        TODO
-
-        Note that this function only allows filtering for one additional dimension.
+    def filter(self, aux_dim: str, like: list[str]) -> "Conversion":
         """
+        Filter conversion rules by a single auxiliary dimension.
+
+        This method filters the rules of the Conversion instance based on a specified
+        auxiliary dimension and a list of allowed values for that dimension. The filtered
+        rules are used to create a new Conversion instance.
+
+        Parameters
+        ----------
+        aux_dim : str
+            The name of the auxiliary dimension to filter by. Must match one of the
+            auxiliary categorisation names in the current Conversion instance.
+        like : list of str
+            A list of values to match in the specified auxiliary dimension. Only rules
+            whose auxiliary categories contain one of these values are retained.
+
+        Returns
+        -------
+        Conversion
+            A new Conversion instance containing only the rules that satisfy the filter
+            conditions.
+
+        Examples
+        --------
+        Filter a Conversion instance by the auxiliary dimension "gas" with allowed
+        values "CH4" and "CO2":
+
+        >>> filtered_conversion = conversion.filter(aux_dim="gas", like=["CH4", "CO2"])
+        >>> len(filtered_conversion.rules)
+        5
+
+        Notes
+        -----
+        - This function currently supports filtering by only one auxiliary dimension.
+        - If no rules match the filter criteria, the method will return an error.
+        """
+        if not isinstance(like, list):
+            msg = f"Expected 'like' to be a list of strings, got {type(like)}"
+            raise TypeError(msg)
+
+        if aux_dim not in self.auxiliary_categorizations_names:
+            msg = f"Dimension '{aux_dim}' not in auxiliary dimensions"
+            raise ValueError(msg)
+
+        # find the right aux categorisation (there may be more than one)
+        aux_categorisation = next(
+            aux_categorization
+            for aux_categorization in self.auxiliary_categorizations
+            if aux_categorization.name == aux_dim
+        )
+
         rules_filtered = []
-        # TODO variable naming makes sense?
-        for filter in like:
-            if category not in self.auxiliary_categorizations_names:
-                msg = f"{category} not in auxilliary categorisations."
-                raise ValueError(msg)
-
+        for criteria in like:
             for rule in self.rules:
-                # find the right aux categorisation
-                # TODO replace list comprehension with something else
-                categorisation_for_rule = [
-                    aux_categorization
-                    for aux_categorization in rule.auxiliary_categories.keys()
-                    if aux_categorization.name == category
-                ]
-                allowed_indices = [
-                    categories for categories in rule.auxiliary_categories.values()
-                ]
+                allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
 
-                if categorisation_for_rule[0][filter] in allowed_indices[0]:
+                # if category is in specified in aux dim or aux dims are empty
+                if (aux_categorisation[criteria] in allowed_indices) or (not allowed_indices):
                     rules_filtered.append(rule)
+
+        if not rules_filtered :
+            raise ValueError(
+                f"No rules match the filter criteria for auxiliary dimension '{aux_dim}' "
+                f"with values {like}."
+            )
 
         return Conversion(
             categorization_a=self.categorization_a,
