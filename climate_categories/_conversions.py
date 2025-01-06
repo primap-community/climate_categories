@@ -941,7 +941,7 @@ class Conversion(ConversionBase):
         Filter a Conversion instance by the auxiliary dimension "gas" with allowed
         values "CH4" and "CO2":
 
-        >>> filtered_conversion = conversion.filter(aux_dim="gas", like=["CH4", "CO2"])
+        >>> filtered_conversion = Conversion.filter(aux_dim="gas", like=["CH4", "CO2"])
         >>> len(filtered_conversion.rules)
         5
 
