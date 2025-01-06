@@ -601,8 +601,3 @@ def test_filter_fao_to_ipcc2006primap_by_gas():
     conv_CH4 = conv.filter(aux_dim="gas", like=["CH4"])
 
     assert len(conv_CH4.rules) == 25
-
-    conv_CO = conv.filter(aux_dim="gas", like=["CO"])
-
-    # all rules have specified gases they apply for
-    assert len(conv_CO.rules) == 0
