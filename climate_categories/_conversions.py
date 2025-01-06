@@ -971,10 +971,12 @@ class Conversion(ConversionBase):
                 allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
 
                 # if category is in specified in aux dim or aux dims are empty
-                if (aux_categorisation[criteria] in allowed_indices) or (not allowed_indices):
+                if (aux_categorisation[criteria] in allowed_indices) or (
+                    not allowed_indices
+                ):
                     rules_filtered.append(rule)
 
-        if not rules_filtered :
+        if not rules_filtered:
             raise ValueError(
                 f"No rules match the filter criteria for auxiliary dimension '{aux_dim}' "
                 f"with values {like}."

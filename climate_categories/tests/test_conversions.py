@@ -431,6 +431,7 @@ def test_relevant_rules():
 def get_test_data_filepath(fname: str):
     return importlib.resources.files("climate_categories.tests.data").joinpath(fname)
 
+
 def get_real_data_filepath(fname: str):
     return importlib.resources.files("climate_categories.data").joinpath(fname)
 
@@ -487,21 +488,28 @@ def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
     assert conv.categorization_b_name == "IPCC2006_PRIMAP"
     assert conv.auxiliary_categorizations_names == ["gas"]
 
+
 @pytest.mark.parametrize(
     "aux_dim, like, error_message",
     [
-        pytest.param("gas",
-                     "CO2",
-                     "Expected 'like' to be a list of strings, got <class 'str'>",
-                     id="wrong input format for 'like' parameter"),
-        pytest.param("country",
-                     ["USA", "DEU"],
-                     "Dimension 'country' not in auxiliary dimensions",
-                     id="Dimension not in auxiliary dimensions"),
-        pytest.param("gas",
-                     ["CO"],
-                     "No rules match the filter criteria for auxiliary dimension 'gas' with values ['CO'].",
-                     id="Dimension 'country' not in auxiliary dimensions"),
+        pytest.param(
+            "gas",
+            "CO2",
+            "Expected 'like' to be a list of strings, got <class 'str'>",
+            id="wrong input format for 'like' parameter",
+        ),
+        pytest.param(
+            "country",
+            ["USA", "DEU"],
+            "Dimension 'country' not in auxiliary dimensions",
+            id="Dimension not in auxiliary dimensions",
+        ),
+        pytest.param(
+            "gas",
+            ["CO"],
+            "No rules match the filter criteria for auxiliary dimension 'gas' with values ['CO'].",
+            id="Dimension 'country' not in auxiliary dimensions",
+        ),
     ],
 )
 def test_filter_raises_wrong_input_format_error(aux_dim, like, error_message):
@@ -514,9 +522,9 @@ def test_filter_raises_wrong_input_format_error(aux_dim, like, error_message):
     )
 
     cats = {
-        "A" : categorisation_a,
-        "B" : categorisation_b,
-        "gas" : climate_categories.cats["gas"],
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
     }
 
     conv = climate_categories.Conversion.from_csv(
@@ -526,6 +534,7 @@ def test_filter_raises_wrong_input_format_error(aux_dim, like, error_message):
         conv_N2O = conv.filter(aux_dim=aux_dim, like=like)
 
     assert str(e_info.value) == error_message
+
 
 def test_filter_simple_conversion_by_gas():
     categorisation_a = climate_categories.from_yaml(
@@ -567,6 +576,7 @@ def test_filter_simple_conversion_by_gas():
     assert conv_CH4_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
     assert conv_CH4_CO2.rules[1].csv_original_text == "2+3,CH4 N2O,2"
 
+
 def test_filter_ipcc1996_to_ipcc2006_by_gas():
     conv = climate_categories.Conversion.from_csv(
         get_real_data_filepath("conversion.IPCC1996.IPCC2006.csv")
@@ -582,7 +592,6 @@ def test_filter_ipcc1996_to_ipcc2006_by_gas():
 
     # There is one rule that only applies for N2O
     assert len(conv_CO2.rules) == n_all_rules - 1
-
 
 
 def test_filter_fao_to_ipcc2006primap_by_gas():
