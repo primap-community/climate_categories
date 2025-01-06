@@ -913,8 +913,7 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-    def filter(self, by : dict[str, str]) -> "Conversion":
-
+    def filter(self, by: dict[str, str]) -> "Conversion":
         rules_filtered = []
         for aux_category in by.values():
             for rule in self.rules:
