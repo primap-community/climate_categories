@@ -913,7 +913,6 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-
     def filter(self, category: str, like: list[str]) -> "Conversion":
         """Filter conversion by auxiliary dimension.
 
@@ -937,8 +936,7 @@ class Conversion(ConversionBase):
                     if aux_categorization.name == category
                 ]
                 allowed_indices = [
-                    categories
-                    for categories in rule.auxiliary_categories.values()
+                    categories for categories in rule.auxiliary_categories.values()
                 ]
 
                 if categorisation_for_rule[0][filter] in allowed_indices[0]:
