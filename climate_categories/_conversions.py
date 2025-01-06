@@ -913,12 +913,35 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-    def filter(self, by : dict[str, str]) -> "Conversion":
+    def filter(self, category: str, like: list[str]) -> "Conversion":
+        """Filter conversion by auxiliary dimension.
+
+        TODO
+
+        Note that this function only allows filtering for one additional dimension.
+        """
 
         rules_filtered = []
-        for aux_category in by.values():
+        # TODO variable naming makes sense?
+        for filter in like:
+            if category not in self.auxiliary_categorizations_names:
+                msg = f"{category} not in auxilliary categorisations."
+                raise ValueError(msg)
+
             for rule in self.rules:
-                if aux_category in rule.csv_original_text:
+                # find the right aux categorisation
+                # TODO replace list comprehension with something else
+                categorisation_for_rule = [
+                    aux_categorization
+                    for aux_categorization in rule.auxiliary_categories.keys()
+                    if aux_categorization.name == category
+                ]
+                allowed_indices = [
+                    categories
+                    for categories in rule.auxiliary_categories.values()
+                ]
+
+                if categorisation_for_rule[0][filter] in allowed_indices[0]:
                     rules_filtered.append(rule)
 
         return Conversion(
