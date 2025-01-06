@@ -957,15 +957,15 @@ class Conversion(ConversionBase):
         )
 
         rules_filtered = []
-        for criteria in like:
-            for rule in self.rules:
-                allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
+        for rule in self.rules:
+            allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
+            for criteria in like:
 
-                # if category is in specified in aux dim or aux dims are empty
                 if (aux_categorisation[criteria] in allowed_indices) or (
                     not allowed_indices
                 ):
                     rules_filtered.append(rule)
+                    break
 
         if not rules_filtered:
             raise ValueError(
