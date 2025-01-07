@@ -508,7 +508,7 @@ def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
             "gas",
             ["CO"],
             "No rules match the filter criteria for auxiliary dimension 'gas' with values ['CO'].",
-            id="Dimension 'country' not in auxiliary dimensions",
+            id="Empty result",
         ),
     ],
 )
@@ -578,9 +578,7 @@ def test_filter_simple_conversion_by_gas():
 
 
 def test_filter_ipcc1996_to_ipcc2006_by_gas():
-    conv = climate_categories.Conversion.from_csv(
-        get_real_data_filepath("conversion.IPCC1996.IPCC2006.csv")
-    )
+    conv = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
 
     n_all_rules = len(conv.rules)
 
@@ -595,9 +593,7 @@ def test_filter_ipcc1996_to_ipcc2006_by_gas():
 
 
 def test_filter_fao_to_ipcc2006primap_by_gas():
-    conv = climate_categories.Conversion.from_csv(
-        get_real_data_filepath("conversion.FAO.IPCC2006_PRIMAP.csv")
-    )
+    conv = climate_categories.FAO.conversion_to(climate_categories.IPCC2006_PRIMAP)
 
     conv_N2O = conv.filter(aux_dim="gas", like=["N2O"])
 

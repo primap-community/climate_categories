@@ -913,7 +913,7 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-    def filter(self, aux_dim: str, like: list[str]) -> "Conversion":
+    def filter(self, aux_dim: str, like: collections.abc.Iterable[str]) -> "Conversion":
         """
         Filter conversion rules by a single auxiliary dimension.
 
@@ -941,9 +941,6 @@ class Conversion(ConversionBase):
         - This function currently supports filtering by only one auxiliary dimension.
         - If no rules match the filter criteria, the method will return an error.
         """
-        if not isinstance(like, list):
-            msg = f"Expected 'like' to be a list of strings, got {type(like)}"
-            raise TypeError(msg)
 
         if aux_dim not in self.auxiliary_categorizations_names:
             msg = f"Dimension '{aux_dim}' not in auxiliary dimensions"
@@ -959,12 +956,9 @@ class Conversion(ConversionBase):
         rules_filtered = []
         for rule in self.rules:
             allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
-            for criteria in like:
-                if (aux_categorisation[criteria] in allowed_indices) or (
-                    not allowed_indices
-                ):
-                    rules_filtered.append(rule)
-                    break
+            # empty indices match everything, otherwise check if any of the values to be selected is listed
+            if not allowed_indices or any(aux_categorisation[criteria] in allowed_indices for criteria in like):
+	            rules_filtered.append(rule)
 
         if not rules_filtered:
             raise ValueError(
@@ -977,7 +971,7 @@ class Conversion(ConversionBase):
             categorization_b=self.categorization_b,
             rules=rules_filtered,
             auxiliary_categorizations=self.auxiliary_categorizations,
-            comment=self.comment,
+            comment=self.comment + f" (filtered for {aux_dim} in {like})",
             references=self.references,
             institution=self.institution,
             last_update=self.last_update,
