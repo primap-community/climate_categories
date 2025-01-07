@@ -1,5 +1,6 @@
 """Classes to represent conversions between categorizations."""
 
+import collections
 import csv
 import dataclasses
 import datetime
@@ -913,7 +914,9 @@ class Conversion(ConversionBase):
 
         return conv.hydrate(cats=cats)
 
-    def filter(self, aux_dim: str, like: collections.abc.Iterable[str]) -> "Conversion":
+    def filter(
+        self, aux_dim: str, values: collections.abc.Iterable[str]
+    ) -> "Conversion":
         """
         Filter conversion rules by a single auxiliary dimension.
 
@@ -926,7 +929,7 @@ class Conversion(ConversionBase):
         aux_dim : str
             The name of the auxiliary dimension to filter by. Must match one of the
             auxiliary categorisation names in the current Conversion instance.
-        like : list of str
+        values : Iterable of str
             A list of values to match in the specified auxiliary dimension. Only rules
             whose auxiliary categories contain one of these values are retained.
 
@@ -938,7 +941,6 @@ class Conversion(ConversionBase):
 
         Notes
         -----
-        - This function currently supports filtering by only one auxiliary dimension.
         - If no rules match the filter criteria, the method will return an error.
         """
 
@@ -958,14 +960,14 @@ class Conversion(ConversionBase):
             allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
             # empty indices match everything, otherwise check if any of the values to be selected is listed
             if not allowed_indices or any(
-                aux_categorisation[criteria] in allowed_indices for criteria in like
+                aux_categorisation[criteria] in allowed_indices for criteria in values
             ):
                 rules_filtered.append(rule)
 
         if not rules_filtered:
             raise ValueError(
                 f"No rules match the filter criteria for auxiliary dimension '{aux_dim}' "
-                f"with values {like}."
+                f"with values {values}."
             )
 
         return Conversion(
@@ -973,7 +975,7 @@ class Conversion(ConversionBase):
             categorization_b=self.categorization_b,
             rules=rules_filtered,
             auxiliary_categorizations=self.auxiliary_categorizations,
-            comment=self.comment + f" (filtered for {aux_dim} in {like})",
+            comment=self.comment + f" (filtered for {aux_dim} in {values})",
             references=self.references,
             institution=self.institution,
             last_update=self.last_update,
