@@ -1,4 +1,4 @@
-name: FAOSTAT
+name: FAO
 title: Food and Agriculture Organization of the United Nations (FAO) FAOSTAT data
   set categorisation
 comment: Needed to add FAOSTAT data to PRIMAP-hist
