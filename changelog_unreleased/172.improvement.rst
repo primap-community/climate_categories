@@ -1,0 +1,1 @@
+Adding categories M.3.C.4.SF, M.3.C.5.SF, M.NFC for FAOSTAT to IPCC2006_PRIMAP conversion.
