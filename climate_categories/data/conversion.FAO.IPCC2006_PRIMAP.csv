@@ -1,6 +1,6 @@
 # references: FAOSTAT https://files-faostat.fao.org/production/GT/Mapping_to_UNFCCC_IPCC.pdf
 # last_update: 2025-01-10
-FAOSTAT,gas,IPCC2006_PRIMAP,comment
+FAO,gas,IPCC2006_PRIMAP,comment
 1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b + 6.C,CH4 N2O CO2, 3.C.1.b, FAO 1.A.X.b Burning of crop residues + FAO 6.C Fires in organic soils to IPCC 3.C.1.b Biomass Burning In Croplands
 1.A.2.c,CH4,3.C.7, Rice cultivation
 1.A.1.a.i + 1.A.2.a.i + 1.A.3.a.i + 1.A.4.a.i + 1.A.5.a.i + 1.A.6.a.i + 1.A.7.a + 1.A.8.a.i + 1.A.9.a.i + 1.A.10.a.i + 1.A.11.a.i + 1.A.12.a.i + 3.A.2.a + 3.B.2.a + 3.C.2.a + 3.D.2.a + 3.E.2.a + 3.F.2.a + 3.G.2.a + 3.H.2.a + 3.I.2.a + 3.J.2.a + 3.K.2.a + 3.L.2.a + 3.N.2.a + 3.O.2.a + 3.P.2.a + 3.Q.2.a + 3.R.2.a + 3.A.3.a + 3.B.3.a + 3.C.3.a + 3.D.3.a + 3.E.3.a + 3.F.3.a + 3.G.3.a + 3.H.3.a + 3.I.3.a + 3.J.3.a + 3.K.3.a + 3.L.3.a + 3.N.3.a + 3.O.3.a + 3.P.3.a + 3.Q.3.a + 3.R.3.a,N2O,3.C.4, 1.A.X.a.i crop residues direct emissions + 3.X.1.b manure management (Direct emissions N2O) + 3.X.2.a manure left on pasture  + 3.X.3.a manure applied (direct emissions N2O) = 3.C.4 Direct N2O Emissions from Managed Soils

@@ -975,7 +975,7 @@ class Conversion(ConversionBase):
             categorization_b=self.categorization_b,
             rules=rules_filtered,
             auxiliary_categorizations=self.auxiliary_categorizations,
-            comment=self.comment + f" (filtered for {aux_dim} in {values})",
+            comment=(self.comment or "") + f" (filtered for {aux_dim} in {values})",
             references=self.references,
             institution=self.institution,
             last_update=self.last_update,

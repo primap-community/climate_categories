@@ -10,7 +10,7 @@ OUTPATH = pathlib.Path("./climate_categories/data/FAO.yaml")
 
 def main():
     spec = {
-        "name": "FAOSTAT",
+        "name": "FAO",
         "title": (
             "Food and Agriculture Organization of the United Nations (FAO) "
             "FAOSTAT data set categorisation"
