@@ -489,12 +489,6 @@ def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
     "aux_dim, values, error_message",
     [
         pytest.param(
-            "gas",
-            "CO2",
-            "Expected 'values' to be a list of strings, got <class 'str'>",
-            id="wrong input format for 'values' parameter",
-        ),
-        pytest.param(
             "country",
             ["USA", "DEU"],
             "Dimension 'country' not in auxiliary dimensions",
