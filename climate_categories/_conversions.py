@@ -957,8 +957,10 @@ class Conversion(ConversionBase):
         for rule in self.rules:
             allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
             # empty indices match everything, otherwise check if any of the values to be selected is listed
-            if not allowed_indices or any(aux_categorisation[criteria] in allowed_indices for criteria in like):
-	            rules_filtered.append(rule)
+            if not allowed_indices or any(
+                aux_categorisation[criteria] in allowed_indices for criteria in like
+            ):
+                rules_filtered.append(rule)
 
         if not rules_filtered:
             raise ValueError(
