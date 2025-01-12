@@ -1,48 +1,20 @@
 # references: FAOSTAT https://files-faostat.fao.org/production/GT/Mapping_to_UNFCCC_IPCC.pdf
 # last_update: 2025-01-10
 FAO,gas,IPCC2006_PRIMAP,comment
-1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b + 6.C,CH4 N2O CO2, 3.C.1.b, FAO 1.A.X.b Burning of crop residues + FAO 6.C Fires in organic soils to IPCC 3.C.1.b Biomass Burning In Croplands
+4,CO2,3.B.1,Carbon stock change in forests
+4.B,CO2,M.NFC,Net Forest conversion
+5.A,CO2 N2O,3.B.3,Drained grassland
+5.B,CO2 N2O,3.B.2,Drained cropland
+6.A,CO2 N2O CH4,3.C.1.a, FAO 6.A forest fires to IPCC 3.C.1.a Biomass burning in forest lands
+6.B,CO2 N2O CH4, 3.C.1.c, FAO 6.B savanna fires to IPCC 3.C.1.c Biomass burning in grasslands
+6.C,CO2, 3.C.1.b, FAO 6.C Fires in organic soils to IPCC 3.C.1.b Biomass Burning In Croplands
+7.M + 7.A,CO2, 2.G, Manufacturing fertlisers and pesticides
 1.A.2.c,CH4,3.C.7, Rice cultivation
-1.A.1.a.i + 1.A.2.a.i + 1.A.3.a.i + 1.A.4.a.i + 1.A.5.a.i + 1.A.6.a.i + 1.A.7.a + 1.A.8.a.i + 1.A.9.a.i + 1.A.10.a.i + 1.A.11.a.i + 1.A.12.a.i + 3.A.2.a + 3.B.2.a + 3.C.2.a + 3.D.2.a + 3.E.2.a + 3.F.2.a + 3.G.2.a + 3.H.2.a + 3.I.2.a + 3.J.2.a + 3.K.2.a + 3.L.2.a + 3.N.2.a + 3.O.2.a + 3.P.2.a + 3.Q.2.a + 3.R.2.a + 3.A.3.a + 3.B.3.a + 3.C.3.a + 3.D.3.a + 3.E.3.a + 3.F.3.a + 3.G.3.a + 3.H.3.a + 3.I.3.a + 3.J.3.a + 3.K.3.a + 3.L.3.a + 3.N.3.a + 3.O.3.a + 3.P.3.a + 3.Q.3.a + 3.R.3.a,N2O,3.C.4, 1.A.X.a.i crop residues direct emissions + 3.X.1.b manure management (Direct emissions N2O) + 3.X.2.a manure left on pasture  + 3.X.3.a manure applied (direct emissions N2O) = 3.C.4 Direct N2O Emissions from Managed Soils
-1.A.1.a.ii + 1.A.2.a.ii + 1.A.3.a.ii + 1.A.4.a.ii + 1.A.5.a.ii + 1.A.6.a.ii + 1.A.8.a.ii + 1.A.9.a.ii + 1.A.10.a.ii + 1.A.11.a.ii + 1.A.12.a.ii + 3.A.2.b + 3.B.2.b + 3.C.2.b + 3.D.2.b + 3.E.2.b + 3.F.2.b + 3.G.2.b + 3.H.2.b + 3.I.2.b + 3.J.2.b + 3.K.2.b + 3.L.2.b + 3.N.2.b + 3.O.2.b + 3.P.2.b + 3.Q.2.b + 3.R.2.b + 3.A.3.b + 3.B.3.b + 3.C.3.b + 3.D.3.b + 3.E.3.b + 3.F.3.b + 3.G.3.b + 3.H.3.b + 3.I.3.b + 3.J.3.b + 3.K.3.b + 3.L.3.b + 3.N.3.b + 3.O.3.b + 3.P.3.b + 3.Q.3.b + 3.R.3.b,N2O,3.C.5, 1.A.X.a.ii crop residues indirect emissions + 3.X.2.b manure left on pasture (indirect emissions N2O) + 3.X.3.b manure applied (indirect emissions N2O) = 3.C.5 Indirect N2O Emissions from Managed Soils
+1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b,CH4, 3.C.1.b, FAO 1.A.X.b Burning of crop residues to IPCC 3.C.1.b Biomass Burning In Croplands
+M.3.EF,CH4, 3.A.1, Enteric fermentation
+M.3.MM,CH4, 3.A.2, Manure Management
+M.3.MM,N2O, 3.A.2, Manure management
+1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b,N2O, 3.C.1.b, FAO 1.A.X.b Burning of crop residues to IPCC 3.C.1.b Biomass Burning In Croplands
+M.3.MP + M.3.MA + M.1.CR,N2O, 3.C.4
 1.B.1,N2O,M.3.C.4.SF,Better to map indivudually in case it covers different range of years
 1.B.2.a + 1.B.2.b,N2O,M.3.C.5.SF,Better to map individually in case it covers different range of years
-3.C.4,CH4,3.A.1.a.i, Cattle dairy enteric fermentation
-3.D.4,CH4,3.A.1.a.ii, Cattle non-dairy enteric fermentation
-3.N.4,CH4,3.A.1.b, Buffalo enteric fermentation
-3.J.4,CH4,3.A.1.c, Sheep enteric fermentation
-3.G.4,CH4,3.A.1.d, Goats enteric fermentation
-3.B.4,CH4,3.A.1.e, Camels enteric fermentation
-3.H.4,CH4,3.A.1.f, Horses enteric fermentation
-3.I.4 + 3.A.4,CH4,3.A.1.g, Asses + Mules and Hinnies = Mules and Asses enteric fermentation
-3.P.4 + 3.Q.4,CH4,3.A.1.h, Swine market + swine breeding = swine enteric fermentation
-3.K.4,CH4,3.A.1.j, Llamas = Other (Please Specify) enteric fermentation
-3.C.1.a,CH4, 3.A.2.a.i, Cattle dairy manure - decomposition of organic matter
-3.D.1.a,CH4,3.A.2.a.ii, Cattle non-dairy manure - decomposition of organic matter
-3.N.1.a,CH4,3.A.2.b, Buffalo manure - decomposition of organic matter
-3.J.1.a,CH4,3.A.2.c,Sheep manure - decomposition of organic matter
-3.G.1.a,CH4,3.A.2.d, Goats manure - decomposition of organic matter
-3.B.1.a,CH4,3.A.2.e,Camels manure - decomposition of organic matter
-3.H.1.a,CH4,3.A.2.f,Horses manure - decomposition of organic matter
-3.A.1.a + 3.I.1.a,CH4,3.A.2.g,Asses + Mules and hinnies = mules and asses manure - decomposition of organic matter
-3.P.1.a + 3.Q.1.a,CH4,3.A.2.h,Swine (breeding) + swine (market) = swine manure - decomposition of organic matter
-3.E.1.a + 3.F.1.a + 3.R.1.a,CH4,3.A.2.i,Chickens (layers) + chickens (breeding) + Turkeys = poultry manure - decomposition of organic matter
-3.K.1.a,CH4,3.A.2.j,llamas = Other (Please Specify) manure - decomposition of organic matter
-3.C.1.b,N2O,3.A.2.a.i, Cattle dairy manure management
-3.D.1.b,N2O,3.A.2.a.ii, Cattle non-dairy manure management
-3.N.1.b,N2O,3.A.2.b, Buffalo manure management
-3.J.1.b,N2O,3.A.2.c,Sheep manure management
-3.G.1.b,N2O,3.A.2.d, Goats manure management
-3.B.1.b,N2O,3.A.2.e,Camels manure management
-3.H.1.b,N2O,3.A.2.f,Horses manure management
-3.A.1.b + 3.I.1.b,N2O,3.A.2.g,Asses + Mules and hinnies = mules and asses manure management
-3.P.1.b + 3.Q.1.b,N2O,3.A.2.h,Swine (breeding) + swine (market) = swine manure management
-3.E.1.b + 3.F.1.b + 3.R.1.b,N2O,3.A.2.i,Chickens (layers) + chickens (breeding) + Turkeys = poultry manure management
-3.K.1.b,N2O,3.A.2.j,llamas = Other (Please Specify) manure management
-3.A.1.c + 3.B.1.c + 3.C.1.c + 3.D.1.c + 3.E.1.c + 3.F.1.c + 3.G.1.c + 3.H.1.c + 3.I.1.c + 3.J.1.c + 3.K.1.c + 3.L.1.c + 3.N.1.c + 3.O.1.c + 3.P.1.c + 3.Q.1.c + 3.R.1.c,N2O,3.C.6, Indirect N2O Emissions from Manure Management
-4,CO2,3.B.1,Carbon stock change in forests
-4.B,CO2,M.NFC,Net forest conversion
-5.A,N2O CO2,3.B.3,Drained grassland
-5.B,N2O CO2,3.B.2,Drained cropland
-6.A,N2O CO2 CH4,3.C.1.a, FAO 6.A forest fires to IPCC 3.C.1.a Biomass burning in forest lands
-6.B,N2O CO2 CH4,3.C.1.c, FAO 6.B savanna fires to IPCC 3.C.1.c Biomass burning in grasslands
