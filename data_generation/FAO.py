@@ -78,7 +78,6 @@ def main():
     categories[code_all_crops] = {
         "title": "All crops",
         "comment": "All crops",
-        # "alternative_codes": code_all_crops.replace(".", ""),
         "children": [codes_crops],
         "info": {"gases": ["CH4", "N2O"]},
     }
@@ -148,7 +147,6 @@ def main():
         categories[f"{code}"] = {
             "title": f"{crop}",
             "comment": f"{crop}",
-            # "alternative_codes": [f"{code}".replace(".", "")],
             "info": {"gases": gases_main},
             "children": [children_main],
         }
@@ -157,21 +155,18 @@ def main():
         categories[f"{code}.a.i"] = {
             "title": f"{crop} crop residues direct emissions",
             "comment": f"{crop} crop residues direct emissions",
-            # "alternative_codes": [f"{code}.a".replace(".", "")],
             "info": {"gases": ["N2O"]},
         }
 
         categories[f"{code}.a.ii"] = {
             "title": f"{crop} crop residues indirect emissions",
             "comment": f"{crop} crop residues indirect emissions",
-            # "alternative_codes": [f"{code}.a.i".replace(".", "")],
             "info": {"gases": ["N2O"]},
         }
 
         categories[f"{code}.a"] = {
             "title": f"{crop} crop residues",
             "comment": f"{crop} crop residues",
-            # "alternative_codes": [f"{code}.a".replace(".", "")],
             "info": {"gases": ["N2O"]},
             "children": [[f"{code}.a.ii", f"{code}.a.i"]],
         }
@@ -180,14 +175,12 @@ def main():
             categories[f"{code}.b"] = {
                 "title": f"{crop} burning crop residues",
                 "comment": f"{crop} burning crop residues",
-                # "alternative_codes": [f"{code}.b".replace(".", "")],
                 "info": {"gases": ["CH4", "N2O"]},
             }
         if rice_cultivation:
             categories[f"{code}.c"] = {
                 "title": "Rice cultivation",
                 "comment": "Rice cultivation",
-                # "alternative_codes": [f"{code}.c".replace(".", "")],
                 "info": {"gases": ["CH4"]},
             }
 
@@ -206,7 +199,6 @@ def main():
         categories[code] = {
             "title": name,
             "comment": name,
-            # "alternative_codes": [code.replace(".", "")],
             "info": {"gases": ["N2O"]},
         }
         if child_cat:
@@ -225,7 +217,6 @@ def main():
         categories[code] = {
             "title": name,
             "comment": name,
-            # "alternative_codes": code.replace(".", ""),
             "info": {"gases": ["CH4", "N2O", "CO2"]},
         }
 
@@ -274,7 +265,6 @@ def main():
             categories[f"{code}.4"] = {
                 "title": f"{animal} enteric fermentation",
                 "comment": f"{animal} enteric fermentation",
-                # "alternative_codes" : code.replace(".", ""),
                 "info": {"gases": "CH4"},
             }
         else:
@@ -283,7 +273,6 @@ def main():
         categories[code] = {
             "title": animal,
             "comment": animal,
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": ["N2O", "CH4"]},
             "children": [animal_children],
         }
@@ -293,7 +282,6 @@ def main():
         categories[f"{code}.1"] = {
             "title": f"{animal} manure management",
             "comment": f"{animal} manure management",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": ["N2O", "CH4"]},
             "children": [manure_management_children],
         }
@@ -301,21 +289,18 @@ def main():
         categories[f"{code}.1.a"] = {
             "title": f"{animal} decomposition of organic matter",
             "comment": f"{animal} decomposition of organic matter",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "CH4"},
         }
 
         categories[f"{code}.1.b"] = {
             "title": f"{animal} manure management (Direct emissions N2O)",
             "comment": f"{animal} manure management (Direct emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
         categories[f"{code}.1.c"] = {
             "title": f"{animal} manure management (Indirect emissions N2O)",
             "comment": f"{animal} manure management (Indirect emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
@@ -324,7 +309,6 @@ def main():
         categories[f"{code}.2"] = {
             "title": f"{animal} manure left on pasture",
             "comment": f"{animal} manure left on pasture",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
             "children": [manure_left_on_pasture_children],
         }
@@ -332,14 +316,12 @@ def main():
         categories[f"{code}.2.a"] = {
             "title": f"{animal} manure left on pasture (direct emissions N2O)",
             "comment": f"{animal} manure left on pasture (direct emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
         categories[f"{code}.2.b"] = {
             "title": f"{animal} manure left on pasture (indirect emissions N2O)",
             "comment": f"{animal} manure left on pasture (indirect emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
             "children": [[f"{code}.2.b.i", f"{code}.2.b.ii"]],
         }
@@ -353,7 +335,6 @@ def main():
                 f"{animal} manure left on pasture (indirect "
                 f"emissions, N2O that leaches)"
             ),
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
@@ -366,17 +347,14 @@ def main():
                 f"{animal} manure left on pasture (indirect "
                 f"emissions, N2O that volatilises)"
             ),
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
         # manure applied branch
-
         manure_applied_children = [f"{code}.3.{i}" for i in "ab"]
         categories[f"{code}.3"] = {
             "title": f"{animal} manure applied",
             "comment": f"{animal} manure applied",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
             "children": [manure_applied_children],
         }
@@ -384,14 +362,12 @@ def main():
         categories[f"{code}.3.a"] = {
             "title": f"{animal} manure applied (direct emissions N2O)",
             "comment": f"{animal} manure applied (direct emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
         categories[f"{code}.3.b"] = {
             "title": f"{animal} manure applied (indirect emissions N2O)",
             "comment": f"{animal} manure applied (indirect emissions N2O)",
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
             "children": [[f"{code}.3.b.i", f"{code}.3.b.ii"]],
         }
@@ -403,7 +379,6 @@ def main():
             "comment": (
                 f"{animal} manure applied (indirect " f"emissions, N2O that leaches)"
             ),
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
@@ -416,7 +391,6 @@ def main():
                 f"{animal} manure applied (indirect "
                 f"emissions, N2O that volatilises)"
             ),
-            # "alternative_codes" : code.replace(".", ""),
             "info": {"gases": "N2O"},
         }
 
@@ -635,9 +609,6 @@ def main():
 
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())
-    # run print(fao_cats.show_as_tree())
-    # fao_cats.to_python("FAO.py")
-    # fao_cats.to_yaml("FAO.yaml")
 
     fao_cats.to_yaml(OUTPATH)
     cc.HierarchicalCategorization.from_yaml(OUTPATH)
