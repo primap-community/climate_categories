@@ -575,6 +575,64 @@ def main():
         "children": [pre_post_production_categories_codes],
     }
 
+    # M categories
+    categories["M.3.EF"] = {
+        "title": "All animals enteric fermentation",
+        "comment": "The sum of enteric fermentation emissions of all animals",
+        "info": {
+            "gases": [
+                "CH4",
+            ],
+        },
+    }
+
+    categories["M.3.MM"] = {
+        "title": "All Animals - Manure management",
+        "comment": "The sum of manure management emissions of all animals",
+        "info": {
+            "gases": [
+                "N2O",
+                "CH4",
+            ],
+        },
+    }
+
+    categories["M.3.MP"] = {
+        "title": "All Animals - Manure left on pasture",
+        "comment": "The sum of manure left on pasture emissions of all animals",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.1.CR"] = {
+        "title": "All crops - crop residues",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.1.BCR"] = {
+        "title": "All crops - burning crop residues",
+        "info": {
+            "gases": ["N2O", "CH4"],
+        },
+    }
+
+    categories["M.3.MA"] = {
+        "title": "All Animals - Manure applied",
+        "comment": "The sum of manure applied to soils emissions of all animals",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())
     # run print(fao_cats.show_as_tree())
