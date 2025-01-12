@@ -7,7 +7,7 @@ spec = {
     "references": "",
     "institution": "Climate Resource",
     "hierarchical": True,
-    "last_update": "2025-02-01",
+    "last_update": "2025-01-12",
     "version": "2006",
     "total_sum": True,
     "canonical_top_level_category": "0",
@@ -2606,6 +2606,10 @@ spec = {
             "comment": "Agricultural part of AFOLU excluding livestock",
         },
         "3.A.1.i": {"title": "Poultry", "comment": "From CRF data"},
+        "M.BIO": {
+            "title": "CO₂ emissions from biomass burning",
+            "comment": "CO₂ emissions from biomass burning for energy use",
+        },
         "M.BK": {
             "title": "International Bunkers",
             "comment": "M category as not included in national total in CRF data",
@@ -2614,10 +2618,6 @@ spec = {
         "M.BK.A": {
             "title": "International Aviation",
             "comment": "International aviation bunkers. same as 1.A.3.a.i, excluded from CRF total",
-        },
-        "M.BIO": {
-            "title": "CO₂ emissions from biomass burning",
-            "comment": "CO₂ emissions from biomass burning for energy use",
         },
         "M.BK.M": {
             "title": "International Navigation",
@@ -2636,29 +2636,29 @@ spec = {
             "title": "Road Transportation no resuspension",
             "comment": "Emissions for Road transportation without the effect from resuspension of particles.",
         },
-        "M.3.C.4.SF" : {
-            "title" : "Direct synthetic fertilisers emissions from managed soils",
-            "comment" : "The share of emissions that come from synthetic fertilisers",
+        "M.3.C.45.AG": {
+            "title": "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
+            "comment": "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
         },
-        "M.3.C.5.SF" : {
-            "title" : "Indirect synthetic fertilisers emissions from managed soils",
-            "comment" : "The share of emissions that come from synthetic fertilisers",
+        "M.3.C.4.SF": {
+            "title": "Direct synthetic fertilisers emissions from managed soils",
+            "comment": "The share of emissions that come from synthetic fertilisers",
         },
-        "M.NFC" : {
-            "title" : "Net forest conversion",
-            "comment" : "Needed to map net forest conversion from FAOSTAT dataset",
+        "M.3.C.5.SF": {
+            "title": "Indirect synthetic fertilisers emissions from managed soils",
+            "comment": "The share of emissions that come from synthetic fertilisers",
         },
-        "M.3.C.45.AG" : {
-            "title" : "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
-            "comment" : "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
+        "M.NFC": {
+            "title": "Net forest conversion",
+            "comment": "Needed to map net forest conversion from FAOSTAT dataset",
         },
-        "M.3.C.1.AG" : {
-            "title" : "The share of agriculture-related emissions of 3.C.1",
-            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        "M.3.C.1.AG": {
+            "title": "The share of agriculture-related emissions of 3.C.1",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "M.3.C.AG" : {
-            "title" : "The share of agriculture-related emissions of 3.C",
-            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        "M.3.C.AG": {
+            "title": "The share of agriculture-related emissions of 3.C",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
     },
 }
