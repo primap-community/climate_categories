@@ -143,7 +143,7 @@ def main():
         name=name,
         title=title,
         comment=comment,
-        last_update=datetime.date.fromisoformat("2025-02-01"),
+        last_update=datetime.date.fromisoformat("2025-01-12"),
         categories=categories,
         children=children,
     )
