@@ -2,10 +2,6 @@
 Changelog
 =========
 
-10.0.4 (2025-01-13)
--------------------
-Adding categories M.3.C.4.SF, M.3.C.5.SF, M.NFC for FAOSTAT to IPCC2006_PRIMAP conversion.
-
 0.10.3 (2025-01-03)
 -------------------
 * Dropped support for Python 3.9 and 3.10.
