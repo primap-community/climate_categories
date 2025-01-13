@@ -48,7 +48,7 @@ def openscm_mixtures():
         cstr = ", ".join(f"{constituents[const][0]}% {const}" for const in constituents)
         categories[code] = {
             "title": code,
-            "comment": f"The refrigerant {code}, which is a mixture " f"of {cstr}.",
+            "comment": f"The refrigerant {code}, which is a mixture of {cstr}.",
         }
 
     categories["mixtures"] = {

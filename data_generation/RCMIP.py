@@ -33,13 +33,13 @@ titles = {
     "CO": "Carbon monoxide emissions",
     "CO|MAGICC AFOLU": "Carbon monoxide AFOLU emissions",
     "CO|MAGICC Fossil and Industrial": (
-        "Carbon monoxide fossil " "and industrial emissions"
+        "Carbon monoxide fossil and industrial emissions"
     ),
     "CO|Other": "Carbon monoxide emissions from other sources",
     "CO2": "Carbon dioxide emissions",
     "CO2|MAGICC AFOLU": "Carbon dioxide AFOLU emissions",
     "CO2|MAGICC Fossil and Industrial": (
-        "Carbon dioxide fossil " "and industrial emissions"
+        "Carbon dioxide fossil and industrial emissions"
     ),
     "CO2|Other": "Carbon dioxide emissions from other sources",
     "F-Gases": "F-gas emissions",
@@ -111,10 +111,10 @@ titles = {
     "VOC": "(Non-methane) volatile organic compounds emissions",
     "VOC|MAGICC AFOLU": "(Non-methane) volatile organic compounds AFOLU emissions",
     "VOC|MAGICC Fossil and Industrial": (
-        "(Non-methane) volatile organic compounds" " fossil and industrial emissions"
+        "(Non-methane) volatile organic compounds fossil and industrial emissions"
     ),
     "VOC|Other": (
-        "(Non-methane) volatile organic compounds" " emissions from other sources"
+        "(Non-methane) volatile organic compounds emissions from other sources"
     ),
 }
 
