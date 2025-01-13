@@ -1,0 +1,19 @@
+# references: FAOSTAT https://files-faostat.fao.org/production/GT/Mapping_to_UNFCCC_IPCC.pdf
+# last_update: 2025-01-10
+FAO,gas,IPCC2006_PRIMAP,comment
+4,CO2,3.B.1,Carbon stock change in forests
+4.B,CO2,M.NFC,Net Forest conversion
+5.A,CO2 N2O,3.B.3.a,Drained grassland
+5.B,CO2 N2O,3.B.2.a,Drained cropland
+6.A,CO2 N2O CH4,3.C.1.a, FAO 6.A forest fires to IPCC 3.C.1.a Biomass burning in forest lands
+6.B,CO2 N2O CH4, 3.C.1.c, FAO 6.B savanna fires to IPCC 3.C.1.c Biomass burning in grasslands
+6.C,CO2, 3.C.1.b, FAO 6.C Fires in organic soils to IPCC 3.C.1.b Biomass Burning In Croplands
+7.M + 7.A,CO2, 2.G, Manufacturing fertlisers and pesticides
+1.A.2.c,CH4,3.C.7, Rice cultivation
+1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b,CH4, 3.C.1.b, FAO 1.A.X.b Burning of crop residues to IPCC 3.C.1.b Biomass Burning In Croplands
+M.3.EF,CH4, 3.A.1, Enteric fermentation
+M.3.MM,CH4 N2O, 3.A.2, Manure Management
+1.A.1.b + 1.A.2.b + 1.A.6.b + 1.A.7.b,N2O, 3.C.1.b, FAO 1.A.X.b Burning of crop residues to IPCC 3.C.1.b Biomass Burning In Croplands
+M.3.MP + M.3.MA + M.1.CR,N2O, 3.C.4
+1.B.1,N2O,M.3.C.4.SF,Better to map indivudually in case it covers different range of years
+1.B.2.a + 1.B.2.b,N2O,M.3.C.5.SF,Better to map individually in case it covers different range of years
