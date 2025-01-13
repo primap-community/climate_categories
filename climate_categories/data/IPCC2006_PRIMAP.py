@@ -2652,13 +2652,13 @@ spec = {
             "title": "Net forest conversion",
             "comment": "Needed to map net forest conversion from FAOSTAT dataset",
         },
-        "M.3.C.1.AG" : {
-            "title" : "The share of agriculture-related emissions of 3.C.1",
-            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        "M.3.C.1.AG": {
+            "title": "The share of agriculture-related emissions of 3.C.1",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "M.3.C.AG" : {
-            "title" : "The share of agriculture-related emissions of 3.C",
-            "comment" : "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        "M.3.C.AG": {
+            "title": "The share of agriculture-related emissions of 3.C",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
     },
 }
