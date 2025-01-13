@@ -1,1 +1,1 @@
-Add conversion from FAO to IPCC2006_PRIMAP and M-categories for FAo categorisation.
+Add conversion from FAO to IPCC2006_PRIMAP and M-categories for FAO categorisation.
