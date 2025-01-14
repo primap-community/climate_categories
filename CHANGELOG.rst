@@ -2,6 +2,9 @@
 Changelog
 =========
 
+0.10.5 (2025-01-14)
+-------------------
+
 0.10.4 (2025-01-14)
 -------------------
 Add method to filter rules in conversion object by auxiliary dimension
