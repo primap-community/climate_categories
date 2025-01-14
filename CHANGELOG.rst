@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.10.4 (2025-01-14)
+-------------------
+Add method to filter rules in conversion object by auxiliary dimension
+Add conversion from FAO to IPCC2006_PRIMAP and M-categories for FAO categorisation.
+
 0.10.4 (2025-01-13)
 -------------------
 * Add method to filter rules in conversion object by auxiliary dimension

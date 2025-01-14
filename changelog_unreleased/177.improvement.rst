@@ -1,1 +1,0 @@
-Add method to filter rules in conversion object by auxiliary dimension
