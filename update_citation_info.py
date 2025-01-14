@@ -11,7 +11,7 @@ citation = f"""Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. ({new_date}).
+Mika Pflüger, Daniel Busch, Annika Günther, Johannes Gütschow, and Robert Gieseke. ({new_date}).
 {new_title}.
 Zenodo. {new_link}
 """

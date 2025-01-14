@@ -61,7 +61,7 @@ Copyright 2021, Potsdam-Institut für Klimafolgenforschung e.V.
 
 Copyright 2021, Robert Gieseke
 
-Copyright 2023-2024, Climate Resource Pty Ltd
+Copyright 2023-2025, Climate Resource Pty Ltd
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
 file except in compliance with the License. You may obtain a copy of the License at
@@ -77,6 +77,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2025-01-13).
+Mika Pflüger, Daniel Busch, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2025-01-13).
 primap-community/climate_categories: climate_categories Version 0.10.4.
 Zenodo. https://doi.org/10.5281/zenodo.14640250
