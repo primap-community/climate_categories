@@ -374,22 +374,20 @@ def main():
 
         categories[f"{code}.3.b.i"] = {
             "title": (
-                f"{animal} manure applied " f"(indirect emissions, N2O that leaches)"
+                f"{animal} manure applied (indirect emissions, N2O that leaches)"
             ),
             "comment": (
-                f"{animal} manure applied (indirect " f"emissions, N2O that leaches)"
+                f"{animal} manure applied (indirect emissions, N2O that leaches)"
             ),
             "info": {"gases": "N2O"},
         }
 
         categories[f"{code}.3.b.ii"] = {
             "title": (
-                f"{animal} manure applied "
-                f"(indirect emissions, N2O that volatilises)"
+                f"{animal} manure applied (indirect emissions, N2O that volatilises)"
             ),
             "comment": (
-                f"{animal} manure applied (indirect "
-                f"emissions, N2O that volatilises)"
+                f"{animal} manure applied (indirect emissions, N2O that volatilises)"
             ),
             "info": {"gases": "N2O"},
         }
