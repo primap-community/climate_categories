@@ -43,7 +43,7 @@ RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
 ISO3             Countries, country groups, and other areas from ISO 3166
 ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
-FAO              Food and Agriculture Organization FAOSTAT data set
+FAO              FAOSTAT climate change agrifood systems GHG emissions categories
 ===============  ==================================================================
 
 Included conversions between categorizations
