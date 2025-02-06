@@ -457,12 +457,16 @@ class ConversionRule:
             csv_original_text=self.csv_original_text,
         )
 
-    def remove_aux_cats(self):
-        """Return the ConversionRule"""
+    def remove_aux_cats(
+        self, aux_categorisation_to_remove: dict["Categorization", set["Category"]]
+    ) -> "ConversionRule":
+        """Return the ConversionRule without the specified auxiliary categories"""
+        auxiliary_categories_new = self.auxiliary_categories.copy()
+        del auxiliary_categories_new[aux_categorisation_to_remove]
         return ConversionRule(
             factors_categories_a=self.factors_categories_a,
             factors_categories_b=self.factors_categories_b,
-            auxiliary_categories={},
+            auxiliary_categories=auxiliary_categories_new,
             comment=self.comment,
             csv_line_number=self.csv_line_number,
             csv_original_text=self.csv_original_text,
@@ -974,8 +978,9 @@ class Conversion(ConversionBase):
                 aux_categorisation[criteria] in allowed_indices for criteria in values
             ):
                 # remove the aux dimension from the rule
-                # TODO write this function
-                rule = rule.remove_aux_cats()
+                rule = rule.remove_aux_cats(
+                    aux_categorisation_to_remove=aux_categorisation
+                )
                 rules_filtered.append(rule)
 
         if not rules_filtered:
