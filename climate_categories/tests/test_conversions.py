@@ -582,6 +582,37 @@ def test_filter_ipcc1996_to_ipcc2006_by_gas():
     assert len(conv_CO2.rules) == n_all_rules - 1
 
 
+def test_filter_removes_aux_dim_from_resulting_conv():
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
+
+    assert len(conv_N2O.rules) == 1
+    assert conv_N2O.rules[0].csv_original_text == "2+3,CH4 N2O,2"
+
+    # make sure auxiliary dimension was removed
+    assert not conv_N2O.auxiliary_categorizations
+    assert not conv_N2O.auxiliary_categorizations
+
+    assert all(not i.auxiliary_categories for i in conv_N2O.rules)
+
+
 def test_filter_fao_to_ipcc2006primap_by_gas():
     conv = climate_categories.FAO.conversion_to(climate_categories.IPCC2006_PRIMAP)
 
