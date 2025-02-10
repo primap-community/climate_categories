@@ -957,7 +957,7 @@ class Conversion(ConversionBase):
         Notes
         -----
         - If no rules match the filter criteria, the method will return an error.
-        - If only one value is provided, the method will remove the specified auxiliary,
+        - If only one value is provided, the method will remove the specified auxiliary categorisations,
           otherwise it will keep the auxiliary categorisations as they are.
         """
 
@@ -979,7 +979,6 @@ class Conversion(ConversionBase):
             if not allowed_indices or any(
                 aux_categorisation[criteria] in allowed_indices for criteria in values
             ):
-                # remove the aux dimension from the rule
                 if len(values) == 1:
                     rule = rule.remove_aux_cats(
                         aux_categorisation_to_remove=aux_categorisation

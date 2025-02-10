@@ -1,0 +1,1 @@
+* Adjusts removal or preservation of auxiliary dimensions when filtering a conversion object.
