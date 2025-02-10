@@ -583,6 +583,7 @@ def test_filter_ipcc1996_to_ipcc2006_by_gas():
 
 
 def test_filter_removes_aux_dim_from_resulting_conv():
+    """When the user filters for exactly one value, the auxiliary dimension should be removed."""
     categorisation_a = climate_categories.from_yaml(
         get_test_data_filepath("simple_categorisation_a.yaml")
     )
@@ -611,6 +612,38 @@ def test_filter_removes_aux_dim_from_resulting_conv():
     assert not conv_N2O.auxiliary_categorizations
 
     assert all(not i.auxiliary_categories for i in conv_N2O.rules)
+
+
+def test_filter_does_not_remove_aux_dim_from_resulting_conv():
+    """When the user filters for more than one value, the auxiliary dimension should be kept."""
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O_CO2 = conv.filter(aux_dim="gas", values=["N2O", "CO2"])
+
+    assert len(conv_N2O_CO2.rules) == 2
+    assert conv_N2O_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
+    assert conv_N2O_CO2.rules[1].csv_original_text == "2+3,CH4 N2O,2"
+
+    # make sure auxiliary dimension is restored
+    assert conv_N2O_CO2.auxiliary_categorizations_names == ["gas"]
+
+    assert all(i.auxiliary_categories for i in conv_N2O_CO2.rules)
 
 
 def test_filter_fao_to_ipcc2006primap_by_gas():

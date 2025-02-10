@@ -957,6 +957,8 @@ class Conversion(ConversionBase):
         Notes
         -----
         - If no rules match the filter criteria, the method will return an error.
+        - If only one value is provided, the method will remove the specified auxiliary,
+          otherwise it will keep the auxiliary categorisations as they are.
         """
 
         if aux_dim not in self.auxiliary_categorizations_names:
@@ -978,9 +980,10 @@ class Conversion(ConversionBase):
                 aux_categorisation[criteria] in allowed_indices for criteria in values
             ):
                 # remove the aux dimension from the rule
-                rule = rule.remove_aux_cats(
-                    aux_categorisation_to_remove=aux_categorisation
-                )
+                if len(values) == 1:
+                    rule = rule.remove_aux_cats(
+                        aux_categorisation_to_remove=aux_categorisation
+                    )
                 rules_filtered.append(rule)
 
         if not rules_filtered:
@@ -989,16 +992,19 @@ class Conversion(ConversionBase):
                 f"with values {values}."
             )
 
-        new_auxiliary_categorizations = [
-            i for i in self.auxiliary_categorizations if i.name != aux_dim
-        ] or None
+        if len(values) == 1:
+            new_auxiliary_categorizations = [
+                i for i in self.auxiliary_categorizations if i.name != aux_dim
+            ] or None
+        else:
+            new_auxiliary_categorizations = self.auxiliary_categorizations
 
         return Conversion(
             categorization_a=self.categorization_a,
             categorization_b=self.categorization_b,
             rules=rules_filtered,
             auxiliary_categorizations=new_auxiliary_categorizations,
-            comment=(self.comment or "") + f" (filtered for {aux_dim} in {values})",
+            comment=(self.comment or "") + f" (filtered for {values} in {aux_dim})",
             references=self.references,
             institution=self.institution,
             last_update=self.last_update,
