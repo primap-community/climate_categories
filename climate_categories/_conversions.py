@@ -457,6 +457,21 @@ class ConversionRule:
             csv_original_text=self.csv_original_text,
         )
 
+    def remove_aux_cats(
+        self, aux_categorisation_to_remove: dict["Categorization", set["Category"]]
+    ) -> "ConversionRule":
+        """Return the ConversionRule without the specified auxiliary categories"""
+        auxiliary_categories_new = self.auxiliary_categories.copy()
+        del auxiliary_categories_new[aux_categorisation_to_remove]
+        return ConversionRule(
+            factors_categories_a=self.factors_categories_a,
+            factors_categories_b=self.factors_categories_b,
+            auxiliary_categories=auxiliary_categories_new,
+            comment=self.comment,
+            csv_line_number=self.csv_line_number,
+            csv_original_text=self.csv_original_text,
+        )
+
     @staticmethod
     def _format_factor_category_human_readable(
         factor: int, category: "Category"
@@ -942,6 +957,8 @@ class Conversion(ConversionBase):
         Notes
         -----
         - If no rules match the filter criteria, the method will return an error.
+        - If only one value is provided, the method will remove the specified auxiliary categorisations,
+          otherwise it will keep the auxiliary categorisations as they are.
         """
 
         if aux_dim not in self.auxiliary_categorizations_names:
@@ -962,6 +979,10 @@ class Conversion(ConversionBase):
             if not allowed_indices or any(
                 aux_categorisation[criteria] in allowed_indices for criteria in values
             ):
+                if len(values) == 1:
+                    rule = rule.remove_aux_cats(
+                        aux_categorisation_to_remove=aux_categorisation
+                    )
                 rules_filtered.append(rule)
 
         if not rules_filtered:
@@ -970,12 +991,19 @@ class Conversion(ConversionBase):
                 f"with values {values}."
             )
 
+        if len(values) == 1:
+            new_auxiliary_categorizations = [
+                i for i in self.auxiliary_categorizations if i.name != aux_dim
+            ] or None
+        else:
+            new_auxiliary_categorizations = self.auxiliary_categorizations
+
         return Conversion(
             categorization_a=self.categorization_a,
             categorization_b=self.categorization_b,
             rules=rules_filtered,
-            auxiliary_categorizations=self.auxiliary_categorizations,
-            comment=(self.comment or "") + f" (filtered for {aux_dim} in {values})",
+            auxiliary_categorizations=new_auxiliary_categorizations,
+            comment=(self.comment or "") + f" (filtered for {values} in {aux_dim})",
             references=self.references,
             institution=self.institution,
             last_update=self.last_update,
