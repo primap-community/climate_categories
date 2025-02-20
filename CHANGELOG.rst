@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.10.6 (2025-02-20)
+-------------------
+* Adjusts removal or preservation of auxiliary dimensions when filtering a conversion object.
+
 0.10.5 (2025-01-14)
 -------------------
 * Adding categories M.3.C.4.SF, M.3.C.5.SF, M.NFC for FAOSTAT to IPCC2006_PRIMAP conversion.
