@@ -2660,5 +2660,46 @@ spec = {
             "title": "The share of agriculture-related emissions of 3.C",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
+        "M.3.B.2.FOS": {
+            "title": "Share of emissions from fires in organic soils of 3.B.2",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.B.2.DOS": {
+            "title": "Share of emissions from drained organic soils of 3.B.2",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.B.3.DOS": {
+            "title": "Share of emissions from drained organic soils of 3.B.3",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.1.a": {
+            "title": "Biomass burning in forest lands, but not in 3.C.1. sum",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.1.c": {
+            "title": "Biomass burning in grasslands, but not in 3.C.1. sum",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "3.C.4.B": {
+            "title": "Manure applied to soils",
+            "comment": "Organic N applied as fertiliser (manure and sewage sludge)",
+        },
+        "3.C.4.C": {
+            "title": "Manure left on pasture",
+            "comment": "Urine and dung N deposited on pasture, range and paddock by grazing animals",
+        },
+        "3.C.4.D": {"title": "Crop residues"},
+        "M.3.C.MA": {
+            "title": "Direct and indirect emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.MP": {
+            "title": "Direct and indirect emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.CR": {
+            "title": "Direct and indirect emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
     },
 }
