@@ -2689,16 +2689,25 @@ spec = {
             "comment": "Urine and dung N deposited on pasture, range and paddock by grazing animals",
         },
         "3.C.4.D": {"title": "Crop residues"},
-        "M.3.C.MA": {
+        "M.3.C.45.MA": {
             "title": "Direct and indirect emissions from manure applied to soils",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "M.3.C.MP": {
+        "M.3.C.45.MP": {
             "title": "Direct and indirect emissions from manure left on pasture",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "M.3.C.CR": {
+        "M.3.C.45.CR": {
             "title": "Direct and indirect emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "3.C.4.a": {"title": "Inorganic N fertilisers"},
+        "M.3.C.4.DOS.GL": {
+            "title": "Direct emissions from drained organic soils on grass land",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.DOS.CL": {
+            "title": "Direct emissions from drained organic soils on crop land",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
     },
