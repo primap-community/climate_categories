@@ -2702,6 +2702,14 @@ spec = {
             "title": "Direct and indirect emissions from crop residues",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
+        "M.3.C.4.CR": {
+            "title": "Direct emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.CR": {
+            "title": "Indirect emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
         "M.3.C.4.DOS.GL": {
             "title": "Direct emissions from drained organic soils on grass land",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",

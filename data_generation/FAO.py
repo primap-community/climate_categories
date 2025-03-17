@@ -47,26 +47,11 @@ def main():
             children_2,
         ),
         ("3", "Livestock", ["CH4", "N2O"], children_3),
-        # ("4", "Forest", ["CO2"], children_4),
-        # (
-        #     "5",
-        #     "Drained organic soils",
-        #     ["N2O", "CO2"],
-        #     children_5,
-        # ),
-        # ("6", "Fires", ["CH4", "N2O", "CO2"], children_6),
-        # (
-        #     "7",
-        #     "Pre and post agricultural production",
-        #     ["CH4", "N2O", "CO2"],
-        #     children_7,
-        # ),
     )
     for code, name, gases, children in main_categories:
         categories[code] = {
             "title": name,
             "comment": name,
-            # "alternative_codes": code.replace(".", ""),
             "children": [children],
             "info": {"gases": gases},
         }
@@ -581,6 +566,24 @@ def main():
 
     categories["M.1.CR"] = {
         "title": "All crops - crop residues",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.1.CR.direct"] = {
+        "title": "All Crops - Crop residues (Direct emissions N2O)",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.1.CR.indirect"] = {
+        "title": "All Crops - Crop residues (Indirect emissions N2O)",
         "info": {
             "gases": [
                 "N2O",

@@ -2189,6 +2189,14 @@ spec = {
             "info": {"gases": ["N2O"]},
         },
         "M.1.CR": {"title": "All crops - crop residues", "info": {"gases": ["N2O"]}},
+        "M.1.CR.direct": {
+            "title": "All Crops - Crop residues (Direct emissions N2O)",
+            "info": {"gases": ["N2O"]},
+        },
+        "M.1.CR.indirect": {
+            "title": "All Crops - Crop residues (Indirect emissions N2O)",
+            "info": {"gases": ["N2O"]},
+        },
         "M.1.BCR": {
             "title": "All crops - burning crop residues",
             "info": {"gases": ["N2O", "CH4"]},
