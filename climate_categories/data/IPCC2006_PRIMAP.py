@@ -2680,15 +2680,16 @@ spec = {
             "title": "Biomass burning in grasslands, but not in 3.C.1. sum",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "3.C.4.B": {
+        "3.C.4.a": {"title": "Inorganic N fertilisers"},
+        "3.C.4.b": {
             "title": "Manure applied to soils",
             "comment": "Organic N applied as fertiliser (manure and sewage sludge)",
         },
-        "3.C.4.C": {
+        "3.C.4.c": {
             "title": "Manure left on pasture",
             "comment": "Urine and dung N deposited on pasture, range and paddock by grazing animals",
         },
-        "3.C.4.D": {"title": "Crop residues"},
+        "3.C.4.d": {"title": "Crop residues"},
         "M.3.C.45.MA": {
             "title": "Direct and indirect emissions from manure applied to soils",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
@@ -2701,7 +2702,6 @@ spec = {
             "title": "Direct and indirect emissions from crop residues",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
-        "3.C.4.a": {"title": "Inorganic N fertilisers"},
         "M.3.C.4.DOS.GL": {
             "title": "Direct emissions from drained organic soils on grass land",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
