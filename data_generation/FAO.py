@@ -564,6 +564,26 @@ def main():
         },
     }
 
+    categories["M.3.MP.direct"] = {
+        "title": "All Animals - Manure left on pasture (Direct emissions N2O)",
+        "comment": "The sum of manure left on pasture emissions of all animals - only direct emissions",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.3.MP.indirect"] = {
+        "title": "All Animals - Manure left on pasture (Indirect emissions N2O)",
+        "comment": "The sum of manure left on pasture emissions of all animals - only indirect emissions",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
     categories["M.1.CR"] = {
         "title": "All crops - crop residues",
         "info": {
@@ -601,6 +621,26 @@ def main():
     categories["M.3.MA"] = {
         "title": "All Animals - Manure applied",
         "comment": "The sum of manure applied to soils emissions of all animals",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.3.MA.direct"] = {
+        "title": "All Animals - Manure applied to soils (Direct emissions N2O)",
+        "comment": "The sum of manure applied to soils emissions of all animals - only direct emissions",
+        "info": {
+            "gases": [
+                "N2O",
+            ],
+        },
+    }
+
+    categories["M.3.MA.indirect"] = {
+        "title": "All Animals - Manure applied to soils (Indirect emissions N2O)",
+        "comment": "The sum of manure applied to soils emissions of all animals - only indirect emissions",
         "info": {
             "gases": [
                 "N2O",

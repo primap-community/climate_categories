@@ -2694,8 +2694,24 @@ spec = {
             "title": "Direct and indirect emissions from manure applied to soils",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
+        "M.3.C.4.MA": {
+            "title": "Direct emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.MA": {
+            "title": "Indirect emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
         "M.3.C.45.MP": {
             "title": "Direct and indirect emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.MP": {
+            "title": "Direct emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.MP": {
+            "title": "Indirect emissions from manure left on pasture",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
         "M.3.C.45.CR": {
