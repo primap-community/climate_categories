@@ -651,7 +651,7 @@ def test_filter_fao_to_ipcc2006primap_by_gas():
 
     conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
 
-    assert len(conv_N2O.rules) == 11
+    assert len(conv_N2O.rules) == 17
 
     conv_CO2 = conv.filter(aux_dim="gas", values=["CO2"])
 
