@@ -234,7 +234,7 @@ class TestConversionSpec:
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_comment_missing(self):
-        csv = StringIO("# comment: no comment\n" "A,aux,B\n" "A.1,D,A.2\n")
+        csv = StringIO("# comment: no comment\nA,aux,B\nA.1,D,A.2\n")
         with pytest.raises(
             ValueError, match="Last column must be 'comment', but isn't."
         ):
@@ -426,3 +426,237 @@ def test_relevant_rules():
     assert len(conv.relevant_rules({C96["4.D"]})) == 1
     assert len(conv.relevant_rules({C96["4.B.10"]}, simple_sums_only=True)) == 1
     assert conv.relevant_rules(set()) == []
+
+
+def get_test_data_filepath(fname: str):
+    return importlib.resources.files("climate_categories.tests.data").joinpath(fname)
+
+
+def test_read_csv_in_conversion_class():
+    fd = get_test_data_filepath("example_conversion.IPCC1996.IPCC2006.csv")
+
+    conv_from_conversion_spec = conversions.ConversionSpec.from_csv(fd)
+    conv_from_conversion_spec = conv_from_conversion_spec.hydrate(
+        cats=climate_categories.cats
+    )
+
+    conv_from_conversion = conversions.Conversion.from_csv(fd)
+
+    assert vars(conv_from_conversion_spec) == vars(conv_from_conversion)
+
+
+def test_read_conversion_from_csv_with_custom_categorizations():
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {"A": categorisation_a, "B": categorisation_b}
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion.csv"), cats=cats
+    )
+
+    assert conv.categorization_a_name == "A"
+    assert conv.categorization_b_name == "B"
+
+
+def test_read_conversion_from_csv_with_existing_categorizations():
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("test_conversion_with_existing_categorizations.csv")
+    )
+
+    assert conv.categorization_a_name == "BURDI"
+    assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+
+
+def test_read_conversion_from_csv_with_existing_categorizations_aux_dims():
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath(
+            "test_conversion_with_existing_categorizations_aux_dims.csv"
+        )
+    )
+
+    assert conv.categorization_a_name == "BURDI"
+    assert conv.categorization_b_name == "IPCC2006_PRIMAP"
+    assert conv.auxiliary_categorizations_names == ["gas"]
+
+
+@pytest.mark.parametrize(
+    "aux_dim, values, error_message",
+    [
+        pytest.param(
+            "country",
+            ["USA", "DEU"],
+            "Dimension 'country' not in auxiliary dimensions",
+            id="Dimension not in auxiliary dimensions",
+        ),
+        pytest.param(
+            "gas",
+            ["CO"],
+            "No rules match the filter criteria for auxiliary dimension 'gas' with values ['CO'].",
+            id="Empty result",
+        ),
+    ],
+)
+def test_filter_raises_wrong_input_format_error(aux_dim, values, error_message):
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+    with pytest.raises(Exception) as e_info:
+        conv_N2O = conv.filter(aux_dim=aux_dim, values=values)  # noqa: F841
+
+    assert str(e_info.value) == error_message
+
+
+def test_filter_simple_conversion_by_gas():
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
+
+    assert len(conv_N2O.rules) == 1
+    assert conv_N2O.rules[0].csv_original_text == "2+3,CH4 N2O,2"
+
+    conv_CO2 = conv.filter(aux_dim="gas", values=["CO2"])
+
+    assert len(conv_CO2.rules) == 1
+    assert conv_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
+
+    conv_CH4 = conv.filter(aux_dim="gas", values=["CH4"])
+
+    assert len(conv_CH4.rules) == 1
+    assert conv_CH4.rules[0].csv_original_text == "2+3,CH4 N2O,2"
+
+    conv_CH4_CO2 = conv.filter(aux_dim="gas", values=["CO2", "CH4"])
+
+    assert len(conv_CH4_CO2.rules) == 2
+    assert conv_CH4_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
+    assert conv_CH4_CO2.rules[1].csv_original_text == "2+3,CH4 N2O,2"
+
+
+def test_filter_ipcc1996_to_ipcc2006_by_gas():
+    conv = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
+
+    n_all_rules = len(conv.rules)
+
+    conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
+
+    assert len(conv_N2O.rules) == n_all_rules
+
+    conv_CO2 = conv.filter(aux_dim="gas", values=["CO2"])
+
+    # There is one rule that only applies for N2O
+    assert len(conv_CO2.rules) == n_all_rules - 1
+
+
+def test_filter_removes_aux_dim_from_resulting_conv():
+    """When the user filters for exactly one value, the auxiliary dimension should be removed."""
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
+
+    assert len(conv_N2O.rules) == 1
+    assert conv_N2O.rules[0].csv_original_text == "2+3,CH4 N2O,2"
+
+    # make sure auxiliary dimension was removed
+    assert not conv_N2O.auxiliary_categorizations
+    assert not conv_N2O.auxiliary_categorizations
+
+    assert all(not i.auxiliary_categories for i in conv_N2O.rules)
+
+
+def test_filter_does_not_remove_aux_dim_from_resulting_conv():
+    """When the user filters for more than one value, the auxiliary dimension should be kept."""
+    categorisation_a = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_a.yaml")
+    )
+
+    categorisation_b = climate_categories.from_yaml(
+        get_test_data_filepath("simple_categorisation_b.yaml")
+    )
+
+    cats = {
+        "A": categorisation_a,
+        "B": categorisation_b,
+        "gas": climate_categories.cats["gas"],
+    }
+
+    conv = climate_categories.Conversion.from_csv(
+        get_test_data_filepath("simple_conversion_by_gas.csv"), cats=cats
+    )
+
+    conv_N2O_CO2 = conv.filter(aux_dim="gas", values=["N2O", "CO2"])
+
+    assert len(conv_N2O_CO2.rules) == 2
+    assert conv_N2O_CO2.rules[0].csv_original_text == "1,CO2,1, no comment"
+    assert conv_N2O_CO2.rules[1].csv_original_text == "2+3,CH4 N2O,2"
+
+    # make sure auxiliary dimension is restored
+    assert conv_N2O_CO2.auxiliary_categorizations_names == ["gas"]
+
+    assert all(i.auxiliary_categories for i in conv_N2O_CO2.rules)
+
+
+def test_filter_fao_to_ipcc2006primap_by_gas():
+    conv = climate_categories.FAO.conversion_to(climate_categories.IPCC2006_PRIMAP)
+
+    conv_N2O = conv.filter(aux_dim="gas", values=["N2O"])
+
+    assert len(conv_N2O.rules) == 9
+
+    conv_CO2 = conv.filter(aux_dim="gas", values=["CO2"])
+
+    assert len(conv_CO2.rules) == 8
+
+    conv_CH4 = conv.filter(aux_dim="gas", values=["CH4"])
+
+    assert len(conv_CH4.rules) == 6

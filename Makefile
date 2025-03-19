@@ -1,4 +1,4 @@
-.PHONY: clean docs help update-venv cache test test-full lint coverage release update-citation
+.PHONY: docs help virtual-environment install-pre-commit update-venv cache test test-full lint coverage release update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -21,36 +21,40 @@ lint: venv ## check style with pre-commit hooks
 test: venv ## run tests quickly with the default Python
 	venv/bin/pytest --xdoc -rx
 
-test-all: venv ## run tests with all Python versions; needs python versions already set up
-	tox -p
+test-all: venv ## run tests on every Python version with tox
+	venv/bin/tox -p
 
 coverage: venv ## check code coverage quickly with the default Python
 	venv/bin/coverage run --source climate_categories -m pytest --xdoc -rx
 	venv/bin/coverage report -m
 	venv/bin/coverage html
+	ls htmlcov/index.html
 
-docs: venv ## generate Sphinx HTML documentation
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
+clean-build: ## remove build artifacts
+	rm -fr build/
+	rm -fr dist/
+	rm -fr .eggs/
+	find . -name '*.egg-info' -exec rm -fr {} +
+	find . -name '*.egg' -exec rm -fr {} +
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
 
-servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+clean-docs: venv ## Remove generated parts of documentation, then build docs
+	. venv/bin/activate ; $(MAKE) -C docs clean
+	. venv/bin/activate ; $(MAKE) -C docs html
 
-clean: ## clean up after dist
-	rm -rf dist/
-	rm -rf climate_categories.egg-info/
-	rm -rf build/
+docs: venv ## generate Sphinx HTML documentation, including API docs
+	. venv/bin/activate ; $(MAKE) -C docs html
 
-update-citation: ## Update the citation information from zenodo
-	venv/bin/python update_citation_info.py
-	git commit -am 'Update citation information from zenodo.'
-
-release: dist ## package and upload a release
+release: venv dist ## package and upload a release
 	venv/bin/twine upload --repository climate-categories dist/*
 
-dist: clean venv ## builds source and wheel package
-	venv/bin/python -m build
-	ls -l dist
+dist: clean-build venv ## builds source and wheel package
+	# because we update the citation info after releasing on github and zenodo but
+	# before building for pypi, we need to force the correct version.
+	SETUPTOOLS_SCM_PRETEND_VERSION=0.10.6 venv/bin/python -m build
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
@@ -58,14 +62,15 @@ install: clean ## install the package to the active Python's site-packages
 virtual-environment: venv ## setup a virtual environment for development
 
 venv: setup.py pyproject.toml setup.cfg
-	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install -e .[dev]
+	[ -d venv ] || python3 -m venv --system-site-packages venv
+	venv/bin/python -m pip install --upgrade wheel uv
+	. venv/bin/activate ; venv/bin/uv pip install --upgrade -e .[dev]
 	touch venv
 
-update-venv:
+update-venv: ## update all packages in the development environment
 	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install --upgrade pip wheel
-	venv/bin/python -m pip install --upgrade --upgrade-strategy eager -e .[dev]
+	venv/bin/python -m pip install --upgrade wheel uv
+	. venv/bin/activate ; venv/bin/uv pip  install --upgrade --resolution highest -e .[dev]
 	touch venv
 
 install-pre-commit: update-venv ## install the pre-commit hooks
@@ -89,6 +94,24 @@ cache: climate_categories/data/ISO3.py
 cache: climate_categories/data/ISO3_GCAM.py
 cache: climate_categories/data/BURDI.py
 cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
+
+data: climate_categories/data/BURDI_class.yaml
+data: climate_categories/data/BURDI.yaml
+data: climate_categories/data/CRF1999.yaml
+data: climate_categories/data/CRF2013_2021.yaml
+data: climate_categories/data/CRF2013_2022.yaml
+data: climate_categories/data/CRF2013_2023.yaml
+data: climate_categories/data/CRF2013.yaml
+data: climate_categories/data/CRFDI_class.yaml
+data: climate_categories/data/CRFDI.yaml
+data: climate_categories/data/gas.yaml
+data: climate_categories/data/IPCC1996.yaml
+data: climate_categories/data/IPCC2006_PRIMAP.yaml
+data: climate_categories/data/IPCC2006.yaml
+data: climate_categories/data/ISO3_GCAM.yaml
+data: climate_categories/data/ISO3.yaml
+data: climate_categories/data/RCMIP.yaml  ## Generate data files
+
 
 climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	venv/bin/python $<

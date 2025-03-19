@@ -3,7 +3,8 @@ title: BUR GHG emission categories (DI query interface) + classifications
 comment: Biannual Update Report categories of GHG emissions and removals and some
   other quantities as obtained from the di.unfccc.int flexible query interface extended
   by sub-classifications also provided by the DI flexible query interface
-references: https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
+references:
+  https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
 institution: UNFCCC
 hierarchical: true
 last_update: '2021-11-05'

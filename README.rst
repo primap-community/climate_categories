@@ -45,12 +45,14 @@ RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
 ISO3             Countries, country groups, and other areas from ISO 3166
 ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
+FAO              FAOSTAT climate change agrifood systems GHG emissions categories
 ===============  ==================================================================
 
 Included conversions between categorizations
 --------------------------------------------
 
 * IPCC1996 <-> IPCC2006
+* FAO <-> IPCC2006_PRIMAP
 
 Status
 ------
@@ -63,7 +65,7 @@ Copyright 2021, Potsdam-Institut für Klimafolgenforschung e.V.
 
 Copyright 2021, Robert Gieseke
 
-Copyright 2023-2024, Climate Resource Pty Ltd
+Copyright 2023-2025, Climate Resource Pty Ltd
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
 file except in compliance with the License. You may obtain a copy of the License at
@@ -79,6 +81,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2024-01-25).
-pik-primap/climate_categories: climate_categories Version 0.10.1.
-Zenodo. https://doi.org/10.5281/zenodo.10569100
+Mika Pflüger, Daniel Busch, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2025-01-14).
+primap-community/climate_categories: climate_categories Version 0.10.6.
+Zenodo. https://doi.org/10.5281/zenodo.14644267

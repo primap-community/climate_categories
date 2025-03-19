@@ -2,9 +2,11 @@ name: BURDI
 title: BUR GHG emission categories (DI query interface)
 comment: Biannual Update Report categories of GHG emissions and removals and some
   other quantities as obtained from the di.unfccc.int flexible query interface
-references: https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
+references:
+  https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
   and decision 17/CP.8, 'Guidelines for the preparation of national communications
-  from Parties not included in Annex I to the Convention' available at https://unfccc.int/files/meetings/workshops/other_meetings/application/pdf/dec17-cp.pdf
+  from Parties not included in Annex I to the Convention' available at
+  https://unfccc.int/files/meetings/workshops/other_meetings/application/pdf/dec17-cp.pdf
 institution: UNFCCC
 hierarchical: true
 last_update: '2021-11-05'

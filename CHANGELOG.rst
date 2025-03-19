@@ -2,6 +2,35 @@
 Changelog
 =========
 
+0.10.6 (2025-02-20)
+-------------------
+* Adjusts removal or preservation of auxiliary dimensions when filtering a conversion object.
+
+0.10.5 (2025-01-14)
+-------------------
+* Adding categories M.3.C.4.SF, M.3.C.5.SF, M.NFC for FAOSTAT to IPCC2006_PRIMAP conversion.
+
+0.10.4 (2025-01-13)
+-------------------
+* Add method to filter rules in conversion object by auxiliary dimension
+* Add conversion from FAO to IPCC2006_PRIMAP and M-categories for FAO categorisation.
+
+0.10.3 (2025-01-03)
+-------------------
+* Dropped support for Python 3.9 and 3.10.
+* Added support for Python 3.12 and 3.13.
+* Introduced minimum supported versions of dependencies.
+* Fixed minimum dependencies for Python 3.13.
+* Improved the documentation for the deployment process
+* Added the category M.3.C.45.AG to the IPCC2006_PRIMAP categorisation
+
+0.10.2 (2024-10-23)
+-------------------
+* Add a method to create a Conversion object from csv
+* Use pypdf-table-extraction instead of camelot for extracting categorizations from pdf files.
+* add M.BIO category
+* Add new gas mixtures to the gas categorization.
+
 0.10.1 (2024-01-25)
 -------------------
 * ISO3_GCAM: Removed extraneous "v" from version specifications in region codes

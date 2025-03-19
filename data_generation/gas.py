@@ -28,8 +28,8 @@ def main():
         "comment": "Gases and other climate-forcing substances",
         "references": "Derived from openscm_units "
         "(https://github.com/openscm/openscm-units) 'standard gases' and mixtures.",
-        "last_update": "2021-05-27",
-        "version": "0.3.0",
+        "last_update": "2024-10-23",
+        "version": "0.3.1",
         "institution": "openscm",
         "categories": categories,
         "hierarchical": True,
@@ -48,7 +48,7 @@ def openscm_mixtures():
         cstr = ", ".join(f"{constituents[const][0]}% {const}" for const in constituents)
         categories[code] = {
             "title": code,
-            "comment": f"The refrigerant {code}, which is a mixture " f"of {cstr}.",
+            "comment": f"The refrigerant {code}, which is a mixture of {cstr}.",
         }
 
     categories["mixtures"] = {

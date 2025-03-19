@@ -503,9 +503,9 @@ def add_eu_categories(categories):
     return categories
 
 
-def load_countries() -> (
-    dict[str, typing.Union[str, dict[str, str], list[str], list[list[str]]]]
-):
+def load_countries() -> dict[
+    str, typing.Union[str, dict[str, str], list[str], list[list[str]]]
+]:
     """Load countries from the iso-codes debian package."""
     r = requests.get(
         URL,

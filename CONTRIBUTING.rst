@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/pik-primap/climate_categories/issues.
+Report bugs at https://github.com/primap-community/climate_categories/issues.
 
 If you are reporting a bug, please include:
 
@@ -74,14 +74,14 @@ Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
 Climate categories could always use more documentation, whether as part of the
-official Climate categories docs, in docstrings, or even on the web in blog posts,
+official Climate Categories docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
 The best way to send feedback is to file an issue at
-https://github.com/pik-primap/climate_categories/issues.
+https://github.com/primap-community/climate_categories/issues.
 
 If you are proposing a feature:
 
@@ -137,7 +137,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring and check the generated
    API documentation.
-3. The pull request will be tested on python 3.9, 3.10, and 3.11.
 
 Deploying
 ---------
@@ -146,11 +145,50 @@ Deploying
 
 A reminder for the maintainers on how to deploy.
 
-1.  Commit all your changes.
-2.  Run ``tbump X.Y.Z``.
-3.  Wait a bit that the release on github and zenodo is created.
-4.  Run ``make README.rst`` to update the citation information in the README from the
-    zenodo API. Check if the version is actually correct, otherwise grab a tea and
-    wait a little more for zenodo to mint the new version. Once it worked, commit the
-    change.
-5.  Upload the release to pyPI: ``make release``
+
+1. Run ``tbump``
+~~~~~~~~~~~~~~~~
+
+-  commit all your changes
+-  make sure `gh`_ is installed on your system
+-  Decide what the new version number should be
+-  For version X.Y.Z - increase X for a major release, increase Y when breaking changes are introduced, increase Z for minor changes
+-  Run ``venv/bin/tbump X.Y.Z``
+
+.. _gh: https://cli.github.com/
+
+2. Update the README
+~~~~~~~~~~~~~~~~~~~~
+-  Run ``make README.rst`` to update the citation information in the README from the zenodo API.
+-  Check if the version is actually correct. You can look at the diff for the README and check if the DOI and the date has changed
+-  If it's not updated, grab a tea and wait a little more for zenodo to mint the new version.
+-  Once it's there, push new README to github
+
+3. Publish on PyPi
+~~~~~~~~~~~~~~~~~~~
+
+-  make sure you have a pypi account
+-  make sure you have the rights to publish on pypi, if not ask a
+   project owner to add you
+-  create a file called ``.pypirc`` in your home directory, more info on the pypirc file `here`_
+-  Write the following text in the file:
+
+.. _here: https://packaging.python.org/en/latest/specifications/pypirc/
+
+::
+
+   [distutils]
+     index-servers =
+       climate-categories
+
+   [climate-categories]
+     repository = https://upload.pypi.org/legacy/
+     username = __token__
+     password = pypi-PASSWORD
+
+-  change the password to your personal token. You can generate the token on the `settings page of climate_categories on pypi <https://pypi.org/manage/project/climate-categories/settings/>`_.
+-  run ``make release``
+-  click on the pypi link in the command line and check if everything
+   makes sense
+-  if something went wrong you can revert the release by clicking
+   options -> yank

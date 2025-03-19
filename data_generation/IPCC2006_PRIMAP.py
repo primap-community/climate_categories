@@ -37,6 +37,10 @@ def main():
             "comment": "Agricultural part of AFOLU excluding livestock",
         },
         "3.A.1.i": {"title": "Poultry", "comment": "From CRF data"},
+        "M.BIO": {
+            "title": "CO₂ emissions from biomass burning",
+            "comment": "CO₂ emissions from biomass burning for energy use",
+        },
         "M.BK": {
             "title": "International Bunkers",
             "comment": "M category as not included in national total in CRF data",
@@ -65,6 +69,30 @@ def main():
             "title": "Road Transportation no resuspension",
             "comment": "Emissions for Road transportation without the "
             "effect from resuspension of particles.",
+        },
+        "M.3.C.45.AG": {
+            "title": "The sum of agriculture-related emissions of 3.C.4 and 3.C.5",
+            "comment": "Needed for conversion from BURDI to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.SF": {
+            "title": "Direct synthetic fertilisers emissions from managed soils",
+            "comment": "The share of emissions that come from synthetic fertilisers",
+        },
+        "M.3.C.5.SF": {
+            "title": "Indirect synthetic fertilisers emissions from managed soils",
+            "comment": "The share of emissions that come from synthetic fertilisers",
+        },
+        "M.NFC": {
+            "title": "Net forest conversion",
+            "comment": "Needed to map net forest conversion from FAOSTAT dataset",
+        },
+        "M.3.C.1.AG": {
+            "title": "The share of agriculture-related emissions of 3.C.1",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.AG": {
+            "title": "The share of agriculture-related emissions of 3.C",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
     }
     children = [
@@ -115,11 +143,11 @@ def main():
         name=name,
         title=title,
         comment=comment,
-        last_update=datetime.date.fromisoformat("2021-10-12"),
+        last_update=datetime.date.fromisoformat("2025-01-12"),
         categories=categories,
         children=children,
     )
-    ipcc2006_primap.institution = "PIK"
+    ipcc2006_primap.institution = "Climate Resource"
     ipcc2006_primap.canonical_top_level_category = ipcc2006_primap["0"]
 
     ipcc2006_primap.to_yaml(OUTPATH)

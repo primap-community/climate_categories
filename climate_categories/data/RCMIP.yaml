@@ -1,10 +1,10 @@
 name: RCMIP
 title: Emissions categories from the Reduced Complexity Model Intercomparison Project
   (RCMIP)
-comment: "AFOLU in the SSPDb is AFOLU minus any agriculture\nrelated fossil fuel based\
-  \ emissions hence is not the same as the\nWG3 AFOLU definition. Rather AFOLU in\
-  \ the SSPDb is AFOLU as expected by\nMAGICC (i.e. exluding agriculture related fossil\
-  \ fuel use), hence\nwe call it MAGICC AFOLU."
+comment: "AFOLU in the SSPDb is AFOLU minus any agriculture\nrelated fossil fuel based
+  emissions hence is not the same as the\nWG3 AFOLU definition. Rather AFOLU in the
+  SSPDb is AFOLU as expected by\nMAGICC (i.e. exluding agriculture related fossil
+  fuel use), hence\nwe call it MAGICC AFOLU."
 references: 'Nicholls, Z. R. J., Meinshausen, M., Lewis, J., Gieseke, R., Dommenget,
   D., Dorheim, K., Fan, C.-S., Fuglestvedt, J. S., Gasser, T., Golüke, U., Goodwin,
   P., Hartin, C., Hope, A. P., Kriegler, E., Leach, N. J., Marchegiani, D., McBride,

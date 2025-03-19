@@ -1,5 +1,6 @@
 """Classes to represent conversions between categorizations."""
 
+import collections
 import csv
 import dataclasses
 import datetime
@@ -456,6 +457,21 @@ class ConversionRule:
             csv_original_text=self.csv_original_text,
         )
 
+    def remove_aux_cats(
+        self, aux_categorisation_to_remove: dict["Categorization", set["Category"]]
+    ) -> "ConversionRule":
+        """Return the ConversionRule without the specified auxiliary categories"""
+        auxiliary_categories_new = self.auxiliary_categories.copy()
+        del auxiliary_categories_new[aux_categorisation_to_remove]
+        return ConversionRule(
+            factors_categories_a=self.factors_categories_a,
+            factors_categories_b=self.factors_categories_b,
+            auxiliary_categories=auxiliary_categories_new,
+            comment=self.comment,
+            csv_line_number=self.csv_line_number,
+            csv_original_text=self.csv_original_text,
+        )
+
     @staticmethod
     def _format_factor_category_human_readable(
         factor: int, category: "Category"
@@ -896,6 +912,103 @@ class Conversion(ConversionBase):
         self.categorization_b = categorization_b
         self.rules = rules
         self.auxiliary_categorizations = auxiliary_categorizations
+
+    @staticmethod
+    def from_csv(
+        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+        cats: typing.Union[dict[str, "Categorization"], None] = None,
+    ) -> "Conversion":
+        """Read conversion from comma-separated-values file and add categorizsations."""
+
+        conv = ConversionSpec.from_csv(filepath)
+
+        if cats is None:
+            import climate_categories
+
+            cats = climate_categories.cats
+
+        return conv.hydrate(cats=cats)
+
+    def filter(
+        self, aux_dim: str, values: collections.abc.Iterable[str]
+    ) -> "Conversion":
+        """
+        Filter conversion rules by a single auxiliary dimension.
+
+        This method filters the rules of the Conversion instance based on a specified
+        auxiliary dimension and a list of allowed values for that dimension. The filtered
+        rules are used to create a new Conversion instance.
+
+        Parameters
+        ----------
+        aux_dim : str
+            The name of the auxiliary dimension to filter by. Must match one of the
+            auxiliary categorisation names in the current Conversion instance.
+        values : Iterable of str
+            A list of values to match in the specified auxiliary dimension. Only rules
+            whose auxiliary categories contain one of these values are retained.
+
+        Returns
+        -------
+        Conversion
+            A new Conversion instance containing only the rules that satisfy the filter
+            conditions.
+
+        Notes
+        -----
+        - If no rules match the filter criteria, the method will return an error.
+        - If only one value is provided, the method will remove the specified auxiliary categorisations,
+          otherwise it will keep the auxiliary categorisations as they are.
+        """
+
+        if aux_dim not in self.auxiliary_categorizations_names:
+            msg = f"Dimension '{aux_dim}' not in auxiliary dimensions"
+            raise ValueError(msg)
+
+        # find the right aux categorisation (there may be more than one)
+        aux_categorisation = next(
+            aux_categorization
+            for aux_categorization in self.auxiliary_categorizations
+            if aux_categorization.name == aux_dim
+        )
+
+        rules_filtered = []
+        for rule in self.rules:
+            allowed_indices = rule.auxiliary_categories.get(aux_categorisation)
+            # empty indices match everything, otherwise check if any of the values to be selected is listed
+            if not allowed_indices or any(
+                aux_categorisation[criteria] in allowed_indices for criteria in values
+            ):
+                if len(values) == 1:
+                    rule = rule.remove_aux_cats(
+                        aux_categorisation_to_remove=aux_categorisation
+                    )
+                rules_filtered.append(rule)
+
+        if not rules_filtered:
+            raise ValueError(
+                f"No rules match the filter criteria for auxiliary dimension '{aux_dim}' "
+                f"with values {values}."
+            )
+
+        if len(values) == 1:
+            new_auxiliary_categorizations = [
+                i for i in self.auxiliary_categorizations if i.name != aux_dim
+            ] or None
+        else:
+            new_auxiliary_categorizations = self.auxiliary_categorizations
+
+        return Conversion(
+            categorization_a=self.categorization_a,
+            categorization_b=self.categorization_b,
+            rules=rules_filtered,
+            auxiliary_categorizations=new_auxiliary_categorizations,
+            comment=(self.comment or "") + f" (filtered for {values} in {aux_dim})",
+            references=self.references,
+            institution=self.institution,
+            last_update=self.last_update,
+            version=self.version,
+        )
 
     def reversed(self) -> "Conversion":
         """Returns the Conversion with categorization_a and categorization_b swapped."""

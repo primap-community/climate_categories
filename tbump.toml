@@ -1,8 +1,8 @@
 # Uncomment this if your project is hosted on GitHub:
-github_url = "https://github.com/pik-primap/climate_categories/"
+github_url = "https://github.com/primap-community/climate_categories/"
 
 [version]
-current = "0.10.1"
+current = "0.10.6"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before
@@ -31,8 +31,12 @@ src = "climate_categories/__init__.py"
 search = '__version__ = "{current_version}"'
 
 [[file]]
+src = "Makefile"
+search = '\tSETUPTOOLS_SCM_PRETEND_VERSION={current_version}'
+
+[[file]]
 src = "README.rst"
-search = 'pik-primap/climate_categories: climate_categories Version {current_version}.'
+search = 'primap-community/climate_categories: climate_categories Version {current_version}.'
 
 # You can specify a list of commands to
 # run after the files have been patched
@@ -51,4 +55,4 @@ cmd = "venv/bin/python update_changelog.py {new_version}"
 
 [[after_push]]
 name = "release on github"
-cmd = "gh release create --repo pik-primap/climate_categories v{new_version} --title 'climate_categories Version {new_version}' --notes-file .changelog_latest_version.rst"
+cmd = "gh release create --repo primap-community/climate_categories v{new_version} --title 'climate_categories Version {new_version}' --notes-file .changelog_latest_version.rst"
