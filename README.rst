@@ -34,6 +34,8 @@ CRF2013_2022     CRF categories extended with country specific categories from
                  2022 submissions
 CRF2013_2023     CRF categories extended with country specific categories from
                  2023 submissions
+CRF2013_2024     CRF categories extended with country specific categories from
+                 2024 submissions
 BURDI            BUR GHG emission categories (DI query interface)
 BURDI_class      BUR GHG emission categories (DI query interface) + classifications
 CRFDI            CRF GHG emission categories (DI query interface)

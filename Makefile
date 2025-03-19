@@ -81,6 +81,7 @@ cache: climate_categories/data/CRF2013.py
 cache: climate_categories/data/CRF2013_2021.py
 cache: climate_categories/data/CRF2013_2022.py
 cache: climate_categories/data/CRF2013_2023.py
+cache: climate_categories/data/CRF2013_2024.py
 cache: climate_categories/data/gas.py
 cache: climate_categories/data/CRFDI.py
 cache: climate_categories/data/CRFDI_class.py
