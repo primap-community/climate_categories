@@ -22,6 +22,7 @@ spec = {
         "N": {"title": "nitrogen", "alternative_codes": ["nitrogen"]},
         "NO2": {"title": "nitrogen dioxide", "alternative_codes": ["nitrogen_dioxide"]},
         "NOx": {"title": "NOx", "alternative_codes": ["nox"]},
+        "NO": {"title": "nox cmip style", "alternative_codes": ["nox_cmip_style"]},
         "NH3": {"title": "NH3", "alternative_codes": ["ammonia"]},
         "S": {"title": "sulfur", "alternative_codes": ["sulfur"]},
         "SO2": {

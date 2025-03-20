@@ -42,6 +42,10 @@ categories:
     title: NOx
     alternative_codes:
     - nox
+  NO:
+    title: nox cmip style
+    alternative_codes:
+    - nox_cmip_style
   NH3:
     title: NH3
     alternative_codes:

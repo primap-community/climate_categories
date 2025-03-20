@@ -101,6 +101,7 @@ data: climate_categories/data/CRF1999.yaml
 data: climate_categories/data/CRF2013_2021.yaml
 data: climate_categories/data/CRF2013_2022.yaml
 data: climate_categories/data/CRF2013_2023.yaml
+data: climate_categories/data/CRF2013_2024.yaml
 data: climate_categories/data/CRF2013.yaml
 data: climate_categories/data/CRFDI_class.yaml
 data: climate_categories/data/CRFDI.yaml
