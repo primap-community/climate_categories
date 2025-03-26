@@ -4427,6 +4427,11 @@ categories:
       - N2O
       corresponding_categories_IPCC1996:
       - 4D
+    children:
+    - - 3.C.4.a
+      - 3.C.4.b
+      - 3.C.4.c
+      - 3.C.4.d
   3.C.5:
     title: Indirect N2O Emissions from Managed Soils
     comment: 'Indirect N2O emissions from: (1) the volatilization of N (as NH3 and
