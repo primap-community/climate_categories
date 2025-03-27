@@ -562,6 +562,7 @@ def main():
                 "N2O",
             ],
         },
+        "children": [["M.3.MP.direct", "M.3.MP.indirect"]],
     }
 
     categories["M.3.MP.direct"] = {
@@ -591,6 +592,7 @@ def main():
                 "N2O",
             ],
         },
+        "children": [["M.1.CR.direct", "M.1.CR.indirect"]],
     }
 
     categories["M.1.CR.direct"] = {
@@ -626,6 +628,7 @@ def main():
                 "N2O",
             ],
         },
+        "children": [["M.3.MA.direct", "M.3.MA.indirect"]],
     }
 
     categories["M.3.MA.direct"] = {
