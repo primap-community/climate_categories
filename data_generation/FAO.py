@@ -671,25 +671,23 @@ def main():
         },
     }
 
-    categories["M.AG"] = (
-        {
-            "title": "Agriculture",
-            "comment": "Agricultural part of AFOLU as defined in FAOSTAT data explorer",
-            "children": [
-                [
-                    "M.5.N2O",  # N2O drained organic soils
-                    "1.B",  # synthetic fertilisers
-                    "M.3.MA",  # manure applied to soils
-                    "M.3.MP",  # manure left on pasture
-                    "M.1.CR",  # crop residues
-                    "M.1.BCR",  # burning crop residues
-                    "M.3.EF",  # enteric fermentation
-                    "6.B",  # savanna fires
-                    "1.A.2.c",  # rice cultivation
-                ]
-            ],
-        },
-    )
+    categories["M.AG"] = {
+        "title": "Agriculture",
+        "comment": "Agricultural part of AFOLU as defined in FAOSTAT data explorer",
+        "children": [
+            [
+                "M.5.N2O",  # N2O drained organic soils
+                "1.B",  # synthetic fertilisers
+                "M.3.MA",  # manure applied to soils
+                "M.3.MP",  # manure left on pasture
+                "M.1.CR",  # crop residues
+                "M.1.BCR",  # burning crop residues
+                "M.3.EF",  # enteric fermentation
+                "6.B",  # savanna fires
+                "1.A.2.c",  # rice cultivation
+            ]
+        ],
+    }
 
     categories["M.LULUCF"] = {
         "title": "Land Use, Land Use Change, and Forestry",
@@ -697,9 +695,9 @@ def main():
         "children": [
             [
                 "M.5.CO2",  # CO2 drained organic soils
-                "4.A"  # forest land
-                "4.B"  # net forest conversion
-                "6.A"  # fires in organic soils
+                "4.A",  # forest land
+                "4.B",  # net forest conversion
+                "6.A",  # fires in organic soils
                 "6.C",  # forest fires
             ]
         ],
