@@ -94,6 +94,84 @@ def main():
             "title": "The share of agriculture-related emissions of 3.C",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
+        "M.3.B.2.FOS": {
+            "title": "Share of emissions from fires in organic soils of 3.B.2",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.B.2.DOS": {
+            "title": "Share of emissions from drained organic soils of 3.B.2",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.B.3.DOS": {
+            "title": "Share of emissions from drained organic soils of 3.B.3",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.1.a": {
+            "title": "Biomass burning in forest lands, but not in 3.C.1. sum",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.1.c": {
+            "title": "Biomass burning in grasslands, but not in 3.C.1. sum",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "3.C.4.a": {
+            "title": "Inorganic N fertilisers",
+        },
+        "3.C.4.b": {
+            "title": "Manure applied to soils",
+            "comment": "Organic N applied as fertiliser (manure and sewage sludge)",
+        },
+        "3.C.4.c": {
+            "title": "Manure left on pasture",
+            "comment": "Urine and dung N deposited on pasture, range and paddock by grazing animals",
+        },
+        "3.C.4.d": {
+            "title": "Crop residues",
+        },
+        "M.3.C.45.MA": {
+            "title": "Direct and indirect emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.MA": {
+            "title": "Direct emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.MA": {
+            "title": "Indirect emissions from manure applied to soils",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.45.MP": {
+            "title": "Direct and indirect emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.MP": {
+            "title": "Direct emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.MP": {
+            "title": "Indirect emissions from manure left on pasture",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.45.CR": {
+            "title": "Direct and indirect emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.CR": {
+            "title": "Direct emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.5.CR": {
+            "title": "Indirect emissions from crop residues",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.DOS.GL": {
+            "title": "Direct emissions from drained organic soils on grass land",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.3.C.4.DOS.CL": {
+            "title": "Direct emissions from drained organic soils on crop land",
+            "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
     }
     children = [
         ("0", ("M.0.EL", "M.LULUCF")),
@@ -130,6 +208,7 @@ def main():
                 "3.A.1.j",
             ),
         ),
+        ("3.C.4", ("3.C.4.a", "3.C.4.b", "3.C.4.c", "3.C.4.d")),
         ("M.BK", ("M.BK.A", "M.BK.M")),
     ]
     name = "PRIMAP"
