@@ -721,7 +721,7 @@ class HierarchicalCategorization(Categorization):
         """Create Categorization from a Dictionary specification."""
         if spec["hierarchical"] != cls.hierarchical:
             raise ValueError(
-                "Specification is for a non-hierarchical categorization, use"
+                "Specification is for a non-hierarchical categorization, use "
                 "Categorization.from_spec."
             )
         last_update = datetime.date.fromisoformat(spec["last_update"])

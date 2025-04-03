@@ -2415,6 +2415,7 @@ spec = {
             "comment": "Direct N2O emissions from managed soils from the synthetic N fertilizers application; organic N applied as fertilizer (e.g. animal manure, compost, sewage sludge, rendering waste); urine and dung N deposited on pasture, range and paddock by grazing animals; N in crop residues (above and below ground), including from N-fixing crops and from forages during pasture renewal; N mineralization/immobilization associated with loss/gain of soil organic matter resulting from change of land use or management of mineral soils; and drainage/management of organic soils (i.e., histosols).",
             "alternative_codes": ["3C4"],
             "info": {"gases": ["N2O"], "corresponding_categories_IPCC1996": ["4D"]},
+            "children": [["3.C.4.a", "3.C.4.b", "3.C.4.c", "3.C.4.d"]],
         },
         "3.C.5": {
             "title": "Indirect N2O Emissions from Managed Soils",
@@ -2733,6 +2734,14 @@ spec = {
         "M.3.C.4.DOS.CL": {
             "title": "Direct emissions from drained organic soils on crop land",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
+        },
+        "M.fluorinated_gases": {
+            "title": "Fluorinated gases",
+            "comment": "Needed for conversion from climate TRACE dataset",
+        },
+        "M.3.B.REM": {
+            "title": "Forestry and land-use removals",
+            "comment": "Needed for conversion from climate TRACE dataset.",
         },
     },
 }
