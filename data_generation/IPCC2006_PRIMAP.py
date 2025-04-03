@@ -172,6 +172,14 @@ def main():
             "title": "Direct emissions from drained organic soils on crop land",
             "comment": "Needed for conversion from FAO to IPCC2006_PRIMAP.",
         },
+        "M.fluorinated_gases": {
+            "title": "Fluorinated gases",
+            "comment": "Needed for conversion from climate TRACE dataset",
+        },
+        "M.3.B.REM": {
+            "title": "Forestry and land-use removals",
+            "comment": "Needed for conversion from climate TRACE dataset.",
+        },
     }
     children = [
         ("0", ("M.0.EL", "M.LULUCF")),
