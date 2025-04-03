@@ -4,12 +4,9 @@ import pathlib
 
 import climate_categories
 
-# import ctrace as ct  # type: ignore
-# from ctrace.constants import GAS_LIST  # type: ignore
-
 OUTPATH = pathlib.Path("./climate_categories/data/CT.yaml")
 
-# Ideally this list will be auto-generated
+
 ct_categories = {
     "agriculture": [
         "agriculture|crop-residues",
