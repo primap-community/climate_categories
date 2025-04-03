@@ -104,10 +104,20 @@ ct_categories = {
 def main():
     categories = {}
 
-    categories["all-emissions"] = {"title": "all-emissions"}
+    sector_categories = ct_categories.keys()
 
-    for name in ct_categories:
-        categories[name] = {"title": name}
+    categories["all-emissions"] = {
+        "title": "all-emissions",
+        "children": [sector_categories],
+    }
+
+    for sector_category in sector_categories:
+        categories[sector_category] = {
+            "title": sector_category,
+            "children": [ct_categories[sector_category]],
+        }
+        for subsector_category in ct_categories[sector_category]:
+            categories[subsector_category] = {"title": subsector_category}
 
     categories["Emissions"] = {"title": "CT Emissions", "children": [[]]}
 
@@ -125,7 +135,7 @@ def main():
         "version": "v4",
         "total_sum": True,
         "categories": categories,
-        "canonical_top_level_category": "Emissions",
+        "canonical_top_level_category": "all-emissions",
     }
 
     CT = climate_categories.HierarchicalCategorization.from_spec(spec.copy())

@@ -10,8 +10,44 @@ spec = {
     "last_update": "2025-04-02",
     "version": "v4",
     "total_sum": True,
-    "canonical_top_level_category": "Emissions",
+    "canonical_top_level_category": "all-emissions",
     "categories": {
+        "all-emissions": {
+            "title": "all-emissions",
+            "children": [
+                [
+                    "agriculture",
+                    "buildings",
+                    "fluorinated-gases",
+                    "forestry-and-land-use",
+                    "fossil-fuel-operations",
+                    "manufacturing",
+                    "mineral-extraction",
+                    "power",
+                    "transportation",
+                    "waste",
+                ]
+            ],
+        },
+        "agriculture": {
+            "title": "agriculture",
+            "children": [
+                [
+                    "agriculture|crop-residues",
+                    "agriculture|cropland-fires",
+                    "agriculture|enteric-fermentation-cattle-operation",
+                    "agriculture|enteric-fermentation-cattle-pasture",
+                    "agriculture|enteric-fermentation-other",
+                    "agriculture|manure-applied-to-soils",
+                    "agriculture|manure-left-on-pasture-cattle",
+                    "agriculture|manure-management-cattle-operation",
+                    "agriculture|manure-management-other",
+                    "agriculture|other-agricultural-soil-emissions",
+                    "agriculture|rice-cultivation",
+                    "agriculture|synthetic-fertilizer-application",
+                ]
+            ],
+        },
         "agriculture|crop-residues": {"title": "agriculture|crop-residues"},
         "agriculture|cropland-fires": {"title": "agriculture|cropland-fires"},
         "agriculture|enteric-fermentation-cattle-operation": {
@@ -42,6 +78,16 @@ spec = {
         "agriculture|synthetic-fertilizer-application": {
             "title": "agriculture|synthetic-fertilizer-application"
         },
+        "buildings": {
+            "title": "buildings",
+            "children": [
+                [
+                    "buildings|non-residential-onsite-fuel-usage",
+                    "buildings|other-onsite-fuel-usage",
+                    "buildings|residential-onsite-fuel-usage",
+                ]
+            ],
+        },
         "buildings|non-residential-onsite-fuel-usage": {
             "title": "buildings|non-residential-onsite-fuel-usage"
         },
@@ -51,8 +97,29 @@ spec = {
         "buildings|residential-onsite-fuel-usage": {
             "title": "buildings|residential-onsite-fuel-usage"
         },
+        "fluorinated-gases": {
+            "title": "fluorinated-gases",
+            "children": [["fluorinated-gases|fluorinated-gases"]],
+        },
         "fluorinated-gases|fluorinated-gases": {
             "title": "fluorinated-gases|fluorinated-gases"
+        },
+        "forestry-and-land-use": {
+            "title": "forestry-and-land-use",
+            "children": [
+                [
+                    "forestry-and-land-use|forest-land-clearing",
+                    "forestry-and-land-use|forest-land-degradation",
+                    "forestry-and-land-use|forest-land-fires",
+                    "forestry-and-land-use|net-forest-land",
+                    "forestry-and-land-use|net-shrubgrass",
+                    "forestry-and-land-use|net-wetland",
+                    "forestry-and-land-use|removals",
+                    "forestry-and-land-use|shrubgrass-fires",
+                    "forestry-and-land-use|water-reservoirs",
+                    "forestry-and-land-use|wetland-fires",
+                ]
+            ],
         },
         "forestry-and-land-use|forest-land-clearing": {
             "title": "forestry-and-land-use|forest-land-clearing"
@@ -82,6 +149,19 @@ spec = {
         "forestry-and-land-use|wetland-fires": {
             "title": "forestry-and-land-use|wetland-fires"
         },
+        "fossil-fuel-operations": {
+            "title": "fossil-fuel-operations",
+            "children": [
+                [
+                    "fossil-fuel-operations|coal-mining",
+                    "fossil-fuel-operations|oil-and-gas-production",
+                    "fossil-fuel-operations|oil-and-gas-refining",
+                    "fossil-fuel-operations|oil-and-gas-transport",
+                    "fossil-fuel-operations|other-fossil-fuel-operations",
+                    "fossil-fuel-operations|solid-fuel-transformation",
+                ]
+            ],
+        },
         "fossil-fuel-operations|coal-mining": {
             "title": "fossil-fuel-operations|coal-mining"
         },
@@ -99,6 +179,27 @@ spec = {
         },
         "fossil-fuel-operations|solid-fuel-transformation": {
             "title": "fossil-fuel-operations|solid-fuel-transformation"
+        },
+        "manufacturing": {
+            "title": "manufacturing",
+            "children": [
+                [
+                    "manufacturing|aluminum",
+                    "manufacturing|cement",
+                    "manufacturing|chemicals",
+                    "manufacturing|food-beverage-tobacco",
+                    "manufacturing|glass",
+                    "manufacturing|iron-and-steel",
+                    "manufacturing|lime",
+                    "manufacturing|other-chemicals",
+                    "manufacturing|other-manufacturing",
+                    "manufacturing|other-metals",
+                    "manufacturing|petrochemical-steam-cracking",
+                    "manufacturing|pulp-and-paper",
+                    "manufacturing|textiles-leather-apparel",
+                    "manufacturing|wood-and-wood-products",
+                ]
+            ],
         },
         "manufacturing|aluminum": {"title": "manufacturing|aluminum"},
         "manufacturing|cement": {"title": "manufacturing|cement"},
@@ -124,6 +225,19 @@ spec = {
         "manufacturing|wood-and-wood-products": {
             "title": "manufacturing|wood-and-wood-products"
         },
+        "mineral-extraction": {
+            "title": "mineral-extraction",
+            "children": [
+                [
+                    "mineral-extraction|bauxite-mining",
+                    "mineral-extraction|copper-mining",
+                    "mineral-extraction|iron-mining",
+                    "mineral-extraction|other-mining-quarrying",
+                    "mineral-extraction|rock-quarrying",
+                    "mineral-extraction|sand-quarrying",
+                ]
+            ],
+        },
         "mineral-extraction|bauxite-mining": {
             "title": "mineral-extraction|bauxite-mining"
         },
@@ -140,9 +254,33 @@ spec = {
         "mineral-extraction|sand-quarrying": {
             "title": "mineral-extraction|sand-quarrying"
         },
+        "power": {
+            "title": "power",
+            "children": [
+                [
+                    "power|electricity-generation",
+                    "power|heat-plants",
+                    "power|other-energy-use",
+                ]
+            ],
+        },
         "power|electricity-generation": {"title": "power|electricity-generation"},
         "power|heat-plants": {"title": "power|heat-plants"},
         "power|other-energy-use": {"title": "power|other-energy-use"},
+        "transportation": {
+            "title": "transportation",
+            "children": [
+                [
+                    "transportation|domestic-aviation",
+                    "transportation|domestic-shipping",
+                    "transportation|international-aviation",
+                    "transportation|international-shipping",
+                    "transportation|other-transport",
+                    "transportation|railways",
+                    "transportation|road-transportation",
+                ]
+            ],
+        },
         "transportation|domestic-aviation": {
             "title": "transportation|domestic-aviation"
         },
@@ -159,6 +297,18 @@ spec = {
         "transportation|railways": {"title": "transportation|railways"},
         "transportation|road-transportation": {
             "title": "transportation|road-transportation"
+        },
+        "waste": {
+            "title": "waste",
+            "children": [
+                [
+                    "waste|biological-treatment-of-solid-waste-and-biogenic",
+                    "waste|domestic-wastewater-treatment-and-discharge",
+                    "waste|incineration-and-open-burning-of-waste",
+                    "waste|industrial-wastewater-treatment-and-discharge",
+                    "waste|solid-waste-disposal",
+                ]
+            ],
         },
         "waste|biological-treatment-of-solid-waste-and-biogenic": {
             "title": "waste|biological-treatment-of-solid-waste-and-biogenic"
