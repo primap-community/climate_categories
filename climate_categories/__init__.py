@@ -55,6 +55,7 @@ gas = _read_py_hier("gas")
 ISO3 = _read_py_hier("ISO3")
 ISO3_GCAM = _read_py_hier("ISO3_GCAM")
 FAO = _read_py_hier("FAO")
+CT = _read_py_hier("CT")
 
 
 def find_code(code: str) -> set[Category]:
