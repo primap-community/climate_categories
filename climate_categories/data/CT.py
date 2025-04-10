@@ -48,8 +48,14 @@ spec = {
                 ]
             ],
         },
-        "agriculture|crop-residues": {"title": "agriculture|crop-residues"},
-        "agriculture|cropland-fires": {"title": "agriculture|cropland-fires"},
+        "agriculture|crop-residues": {
+            "title": "agriculture|crop-residues",
+            "comment": "estimates compiled from FAOSTAT",
+        },
+        "agriculture|cropland-fires": {
+            "title": "agriculture|cropland-fires",
+            "comment": "compiled from EDGAR",
+        },
         "agriculture|enteric-fermentation-cattle-operation": {
             "title": "agriculture|enteric-fermentation-cattle-operation"
         },
@@ -57,7 +63,8 @@ spec = {
             "title": "agriculture|enteric-fermentation-cattle-pasture"
         },
         "agriculture|enteric-fermentation-other": {
-            "title": "agriculture|enteric-fermentation-other"
+            "title": "agriculture|enteric-fermentation-other",
+            "comment": "estimated using FAOSTAT data for years 2015 to 2021, with the remaining years forward filled.",
         },
         "agriculture|manure-applied-to-soils": {
             "title": "agriculture|manure-applied-to-soils"
@@ -69,14 +76,20 @@ spec = {
             "title": "agriculture|manure-management-cattle-operation"
         },
         "agriculture|manure-management-other": {
-            "title": "agriculture|manure-management-other"
+            "title": "agriculture|manure-management-other",
+            "comment": "estimated using FAOSTAT data for years 2015 to 2021, with the remaining years forward filled.",
         },
         "agriculture|other-agricultural-soil-emissions": {
-            "title": "agriculture|other-agricultural-soil-emissions"
+            "title": "agriculture|other-agricultural-soil-emissions",
+            "comment": "compiled with FAOSTAT and EDGAR. See Moore et al. (2024)",
         },
-        "agriculture|rice-cultivation": {"title": "agriculture|rice-cultivation"},
+        "agriculture|rice-cultivation": {
+            "title": "agriculture|rice-cultivation",
+            "comment": "Estimates using Sentinel-1A and -2A/B",
+        },
         "agriculture|synthetic-fertilizer-application": {
-            "title": "agriculture|synthetic-fertilizer-application"
+            "title": "agriculture|synthetic-fertilizer-application",
+            "comment": "Estimates using crop productivity data",
         },
         "buildings": {
             "title": "buildings",
@@ -89,20 +102,24 @@ spec = {
             ],
         },
         "buildings|non-residential-onsite-fuel-usage": {
-            "title": "buildings|non-residential-onsite-fuel-usage"
+            "title": "buildings|non-residential-onsite-fuel-usage",
+            "comment": "Disaggregation of EDGAR v8 data",
         },
         "buildings|other-onsite-fuel-usage": {
-            "title": "buildings|other-onsite-fuel-usage"
+            "title": "buildings|other-onsite-fuel-usage",
+            "comment": "Disaggregation of EDGAR v8 data",
         },
         "buildings|residential-onsite-fuel-usage": {
-            "title": "buildings|residential-onsite-fuel-usage"
+            "title": "buildings|residential-onsite-fuel-usage",
+            "comment": "Disaggregation of EDGAR v8 data",
         },
         "fluorinated-gases": {
             "title": "fluorinated-gases",
             "children": [["fluorinated-gases|fluorinated-gases"]],
         },
         "fluorinated-gases|fluorinated-gases": {
-            "title": "fluorinated-gases|fluorinated-gases"
+            "title": "fluorinated-gases|fluorinated-gases",
+            "comment": "Based on EDGAR",
         },
         "forestry-and-land-use": {
             "title": "forestry-and-land-use",
@@ -323,6 +340,5 @@ spec = {
             "title": "waste|industrial-wastewater-treatment-and-discharge"
         },
         "waste|solid-waste-disposal": {"title": "waste|solid-waste-disposal"},
-        "Emissions": {"title": "CT Emissions"},
     },
 }
