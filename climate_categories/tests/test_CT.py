@@ -8,4 +8,4 @@ def test_levels():
 
 
 def test_number_of_categories():
-    assert len(climate_categories.CT) == 79
+    assert len(climate_categories.CT) == 78
