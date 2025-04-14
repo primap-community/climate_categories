@@ -9,7 +9,7 @@ spec = {
     "hierarchical": True,
     "last_update": "2025-04-02",
     "version": "v4",
-    "total_sum": True,
+    "total_sum": False,
     "canonical_top_level_category": "all-emissions",
     "categories": {
         "all-emissions": {

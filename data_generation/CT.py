@@ -144,7 +144,7 @@ def main():
         "last_update": "2025-04-02",
         "hierarchical": True,
         "version": "v4",
-        "total_sum": True,
+        "total_sum": False,
         "categories": categories,
         "canonical_top_level_category": "all-emissions",
     }
