@@ -1,0 +1,268 @@
+name: CT
+title: Climate Trace Inventory
+comment: 'Categorisation may change with new releases. Changelog is here: https://github.com/climatetracecoalition/methodology-documents '
+references: Climate TRACE (2024), Climate TRACE Emissions Inventory, https://climatetrace.org
+institution: Climate TRACE
+hierarchical: true
+last_update: '2025-04-02'
+version: v4
+total_sum: false
+canonical_top_level_category: all-emissions
+categories:
+  all-emissions:
+    title: all-emissions
+    children:
+    - - agriculture
+      - buildings
+      - fluorinated-gases
+      - forestry-and-land-use
+      - fossil-fuel-operations
+      - manufacturing
+      - mineral-extraction
+      - power
+      - transportation
+      - waste
+  agriculture:
+    title: agriculture
+    children:
+    - - agriculture|crop-residues
+      - agriculture|cropland-fires
+      - agriculture|enteric-fermentation-cattle-operation
+      - agriculture|enteric-fermentation-cattle-pasture
+      - agriculture|enteric-fermentation-other
+      - agriculture|manure-applied-to-soils
+      - agriculture|manure-left-on-pasture-cattle
+      - agriculture|manure-management-cattle-operation
+      - agriculture|manure-management-other
+      - agriculture|other-agricultural-soil-emissions
+      - agriculture|rice-cultivation
+      - agriculture|synthetic-fertilizer-application
+  agriculture|crop-residues:
+    title: agriculture|crop-residues
+    comment: estimates compiled from FAOSTAT
+  agriculture|cropland-fires:
+    title: agriculture|cropland-fires
+    comment: compiled from EDGAR
+  agriculture|enteric-fermentation-cattle-operation:
+    title: agriculture|enteric-fermentation-cattle-operation
+  agriculture|enteric-fermentation-cattle-pasture:
+    title: agriculture|enteric-fermentation-cattle-pasture
+  agriculture|enteric-fermentation-other:
+    title: agriculture|enteric-fermentation-other
+    comment: estimated using FAOSTAT data for years 2015 to 2021, with the remaining
+      years forward filled.
+  agriculture|manure-applied-to-soils:
+    title: agriculture|manure-applied-to-soils
+  agriculture|manure-left-on-pasture-cattle:
+    title: agriculture|manure-left-on-pasture-cattle
+  agriculture|manure-management-cattle-operation:
+    title: agriculture|manure-management-cattle-operation
+  agriculture|manure-management-other:
+    title: agriculture|manure-management-other
+    comment: estimated using FAOSTAT data for years 2015 to 2021, with the remaining
+      years forward filled.
+  agriculture|other-agricultural-soil-emissions:
+    title: agriculture|other-agricultural-soil-emissions
+    comment: compiled with FAOSTAT and EDGAR. See Moore et al. (2024)
+  agriculture|rice-cultivation:
+    title: agriculture|rice-cultivation
+    comment: Estimates using Sentinel-1A and -2A/B
+  agriculture|synthetic-fertilizer-application:
+    title: agriculture|synthetic-fertilizer-application
+    comment: Estimates using crop productivity data
+  buildings:
+    title: buildings
+    children:
+    - - buildings|non-residential-onsite-fuel-usage
+      - buildings|other-onsite-fuel-usage
+      - buildings|residential-onsite-fuel-usage
+  buildings|non-residential-onsite-fuel-usage:
+    title: buildings|non-residential-onsite-fuel-usage
+    comment: Disaggregation of EDGAR v8 data
+  buildings|other-onsite-fuel-usage:
+    title: buildings|other-onsite-fuel-usage
+    comment: Disaggregation of EDGAR v8 data
+  buildings|residential-onsite-fuel-usage:
+    title: buildings|residential-onsite-fuel-usage
+    comment: Disaggregation of EDGAR v8 data
+  fluorinated-gases:
+    title: fluorinated-gases
+    children:
+    - - fluorinated-gases|fluorinated-gases
+  fluorinated-gases|fluorinated-gases:
+    title: fluorinated-gases|fluorinated-gases
+    comment: Based on EDGAR
+  forestry-and-land-use:
+    title: forestry-and-land-use
+    children:
+    - - forestry-and-land-use|forest-land-clearing
+      - forestry-and-land-use|forest-land-degradation
+      - forestry-and-land-use|forest-land-fires
+      - forestry-and-land-use|net-forest-land
+      - forestry-and-land-use|net-shrubgrass
+      - forestry-and-land-use|net-wetland
+      - forestry-and-land-use|removals
+      - forestry-and-land-use|shrubgrass-fires
+      - forestry-and-land-use|water-reservoirs
+      - forestry-and-land-use|wetland-fires
+  forestry-and-land-use|forest-land-clearing:
+    title: forestry-and-land-use|forest-land-clearing
+  forestry-and-land-use|forest-land-degradation:
+    title: forestry-and-land-use|forest-land-degradation
+  forestry-and-land-use|forest-land-fires:
+    title: forestry-and-land-use|forest-land-fires
+  forestry-and-land-use|net-forest-land:
+    title: forestry-and-land-use|net-forest-land
+  forestry-and-land-use|net-shrubgrass:
+    title: forestry-and-land-use|net-shrubgrass
+  forestry-and-land-use|net-wetland:
+    title: forestry-and-land-use|net-wetland
+  forestry-and-land-use|removals:
+    title: forestry-and-land-use|removals
+  forestry-and-land-use|shrubgrass-fires:
+    title: forestry-and-land-use|shrubgrass-fires
+  forestry-and-land-use|water-reservoirs:
+    title: forestry-and-land-use|water-reservoirs
+  forestry-and-land-use|wetland-fires:
+    title: forestry-and-land-use|wetland-fires
+  fossil-fuel-operations:
+    title: fossil-fuel-operations
+    children:
+    - - fossil-fuel-operations|coal-mining
+      - fossil-fuel-operations|oil-and-gas-production
+      - fossil-fuel-operations|oil-and-gas-refining
+      - fossil-fuel-operations|oil-and-gas-transport
+      - fossil-fuel-operations|other-fossil-fuel-operations
+      - fossil-fuel-operations|solid-fuel-transformation
+  fossil-fuel-operations|coal-mining:
+    title: fossil-fuel-operations|coal-mining
+  fossil-fuel-operations|oil-and-gas-production:
+    title: fossil-fuel-operations|oil-and-gas-production
+  fossil-fuel-operations|oil-and-gas-refining:
+    title: fossil-fuel-operations|oil-and-gas-refining
+  fossil-fuel-operations|oil-and-gas-transport:
+    title: fossil-fuel-operations|oil-and-gas-transport
+  fossil-fuel-operations|other-fossil-fuel-operations:
+    title: fossil-fuel-operations|other-fossil-fuel-operations
+  fossil-fuel-operations|solid-fuel-transformation:
+    title: fossil-fuel-operations|solid-fuel-transformation
+  manufacturing:
+    title: manufacturing
+    children:
+    - - manufacturing|aluminum
+      - manufacturing|cement
+      - manufacturing|chemicals
+      - manufacturing|food-beverage-tobacco
+      - manufacturing|glass
+      - manufacturing|iron-and-steel
+      - manufacturing|lime
+      - manufacturing|other-chemicals
+      - manufacturing|other-manufacturing
+      - manufacturing|other-metals
+      - manufacturing|petrochemical-steam-cracking
+      - manufacturing|pulp-and-paper
+      - manufacturing|textiles-leather-apparel
+      - manufacturing|wood-and-wood-products
+  manufacturing|aluminum:
+    title: manufacturing|aluminum
+  manufacturing|cement:
+    title: manufacturing|cement
+  manufacturing|chemicals:
+    title: manufacturing|chemicals
+  manufacturing|food-beverage-tobacco:
+    title: manufacturing|food-beverage-tobacco
+  manufacturing|glass:
+    title: manufacturing|glass
+  manufacturing|iron-and-steel:
+    title: manufacturing|iron-and-steel
+  manufacturing|lime:
+    title: manufacturing|lime
+  manufacturing|other-chemicals:
+    title: manufacturing|other-chemicals
+  manufacturing|other-manufacturing:
+    title: manufacturing|other-manufacturing
+  manufacturing|other-metals:
+    title: manufacturing|other-metals
+  manufacturing|petrochemical-steam-cracking:
+    title: manufacturing|petrochemical-steam-cracking
+  manufacturing|pulp-and-paper:
+    title: manufacturing|pulp-and-paper
+  manufacturing|textiles-leather-apparel:
+    title: manufacturing|textiles-leather-apparel
+  manufacturing|wood-and-wood-products:
+    title: manufacturing|wood-and-wood-products
+  mineral-extraction:
+    title: mineral-extraction
+    children:
+    - - mineral-extraction|bauxite-mining
+      - mineral-extraction|copper-mining
+      - mineral-extraction|iron-mining
+      - mineral-extraction|other-mining-quarrying
+      - mineral-extraction|rock-quarrying
+      - mineral-extraction|sand-quarrying
+  mineral-extraction|bauxite-mining:
+    title: mineral-extraction|bauxite-mining
+  mineral-extraction|copper-mining:
+    title: mineral-extraction|copper-mining
+  mineral-extraction|iron-mining:
+    title: mineral-extraction|iron-mining
+  mineral-extraction|other-mining-quarrying:
+    title: mineral-extraction|other-mining-quarrying
+  mineral-extraction|rock-quarrying:
+    title: mineral-extraction|rock-quarrying
+  mineral-extraction|sand-quarrying:
+    title: mineral-extraction|sand-quarrying
+  power:
+    title: power
+    children:
+    - - power|electricity-generation
+      - power|heat-plants
+      - power|other-energy-use
+  power|electricity-generation:
+    title: power|electricity-generation
+  power|heat-plants:
+    title: power|heat-plants
+  power|other-energy-use:
+    title: power|other-energy-use
+  transportation:
+    title: transportation
+    children:
+    - - transportation|domestic-aviation
+      - transportation|domestic-shipping
+      - transportation|international-aviation
+      - transportation|international-shipping
+      - transportation|other-transport
+      - transportation|railways
+      - transportation|road-transportation
+  transportation|domestic-aviation:
+    title: transportation|domestic-aviation
+  transportation|domestic-shipping:
+    title: transportation|domestic-shipping
+  transportation|international-aviation:
+    title: transportation|international-aviation
+  transportation|international-shipping:
+    title: transportation|international-shipping
+  transportation|other-transport:
+    title: transportation|other-transport
+  transportation|railways:
+    title: transportation|railways
+  transportation|road-transportation:
+    title: transportation|road-transportation
+  waste:
+    title: waste
+    children:
+    - - waste|biological-treatment-of-solid-waste-and-biogenic
+      - waste|domestic-wastewater-treatment-and-discharge
+      - waste|incineration-and-open-burning-of-waste
+      - waste|industrial-wastewater-treatment-and-discharge
+      - waste|solid-waste-disposal
+  waste|biological-treatment-of-solid-waste-and-biogenic:
+    title: waste|biological-treatment-of-solid-waste-and-biogenic
+  waste|domestic-wastewater-treatment-and-discharge:
+    title: waste|domestic-wastewater-treatment-and-discharge
+  waste|incineration-and-open-burning-of-waste:
+    title: waste|incineration-and-open-burning-of-waste
+  waste|industrial-wastewater-treatment-and-discharge:
+    title: waste|industrial-wastewater-treatment-and-discharge
+  waste|solid-waste-disposal:
+    title: waste|solid-waste-disposal
