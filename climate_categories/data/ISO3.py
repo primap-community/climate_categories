@@ -2042,5 +2042,24 @@ spec = {
                 ]
             ],
         },
+        "BASIC" : {
+            "title" : "Group of Eight",
+            "children" : [
+                ["CAN", "DEU", "EU_2020", "FRA", "GBR", "ITA", "JPN", "RUS", "USA"]
+            ],
+        },
+        "LDC" : {
+            "title" : "Group of Eight",
+            "children" : [
+                ["CAN", "DEU", "EU_2020", "FRA", "GBR", "ITA", "JPN", "RUS", "USA"]
+            ],
+        },
+        "UMBRELLA_2022" : {
+            "title" : "Informal coalition that likes to take a common position during climate negotiations",
+            "commen" : "Following the 2022 invasion, Russia and Belarus were ejected from the group",
+            "children" : [
+                ["KAZ", "ISR", "AUS", "ISL", "NZL", "USA", "JPN", "CAN", "NOR", "ISR"]
+            ],
+        },
     },
 }
