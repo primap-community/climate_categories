@@ -2049,9 +2049,19 @@ spec = {
             ],
         },
         "LDC" : {
-            "title" : "Group of Eight",
+            "title" : "Least Developed Countries",
             "children" : [
-                ["CAN", "DEU", "EU_2020", "FRA", "GBR", "ITA", "JPN", "RUS", "USA"]
+                [
+                    "AFG", "AGO", "ALB", "AND", "ARM", "AZE", "BEN", "BTN", "BOL", "BFA", "BDI",
+                    "KHM", "CMR", "CPV", "CAF", "TCD", "COM", "COD", "COG", "CIV", "DJI",
+                    "DMA", "ERI", "ETH", "FJI", "GAB", "GMB", "GHA", "GRD", "GIN", "GNB",
+                    "GUY", "HTI", "IRN", "IRQ", "KEN", "KIR", "LAO", "LBN", "LSO", "LBR",
+                    "LBY", "MDG", "MWI", "MDV", "MLI", "MRT", "FSM", "MNG", "MOZ", "MMR",
+                    "NAM", "NRU", "NPL", "NER", "NGA", "PRK", "MKD", "PNG", "RWA", "KNA",
+                    "LCA", "VCT", "WSM", "STP", "SEN", "SLE", "SLB", "SOM", "SSD", "SDN",
+                    "SYR", "TJK", "TLS", "TGO", "TON", "TUV", "UGA", "TZA", "VUT", "YEM",
+                    "ZMB", "ZWE"
+                ]
             ],
         },
         "UMBRELLA_2022" : {
