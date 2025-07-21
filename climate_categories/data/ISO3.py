@@ -2042,35 +2042,5 @@ spec = {
                 ]
             ],
         },
-        "BASIC" : {
-            "title" : "BASIC countries",
-            "comment" : "Coalition of four major emerging economies",
-            "children" : [
-                ["BRA", "ZAF", "IND", "CHN"]
-            ],
-        },
-        "LDC" : {
-            "title" : "Least Developed Countries",
-            "children" : [
-                [
-                    "AFG", "AGO", "ALB", "AND", "ARM", "AZE", "BEN", "BTN", "BOL", "BFA", "BDI",
-                    "KHM", "CMR", "CPV", "CAF", "TCD", "COM", "COD", "COG", "CIV", "DJI",
-                    "DMA", "ERI", "ETH", "FJI", "GAB", "GMB", "GHA", "GRD", "GIN", "GNB",
-                    "GUY", "HTI", "IRN", "IRQ", "KEN", "KIR", "LAO", "LBN", "LSO", "LBR",
-                    "LBY", "MDG", "MWI", "MDV", "MLI", "MRT", "FSM", "MNG", "MOZ", "MMR",
-                    "NAM", "NRU", "NPL", "NER", "NGA", "PRK", "MKD", "PNG", "RWA", "KNA",
-                    "LCA", "VCT", "WSM", "STP", "SEN", "SLE", "SLB", "SOM", "SSD", "SDN",
-                    "SYR", "TJK", "TLS", "TGO", "TON", "TUV", "UGA", "TZA", "VUT", "YEM",
-                    "ZMB", "ZWE"
-                ]
-            ],
-        },
-        "UMBRELLA_2022" : {
-            "title" : "Informal coalition that likes to take a common position during climate negotiations",
-            "comment" : "Following the 2022 invasion, Russia and Belarus were ejected from the group",
-            "children" : [
-                ["KAZ", "ISR", "AUS", "ISL", "NZL", "USA", "JPN", "CAN", "NOR", "ISR"]
-            ],
-        },
     },
 }

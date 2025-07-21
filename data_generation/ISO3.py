@@ -32,6 +32,9 @@ def main():
     categories = add_g7g20(categories)
     categories = add_oecd(categories)
     categories = add_historical_names(categories)
+    categories = add_basic(categories)
+    categories = add_ldc(categories)
+    categories = add_umbrella(categories)
 
     spec = {
         "name": "ISO3",
@@ -57,6 +60,80 @@ AOSIS members, https://www.aosis.org/about/member-states/""",
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_basic(categories):
+    categories["BASIC"] = {
+        "title": "BASIC countries",
+        "children": [["BRA", "ZAF", "IND", "CHN"]],
+    }
+    return categories
+
+
+def add_ldc(categories):
+    categories["LDC"] = {
+        "title": "Least Developed Countries",
+        "children": [
+            [
+                "AGO",
+                "BEN",
+                "BFA",
+                "BDI",
+                "CAF",
+                "TCD",
+                "COM",
+                "COD",
+                "DJI",
+                "ERI",
+                "ETH",
+                "GMB",
+                "GIN",
+                "GNB",
+                "LSO",
+                "LBR",
+                "MDG",
+                "MWI",
+                "MLI",
+                "MRT",
+                "MOZ",
+                "NER",
+                "RWA",
+                "SEN",
+                "SLE",
+                "SOM",
+                "SSD",
+                "SDN",
+                "TGO",
+                "UGA",
+                "TZA",
+                "ZMB",
+                "AFG",
+                "BGD",
+                "KHM",
+                "LAO",
+                "MMR",
+                "NPL",
+                "TLS",
+                "YEM",
+                "HTI",
+                "KIR",
+                "SLB",
+                "TUV",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_umbrella(categories):
+    categories["UMBRELLA_2022"] = {
+        "title": "Informal coalition that likes to take a common position during climate negotiations",
+        "comment": "Following the 2022 invasion, Russia and Belarus were ejected from the group",
+        "children": [
+            ["KAZ", "ISR", "AUS", "ISL", "NZL", "USA", "JPN", "CAN", "NOR", "ISR"]
+        ],
+    }
+    return categories
 
 
 def add_aosis(categories):

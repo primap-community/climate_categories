@@ -2613,3 +2613,72 @@ categories:
       - SWE
       - TUR
       - USA
+  BASIC:
+    title: BASIC countries
+    children:
+    - - BRA
+      - CHN
+      - IND
+      - ZAF
+  LDC:
+    title: Least Developed Countries
+    children:
+    - - AFG
+      - AGO
+      - BDI
+      - BEN
+      - BFA
+      - BGD
+      - CAF
+      - COD
+      - COM
+      - DJI
+      - ERI
+      - ETH
+      - GIN
+      - GMB
+      - GNB
+      - HTI
+      - KHM
+      - KIR
+      - LAO
+      - LBR
+      - LSO
+      - MDG
+      - MLI
+      - MMR
+      - MOZ
+      - MRT
+      - MWI
+      - NER
+      - NPL
+      - RWA
+      - SDN
+      - SEN
+      - SLB
+      - SLE
+      - SOM
+      - SSD
+      - TCD
+      - TGO
+      - TLS
+      - TUV
+      - TZA
+      - UGA
+      - YEM
+      - ZMB
+  UMBRELLA_2022:
+    title: Informal coalition that likes to take a common position during climate
+      negotiations
+    comment: Following the 2022 invasion, Russia and Belarus were ejected from the
+      group
+    children:
+    - - AUS
+      - CAN
+      - ISL
+      - ISR
+      - JPN
+      - KAZ
+      - NOR
+      - NZL
+      - USA
