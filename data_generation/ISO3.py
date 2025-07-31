@@ -147,7 +147,19 @@ def add_umbrella(categories):
         "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
         "comment": "The United Kingdom formally joined the group in 2023.",
         "children": [
-            ["AUS", "CAN", "ISL", "ISR", "JPN", "NZL", "KAZ", "NOR", "UKR", "USA", "GBR"]
+            [
+                "AUS",
+                "CAN",
+                "ISL",
+                "ISR",
+                "JPN",
+                "NZL",
+                "KAZ",
+                "NOR",
+                "UKR",
+                "USA",
+                "GBR",
+            ]
         ],
         alternative_codes: ["UMBRELLA"],
     }
