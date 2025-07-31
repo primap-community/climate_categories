@@ -35,6 +35,10 @@ def main():
     categories = add_basic(categories)
     categories = add_ldc(categories)
     categories = add_umbrella(categories)
+    categories = add_OPEC(categories)
+    categories = add_ARAB(categories)
+    categories = add_LMDC(categories)
+    categories = add_G35(categories)
 
     spec = {
         "name": "ISO3",
@@ -180,6 +184,169 @@ def add_aosis(categories):
                 "SYC",
                 "SGP",
                 "TLS",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_OPEC(categories):
+    categories["OPEC"] = {
+        "title": "Oranization of Petroleum Exporting Countries",
+        "comment": "Reference https://www.opec.org/member-countries.html",
+        "children": [
+            [
+                "IRN",
+                "IRQ",
+                "KWT",
+                "SAU",
+                "VEN",
+                "LBY",
+                "ARE",
+                "DZA",
+                "NGA",
+                "GAB",
+                "GNQ",
+                "COG",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_ARAB(categories):
+    categories["ARAB"] = {
+        "title": "Arab Group",
+        "comment": "Reference https://unfccc.int/party-groupings",
+        "children": [
+            [
+                "DZA",
+                "BHR",
+                "COM",
+                "DJI",
+                "EGY",
+                "IRQ",
+                "JOR",
+                "KWT",
+                "LBN",
+                "LBY",
+                "MAR",
+                "MRT",
+                "OMN",
+                "PSE",
+                "QAT",
+                "SAU",
+                "SOM",
+                "SDN",
+                "SYR",
+                "TUN",
+                "ARE",
+                "YEM",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_LMDC(categories):
+    categories["LMDC"] = {
+        "title": "Like-minded developing countries",
+        "comment": "Reference https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries",
+        "children": [
+            [
+                "DZA",
+                "BGD",
+                "BOL",
+                "CHN",
+                "CUB",
+                "ECU",
+                "EGY",
+                "SLV",
+                "IND",
+                "IDN",
+                "IRN",
+                "IRQ",
+                "JOR",
+                "KWT",
+                "MYS",
+                "MLI",
+                "NIC",
+                "PAK",
+                "SAU",
+                "LKA",
+                "SDN",
+                "SYR",
+                "VEN",
+                "VNM",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_G35(categories):
+    categories["G35"] = {
+        "title": "Group of 35",
+        "children": [
+            [
+                "ARG",
+                "AUS",
+                "AZE",
+                "BRA",
+                "CAN",
+                "CHL",
+                "CHN",
+                "COL",
+                "EGY",
+                "FRA",
+                "DEU",
+                "IND",
+                "IDN",
+                "IRN",
+                "ITA",
+                "JPN",
+                "KAZ",
+                "KEN",
+                "KOR",
+                "MYS",
+                "MEX",
+                "MNG",
+                "NGA",
+                "PAK",
+                "PHL",
+                "RUS",
+                "SAU",
+                "ZAF",
+                "THA",
+                "TUR",
+                "GBR",
+                "ARE",
+                "USA",
+                "VNM",
+                "AUT",
+                "BEL",
+                "BGR",
+                "HRV",
+                "CYP",
+                "CZE",
+                "DNK",
+                "EST",
+                "FIN",
+                "GRC",
+                "HUN",
+                "IRL",
+                "LVA",
+                "LTU",
+                "LUX",
+                "MLT",
+                "NLD",
+                "POL",
+                "PRT",
+                "ROU",
+                "SVK",
+                "SVN",
+                "ESP",
+                "SWE",
             ]
         ],
     }

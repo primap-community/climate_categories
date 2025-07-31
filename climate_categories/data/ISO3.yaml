@@ -2682,3 +2682,134 @@ categories:
       - NOR
       - NZL
       - USA
+  OPEC:
+    title: Oranization of Petroleum Exporting Countries
+    comment: Reference https://www.opec.org/member-countries.html
+    children:
+    - - ARE
+      - COG
+      - DZA
+      - GAB
+      - GNQ
+      - IRN
+      - IRQ
+      - KWT
+      - LBY
+      - NGA
+      - SAU
+      - VEN
+  ARAB:
+    title: Arab Group
+    comment: Reference https://unfccc.int/party-groupings
+    children:
+    - - ARE
+      - BHR
+      - COM
+      - DJI
+      - DZA
+      - EGY
+      - IRQ
+      - JOR
+      - KWT
+      - LBN
+      - LBY
+      - MAR
+      - MRT
+      - OMN
+      - PSE
+      - QAT
+      - SAU
+      - SDN
+      - SOM
+      - SYR
+      - TUN
+      - YEM
+  LMDC:
+    title: Like-minded developing countries
+    comment: Reference https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries
+    children:
+    - - BGD
+      - BOL
+      - CHN
+      - CUB
+      - DZA
+      - ECU
+      - EGY
+      - IDN
+      - IND
+      - IRN
+      - IRQ
+      - JOR
+      - KWT
+      - LKA
+      - MLI
+      - MYS
+      - NIC
+      - PAK
+      - SAU
+      - SDN
+      - SLV
+      - SYR
+      - VEN
+      - VNM
+  G35:
+    title: Group of 35
+    children:
+    - - ARE
+      - ARG
+      - AUS
+      - AUT
+      - AZE
+      - BEL
+      - BGR
+      - BRA
+      - CAN
+      - CHL
+      - CHN
+      - COL
+      - CYP
+      - CZE
+      - DEU
+      - DNK
+      - EGY
+      - ESP
+      - EST
+      - FIN
+      - FRA
+      - GBR
+      - GRC
+      - HRV
+      - HUN
+      - IDN
+      - IND
+      - IRL
+      - IRN
+      - ITA
+      - JPN
+      - KAZ
+      - KEN
+      - KOR
+      - LTU
+      - LUX
+      - LVA
+      - MEX
+      - MLT
+      - MNG
+      - MYS
+      - NGA
+      - NLD
+      - PAK
+      - PHL
+      - POL
+      - PRT
+      - ROU
+      - RUS
+      - SAU
+      - SVK
+      - SVN
+      - SWE
+      - THA
+      - TUR
+      - USA
+      - VNM
+      - ZAF
