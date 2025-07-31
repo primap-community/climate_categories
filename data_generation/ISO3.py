@@ -61,7 +61,7 @@ ARAB https://unfccc.int/party-groupings;
 LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;
 """,
         "institution": "UN",
-        "last_update": "2023-06-22",
+        "last_update": "2025-07-31",
         "hierarchical": True,
         "version": "2023-06-22",
         "total_sum": False,
