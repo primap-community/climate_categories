@@ -53,6 +53,8 @@ EU members,
 https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
 G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
+UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;
+LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;
 AOSIS members, https://www.aosis.org/about/member-states/;
 OPEC https://www.opec.org/member-countries.html";
 ARAB https://unfccc.int/party-groupings;
