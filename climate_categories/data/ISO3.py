@@ -4,7 +4,7 @@ spec = {
     "name": "ISO3",
     "title": "ISO 3166-1 countries with climate-relevant groupings",
     "comment": "Countries, regions, and other areas. Also includes information on groups like being included in Annex I of the UN Framework Convention on Climate Change.",
-    "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers, https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n AOSIS members, https://www.aosis.org/about/member-states/",
+    "references": 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers, https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html";\nARAB https://unfccc.int/party-groupings";\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries";\n',
     "institution": "UN",
     "hierarchical": True,
     "last_update": "2023-06-22",
@@ -2106,7 +2106,6 @@ spec = {
         },
         "OPEC": {
             "title": "Oranization of Petroleum Exporting Countries",
-            "comment": "Reference https://www.opec.org/member-countries.html",
             "children": [
                 [
                     "ARE",
@@ -2126,7 +2125,6 @@ spec = {
         },
         "ARAB": {
             "title": "Arab Group",
-            "comment": "Reference https://unfccc.int/party-groupings",
             "children": [
                 [
                     "ARE",
@@ -2156,7 +2154,6 @@ spec = {
         },
         "LMDC": {
             "title": "Like-minded developing countries",
-            "comment": "Reference https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries",
             "children": [
                 [
                     "BGD",

@@ -7,7 +7,9 @@ references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-cod
   https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n
   G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n
   OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n
-  AOSIS members, https://www.aosis.org/about/member-states/"
+  AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html\"\
+  ;\nARAB https://unfccc.int/party-groupings\";\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries\"\
+  ;\n"
 institution: UN
 hierarchical: true
 last_update: '2023-06-22'
@@ -2684,7 +2686,6 @@ categories:
       - USA
   OPEC:
     title: Oranization of Petroleum Exporting Countries
-    comment: Reference https://www.opec.org/member-countries.html
     children:
     - - ARE
       - COG
@@ -2700,7 +2701,6 @@ categories:
       - VEN
   ARAB:
     title: Arab Group
-    comment: Reference https://unfccc.int/party-groupings
     children:
     - - ARE
       - BHR
@@ -2726,7 +2726,6 @@ categories:
       - YEM
   LMDC:
     title: Like-minded developing countries
-    comment: Reference https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries
     children:
     - - BGD
       - BOL

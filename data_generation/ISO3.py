@@ -53,7 +53,11 @@ EU members,
 https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
 G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
-AOSIS members, https://www.aosis.org/about/member-states/""",
+AOSIS members, https://www.aosis.org/about/member-states/;
+OPEC https://www.opec.org/member-countries.html";
+ARAB https://unfccc.int/party-groupings";
+LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries";
+""",
         "institution": "UN",
         "last_update": "2023-06-22",
         "hierarchical": True,
@@ -193,7 +197,6 @@ def add_aosis(categories):
 def add_OPEC(categories):
     categories["OPEC"] = {
         "title": "Oranization of Petroleum Exporting Countries",
-        "comment": "Reference https://www.opec.org/member-countries.html",
         "children": [
             [
                 "IRN",
@@ -217,7 +220,6 @@ def add_OPEC(categories):
 def add_ARAB(categories):
     categories["ARAB"] = {
         "title": "Arab Group",
-        "comment": "Reference https://unfccc.int/party-groupings",
         "children": [
             [
                 "DZA",
@@ -251,7 +253,6 @@ def add_ARAB(categories):
 def add_LMDC(categories):
     categories["LMDC"] = {
         "title": "Like-minded developing countries",
-        "comment": "Reference https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries",
         "children": [
             [
                 "DZA",
