@@ -55,8 +55,8 @@ G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
 AOSIS members, https://www.aosis.org/about/member-states/;
 OPEC https://www.opec.org/member-countries.html";
-ARAB https://unfccc.int/party-groupings";
-LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries";
+ARAB https://unfccc.int/party-groupings;
+LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;
 """,
         "institution": "UN",
         "last_update": "2023-06-22",
