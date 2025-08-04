@@ -79,6 +79,6 @@ Citation
 --------
 If you use this library and want to cite it, please cite it as:
 
-Mika Pflüger, Daniel Busch, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2025-01-14).
+Mika Pflüger, Daniel Busch, Annika Günther, Johannes Gütschow, and Robert Gieseke. (2025-08-04).
 primap-community/climate_categories: climate_categories Version 0.10.7.
-Zenodo. https://doi.org/10.5281/zenodo.14644267
+Zenodo. https://doi.org/10.5281/zenodo.16737889
