@@ -1,1 +1,1 @@
-Add country groups BASIC, UMBRELLA, LDC.
+Add country groups UMBRELLA_2023, BASIC, ARAB, OPEC, LDC, LMDC, G35.
