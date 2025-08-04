@@ -44,6 +44,7 @@ gas              Gases and other climate-forcing substances
 ISO3             Countries, country groups, and other areas from ISO 3166
 ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
 FAO              FAOSTAT climate change agrifood systems GHG emissions categories
+CT               Climate Trace categories
 ===============  ==================================================================
 
 Included conversions between categorizations
@@ -51,6 +52,7 @@ Included conversions between categorizations
 
 * IPCC1996 <-> IPCC2006
 * FAO <-> IPCC2006_PRIMAP
+* CT <-> IPCC2006_PRIMAP
 
 Status
 ------
