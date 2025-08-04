@@ -32,6 +32,13 @@ def main():
     categories = add_g7g20(categories)
     categories = add_oecd(categories)
     categories = add_historical_names(categories)
+    categories = add_basic(categories)
+    categories = add_ldc(categories)
+    categories = add_umbrella(categories)
+    categories = add_OPEC(categories)
+    categories = add_ARAB(categories)
+    categories = add_LMDC(categories)
+    categories = add_G35(categories)
 
     spec = {
         "name": "ISO3",
@@ -46,9 +53,15 @@ EU members,
 https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
 G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
-AOSIS members, https://www.aosis.org/about/member-states/""",
+UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;
+LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;
+AOSIS members, https://www.aosis.org/about/member-states/;
+OPEC https://www.opec.org/member-countries.html";
+ARAB https://unfccc.int/party-groupings;
+LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;
+""",
         "institution": "UN",
-        "last_update": "2023-06-22",
+        "last_update": "2025-07-31",
         "hierarchical": True,
         "version": "2023-06-22",
         "total_sum": False,
@@ -57,6 +70,93 @@ AOSIS members, https://www.aosis.org/about/member-states/""",
     }
 
     return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+
+def add_basic(categories):
+    categories["BASIC"] = {
+        "title": "BASIC countries",
+        "children": [["BRA", "ZAF", "IND", "CHN"]],
+    }
+    return categories
+
+
+def add_ldc(categories):
+    categories["LDC"] = {
+        "title": "Least Developed Countries",
+        "children": [
+            [
+                "AGO",
+                "BEN",
+                "BFA",
+                "BDI",
+                "CAF",
+                "TCD",
+                "COM",
+                "COD",
+                "DJI",
+                "ERI",
+                "ETH",
+                "GMB",
+                "GIN",
+                "GNB",
+                "LSO",
+                "LBR",
+                "MDG",
+                "MWI",
+                "MLI",
+                "MRT",
+                "MOZ",
+                "NER",
+                "RWA",
+                "SEN",
+                "SLE",
+                "SOM",
+                "SSD",
+                "SDN",
+                "TGO",
+                "UGA",
+                "TZA",
+                "ZMB",
+                "AFG",
+                "BGD",
+                "KHM",
+                "LAO",
+                "MMR",
+                "NPL",
+                "TLS",
+                "YEM",
+                "HTI",
+                "KIR",
+                "SLB",
+                "TUV",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_umbrella(categories):
+    categories["UMBRELLA_2023"] = {
+        "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
+        "comment": "The United Kingdom formally joined the group in 2023.",
+        "children": [
+            [
+                "AUS",
+                "CAN",
+                "ISL",
+                "ISR",
+                "JPN",
+                "NZL",
+                "KAZ",
+                "NOR",
+                "UKR",
+                "USA",
+                "GBR",
+            ]
+        ],
+        "alternative_codes": ["UMBRELLA"],
+    }
+    return categories
 
 
 def add_aosis(categories):
@@ -103,6 +203,166 @@ def add_aosis(categories):
                 "SYC",
                 "SGP",
                 "TLS",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_OPEC(categories):
+    categories["OPEC"] = {
+        "title": "Oranization of Petroleum Exporting Countries",
+        "children": [
+            [
+                "IRN",
+                "IRQ",
+                "KWT",
+                "SAU",
+                "VEN",
+                "LBY",
+                "ARE",
+                "DZA",
+                "NGA",
+                "GAB",
+                "GNQ",
+                "COG",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_ARAB(categories):
+    categories["ARAB"] = {
+        "title": "Arab Group",
+        "children": [
+            [
+                "DZA",
+                "BHR",
+                "COM",
+                "DJI",
+                "EGY",
+                "IRQ",
+                "JOR",
+                "KWT",
+                "LBN",
+                "LBY",
+                "MAR",
+                "MRT",
+                "OMN",
+                "PSE",
+                "QAT",
+                "SAU",
+                "SOM",
+                "SDN",
+                "SYR",
+                "TUN",
+                "ARE",
+                "YEM",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_LMDC(categories):
+    categories["LMDC"] = {
+        "title": "Like-minded developing countries",
+        "children": [
+            [
+                "DZA",
+                "BGD",
+                "BOL",
+                "CHN",
+                "CUB",
+                "ECU",
+                "EGY",
+                "SLV",
+                "IND",
+                "IDN",
+                "IRN",
+                "IRQ",
+                "JOR",
+                "KWT",
+                "MYS",
+                "MLI",
+                "NIC",
+                "PAK",
+                "SAU",
+                "LKA",
+                "SDN",
+                "SYR",
+                "VEN",
+                "VNM",
+            ]
+        ],
+    }
+    return categories
+
+
+def add_G35(categories):
+    categories["G35"] = {
+        "title": "Group of 35",
+        "children": [
+            [
+                "ARG",
+                "AUS",
+                "AZE",
+                "BRA",
+                "CAN",
+                "CHL",
+                "CHN",
+                "COL",
+                "EGY",
+                "FRA",
+                "DEU",
+                "IND",
+                "IDN",
+                "IRN",
+                "ITA",
+                "JPN",
+                "KAZ",
+                "KEN",
+                "KOR",
+                "MYS",
+                "MEX",
+                "MNG",
+                "NGA",
+                "PAK",
+                "PHL",
+                "RUS",
+                "SAU",
+                "ZAF",
+                "THA",
+                "TUR",
+                "GBR",
+                "ARE",
+                "USA",
+                "VNM",
+                "AUT",
+                "BEL",
+                "BGR",
+                "HRV",
+                "CYP",
+                "CZE",
+                "DNK",
+                "EST",
+                "FIN",
+                "GRC",
+                "HUN",
+                "IRL",
+                "LVA",
+                "LTU",
+                "LUX",
+                "MLT",
+                "NLD",
+                "POL",
+                "PRT",
+                "ROU",
+                "SVK",
+                "SVN",
+                "ESP",
+                "SWE",
             ]
         ],
     }
