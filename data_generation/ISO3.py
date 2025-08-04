@@ -136,13 +136,6 @@ def add_ldc(categories):
 
 
 def add_umbrella(categories):
-    categories["UMBRELLA_2022"] = {
-        "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
-        "comment": "Following the 2022 invasion, Russia and Belarus were ejected from the group",
-        "children": [
-            ["KAZ", "ISR", "AUS", "ISL", "NZL", "USA", "JPN", "CAN", "NOR", "ISR"]
-        ],
-    }
     categories["UMBRELLA_2023"] = {
         "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
         "comment": "The United Kingdom formally joined the group in 2023.",
@@ -161,7 +154,7 @@ def add_umbrella(categories):
                 "GBR",
             ]
         ],
-        alternative_codes: ["UMBRELLA"],
+        "alternative_codes": ["UMBRELLA"],
     }
     return categories
 

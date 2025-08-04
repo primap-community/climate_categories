@@ -4,10 +4,10 @@ spec = {
     "name": "ISO3",
     "title": "ISO 3166-1 countries with climate-relevant groupings",
     "comment": "Countries, regions, and other areas. Also includes information on groups like being included in Annex I of the UN Framework Convention on Climate Change.",
-    "references": 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers, https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html";\nARAB https://unfccc.int/party-groupings";\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries";\n',
+    "references": 'ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers, https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\n LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html";\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;\n',
     "institution": "UN",
     "hierarchical": True,
-    "last_update": "2023-06-22",
+    "last_update": "2025-07-31",
     "version": "2023-06-22",
     "total_sum": False,
     "canonical_top_level_category": "World",
@@ -2097,11 +2097,24 @@ spec = {
                 ]
             ],
         },
-        "UMBRELLA_2022": {
-            "title": "Informal coalition that likes to take a common position during climate negotiations",
-            "comment": "Following the 2022 invasion, Russia and Belarus were ejected from the group",
+        "UMBRELLA_2023": {
+            "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
+            "comment": "The United Kingdom formally joined the group in 2023.",
+            "alternative_codes": ["UMBRELLA"],
             "children": [
-                ["AUS", "CAN", "ISL", "ISR", "JPN", "KAZ", "NOR", "NZL", "USA"]
+                [
+                    "AUS",
+                    "CAN",
+                    "GBR",
+                    "ISL",
+                    "ISR",
+                    "JPN",
+                    "KAZ",
+                    "NOR",
+                    "NZL",
+                    "UKR",
+                    "USA",
+                ]
             ],
         },
         "OPEC": {
