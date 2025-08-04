@@ -2,6 +2,12 @@
 Changelog
 =========
 
+0.10.7 (2025-08-04)
+-------------------
+Added climate TRACE categorisation and conversion.
+Updated conversion file and more special categories for conversion from FAO to IPCC2006_PRIMAP
+Add country groups UMBRELLA_2023, BASIC, ARAB, OPEC, LDC, LMDC, G35.
+
 0.10.6 (2025-02-20)
 -------------------
 * Adjusts removal or preservation of auxiliary dimensions when filtering a conversion object.
