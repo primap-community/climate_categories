@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.10.8 (2025-08-05)
+-------------------
+* Regenerated all categorizations to include and propagate all changes.
+
 0.10.7 (2025-08-04)
 -------------------
 Added climate TRACE categorisation and conversion.
