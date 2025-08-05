@@ -1955,7 +1955,7 @@ spec = {
         "5": {
             "title": "Drained organic soils",
             "comment": "Drained organic soils",
-            "info": {"gases": "CO2"},
+            "info": {"gases": ["CO2", "N2O"]},
             "children": [["5.A", "5.B"]],
         },
         "5.A": {
@@ -2187,6 +2187,7 @@ spec = {
             "title": "All Animals - Manure left on pasture",
             "comment": "The sum of manure left on pasture emissions of all animals",
             "info": {"gases": ["N2O"]},
+            "children": [["M.3.MP.direct", "M.3.MP.indirect"]],
         },
         "M.3.MP.direct": {
             "title": "All Animals - Manure left on pasture (Direct emissions N2O)",
@@ -2198,7 +2199,11 @@ spec = {
             "comment": "The sum of manure left on pasture emissions of all animals - only indirect emissions",
             "info": {"gases": ["N2O"]},
         },
-        "M.1.CR": {"title": "All crops - crop residues", "info": {"gases": ["N2O"]}},
+        "M.1.CR": {
+            "title": "All crops - crop residues",
+            "info": {"gases": ["N2O"]},
+            "children": [["M.1.CR.direct", "M.1.CR.indirect"]],
+        },
         "M.1.CR.direct": {
             "title": "All Crops - Crop residues (Direct emissions N2O)",
             "info": {"gases": ["N2O"]},
@@ -2215,6 +2220,7 @@ spec = {
             "title": "All Animals - Manure applied",
             "comment": "The sum of manure applied to soils emissions of all animals",
             "info": {"gases": ["N2O"]},
+            "children": [["M.3.MA.direct", "M.3.MA.indirect"]],
         },
         "M.3.MA.direct": {
             "title": "All Animals - Manure applied to soils (Direct emissions N2O)",
@@ -2225,6 +2231,38 @@ spec = {
             "title": "All Animals - Manure applied to soils (Indirect emissions N2O)",
             "comment": "The sum of manure applied to soils emissions of all animals - only indirect emissions",
             "info": {"gases": ["N2O"]},
+        },
+        "M.5.CO2": {
+            "title": "CO2 emissions from drained organic soils",
+            "comment": "The split by gas is needed to build M.AG and M.LULUCF",
+            "info": {"gases": ["CO2"]},
+        },
+        "M.5.N2O": {
+            "title": "N2O emissions from drained organic soils",
+            "comment": "The split by gas is needed to build M.AG and M.LULUCF",
+            "info": {"gases": ["N2O"]},
+        },
+        "M.AG": {
+            "title": "Agriculture",
+            "comment": "Agricultural part of AFOLU as defined in FAOSTAT data explorer",
+            "children": [
+                [
+                    "1.A.2.c",
+                    "1.B",
+                    "6.B",
+                    "M.1.BCR",
+                    "M.1.CR",
+                    "M.3.EF",
+                    "M.3.MA",
+                    "M.3.MP",
+                    "M.5.N2O",
+                ]
+            ],
+        },
+        "M.LULUCF": {
+            "title": "Land Use, Land Use Change, and Forestry",
+            "comment": "LULUCF part of AFOLU as defined in FAOSTAT data explorer",
+            "children": [["4.A", "4.B", "6.A", "6.C", "M.5.CO2"]],
         },
     },
 }

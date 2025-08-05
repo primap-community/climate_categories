@@ -63,7 +63,7 @@ LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;
         "institution": "UN",
         "last_update": "2025-07-31",
         "hierarchical": True,
-        "version": "2023-06-22",
+        "version": "2025-07-31",
         "total_sum": False,
         "categories": categories,
         "canonical_top_level_category": "WORLD",

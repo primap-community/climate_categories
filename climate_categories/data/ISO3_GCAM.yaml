@@ -8,11 +8,15 @@ references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-cod
   https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n
   G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n
   OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n
-  AOSIS members, https://www.aosis.org/about/member-states/; https://jgcri.github.io/gcam-doc/index.html"
+  UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\n
+  LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n
+  AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html\"\
+  ;\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;\n
+  ; https://jgcri.github.io/gcam-doc/index.html"
 institution: 'Joint Global Change Research Institute '
 hierarchical: true
 last_update: '2024-01-25'
-version: '2023-06-22'
+version: '2025-07-31'
 total_sum: false
 canonical_top_level_category: World
 categories:
@@ -2614,6 +2618,206 @@ categories:
       - SWE
       - TUR
       - USA
+  BASIC:
+    title: BASIC countries
+    children:
+    - - BRA
+      - CHN
+      - IND
+      - ZAF
+  LDC:
+    title: Least Developed Countries
+    children:
+    - - AFG
+      - AGO
+      - BDI
+      - BEN
+      - BFA
+      - BGD
+      - CAF
+      - COD
+      - COM
+      - DJI
+      - ERI
+      - ETH
+      - GIN
+      - GMB
+      - GNB
+      - HTI
+      - KHM
+      - KIR
+      - LAO
+      - LBR
+      - LSO
+      - MDG
+      - MLI
+      - MMR
+      - MOZ
+      - MRT
+      - MWI
+      - NER
+      - NPL
+      - RWA
+      - SDN
+      - SEN
+      - SLB
+      - SLE
+      - SOM
+      - SSD
+      - TCD
+      - TGO
+      - TLS
+      - TUV
+      - TZA
+      - UGA
+      - YEM
+      - ZMB
+  UMBRELLA_2023:
+    title: The Umbrella Group is a coalition of Parties which formed following the
+      adoption of the Kyoto Protocol
+    comment: The United Kingdom formally joined the group in 2023.
+    alternative_codes:
+    - UMBRELLA
+    children:
+    - - AUS
+      - CAN
+      - GBR
+      - ISL
+      - ISR
+      - JPN
+      - KAZ
+      - NOR
+      - NZL
+      - UKR
+      - USA
+  OPEC:
+    title: Oranization of Petroleum Exporting Countries
+    children:
+    - - ARE
+      - COG
+      - DZA
+      - GAB
+      - GNQ
+      - IRN
+      - IRQ
+      - KWT
+      - LBY
+      - NGA
+      - SAU
+      - VEN
+  ARAB:
+    title: Arab Group
+    children:
+    - - ARE
+      - BHR
+      - COM
+      - DJI
+      - DZA
+      - EGY
+      - IRQ
+      - JOR
+      - KWT
+      - LBN
+      - LBY
+      - MAR
+      - MRT
+      - OMN
+      - PSE
+      - QAT
+      - SAU
+      - SDN
+      - SOM
+      - SYR
+      - TUN
+      - YEM
+  LMDC:
+    title: Like-minded developing countries
+    children:
+    - - BGD
+      - BOL
+      - CHN
+      - CUB
+      - DZA
+      - ECU
+      - EGY
+      - IDN
+      - IND
+      - IRN
+      - IRQ
+      - JOR
+      - KWT
+      - LKA
+      - MLI
+      - MYS
+      - NIC
+      - PAK
+      - SAU
+      - SDN
+      - SLV
+      - SYR
+      - VEN
+      - VNM
+  G35:
+    title: Group of 35
+    children:
+    - - ARE
+      - ARG
+      - AUS
+      - AUT
+      - AZE
+      - BEL
+      - BGR
+      - BRA
+      - CAN
+      - CHL
+      - CHN
+      - COL
+      - CYP
+      - CZE
+      - DEU
+      - DNK
+      - EGY
+      - ESP
+      - EST
+      - FIN
+      - FRA
+      - GBR
+      - GRC
+      - HRV
+      - HUN
+      - IDN
+      - IND
+      - IRL
+      - IRN
+      - ITA
+      - JPN
+      - KAZ
+      - KEN
+      - KOR
+      - LTU
+      - LUX
+      - LVA
+      - MEX
+      - MLT
+      - MNG
+      - MYS
+      - NGA
+      - NLD
+      - PAK
+      - PHL
+      - POL
+      - PRT
+      - ROU
+      - RUS
+      - SAU
+      - SVK
+      - SVN
+      - SWE
+      - THA
+      - TUR
+      - USA
+      - VNM
+      - ZAF
   GCAM 5.1|Africa_Eastern:
     title: Africa_Eastern
     comment: Region 'Africa_Eastern' as defined in GCAM version 5.1
@@ -4522,13 +4726,11 @@ categories:
       - NLD
       - PRT
       - SWE
-  GCAM 7.0|Europe_Eastern:
-    title: Europe_Eastern
-    comment: Region 'Europe_Eastern' as defined in GCAM version 7.0
+  GCAM 7.0|Ukraine:
+    title: Ukraine
+    comment: Region 'Ukraine' as defined in GCAM version 7.0
     children:
-    - - BLR
-      - MDA
-      - UKR
+    - - UKR
   GCAM 7.0|European Free Trade Association:
     title: European Free Trade Association
     comment: Region 'European Free Trade Association' as defined in GCAM version 7.0
@@ -4542,7 +4744,9 @@ categories:
     children:
     - - ALB
       - BIH
+      - BLR
       - HRV
+      - MDA
       - MKD
       - MNE
       - SRB
