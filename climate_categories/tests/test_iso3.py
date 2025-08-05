@@ -61,3 +61,5 @@ def test_gcam():
         len(climate_categories.ISO3_GCAM["GCAM 7.0|Southeast Asia"].leaf_children[0])
         == 37
     )
+
+    assert climate_categories.ISO3.version == climate_categories.ISO3_GCAM.version
