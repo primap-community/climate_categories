@@ -56,6 +56,11 @@ def test_aosis():
     assert len(climate_categories.ISO3["AOSIS"].leaf_children[0]) == 39
 
 
+@pytest.mark.parametrize("code", ["UMBRELLA", "LDC", "G35", "LMDC"])
+def test_country_groups_included(code: str):
+    assert code in climate_categories.ISO3
+
+
 def test_gcam():
     assert (
         len(climate_categories.ISO3_GCAM["GCAM 7.0|Southeast Asia"].leaf_children[0])
