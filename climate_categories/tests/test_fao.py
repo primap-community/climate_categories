@@ -11,4 +11,4 @@ def test_levels():
 
 
 def test_number_of_categories():
-    assert len(climate_categories.FAO) == 395
+    assert len(climate_categories.FAO) == 399
