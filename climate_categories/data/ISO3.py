@@ -8,7 +8,7 @@ spec = {
     "institution": "UN",
     "hierarchical": True,
     "last_update": "2025-07-31",
-    "version": "2023-06-22",
+    "version": "2025-07-31",
     "total_sum": False,
     "canonical_top_level_category": "World",
     "categories": {
