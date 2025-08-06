@@ -137,8 +137,8 @@ def add_ldc(categories):
 
 def add_umbrella(categories):
     categories["UMBRELLA_2023"] = {
-        "title": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol",
-        "comment": "The United Kingdom formally joined the group in 2023.",
+        "title": "The Umbrella Group",
+        "comment": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol. The United Kingdom formally joined the group in 2023.",
         "children": [
             [
                 "AUS",
