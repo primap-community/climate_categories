@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.10.9 (2025-08-06)
+-------------------
+* Fixed the overly long title of the UMBRELLA group.
+
 0.10.8 (2025-08-05)
 -------------------
 * Regenerated all categorizations to include and propagate all changes.
