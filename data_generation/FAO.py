@@ -112,7 +112,7 @@ def main():
     ]
 
     for crop, code, crop_burning, rice_cultivation in zip(
-        crops, codes_crops, crop_burnings, rice_cultivations
+        crops, codes_crops, crop_burnings, rice_cultivations, strict=False
     ):
         # all crops have at least N2O emissions
         gases_main = "N2O"
@@ -180,7 +180,9 @@ def main():
     ]
     children_cats = [["1.B.1", "1.B.2"], None, ["1.B.2.a", "1.B.2.b"], None, None]
 
-    for code, name, child_cat in zip(codes_synthetic_fertilisers, names, children_cats):
+    for code, name, child_cat in zip(
+        codes_synthetic_fertilisers, names, children_cats, strict=False
+    ):
         categories[code] = {
             "title": name,
             "comment": name,
@@ -198,7 +200,7 @@ def main():
         "Petroleum",
     ]
     codes = children_2
-    for name, code in zip(names, codes):
+    for name, code in zip(names, codes, strict=False):
         categories[code] = {
             "title": name,
             "comment": name,
@@ -244,7 +246,7 @@ def main():
         "Llamas",
     ]
 
-    for animal, code in zip(animals, codes_animals):
+    for animal, code in zip(animals, codes_animals, strict=False):
         if animal in enteric_fermentation:
             animal_children = [f"{code}.{i}" for i in "1234"]
             categories[f"{code}.4"] = {
@@ -421,7 +423,9 @@ def main():
     # Forest fires
     forest_fires_children = ["Humid tropical forests", "Other forests"]
     forest_fires_children_codes = ["6.A.1", "6.A.2"]
-    for cat_name, code in zip(forest_fires_children, forest_fires_children_codes):
+    for cat_name, code in zip(
+        forest_fires_children, forest_fires_children_codes, strict=False
+    ):
         categories[code] = {
             "title": cat_name,
             "comment": cat_name,
@@ -443,7 +447,9 @@ def main():
         "Woody savanna",
     ]
     savanna_fires_children_codes = ["6.B.1", "6.B.2", "6.B.3", "6.B.4", "6.B.5"]
-    for cat_name, code in zip(savanna_fires_children, savanna_fires_children_codes):
+    for cat_name, code in zip(
+        savanna_fires_children, savanna_fires_children_codes, strict=False
+    ):
         categories[code] = {
             "title": cat_name,
             "comment": cat_name,
@@ -511,6 +517,7 @@ def main():
         pre_post_production_categories,
         pre_post_production_categories_codes,
         pre_post_production_categories_gases,
+        strict=False,
     ):
         categories[code] = {
             "title": cat_name,

@@ -222,7 +222,7 @@ class TestConversionSpec:
             "A,species,B,comment\n"
             "A.1+,something,C,broken formula\n"
         )
-        with pytest.raises(ValueError, match="line 3.*Could not parse"):
+        with pytest.raises(ValueError, match=r"line 3.*Could not parse"):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
     def test_unknown_meta_data(self):
@@ -236,7 +236,7 @@ class TestConversionSpec:
     def test_comment_missing(self):
         csv = StringIO("# comment: no comment\nA,aux,B\nA.1,D,A.2\n")
         with pytest.raises(
-            ValueError, match="Last column must be 'comment', but isn't."
+            ValueError, match="Last column must be 'comment', but isn't"
         ):
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 

@@ -1,7 +1,6 @@
 """Run this via `make climate_categories/data/ISO3.yaml` in the main directory."""
 
 import pathlib
-import typing
 
 import requests
 
@@ -763,16 +762,14 @@ def add_eu_categories(categories):
     return categories
 
 
-def load_countries() -> dict[
-    str, typing.Union[str, dict[str, str], list[str], list[list[str]]]
-]:
+def load_countries() -> dict[str, str | dict[str, str] | list[str] | list[list[str]]]:
     """Load countries from the iso-codes debian package."""
     r = requests.get(
         URL,
         headers={"Accept": "application/json"},
     )
 
-    categories: dict[str, typing.Union[str, dict[str, str]]] = {}
+    categories: dict[str, str | dict[str, str]] = {}
     for country in r.json()["3166-1"]:
         country_spec = {
             "title": country["name"],
