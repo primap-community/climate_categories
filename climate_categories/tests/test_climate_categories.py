@@ -294,7 +294,7 @@ class TestHierarchical:
 
         with pytest.raises(
             ValueError,
-            match="'OT' is not a transitive child of the canonical top level '0'.",
+            match="'OT' is not a transitive child of the canonical top level '0'",
         ):
             HierCat.level("OT")
 

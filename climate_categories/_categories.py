@@ -41,8 +41,8 @@ class Category:
         codes: tuple[str, ...],
         categorization: "Categorization",
         title: str,
-        comment: typing.Union[None, str] = None,
-        info: typing.Union[None, dict] = None,
+        comment: None | str = None,
+        info: None | dict = None,
     ):
         self.codes = codes
         self.title = title
@@ -68,7 +68,7 @@ class Category:
             info=spec.get("info"),
         )
 
-    def to_spec(self) -> tuple[str, dict[str, typing.Union[str, dict, list]]]:
+    def to_spec(self) -> tuple[str, dict[str, str | dict | list]]:
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -77,7 +77,7 @@ class Category:
             Primary code and specification dict
         """
         code = self.codes[0]
-        spec: dict[str, typing.Union[str, dict, list[str]]] = {"title": self.title}
+        spec: dict[str, str | dict | list[str]] = {"title": self.title}
         if self.comment is not None:
             spec["comment"] = self.comment
         if len(self.codes) > 1:
@@ -130,13 +130,13 @@ class HierarchicalCategory(Category):
         codes: tuple[str],
         categorization: "HierarchicalCategorization",
         title: str,
-        comment: typing.Union[None, str] = None,
-        info: typing.Union[None, dict] = None,
+        comment: None | str = None,
+        info: None | dict = None,
     ):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
 
-    def to_spec(self) -> tuple[str, dict[str, typing.Union[str, dict, list]]]:
+    def to_spec(self) -> tuple[str, dict[str, str | dict | list]]:
         """Turn this category into a specification ready to be written to a yaml file.
 
         Returns
@@ -286,7 +286,7 @@ class Categorization:
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: typing.Union[None, str] = None,
+        version: None | str = None,
     ):
         self._primary_code_map: dict[str, Category] = {}
         self._all_codes_map: dict[str, Category] = {}
@@ -309,7 +309,7 @@ class Categorization:
     @classmethod
     def from_yaml(
         cls: type[CategorizationT],
-        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+        filepath: str | pathlib.Path | typing.TextIO,
     ) -> CategorizationT:
         """Read Categorization from a StrictYaml file."""
         try:
@@ -343,7 +343,7 @@ class Categorization:
 
     @staticmethod
     def from_pickle(
-        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
+        filepath: str | pathlib.Path | typing.IO[bytes],
     ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_pickle.
 
@@ -353,7 +353,7 @@ class Categorization:
 
     @staticmethod
     def from_python(
-        filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
+        filepath: str | pathlib.Path | typing.IO[bytes],
     ) -> CategorizationT:
         """De-serialize Categorization from a file written by to_python.
 
@@ -389,7 +389,7 @@ class Categorization:
 
         return spec
 
-    def to_yaml(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+    def to_yaml(self, filepath: str | pathlib.Path) -> None:
         """Write to a YAML file."""
         spec = self.to_spec()
         yaml = YAML()
@@ -397,7 +397,7 @@ class Categorization:
         with open(filepath, "w") as fd:
             yaml.dump(spec, fd)
 
-    def to_python(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+    def to_python(self, filepath: str | pathlib.Path) -> None:
         """Write spec to a Python file."""
         spec = self.to_spec()
         comment = (
@@ -408,7 +408,7 @@ class Categorization:
             f.write(comment)
             f.write(f"spec = {format_str(repr(spec), mode=Mode())}")
 
-    def to_pickle(self, filepath: typing.Union[str, pathlib.Path]) -> None:
+    def to_pickle(self, filepath: str | pathlib.Path) -> None:
         """Serialize to a file using python's pickle."""
         spec = self.to_spec()
         with open(filepath, "wb") as fd:
@@ -474,12 +474,12 @@ class Categorization:
     def _extend_prepare(
         self,
         *,
-        categories: typing.Union[None, dict[str, dict]] = None,
-        alternative_codes: typing.Union[None, dict[str, str]] = None,
+        categories: None | dict[str, dict] = None,
+        alternative_codes: None | dict[str, str] = None,
         name: str,
-        title: typing.Union[None, str] = None,
-        comment: typing.Union[None, str] = None,
-        last_update: typing.Union[None, datetime.date] = None,
+        title: None | str = None,
+        comment: None | str = None,
+        last_update: None | datetime.date = None,
     ) -> dict[str, typing.Any]:
         spec = self.to_spec()
 
@@ -517,12 +517,12 @@ class Categorization:
     def extend(
         self: CategorizationT,
         *,
-        categories: typing.Union[None, dict[str, dict]] = None,
-        alternative_codes: typing.Union[None, dict[str, str]] = None,
+        categories: None | dict[str, dict] = None,
+        alternative_codes: None | dict[str, str] = None,
         name: str,
-        title: typing.Union[None, str] = None,
-        comment: typing.Union[None, str] = None,
-        last_update: typing.Union[None, datetime.date] = None,
+        title: None | str = None,
+        comment: None | str = None,
+        last_update: None | datetime.date = None,
     ) -> CategorizationT:
         """Extend the categorization with additional categories, yielding a new
         categorization.
@@ -676,9 +676,9 @@ class HierarchicalCategorization(Categorization):
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: typing.Union[None, str] = None,
+        version: None | str = None,
         total_sum: bool,
-        canonical_top_level_category: typing.Union[None, str] = None,
+        canonical_top_level_category: None | str = None,
     ):
         self._graph = nx.MultiDiGraph()
         Categorization.__init__(
@@ -694,9 +694,7 @@ class HierarchicalCategorization(Categorization):
         )
         self.total_sum = total_sum
         if canonical_top_level_category is None:
-            self.canonical_top_level_category: typing.Union[
-                None, HierarchicalCategory
-            ] = None
+            self.canonical_top_level_category: None | HierarchicalCategory = None
         else:
             self.canonical_top_level_category = self._all_codes_map[
                 canonical_top_level_category
@@ -786,7 +784,7 @@ class HierarchicalCategorization(Categorization):
         children: typing.Iterable[HierarchicalCategory],
         format_func: typing.Callable,
         prefix: str,
-        maxdepth: typing.Union[None, int],
+        maxdepth: None | int,
     ) -> str:
         children_sorted = natsort.natsorted(children, key=format_func)
         r = "".join(
@@ -831,7 +829,7 @@ class HierarchicalCategorization(Categorization):
         prefix="",
         last=False,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: typing.Union[None, int],
+        maxdepth: None | int,
     ) -> str:
         """Recursively-called function to show a subtree starting at the given node."""
 
@@ -884,8 +882,8 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: typing.Union[None, int] = None,
-        root: typing.Union[None, HierarchicalCategory, str] = None,
+        maxdepth: None | int = None,
+        root: None | HierarchicalCategory | str = None,
     ) -> str:
         """Format the hierarchy as a tree.
 
@@ -937,13 +935,13 @@ class HierarchicalCategorization(Categorization):
     def extend(
         self,
         *,
-        categories: typing.Union[None, dict[str, dict]] = None,
-        alternative_codes: typing.Union[None, dict[str, str]] = None,
-        children: typing.Union[None, list[tuple]] = None,
+        categories: None | dict[str, dict] = None,
+        alternative_codes: None | dict[str, str] = None,
+        children: None | list[tuple] = None,
         name: str,
-        title: typing.Union[None, str] = None,
-        comment: typing.Union[None, str] = None,
-        last_update: typing.Union[None, datetime.date] = None,
+        title: None | str = None,
+        comment: None | str = None,
+        last_update: None | datetime.date = None,
     ) -> "HierarchicalCategorization":
         """Extend the categorization with additional categories and relationships,
         yielding a new categorization.
@@ -1026,7 +1024,7 @@ class HierarchicalCategorization(Categorization):
             },
         )
 
-    def level(self, cat: typing.Union[str, HierarchicalCategory]) -> int:
+    def level(self, cat: str | HierarchicalCategory) -> int:
         """The level of the given category.
 
         The canonical top-level category has level 1 and its children have level 2 etc.
@@ -1061,18 +1059,14 @@ class HierarchicalCategorization(Categorization):
 
         return sp + 1
 
-    def parents(
-        self, cat: typing.Union[str, HierarchicalCategory]
-    ) -> set[HierarchicalCategory]:
+    def parents(self, cat: str | HierarchicalCategory) -> set[HierarchicalCategory]:
         """The direct parents of the given category."""
         if not isinstance(cat, HierarchicalCategory):
             return self.parents(self._all_codes_map[cat])
 
         return set(self._graph.predecessors(cat))
 
-    def ancestors(
-        self, cat: typing.Union[str, HierarchicalCategory]
-    ) -> set[HierarchicalCategory]:
+    def ancestors(self, cat: str | HierarchicalCategory) -> set[HierarchicalCategory]:
         """All ancestors of the given category, i.e. the direct parents and their
         parents, etc."""
         if not isinstance(cat, HierarchicalCategory):
@@ -1081,7 +1075,7 @@ class HierarchicalCategorization(Categorization):
         return set(nx.ancestors(self._graph, cat))
 
     def children(
-        self, cat: typing.Union[str, HierarchicalCategory]
+        self, cat: str | HierarchicalCategory
     ) -> list[set[HierarchicalCategory]]:
         """The list of sets of direct children of the given category."""
         if not isinstance(cat, HierarchicalCategory):
@@ -1095,9 +1089,7 @@ class HierarchicalCategorization(Categorization):
 
         return [set(children_dict[x]) for x in sorted(children_dict.keys())]
 
-    def descendants(
-        self, cat: typing.Union[str, HierarchicalCategory]
-    ) -> set[HierarchicalCategory]:
+    def descendants(self, cat: str | HierarchicalCategory) -> set[HierarchicalCategory]:
         """All descendants of the given category, i.e. the direct children and their
         children, etc."""
         if not isinstance(cat, HierarchicalCategory):
@@ -1105,7 +1097,7 @@ class HierarchicalCategorization(Categorization):
 
         return set(nx.descendants(self._graph, cat))
 
-    def is_leaf(self, cat: typing.Union[str, HierarchicalCategory]) -> bool:
+    def is_leaf(self, cat: str | HierarchicalCategory) -> bool:
         """Is the category a leaf category, i.e. without children?"""
         if not isinstance(cat, HierarchicalCategory):
             return self.is_leaf(self._all_codes_map[cat])
@@ -1113,7 +1105,7 @@ class HierarchicalCategorization(Categorization):
         return cat.is_leaf
 
     def leaf_children(
-        self, cat: typing.Union[str, HierarchicalCategory]
+        self, cat: str | HierarchicalCategory
     ) -> list[set[HierarchicalCategory]]:
         """The sets of subcategories which are descendants of the category and do not
         have children themselves.
@@ -1128,8 +1120,8 @@ class HierarchicalCategorization(Categorization):
 
 
 def from_pickle(
-    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
-) -> typing.Union[Categorization, HierarchicalCategorization]:
+    filepath: str | pathlib.Path | typing.IO[bytes],
+) -> Categorization | HierarchicalCategorization:
     """De-serialize Categorization or HierarchicalCategorization from a file written by
     to_pickle.
 
@@ -1145,7 +1137,7 @@ def from_pickle(
 
 
 def from_python(
-    filepath: typing.Union[str, pathlib.Path, typing.IO[bytes]],
+    filepath: str | pathlib.Path | typing.IO[bytes],
 ) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a python cache file.
 
@@ -1175,7 +1167,7 @@ def from_spec(spec: dict[str, typing.Any]) -> CategorizationT:
 
 
 def from_yaml(
-    filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+    filepath: str | pathlib.Path | typing.TextIO,
 ) -> CategorizationT:
     """Read Categorization or HierarchicalCategorization from a StrictYaml file."""
     try:

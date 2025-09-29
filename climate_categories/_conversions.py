@@ -53,8 +53,8 @@ class ConversionRuleSpec:
     factors_categories_b: dict[str, int]
     auxiliary_categories: dict[str, set[str]]
     comment: str = ""
-    csv_line_number: typing.Optional[int] = None
-    csv_original_text: typing.Optional[str] = None
+    csv_line_number: int | None = None
+    csv_original_text: str | None = None
 
     def hydrate(
         self,
@@ -97,9 +97,9 @@ class ConversionRuleSpec:
 
     def _hydrate_handle_errors(
         self,
-        to_hydrate: typing.Union[dict[str, int], set[str]],
+        to_hydrate: dict[str, int] | set[str],
         categorization: "Categorization",
-    ) -> typing.Union[dict["Category", int], set["Category"]]:
+    ) -> dict["Category", int] | set["Category"]:
         """Hydrate a dict/set while nicely handling errors."""
         try:
             if isinstance(to_hydrate, dict):
@@ -242,8 +242,8 @@ class ConversionRuleSpec:
         cls,
         irow: typing.Iterator[str],
         aux_names: list[str],
-        line_number: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        line_number: int | None = None,
+        offset: int | None = None,
     ) -> "ConversionRuleSpec":
         """Parse a ConversionRuleSpec from a row in a CSV file.
 
@@ -412,8 +412,8 @@ class ConversionRule:
     factors_categories_b: dict["Category", int]
     auxiliary_categories: dict["Categorization", set["Category"]]
     comment: str = ""
-    csv_line_number: typing.Optional[int] = None
-    csv_original_text: typing.Optional[str] = None
+    csv_line_number: int | None = None
+    csv_original_text: str | None = None
     cardinality_a: str = dataclasses.field(init=False)
     cardinality_b: str = dataclasses.field(init=False)
     is_restricted: bool = dataclasses.field(init=False)
@@ -595,12 +595,12 @@ class ConversionBase:
         categorization_a_name: str,
         categorization_b_name: str,
         rule_specs: list[ConversionRuleSpec],
-        auxiliary_categorizations_names: typing.Optional[list[str]] = None,
-        comment: typing.Optional[str] = None,
-        references: typing.Optional[str] = None,
-        institution: typing.Optional[str] = None,
-        last_update: typing.Optional[datetime.date] = None,
-        version: typing.Optional[str] = None,
+        auxiliary_categorizations_names: list[str] | None = None,
+        comment: str | None = None,
+        references: str | None = None,
+        institution: str | None = None,
+        last_update: datetime.date | None = None,
+        version: str | None = None,
     ):
         self.categorization_a_name = categorization_a_name
         self.categorization_b_name = categorization_b_name
@@ -668,12 +668,12 @@ class ConversionSpec(ConversionBase):
         categorization_a_name: str,
         categorization_b_name: str,
         rule_specs: list[ConversionRuleSpec],
-        auxiliary_categorizations_names: typing.Optional[list[str]] = None,
-        comment: typing.Optional[str] = None,
-        references: typing.Optional[str] = None,
-        institution: typing.Optional[str] = None,
-        last_update: typing.Optional[datetime.date] = None,
-        version: typing.Optional[str] = None,
+        auxiliary_categorizations_names: list[str] | None = None,
+        comment: str | None = None,
+        references: str | None = None,
+        institution: str | None = None,
+        last_update: datetime.date | None = None,
+        version: str | None = None,
     ):
         ConversionBase.__init__(
             self,
@@ -786,7 +786,7 @@ class ConversionSpec(ConversionBase):
     @classmethod
     def from_csv(
         cls,
-        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
+        filepath: str | pathlib.Path | typing.TextIO,
     ) -> "ConversionSpec":
         """Read conversion from comma-separated-values file."""
         if not isinstance(filepath, (str, pathlib.Path)):
@@ -887,12 +887,12 @@ class Conversion(ConversionBase):
         categorization_a: "Categorization",
         categorization_b: "Categorization",
         rules: list[ConversionRule],
-        auxiliary_categorizations: typing.Optional[list["Categorization"]] = None,
-        comment: typing.Optional[str] = None,
-        references: typing.Optional[str] = None,
-        institution: typing.Optional[str] = None,
-        last_update: typing.Optional[datetime.date] = None,
-        version: typing.Optional[str] = None,
+        auxiliary_categorizations: list["Categorization"] | None = None,
+        comment: str | None = None,
+        references: str | None = None,
+        institution: str | None = None,
+        last_update: datetime.date | None = None,
+        version: str | None = None,
     ):
         ConversionBase.__init__(
             self,
@@ -915,8 +915,8 @@ class Conversion(ConversionBase):
 
     @staticmethod
     def from_csv(
-        filepath: typing.Union[str, pathlib.Path, typing.TextIO],
-        cats: typing.Union[dict[str, "Categorization"], None] = None,
+        filepath: str | pathlib.Path | typing.TextIO,
+        cats: dict[str, "Categorization"] | None = None,
     ) -> "Conversion":
         """Read conversion from comma-separated-values file and add categorizsations."""
 
@@ -1244,7 +1244,7 @@ class Conversion(ConversionBase):
         category: "HierarchicalCategory",
         source_categorization: "Categorization",
         descendants: dict[str, set[str]],
-    ) -> typing.Optional[OverCountingProblem]:
+    ) -> OverCountingProblem | None:
         """Finds possible over counting problems for the specified category.
 
         Parameters
