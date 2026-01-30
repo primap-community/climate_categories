@@ -589,12 +589,13 @@ class Categorization:
         spec["categories"] = {
             code: cat for code, cat in spec["categories"].items() if code in categories
         }
-        for cat in spec["categories"].values():
-            new_children = []
-            for children in cat["children"]:
-                if all(x in categories for x in children):
-                    new_children.append(children)
-            cat["children"] = new_children
+        if isinstance(self, HierarchicalCategorization):
+            for cat in spec["categories"].values():
+                new_children = []
+                for children in cat["children"]:
+                    if all(x in categories for x in children):
+                        new_children.append(children)
+                cat["children"] = new_children
 
         return self.__class__.from_spec(spec)
 

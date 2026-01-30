@@ -456,6 +456,14 @@ class TestHierarchical:
         assert len(limited["1"].children) == 0
         assert len(limited["2"].children) == 0
 
+    def test_limit_simple(self, SimpleCat: climate_categories.Categorization):
+        limited = SimpleCat.limit(
+            categories=("1", "2"),
+            name="limited",
+        )
+        assert len(limited) == 2
+        assert limited.keys() == {"1", "2"}
+
     def test_roundtrip(self, HierCat, tmpdir):
         f = pathlib.Path(tmpdir) / "thing.yaml"
         HierCat.to_yaml(f)
