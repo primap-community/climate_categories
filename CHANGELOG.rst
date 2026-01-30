@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.11.1 (2026-01-30)
+-------------------
+* Fixed limiting of categories without children.
+
 0.11.0 (2026-01-30)
 -------------------
 * Added `.limit` function to limit the categories in a categorization.
