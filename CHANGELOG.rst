@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.11.0 (2026-01-30)
+-------------------
+* Added `.limit` function to limit the categories in a categorization.
+
 0.10.9 (2025-08-06)
 -------------------
 * Fixed the overly long title of the UMBRELLA group.
