@@ -456,6 +456,10 @@ class TestHierarchical:
         assert len(limited["1"].children) == 0
         assert len(limited["2"].children) == 0
 
+    def test_limit_all(self, HierCat: climate_categories.HierarchicalCategorization):
+        limited = HierCat.limit(categories=HierCat.keys(), name="all")
+        assert len(limited) == len(HierCat)
+
     def test_limit_simple(self, SimpleCat: climate_categories.Categorization):
         limited = SimpleCat.limit(
             categories=("1", "2"),
