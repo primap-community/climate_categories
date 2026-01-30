@@ -571,6 +571,34 @@ class Categorization:
 
         return Categorization.from_spec(spec)
 
+    def limit(
+        self: CategorizationT, categories: tuple[str, ...], *, name: str
+    ) -> CategorizationT:
+        spec = self.to_spec()
+
+        spec["name"] = f"{self.name}_{name}"
+        spec["references"] = ""
+        spec["institution"] = ""
+
+        spec["title"] = f"{self.title} limited ({name})"
+
+        spec["comment"] = f"{self.comment} limited ({name})"
+
+        spec["last_update"] = datetime.date.today().isoformat()
+
+        spec["categories"] = {
+            code: cat for code, cat in spec["categories"].items() if code in categories
+        }
+        if isinstance(self, HierarchicalCategorization):
+            for cat in spec["categories"].values():
+                new_children = []
+                for children in cat["children"]:
+                    if all(x in categories for x in children):
+                        new_children.append(children)
+                cat["children"] = new_children
+
+        return self.__class__.from_spec(spec)
+
     def __eq__(self, other):
         if not isinstance(other, Categorization):
             return False

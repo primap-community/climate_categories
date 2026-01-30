@@ -445,6 +445,25 @@ class TestHierarchical:
         ext = HierCat.extend(name="ext", alternative_codes={"yksi": "1"})
         assert ext["yksi"] == HierCat["1"]
 
+    def test_limit(self, HierCat: climate_categories.HierarchicalCategorization):
+        limited = HierCat.limit(categories=("0", "1", "2", "3", "0X3"), name="limited")
+        assert len(limited) == 5
+        assert {x.codes[0] for x in limited["0"].children[0]} == {"1", "2", "3"}
+        assert {x.codes[0] for x in limited["0"].children[1]} == {"3", "0X3"}
+        assert len(limited["0"].children) == 2
+        assert {x.codes[0] for x in limited["0X3"].children[0]} == {"1", "2"}
+        assert len(limited["0X3"].children) == 1
+        assert len(limited["1"].children) == 0
+        assert len(limited["2"].children) == 0
+
+    def test_limit_simple(self, SimpleCat: climate_categories.Categorization):
+        limited = SimpleCat.limit(
+            categories=("1", "2"),
+            name="limited",
+        )
+        assert len(limited) == 2
+        assert limited.keys() == {"1", "2"}
+
     def test_roundtrip(self, HierCat, tmpdir):
         f = pathlib.Path(tmpdir) / "thing.yaml"
         HierCat.to_yaml(f)
