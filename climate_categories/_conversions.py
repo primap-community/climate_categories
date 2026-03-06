@@ -8,7 +8,6 @@ import pathlib
 import typing
 from typing import TYPE_CHECKING
 
-import immutables
 import pyparsing
 import strictyaml as sy
 
@@ -118,8 +117,8 @@ class ConversionRuleSpec:
     # Parsing rules for simple formulas from str
     # Supported operators at the moment are plus and minus
     _operator = pyparsing.Char("+") ^ pyparsing.Char("-")
-    _operator_factors = immutables.Map({"+": 1, "-": -1})
-    _factor_operators = immutables.Map({1: "+", -1: "-"})
+    _operator_factors = {"+": 1, "-": -1}  # noqa: RUF012
+    _factor_operators = {1: "+", -1: "-"}  # noqa: RUF012
     # alphanumeric category codes can be given directly, others have to be quoted
     _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
         quoteChar='"', escChar="\\"

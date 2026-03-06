@@ -55,7 +55,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Climate categories"
-copyright = "2021, Potsdam Institute for Climate Impact Research (PIK) e. V."
+copyright = "2021, Potsdam Institute for Climate Impact Research (PIK) e. V.;2026, Climate Resource Pty Ltd"
 author = "Mika Pflüger"
 
 # The version info for the project you're documenting, acts as replacement
