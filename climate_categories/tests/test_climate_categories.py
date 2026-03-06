@@ -616,6 +616,54 @@ OT Other top category
 """
         )
 
+    def test_categories_basic(self, HierCat):
+        # Filter to "0" and part of its descendants; OT excluded from top-level
+        assert (
+            HierCat.show_as_tree(categories=["0", "1", "1A", "1B"])
+            == """0 Category 0
+╠╤══ ('0 Category 0's children, option 1)
+║╰1 Category 1
+║ ├1A Category 1A
+║ ╰1B Category 1B
+╠╕ ('0 Category 0's children, option 2)
+║├1A Category 1A
+║╰1B Category 1B
+╚═══
+"""
+        )
+
+    def test_categories_with_root(self, HierCat):
+        # root is always shown even if not in categories; only 1A shown among children
+        assert (
+            HierCat.show_as_tree(root="1", categories=["1A"])
+            == """1 Category 1
+╰1A Category 1A
+"""
+        )
+
+    def test_categories_with_maxdepth(self, HierCat):
+        # categories visible within maxdepth → no ValueError
+        result = HierCat.show_as_tree(
+            root="1", maxdepth=2, categories=["1", "1A", "1B"]
+        )
+        assert "1A Category 1A" in result
+        assert "1B Category 1B" in result
+
+    def test_categories_not_shown_maxdepth(self, HierCat):
+        # category cut off by maxdepth → ValueError
+        with pytest.raises(ValueError, match="1A"):
+            HierCat.show_as_tree(root="1", maxdepth=1, categories=["1", "1A", "1B"])
+
+    def test_categories_not_shown_wrong_subtree(self, HierCat):
+        # category outside root's subtree → ValueError
+        with pytest.raises(ValueError, match="2A"):
+            HierCat.show_as_tree(root="1", categories=["1", "1A", "2A"])
+
+    def test_categories_disconnected(self, HierCat):
+        # 2A only reachable through 2, but 2 is not in categories → 2A never shown
+        with pytest.raises(ValueError, match="2A"):
+            HierCat.show_as_tree(categories=["0", "2A"])
+
 
 class TestIO:
     def test_spec_misses_hierarchical(self, spec_simple):

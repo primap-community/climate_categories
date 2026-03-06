@@ -814,7 +814,14 @@ class HierarchicalCategorization(Categorization):
         format_func: typing.Callable,
         prefix: str,
         maxdepth: None | int,
+        *,
+        categories_set: set[HierarchicalCategory] | None = None,
+        shown_categories: set[HierarchicalCategory] | None = None,
     ) -> str:
+        if categories_set is not None:
+            children = [c for c in children if c in categories_set]
+        if not children:
+            return ""
         children_sorted = natsort.natsorted(children, key=format_func)
         r = "".join(
             self._show_subtree(
@@ -822,6 +829,8 @@ class HierarchicalCategorization(Categorization):
                 prefix=f"{prefix}│",
                 format_func=format_func,
                 maxdepth=maxdepth,
+                categories_set=categories_set,
+                shown_categories=shown_categories,
             )
             for child in children_sorted[:-1]
         )
@@ -832,6 +841,8 @@ class HierarchicalCategorization(Categorization):
             last=True,
             format_func=format_func,
             maxdepth=maxdepth,
+            categories_set=categories_set,
+            shown_categories=shown_categories,
         )
         return r
 
@@ -859,10 +870,19 @@ class HierarchicalCategorization(Categorization):
         last=False,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: None | int,
+        categories_set: set[HierarchicalCategory] | None = None,
+        shown_categories: set[HierarchicalCategory] | None = None,
     ) -> str:
         """Recursively-called function to show a subtree starting at the given node."""
 
         r = self._render_node(node, last=last, prefix=prefix, format_func=format_func)
+
+        if (
+            categories_set is not None
+            and shown_categories is not None
+            and node in categories_set
+        ):
+            shown_categories.add(node)
 
         if maxdepth is not None:
             maxdepth -= 1
@@ -878,12 +898,18 @@ class HierarchicalCategorization(Categorization):
                     format_func=format_func,
                     maxdepth=maxdepth,
                     prefix=prefix,
+                    categories_set=categories_set,
+                    shown_categories=shown_categories,
                 )
         elif len(child_sets) > 1:
             prefix += "║"
             i = 1
+            rendered_any = False
             for children in child_sets:
+                if categories_set is not None:
+                    children = [c for c in children if c in categories_set]
                 if children:
+                    rendered_any = True
                     if i == 1:
                         r += (
                             f"{prefix[:-1]}╠╤══ ('{format_func(node)}'s children,"
@@ -900,10 +926,13 @@ class HierarchicalCategorization(Categorization):
                         format_func=format_func,
                         maxdepth=maxdepth,
                         prefix=prefix,
+                        categories_set=categories_set,
+                        shown_categories=shown_categories,
                     )
                     i += 1
 
-            r += f"{prefix[:-1]}╚═══\n"
+            if categories_set is None or rendered_any:
+                r += f"{prefix[:-1]}╚═══\n"
 
         return r
 
@@ -913,6 +942,7 @@ class HierarchicalCategorization(Categorization):
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
         maxdepth: None | int = None,
         root: None | HierarchicalCategory | str = None,
+        categories: typing.Iterable[HierarchicalCategory | str] | None = None,
     ) -> str:
         """Format the hierarchy as a tree.
 
@@ -939,6 +969,14 @@ class HierarchicalCategorization(Categorization):
             HierarchicalCategory object or code to use as the top-most category.
             If not given, the whole tree is shown, starting from all categories without
             parents.
+        categories: list of HierarchicalCategory or str, optional
+            If given, only these categories are rendered. The caller must supply a
+            connected set: every ancestor between `root` (or the implicit top-level
+            nodes) and each listed category must also appear in the list. The `root`
+            itself is always shown even when not listed. A `ValueError` is raised if
+            any requested category is not shown in the result, whether because it is
+            outside the scope of `root`, beyond `maxdepth`, or because an
+            intermediate ancestor was omitted.
 
         Returns
         -------
@@ -946,20 +984,54 @@ class HierarchicalCategorization(Categorization):
             Representation of the hierarchy as formatted string. print() it for optimal
             viewing.
         """
+        if categories is not None:
+            categories_set: set | None = set()
+            for cat in categories:
+                if not isinstance(cat, HierarchicalCategory):
+                    cat = self[cat]
+                categories_set.add(cat)
+            shown_categories: set | None = set()
+        else:
+            categories_set = None
+            shown_categories = None
+
         if root is None:
-            top_level_nodes = (node for node in self.values() if not node.parents)
+            if categories_set is not None:
+                top_level_nodes = [
+                    n for n in self.values() if not n.parents and n in categories_set
+                ]
+            else:
+                top_level_nodes = (node for node in self.values() if not node.parents)
         else:
             if not isinstance(root, HierarchicalCategory):
                 root = self[root]
             top_level_nodes = [root]
-        return "\n".join(
+
+        result = "\n".join(
             (
                 self._show_subtree(
-                    node=top_level_node, format_func=format_func, maxdepth=maxdepth
+                    node=top_level_node,
+                    format_func=format_func,
+                    maxdepth=maxdepth,
+                    categories_set=categories_set,
+                    shown_categories=shown_categories,
                 )
             )
             for top_level_node in top_level_nodes
         )
+
+        if categories_set is not None and shown_categories is not None:
+            missing = categories_set - shown_categories
+            if missing:
+                missing_codes = sorted(c.codes[0] for c in missing)
+                raise ValueError(
+                    f"The following requested categories were not shown in the tree: "
+                    f"{missing_codes}. Ensure they are within the scope of root and "
+                    f"maxdepth, and that all intermediate ancestors are also in "
+                    f"categories."
+                )
+
+        return result
 
     def extend(
         self,
