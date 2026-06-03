@@ -418,7 +418,7 @@ spec = {
         },
         "1.A.3.d.i": {
             "title": "International Water-Borne Navigation (International Bunkers)",
-            "comment": "Emissions from fuels used by vessels of all flags that are engaged in international water-borne navigation. The international navigation may take place at sea, on inland lakes and waterways and in coastal waters.  Includes emissions from journeys that depart in one country and arrive in a different country. Exclude consumption by fishing vessels (see Other Sector - Fishing). Emissions from international military water-borne navigation can be included as a separate sub-category of international water- borne navigation provided that the same definitional distinction is applied and data are available to support the definition.",
+            "comment": "Emissions from fuels used by vessels of all flags that are engaged in international water-borne navigation. The international navigation may take place at sea, on inland lakes and waterways and in coastal waters. Includes emissions from journeys that depart in one country and arrive in a different country. Exclude consumption by fishing vessels (see Other Sector - Fishing). Emissions from international military water-borne navigation can be included as a separate sub-category of international water- borne navigation provided that the same definitional distinction is applied and data are available to support the definition.",
             "alternative_codes": ["1A3di"],
             "info": {
                 "gases": ["CO2", "CH4", "N2O", "NOx", "CO", "NMVOC", "SO2"],
@@ -889,7 +889,7 @@ spec = {
         },
         "1.C": {
             "title": "Carbon Dioxide Transport and Storage",
-            "comment": "Carbon dioxide (CO2) capture and storage (CCS) involves the capture of CO2 from anthropogenic sources, its transport to a storage location and its long-term isolation from the atmosphere.  Emissions associated with CO2 transport, injection and storage are covered under category 1C.  Emissions (and reductions) associated with CO2 capture should be reported under the IPCC Sector in which capture takes place (e.g. Fuel Combustion or Industrial Activities).",
+            "comment": "Carbon dioxide (CO2) capture and storage (CCS) involves the capture of CO2 from anthropogenic sources, its transport to a storage location and its long-term isolation from the atmosphere.  Emissions associated with CO2 transport, injection and storage are covered under category 1C. Emissions (and reductions) associated with CO2 capture should be reported under the IPCC Sector in which capture takes place (e.g. Fuel Combustion or Industrial Activities).",
             "alternative_codes": ["1C"],
             "info": {"gases": ["CO2"]},
             "children": [["1.C.1", "1.C.2", "1.C.3"]],
@@ -1495,7 +1495,7 @@ spec = {
         },
         "2.F.1": {
             "title": "Refrigeration and Air Conditioning",
-            "comment": "Refrigeration and air-conditioning systems are usually classified in six application domains or categories.  These categories utilise different technologies such as heat exchangers, expansion devices, pipings and compressors. The six application domains are domestic refrigeration, commercial refrigeration, industrial processes, transport refrigeration, stationary air conditioning, mobile air- conditioning systems. For all these applications, various HFCs are selectively replacing CFCs and HCFCs.  For example, in developed countries, HFC-134a has replaced CFC-12 in domestic refrigeration and mobile air conditioning systems, and blends of HFCs such as R-407C (HFC-32/HFC-125/HFC-134a) and R-410A (HFC-32/HFC- 125) are replacing HCFC-22 mainly in stationary air conditioning.  Other, non HFC substances are used to replace CFCs and HCFCs such as iso-butane in domestic refrigeration or ammonia in industrial refrigeration. HFC- 152a is also being considered for mobile air conditioning in several regions.",
+            "comment": "Refrigeration and air-conditioning systems are usually classified in six application domains or categories.  These categories utilise different technologies such as heat exchangers, expansion devices, pipings and compressors. The six application domains are domestic refrigeration, commercial refrigeration, industrial processes, transport refrigeration, stationary air conditioning, mobile air- conditioning systems. For all these applications, various HFCs are selectively replacing CFCs and HCFCs. For example, in developed countries, HFC-134a has replaced CFC-12 in domestic refrigeration and mobile air conditioning systems, and blends of HFCs such as R-407C (HFC-32/HFC-125/HFC-134a) and R-410A (HFC-32/HFC- 125) are replacing HCFC-22 mainly in stationary air conditioning.  Other, non HFC substances are used to replace CFCs and HCFCs such as iso-butane in domestic refrigeration or ammonia in industrial refrigeration. HFC- 152a is also being considered for mobile air conditioning in several regions.",
             "alternative_codes": ["2F1"],
             "info": {
                 "gases": ["CO2", "HFCs", "PFCs", "other halogenated gases"],

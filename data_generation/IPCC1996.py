@@ -320,6 +320,22 @@ def main():
 
     categories["4.C.3.a"]["title"] = "Water Depth 50-100 cm"
     categories["4.C.3.b"]["title"] = "Water Depth > 100 cm"
+    categories["4.D"]["comment"] = (
+        "Emissions and removals of CH4 and N2O from agricultural "
+        "soil/land and NMVOCs from crops. These are influenced by "
+        "irrigation practices, climatic variables, soil temperature "
+        "and humidity. Any N2O emissions from the use of nitrogen-based "
+        "fertilisers in rice cultivation should be reported here. N2O "
+        "emissions may be related to the use of both organic and inorganic "
+        "fertilisers, biological Nitrogen fixation, and return of crop "
+        "residues to the field or to animal production. Non-CO2 greenhouse "
+        "gas emissions associated with the use of compost and human waste "
+        "as fertilisers should also be recorded in this category. Emissions "
+        "of N2O from sewage are to be reported under Waste from animal waste "
+        "(6.B) and N2O emissions management systems other than grazing under "
+        "manure management (4.B). Emissions of N2O from manure used for fuel "
+        "are reported under the Energy Module (1.A)."
+    )
 
     categories["5.A.5"]["comment"] = (
         "Emissions and removals of CO2 from other biomass categories, including"

@@ -1,8 +1,9 @@
 name: CRFDI_class
 title: CRF GHG emission categories (DI query interface) + classifications
-comment: Common Reporting Format categories of GHG emissions and removals and some
-  other quantities as obtained from the di.unfccc.int flexible query interface extended
-  by sub-classifications also provided by the DI flexible query interface
+comment: Common Reporting Format categories of GHG emissions and removals and
+  some other quantities as obtained from the di.unfccc.int flexible query
+  interface extended by sub-classifications also provided by the DI flexible
+  query interface
 references:
   https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data/data-interface-help#eq-7
 institution: UNFCCC
@@ -3830,8 +3831,8 @@ categories:
       numerical_ids:
       - '10142'
   3.D.1.e:
-    title: Mineralization/Immobilization Associated with Loss/Gain of Soil Organic
-      Matter
+    title: Mineralization/Immobilization Associated with Loss/Gain of Soil
+      Organic Matter
     alternative_codes:
     - '9302'
     - 3D1e
@@ -8140,13 +8141,14 @@ categories:
     - 4-10820
     - 9411-10820
   4-2:
-    title: 4 (IV) Indirect N2O emissions from managed soils - Atmospheric Deposition
+    title: 4 (IV) Indirect N2O emissions from managed soils - Atmospheric
+      Deposition
     alternative_codes:
     - 4-10821
     - 9411-10821
   4-3:
-    title: 4 (IV) Indirect N2O emissions from managed soils - Nitrogen Leaching and
-      Run-off
+    title: 4 (IV) Indirect N2O emissions from managed soils - Nitrogen Leaching
+      and Run-off
     alternative_codes:
     - 4-10822
     - 9411-10822
@@ -8161,8 +8163,8 @@ categories:
     - 4-10825
     - 9411-10825
   4-6:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4-10826
     - 9411-10826
@@ -8182,8 +8184,8 @@ categories:
     - 4.A-10825
     - 10121-10825
   4.A-4:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4.A-10826
     - 10121-10826
@@ -8368,8 +8370,8 @@ categories:
     - 4.B-10824
     - 9805-10824
   4.B-3:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4.B-10826
     - 9805-10826
@@ -8519,8 +8521,8 @@ categories:
     - 4.C-10824
     - 8849-10824
   4.C-3:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4.C-10826
     - 8849-10826
@@ -8680,8 +8682,8 @@ categories:
     - 4.D-10825
     - 9897-10825
   4.D-4:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4.D-10826
     - 9897-10826
@@ -9056,8 +9058,8 @@ categories:
     - 4.H-10825
     - 9158-10825
   4.H-3:
-    title: 4 (II) Emissions and removals from drainage and rewetting and other management
-      of organic and mineral soils
+    title: 4 (II) Emissions and removals from drainage and rewetting and other
+      management of organic and mineral soils
     alternative_codes:
     - 4.H-10826
     - 9158-10826
