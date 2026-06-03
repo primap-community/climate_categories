@@ -1,17 +1,18 @@
 name: ISO3_GCAM
 title: ISO 3166-1 countries with climate-relevant groupings with GCAM regions
-comment: Countries, regions, and other areas. Also includes information on groups
-  like being included in Annex I of the UN Framework Convention on Climate Change.
-  Additionally, includes regions used in the GCAM integrated assessment model
+comment: Countries, regions, and other areas. Also includes information on
+  groups like being included in Annex I of the UN Framework Convention on
+  Climate Change. Additionally, includes regions used in the GCAM integrated
+  assessment model
 references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes
   package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers,
-  https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n
-  G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n
-  OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n
-  UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\n
-  LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n
+  https://unfccc.int/parties-observers;\nEU members,\nhttps://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;\n\
+  G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n\
+  OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n\
+  UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\n\
+  LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n\
   AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html\"\
-  ;\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;\n
+  ;\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;\n\
   ; https://jgcri.github.io/gcam-doc/index.html"
 institution: 'Joint Global Change Research Institute '
 hierarchical: true
@@ -2037,8 +2038,9 @@ categories:
       - SWE
   EU_2020:
     title: European Union
-    comment: The European Union since 2020-02-01 to date. Note that the 'EU' code
-      will always refer to the current EU, use EU_2020 if you need a stable code.
+    comment: The European Union since 2020-02-01 to date. Note that the 'EU'
+      code will always refer to the current EU, use EU_2020 if you need a stable
+      code.
     alternative_codes:
     - EU27_2020
     - EU-27_2020
@@ -2074,8 +2076,8 @@ categories:
       - SWE
   Annex-I:
     title: Annex-I parties to the UNFCCC
-    comment: Parties to the UN Framework Convention on Climate Change listed in Annex
-      I of the Convention.
+    comment: Parties to the UN Framework Convention on Climate Change listed in
+      Annex I of the Convention.
     alternative_codes:
     - ANNEXI
     children:
@@ -2124,8 +2126,8 @@ categories:
       - USA
   Non-Annex-I:
     title: Non-Annex-I parties to the UNFCCC
-    comment: Parties to the UN Framework Convention on Climate Change not listed in
-      Annex I of the Convention.
+    comment: Parties to the UN Framework Convention on Climate Change not listed
+      in Annex I of the Convention.
     alternative_codes:
     - NONANNEXI
     - Non Annex-I
@@ -2673,9 +2675,10 @@ categories:
       - YEM
       - ZMB
   UMBRELLA_2023:
-    title: The Umbrella Group is a coalition of Parties which formed following the
-      adoption of the Kyoto Protocol
-    comment: The United Kingdom formally joined the group in 2023.
+    title: The Umbrella Group
+    comment: The Umbrella Group is a coalition of Parties which formed following
+      the adoption of the Kyoto Protocol. The United Kingdom formally joined the
+      group in 2023.
     alternative_codes:
     - UMBRELLA
     children:
@@ -2910,8 +2913,8 @@ categories:
     - - CAN
   GCAM 5.1|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      5.1
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 5.1
     children:
     - - ABW
       - AIA
@@ -3010,7 +3013,8 @@ categories:
       - UKR
   GCAM 5.1|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 5.1
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      5.1
     children:
     - - CHE
       - ISL
@@ -3255,8 +3259,8 @@ categories:
     - - CAN
   GCAM 5.2|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      5.2
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 5.2
     children:
     - - ABW
       - AIA
@@ -3355,7 +3359,8 @@ categories:
       - UKR
   GCAM 5.2|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 5.2
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      5.2
     children:
     - - CHE
       - ISL
@@ -3600,8 +3605,8 @@ categories:
     - - CAN
   GCAM 5.3|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      5.3
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 5.3
     children:
     - - ABW
       - AIA
@@ -3700,7 +3705,8 @@ categories:
       - UKR
   GCAM 5.3|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 5.3
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      5.3
     children:
     - - CHE
       - ISL
@@ -3945,8 +3951,8 @@ categories:
     - - CAN
   GCAM 5.4|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      5.4
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 5.4
     children:
     - - ABW
       - AIA
@@ -4045,7 +4051,8 @@ categories:
       - UKR
   GCAM 5.4|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 5.4
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      5.4
     children:
     - - CHE
       - ISL
@@ -4290,8 +4297,8 @@ categories:
     - - CAN
   GCAM 6.0|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      6.0
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 6.0
     children:
     - - ABW
       - AIA
@@ -4390,7 +4397,8 @@ categories:
       - UKR
   GCAM 6.0|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 6.0
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      6.0
     children:
     - - CHE
       - ISL
@@ -4635,8 +4643,8 @@ categories:
     - - CAN
   GCAM 7.0|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM version
-      7.0
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 7.0
     children:
     - - ABW
       - AIA
@@ -4733,7 +4741,8 @@ categories:
     - - UKR
   GCAM 7.0|European Free Trade Association:
     title: European Free Trade Association
-    comment: Region 'European Free Trade Association' as defined in GCAM version 7.0
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      7.0
     children:
     - - CHE
       - ISL
