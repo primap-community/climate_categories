@@ -73,7 +73,7 @@ class TestSimple:
         assert len(SimpleCat) == 4
 
     def test_comparisons(self, SimpleCat: climate_categories.Categorization):
-        assert list(sorted(SimpleCat.values())) == [
+        assert sorted(SimpleCat.values()) == [
             SimpleCat["1"],
             SimpleCat["2"],
             SimpleCat["3"],
@@ -93,7 +93,7 @@ class TestSimple:
         assert ext["yksi"] < SimpleCat["2"]
         assert not ext["yksi"] < SimpleCat["1"]
 
-        assert list(sorted(ext.values())) == [
+        assert sorted(ext.values()) == [
             ext["1"],
             ext["2"],
             ext["3"],
