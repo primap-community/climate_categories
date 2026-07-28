@@ -73,7 +73,7 @@ class TestSimple:
         assert len(SimpleCat) == 4
 
     def test_comparisons(self, SimpleCat: climate_categories.Categorization):
-        assert list(sorted(SimpleCat.values())) == [
+        assert sorted(SimpleCat.values()) == [
             SimpleCat["1"],
             SimpleCat["2"],
             SimpleCat["3"],
@@ -93,7 +93,7 @@ class TestSimple:
         assert ext["yksi"] < SimpleCat["2"]
         assert not ext["yksi"] < SimpleCat["1"]
 
-        assert list(sorted(ext.values())) == [
+        assert sorted(ext.values()) == [
             ext["1"],
             ext["2"],
             ext["3"],
@@ -121,7 +121,7 @@ class TestSimple:
                     ("A", "CatA"),
                     ("B", "CatB"),
                     ("C", "CatC"),
-                    tuple(),
+                    (),
                 ],
             },
         )
@@ -358,7 +358,7 @@ class TestHierarchical:
                     "The first category",
                     "The second category",
                 ],
-                "alternative_codes": [("TOTAL",), tuple(), tuple()],
+                "alternative_codes": [("TOTAL",), (), ()],
                 "children": [
                     (("1", "2", "3"), ("0X3", "3"), ("1A", "1B", "2", "3")),
                     (("1A", "1B"),),
@@ -487,7 +487,7 @@ class TestHierarchical:
 
     def test_level_error(self, HierCat: climate_categories.HierarchicalCategorization):
         HierCat.canonical_top_level_category = None
-        with pytest.raises(ValueError, match="Can not calculate the level"):
+        with pytest.raises(TypeError, match="Can not calculate the level"):
             _ = HierCat["1"].level
 
     def test_parents_code(self, HierCat):

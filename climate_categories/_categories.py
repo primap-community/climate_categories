@@ -41,8 +41,8 @@ class Category:
         codes: tuple[str, ...],
         categorization: "Categorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: str | None = None,
+        info: dict | None = None,
     ):
         self.codes = codes
         self.title = title
@@ -130,8 +130,8 @@ class HierarchicalCategory(Category):
         codes: tuple[str],
         categorization: "HierarchicalCategorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: str | None = None,
+        info: dict | None = None,
     ):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
@@ -146,7 +146,7 @@ class HierarchicalCategory(Category):
         """
         code, spec = Category.to_spec(self)
         children = [
-            list(sorted(c.codes[0] for c in child_set)) for child_set in self.children
+            sorted(c.codes[0] for c in child_set) for child_set in self.children
         ]
         if children:
             spec["children"] = children
@@ -286,7 +286,7 @@ class Categorization:
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: str | None = None,
     ):
         self._primary_code_map: dict[str, Category] = {}
         self._all_codes_map: dict[str, Category] = {}
@@ -308,9 +308,9 @@ class Categorization:
 
     @classmethod
     def from_yaml(
-        cls: type[CategorizationT],
+        cls,
         filepath: str | pathlib.Path | typing.TextIO,
-    ) -> CategorizationT:
+    ) -> typing.Self:
         """Read Categorization from a StrictYaml file."""
         try:
             yaml = sy.load(filepath.read(), schema=cls._strictyaml_schema)
@@ -320,9 +320,7 @@ class Categorization:
         return cls.from_spec(yaml.data)
 
     @classmethod
-    def from_spec(
-        cls: type[CategorizationT], spec: dict[str, typing.Any]
-    ) -> CategorizationT:
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
         """Create Categorization from a Dictionary specification."""
         if spec["hierarchical"] != cls.hierarchical:
             raise ValueError(
@@ -430,7 +428,7 @@ class Categorization:
         """Iterate over all codes for all categories."""
         return self._all_codes_map.keys()
 
-    def __iter__(self) -> typing.Iterable[str]:
+    def __iter__(self) -> typing.Iterator[str]:
         return iter(self._primary_code_map)
 
     def __getitem__(self, code: str) -> Category:
@@ -474,12 +472,12 @@ class Categorization:
     def _extend_prepare(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
     ) -> dict[str, typing.Any]:
         spec = self.to_spec()
 
@@ -515,15 +513,15 @@ class Categorization:
         return spec
 
     def extend(
-        self: CategorizationT,
+        self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
-    ) -> CategorizationT:
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
+    ) -> typing.Self:
         """Extend the categorization with additional categories, yielding a new
         categorization.
 
@@ -571,9 +569,7 @@ class Categorization:
 
         return Categorization.from_spec(spec)
 
-    def limit(
-        self: CategorizationT, categories: tuple[str, ...], *, name: str
-    ) -> CategorizationT:
+    def limit(self, categories: tuple[str, ...], *, name: str) -> typing.Self:
         spec = self.to_spec()
 
         spec["name"] = f"{self.name}_{name}"
@@ -705,9 +701,9 @@ class HierarchicalCategorization(Categorization):
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: str | None = None,
         total_sum: bool,
-        canonical_top_level_category: None | str = None,
+        canonical_top_level_category: str | None = None,
     ):
         self._graph = nx.MultiDiGraph()
         Categorization.__init__(
@@ -723,7 +719,7 @@ class HierarchicalCategorization(Categorization):
         )
         self.total_sum = total_sum
         if canonical_top_level_category is None:
-            self.canonical_top_level_category: None | HierarchicalCategory = None
+            self.canonical_top_level_category: HierarchicalCategory | None = None
         else:
             self.canonical_top_level_category = self._all_codes_map[
                 canonical_top_level_category
@@ -742,9 +738,7 @@ class HierarchicalCategorization(Categorization):
         return self._primary_code_map.items()
 
     @classmethod
-    def from_spec(
-        cls: type[CategorizationT], spec: dict[str, typing.Any]
-    ) -> CategorizationT:
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
         """Create Categorization from a Dictionary specification."""
         if spec["hierarchical"] != cls.hierarchical:
             raise ValueError(
@@ -813,7 +807,7 @@ class HierarchicalCategorization(Categorization):
         children: typing.Iterable[HierarchicalCategory],
         format_func: typing.Callable,
         prefix: str,
-        maxdepth: None | int,
+        maxdepth: int | None,
         *,
         categories_set: set[HierarchicalCategory] | None = None,
         shown_categories: set[HierarchicalCategory] | None = None,
@@ -869,7 +863,7 @@ class HierarchicalCategorization(Categorization):
         prefix="",
         last=False,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int,
+        maxdepth: int | None,
         categories_set: set[HierarchicalCategory] | None = None,
         shown_categories: set[HierarchicalCategory] | None = None,
     ) -> str:
@@ -940,8 +934,8 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int = None,
-        root: None | HierarchicalCategory | str = None,
+        maxdepth: int | None = None,
+        root: HierarchicalCategory | str | None = None,
         categories: typing.Iterable[HierarchicalCategory | str] | None = None,
     ) -> str:
         """Format the hierarchy as a tree.
@@ -1036,13 +1030,13 @@ class HierarchicalCategorization(Categorization):
     def extend(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
-        children: None | list[tuple] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
+        children: list[tuple] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
     ) -> "HierarchicalCategorization":
         """Extend the categorization with additional categories and relationships,
         yielding a new categorization.
@@ -1138,7 +1132,7 @@ class HierarchicalCategorization(Categorization):
         if not isinstance(cat, HierarchicalCategory):
             return self.level(self[cat])
         if not isinstance(self.canonical_top_level_category, HierarchicalCategory):
-            raise ValueError(
+            raise TypeError(
                 "Can not calculate the level without a canonical_top_level_category."
             )
 
@@ -1250,7 +1244,7 @@ def from_python(
     except AttributeError:
         python_code = pathlib.Path(filepath).read_text()
     variables = {}
-    exec(python_code, variables)
+    exec(python_code, variables)  # noqa: S102
     spec = variables["spec"]
     if spec["hierarchical"]:
         cls = HierarchicalCategorization

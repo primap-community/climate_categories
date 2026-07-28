@@ -24,9 +24,7 @@ def test_conversion():
     conv = climate_categories.IPCC1996.conversion_to(climate_categories.IPCC2006)
 
     problems = conv.find_over_counting_problems()
-    problematic_categories = list(
-        sorted([problem.category.codes[0] for problem in problems])
-    )
+    problematic_categories = sorted([problem.category.codes[0] for problem in problems])
     assert problematic_categories == [
         "2.B.7",
         "2.B.9",

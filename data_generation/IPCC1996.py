@@ -92,10 +92,12 @@ def combine_rows(ts):
         current_code_name = None
         current_definition = None
         for _, (code_name, definition) in table.df.iterrows():
-            if (
-                code_name.startswith("Time period is an important element in")
-                or code_name.startswith("categories.  For example, the IPCC default")
-                or code_name.startswith("years for biomass decay.")
+            if code_name.startswith(
+                (
+                    "Time period is an important element in",
+                    "categories.  For example, the IPCC default",
+                    "years for biomass decay.",
+                )
             ):
                 continue
             code_name_empty = not code_name.strip()
@@ -160,10 +162,8 @@ def parse_codes(rows):
         elif code_title == " 4G\nOTHER":
             code_raw = "4 G"
             title = "OTHER"
-        elif (
-            code_title.startswith(" 1 A 4\n")
-            or code_title.startswith(" 1 A 5\nb")
-            or code_title.startswith(" 1 B 1\na")
+        elif code_title.startswith(
+            (" 1 A 4\n", " 1 A 5\nb", " 1 B 1\na")
         ) and code_title[7] in ("a", "b", "c"):
             code_raw = code_title[:8]
             title = code_title[9:]

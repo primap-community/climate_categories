@@ -143,7 +143,7 @@ class TestConversionSpec:
         assert conv.comment == "A correct conversion specification file"
         assert conv.version == "1.2.3.4"
         assert conv.references == "expert judgement"
-        assert conv.last_update == datetime.datetime(2099, 12, 31, 0, 0)
+        assert conv.last_update == datetime.datetime(2099, 12, 31, 0, 0)  # noqa: DTZ001
         assert conv.auxiliary_categorizations_names == ["aux1", "aux2"]
         assert len(conv.rule_specs) == 9
         assert conv.rule_specs[0] == conversions.ConversionRuleSpec(

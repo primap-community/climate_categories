@@ -495,7 +495,7 @@ def main():
     # Agriculture and LULUCF are separated in CRF but one category in IPCC2006
     # Thus we have to build the complete tree and delete the IPCC categories
     # first remove IPCC2006 category 3 (AFOLU)
-    cats_to_remove = [cat for cat in cats.keys() if cat[0] == "3"]
+    cats_to_remove = [cat for cat in cats if cat[0] == "3"]
     for cat in cats_to_remove:
         del cats[cat]
 
@@ -1486,7 +1486,7 @@ def main():
 
     # Table5 - Waste
     # remove Waste as category 4 as it's category 5 in the CRF tables
-    cats_to_remove = [cat for cat in cats.keys() if cat[0] in ["4", "5"]]
+    cats_to_remove = [cat for cat in cats if cat[0] in ["4", "5"]]
     for cat in cats_to_remove:
         del cats[cat]
 
@@ -1619,9 +1619,9 @@ def main():
     ncats["M.Memo"]["children"][0].append("M.Memo.IndCO2")
     ncats["M.Memo.IndCO2"] = {"title": "Indirect CO2"}
 
-    for ncode in ncats:
+    for ncode, cat in ncats.items():
         if "." in ncode:
-            ncats[ncode]["alternative_codes"] = [
+            cat["alternative_codes"] = [
                 ncode.replace(".", " "),
                 ncode.replace(".", ""),
             ]

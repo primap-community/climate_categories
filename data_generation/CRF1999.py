@@ -455,9 +455,9 @@ def main():
     ncats["M.Memo.Mult"] = {"title": "Multilateral Operations"}
     ncats["M.Memo.Bio"] = {"title": "CO2 Emissions from Biomass"}
 
-    for ncode in ncats:
+    for ncode, cat in ncats.items():
         if "." in ncode:
-            ncats[ncode]["alternative_codes"] = [
+            cat["alternative_codes"] = [
                 ncode.replace(".", " "),
                 ncode.replace(".", ""),
             ]
