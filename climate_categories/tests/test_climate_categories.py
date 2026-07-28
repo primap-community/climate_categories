@@ -487,7 +487,7 @@ class TestHierarchical:
 
     def test_level_error(self, HierCat: climate_categories.HierarchicalCategorization):
         HierCat.canonical_top_level_category = None
-        with pytest.raises(ValueError, match="Can not calculate the level"):
+        with pytest.raises(TypeError, match="Can not calculate the level"):
             _ = HierCat["1"].level
 
     def test_parents_code(self, HierCat):
