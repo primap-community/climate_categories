@@ -121,7 +121,7 @@ class TestSimple:
                     ("A", "CatA"),
                     ("B", "CatB"),
                     ("C", "CatC"),
-                    tuple(),
+                    (),
                 ],
             },
         )
@@ -358,7 +358,7 @@ class TestHierarchical:
                     "The first category",
                     "The second category",
                 ],
-                "alternative_codes": [("TOTAL",), tuple(), tuple()],
+                "alternative_codes": [("TOTAL",), (), ()],
                 "children": [
                     (("1", "2", "3"), ("0X3", "3"), ("1A", "1B", "2", "3")),
                     (("1A", "1B"),),

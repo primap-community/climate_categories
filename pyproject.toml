@@ -15,3 +15,4 @@ target-version = "py311"
 
 [tool.ruff.lint]
 extend-select = [ "W", "I", "UP", "B", "NPY", "RUF", "PD" ]
+ignore = ["DTZ011"]

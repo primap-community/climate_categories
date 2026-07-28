@@ -789,9 +789,9 @@ def main():
     ncats["5.D.3.c"] = {"title": "Wastewater Effluent"}  # NLD
     ncats["5.D.3.d"] = {"title": "Fish farming"}  # FIN
 
-    for ncode in ncats:
+    for ncode, cat in ncats.items():
         if "." in ncode:
-            ncats[ncode]["alternative_codes"] = [
+            cat["alternative_codes"] = [
                 ncode.replace(".", " "),
                 ncode.replace(".", ""),
             ]

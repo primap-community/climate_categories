@@ -41,8 +41,8 @@ class Category:
         codes: tuple[str, ...],
         categorization: "Categorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: str | None = None,
+        info: dict | None = None,
     ):
         self.codes = codes
         self.title = title
@@ -130,8 +130,8 @@ class HierarchicalCategory(Category):
         codes: tuple[str],
         categorization: "HierarchicalCategorization",
         title: str,
-        comment: None | str = None,
-        info: None | dict = None,
+        comment: str | None = None,
+        info: dict | None = None,
     ):
         Category.__init__(self, codes, categorization, title, comment, info)
         self.categorization = categorization
@@ -286,7 +286,7 @@ class Categorization:
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: str | None = None,
     ):
         self._primary_code_map: dict[str, Category] = {}
         self._all_codes_map: dict[str, Category] = {}
@@ -428,7 +428,7 @@ class Categorization:
         """Iterate over all codes for all categories."""
         return self._all_codes_map.keys()
 
-    def __iter__(self) -> typing.Iterable[str]:
+    def __iter__(self) -> typing.Iterator[str]:
         return iter(self._primary_code_map)
 
     def __getitem__(self, code: str) -> Category:
@@ -472,12 +472,12 @@ class Categorization:
     def _extend_prepare(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
     ) -> dict[str, typing.Any]:
         spec = self.to_spec()
 
@@ -515,12 +515,12 @@ class Categorization:
     def extend(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
     ) -> typing.Self:
         """Extend the categorization with additional categories, yielding a new
         categorization.
@@ -701,9 +701,9 @@ class HierarchicalCategorization(Categorization):
         references: str,
         institution: str,
         last_update: datetime.date,
-        version: None | str = None,
+        version: str | None = None,
         total_sum: bool,
-        canonical_top_level_category: None | str = None,
+        canonical_top_level_category: str | None = None,
     ):
         self._graph = nx.MultiDiGraph()
         Categorization.__init__(
@@ -807,7 +807,7 @@ class HierarchicalCategorization(Categorization):
         children: typing.Iterable[HierarchicalCategory],
         format_func: typing.Callable,
         prefix: str,
-        maxdepth: None | int,
+        maxdepth: int | None,
         *,
         categories_set: set[HierarchicalCategory] | None = None,
         shown_categories: set[HierarchicalCategory] | None = None,
@@ -863,7 +863,7 @@ class HierarchicalCategorization(Categorization):
         prefix="",
         last=False,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int,
+        maxdepth: int | None,
         categories_set: set[HierarchicalCategory] | None = None,
         shown_categories: set[HierarchicalCategory] | None = None,
     ) -> str:
@@ -934,8 +934,8 @@ class HierarchicalCategorization(Categorization):
         self,
         *,
         format_func: typing.Callable[[HierarchicalCategory], str] = str,
-        maxdepth: None | int = None,
-        root: None | HierarchicalCategory | str = None,
+        maxdepth: int | None = None,
+        root: HierarchicalCategory | str | None = None,
         categories: typing.Iterable[HierarchicalCategory | str] | None = None,
     ) -> str:
         """Format the hierarchy as a tree.
@@ -1030,13 +1030,13 @@ class HierarchicalCategorization(Categorization):
     def extend(
         self,
         *,
-        categories: None | dict[str, dict] = None,
-        alternative_codes: None | dict[str, str] = None,
-        children: None | list[tuple] = None,
+        categories: dict[str, dict] | None = None,
+        alternative_codes: dict[str, str] | None = None,
+        children: list[tuple] | None = None,
         name: str,
-        title: None | str = None,
-        comment: None | str = None,
-        last_update: None | datetime.date = None,
+        title: str | None = None,
+        comment: str | None = None,
+        last_update: datetime.date | None = None,
     ) -> "HierarchicalCategorization":
         """Extend the categorization with additional categories and relationships,
         yielding a new categorization.
@@ -1132,7 +1132,7 @@ class HierarchicalCategorization(Categorization):
         if not isinstance(cat, HierarchicalCategory):
             return self.level(self[cat])
         if not isinstance(self.canonical_top_level_category, HierarchicalCategory):
-            raise ValueError(
+            raise TypeError(
                 "Can not calculate the level without a canonical_top_level_category."
             )
 
@@ -1244,7 +1244,7 @@ def from_python(
     except AttributeError:
         python_code = pathlib.Path(filepath).read_text()
     variables = {}
-    exec(python_code, variables)
+    exec(python_code, variables)  # noqa: S102
     spec = variables["spec"]
     if spec["hierarchical"]:
         cls = HierarchicalCategorization
