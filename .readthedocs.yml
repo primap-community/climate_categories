@@ -4,16 +4,17 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.14"
-  jobs:
-    create_environment:
-      - asdf plugin add uv
-      - asdf install uv latest
-      - asdf global uv latest
-      - uv venv "$READTHEDOCS_VIRTUALENV_PATH"
-    install:
-      - UV_PROJECT_ENVIRONMENT="$READTHEDOCS_VIRTUALENV_PATH" uv sync --locked --group docs
 
 formats: all
+
+# Read the Docs supports uv natively here, so we do not need to override
+# build.jobs. This installs the project plus the docs dependency group.
+python:
+  install:
+    - method: uv
+      command: sync
+      groups:
+        - docs
 
 sphinx:
   # Path to your Sphinx configuration file.
