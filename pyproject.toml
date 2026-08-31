@@ -1,17 +1,109 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel",
-    "setuptools_scm[toml]>=3.4"
+requires = ["uv_build>=0.12.7,<0.13"]
+build-backend = "uv_build"
+
+[project]
+name = "climate_categories"
+version = "0.11.1"
+description = "Commonly used codes, categories, terminologies, and nomenclatures used in climate policy analysis as a Python package."
+readme = "README.rst"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Mika Pflüger", email = "mika.pflueger@climate-resource.com" },
 ]
-build-backend = "setuptools.build_meta"
+# NEP 29 schedule: Python 3.15 is released 2026-10, bump the upper bound and add
+# the classifier then. Python 3.12 can be dropped from 2027-04-02.
+requires-python = ">=3.12, <3.15"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "networkx>=3.3",
+    "pandas>=3.0",
+    "strictyaml>=1.6",
+    "natsort>=8",
+    "ruamel.yaml>=0.17.2",
+    "pyparsing>=3.1",
+    "black>=22.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/primap-community/climate_categories"
+Documentation = "https://climate-categories.readthedocs.io/"
+Changelog = "https://github.com/primap-community/climate_categories/blob/main/CHANGELOG.rst"
+
+# Kept as an extra rather than a dependency group so that CI can install it with
+# `uv pip install --resolution lowest-direct .[test]`, which is what proves the
+# declared lower bounds in [project.dependencies] actually work.
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.3",
+    "pytest-cov>=5",
+    "xdoctest>=1.2",
+]
+
+[dependency-groups]
+dev = [
+    "build",
+    "coverage",
+    "pre-commit",
+    "ruff>=0.16.0",
+    "tbump",
+    "tox",
+    "tox-uv>=1.11.3",
+    "twine",
+]
+docs = [
+    "ipykernel",
+    "nbsphinx",
+    "sphinx",
+    "sphinx_rtd_theme",
+]
+data-generation = [
+    "camelot-py>=2.0.0",
+    # judb requires Python >= 3.13, which is fine: data generation is a
+    # maintainer task, not something users run.
+    "judb; python_version >= '3.13'",
+    "lxml",
+    "openscm-units",
+    "pycountry",
+    "requests",
+    "tqdm",
+    "unfccc_di_api>=3.0.1",
+]
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "climate_categories"
+# setuptools_scm used to sweep every git-tracked file into the sdist; list what we
+# actually want to keep shipping explicitly.
+source-include = [
+    "CHANGELOG.rst",
+    "CONTRIBUTING.rst",
+    "Makefile",
+    "data_generation/**",
+    "docs/**",
+    "tox.ini",
+]
+source-exclude = [
+    "docs/_build/**",
+    "docs/.ipynb_checkpoints/**",
+]
 
 [tool.ruff]
 extend-exclude = [
   "climate_categories/data/*.py",
   "climate_categories/tests/data/*.py"
 ]
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 extend-select = [ "W", "I", "UP", "B", "NPY", "RUF", "PD" ]

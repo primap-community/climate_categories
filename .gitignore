@@ -1,5 +1,4 @@
 .changelog_latest_version.rst
-climate_categories/_version.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -78,6 +77,8 @@ target/
 
 # pyenv
 .python-version
+# ... but our uv-pinned development interpreter is tracked
+!/.python-version
 
 # celery beat schedule file
 celerybeat-schedule
