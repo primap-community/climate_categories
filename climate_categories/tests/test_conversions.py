@@ -130,11 +130,10 @@ class TestConversionSpec:
         good_csv = (
             importlib.resources.files("climate_categories.tests.data")
             .joinpath("good_conversion.csv")
-            .open()
+            .read_text()
         )
         temp_csv = tmp_path / "gc.csv"
-        with temp_csv.open("w") as fd2:
-            fd2.write(good_csv.read())
+        temp_csv.write_text(good_csv)
 
         # Now actually read from the file
         conv = conversions.ConversionSpec.from_csv(temp_csv)
@@ -241,20 +240,25 @@ class TestConversionSpec:
             climate_categories._conversions.ConversionSpec.from_csv(csv)
 
 
-def load_conversion_from_csv(fname: str):
-    fd = (
+def load_categorization_from_yaml(fname: str):
+    with (
         importlib.resources.files("climate_categories.tests.data")
         .joinpath(fname)
-        .open()
-    )
-    gc = conversions.ConversionSpec.from_csv(fd)
+        .open() as fd
+    ):
+        return climate_categories.Categorization.from_yaml(fd)
+
+
+def load_conversion_from_csv(fname: str):
+    with (
+        importlib.resources.files("climate_categories.tests.data")
+        .joinpath(fname)
+        .open() as fd
+    ):
+        gc = conversions.ConversionSpec.from_csv(fd)
 
     cats = {
-        cat_name: climate_categories.Categorization.from_yaml(
-            importlib.resources.files("climate_categories.tests.data")
-            .joinpath(f"good_conversion_{cat_name}.yaml")
-            .open()
-        )
+        cat_name: load_categorization_from_yaml(f"good_conversion_{cat_name}.yaml")
         for cat_name in ("A", "B", "aux1", "aux2")
     }
 
