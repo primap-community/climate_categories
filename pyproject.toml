@@ -98,6 +98,10 @@ source-exclude = [
     "docs/.ipynb_checkpoints/**",
 ]
 
+[tool.pytest.ini_options]
+# Centralised here so the Makefile, tox and CI do not each repeat the flags.
+addopts = "--xdoc"
+
 [tool.ruff]
 extend-exclude = [
   "climate_categories/data/*.py",
