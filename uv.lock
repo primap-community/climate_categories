@@ -539,7 +539,7 @@ requires-dist = [
     { name = "natsort", specifier = ">=8" },
     { name = "networkx", specifier = ">=3.3" },
     { name = "pandas", specifier = ">=3.0" },
-    { name = "pyparsing", specifier = ">=3.1" },
+    { name = "pyparsing", specifier = ">=3.2.3" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.3.3" },
     { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=5" },
     { name = "ruamel-yaml", specifier = ">=0.17.2" },
