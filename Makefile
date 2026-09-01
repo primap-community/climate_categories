@@ -1,4 +1,4 @@
-.PHONY: docs help virtual-environment install-pre-commit update-venv cache test test-full lint coverage release update-citation
+.PHONY: docs help virtual-environment install-pre-commit update-venv cache recache test test-full lint coverage update-citation
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -45,9 +45,6 @@ clean-docs: ## Remove generated parts of documentation, then build docs
 docs: ## generate Sphinx HTML documentation, including API docs
 	uv run --group docs $(MAKE) -C docs html
 
-release: dist ## package and upload a release
-	uv run twine upload --repository climate-categories dist/*
-
 dist: clean-build ## builds source and wheel package
 	uv build
 
@@ -79,7 +76,9 @@ cache: climate_categories/data/CRFDI_class.py
 cache: climate_categories/data/ISO3.py
 cache: climate_categories/data/ISO3_GCAM.py
 cache: climate_categories/data/BURDI.py
-cache: climate_categories/data/BURDI_class.py  ## Generate Python specs from YAML files
+cache: climate_categories/data/BURDI_class.py
+cache: climate_categories/data/CT.py
+cache: climate_categories/data/FAO.py  ## Generate Python specs from YAML files
 
 data: climate_categories/data/BURDI_class.yaml
 data: climate_categories/data/BURDI.yaml
@@ -96,15 +95,26 @@ data: climate_categories/data/IPCC2006_PRIMAP.yaml
 data: climate_categories/data/IPCC2006.yaml
 data: climate_categories/data/ISO3_GCAM.yaml
 data: climate_categories/data/ISO3.yaml
-data: climate_categories/data/RCMIP.yaml  ## Generate data files
+data: climate_categories/data/RCMIP.yaml
+data: climate_categories/data/CT.yaml
+data: climate_categories/data/FAO.yaml  ## Generate data files
 
 
 climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	uv run --group data-generation python $<
 
 climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
-	uv run --group data-generation python data_generation/convert_yaml_to_python.py $< $@
+	uv run python data_generation/convert_yaml_to_python.py $< $@
+
+# Unlike `cache`, this ignores timestamps and picks up new YAML files by itself, so it
+# cannot silently skip anything. A fresh git checkout gives every file the same mtime,
+# which make reads as "up to date", so CI and the release have to use this target.
+recache:  ## Regenerate all Python specs from the YAML files, unconditionally
+	@for yaml in climate_categories/data/*.yaml; do \
+		echo "$$yaml"; \
+		uv run python data_generation/convert_yaml_to_python.py $$yaml $${yaml%.yaml}.py; \
+	done
 
 .PHONY: README.rst
 README.rst:  ## Update the citation information from zenodo
-	uv run python update_citation_info.py
+	uv run --with requests --no-project python update_citation_info.py
