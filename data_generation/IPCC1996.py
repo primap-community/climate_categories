@@ -28,6 +28,10 @@ def parse_pages(fpath, pages, areas, columns) -> list:
     return ts
 
 
+# The pdf file contains an error: /Length of the page 13 content stream is 2 bytes
+# too long: it wrongly counts the EOL before `endstream`. LZW-decoding those extra bytes yields a bit of trailing
+# garbage, so playa logs "Insufficient arguments (1) for operator: /b're'". This is harmless,
+# the garbage is a stray path fragment and we only use text positions.
 def read_pdf(fpath):
     # 1 energy
     ts = []
