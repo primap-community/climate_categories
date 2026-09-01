@@ -3,8 +3,9 @@ directory."""
 
 import pathlib
 
-import climate_categories
 from utils import latex_title
+
+import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/CRF2013_2023.yaml")
 

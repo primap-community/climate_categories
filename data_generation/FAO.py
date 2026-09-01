@@ -3,8 +3,9 @@ directory."""
 
 import pathlib
 
-import climate_categories as cc
 from utils import latex_title
+
+import climate_categories as cc
 
 OUTPATH = pathlib.Path("./climate_categories/data/FAO.yaml")
 

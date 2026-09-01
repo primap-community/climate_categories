@@ -6,9 +6,9 @@ import re
 import openscm_units
 import openscm_units.data
 import openscm_units.data.mixtures
+from utils import latex_title
 
 import climate_categories
-from utils import latex_title
 
 OUTPATH = pathlib.Path("./climate_categories/data/gas.yaml")
 
