@@ -68,9 +68,6 @@ docs = [
 ]
 data-generation = [
     "camelot-py>=2.0.0",
-    # judb requires Python >= 3.13, which is fine: data generation is a
-    # maintainer task, not something users run.
-    "judb; python_version >= '3.13'",
     "lxml",
     "openscm-units",
     "pycountry",
