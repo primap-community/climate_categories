@@ -33,6 +33,7 @@ class Category:
             sy.Optional("comment"): sy.Str(),
             sy.Optional("alternative_codes"): sy.Seq(sy.Str()),
             sy.Optional("info"): sy.MapPattern(sy.Str(), sy.Any()),
+            sy.Optional("latex_title"): sy.Str(),
         }
     )
 
@@ -43,11 +44,14 @@ class Category:
         title: str,
         comment: str | None = None,
         info: dict | None = None,
+        *,
+        latex_title: str | None = None,
     ):
         self.codes = codes
         self.title = title
         self.comment = comment
         self.categorization = categorization
+        self._latex_title = latex_title
         if info is None:
             self.info = {}
         else:
@@ -66,6 +70,7 @@ class Category:
             title=spec["title"],
             comment=spec.get("comment"),
             info=spec.get("info"),
+            latex_title=spec.get("latex_title"),
         )
 
     def to_spec(self) -> tuple[str, dict[str, str | dict | list]]:
@@ -80,11 +85,20 @@ class Category:
         spec: dict[str, str | dict | list[str]] = {"title": self.title}
         if self.comment is not None:
             spec["comment"] = self.comment
+        if self._latex_title is not None:
+            spec["latex_title"] = self._latex_title
         if len(self.codes) > 1:
             spec["alternative_codes"] = list(self.codes[1:])
         if self.info:
             spec["info"] = self.info
         return code, spec
+
+    @property
+    def latex_title(self) -> str:
+        """The title of the category in LaTeX format."""
+        if self._latex_title is None:
+            return self.title
+        return self._latex_title
 
     def __str__(self) -> str:
         return f"{self.codes[0]} {self.title}"
@@ -122,6 +136,7 @@ class HierarchicalCategory(Category):
             sy.Optional("alternative_codes"): sy.Seq(sy.Str()),
             sy.Optional("info"): sy.MapPattern(sy.Str(), sy.Any()),
             sy.Optional("children"): sy.Seq(sy.Seq(sy.Str())),
+            sy.Optional("latex_title"): sy.Str(),
         }
     )
 
@@ -132,8 +147,11 @@ class HierarchicalCategory(Category):
         title: str,
         comment: str | None = None,
         info: dict | None = None,
+        *,
+        latex_title: str | None = None,
     ):
         Category.__init__(self, codes, categorization, title, comment, info)
+        self._latex_title = latex_title
         self.categorization = categorization
 
     def to_spec(self) -> tuple[str, dict[str, str | dict | list]]:
