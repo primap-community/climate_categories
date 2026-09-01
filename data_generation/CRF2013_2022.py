@@ -3,7 +3,7 @@ directory."""
 
 import pathlib
 
-from utils import write_categorization
+from utils import latex_title, write_categorization
 
 import climate_categories
 
@@ -799,6 +799,13 @@ def main():
             ]
 
     cats.update(ncats)
+
+    # LaTeX titles, needed wherever a title contains a chemical formula. The titles
+    # inherited from CRF2013 already have one, deriving it again gives the same result.
+    for cat in cats.values():
+        latex = latex_title(cat["title"])
+        if latex is not None:
+            cat["latex_title"] = latex
 
     CRF2013_2022 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

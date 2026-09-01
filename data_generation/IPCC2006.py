@@ -267,6 +267,26 @@ def main():
         "that do not have data on division of managed/unmanaged may use this category."
     )
 
+    # latex titles
+    categories["1.B.1.a.i.4"]["latex_title"] = (
+        "Flaring of Drained Methane or Conversion of Methane to CO$_2$"
+    )
+    categories["1.C.1"]["latex_title"] = "Transport of CO$_2$"
+    categories["2.G.2"]["latex_title"] = "SF$_6$ and PFCs from Other Product Uses"
+    categories["2.G.3"]["latex_title"] = "N$_2$O from Product Uses"
+    categories["3.C"]["latex_title"] = (
+        "Aggregate Sources and Non-CO$_2$ Emissions Sources on Land"
+    )
+    categories["3.C.4"]["latex_title"] = "Direct N$_2$O Emissions from Managed Soils"
+    categories["3.C.5"]["latex_title"] = "Indirect N$_2$O Emissions from Managed Soils"
+    categories["3.C.6"]["latex_title"] = (
+        "Indirect N$_2$O Emissions from Manure Management"
+    )
+    categories["5.A"]["latex_title"] = (
+        r"Indirect N$_2$O Emissions from The Atmospheric Deposition of Nitrogen "
+        r"In NO$_\text{x}$ and NH$_3$"
+    )
+
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     write_categorization(IPCC2006, OUTPATH)

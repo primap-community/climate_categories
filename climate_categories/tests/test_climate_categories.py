@@ -48,6 +48,8 @@ class TestSimple:
             "other_important_thing": "ABC",
         }
         assert SimpleCat["2"].info == {}
+        assert SimpleCat["2"].latex_title == r"Category \emph{2}"
+        assert SimpleCat["1"].latex_title == "Category 1"
 
     def test_dict_like(self, SimpleCat: climate_categories.Categorization):
         assert "A" in SimpleCat

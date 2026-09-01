@@ -1,4 +1,5 @@
 import pathlib
+import re
 import shutil
 
 import requests
@@ -51,3 +52,33 @@ def title_case(instr: str) -> str:
         .replace("Pfc", "PFC")
         .replace("Tft", "TFT")
     )
+
+
+#: Chemical formulae as they are written in category titles, mapped to their LaTeX
+#: representation.
+LATEX_FORMULAE = {
+    "CH4": "CH$_4$",
+    "CO2": "CO$_2$",
+    "N2O": "N$_2$O",
+    "NF3": "NF$_3$",
+    "NH3": "NH$_3$",
+    "NOx": r"NO$_\text{x}$",
+    "SF6": "SF$_6$",
+    "SO2": "SO$_2$",
+}
+
+_LATEX_FORMULAE_RE = re.compile(
+    r"\b(" + "|".join(sorted(LATEX_FORMULAE, key=len, reverse=True)) + r")\b"
+)
+
+
+def latex_title(title: str) -> str | None:
+    """Typeset the chemical formulae in a category title for LaTeX.
+
+    Returns None if the title contains no chemical formula, i.e. if it needs no
+    separate LaTeX title.
+    """
+    latex = _LATEX_FORMULAE_RE.sub(lambda m: LATEX_FORMULAE[m.group()], title)
+    if latex == title:
+        return None
+    return latex

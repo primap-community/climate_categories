@@ -19,7 +19,7 @@ lint: ## check style with pre-commit hooks
 	uv run pre-commit run --all-files
 
 test: ## run tests quickly with the default Python
-	uv run pytest -rx
+	uv run --extra test pytest -rx
 
 test-all: ## run tests on every Python version with tox
 	uv run tox -p

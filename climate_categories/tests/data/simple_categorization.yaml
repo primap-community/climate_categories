@@ -21,6 +21,7 @@ categories:
       other_important_thing: ABC
   2:
     title: Category 2
+    latex_title: Category \emph{2}
     comment: The second category
     alternative_codes:
       - B

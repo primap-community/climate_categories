@@ -443,11 +443,13 @@ spec = {
         "3.A.1.b": {
             "title": "Asses manure management (Direct emissions N2O)",
             "comment": "Asses manure management (Direct emissions N2O)",
+            "latex_title": "Asses manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.A.1.c": {
             "title": "Asses manure management (Indirect emissions N2O)",
             "comment": "Asses manure management (Indirect emissions N2O)",
+            "latex_title": "Asses manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.A.2": {
@@ -459,22 +461,26 @@ spec = {
         "3.A.2.a": {
             "title": "Asses manure left on pasture (direct emissions N2O)",
             "comment": "Asses manure left on pasture (direct emissions N2O)",
+            "latex_title": "Asses manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.A.2.b": {
             "title": "Asses manure left on pasture (indirect emissions N2O)",
             "comment": "Asses manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Asses manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.A.2.b.i", "3.A.2.b.ii"]],
         },
         "3.A.2.b.i": {
             "title": "Asses manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Asses manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Asses manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.A.2.b.ii": {
             "title": "Asses manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Asses manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Asses manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.A.3": {
@@ -486,22 +492,26 @@ spec = {
         "3.A.3.a": {
             "title": "Asses manure applied (direct emissions N2O)",
             "comment": "Asses manure applied (direct emissions N2O)",
+            "latex_title": "Asses manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.A.3.b": {
             "title": "Asses manure applied (indirect emissions N2O)",
             "comment": "Asses manure applied (indirect emissions N2O)",
+            "latex_title": "Asses manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.A.3.b.i", "3.A.3.b.ii"]],
         },
         "3.A.3.b.i": {
             "title": "Asses manure applied (indirect emissions, N2O that leaches)",
             "comment": "Asses manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Asses manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.A.3.b.ii": {
             "title": "Asses manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Asses manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Asses manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.B.4": {
@@ -529,11 +539,13 @@ spec = {
         "3.B.1.b": {
             "title": "Camels manure management (Direct emissions N2O)",
             "comment": "Camels manure management (Direct emissions N2O)",
+            "latex_title": "Camels manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.B.1.c": {
             "title": "Camels manure management (Indirect emissions N2O)",
             "comment": "Camels manure management (Indirect emissions N2O)",
+            "latex_title": "Camels manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.B.2": {
@@ -545,22 +557,26 @@ spec = {
         "3.B.2.a": {
             "title": "Camels manure left on pasture (direct emissions N2O)",
             "comment": "Camels manure left on pasture (direct emissions N2O)",
+            "latex_title": "Camels manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.B.2.b": {
             "title": "Camels manure left on pasture (indirect emissions N2O)",
             "comment": "Camels manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Camels manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.B.2.b.i", "3.B.2.b.ii"]],
         },
         "3.B.2.b.i": {
             "title": "Camels manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Camels manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Camels manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.B.2.b.ii": {
             "title": "Camels manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Camels manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Camels manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.B.3": {
@@ -572,22 +588,26 @@ spec = {
         "3.B.3.a": {
             "title": "Camels manure applied (direct emissions N2O)",
             "comment": "Camels manure applied (direct emissions N2O)",
+            "latex_title": "Camels manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.B.3.b": {
             "title": "Camels manure applied (indirect emissions N2O)",
             "comment": "Camels manure applied (indirect emissions N2O)",
+            "latex_title": "Camels manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.B.3.b.i", "3.B.3.b.ii"]],
         },
         "3.B.3.b.i": {
             "title": "Camels manure applied (indirect emissions, N2O that leaches)",
             "comment": "Camels manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Camels manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.B.3.b.ii": {
             "title": "Camels manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Camels manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Camels manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.C.4": {
@@ -615,11 +635,13 @@ spec = {
         "3.C.1.b": {
             "title": "Cattle, dairy manure management (Direct emissions N2O)",
             "comment": "Cattle, dairy manure management (Direct emissions N2O)",
+            "latex_title": "Cattle, dairy manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.C.1.c": {
             "title": "Cattle, dairy manure management (Indirect emissions N2O)",
             "comment": "Cattle, dairy manure management (Indirect emissions N2O)",
+            "latex_title": "Cattle, dairy manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.C.2": {
@@ -631,22 +653,26 @@ spec = {
         "3.C.2.a": {
             "title": "Cattle, dairy manure left on pasture (direct emissions N2O)",
             "comment": "Cattle, dairy manure left on pasture (direct emissions N2O)",
+            "latex_title": "Cattle, dairy manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.C.2.b": {
             "title": "Cattle, dairy manure left on pasture (indirect emissions N2O)",
             "comment": "Cattle, dairy manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Cattle, dairy manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.C.2.b.i", "3.C.2.b.ii"]],
         },
         "3.C.2.b.i": {
             "title": "Cattle, dairy manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Cattle, dairy manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Cattle, dairy manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.C.2.b.ii": {
             "title": "Cattle, dairy manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Cattle, dairy manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Cattle, dairy manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.C.3": {
@@ -658,22 +684,26 @@ spec = {
         "3.C.3.a": {
             "title": "Cattle, dairy manure applied (direct emissions N2O)",
             "comment": "Cattle, dairy manure applied (direct emissions N2O)",
+            "latex_title": "Cattle, dairy manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.C.3.b": {
             "title": "Cattle, dairy manure applied (indirect emissions N2O)",
             "comment": "Cattle, dairy manure applied (indirect emissions N2O)",
+            "latex_title": "Cattle, dairy manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.C.3.b.i", "3.C.3.b.ii"]],
         },
         "3.C.3.b.i": {
             "title": "Cattle, dairy manure applied (indirect emissions, N2O that leaches)",
             "comment": "Cattle, dairy manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Cattle, dairy manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.C.3.b.ii": {
             "title": "Cattle, dairy manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Cattle, dairy manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Cattle, dairy manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.D.4": {
@@ -701,11 +731,13 @@ spec = {
         "3.D.1.b": {
             "title": "Cattle, non-dairy manure management (Direct emissions N2O)",
             "comment": "Cattle, non-dairy manure management (Direct emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.D.1.c": {
             "title": "Cattle, non-dairy manure management (Indirect emissions N2O)",
             "comment": "Cattle, non-dairy manure management (Indirect emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.D.2": {
@@ -717,22 +749,26 @@ spec = {
         "3.D.2.a": {
             "title": "Cattle, non-dairy manure left on pasture (direct emissions N2O)",
             "comment": "Cattle, non-dairy manure left on pasture (direct emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.D.2.b": {
             "title": "Cattle, non-dairy manure left on pasture (indirect emissions N2O)",
             "comment": "Cattle, non-dairy manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.D.2.b.i", "3.D.2.b.ii"]],
         },
         "3.D.2.b.i": {
             "title": "Cattle, non-dairy manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Cattle, non-dairy manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Cattle, non-dairy manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.D.2.b.ii": {
             "title": "Cattle, non-dairy manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Cattle, non-dairy manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Cattle, non-dairy manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.D.3": {
@@ -744,22 +780,26 @@ spec = {
         "3.D.3.a": {
             "title": "Cattle, non-dairy manure applied (direct emissions N2O)",
             "comment": "Cattle, non-dairy manure applied (direct emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.D.3.b": {
             "title": "Cattle, non-dairy manure applied (indirect emissions N2O)",
             "comment": "Cattle, non-dairy manure applied (indirect emissions N2O)",
+            "latex_title": "Cattle, non-dairy manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.D.3.b.i", "3.D.3.b.ii"]],
         },
         "3.D.3.b.i": {
             "title": "Cattle, non-dairy manure applied (indirect emissions, N2O that leaches)",
             "comment": "Cattle, non-dairy manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Cattle, non-dairy manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.D.3.b.ii": {
             "title": "Cattle, non-dairy manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Cattle, non-dairy manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Cattle, non-dairy manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.E": {
@@ -782,11 +822,13 @@ spec = {
         "3.E.1.b": {
             "title": "Chickens, broilers manure management (Direct emissions N2O)",
             "comment": "Chickens, broilers manure management (Direct emissions N2O)",
+            "latex_title": "Chickens, broilers manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.E.1.c": {
             "title": "Chickens, broilers manure management (Indirect emissions N2O)",
             "comment": "Chickens, broilers manure management (Indirect emissions N2O)",
+            "latex_title": "Chickens, broilers manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.E.2": {
@@ -798,22 +840,26 @@ spec = {
         "3.E.2.a": {
             "title": "Chickens, broilers manure left on pasture (direct emissions N2O)",
             "comment": "Chickens, broilers manure left on pasture (direct emissions N2O)",
+            "latex_title": "Chickens, broilers manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.E.2.b": {
             "title": "Chickens, broilers manure left on pasture (indirect emissions N2O)",
             "comment": "Chickens, broilers manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Chickens, broilers manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.E.2.b.i", "3.E.2.b.ii"]],
         },
         "3.E.2.b.i": {
             "title": "Chickens, broilers manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Chickens, broilers manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens, broilers manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.E.2.b.ii": {
             "title": "Chickens, broilers manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Chickens, broilers manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens, broilers manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.E.3": {
@@ -825,22 +871,26 @@ spec = {
         "3.E.3.a": {
             "title": "Chickens, broilers manure applied (direct emissions N2O)",
             "comment": "Chickens, broilers manure applied (direct emissions N2O)",
+            "latex_title": "Chickens, broilers manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.E.3.b": {
             "title": "Chickens, broilers manure applied (indirect emissions N2O)",
             "comment": "Chickens, broilers manure applied (indirect emissions N2O)",
+            "latex_title": "Chickens, broilers manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.E.3.b.i", "3.E.3.b.ii"]],
         },
         "3.E.3.b.i": {
             "title": "Chickens, broilers manure applied (indirect emissions, N2O that leaches)",
             "comment": "Chickens, broilers manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens, broilers manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.E.3.b.ii": {
             "title": "Chickens, broilers manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Chickens, broilers manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens, broilers manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.F": {
@@ -863,11 +913,13 @@ spec = {
         "3.F.1.b": {
             "title": "Chickens, layers manure management (Direct emissions N2O)",
             "comment": "Chickens, layers manure management (Direct emissions N2O)",
+            "latex_title": "Chickens, layers manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.F.1.c": {
             "title": "Chickens, layers manure management (Indirect emissions N2O)",
             "comment": "Chickens, layers manure management (Indirect emissions N2O)",
+            "latex_title": "Chickens, layers manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.F.2": {
@@ -879,22 +931,26 @@ spec = {
         "3.F.2.a": {
             "title": "Chickens, layers manure left on pasture (direct emissions N2O)",
             "comment": "Chickens, layers manure left on pasture (direct emissions N2O)",
+            "latex_title": "Chickens, layers manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.F.2.b": {
             "title": "Chickens, layers manure left on pasture (indirect emissions N2O)",
             "comment": "Chickens, layers manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Chickens, layers manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.F.2.b.i", "3.F.2.b.ii"]],
         },
         "3.F.2.b.i": {
             "title": "Chickens, layers manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Chickens, layers manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens, layers manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.F.2.b.ii": {
             "title": "Chickens, layers manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Chickens, layers manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens, layers manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.F.3": {
@@ -906,22 +962,26 @@ spec = {
         "3.F.3.a": {
             "title": "Chickens, layers manure applied (direct emissions N2O)",
             "comment": "Chickens, layers manure applied (direct emissions N2O)",
+            "latex_title": "Chickens, layers manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.F.3.b": {
             "title": "Chickens, layers manure applied (indirect emissions N2O)",
             "comment": "Chickens, layers manure applied (indirect emissions N2O)",
+            "latex_title": "Chickens, layers manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.F.3.b.i", "3.F.3.b.ii"]],
         },
         "3.F.3.b.i": {
             "title": "Chickens, layers manure applied (indirect emissions, N2O that leaches)",
             "comment": "Chickens, layers manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens, layers manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.F.3.b.ii": {
             "title": "Chickens, layers manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Chickens, layers manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens, layers manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.G.4": {
@@ -949,11 +1009,13 @@ spec = {
         "3.G.1.b": {
             "title": "Goats manure management (Direct emissions N2O)",
             "comment": "Goats manure management (Direct emissions N2O)",
+            "latex_title": "Goats manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.G.1.c": {
             "title": "Goats manure management (Indirect emissions N2O)",
             "comment": "Goats manure management (Indirect emissions N2O)",
+            "latex_title": "Goats manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.G.2": {
@@ -965,22 +1027,26 @@ spec = {
         "3.G.2.a": {
             "title": "Goats manure left on pasture (direct emissions N2O)",
             "comment": "Goats manure left on pasture (direct emissions N2O)",
+            "latex_title": "Goats manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.G.2.b": {
             "title": "Goats manure left on pasture (indirect emissions N2O)",
             "comment": "Goats manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Goats manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.G.2.b.i", "3.G.2.b.ii"]],
         },
         "3.G.2.b.i": {
             "title": "Goats manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Goats manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Goats manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.G.2.b.ii": {
             "title": "Goats manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Goats manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Goats manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.G.3": {
@@ -992,22 +1058,26 @@ spec = {
         "3.G.3.a": {
             "title": "Goats manure applied (direct emissions N2O)",
             "comment": "Goats manure applied (direct emissions N2O)",
+            "latex_title": "Goats manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.G.3.b": {
             "title": "Goats manure applied (indirect emissions N2O)",
             "comment": "Goats manure applied (indirect emissions N2O)",
+            "latex_title": "Goats manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.G.3.b.i", "3.G.3.b.ii"]],
         },
         "3.G.3.b.i": {
             "title": "Goats manure applied (indirect emissions, N2O that leaches)",
             "comment": "Goats manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Goats manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.G.3.b.ii": {
             "title": "Goats manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Goats manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Goats manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.H.4": {
@@ -1035,11 +1105,13 @@ spec = {
         "3.H.1.b": {
             "title": "Horses manure management (Direct emissions N2O)",
             "comment": "Horses manure management (Direct emissions N2O)",
+            "latex_title": "Horses manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.H.1.c": {
             "title": "Horses manure management (Indirect emissions N2O)",
             "comment": "Horses manure management (Indirect emissions N2O)",
+            "latex_title": "Horses manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.H.2": {
@@ -1051,22 +1123,26 @@ spec = {
         "3.H.2.a": {
             "title": "Horses manure left on pasture (direct emissions N2O)",
             "comment": "Horses manure left on pasture (direct emissions N2O)",
+            "latex_title": "Horses manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.H.2.b": {
             "title": "Horses manure left on pasture (indirect emissions N2O)",
             "comment": "Horses manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Horses manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.H.2.b.i", "3.H.2.b.ii"]],
         },
         "3.H.2.b.i": {
             "title": "Horses manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Horses manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Horses manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.H.2.b.ii": {
             "title": "Horses manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Horses manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Horses manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.H.3": {
@@ -1078,22 +1154,26 @@ spec = {
         "3.H.3.a": {
             "title": "Horses manure applied (direct emissions N2O)",
             "comment": "Horses manure applied (direct emissions N2O)",
+            "latex_title": "Horses manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.H.3.b": {
             "title": "Horses manure applied (indirect emissions N2O)",
             "comment": "Horses manure applied (indirect emissions N2O)",
+            "latex_title": "Horses manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.H.3.b.i", "3.H.3.b.ii"]],
         },
         "3.H.3.b.i": {
             "title": "Horses manure applied (indirect emissions, N2O that leaches)",
             "comment": "Horses manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Horses manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.H.3.b.ii": {
             "title": "Horses manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Horses manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Horses manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.I.4": {
@@ -1121,11 +1201,13 @@ spec = {
         "3.I.1.b": {
             "title": "Mules and hinnies manure management (Direct emissions N2O)",
             "comment": "Mules and hinnies manure management (Direct emissions N2O)",
+            "latex_title": "Mules and hinnies manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.I.1.c": {
             "title": "Mules and hinnies manure management (Indirect emissions N2O)",
             "comment": "Mules and hinnies manure management (Indirect emissions N2O)",
+            "latex_title": "Mules and hinnies manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.I.2": {
@@ -1137,22 +1219,26 @@ spec = {
         "3.I.2.a": {
             "title": "Mules and hinnies manure left on pasture (direct emissions N2O)",
             "comment": "Mules and hinnies manure left on pasture (direct emissions N2O)",
+            "latex_title": "Mules and hinnies manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.I.2.b": {
             "title": "Mules and hinnies manure left on pasture (indirect emissions N2O)",
             "comment": "Mules and hinnies manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Mules and hinnies manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.I.2.b.i", "3.I.2.b.ii"]],
         },
         "3.I.2.b.i": {
             "title": "Mules and hinnies manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Mules and hinnies manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Mules and hinnies manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.I.2.b.ii": {
             "title": "Mules and hinnies manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Mules and hinnies manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Mules and hinnies manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.I.3": {
@@ -1164,22 +1250,26 @@ spec = {
         "3.I.3.a": {
             "title": "Mules and hinnies manure applied (direct emissions N2O)",
             "comment": "Mules and hinnies manure applied (direct emissions N2O)",
+            "latex_title": "Mules and hinnies manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.I.3.b": {
             "title": "Mules and hinnies manure applied (indirect emissions N2O)",
             "comment": "Mules and hinnies manure applied (indirect emissions N2O)",
+            "latex_title": "Mules and hinnies manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.I.3.b.i", "3.I.3.b.ii"]],
         },
         "3.I.3.b.i": {
             "title": "Mules and hinnies manure applied (indirect emissions, N2O that leaches)",
             "comment": "Mules and hinnies manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Mules and hinnies manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.I.3.b.ii": {
             "title": "Mules and hinnies manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Mules and hinnies manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Mules and hinnies manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.J.4": {
@@ -1207,11 +1297,13 @@ spec = {
         "3.J.1.b": {
             "title": "Sheep manure management (Direct emissions N2O)",
             "comment": "Sheep manure management (Direct emissions N2O)",
+            "latex_title": "Sheep manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.J.1.c": {
             "title": "Sheep manure management (Indirect emissions N2O)",
             "comment": "Sheep manure management (Indirect emissions N2O)",
+            "latex_title": "Sheep manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.J.2": {
@@ -1223,22 +1315,26 @@ spec = {
         "3.J.2.a": {
             "title": "Sheep manure left on pasture (direct emissions N2O)",
             "comment": "Sheep manure left on pasture (direct emissions N2O)",
+            "latex_title": "Sheep manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.J.2.b": {
             "title": "Sheep manure left on pasture (indirect emissions N2O)",
             "comment": "Sheep manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Sheep manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.J.2.b.i", "3.J.2.b.ii"]],
         },
         "3.J.2.b.i": {
             "title": "Sheep manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Sheep manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Sheep manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.J.2.b.ii": {
             "title": "Sheep manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Sheep manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Sheep manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.J.3": {
@@ -1250,22 +1346,26 @@ spec = {
         "3.J.3.a": {
             "title": "Sheep manure applied (direct emissions N2O)",
             "comment": "Sheep manure applied (direct emissions N2O)",
+            "latex_title": "Sheep manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.J.3.b": {
             "title": "Sheep manure applied (indirect emissions N2O)",
             "comment": "Sheep manure applied (indirect emissions N2O)",
+            "latex_title": "Sheep manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.J.3.b.i", "3.J.3.b.ii"]],
         },
         "3.J.3.b.i": {
             "title": "Sheep manure applied (indirect emissions, N2O that leaches)",
             "comment": "Sheep manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Sheep manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.J.3.b.ii": {
             "title": "Sheep manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Sheep manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Sheep manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.K.4": {
@@ -1293,11 +1393,13 @@ spec = {
         "3.K.1.b": {
             "title": "Llamas manure management (Direct emissions N2O)",
             "comment": "Llamas manure management (Direct emissions N2O)",
+            "latex_title": "Llamas manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.K.1.c": {
             "title": "Llamas manure management (Indirect emissions N2O)",
             "comment": "Llamas manure management (Indirect emissions N2O)",
+            "latex_title": "Llamas manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.K.2": {
@@ -1309,22 +1411,26 @@ spec = {
         "3.K.2.a": {
             "title": "Llamas manure left on pasture (direct emissions N2O)",
             "comment": "Llamas manure left on pasture (direct emissions N2O)",
+            "latex_title": "Llamas manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.K.2.b": {
             "title": "Llamas manure left on pasture (indirect emissions N2O)",
             "comment": "Llamas manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Llamas manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.K.2.b.i", "3.K.2.b.ii"]],
         },
         "3.K.2.b.i": {
             "title": "Llamas manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Llamas manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Llamas manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.K.2.b.ii": {
             "title": "Llamas manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Llamas manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Llamas manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.K.3": {
@@ -1336,22 +1442,26 @@ spec = {
         "3.K.3.a": {
             "title": "Llamas manure applied (direct emissions N2O)",
             "comment": "Llamas manure applied (direct emissions N2O)",
+            "latex_title": "Llamas manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.K.3.b": {
             "title": "Llamas manure applied (indirect emissions N2O)",
             "comment": "Llamas manure applied (indirect emissions N2O)",
+            "latex_title": "Llamas manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.K.3.b.i", "3.K.3.b.ii"]],
         },
         "3.K.3.b.i": {
             "title": "Llamas manure applied (indirect emissions, N2O that leaches)",
             "comment": "Llamas manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Llamas manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.K.3.b.ii": {
             "title": "Llamas manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Llamas manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Llamas manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.L": {
@@ -1374,11 +1484,13 @@ spec = {
         "3.L.1.b": {
             "title": "Chickens manure management (Direct emissions N2O)",
             "comment": "Chickens manure management (Direct emissions N2O)",
+            "latex_title": "Chickens manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.L.1.c": {
             "title": "Chickens manure management (Indirect emissions N2O)",
             "comment": "Chickens manure management (Indirect emissions N2O)",
+            "latex_title": "Chickens manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.L.2": {
@@ -1390,22 +1502,26 @@ spec = {
         "3.L.2.a": {
             "title": "Chickens manure left on pasture (direct emissions N2O)",
             "comment": "Chickens manure left on pasture (direct emissions N2O)",
+            "latex_title": "Chickens manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.L.2.b": {
             "title": "Chickens manure left on pasture (indirect emissions N2O)",
             "comment": "Chickens manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Chickens manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.L.2.b.i", "3.L.2.b.ii"]],
         },
         "3.L.2.b.i": {
             "title": "Chickens manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Chickens manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.L.2.b.ii": {
             "title": "Chickens manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Chickens manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.L.3": {
@@ -1417,22 +1533,26 @@ spec = {
         "3.L.3.a": {
             "title": "Chickens manure applied (direct emissions N2O)",
             "comment": "Chickens manure applied (direct emissions N2O)",
+            "latex_title": "Chickens manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.L.3.b": {
             "title": "Chickens manure applied (indirect emissions N2O)",
             "comment": "Chickens manure applied (indirect emissions N2O)",
+            "latex_title": "Chickens manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.L.3.b.i", "3.L.3.b.ii"]],
         },
         "3.L.3.b.i": {
             "title": "Chickens manure applied (indirect emissions, N2O that leaches)",
             "comment": "Chickens manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Chickens manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.L.3.b.ii": {
             "title": "Chickens manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Chickens manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Chickens manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.M": {
@@ -1455,11 +1575,13 @@ spec = {
         "3.M.1.b": {
             "title": "Poultry Birds manure management (Direct emissions N2O)",
             "comment": "Poultry Birds manure management (Direct emissions N2O)",
+            "latex_title": "Poultry Birds manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.M.1.c": {
             "title": "Poultry Birds manure management (Indirect emissions N2O)",
             "comment": "Poultry Birds manure management (Indirect emissions N2O)",
+            "latex_title": "Poultry Birds manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.M.2": {
@@ -1471,22 +1593,26 @@ spec = {
         "3.M.2.a": {
             "title": "Poultry Birds manure left on pasture (direct emissions N2O)",
             "comment": "Poultry Birds manure left on pasture (direct emissions N2O)",
+            "latex_title": "Poultry Birds manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.M.2.b": {
             "title": "Poultry Birds manure left on pasture (indirect emissions N2O)",
             "comment": "Poultry Birds manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Poultry Birds manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.M.2.b.i", "3.M.2.b.ii"]],
         },
         "3.M.2.b.i": {
             "title": "Poultry Birds manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Poultry Birds manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Poultry Birds manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.M.2.b.ii": {
             "title": "Poultry Birds manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Poultry Birds manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Poultry Birds manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.M.3": {
@@ -1498,22 +1624,26 @@ spec = {
         "3.M.3.a": {
             "title": "Poultry Birds manure applied (direct emissions N2O)",
             "comment": "Poultry Birds manure applied (direct emissions N2O)",
+            "latex_title": "Poultry Birds manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.M.3.b": {
             "title": "Poultry Birds manure applied (indirect emissions N2O)",
             "comment": "Poultry Birds manure applied (indirect emissions N2O)",
+            "latex_title": "Poultry Birds manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.M.3.b.i", "3.M.3.b.ii"]],
         },
         "3.M.3.b.i": {
             "title": "Poultry Birds manure applied (indirect emissions, N2O that leaches)",
             "comment": "Poultry Birds manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Poultry Birds manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.M.3.b.ii": {
             "title": "Poultry Birds manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Poultry Birds manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Poultry Birds manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.N.4": {
@@ -1541,11 +1671,13 @@ spec = {
         "3.N.1.b": {
             "title": "Buffalo manure management (Direct emissions N2O)",
             "comment": "Buffalo manure management (Direct emissions N2O)",
+            "latex_title": "Buffalo manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.N.1.c": {
             "title": "Buffalo manure management (Indirect emissions N2O)",
             "comment": "Buffalo manure management (Indirect emissions N2O)",
+            "latex_title": "Buffalo manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.N.2": {
@@ -1557,22 +1689,26 @@ spec = {
         "3.N.2.a": {
             "title": "Buffalo manure left on pasture (direct emissions N2O)",
             "comment": "Buffalo manure left on pasture (direct emissions N2O)",
+            "latex_title": "Buffalo manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.N.2.b": {
             "title": "Buffalo manure left on pasture (indirect emissions N2O)",
             "comment": "Buffalo manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Buffalo manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.N.2.b.i", "3.N.2.b.ii"]],
         },
         "3.N.2.b.i": {
             "title": "Buffalo manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Buffalo manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Buffalo manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.N.2.b.ii": {
             "title": "Buffalo manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Buffalo manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Buffalo manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.N.3": {
@@ -1584,22 +1720,26 @@ spec = {
         "3.N.3.a": {
             "title": "Buffalo manure applied (direct emissions N2O)",
             "comment": "Buffalo manure applied (direct emissions N2O)",
+            "latex_title": "Buffalo manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.N.3.b": {
             "title": "Buffalo manure applied (indirect emissions N2O)",
             "comment": "Buffalo manure applied (indirect emissions N2O)",
+            "latex_title": "Buffalo manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.N.3.b.i", "3.N.3.b.ii"]],
         },
         "3.N.3.b.i": {
             "title": "Buffalo manure applied (indirect emissions, N2O that leaches)",
             "comment": "Buffalo manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Buffalo manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.N.3.b.ii": {
             "title": "Buffalo manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Buffalo manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Buffalo manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.O": {
@@ -1622,11 +1762,13 @@ spec = {
         "3.O.1.b": {
             "title": "Ducks manure management (Direct emissions N2O)",
             "comment": "Ducks manure management (Direct emissions N2O)",
+            "latex_title": "Ducks manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.O.1.c": {
             "title": "Ducks manure management (Indirect emissions N2O)",
             "comment": "Ducks manure management (Indirect emissions N2O)",
+            "latex_title": "Ducks manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.O.2": {
@@ -1638,22 +1780,26 @@ spec = {
         "3.O.2.a": {
             "title": "Ducks manure left on pasture (direct emissions N2O)",
             "comment": "Ducks manure left on pasture (direct emissions N2O)",
+            "latex_title": "Ducks manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.O.2.b": {
             "title": "Ducks manure left on pasture (indirect emissions N2O)",
             "comment": "Ducks manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Ducks manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.O.2.b.i", "3.O.2.b.ii"]],
         },
         "3.O.2.b.i": {
             "title": "Ducks manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Ducks manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Ducks manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.O.2.b.ii": {
             "title": "Ducks manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Ducks manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Ducks manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.O.3": {
@@ -1665,22 +1811,26 @@ spec = {
         "3.O.3.a": {
             "title": "Ducks manure applied (direct emissions N2O)",
             "comment": "Ducks manure applied (direct emissions N2O)",
+            "latex_title": "Ducks manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.O.3.b": {
             "title": "Ducks manure applied (indirect emissions N2O)",
             "comment": "Ducks manure applied (indirect emissions N2O)",
+            "latex_title": "Ducks manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.O.3.b.i", "3.O.3.b.ii"]],
         },
         "3.O.3.b.i": {
             "title": "Ducks manure applied (indirect emissions, N2O that leaches)",
             "comment": "Ducks manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Ducks manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.O.3.b.ii": {
             "title": "Ducks manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Ducks manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Ducks manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.P.4": {
@@ -1708,11 +1858,13 @@ spec = {
         "3.P.1.b": {
             "title": "Swine, breeding manure management (Direct emissions N2O)",
             "comment": "Swine, breeding manure management (Direct emissions N2O)",
+            "latex_title": "Swine, breeding manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.P.1.c": {
             "title": "Swine, breeding manure management (Indirect emissions N2O)",
             "comment": "Swine, breeding manure management (Indirect emissions N2O)",
+            "latex_title": "Swine, breeding manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.P.2": {
@@ -1724,22 +1876,26 @@ spec = {
         "3.P.2.a": {
             "title": "Swine, breeding manure left on pasture (direct emissions N2O)",
             "comment": "Swine, breeding manure left on pasture (direct emissions N2O)",
+            "latex_title": "Swine, breeding manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.P.2.b": {
             "title": "Swine, breeding manure left on pasture (indirect emissions N2O)",
             "comment": "Swine, breeding manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Swine, breeding manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.P.2.b.i", "3.P.2.b.ii"]],
         },
         "3.P.2.b.i": {
             "title": "Swine, breeding manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Swine, breeding manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Swine, breeding manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.P.2.b.ii": {
             "title": "Swine, breeding manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Swine, breeding manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Swine, breeding manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.P.3": {
@@ -1751,22 +1907,26 @@ spec = {
         "3.P.3.a": {
             "title": "Swine, breeding manure applied (direct emissions N2O)",
             "comment": "Swine, breeding manure applied (direct emissions N2O)",
+            "latex_title": "Swine, breeding manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.P.3.b": {
             "title": "Swine, breeding manure applied (indirect emissions N2O)",
             "comment": "Swine, breeding manure applied (indirect emissions N2O)",
+            "latex_title": "Swine, breeding manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.P.3.b.i", "3.P.3.b.ii"]],
         },
         "3.P.3.b.i": {
             "title": "Swine, breeding manure applied (indirect emissions, N2O that leaches)",
             "comment": "Swine, breeding manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Swine, breeding manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.P.3.b.ii": {
             "title": "Swine, breeding manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Swine, breeding manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Swine, breeding manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.Q.4": {
@@ -1794,11 +1954,13 @@ spec = {
         "3.Q.1.b": {
             "title": "Swine, market manure management (Direct emissions N2O)",
             "comment": "Swine, market manure management (Direct emissions N2O)",
+            "latex_title": "Swine, market manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.Q.1.c": {
             "title": "Swine, market manure management (Indirect emissions N2O)",
             "comment": "Swine, market manure management (Indirect emissions N2O)",
+            "latex_title": "Swine, market manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.Q.2": {
@@ -1810,22 +1972,26 @@ spec = {
         "3.Q.2.a": {
             "title": "Swine, market manure left on pasture (direct emissions N2O)",
             "comment": "Swine, market manure left on pasture (direct emissions N2O)",
+            "latex_title": "Swine, market manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.Q.2.b": {
             "title": "Swine, market manure left on pasture (indirect emissions N2O)",
             "comment": "Swine, market manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Swine, market manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.Q.2.b.i", "3.Q.2.b.ii"]],
         },
         "3.Q.2.b.i": {
             "title": "Swine, market manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Swine, market manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Swine, market manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.Q.2.b.ii": {
             "title": "Swine, market manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Swine, market manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Swine, market manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.Q.3": {
@@ -1837,22 +2003,26 @@ spec = {
         "3.Q.3.a": {
             "title": "Swine, market manure applied (direct emissions N2O)",
             "comment": "Swine, market manure applied (direct emissions N2O)",
+            "latex_title": "Swine, market manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.Q.3.b": {
             "title": "Swine, market manure applied (indirect emissions N2O)",
             "comment": "Swine, market manure applied (indirect emissions N2O)",
+            "latex_title": "Swine, market manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.Q.3.b.i", "3.Q.3.b.ii"]],
         },
         "3.Q.3.b.i": {
             "title": "Swine, market manure applied (indirect emissions, N2O that leaches)",
             "comment": "Swine, market manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Swine, market manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.Q.3.b.ii": {
             "title": "Swine, market manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Swine, market manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Swine, market manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.R": {
@@ -1875,11 +2045,13 @@ spec = {
         "3.R.1.b": {
             "title": "Turkeys manure management (Direct emissions N2O)",
             "comment": "Turkeys manure management (Direct emissions N2O)",
+            "latex_title": "Turkeys manure management (Direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.R.1.c": {
             "title": "Turkeys manure management (Indirect emissions N2O)",
             "comment": "Turkeys manure management (Indirect emissions N2O)",
+            "latex_title": "Turkeys manure management (Indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.R.2": {
@@ -1891,22 +2063,26 @@ spec = {
         "3.R.2.a": {
             "title": "Turkeys manure left on pasture (direct emissions N2O)",
             "comment": "Turkeys manure left on pasture (direct emissions N2O)",
+            "latex_title": "Turkeys manure left on pasture (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.R.2.b": {
             "title": "Turkeys manure left on pasture (indirect emissions N2O)",
             "comment": "Turkeys manure left on pasture (indirect emissions N2O)",
+            "latex_title": "Turkeys manure left on pasture (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.R.2.b.i", "3.R.2.b.ii"]],
         },
         "3.R.2.b.i": {
             "title": "Turkeys manure left on pasture (indirect emissions, N2O that leaches)",
             "comment": "Turkeys manure left on pasture (indirect emissions, N2O that leaches)",
+            "latex_title": "Turkeys manure left on pasture (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.R.2.b.ii": {
             "title": "Turkeys manure left on pasture (indirect emissions, N2O that volatilises)",
             "comment": "Turkeys manure left on pasture (indirect emissions, N2O that volatilises)",
+            "latex_title": "Turkeys manure left on pasture (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "3.R.3": {
@@ -1918,22 +2094,26 @@ spec = {
         "3.R.3.a": {
             "title": "Turkeys manure applied (direct emissions N2O)",
             "comment": "Turkeys manure applied (direct emissions N2O)",
+            "latex_title": "Turkeys manure applied (direct emissions N$_2$O)",
             "info": {"gases": "N2O"},
         },
         "3.R.3.b": {
             "title": "Turkeys manure applied (indirect emissions N2O)",
             "comment": "Turkeys manure applied (indirect emissions N2O)",
+            "latex_title": "Turkeys manure applied (indirect emissions N$_2$O)",
             "info": {"gases": "N2O"},
             "children": [["3.R.3.b.i", "3.R.3.b.ii"]],
         },
         "3.R.3.b.i": {
             "title": "Turkeys manure applied (indirect emissions, N2O that leaches)",
             "comment": "Turkeys manure applied (indirect emissions, N2O that leaches)",
+            "latex_title": "Turkeys manure applied (indirect emissions, N$_2$O that leaches)",
             "info": {"gases": "N2O"},
         },
         "3.R.3.b.ii": {
             "title": "Turkeys manure applied (indirect emissions, N2O that volatilises)",
             "comment": "Turkeys manure applied (indirect emissions, N2O that volatilises)",
+            "latex_title": "Turkeys manure applied (indirect emissions, N$_2$O that volatilises)",
             "info": {"gases": "N2O"},
         },
         "4": {
@@ -2192,11 +2372,13 @@ spec = {
         "M.3.MP.direct": {
             "title": "All Animals - Manure left on pasture (Direct emissions N2O)",
             "comment": "The sum of manure left on pasture emissions of all animals - only direct emissions",
+            "latex_title": "All Animals - Manure left on pasture (Direct emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.3.MP.indirect": {
             "title": "All Animals - Manure left on pasture (Indirect emissions N2O)",
             "comment": "The sum of manure left on pasture emissions of all animals - only indirect emissions",
+            "latex_title": "All Animals - Manure left on pasture (Indirect emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.1.CR": {
@@ -2206,10 +2388,12 @@ spec = {
         },
         "M.1.CR.direct": {
             "title": "All Crops - Crop residues (Direct emissions N2O)",
+            "latex_title": "All Crops - Crop residues (Direct emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.1.CR.indirect": {
             "title": "All Crops - Crop residues (Indirect emissions N2O)",
+            "latex_title": "All Crops - Crop residues (Indirect emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.1.BCR": {
@@ -2225,21 +2409,25 @@ spec = {
         "M.3.MA.direct": {
             "title": "All Animals - Manure applied to soils (Direct emissions N2O)",
             "comment": "The sum of manure applied to soils emissions of all animals - only direct emissions",
+            "latex_title": "All Animals - Manure applied to soils (Direct emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.3.MA.indirect": {
             "title": "All Animals - Manure applied to soils (Indirect emissions N2O)",
             "comment": "The sum of manure applied to soils emissions of all animals - only indirect emissions",
+            "latex_title": "All Animals - Manure applied to soils (Indirect emissions N$_2$O)",
             "info": {"gases": ["N2O"]},
         },
         "M.5.CO2": {
             "title": "CO2 emissions from drained organic soils",
             "comment": "The split by gas is needed to build M.AG and M.LULUCF",
+            "latex_title": "CO$_2$ emissions from drained organic soils",
             "info": {"gases": ["CO2"]},
         },
         "M.5.N2O": {
             "title": "N2O emissions from drained organic soils",
             "comment": "The split by gas is needed to build M.AG and M.LULUCF",
+            "latex_title": "N$_2$O emissions from drained organic soils",
             "info": {"gases": ["N2O"]},
         },
         "M.AG": {

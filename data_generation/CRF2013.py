@@ -3,7 +3,7 @@ directory."""
 
 import pathlib
 
-from utils import write_categorization
+from utils import latex_title, write_categorization
 
 import climate_categories
 
@@ -372,7 +372,7 @@ def main():
     ncats["M.Info.CCS.A.TAIS"] = {"title": "Total Amount of Imports for Storage"}
     ncats["M.Info.CCS.B.TAES"] = {"title": "Total Amount of Exports for Storage"}
     ncats["M.Info.CCS.B.TAI"] = {
-        "title": "Tota Amount of CO2 Injected at Storage Sites"
+        "title": "Total Amount of CO2 Injected at Storage Sites"
     }
     ncats["M.Info.CCS.B.TLTIS"] = {
         "title": "Total Leakage from Transport, Injection and Storage"
@@ -956,7 +956,7 @@ def main():
     # here we use 4(I) as head category
     ncats["4(I)"] = {
         "title": "LULUCF - Direct N2O from nitrogen inputs to managed soils "
-        "(Table 4(I)",
+        "(Table 4(I))",
         "children": [["4(I).A", "4(I).D", "4(I).E", "4(I).H"]],
     }
     # Forest Land
@@ -1159,7 +1159,7 @@ def main():
     # soils
     # same sectors as in 4.A-F
     ncats["4(III)"] = {
-        "title": "LULUCF - Direct N2O Eemissions from Nitrogen (N) "
+        "title": "LULUCF - Direct N2O Emissions from Nitrogen (N) "
         "Mineralization/Immobilization Associated with "
         "Loss/Gain of Soil Organic Matter Resulting from "
         "Change of Land Use or Management of Mineral Soils "
@@ -1629,6 +1629,13 @@ def main():
             ]
 
     cats.update(ncats)
+
+    # LaTeX titles, needed wherever a title contains a chemical formula. The titles
+    # inherited from IPCC2006 already have one, deriving it again gives the same result.
+    for cat in cats.values():
+        latex = latex_title(cat["title"])
+        if latex is not None:
+            cat["latex_title"] = latex
 
     CRF2013 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

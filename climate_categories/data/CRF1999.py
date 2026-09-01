@@ -488,6 +488,7 @@ spec = {
         },
         "2.C.4": {
             "title": "SF6 used in Aluminium and Magnesium Foundries",
+            "latex_title": "SF$_6$ used in Aluminium and Magnesium Foundries",
             "alternative_codes": ["2C4", "2 C 4"],
             "children": [["2.C.4.a", "2.C.4.b"]],
         },
@@ -908,6 +909,7 @@ spec = {
         "5.D": {
             "title": "CO2 Emissions and Removals From Soil",
             "comment": "Emissions and removals of CO2 in soil associated with land-use change and management. Includes CO2 emissions from liming of agricultural soil.",
+            "latex_title": "CO$_2$ Emissions and Removals From Soil",
             "alternative_codes": ["5D", "5 D"],
             "children": [["5.D.1", "5.D.2", "5.D.3", "5.D.4", "5.D.5"]],
         },
@@ -1270,10 +1272,12 @@ spec = {
         "2.C.1.e": {"title": "Other", "alternative_codes": ["2 C 1 e", "2C1e"]},
         "2.C.4.a": {
             "title": "SF6 used in Aluminium Foundries",
+            "latex_title": "SF$_6$ used in Aluminium Foundries",
             "alternative_codes": ["2 C 4 a", "2C4a"],
         },
         "2.C.4.b": {
             "title": "SF6 used in Magnesium Foundries",
+            "latex_title": "SF$_6$ used in Magnesium Foundries",
             "alternative_codes": ["2 C 4 b", "2C4b"],
         },
         "2.F.1.a": {
@@ -1309,17 +1313,24 @@ spec = {
         "2.F.4.b": {"title": "Other", "alternative_codes": ["2 F 4 b", "2F4b"]},
         "3.D.1": {
             "title": "Use of N2O for Anaesthesia",
+            "latex_title": "Use of N$_2$O for Anaesthesia",
             "alternative_codes": ["3 D 1", "3D1"],
         },
         "3.D.2": {
             "title": "N2O from Fire Extinguishers",
+            "latex_title": "N$_2$O from Fire Extinguishers",
             "alternative_codes": ["3 D 2", "3D2"],
         },
         "3.D.3": {
             "title": "N2O from Aerosol Cans",
+            "latex_title": "N$_2$O from Aerosol Cans",
             "alternative_codes": ["3 D 3", "3D3"],
         },
-        "3.D.4": {"title": "Other Use of N2O", "alternative_codes": ["3 D 4", "3D4"]},
+        "3.D.4": {
+            "title": "Other Use of N2O",
+            "latex_title": "Other Use of N$_2$O",
+            "alternative_codes": ["3 D 4", "3D4"],
+        },
         "3.D.5": {"title": "Other", "alternative_codes": ["3 D 5", "3D5"]},
         "4.D.1": {
             "title": "Direct Soil Emissions",
@@ -1629,6 +1640,7 @@ spec = {
         },
         "M.Memo.Bio": {
             "title": "CO2 Emissions from Biomass",
+            "latex_title": "CO$_2$ Emissions from Biomass",
             "alternative_codes": ["M Memo Bio", "MMemoBio"],
         },
     },

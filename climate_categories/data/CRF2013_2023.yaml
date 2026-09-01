@@ -1020,6 +1020,7 @@ categories:
       emissions may comprise losses due to fugitive equipment leaks, venting and
       releases due to pipeline ruptures or other accidental releases (e.g.,
       temporary storage).
+    latex_title: Transport of CO$_2$
     alternative_codes:
     - 1C1
     info:
@@ -2212,6 +2213,7 @@ categories:
       - 2F6
   2.G.2:
     title: SF6 and PFCs from Other Product Uses
+    latex_title: SF$_6$ and PFCs from Other Product Uses
     alternative_codes:
     - 2G2
     info:
@@ -2259,6 +2261,7 @@ categories:
       - 2F6
   2.G.3:
     title: N2O from Product Uses
+    latex_title: N$_2$O from Product Uses
     alternative_codes:
     - 2G3
     info:
@@ -2941,6 +2944,7 @@ categories:
       - 1.B.2.d.xi
   M.Info.CCS:
     title: CO2 Transport and Storage - information Items
+    latex_title: CO$_2$ Transport and Storage - information Items
     alternative_codes:
     - M Info CCS
     - MInfoCCS
@@ -2949,6 +2953,7 @@ categories:
       - M.Info.CCS.B
   M.Info.CCS.A:
     title: CO2 Transport and Storage - information Items - Total A
+    latex_title: CO$_2$ Transport and Storage - information Items - Total A
     alternative_codes:
     - M Info CCS A
     - MInfoCCSA
@@ -2957,6 +2962,7 @@ categories:
       - M.Info.CCS.A.TAIS
   M.Info.CCS.B:
     title: CO2 Transport and Storage - information Items - Total B
+    latex_title: CO$_2$ Transport and Storage - information Items - Total B
     alternative_codes:
     - M Info CCS B
     - MInfoCCSB
@@ -2980,7 +2986,8 @@ categories:
     - M Info CCS B TAES
     - MInfoCCSBTAES
   M.Info.CCS.B.TAI:
-    title: Tota Amount of CO2 Injected at Storage Sites
+    title: Total Amount of CO2 Injected at Storage Sites
+    latex_title: Total Amount of CO$_2$ Injected at Storage Sites
     alternative_codes:
     - M Info CCS B TAI
     - MInfoCCSBTAI
@@ -3029,11 +3036,13 @@ categories:
     - MMemoMult
   M.Memo.Bio:
     title: CO2 Emissions from Biomass
+    latex_title: CO$_2$ Emissions from Biomass
     alternative_codes:
     - M Memo Bio
     - MMemoBio
   M.Memo.CO2Cap:
     title: CO2 captured
+    latex_title: CO$_2$ captured
     alternative_codes:
     - M Memo CO2Cap
     - MMemoCO2Cap
@@ -3188,6 +3197,7 @@ categories:
     - 2B9bi
   2.B.9.b.ii:
     title: Production of SF6
+    latex_title: Production of SF$_6$
     alternative_codes:
     - 2 B 9 b ii
     - 2B9bii
@@ -3663,6 +3673,7 @@ categories:
     - 3B4hv
   3.B.5:
     title: Indirect N2O emissions
+    latex_title: Indirect N$_2$O emissions
     alternative_codes:
     - 3 B 5
     - 3B5
@@ -3750,6 +3761,7 @@ categories:
       - 3.D.b
   3.D.a:
     title: Direct N2O emissions from managed soils
+    latex_title: Direct N$_2$O emissions from managed soils
     alternative_codes:
     - 3 D a
     - 3Da
@@ -3818,6 +3830,7 @@ categories:
     - 3Da7
   3.D.b:
     title: Indirect N2O Emissions from Managed Soils
+    latex_title: Indirect N$_2$O Emissions from Managed Soils
     alternative_codes:
     - 3 D b
     - 3Db
@@ -4574,7 +4587,10 @@ categories:
     - 4A-F F 2 5
     - 4A-FF25
   4(I):
-    title: LULUCF - Direct N2O from nitrogen inputs to managed soils (Table 4(I)
+    title: LULUCF - Direct N2O from nitrogen inputs to managed soils (Table
+      4(I))
+    latex_title: LULUCF - Direct N$_2$O from nitrogen inputs to managed soils
+      (Table 4(I))
     children:
     - - 4(I).A
       - 4(I).D
@@ -5099,7 +5115,11 @@ categories:
     - 4(II) H 2 b
     - 4(II)H2b
   4(III):
-    title: LULUCF - Direct N2O Eemissions from Nitrogen (N)
+    title: LULUCF - Direct N2O Emissions from Nitrogen (N)
+      Mineralization/Immobilization Associated with Loss/Gain of Soil Organic
+      Matter Resulting from Change of Land Use or Management of Mineral Soils
+      (Table 4(III))
+    latex_title: LULUCF - Direct N$_2$O Emissions from Nitrogen (N)
       Mineralization/Immobilization Associated with Loss/Gain of Soil Organic
       Matter Resulting from Change of Land Use or Management of Mineral Soils
       (Table 4(III))
@@ -5475,6 +5495,7 @@ categories:
     - 4(III)F25
   M.4.I:
     title: Indirect N2O Emissions From Managed Soils
+    latex_title: Indirect N$_2$O Emissions From Managed Soils
     alternative_codes:
     - M 4 I
     - M4I
@@ -6389,11 +6410,13 @@ categories:
       - '5'
   M.Memo.IndN2O:
     title: Indirect N2O
+    latex_title: Indirect N$_2$O
     alternative_codes:
     - M Memo IndN2O
     - MMemoIndN2O
   M.Memo.IndCO2:
     title: Indirect CO2
+    latex_title: Indirect CO$_2$
     alternative_codes:
     - M Memo IndCO2
     - MMemoIndCO2
@@ -6454,6 +6477,7 @@ categories:
     - 1A2gviii4
   1.A.2.g.viii.5:
     title: Non-CO2 emissions from BFG combustion
+    latex_title: Non-CO$_2$ emissions from BFG combustion
     alternative_codes:
     - 1 A 2 g viii 5
     - 1A2gviii5
@@ -6674,6 +6698,7 @@ categories:
     - 1B1cii
   1.B.1.c.iii:
     title: SO2 scrubbing
+    latex_title: SO$_2$ scrubbing
     alternative_codes:
     - 1 B 1 c iii
     - 1B1ciii
@@ -6689,6 +6714,7 @@ categories:
     - 1B1cv
   1.B.2.d.i:
     title: Groundwater Extraction and CO2 Mining
+    latex_title: Groundwater Extraction and CO$_2$ Mining
     alternative_codes:
     - 1 B 2 d i
     - 1B2di
@@ -6734,6 +6760,7 @@ categories:
     - 1B2dix
   1.B.2.d.x:
     title: Natural Gas Exploration - N2O Emissions
+    latex_title: Natural Gas Exploration - N$_2$O Emissions
     alternative_codes:
     - 1 B 2 d x
     - 1B2dx
@@ -7069,6 +7096,7 @@ categories:
     - 3B1C-USA-m
   3.J.1:
     title: NOx from Manure Management
+    latex_title: NO$_\text{x}$ from Manure Management
     alternative_codes:
     - 3 J 1
     - 3J1
@@ -7109,6 +7137,7 @@ categories:
     - 3J8
   3.J.9:
     title: NOx from Livestock
+    latex_title: NO$_\text{x}$ from Livestock
     alternative_codes:
     - 3 J 9
     - 3J9
@@ -7209,11 +7238,13 @@ categories:
     - 4H5
   4.H.6:
     title: N2O Emissions from Aquaculture Use
+    latex_title: N$_2$O Emissions from Aquaculture Use
     alternative_codes:
     - 4 H 6
     - 4H6
   4.H.7:
     title: CH4 from artificial water bodies
+    latex_title: CH$_4$ from artificial water bodies
     alternative_codes:
     - 4 H 7
     - 4H7

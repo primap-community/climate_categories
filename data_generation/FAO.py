@@ -3,7 +3,7 @@ directory."""
 
 import pathlib
 
-from utils import write_categorization
+from utils import latex_title, write_categorization
 
 import climate_categories as cc
 
@@ -711,6 +711,12 @@ def main():
             ]
         ],
     }
+
+    # LaTeX titles, needed wherever a title contains a chemical formula
+    for category in categories.values():
+        latex = latex_title(category["title"])
+        if latex is not None:
+            category["latex_title"] = latex
 
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())

@@ -538,6 +538,7 @@ spec = {
         "1.C.1": {
             "title": "Transport of CO2",
             "comment": "This comprises fugitive emissions from the systems used to transport captured CO2 from the source to the injection site. These emissions may comprise losses due to fugitive equipment leaks, venting and releases due to pipeline ruptures or other accidental releases (e.g., temporary storage).",
+            "latex_title": "Transport of CO$_2$",
             "alternative_codes": ["1C1"],
             "info": {"gases": ["CO2"]},
             "children": [["1.C.1.a", "1.C.1.b", "1.C.1.c"]],
@@ -1218,6 +1219,7 @@ spec = {
         },
         "2.G.2": {
             "title": "SF6 and PFCs from Other Product Uses",
+            "latex_title": "SF$_6$ and PFCs from Other Product Uses",
             "alternative_codes": ["2G2"],
             "info": {
                 "gases": ["SF6", "PFCs", "other halogenated gases"],
@@ -1245,6 +1247,7 @@ spec = {
         },
         "2.G.3": {
             "title": "N2O from Product Uses",
+            "latex_title": "N$_2$O from Product Uses",
             "alternative_codes": ["2G3"],
             "info": {"gases": ["N2O"], "corresponding_categories_IPCC1996": ["3D"]},
             "children": [["2.G.3.a", "2.G.3.b"]],
@@ -1759,16 +1762,19 @@ spec = {
         },
         "M.Info.CCS": {
             "title": "CO2 Transport and Storage - information Items",
+            "latex_title": "CO$_2$ Transport and Storage - information Items",
             "alternative_codes": ["M Info CCS", "MInfoCCS"],
             "children": [["M.Info.CCS.A", "M.Info.CCS.B"]],
         },
         "M.Info.CCS.A": {
             "title": "CO2 Transport and Storage - information Items - Total A",
+            "latex_title": "CO$_2$ Transport and Storage - information Items - Total A",
             "alternative_codes": ["M Info CCS A", "MInfoCCSA"],
             "children": [["M.Info.CCS.A.TACS", "M.Info.CCS.A.TAIS"]],
         },
         "M.Info.CCS.B": {
             "title": "CO2 Transport and Storage - information Items - Total B",
+            "latex_title": "CO$_2$ Transport and Storage - information Items - Total B",
             "alternative_codes": ["M Info CCS B", "MInfoCCSB"],
             "children": [
                 ["M.Info.CCS.B.TAES", "M.Info.CCS.B.TAI", "M.Info.CCS.B.TLTIS"]
@@ -1787,7 +1793,8 @@ spec = {
             "alternative_codes": ["M Info CCS B TAES", "MInfoCCSBTAES"],
         },
         "M.Info.CCS.B.TAI": {
-            "title": "Tota Amount of CO2 Injected at Storage Sites",
+            "title": "Total Amount of CO2 Injected at Storage Sites",
+            "latex_title": "Total Amount of CO$_2$ Injected at Storage Sites",
             "alternative_codes": ["M Info CCS B TAI", "MInfoCCSBTAI"],
         },
         "M.Info.CCS.B.TLTIS": {
@@ -1830,10 +1837,12 @@ spec = {
         },
         "M.Memo.Bio": {
             "title": "CO2 Emissions from Biomass",
+            "latex_title": "CO$_2$ Emissions from Biomass",
             "alternative_codes": ["M Memo Bio", "MMemoBio"],
         },
         "M.Memo.CO2Cap": {
             "title": "CO2 captured",
+            "latex_title": "CO$_2$ captured",
             "alternative_codes": ["M Memo CO2Cap", "MMemoCO2Cap"],
             "children": [["M.Memo.CO2Cap.Dom", "M.Memo.CO2Cap.Exp"]],
         },
@@ -1926,6 +1935,7 @@ spec = {
         },
         "2.B.9.b.ii": {
             "title": "Production of SF6",
+            "latex_title": "Production of SF$_6$",
             "alternative_codes": ["2 B 9 b ii", "2B9bii"],
         },
         "2.B.9.b.iii": {
@@ -2244,6 +2254,7 @@ spec = {
         "3.B.4.h.v": {"title": "Other", "alternative_codes": ["3 B 4 h v", "3B4hv"]},
         "3.B.5": {
             "title": "Indirect N2O emissions",
+            "latex_title": "Indirect N$_2$O emissions",
             "alternative_codes": ["3 B 5", "3B5"],
         },
         "3.C": {
@@ -2297,6 +2308,7 @@ spec = {
         },
         "3.D.a": {
             "title": "Direct N2O emissions from managed soils",
+            "latex_title": "Direct N$_2$O emissions from managed soils",
             "alternative_codes": ["3 D a", "3Da"],
             "children": [
                 [
@@ -2347,6 +2359,7 @@ spec = {
         "3.D.a.7": {"title": "Other", "alternative_codes": ["3 D a 7", "3Da7"]},
         "3.D.b": {
             "title": "Indirect N2O Emissions from Managed Soils",
+            "latex_title": "Indirect N$_2$O Emissions from Managed Soils",
             "alternative_codes": ["3 D b", "3Db"],
             "children": [["3.D.b.1", "3.D.b.2"]],
         },
@@ -2855,7 +2868,8 @@ spec = {
             "alternative_codes": ["4A-F F 2 5", "4A-FF25"],
         },
         "4(I)": {
-            "title": "LULUCF - Direct N2O from nitrogen inputs to managed soils (Table 4(I)",
+            "title": "LULUCF - Direct N2O from nitrogen inputs to managed soils (Table 4(I))",
+            "latex_title": "LULUCF - Direct N$_2$O from nitrogen inputs to managed soils (Table 4(I))",
             "children": [["4(I).A", "4(I).D", "4(I).E", "4(I).H"]],
         },
         "4(I).A": {
@@ -3219,7 +3233,8 @@ spec = {
             "alternative_codes": ["4(II) H 2 b", "4(II)H2b"],
         },
         "4(III)": {
-            "title": "LULUCF - Direct N2O Eemissions from Nitrogen (N) Mineralization/Immobilization Associated with Loss/Gain of Soil Organic Matter Resulting from Change of Land Use or Management of Mineral Soils (Table 4(III))",
+            "title": "LULUCF - Direct N2O Emissions from Nitrogen (N) Mineralization/Immobilization Associated with Loss/Gain of Soil Organic Matter Resulting from Change of Land Use or Management of Mineral Soils (Table 4(III))",
+            "latex_title": "LULUCF - Direct N$_2$O Emissions from Nitrogen (N) Mineralization/Immobilization Associated with Loss/Gain of Soil Organic Matter Resulting from Change of Land Use or Management of Mineral Soils (Table 4(III))",
             "children": [
                 ["4(III).A", "4(III).B", "4(III).C", "4(III).D", "4(III).E", "4(III).F"]
             ],
@@ -3533,6 +3548,7 @@ spec = {
         },
         "M.4.I": {
             "title": "Indirect N2O Emissions From Managed Soils",
+            "latex_title": "Indirect N$_2$O Emissions From Managed Soils",
             "alternative_codes": ["M 4 I", "M4I"],
             "children": [["M.4.1.a", "M.4.1.b"]],
         },
@@ -4218,10 +4234,12 @@ spec = {
         },
         "M.Memo.IndN2O": {
             "title": "Indirect N2O",
+            "latex_title": "Indirect N$_2$O",
             "alternative_codes": ["M Memo IndN2O", "MMemoIndN2O"],
         },
         "M.Memo.IndCO2": {
             "title": "Indirect CO2",
+            "latex_title": "Indirect CO$_2$",
             "alternative_codes": ["M Memo IndCO2", "MMemoIndCO2"],
         },
         "1.A.1.a.iv.1": {
@@ -4270,6 +4288,7 @@ spec = {
         },
         "1.A.2.g.viii.5": {
             "title": "Non-CO2 emissions from BFG combustion",
+            "latex_title": "Non-CO$_2$ emissions from BFG combustion",
             "alternative_codes": ["1 A 2 g viii 5", "1A2gviii5"],
         },
         "1.A.2.g.viii.6": {
@@ -4443,6 +4462,7 @@ spec = {
         },
         "1.B.1.c.iii": {
             "title": "SO2 scrubbing",
+            "latex_title": "SO$_2$ scrubbing",
             "alternative_codes": ["1 B 1 c iii", "1B1ciii"],
         },
         "1.B.1.c.iv": {
@@ -4452,6 +4472,7 @@ spec = {
         "1.B.1.c.v": {"title": "Other", "alternative_codes": ["1 B 1 c v", "1B1cv"]},
         "1.B.2.d.i": {
             "title": "Groundwater Extraction and CO2 Mining",
+            "latex_title": "Groundwater Extraction and CO$_2$ Mining",
             "alternative_codes": ["1 B 2 d i", "1B2di"],
         },
         "1.B.2.d.ii": {
@@ -4485,6 +4506,7 @@ spec = {
         },
         "1.B.2.d.x": {
             "title": "Natural Gas Exploration - N2O Emissions",
+            "latex_title": "Natural Gas Exploration - N$_2$O Emissions",
             "alternative_codes": ["1 B 2 d x", "1B2dx"],
         },
         "1.B.2.d.xi": {
@@ -4753,6 +4775,7 @@ spec = {
         },
         "3.J.1": {
             "title": "NOx from Manure Management",
+            "latex_title": "NO$_\\text{x}$ from Manure Management",
             "alternative_codes": ["3 J 1", "3J1"],
         },
         "3.J.2": {"title": "Other", "alternative_codes": ["3 J 2", "3J2"]},
@@ -4780,7 +4803,11 @@ spec = {
             "title": "Digestate renewable raw material (storage of dry matter)",
             "alternative_codes": ["3 J 8", "3J8"],
         },
-        "3.J.9": {"title": "NOx from Livestock", "alternative_codes": ["3 J 9", "3J9"]},
+        "3.J.9": {
+            "title": "NOx from Livestock",
+            "latex_title": "NO$_\\text{x}$ from Livestock",
+            "alternative_codes": ["3 J 9", "3J9"],
+        },
         "3.C.1.b.i": {
             "title": "Intermittently flooded Single aeration",
             "alternative_codes": ["3 C 1 b i", "3C1bi"],
@@ -4844,10 +4871,12 @@ spec = {
         },
         "4.H.6": {
             "title": "N2O Emissions from Aquaculture Use",
+            "latex_title": "N$_2$O Emissions from Aquaculture Use",
             "alternative_codes": ["4 H 6", "4H6"],
         },
         "4.H.7": {
             "title": "CH4 from artificial water bodies",
+            "latex_title": "CH$_4$ from artificial water bodies",
             "alternative_codes": ["4 H 7", "4H7"],
         },
         "4.H.8": {"title": "Luxembourg", "alternative_codes": ["4 H 8", "4H8"]},

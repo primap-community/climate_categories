@@ -1321,6 +1321,7 @@ categories:
       an oxidation process should be included here. Methane used for energy
       production should be included in Volume 2, Energy, Chapter 2 ‘Stationary
       Combustion’.
+    latex_title: Flaring of Drained Methane or Conversion of Methane to CO$_2$
     alternative_codes:
     - 1B1ai4
     info:
@@ -1783,6 +1784,7 @@ categories:
       emissions may comprise losses due to fugitive equipment leaks, venting and
       releases due to pipeline ruptures or other accidental releases (e.g.,
       temporary storage).
+    latex_title: Transport of CO$_2$
     alternative_codes:
     - 1C1
     info:
@@ -3056,6 +3058,7 @@ categories:
       - 2F6
   2.G.2:
     title: SF6 and PFCs from Other Product Uses
+    latex_title: SF$_6$ and PFCs from Other Product Uses
     alternative_codes:
     - 2G2
     info:
@@ -3115,6 +3118,7 @@ categories:
       - 2F6
   2.G.3:
     title: N2O from Product Uses
+    latex_title: N$_2$O from Product Uses
     alternative_codes:
     - 2G3
     info:
@@ -4393,6 +4397,7 @@ categories:
     title: Aggregate Sources and Non-CO2 Emissions Sources on Land
     comment: Includes emissions from activities that are likely to be reported
       at very high aggregation land level or even country level.
+    latex_title: Aggregate Sources and Non-CO$_2$ Emissions Sources on Land
     alternative_codes:
     - 3C
     children:
@@ -4497,6 +4502,7 @@ categories:
       with loss/gain of soil organic matter resulting from change of land use or
       management of mineral soils; and drainage/management of organic soils
       (i.e., histosols).
+    latex_title: Direct N$_2$O Emissions from Managed Soils
     alternative_codes:
     - 3C4
     info:
@@ -4520,6 +4526,7 @@ categories:
       of soil C in mineral soils through land use change or management practices,
       and urine and dung deposition from grazing animals, into groundwater, riparian
       areas and wetlands, rivers and eventually the coastal ocean.'
+    latex_title: Indirect N$_2$O Emissions from Managed Soils
     alternative_codes:
     - 3C5
     info:
@@ -4531,6 +4538,7 @@ categories:
     title: Indirect N2O Emissions from Manure Management
     comment: Indirect N2O emissions from manure management (activity data amount
       of nitrogen in the manure excreted).
+    latex_title: Indirect N$_2$O Emissions from Manure Management
     alternative_codes:
     - 3C6
     info:
@@ -4815,6 +4823,8 @@ categories:
       NOx and NH3
     comment: Excluding indirect emissions from NOx and NH3 in agriculture which
       are reported in 3C5 & 3C6.
+    latex_title: Indirect N$_2$O Emissions from The Atmospheric Deposition of
+      Nitrogen In NO$_\text{x}$ and NH$_3$
     alternative_codes:
     - 5A
     info:
@@ -4865,6 +4875,7 @@ categories:
   M.BIO:
     title: CO₂ emissions from biomass burning
     comment: CO₂ emissions from biomass burning for energy use
+    latex_title: CO$_2$ emissions from biomass burning
   M.BK:
     title: International Bunkers
     comment: M category as not included in national total in CRF data
