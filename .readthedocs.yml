@@ -7,8 +7,7 @@ build:
 
 formats: all
 
-# Read the Docs supports uv natively here, so we do not need to override
-# build.jobs. This installs the project plus the docs dependency group.
+
 python:
   install:
     - method: uv

@@ -5,7 +5,7 @@ repos:
     rev: 'v6.0.0'
     hooks:
       - id: check-added-large-files
-        # uv.lock is legitimately large; keep the guard tight for everything else
+        # uv.lock is legitimately large
         exclude: '^uv\.lock$'
       - id: check-ast
       - id: check-case-conflict

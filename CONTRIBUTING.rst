@@ -147,14 +147,9 @@ released in the last 42 months. The supported range is declared once, as
 ``.github/workflows/ci.yml`` and the ``tox.ini`` envlist have to be kept in step
 with it by hand.
 
-Upcoming changes on that schedule:
-
-* **2026-10**: Python 3.15 is released, so raise the upper bound and add it everywhere.
-* **2027-04-02**: Python 3.12 can be dropped.
-
 The ``lowest-direct`` half of the CI matrix installs every dependency at the lower
-bound declared in ``pyproject.toml``, so those bounds are tested rather than
-aspirational. If you raise a lower bound, say why in the commit message.
+bound declared in ``pyproject.toml``, so those bounds are tested. If you raise a
+lower bound, say why in the commit message.
 
 .. _NEP 29: https://numpy.org/neps/nep-0029-deprecation_policy.html
 

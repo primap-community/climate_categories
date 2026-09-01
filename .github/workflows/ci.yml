@@ -29,16 +29,12 @@ jobs:
       - name: Create venv
         run: uv venv --seed --python ${{ matrix.python-version }}
 
-      # Deliberately resolved unlocked rather than from uv.lock: the
-      # lowest-direct half of the matrix is what proves the lower bounds
-      # declared in pyproject.toml actually work.
+      # Deliberately resolve newly instead of from uv.lock - we test
+      # different resolution strategies.
       - name: Install ${{ matrix.resolution }} dependencies
         run: uv pip install --resolution ${{ matrix.resolution }} .[test]
 
-      # Runs against the ./.venv built above without shell-specific
-      # activation, so Linux and Windows share one step. `--python .venv` is
-      # required: without it uv honours .python-version (3.14), rejects the
-      # matrix venv and silently runs against a different interpreter.
+      # Runs against the ./.venv built above.
       - name: Test with pytest
         run: >
           uv run --no-project --python .venv

@@ -32,8 +32,7 @@ dependencies = [
     "natsort>=8",
     "ruamel.yaml>=0.17.2",
     # 3.2.3 is the first release without `return` in a `finally` block, which
-    # Python 3.14 flags as a SyntaxWarning (PEP 765). Anything older cannot be
-    # imported under warnings-as-errors on a cold bytecode cache.
+    # Python 3.14 flags as a SyntaxWarning (PEP 765).
     "pyparsing>=3.2.3",
     "black>=22.1",
 ]
@@ -44,8 +43,7 @@ Documentation = "https://climate-categories.readthedocs.io/"
 Changelog = "https://github.com/primap-community/climate_categories/blob/main/CHANGELOG.rst"
 
 # Kept as an extra rather than a dependency group so that CI can install it with
-# `uv pip install --resolution lowest-direct .[test]`, which is what proves the
-# declared lower bounds in [project.dependencies] actually work.
+# `uv pip install --resolution lowest-direct .[test]`.
 [project.optional-dependencies]
 test = [
     "pytest>=8.3.3",
@@ -86,8 +84,6 @@ data-generation = [
 [tool.uv.build-backend]
 module-root = ""
 module-name = "climate_categories"
-# setuptools_scm used to sweep every git-tracked file into the sdist; list what we
-# actually want to keep shipping explicitly.
 source-include = [
     "CHANGELOG.rst",
     "CONTRIBUTING.rst",
@@ -102,12 +98,10 @@ source-exclude = [
 ]
 
 [tool.pytest.ini_options]
-# Centralised here so the Makefile, tox and CI do not each repeat the flags.
 addopts = "--xdoc"
-# Deprecations in our dependencies must fail the suite rather than pile up
-# unnoticed until an upstream removal breaks us. If something genuinely cannot
-# be fixed on our side, add a narrow
-# `ignore:<message>:<Category>:<module>` entry rather than weakening this.
+# Deprecations in our dependencies should fail the test suite so we notice.
+# If something genuinely cannot be fixed on our side, add a narrow
+# `ignore:<message>:<Category>:<module>` entry.
 filterwarnings = ["error"]
 
 [tool.ruff]
