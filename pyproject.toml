@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "climate_categories"
-version = "0.11.2"
+version = "0.12.0"
 description = "Commonly used codes, categories, terminologies, and nomenclatures used in climate policy analysis as a Python package."
 readme = "README.rst"
 license = "Apache-2.0"

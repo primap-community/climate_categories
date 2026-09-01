@@ -2,6 +2,14 @@
 Changelog
 =========
 
+0.12.0 (2026-09-01)
+-------------------
+* Sped up regenerating the cached Python specs by converting the YAML files in
+  parallel, roughly halving the time the release and CI spend on it.
+* The data generation scripts now write the cached Python file alongside the YAML file,
+  so the two cannot get out of step after regenerating a categorization.
+* Added ``latex_title`` attributes to ``Category`` objects. It contains a nicely-formatted LaTeX title for the category and falls back to the standard title if no LaTeX title is available.
+
 0.11.2 (2026-09-01)
 -------------------
 * Removed the unused ``numpy`` dependency. ``climate_categories`` never imports numpy,
