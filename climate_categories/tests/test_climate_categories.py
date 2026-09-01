@@ -723,20 +723,22 @@ class TestIO:
         assert HierCat == HierCat_r
 
     def test_broken(self):
-        with pytest.raises(
-            strictyaml.YAMLValidationError,
-            match="unexpected key not in schema 'reefrences'",
+        with (
+            pytest.raises(
+                strictyaml.YAMLValidationError,
+                match="unexpected key not in schema 'reefrences'",
+            ),
+            importlib.resources.files("climate_categories.tests.data")
+            .joinpath("broken_hierarchical_categorization.yaml")
+            .open() as fd,
         ):
-            climate_categories.HierarchicalCategorization.from_yaml(
-                importlib.resources.files("climate_categories.tests.data")
-                .joinpath("broken_hierarchical_categorization.yaml")
-                .open()
-            )
+            climate_categories.HierarchicalCategorization.from_yaml(fd)
 
     def test_broken_hierarchical(self):
-        with pytest.raises(ValueError, match="'hierarchical' must be "):
-            climate_categories.from_yaml(
-                importlib.resources.files("climate_categories.tests.data")
-                .joinpath("broken_simple_categorization.yaml")
-                .open()
-            )
+        with (
+            pytest.raises(ValueError, match="'hierarchical' must be "),
+            importlib.resources.files("climate_categories.tests.data")
+            .joinpath("broken_simple_categorization.yaml")
+            .open() as fd,
+        ):
+            climate_categories.from_yaml(fd)

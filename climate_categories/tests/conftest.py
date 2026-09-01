@@ -9,11 +9,12 @@ import climate_categories.tests.data
 
 
 def read_cat(fragment):
-    return climate_categories.from_yaml(
+    with (
         importlib.resources.files("climate_categories.tests.data")
         .joinpath(f"{fragment}_categorization.yaml")
-        .open("r")
-    )
+        .open("r") as fd
+    ):
+        return climate_categories.from_yaml(fd)
 
 
 @pytest.fixture

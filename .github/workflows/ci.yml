@@ -10,43 +10,39 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.12", "3.13", "3.14"]
         resolution: ["highest", "lowest-direct"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up uv and caching
-        uses: astral-sh/setup-uv@v2
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
           cache-suffix: "${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.resolution }}"
-          cache-dependency-glob: "setup.cfg"
-          version: "0.8.14"
+          cache-dependency-glob: "pyproject.toml"
+          version: "0.12.7"
 
       - name: Create venv
-        run: |
-          uv venv --seed --python ${{ matrix.python-version }}
+        run: uv venv --seed --python ${{ matrix.python-version }}
 
+      # Deliberately resolve newly instead of from uv.lock - we test
+      # different resolution strategies.
       - name: Install ${{ matrix.resolution }} dependencies
-        run: |
-          uv pip install --resolution ${{ matrix.resolution }} .[test]
+        run: uv pip install --resolution ${{ matrix.resolution }} .[test]
 
-      - name: Test with pytest (linux)
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          source .venv/bin/activate
-          pytest --xdoc --cov=climate_categories --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
-
-      - name: Test with pytest (windows)
-        if: startsWith(matrix.os, 'windows')
-        run: |
-          .venv\Scripts\activate
-          pytest --xdoc --cov=climate_categories --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
+      # Runs against the ./.venv built above.
+      - name: Test with pytest
+        run: >
+          uv run --no-project --python .venv
+          pytest --cov=climate_categories --cov-report=xml
+          --junitxml=junit.xml -o junit_family=legacy
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v6
         with:
           files: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}

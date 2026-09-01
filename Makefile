@@ -15,66 +15,53 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-lint: venv ## check style with pre-commit hooks
-	venv/bin/pre-commit run --all-files
+lint: ## check style with pre-commit hooks
+	uv run pre-commit run --all-files
 
-test: venv ## run tests quickly with the default Python
-	venv/bin/pytest --xdoc -rx
+test: ## run tests quickly with the default Python
+	uv run pytest -rx
 
-test-all: venv ## run tests on every Python version with tox
-	venv/bin/tox -p
+test-all: ## run tests on every Python version with tox
+	uv run tox -p
 
-coverage: venv ## check code coverage quickly with the default Python
-	venv/bin/coverage run --source climate_categories -m pytest --xdoc -rx
-	venv/bin/coverage report -m
-	venv/bin/coverage html
+coverage: ## check code coverage quickly with the default Python
+	uv run coverage run --source climate_categories -m pytest -rx
+	uv run coverage report -m
+	uv run coverage html
 	ls htmlcov/index.html
 
 clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -fr {} +
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
 
-clean-docs: venv ## Remove generated parts of documentation, then build docs
-	. venv/bin/activate ; $(MAKE) -C docs clean
-	. venv/bin/activate ; $(MAKE) -C docs html
+clean-docs: ## Remove generated parts of documentation, then build docs
+	uv run --group docs $(MAKE) -C docs clean
+	uv run --group docs $(MAKE) -C docs html
 
-docs: venv ## generate Sphinx HTML documentation, including API docs
-	. venv/bin/activate ; $(MAKE) -C docs html
+docs: ## generate Sphinx HTML documentation, including API docs
+	uv run --group docs $(MAKE) -C docs html
 
-release: venv dist ## package and upload a release
-	venv/bin/twine upload --repository climate-categories dist/*
+release: dist ## package and upload a release
+	uv run twine upload --repository climate-categories dist/*
 
-dist: clean-build venv ## builds source and wheel package
-	# because we update the citation info after releasing on github and zenodo but
-	# before building for pypi, we need to force the correct version.
-	SETUPTOOLS_SCM_PRETEND_VERSION=0.11.1 venv/bin/python -m build
+dist: clean-build ## builds source and wheel package
+	uv build
 
-install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+install: ## install the package into the active virtual environment
+	uv pip install .
 
-virtual-environment: venv ## setup a virtual environment for development
-
-venv: setup.py pyproject.toml setup.cfg
-	[ -d venv ] || python3 -m venv --system-site-packages venv
-	venv/bin/python -m pip install --upgrade wheel uv
-	. venv/bin/activate ; venv/bin/uv pip install --upgrade -e .[dev]
-	touch venv
+virtual-environment: ## setup a virtual environment for development
+	uv sync --all-groups --extra test
 
 update-venv: ## update all packages in the development environment
-	[ -d venv ] || python3 -m venv venv
-	venv/bin/python -m pip install --upgrade wheel uv
-	. venv/bin/activate ; venv/bin/uv pip  install --upgrade --resolution highest -e .[dev]
-	touch venv
+	uv sync --upgrade --all-groups --extra test
 
-install-pre-commit: update-venv ## install the pre-commit hooks
-	venv/bin/pre-commit install
+install-pre-commit: virtual-environment ## install the pre-commit hooks
+	uv run pre-commit install
 
 cache: climate_categories/data/RCMIP.py
 cache: climate_categories/data/GCB.py
@@ -113,11 +100,11 @@ data: climate_categories/data/RCMIP.yaml  ## Generate data files
 
 
 climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
-	venv/bin/python $<
+	uv run --group data-generation python $<
 
 climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
-	venv/bin/python data_generation/convert_yaml_to_python.py $< $@
+	uv run --group data-generation python data_generation/convert_yaml_to_python.py $< $@
 
 .PHONY: README.rst
 README.rst:  ## Update the citation information from zenodo
-	venv/bin/python update_citation_info.py
+	uv run python update_citation_info.py

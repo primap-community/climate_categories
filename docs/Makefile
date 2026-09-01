@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = ../venv/bin/python -msphinx
+SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = climate_categories
 SOURCEDIR     = .
 BUILDDIR      = _build

@@ -121,7 +121,7 @@ class ConversionRuleSpec:
     _factor_operators = {1: "+", -1: "-"}  # noqa: RUF012
     # alphanumeric category codes can be given directly, others have to be quoted
     _category_code = pyparsing.Word(pyparsing.alphanums + ".") ^ pyparsing.QuotedString(
-        quoteChar='"', escChar="\\"
+        quote_char='"', esc_char="\\"
     )
     _formula = (
         pyparsing.StringStart()
@@ -165,7 +165,7 @@ class ConversionRuleSpec:
         ValueError: Could not parse: 'A + B', error: Expected ...
         """
         try:
-            tokens = cls._auxiliary_codes.parseString(aux_codes_str)
+            tokens = cls._auxiliary_codes.parse_string(aux_codes_str)
         except pyparsing.ParseException as exc:
             raise ValueError(
                 f"Could not parse: {aux_codes_str!r}, error: {exc.msg},"
@@ -213,7 +213,7 @@ class ConversionRuleSpec:
         ValueError: Could not parse: '', error: Expected ...
         """
         try:
-            tokens = cls._formula.parseString(formula)
+            tokens = cls._formula.parse_string(formula)
         except pyparsing.ParseException as exc:
             raise ValueError(
                 f"Could not parse: {formula!r}, error: {exc.msg},"

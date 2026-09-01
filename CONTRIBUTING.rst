@@ -99,12 +99,22 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
 
     $ git clone git@github.com:your_name_here/climate_categories.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper
-   installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtual environment. We use `uv`_ for dependency,
+   environment and package management, so all you need installed is uv itself::
 
     $ cd climate_categories/
     $ make virtual-environment
     $ make install-pre-commit
+
+   This creates ``.venv/`` from the committed ``uv.lock``. You never have to
+   activate it: every ``make`` target runs its tools via ``uv run``, and you can do
+   the same for one-off commands, e.g. ``uv run python``.
+
+   Optional dependency groups are available for tasks that need them:
+   ``--group docs`` for building the documentation and ``--group data-generation``
+   for regenerating the categorizations.
+
+.. _uv: https://docs.astral.sh/uv/
 
 4. Create a branch for local development::
 
@@ -127,6 +137,21 @@ Ready to contribute? Here's how to set up `climate_categories` for local develop
     $ git push origin name-of-your-bugfix-or-feature
 
 7. Submit a pull request through the GitHub website.
+
+Supported Python versions
+-------------------------
+
+We follow `NEP 29`_ for deciding which Python versions to support: everything
+released in the last 42 months. The supported range is declared once, as
+``requires-python`` in ``pyproject.toml``; the classifiers, the CI matrix in
+``.github/workflows/ci.yml`` and the ``tox.ini`` envlist have to be kept in step
+with it by hand.
+
+The ``lowest-direct`` half of the CI matrix installs every dependency at the lower
+bound declared in ``pyproject.toml``, so those bounds are tested. If you raise a
+lower bound, say why in the commit message.
+
+.. _NEP 29: https://numpy.org/neps/nep-0029-deprecation_policy.html
 
 Pull Request Guidelines
 -----------------------
@@ -153,7 +178,7 @@ A reminder for the maintainers on how to deploy.
 -  make sure `gh`_ is installed on your system
 -  Decide what the new version number should be
 -  For version X.Y.Z - increase X for a major release, increase Y when breaking changes are introduced, increase Z for minor changes
--  Run ``venv/bin/tbump X.Y.Z``
+-  Run ``uv run tbump X.Y.Z``
 
 .. _gh: https://cli.github.com/
 

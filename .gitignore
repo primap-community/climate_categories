@@ -1,5 +1,4 @@
 .changelog_latest_version.rst
-climate_categories/_version.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -76,8 +75,7 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pyenv
-.python-version
+
 
 # celery beat schedule file
 celerybeat-schedule
