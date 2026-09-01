@@ -18,7 +18,7 @@ with (
     headline = f"{version} ({datetime.date.today().isoformat()})"
     new_version = f"{headline}\n" + "-" * len(headline) + "\n"
     ch_dir = pathlib.Path("changelog_unreleased")
-    for changelog_file in ch_dir.iterdir():
+    for changelog_file in sorted(ch_dir.glob("*.rst")):
         new_version += changelog_file.read_text()
         changelog_file.unlink()
 

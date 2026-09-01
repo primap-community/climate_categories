@@ -57,10 +57,8 @@ dev = [
     "coverage",
     "pre-commit",
     "ruff>=0.16.0",
-    "tbump",
     "tox",
     "tox-uv>=1.11.3",
-    "twine",
 ]
 docs = [
     "ipykernel",

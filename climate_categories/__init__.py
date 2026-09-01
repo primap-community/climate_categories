@@ -5,9 +5,9 @@ names of categorizations. To access the example categorization `Excat`, simply u
 
 __author__ = """Mika Pflüger"""
 __email__ = "mika.pflueger@climate-resource.com"
-__version__ = "0.11.1"
 
 import importlib
+import importlib.metadata
 import importlib.resources
 
 from . import (
@@ -24,6 +24,8 @@ from ._categories import (
     from_yaml,
 )
 from ._conversions import Conversion, ConversionRule
+
+__version__ = importlib.metadata.version("climate_categories")
 
 cats = {}
 
