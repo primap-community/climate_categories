@@ -357,6 +357,12 @@ def main():
 
     categories["5.D"]["title"] = "CO2 Emissions and Removals From Soil"
 
+    # LaTeX titles
+    categories["2.C.4"]["latex_title"] = (
+        "SF$_6$ used in Aluminium and Magnesium Foundries"
+    )
+    categories["5.D"]["latex_title"] = "CO$_2$ Emissions and Removals From Soil"
+
     IPCC1996 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
     IPCC1996.to_yaml(OUTPATH)

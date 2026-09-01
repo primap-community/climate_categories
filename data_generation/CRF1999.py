@@ -4,6 +4,7 @@ directory."""
 import pathlib
 
 import climate_categories
+from utils import latex_title
 
 OUTPATH = pathlib.Path("./climate_categories/data/CRF1999.yaml")
 
@@ -463,6 +464,13 @@ def main():
             ]
 
     cats.update(ncats)
+
+    # LaTeX titles, needed wherever a title contains a chemical formula. The titles
+    # inherited from IPCC1996 already have one, deriving it again gives the same result.
+    for cat in cats.values():
+        latex = latex_title(cat["title"])
+        if latex is not None:
+            cat["latex_title"] = latex
 
     CRF1999 = climate_categories.HierarchicalCategorization.from_spec(spec)
 

@@ -4,6 +4,7 @@ directory."""
 import pathlib
 
 import climate_categories as cc
+from utils import latex_title
 
 OUTPATH = pathlib.Path("./climate_categories/data/FAO.yaml")
 
@@ -709,6 +710,12 @@ def main():
             ]
         ],
     }
+
+    # LaTeX titles, needed wherever a title contains a chemical formula
+    for category in categories.values():
+        latex = latex_title(category["title"])
+        if latex is not None:
+            category["latex_title"] = latex
 
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())

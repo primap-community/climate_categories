@@ -40,6 +40,7 @@ def main():
         "M.BIO": {
             "title": "CO₂ emissions from biomass burning",
             "comment": "CO₂ emissions from biomass burning for energy use",
+            "latex_title": "CO$_2$ emissions from biomass burning",
         },
         "M.BK": {
             "title": "International Bunkers",

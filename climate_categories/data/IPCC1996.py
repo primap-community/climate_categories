@@ -483,6 +483,7 @@ spec = {
         },
         "2.C.4": {
             "title": "SF6 used in Aluminium and Magnesium Foundries",
+            "latex_title": "SF$_6$ used in Aluminium and Magnesium Foundries",
             "alternative_codes": ["2C4", "2 C 4"],
         },
         "2.C.5": {
@@ -932,6 +933,7 @@ spec = {
         "5.D": {
             "title": "CO2 Emissions and Removals From Soil",
             "comment": "Emissions and removals of CO2 in soil associated with land-use change and management. Includes CO2 emissions from liming of agricultural soil.",
+            "latex_title": "CO$_2$ Emissions and Removals From Soil",
             "alternative_codes": ["5D", "5 D"],
         },
         "5.E": {

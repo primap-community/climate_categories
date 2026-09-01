@@ -638,6 +638,7 @@ spec = {
         "1.B.1.a.i.4": {
             "title": "Flaring of Drained Methane or Conversion of Methane to CO2",
             "comment": "Methane drained and flared, or ventilation gas converted to CO2 by an oxidation process should be included here. Methane used for energy production should be included in Volume 2, Energy, Chapter 2 ‘Stationary Combustion’.",
+            "latex_title": "Flaring of Drained Methane or Conversion of Methane to CO$_2$",
             "alternative_codes": ["1B1ai4"],
             "info": {
                 "gases": ["CO2", "CH4"],
@@ -885,6 +886,7 @@ spec = {
         "1.C.1": {
             "title": "Transport of CO2",
             "comment": "This comprises fugitive emissions from the systems used to transport captured CO2 from the source to the injection site. These emissions may comprise losses due to fugitive equipment leaks, venting and releases due to pipeline ruptures or other accidental releases (e.g., temporary storage).",
+            "latex_title": "Transport of CO$_2$",
             "alternative_codes": ["1C1"],
             "info": {"gases": ["CO2"]},
             "children": [["1.C.1.a", "1.C.1.b", "1.C.1.c"]],
@@ -1614,6 +1616,7 @@ spec = {
         },
         "2.G.2": {
             "title": "SF6 and PFCs from Other Product Uses",
+            "latex_title": "SF$_6$ and PFCs from Other Product Uses",
             "alternative_codes": ["2G2"],
             "info": {
                 "gases": ["SF6", "PFCs", "other halogenated gases"],
@@ -1650,6 +1653,7 @@ spec = {
         },
         "2.G.3": {
             "title": "N2O from Product Uses",
+            "latex_title": "N$_2$O from Product Uses",
             "alternative_codes": ["2G3"],
             "info": {"gases": ["N2O"], "corresponding_categories_IPCC1996": ["3D"]},
             "children": [["2.G.3.a", "2.G.3.b", "2.G.3.c"]],
@@ -2338,6 +2342,7 @@ spec = {
         "3.C": {
             "title": "Aggregate Sources and Non-CO2 Emissions Sources on Land",
             "comment": "Includes emissions from activities that are likely to be reported at very high aggregation land level or even country level.",
+            "latex_title": "Aggregate Sources and Non-CO$_2$ Emissions Sources on Land",
             "alternative_codes": ["3C"],
             "children": [
                 ["3.C.1", "3.C.2", "3.C.3", "3.C.4", "3.C.5", "3.C.6", "3.C.7", "3.C.8"]
@@ -2389,18 +2394,21 @@ spec = {
         "3.C.4": {
             "title": "Direct N2O Emissions from Managed Soils",
             "comment": "Direct N2O emissions from managed soils from the synthetic N fertilizers application; organic N applied as fertilizer (e.g. animal manure, compost, sewage sludge, rendering waste); urine and dung N deposited on pasture, range and paddock by grazing animals; N in crop residues (above and below ground), including from N-fixing crops and from forages during pasture renewal; N mineralization/immobilization associated with loss/gain of soil organic matter resulting from change of land use or management of mineral soils; and drainage/management of organic soils (i.e., histosols).",
+            "latex_title": "Direct N$_2$O Emissions from Managed Soils",
             "alternative_codes": ["3C4"],
             "info": {"gases": ["N2O"], "corresponding_categories_IPCC1996": ["4D"]},
         },
         "3.C.5": {
             "title": "Indirect N2O Emissions from Managed Soils",
             "comment": "Indirect N2O emissions from: (1) the volatilization of N (as NH3 and NOx) following the application of synthetic and organic N fertilizers and /or urine and dung deposition from grazing animals, and the subsequent deposition of the N as ammonium (NH4+) and oxides of N (NOx) on soils and waters, and (2) the leaching and runoff of N from synthetic and organic N fertilizer additions, crop residues, mineralization /immobilization of N associated with loss/gain of soil C in mineral soils through land use change or management practices, and urine and dung deposition from grazing animals, into groundwater, riparian areas and wetlands, rivers and eventually the coastal ocean.",
+            "latex_title": "Indirect N$_2$O Emissions from Managed Soils",
             "alternative_codes": ["3C5"],
             "info": {"gases": ["N2O"], "corresponding_categories_IPCC1996": ["4D"]},
         },
         "3.C.6": {
             "title": "Indirect N2O Emissions from Manure Management",
             "comment": "Indirect N2O emissions from manure management (activity data amount of nitrogen in the manure excreted).",
+            "latex_title": "Indirect N$_2$O Emissions from Manure Management",
             "alternative_codes": ["3C6"],
             "info": {"gases": ["N2O"]},
         },
@@ -2546,6 +2554,7 @@ spec = {
         "5.A": {
             "title": "Indirect N2O Emissions from The Atmospheric Deposition of Nitrogen In NOx and NH3",
             "comment": "Excluding indirect emissions from NOx and NH3 in agriculture which are reported in 3C5 & 3C6.",
+            "latex_title": "Indirect N$_2$O Emissions from The Atmospheric Deposition of Nitrogen In NO$_\\text{x}$ and NH$_3$",
             "alternative_codes": ["5A"],
             "info": {"gases": ["N2O"]},
         },
