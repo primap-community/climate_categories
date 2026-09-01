@@ -6,7 +6,7 @@ import re
 import openscm_units
 import openscm_units.data
 import openscm_units.data.mixtures
-from utils import latex_title
+from utils import latex_title, write_categorization
 
 import climate_categories
 
@@ -78,7 +78,7 @@ def main():
     }
 
     gas = climate_categories.HierarchicalCategorization.from_spec(spec)
-    gas.to_yaml(OUTPATH)
+    write_categorization(gas, OUTPATH)
 
 
 def openscm_mixtures():

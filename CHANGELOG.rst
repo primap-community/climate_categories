@@ -2,6 +2,25 @@
 Changelog
 =========
 
+0.11.2 (2026-09-01)
+-------------------
+* Removed the unused ``numpy`` dependency. ``climate_categories`` never imports numpy,
+  specific versioning is not needed anymore.
+* Moved the release process into GitHub Actions. Maintainers now start a release from
+  the Actions tab and pick ``patch``, ``minor`` or ``major`` instead of running
+  ``tbump`` locally; publishing to PyPI uses trusted publishing and the citation
+  information in the README is updated automatically once zenodo has minted the DOI.
+* Regenerate all cached Python specs from the YAML files during the release, and check
+  in CI that the two are in sync, so the shipped caches cannot go stale.
+* Added the `categories` keyword to the `show_as_tree` function to limit the shown categories easily.
+* Added support for Python 3.14, dropped support for Python 3.11.
+* Raised the minimum ``pyparsing`` version to 3.2.3, the first release that does not use
+  ``return`` inside a ``finally`` block. Python 3.14 flags that as a ``SyntaxWarning``
+  (PEP 765), so older versions could not be imported cleanly on Python 3.14.
+* Fixed a file descriptor leak: ``Categorization.conversion_to`` never closed the
+  conversion CSV file it opened.
+* Replaced deprecated ``pyparsing`` camelCase API calls with their current equivalents.
+
 0.11.1 (2026-01-30)
 -------------------
 * Fixed limiting of categories without children.

@@ -1,0 +1,151 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_rule:
+        type: choice
+        description: Which part of the version number to increase
+        options:
+          - patch
+          - minor
+          - major
+        required: true
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  UV_VERSION: "0.12.7"
+
+jobs:
+  bump:
+    name: Regenerate caches, bump version and tag
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump.outputs.version }}
+      notes: ${{ steps.bump.outputs.notes }}
+    steps:
+      - name: Refuse to release from a branch other than main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::Releases can only be made from main, not from ${GITHUB_REF}."
+          exit 1
+
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check that there is something to release
+        run: |
+          if ! compgen -G "changelog_unreleased/*.rst" > /dev/null; then
+            echo "::error::changelog_unreleased/ is empty, nothing to release."
+            exit 1
+          fi
+
+      - name: Set up uv and caching
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+          version: ${{ env.UV_VERSION }}
+
+      - name: Install dependencies
+        run: uv sync --all-groups --extra test
+
+      # The *.py specs are what actually gets loaded, so regenerate them to make
+      # sure they are fresh.
+      - name: Regenerate the Python specs from the YAML files
+        run: make recache
+
+      - name: Test with pytest
+        run: uv run pytest -rx
+
+      - name: Bump version, build changelog, commit and tag
+        id: bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          OLD_VERSION=$(uv version --short)
+          uv version --bump "${{ inputs.bump_rule }}"
+          NEW_VERSION=$(uv version --short)
+          echo "Releasing $OLD_VERSION -> $NEW_VERSION"
+
+          uv lock
+          uv run python update_changelog.py "$NEW_VERSION"
+
+          # pre-commit exits non-zero when it fixed something, so give it a second
+          # pass and only fail if problems remain.
+          make lint || make lint
+
+          # add -A rather than commit -a, so that a spec for a newly added YAML
+          # file is picked up too.
+          git add -A
+          git commit -m "Release version $NEW_VERSION"
+          git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
+          git push origin main --follow-tags
+
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+
+          # .changelog_latest_version.rst is gitignored, so hand the release notes to
+          # the next job directly.
+          {
+            echo "notes<<END_OF_RELEASE_NOTES"
+            cat .changelog_latest_version.rst
+            echo "END_OF_RELEASE_NOTES"
+          } >> "$GITHUB_OUTPUT"
+
+  github-release:
+    name: Create the GitHub release
+    needs: bump
+    runs-on: ubuntu-latest
+    steps:
+      # This is what triggers zenodo to mint the DOI which the citation job waits for.
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ needs.bump.outputs.version }}
+          NOTES: ${{ needs.bump.outputs.notes }}
+        run: |
+          gh release create "v$VERSION" \
+            --title "climate_categories Version $VERSION" \
+            --notes "$NOTES"
+
+  pypi:
+    name: Publish to PyPI
+    needs: bump
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write  # for trusted publishing
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: v${{ needs.bump.outputs.version }}
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: ${{ env.UV_VERSION }}
+
+      - name: Build
+        run: uv build
+
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  citation:
+    name: Update the citation information
+    needs: [bump, github-release]
+    permissions:
+      contents: write
+    uses: ./.github/workflows/update-citation.yml
+    with:
+      version: ${{ needs.bump.outputs.version }}

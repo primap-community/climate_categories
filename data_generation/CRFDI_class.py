@@ -6,6 +6,7 @@ import pathlib
 import numpy as np
 import treelib
 import unfccc_di_api
+from utils import write_categorization
 
 import climate_categories
 
@@ -137,9 +138,7 @@ def main():
     )
     CRFDI_class.total_sum = False  # unfortunately, not generally true anymore
 
-    CRFDI_class.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(CRFDI_class, OUTPATH)
 
 
 if __name__ == "__main__":

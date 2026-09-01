@@ -2,6 +2,8 @@
 
 import pathlib
 
+from utils import write_categorization
+
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/CT.yaml")
@@ -151,9 +153,7 @@ def main():
 
     CT = climate_categories.HierarchicalCategorization.from_spec(spec.copy())
 
-    CT.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(CT, OUTPATH)
 
 
 if __name__ == "__main__":

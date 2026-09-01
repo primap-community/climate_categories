@@ -49,9 +49,17 @@ data generation scripts (see ``data_generation/IPCC2006.py`` for an example how 
 do that efficiently with caching).
 
 Because all Categorizations are read in when importing ``climate_categories`` and
-parsing StrictYaml files is not very efficient, the categories should be also stored
-as cached Python files using the ``to_python`` instance method.
-Run `make cache` to generate these from the YAML files.
+parsing StrictYaml files is not very efficient, the categories are also stored as
+cached Python files. Generation scripts write both at once by finishing with
+``utils.write_categorization(categorization, OUTPATH)``, which writes the YAML file,
+reads it back to validate it, and writes the Python file next to it. Use that instead
+of calling ``to_yaml`` yourself, so the two files cannot get out of step.
+
+For categorizations written by hand there is no generation script, so run
+``make recache`` to build the Python files from the YAML files. You also need it when
+the generated format itself changes, for example after a formatter update, because
+then every Python file has to be rebuilt without re-running the generation scripts.
+CI checks that the two are in sync.
 
 New conversions
 ~~~~~~~~~~~~~~~
@@ -166,54 +174,57 @@ Before you submit a pull request, check that it meets these guidelines:
 Deploying
 ---------
 
-.. highlight:: shell
+A reminder for the maintainers on how to deploy. Everything happens in GitHub
+Actions, so you need nothing installed locally and no credentials of your own.
 
-A reminder for the maintainers on how to deploy.
+1. Check that the `CI workflow`_ is green on ``main`` and that every change since the
+   last release has a changelog fragment in ``changelog_unreleased/``.
+2. Go to the `Release workflow`_, click *Run workflow*, leave the branch at ``main``
+   and pick how the version should be increased:
 
+   -  ``patch`` for bug fixes,
+   -  ``minor`` for new categorisations,
+   -  ``major`` for a major release and breaking changes.
 
-1. Run ``tbump``
-~~~~~~~~~~~~~~~~
+That's it. The workflow then
 
--  commit all your changes
--  make sure `gh`_ is installed on your system
--  Decide what the new version number should be
--  For version X.Y.Z - increase X for a major release, increase Y when breaking changes are introduced, increase Z for minor changes
--  Run ``uv run tbump X.Y.Z``
+-  regenerates all Python specs in ``climate_categories/data/`` from the YAML files,
+   so the shipped caches cannot be out of date,
+-  runs the test suite,
+-  bumps the version in ``pyproject.toml`` and refreshes ``uv.lock``,
+-  moves the fragments from ``changelog_unreleased/`` into ``CHANGELOG.rst``,
+-  commits and tags the release on ``main``,
+-  creates the GitHub release, which makes zenodo mint a new DOI,
+-  publishes the package to PyPI, and
+-  waits for zenodo and then updates the citation information in ``README.rst``.
 
-.. _gh: https://cli.github.com/
+.. _CI workflow: https://github.com/primap-community/climate_categories/actions/workflows/ci.yml
+.. _Release workflow: https://github.com/primap-community/climate_categories/actions/workflows/release.yml
 
-2. Update the README
-~~~~~~~~~~~~~~~~~~~~
--  Run ``make README.rst`` to update the citation information in the README from the zenodo API.
--  Check if the version is actually correct. You can look at the diff for the README and check if the DOI and the date has changed
--  If it's not updated, grab a tea and wait a little more for zenodo to mint the new version.
--  Once it's there, push new README to github
+When something goes wrong
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3. Publish on PyPi
-~~~~~~~~~~~~~~~~~~~
+The release is only tagged after the caches have been regenerated and the tests have
+passed, so a failure before that point leaves ``main`` untouched -- fix the problem
+and run the workflow again.
 
--  make sure you have a pypi account
--  make sure you have the rights to publish on pypi, if not ask a
-   project owner to add you
--  create a file called ``.pypirc`` in your home directory, more info on the pypirc file `here`_
--  Write the following text in the file:
+Once the tag exists, the remaining jobs are independent and can be restarted on their
+own with *Re-run failed jobs*:
 
-.. _here: https://packaging.python.org/en/latest/specifications/pypirc/
+-  **pypi** -- if a broken release did make it to PyPI, you can yank it: open the
+   `release history`_, then options -> yank. Yanking hides the release from resolvers
+   but leaves it installable for anyone who pins it exactly.
+-  **citation** -- zenodo usually needs a few minutes to mint the DOI for the new
+   release, and the job waits up to 15 minutes. If it times out anyway, run the
+   `Update citation info workflow`_ by hand with the version number you released.
 
-::
+.. _release history: https://pypi.org/manage/project/climate-categories/releases/
+.. _Update citation info workflow: https://github.com/primap-community/climate_categories/actions/workflows/update-citation.yml
 
-   [distutils]
-     index-servers =
-       climate-categories
+Where the version number lives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   [climate-categories]
-     repository = https://upload.pypi.org/legacy/
-     username = __token__
-     password = pypi-PASSWORD
-
--  change the password to your personal token. You can generate the token on the `settings page of climate_categories on pypi <https://pypi.org/manage/project/climate-categories/settings/>`_.
--  run ``make release``
--  click on the pypi link in the command line and check if everything
-   makes sense
--  if something went wrong you can revert the release by clicking
-   options -> yank
+``version`` in ``pyproject.toml`` is the only place the version is written down;
+``climate_categories.__version__`` reads it back from the installed package metadata.
+That means that in a development checkout ``__version__`` reflects the last
+``uv sync``, not an unsynced edit to ``pyproject.toml``.

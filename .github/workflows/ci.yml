@@ -52,3 +52,33 @@ jobs:
         uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  # The *.py specs are generated from the *.yaml files and are what actually gets
+  # loaded, so they must not drift apart.
+  caches-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up uv and caching
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+          version: "0.12.7"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Regenerate the Python specs from the YAML files
+        run: make recache
+
+      - name: Check that the Python specs match the YAML files
+        run: |
+          if [ -n "$(git status --porcelain -- climate_categories/data)" ]; then
+            echo "::error::The Python specs in climate_categories/data are out of" \
+                 "date. Run 'make recache' and commit the result."
+            git status --short -- climate_categories/data
+            git diff -- climate_categories/data
+            exit 1
+          fi

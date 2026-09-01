@@ -3,7 +3,7 @@ directory."""
 
 import pathlib
 
-from utils import latex_title
+from utils import latex_title, write_categorization
 
 import climate_categories
 
@@ -475,9 +475,7 @@ def main():
 
     CRF1999 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    CRF1999.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(CRF1999, OUTPATH)
 
 
 if __name__ == "__main__":

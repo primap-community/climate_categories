@@ -7,6 +7,7 @@ import pathlib
 import pandas as pd
 import pycountry
 import tqdm
+from utils import write_categorization
 
 import climate_categories
 
@@ -88,9 +89,7 @@ def main():
     )
     iso3_gcam.institution = "Joint Global Change Research Institute "
 
-    iso3_gcam.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(iso3_gcam, OUTPATH)
 
 
 if __name__ == "__main__":

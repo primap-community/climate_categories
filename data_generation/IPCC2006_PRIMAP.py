@@ -4,6 +4,8 @@ directory."""
 import datetime
 import pathlib
 
+from utils import write_categorization
+
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/IPCC2006_PRIMAP.yaml")
@@ -238,9 +240,7 @@ def main():
     ipcc2006_primap.institution = "Climate Resource"
     ipcc2006_primap.canonical_top_level_category = ipcc2006_primap["0"]
 
-    ipcc2006_primap.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(ipcc2006_primap, OUTPATH)
 
 
 if __name__ == "__main__":

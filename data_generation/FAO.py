@@ -3,7 +3,7 @@ directory."""
 
 import pathlib
 
-from utils import latex_title
+from utils import latex_title, write_categorization
 
 import climate_categories as cc
 
@@ -721,8 +721,7 @@ def main():
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())
 
-    fao_cats.to_yaml(OUTPATH)
-    cc.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(fao_cats, OUTPATH)
 
 
 if __name__ == "__main__":
