@@ -3,6 +3,21 @@ import shutil
 
 import requests
 
+import climate_categories
+
+
+def write_categorization(
+    categorization: "climate_categories.Categorization", yaml_path: pathlib.Path
+) -> None:
+    """Write a categorization as YAML and as the cached Python spec next to it.
+
+    The Python spec is generated from the YAML we just wrote, so it goes through
+    exactly the same code path as ``make recache`` and the two cannot disagree.
+    Reading the YAML back in also validates it.
+    """
+    categorization.to_yaml(yaml_path)
+    climate_categories.from_yaml(yaml_path).to_python(yaml_path.with_suffix(".py"))
+
 
 def download_cached(url: str, fpath: pathlib.Path):
     if not fpath.exists():

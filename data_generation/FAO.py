@@ -3,6 +3,8 @@ directory."""
 
 import pathlib
 
+from utils import write_categorization
+
 import climate_categories as cc
 
 OUTPATH = pathlib.Path("./climate_categories/data/FAO.yaml")
@@ -713,8 +715,7 @@ def main():
     spec["categories"] = categories
     fao_cats = cc.HierarchicalCategorization.from_spec(spec.copy())
 
-    fao_cats.to_yaml(OUTPATH)
-    cc.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(fao_cats, OUTPATH)
 
 
 if __name__ == "__main__":

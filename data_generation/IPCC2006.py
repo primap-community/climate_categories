@@ -5,7 +5,7 @@ import pathlib
 import typing
 
 import camelot
-from utils import download_cached, title_case
+from utils import download_cached, title_case, write_categorization
 
 import climate_categories
 
@@ -269,9 +269,7 @@ def main():
 
     IPCC2006 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    IPCC2006.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(IPCC2006, OUTPATH)
 
 
 if __name__ == "__main__":

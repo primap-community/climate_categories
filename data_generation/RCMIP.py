@@ -3,7 +3,7 @@
 import pathlib
 
 import pandas as pd
-from utils import download_cached
+from utils import download_cached, write_categorization
 
 import climate_categories
 
@@ -177,9 +177,7 @@ def main():
 
     RCMIP = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    RCMIP.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(RCMIP, OUTPATH)
 
 
 if __name__ == "__main__":
