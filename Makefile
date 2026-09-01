@@ -104,16 +104,13 @@ climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
 	uv run --group data-generation python $<
 
 climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
-	uv run python data_generation/convert_yaml_to_python.py $< $@
+	uv run python data_generation/convert_yaml_to_python.py $<
 
 # Unlike `cache`, this ignores timestamps and picks up new YAML files by itself, so it
 # cannot silently skip anything. A fresh git checkout gives every file the same mtime,
 # which make reads as "up to date", so CI and the release have to use this target.
 recache:  ## Regenerate all Python specs from the YAML files, unconditionally
-	@for yaml in climate_categories/data/*.yaml; do \
-		echo "$$yaml"; \
-		uv run python data_generation/convert_yaml_to_python.py $$yaml $${yaml%.yaml}.py; \
-	done
+	uv run python data_generation/convert_yaml_to_python.py climate_categories/data/*.yaml
 
 .PHONY: README.rst
 README.rst:  ## Update the citation information from zenodo
