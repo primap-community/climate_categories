@@ -3,6 +3,8 @@ directory."""
 
 import pathlib
 
+from utils import write_categorization
+
 import climate_categories
 
 OUTPATH = pathlib.Path("./climate_categories/data/CRF2013_2023.yaml")
@@ -809,9 +811,7 @@ def main():
 
     CRF2013_2023 = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    CRF2013_2023.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(CRF2013_2023, OUTPATH)
 
 
 if __name__ == "__main__":

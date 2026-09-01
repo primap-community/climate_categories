@@ -5,6 +5,7 @@ import pathlib
 import natsort
 import treelib
 from unfccc_di_api import UNFCCCApiReader
+from utils import write_categorization
 
 import climate_categories
 
@@ -144,9 +145,7 @@ def main():
 
     CRFDI = climate_categories.HierarchicalCategorization.from_spec(spec)
 
-    CRFDI.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(CRFDI, OUTPATH)
 
 
 if __name__ == "__main__":

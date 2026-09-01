@@ -3,6 +3,7 @@
 import pathlib
 
 import requests
+from utils import write_categorization
 
 import climate_categories
 
@@ -792,6 +793,4 @@ def load_countries() -> dict[str, str | dict[str, str] | list[str] | list[list[s
 if __name__ == "__main__":
     ISO3 = main()
 
-    ISO3.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(ISO3, OUTPATH)

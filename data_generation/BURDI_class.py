@@ -5,6 +5,7 @@ import pathlib
 
 import numpy as np
 import unfccc_di_api
+from utils import write_categorization
 
 import climate_categories
 
@@ -81,9 +82,7 @@ def main():
     )
     BURDI_class.total_sum = False  # unfortunately, not generally true anymore
 
-    BURDI_class.to_yaml(OUTPATH)
-
-    climate_categories.HierarchicalCategorization.from_yaml(OUTPATH)
+    write_categorization(BURDI_class, OUTPATH)
 
 
 if __name__ == "__main__":

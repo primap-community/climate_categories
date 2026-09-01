@@ -49,9 +49,17 @@ data generation scripts (see ``data_generation/IPCC2006.py`` for an example how 
 do that efficiently with caching).
 
 Because all Categorizations are read in when importing ``climate_categories`` and
-parsing StrictYaml files is not very efficient, the categories should be also stored
-as cached Python files using the ``to_python`` instance method.
-Run `make cache` to generate these from the YAML files.
+parsing StrictYaml files is not very efficient, the categories are also stored as
+cached Python files. Generation scripts write both at once by finishing with
+``utils.write_categorization(categorization, OUTPATH)``, which writes the YAML file,
+reads it back to validate it, and writes the Python file next to it. Use that instead
+of calling ``to_yaml`` yourself, so the two files cannot get out of step.
+
+For categorizations written by hand there is no generation script, so run
+``make recache`` to build the Python files from the YAML files. You also need it when
+the generated format itself changes, for example after a formatter update, because
+then every Python file has to be rebuilt without re-running the generation scripts.
+CI checks that the two are in sync.
 
 New conversions
 ~~~~~~~~~~~~~~~
