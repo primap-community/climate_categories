@@ -1,8 +1,8 @@
 name: ISO3_GCAM
 title: ISO 3166-1 countries with climate-relevant groupings with GCAM regions
-comment: Countries, regions, and other areas. Also includes information on 
-  groups like being included in Annex I of the UN Framework Convention on 
-  Climate Change. Additionally, includes regions used in the GCAM integrated 
+comment: Countries, regions, and other areas. Also includes information on
+  groups like being included in Annex I of the UN Framework Convention on
+  Climate Change. Additionally, includes regions used in the GCAM integrated
   assessment model
 references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes
   package, https://salsa.debian.org/iso-codes-team/iso-codes;\nUNFCCC Parties & Observers,
@@ -2043,7 +2043,7 @@ categories:
       - SWE
   EU_2020:
     title: European Union
-    comment: The European Union since 2020-02-01 to date. Note that the 'EU' 
+    comment: The European Union since 2020-02-01 to date. Note that the 'EU'
       code will always refer to the current EU, use EU_2020 if you need a stable
       code.
     alternative_codes:
@@ -2081,7 +2081,7 @@ categories:
       - SWE
   Annex-I:
     title: Annex-I parties to the UNFCCC
-    comment: Parties to the UN Framework Convention on Climate Change listed in 
+    comment: Parties to the UN Framework Convention on Climate Change listed in
       Annex I of the Convention.
     alternative_codes:
     - ANNEXI
@@ -2918,7 +2918,7 @@ categories:
     - - CAN
   GCAM 5.1|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 5.1
     children:
     - - ABW
@@ -3264,7 +3264,7 @@ categories:
     - - CAN
   GCAM 5.2|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 5.2
     children:
     - - ABW
@@ -3610,7 +3610,7 @@ categories:
     - - CAN
   GCAM 5.3|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 5.3
     children:
     - - ABW
@@ -3956,7 +3956,7 @@ categories:
     - - CAN
   GCAM 5.4|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 5.4
     children:
     - - ABW
@@ -4302,7 +4302,7 @@ categories:
     - - CAN
   GCAM 6.0|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 6.0
     children:
     - - ABW
@@ -4648,7 +4648,7 @@ categories:
     - - CAN
   GCAM 7.0|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 7.0
     children:
     - - ABW
@@ -5010,7 +5010,7 @@ categories:
     - - CAN
   GCAM 8.2|Central America and the Caribbean:
     title: Central America and the Caribbean
-    comment: Region 'Central America and the Caribbean' as defined in GCAM 
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
       version 8.2
     alternative_codes:
     - GCAM 8s|Central America and the Caribbean

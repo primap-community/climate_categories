@@ -67,13 +67,17 @@ def main():
                     "Pacific Islands Trust Territory",
                     "Kosovo",
                 ):
-                    print(f"Ignoring non-iso3 country '{country}' in GCAM version '{gcam_version}'")
+                    print(
+                        f"Ignoring non-iso3 country '{country}' in GCAM version '{gcam_version}'"
+                    )
                     continue  # TODO: deal with historical countries
 
                 print(f"Warning: {country} not found directly")
                 fuzzy_matches = pycountry.countries.search_fuzzy(country)
                 if len(fuzzy_matches) == 0:
-                    raise ValueError(f"Did not find a unique match for country '{country}' in GCAM version '{gcam_version}'. Candidates: {fuzzy_matches}")
+                    raise ValueError(
+                        f"Did not find a unique match for country '{country}' in GCAM version '{gcam_version}'. Candidates: {fuzzy_matches}"
+                    )
                 fuzzy_match = fuzzy_matches[0]
                 print(f"Using {fuzzy_match.name} for {country}")
                 countries_iso3.append(fuzzy_match.alpha_3)
@@ -82,7 +86,9 @@ def main():
             categories[region_code] = {
                 "title": region,
                 "comment": f"Region {region!r} as defined in GCAM version {gcam_version}",
-                "alternative_codes": [f"GCAM 8s|{region}"] if gcam_version=="8.2" else []
+                "alternative_codes": [f"GCAM 8s|{region}"]
+                if gcam_version == "8.2"
+                else [],
             }
             children.append((region_code, countries_iso3))
 
@@ -95,9 +101,8 @@ def main():
         children=children,
     )
 
-    iso3_gcam.references = (
-        climate_categories.ISO3.references
-        + ";\n".join([*references, ""])
+    iso3_gcam.references = climate_categories.ISO3.references + ";\n".join(
+        [*references, ""]
     )
     iso3_gcam.institution = "Joint Global Change Research Institute "
 
