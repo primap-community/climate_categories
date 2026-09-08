@@ -27,7 +27,7 @@ classifiers = [
 ]
 dependencies = [
     "networkx>=3.3",
-    "pandas==2.2.2",
+    "pandas>=2.2.2",
     "strictyaml>=1.6",
     "natsort>=8",
     "ruamel.yaml>=0.17.2",
