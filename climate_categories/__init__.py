@@ -8,7 +8,6 @@ __email__ = "mika.pflueger@climate-resource.com"
 
 import importlib
 import importlib.metadata
-import importlib.resources
 
 from . import (
     search,
