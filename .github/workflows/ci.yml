@@ -15,6 +15,11 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.12", "3.13", "3.14"]
         resolution: ["highest", "lowest-direct"]
+        exclude:
+          - python-version: "3.13"
+            resolution: "lowest-direct"
+          - python-version: "3.14"
+            resolution: "lowest-direct"
     steps:
       - uses: actions/checkout@v5
 
