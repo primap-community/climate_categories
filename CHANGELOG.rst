@@ -2,6 +2,10 @@
 Changelog
 =========
 
+0.13.1 (2026-09-08)
+-------------------
+* re-allowed older pandas versions >= 2.2.2
+
 0.13.0 (2026-09-08)
 -------------------
 * Added GCAM 8.2 regions to ISO3_GCAM.

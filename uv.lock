@@ -352,7 +352,7 @@ wheels = [
 
 [[package]]
 name = "climate-categories"
-version = "0.13.0"
+version = "0.13.1"
 source = { editable = "." }
 dependencies = [
     { name = "black" },
@@ -401,7 +401,7 @@ requires-dist = [
     { name = "black", specifier = ">=22.1" },
     { name = "natsort", specifier = ">=8" },
     { name = "networkx", specifier = ">=3.3" },
-    { name = "pandas", specifier = ">=3.0" },
+    { name = "pandas", specifier = ">=2.2.2" },
     { name = "pyparsing", specifier = ">=3.2.3" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.3.3" },
     { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=5" },
