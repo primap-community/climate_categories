@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.13.0 (2026-09-08)
+-------------------
+* Added GCAM 8.2 regions to ISO3_GCAM.
+* Fixed GCAM 7.0 regions that were created with version 8 regions before.
+
 0.12.0 (2026-09-01)
 -------------------
 * Sped up regenerating the cached Python specs by converting the YAML files in
