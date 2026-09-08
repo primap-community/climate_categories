@@ -60,6 +60,7 @@ update-venv: ## update all packages in the development environment
 install-pre-commit: virtual-environment ## install the pre-commit hooks
 	uv run pre-commit install
 
+cache: climate_categories/data/AR6_SCEN_DB.py
 cache: climate_categories/data/RCMIP.py
 cache: climate_categories/data/GCB.py
 cache: climate_categories/data/IPCC2006.py
