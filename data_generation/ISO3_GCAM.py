@@ -19,12 +19,14 @@ OUTPATH = pathlib.Path("./climate_categories/data/ISO3_GCAM.yaml")
 def main():
     categories = {}
     children = []
+    references = []
 
-    for gcam_version in tqdm.tqdm(("5.1", "5.2", "5.3", "5.4", "6.0", "7.0")):
-        if gcam_version == "7.0":
+    for gcam_version in tqdm.tqdm(("5.1", "5.2", "5.3", "5.4", "6.0", "7.0", "8.2")):
+        if gcam_version == "8.2":
             url = "https://jgcri.github.io/gcam-doc/overview.html"
         else:
             url = f"https://jgcri.github.io/gcam-doc/v{gcam_version}/overview.html"
+        references.append(f"GCAM {gcam_version} Regions, {url}")
         gcam_regions_df = pd.read_html(url, match="GCAM Region", header=0, index_col=0)[
             0
         ]
@@ -33,44 +35,60 @@ def main():
             countries = gcam_regions_df.loc[region].iloc[0].split(", ")
             countries_iso3 = []
             for country in countries:
+                if country == "Swaziland":
+                    country = "Eswatini"
+                elif country == "Cote d’Ivoire":  # noqa: RUF001
+                    country = "Cote d'Ivoire"
+                elif country == "Democratic Republic of the Congo":
+                    country = "Congo, The Democratic Republic of the"
+                elif country == "Cape Verde":
+                    country = "Cabo Verde"
+                elif country == "Antigua & Barbuda":
+                    country = "Antigua and Barbuda"
+                elif country == "Turkey":
+                    country = "Türkiye"
+                elif country == "Lao Peoples Democratic Republic":
+                    country = "laos"
+                elif country == "Pitcairn Islands":
+                    country = "pitcairn"
+                elif country == "Democratic Peoples Republic of Korea":
+                    country = "north korea"
+                elif country == "Timor Leste":
+                    country = "Timor-Leste"
+                elif country == "Reunion":
+                    country = "Réunion"
                 direct_match = pycountry.countries.get(name=country)
                 if direct_match is not None:
                     countries_iso3.append(direct_match.alpha_3)
-                elif country in (
+                    continue
+
+                if country in (
                     "Netherlands Antilles",
                     "Pacific Islands Trust Territory",
+                    "Kosovo",
                 ):
+                    print(
+                        f"Ignoring non-iso3 country '{country}' in GCAM version '{gcam_version}'"
+                    )
                     continue  # TODO: deal with historical countries
-                else:
-                    print(f"Warning: {country} not found directly")
-                    if country == "Swaziland":
-                        country = "Eswatini"
-                    elif country == "Cote d’Ivoire":  # noqa: RUF001
-                        country = "Cote d'Ivoire"
-                    elif country == "Democratic Republic of the Congo":
-                        country = "Congo, The Democratic Republic of the"
-                    elif country == "Cape Verde":
-                        country = "Cabo Verde"
-                    elif country == "Antigua & Barbuda":
-                        country = "Antigua and Barbuda"
-                    elif country == "Turkey":
-                        country = "turkiye"
-                    elif country == "Lao Peoples Democratic Republic":
-                        country = "laos"
-                    elif country == "Pitcairn Islands":
-                        country = "pitcairn"
-                    elif country == "Democratic Peoples Republic of Korea":
-                        country = "north korea"
-                    elif country == "Timor Leste":
-                        country = "Timor-Leste"
-                    fuzzy_match = pycountry.countries.search_fuzzy(country)[0]
-                    print(f"Using {fuzzy_match.name} for {country}")
-                    countries_iso3.append(fuzzy_match.alpha_3)
+
+                print(f"Warning: {country} not found directly")
+                fuzzy_matches = pycountry.countries.search_fuzzy(country)
+                if len(fuzzy_matches) == 0:
+                    raise ValueError(
+                        f"Did not find a unique match for country '{country}' in GCAM version '{gcam_version}'. Candidates: {fuzzy_matches}"
+                    )
+                fuzzy_match = fuzzy_matches[0]
+                print(f"Using {fuzzy_match.name} for {country}")
+                countries_iso3.append(fuzzy_match.alpha_3)
 
             region_code = f"GCAM {gcam_version}|{region}"
             categories[region_code] = {
                 "title": region,
                 "comment": f"Region {region!r} as defined in GCAM version {gcam_version}",
+                "alternative_codes": [f"GCAM 8s|{region}"]
+                if gcam_version == "8.2"
+                else [],
             }
             children.append((region_code, countries_iso3))
 
@@ -83,9 +101,8 @@ def main():
         children=children,
     )
 
-    iso3_gcam.references = (
-        climate_categories.ISO3.references
-        + "; https://jgcri.github.io/gcam-doc/index.html"
+    iso3_gcam.references = climate_categories.ISO3.references + ";\n".join(
+        [*references, ""]
     )
     iso3_gcam.institution = "Joint Global Change Research Institute "
 

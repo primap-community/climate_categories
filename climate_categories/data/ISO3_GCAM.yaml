@@ -13,7 +13,12 @@ references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-cod
   LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n\
   AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html\"\
   ;\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;\n\
-  ; https://jgcri.github.io/gcam-doc/index.html"
+  GCAM 5.1 Regions, https://jgcri.github.io/gcam-doc/v5.1/overview.html;\nGCAM 5.2
+  Regions, https://jgcri.github.io/gcam-doc/v5.2/overview.html;\nGCAM 5.3 Regions,
+  https://jgcri.github.io/gcam-doc/v5.3/overview.html;\nGCAM 5.4 Regions, https://jgcri.github.io/gcam-doc/v5.4/overview.html;\n\
+  GCAM 6.0 Regions, https://jgcri.github.io/gcam-doc/v6.0/overview.html;\nGCAM 7.0
+  Regions, https://jgcri.github.io/gcam-doc/v7.0/overview.html;\nGCAM 8.2 Regions,
+  https://jgcri.github.io/gcam-doc/overview.html;\n"
 institution: 'Joint Global Change Research Institute '
 hierarchical: true
 last_update: '2024-01-25'
@@ -4734,11 +4739,13 @@ categories:
       - NLD
       - PRT
       - SWE
-  GCAM 7.0|Ukraine:
-    title: Ukraine
-    comment: Region 'Ukraine' as defined in GCAM version 7.0
+  GCAM 7.0|Europe_Eastern:
+    title: Europe_Eastern
+    comment: Region 'Europe_Eastern' as defined in GCAM version 7.0
     children:
-    - - UKR
+    - - BLR
+      - MDA
+      - UKR
   GCAM 7.0|European Free Trade Association:
     title: European Free Trade Association
     comment: Region 'European Free Trade Association' as defined in GCAM version
@@ -4753,9 +4760,7 @@ categories:
     children:
     - - ALB
       - BIH
-      - BLR
       - HRV
-      - MDA
       - MKD
       - MNE
       - SRB
@@ -4895,5 +4900,415 @@ categories:
   GCAM 7.0|USA:
     title: USA
     comment: Region 'USA' as defined in GCAM version 7.0
+    children:
+    - - USA
+  GCAM 8.2|Africa_Eastern:
+    title: Africa_Eastern
+    comment: Region 'Africa_Eastern' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Africa_Eastern
+    children:
+    - - BDI
+      - COM
+      - DJI
+      - ERI
+      - ETH
+      - KEN
+      - MDG
+      - MUS
+      - REU
+      - RWA
+      - SDN
+      - SOM
+      - UGA
+  GCAM 8.2|Africa_Northern:
+    title: Africa_Northern
+    comment: Region 'Africa_Northern' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Africa_Northern
+    children:
+    - - DZA
+      - EGY
+      - ESH
+      - LBY
+      - MAR
+      - TUN
+  GCAM 8.2|Africa_Southern:
+    title: Africa_Southern
+    comment: Region 'Africa_Southern' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Africa_Southern
+    children:
+    - - AGO
+      - BWA
+      - LSO
+      - MOZ
+      - MWI
+      - NAM
+      - SWZ
+      - TZA
+      - ZMB
+      - ZWE
+  GCAM 8.2|Africa_Western:
+    title: Africa_Western
+    comment: Region 'Africa_Western' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Africa_Western
+    children:
+    - - BEN
+      - BFA
+      - CAF
+      - CIV
+      - CMR
+      - COD
+      - COG
+      - CPV
+      - GAB
+      - GHA
+      - GIN
+      - GMB
+      - GNB
+      - GNQ
+      - LBR
+      - MLI
+      - MRT
+      - NER
+      - NGA
+      - SEN
+      - SLE
+      - STP
+      - TCD
+      - TGO
+  GCAM 8.2|Argentina:
+    title: Argentina
+    comment: Region 'Argentina' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Argentina
+    children:
+    - - ARG
+  GCAM 8.2|Australia_NZ:
+    title: Australia_NZ
+    comment: Region 'Australia_NZ' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Australia_NZ
+    children:
+    - - AUS
+      - NZL
+  GCAM 8.2|Brazil:
+    title: Brazil
+    comment: Region 'Brazil' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Brazil
+    children:
+    - - BRA
+  GCAM 8.2|Canada:
+    title: Canada
+    comment: Region 'Canada' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Canada
+    children:
+    - - CAN
+  GCAM 8.2|Central America and the Caribbean:
+    title: Central America and the Caribbean
+    comment: Region 'Central America and the Caribbean' as defined in GCAM
+      version 8.2
+    alternative_codes:
+    - GCAM 8s|Central America and the Caribbean
+    children:
+    - - ABW
+      - AIA
+      - ATG
+      - BHS
+      - BLZ
+      - BMU
+      - BRB
+      - CRI
+      - CUB
+      - CYM
+      - DMA
+      - DOM
+      - GLP
+      - GRD
+      - GTM
+      - HND
+      - HTI
+      - JAM
+      - KNA
+      - LCA
+      - MSR
+      - MTQ
+      - NIC
+      - PAN
+      - SLV
+      - TTO
+      - VCT
+  GCAM 8.2|Central Asia:
+    title: Central Asia
+    comment: Region 'Central Asia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Central Asia
+    children:
+    - - ARM
+      - AZE
+      - GEO
+      - KAZ
+      - KGZ
+      - MNG
+      - TJK
+      - TKM
+      - UZB
+  GCAM 8.2|China:
+    title: China
+    comment: Region 'China' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|China
+    children:
+    - - CHN
+  GCAM 8.2|Colombia:
+    title: Colombia
+    comment: Region 'Colombia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Colombia
+    children:
+    - - COL
+  GCAM 8.2|EU-12:
+    title: EU-12
+    comment: Region 'EU-12' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|EU-12
+    children:
+    - - BGR
+      - CYP
+      - CZE
+      - EST
+      - HUN
+      - LTU
+      - LVA
+      - MLT
+      - POL
+      - ROU
+      - SVK
+      - SVN
+  GCAM 8.2|EU-15:
+    title: EU-15
+    comment: Region 'EU-15' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|EU-15
+    children:
+    - - AND
+      - AUT
+      - BEL
+      - DEU
+      - DNK
+      - ESP
+      - FIN
+      - FRA
+      - GBR
+      - GRC
+      - GRL
+      - IRL
+      - ITA
+      - LUX
+      - MCO
+      - NLD
+      - PRT
+      - SWE
+  GCAM 8.2|Ukraine:
+    title: Ukraine
+    comment: Region 'Ukraine' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Ukraine
+    children:
+    - - UKR
+  GCAM 8.2|European Free Trade Association:
+    title: European Free Trade Association
+    comment: Region 'European Free Trade Association' as defined in GCAM version
+      8.2
+    alternative_codes:
+    - GCAM 8s|European Free Trade Association
+    children:
+    - - CHE
+      - ISL
+      - NOR
+  GCAM 8.2|Europe_Non_EU:
+    title: Europe_Non_EU
+    comment: Region 'Europe_Non_EU' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Europe_Non_EU
+    children:
+    - - ALB
+      - BIH
+      - BLR
+      - HRV
+      - MDA
+      - MKD
+      - MNE
+      - SRB
+      - TUR
+  GCAM 8.2|India:
+    title: India
+    comment: Region 'India' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|India
+    children:
+    - - IND
+  GCAM 8.2|Indonesia:
+    title: Indonesia
+    comment: Region 'Indonesia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Indonesia
+    children:
+    - - IDN
+  GCAM 8.2|Japan:
+    title: Japan
+    comment: Region 'Japan' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Japan
+    children:
+    - - JPN
+  GCAM 8.2|Mexico:
+    title: Mexico
+    comment: Region 'Mexico' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Mexico
+    children:
+    - - MEX
+  GCAM 8.2|Middle East:
+    title: Middle East
+    comment: Region 'Middle East' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Middle East
+    children:
+    - - ARE
+      - BHR
+      - IRN
+      - IRQ
+      - ISR
+      - JOR
+      - KWT
+      - LBN
+      - OMN
+      - PSE
+      - QAT
+      - SAU
+      - SYR
+      - YEM
+  GCAM 8.2|Pakistan:
+    title: Pakistan
+    comment: Region 'Pakistan' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Pakistan
+    children:
+    - - PAK
+  GCAM 8.2|Russia:
+    title: Russia
+    comment: Region 'Russia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Russia
+    children:
+    - - RUS
+  GCAM 8.2|South Africa:
+    title: South Africa
+    comment: Region 'South Africa' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|South Africa
+    children:
+    - - ZAF
+  GCAM 8.2|South America_Northern:
+    title: South America_Northern
+    comment: Region 'South America_Northern' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|South America_Northern
+    children:
+    - - GUF
+      - GUY
+      - SUR
+      - VEN
+  GCAM 8.2|South America_Southern:
+    title: South America_Southern
+    comment: Region 'South America_Southern' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|South America_Southern
+    children:
+    - - BOL
+      - CHL
+      - ECU
+      - PER
+      - PRY
+      - URY
+  GCAM 8.2|South Asia:
+    title: South Asia
+    comment: Region 'South Asia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|South Asia
+    children:
+    - - AFG
+      - BGD
+      - BTN
+      - LKA
+      - MDV
+      - NPL
+  GCAM 8.2|Southeast Asia:
+    title: Southeast Asia
+    comment: Region 'Southeast Asia' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Southeast Asia
+    children:
+    - - ASM
+      - BRN
+      - CCK
+      - COK
+      - CXR
+      - FJI
+      - FSM
+      - GUM
+      - KHM
+      - KIR
+      - LAO
+      - MHL
+      - MMR
+      - MNP
+      - MYS
+      - MYT
+      - NCL
+      - NFK
+      - NIU
+      - NRU
+      - PCN
+      - PHL
+      - PLW
+      - PNG
+      - PRK
+      - PYF
+      - SGP
+      - SLB
+      - SYC
+      - THA
+      - TKL
+      - TLS
+      - TON
+      - TUV
+      - VNM
+      - VUT
+      - WSM
+  GCAM 8.2|South Korea:
+    title: South Korea
+    comment: Region 'South Korea' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|South Korea
+    children:
+    - - KOR
+  GCAM 8.2|Taiwan:
+    title: Taiwan
+    comment: Region 'Taiwan' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|Taiwan
+    children:
+    - - TWN
+  GCAM 8.2|USA:
+    title: USA
+    comment: Region 'USA' as defined in GCAM version 8.2
+    alternative_codes:
+    - GCAM 8s|USA
     children:
     - - USA
