@@ -1262,9 +1262,7 @@ def add_paris_categories(categories):
     )
 
     parties = []
-    for date, code, kind in party_changes(PARIS_JOINED, PARIS_LEFT):
-        if date > LAST_UPDATE:
-            break
+    for _, code, kind in party_changes(PARIS_JOINED, PARIS_LEFT):
         if kind == "joined":
             parties.append(code)
         else:
@@ -1293,10 +1291,13 @@ def party_changes(
     joined: list[tuple[str, datetime.date, str]],
     left: list[tuple[str, datetime.date, str]],
 ) -> list[tuple[datetime.date, str, str]]:
-    """All changes of the parties to a treaty as (date, code, kind), sorted by date."""
+    """All changes of the parties to a treaty as (date, code, kind), sorted by date.
+
+    Only changes which took effect up to LAST_UPDATE are included.
+    """
     return sorted(
-        [(date, code, "joined") for code, date, _ in joined]
-        + [(date, code, "left") for code, date, _ in left]
+        [(date, code, "joined") for code, date, _ in joined if date <= LAST_UPDATE]
+        + [(date, code, "left") for code, date, _ in left if date <= LAST_UPDATE]
     )
 
 
@@ -1315,8 +1316,9 @@ def add_party_versions(
     For every month in which parties joined or left, there is a category
     {prefix}_YYYY_MM containing the parties after all changes in that month took
     effect. The last category of every year additionally has the code {prefix}_YYYY.
-    Codes for the current or future months or years are not stable yet because further
-    changes could still take effect, which is noted in the comment.
+    Only changes which took effect up to LAST_UPDATE are included, and codes for the
+    month and year of LAST_UPDATE are left out because further changes could still take
+    effect in them, so that all codes are stable.
     """
     months = [
         (month, list(month_changes))
@@ -1340,6 +1342,9 @@ def add_party_versions(
             else:
                 assert code in parties, code
                 parties.remove(code)
+
+        if (year, month) >= (LAST_UPDATE.year, LAST_UPDATE.month):
+            continue
 
         start = month_changes[-1][0]
         if i + 1 < len(months):
@@ -1376,27 +1381,13 @@ def add_party_versions(
                 f"{year}-{month:02} took effect."
             )
 
-        is_last_of_year = i + 1 == len(months) or months[i + 1][0][0] != year
-        if (year, month) >= (LAST_UPDATE.year, LAST_UPDATE.month):
-            comment += (
-                f" Note that the codes {prefix}_{year}_{month:02} and {prefix}_{year} "
-                f"are not stable yet, further changes taking effect in "
-                f"{year}-{month:02} or later in {year} would change the parties they "
-                "refer to."
-            )
-        elif is_last_of_year and year >= LAST_UPDATE.year:
-            comment += (
-                f" Note that the code {prefix}_{year} is not stable yet, further "
-                f"changes taking effect later in {year} would move it to a later "
-                "category."
-            )
-
         spec = {
             "title": f"Parties to the {title_name} {validity}",
             "comment": comment,
             "children": [parties.copy()],
         }
-        if is_last_of_year:
+        is_last_of_year = i + 1 == len(months) or months[i + 1][0][0] != year
+        if is_last_of_year and year < LAST_UPDATE.year:
             spec["alternative_codes"] = [f"{prefix}_{year}"]
         categories[f"{prefix}_{year}_{month:02}"] = spec
 

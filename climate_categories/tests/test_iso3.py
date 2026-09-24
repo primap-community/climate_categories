@@ -49,7 +49,6 @@ def test_unfccc():
         ("UNFCCC_1994", 93),
         ("UNFCCC_2000", 185),
         ("UNFCCC_2022", 198),
-        ("UNFCCC_2027", 197),
     ],
 )
 def test_unfccc_versions_size(code: str, n_parties: int):
@@ -64,8 +63,7 @@ def test_unfccc_versions():
 
     # one category per month with changes, the last one per year has the year as code
     monthly = [code for code in iso3 if re.fullmatch(r"UNFCCC_\d{4}_\d{2}", code)]
-    assert len(monthly) == 61
-    assert iso3["UNFCCC_2027"] == iso3["UNFCCC_2027_02"]
+    assert len(monthly) == 60
     assert iso3["UNFCCC_2007"] == iso3["UNFCCC_2007_11"]
     assert "UNFCCC_2005" not in iso3
     assert "UNFCCC_2022_09" not in iso3
@@ -75,7 +73,6 @@ def test_unfccc_versions():
     assert "BRN" in parties("UNFCCC_2007")
 
     assert "USA" in parties("UNFCCC_2022")
-    assert "USA" not in parties("UNFCCC_2027")
 
     assert "SSD" not in parties("UNFCCC_2011")
     assert "SSD" in parties("UNFCCC_2014")
@@ -94,7 +91,7 @@ def test_unfccc_versions():
         ("PARIS_2016", 115),
         ("PARIS_2020", 189),
         ("PARIS_2021", 193),
-        ("PARIS_2026", 194),
+        ("PARIS_2026_01", 194),
         ("PARIS", 194),
     ],
 )
@@ -111,7 +108,6 @@ def test_paris_versions():
     # one category per month with changes, the last one per year has the year as code
     monthly = [code for code in iso3 if re.fullmatch(r"PARIS_\d{4}_\d{2}", code)]
     assert len(monthly) == 38
-    assert iso3["PARIS_2026"] == iso3["PARIS_2026_01"]
     assert iso3["PARIS_2021"] == iso3["PARIS_2021_12"]
     assert "PARIS_2024" not in iso3
     assert "PARIS_2018_04" not in iso3
@@ -120,23 +116,26 @@ def test_paris_versions():
     assert "USA" in parties("PARIS_2016_11")
     assert "USA" not in parties("PARIS_2020_11")
     assert "USA" in parties("PARIS_2021_02")
-    assert "USA" not in parties("PARIS_2026")
+    assert "USA" not in parties("PARIS_2026_01")
 
     assert "ERI" not in parties("PARIS_2022")
     assert "ERI" in parties("PARIS_2023_03")
     assert "VAT" in parties("PARIS_2022_10")
     assert "IRN" not in parties("PARIS")
 
-    assert set(iso3["PARIS_2026"].children[0]) == set(iso3["PARIS"].children[0])
+    assert set(iso3["PARIS_2026_01"].children[0]) == set(iso3["PARIS"].children[0])
     assert parties("PARIS") == parties("UNFCCC") - {"IRN", "LBY", "YEM", "USA"}
 
 
-def test_versions_stability_note():
+def test_versions_only_stable_codes():
+    # changes which did not take effect yet and codes for the current year are left
+    # out, because they could still change
     iso3 = climate_categories.ISO3
-    for code in ("UNFCCC_2027_02", "PARIS_2026_01"):
-        assert "not stable" in iso3[code].comment
-    for code in ("UNFCCC_2022_10", "PARIS_2023_03"):
-        assert "not stable" not in iso3[code].comment
+    for code in ("UNFCCC_2027", "UNFCCC_2027_02", "PARIS_2026"):
+        assert code not in iso3
+    for code in iso3:
+        if re.fullmatch(r"(UNFCCC|PARIS)_\d{4}(_\d{2})?", code):
+            assert "not stable" not in iso3[code].comment
 
 
 def test_g7g20():
