@@ -87,6 +87,58 @@ def test_unfccc_versions():
     assert set(iso3["UNFCCC_2022"].children[0]) == set(iso3["UNFCCC"].children[0])
 
 
+@pytest.mark.parametrize(
+    ("code", "n_parties"),
+    [
+        ("PARIS_2016_11", 89),
+        ("PARIS_2016", 115),
+        ("PARIS_2020", 189),
+        ("PARIS_2021", 193),
+        ("PARIS_2026", 194),
+        ("PARIS", 194),
+    ],
+)
+def test_paris_versions_size(code: str, n_parties: int):
+    assert len(climate_categories.ISO3[code].children[0]) == n_parties
+
+
+def test_paris_versions():
+    iso3 = climate_categories.ISO3
+
+    def parties(code: str) -> set[str]:
+        return {party.codes[0] for party in iso3[code].children[0]}
+
+    # one category per month with changes, the last one per year has the year as code
+    monthly = [code for code in iso3 if re.fullmatch(r"PARIS_\d{4}_\d{2}", code)]
+    assert len(monthly) == 38
+    assert iso3["PARIS_2026"] == iso3["PARIS_2026_01"]
+    assert iso3["PARIS_2021"] == iso3["PARIS_2021_12"]
+    assert "PARIS_2024" not in iso3
+    assert "PARIS_2018_04" not in iso3
+
+    # the USA joined, left, joined again, and left again
+    assert "USA" in parties("PARIS_2016_11")
+    assert "USA" not in parties("PARIS_2020_11")
+    assert "USA" in parties("PARIS_2021_02")
+    assert "USA" not in parties("PARIS_2026")
+
+    assert "ERI" not in parties("PARIS_2022")
+    assert "ERI" in parties("PARIS_2023_03")
+    assert "VAT" in parties("PARIS_2022_10")
+    assert "IRN" not in parties("PARIS")
+
+    assert set(iso3["PARIS_2026"].children[0]) == set(iso3["PARIS"].children[0])
+    assert parties("PARIS") == parties("UNFCCC") - {"IRN", "LBY", "YEM", "USA"}
+
+
+def test_versions_stability_note():
+    iso3 = climate_categories.ISO3
+    for code in ("UNFCCC_2027_02", "PARIS_2026_01"):
+        assert "not stable" in iso3[code].comment
+    for code in ("UNFCCC_2022_10", "PARIS_2023_03"):
+        assert "not stable" not in iso3[code].comment
+
+
 def test_g7g20():
     # since the EU is a non-enumerated member, G7 has 8 members, G8 has 9.
     assert len(climate_categories.ISO3["G7"].children[0]) == 8

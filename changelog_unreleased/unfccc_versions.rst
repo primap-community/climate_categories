@@ -5,4 +5,5 @@
   give the exact period during which each category describes the parties. The last
   category of every year is also available as ``UNFCCC_YYYY``, so that for example
   ``ISO3["UNFCCC_2027"]`` gives the parties after the withdrawal of the USA took
-  effect on 2027-02-27.
+  effect on 2027-02-27. Codes for the current or future months or years are not
+  stable yet, which is noted in their comments.
