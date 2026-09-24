@@ -1,7 +1,8 @@
 name: CT
 title: Climate Trace Inventory
 comment: 'Categorisation may change with new releases. Changelog is here: https://github.com/climatetracecoalition/methodology-documents '
-references: Climate TRACE (2024), Climate TRACE Emissions Inventory, https://climatetrace.org
+references: Climate TRACE (2024), Climate TRACE Emissions Inventory,
+  https://climatetrace.org
 institution: Climate TRACE
 hierarchical: true
 last_update: '2025-04-02'
@@ -49,8 +50,8 @@ categories:
     title: agriculture|enteric-fermentation-cattle-pasture
   agriculture|enteric-fermentation-other:
     title: agriculture|enteric-fermentation-other
-    comment: estimated using FAOSTAT data for years 2015 to 2021, with the remaining
-      years forward filled.
+    comment: estimated using FAOSTAT data for years 2015 to 2021, with the
+      remaining years forward filled.
   agriculture|manure-applied-to-soils:
     title: agriculture|manure-applied-to-soils
   agriculture|manure-left-on-pasture-cattle:
@@ -59,8 +60,8 @@ categories:
     title: agriculture|manure-management-cattle-operation
   agriculture|manure-management-other:
     title: agriculture|manure-management-other
-    comment: estimated using FAOSTAT data for years 2015 to 2021, with the remaining
-      years forward filled.
+    comment: estimated using FAOSTAT data for years 2015 to 2021, with the
+      remaining years forward filled.
   agriculture|other-agricultural-soil-emissions:
     title: agriculture|other-agricultural-soil-emissions
     comment: compiled with FAOSTAT and EDGAR. See Moore et al. (2024)
