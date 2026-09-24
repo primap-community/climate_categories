@@ -40,6 +40,7 @@ CRFDI            CRF GHG emission categories (DI query interface)
 CRFDI_class      CRF GHG emission categories (DI query interface) + classifications
 GCB              Global Carbon Budget CO2 emission categories
 RCMIP            RCMIP emissions categories
+AR6_SCEN_DB      AR6 Scenario Database variables
 gas              Gases and other climate-forcing substances
 ISO3             Countries, country groups, and other areas from ISO 3166
 ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
