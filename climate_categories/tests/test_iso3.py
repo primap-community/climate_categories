@@ -1,5 +1,7 @@
 """Tests for the 'ISO3' categorization."""
 
+import re
+
 import pytest
 
 import climate_categories
@@ -38,6 +40,51 @@ def test_unfccc():
     assert climate_categories.ISO3[
         "Non-Annex-I"
     ] in climate_categories.ISO3.descendants("UNFCCC")
+
+
+@pytest.mark.parametrize(
+    ("code", "n_parties"),
+    [
+        ("UNFCCC_1994_03", 52),
+        ("UNFCCC_1994", 93),
+        ("UNFCCC_2000", 185),
+        ("UNFCCC_2022", 198),
+        ("UNFCCC_2027", 197),
+    ],
+)
+def test_unfccc_versions_size(code: str, n_parties: int):
+    assert len(climate_categories.ISO3[code].children[0]) == n_parties
+
+
+def test_unfccc_versions():
+    iso3 = climate_categories.ISO3
+
+    def parties(code: str) -> set[str]:
+        return {party.codes[0] for party in iso3[code].children[0]}
+
+    # one category per month with changes, the last one per year has the year as code
+    monthly = [code for code in iso3 if re.fullmatch(r"UNFCCC_\d{4}_\d{2}", code)]
+    assert len(monthly) == 61
+    assert iso3["UNFCCC_2027"] == iso3["UNFCCC_2027_02"]
+    assert iso3["UNFCCC_2007"] == iso3["UNFCCC_2007_11"]
+    assert "UNFCCC_2005" not in iso3
+    assert "UNFCCC_2022_09" not in iso3
+
+    assert "TLS" in parties("UNFCCC_2007_01")
+    assert "BRN" not in parties("UNFCCC_2007_01")
+    assert "BRN" in parties("UNFCCC_2007")
+
+    assert "USA" in parties("UNFCCC_2022")
+    assert "USA" not in parties("UNFCCC_2027")
+
+    assert "SSD" not in parties("UNFCCC_2011")
+    assert "SSD" in parties("UNFCCC_2014")
+
+    assert "SRB" in parties("UNFCCC_2001")
+    assert "MNE" not in parties("UNFCCC_2004")
+    assert "MNE" in parties("UNFCCC_2006")
+
+    assert set(iso3["UNFCCC_2022"].children[0]) == set(iso3["UNFCCC"].children[0])
 
 
 def test_g7g20():
