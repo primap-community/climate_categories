@@ -323,7 +323,7 @@ def main():
         name="GCAM",
         title=" with GCAM regions",
         comment=" Additionally, includes regions used in the GCAM integrated assessment model",
-        last_update=datetime.date.fromisoformat("2026-09-08"),
+        last_update=datetime.date.fromisoformat("2026-09-24"),
         categories=categories,
         children=children,
     )

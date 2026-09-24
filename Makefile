@@ -78,33 +78,23 @@ cache: climate_categories/data/ISO3_GCAM.py
 cache: climate_categories/data/BURDI.py
 cache: climate_categories/data/BURDI_class.py
 cache: climate_categories/data/CT.py
-cache: climate_categories/data/FAO.py  ## Generate Python specs from YAML files
+cache: climate_categories/data/FAO.py  ## Generate Python specs
 
-data: climate_categories/data/BURDI_class.yaml
-data: climate_categories/data/BURDI.yaml
-data: climate_categories/data/CRF1999.yaml
-data: climate_categories/data/CRF2013_2021.yaml
-data: climate_categories/data/CRF2013_2022.yaml
-data: climate_categories/data/CRF2013_2023.yaml
-data: climate_categories/data/CRF2013.yaml
-data: climate_categories/data/CRFDI_class.yaml
-data: climate_categories/data/CRFDI.yaml
-data: climate_categories/data/gas.yaml
-data: climate_categories/data/IPCC1996.yaml
-data: climate_categories/data/IPCC2006_PRIMAP.yaml
-data: climate_categories/data/IPCC2006.yaml
-data: climate_categories/data/ISO3_GCAM.yaml
-data: climate_categories/data/ISO3.yaml
-data: climate_categories/data/RCMIP.yaml
-data: climate_categories/data/CT.yaml
-data: climate_categories/data/FAO.yaml  ## Generate data files
-
-
-climate_categories/data/%.yaml: data_generation/%.py data_generation/utils.py
+climate_categories/data/%.py: data_generation/%.py data_generation/utils.py
 	uv run --group data-generation python $<
+	uv run pre-commit run --files climate_categories/data/*.yaml
 
-climate_categories/data/%.py: climate_categories/data/%.yaml data_generation/convert_yaml_to_python.py
-	uv run python data_generation/convert_yaml_to_python.py $<
+# Generators that extend another categorization load it from its Python spec, so they
+# have to be rebuilt when that changes.
+climate_categories/data/ISO3_GCAM.py: climate_categories/data/ISO3.py
+climate_categories/data/IPCC2006_PRIMAP.py: climate_categories/data/IPCC2006.py
+climate_categories/data/CRF2013.py: climate_categories/data/IPCC2006.py
+climate_categories/data/CRF2013_2021.py: climate_categories/data/CRF2013.py
+climate_categories/data/CRF2013_2022.py: climate_categories/data/CRF2013.py
+climate_categories/data/CRF2013_2023.py: climate_categories/data/CRF2013.py
+climate_categories/data/CRF1999.py: climate_categories/data/IPCC1996.py
+climate_categories/data/BURDI_class.py: climate_categories/data/BURDI.py
+climate_categories/data/CRFDI_class.py: climate_categories/data/CRFDI.py
 
 # Unlike `cache`, this ignores timestamps and picks up new YAML files by itself, so it
 # cannot silently skip anything. A fresh git checkout gives every file the same mtime,
