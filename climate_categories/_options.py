@@ -47,11 +47,20 @@ _patch_schema = {
     sy.Optional("add_categories"): sy.MapPattern(
         sy.Str(), _categories.HierarchicalCategory._strictyaml_schema
     ),
-    sy.Optional("add_alternative_codes"): sy.MapPattern(sy.Str(), sy.Str()),
-    sy.Optional("add_children"): sy.MapPattern(sy.Str(), sy.Seq(sy.Seq(sy.Str()))),
-    sy.Optional("update_info"): sy.MapPattern(
-        sy.Str(), sy.MapPattern(sy.Str(), sy.Any())
+    sy.Optional("update_categories"): sy.MapPattern(
+        sy.Str(),
+        sy.Map(
+            {
+                sy.Optional("title"): sy.Str(),
+                sy.Optional("comment"): sy.Str(),
+                sy.Optional("info"): sy.MapPattern(sy.Str(), sy.Any()),
+            }
+        ),
     ),
+    sy.Optional("add_alternative_codes"): sy.MapPattern(sy.Str(), sy.Str()),
+    sy.Optional("remove_alternative_codes"): sy.MapPattern(sy.Str(), sy.Str()),
+    sy.Optional("add_children"): sy.MapPattern(sy.Str(), sy.Seq(sy.Seq(sy.Str()))),
+    sy.Optional("remove_children"): sy.MapPattern(sy.Str(), sy.Seq(sy.Seq(sy.Str()))),
     sy.Optional("remove_categories"): _removal_schema,
     sy.Optional("merge_into"): sy.MapPattern(sy.Str(), sy.Str()),
     sy.Optional("split_from"): sy.MapPattern(sy.Str(), sy.Str()),
@@ -154,24 +163,36 @@ class CategorizationPatch:
     """Changes to a categorization.
 
     Patches are applied to the specification of a categorization (see
-    ``Categorization.to_spec``) in three phases: first, all additions of all patches
-    are applied, then all splits, then all merges and removals, so that splits, merges,
-    and removals also affect categories added by other patches.
+    ``Categorization.to_spec``) in three phases: first, all changes of all patches
+    (everything except splits, merges, and removals of categories) are applied, then
+    all splits, then all merges and removals, so that splits, merges, and removals also
+    affect categories added by other patches. Within the first phase, each patch adds
+    categories, then removes and adds alternative codes, then removes and adds child
+    sets, then updates categories, so that alternative codes can be moved to other
+    categories and child sets can be replaced in a single patch.
 
     Attributes
     ----------
     add_categories : dict
         New categories, mapping the primary code to the specification of the category
         like in a categorization file.
+    update_categories : dict
+        Changes to existing categories, mapping the primary code to a dict with the
+        optional keys ``title`` and ``comment``, which replace the title and comment
+        of the category, and ``info``, which is added to the info of the category.
     add_alternative_codes : dict
         New alternative codes, mapping the new alternative code to the primary code of
         an existing category.
+    remove_alternative_codes : dict
+        Alternative codes to remove, mapping the alternative code to the primary code
+        of its category. Child sets which use the removed alternative code use the
+        primary code instead.
     add_children : dict
         New sets of children, mapping the primary code of a parent category to a list
         of child sets.
-    update_info : dict
-        Additional info for existing categories, mapping the primary code to the info
-        which is added to the info of the category.
+    remove_children : dict
+        Sets of children to remove, mapping the primary code of a parent category to a
+        list of child sets. The order of the children in a set does not matter.
     remove_categories : CategoryRemoval, optional
         Categories to remove.
     merge_into : dict
@@ -195,9 +216,13 @@ class CategorizationPatch:
     """
 
     add_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
+    update_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
     add_alternative_codes: dict[str, str] = dataclasses.field(default_factory=dict)
+    remove_alternative_codes: dict[str, str] = dataclasses.field(default_factory=dict)
     add_children: dict[str, list[list[str]]] = dataclasses.field(default_factory=dict)
-    update_info: dict[str, dict] = dataclasses.field(default_factory=dict)
+    remove_children: dict[str, list[list[str]]] = dataclasses.field(
+        default_factory=dict
+    )
     remove_categories: CategoryRemoval | None = None
     merge_into: dict[str, str] = dataclasses.field(default_factory=dict)
     split_from: dict[str, str] = dataclasses.field(default_factory=dict)
@@ -211,9 +236,11 @@ class CategorizationPatch:
             key: spec[key]
             for key in (
                 "add_categories",
+                "update_categories",
                 "add_alternative_codes",
+                "remove_alternative_codes",
                 "add_children",
-                "update_info",
+                "remove_children",
                 "merge_into",
                 "split_from",
             )
@@ -229,9 +256,11 @@ class CategorizationPatch:
         spec: dict[str, typing.Any] = {}
         for key in (
             "add_categories",
+            "update_categories",
             "add_alternative_codes",
+            "remove_alternative_codes",
             "add_children",
-            "update_info",
+            "remove_children",
             "merge_into",
             "split_from",
         ):
@@ -242,8 +271,9 @@ class CategorizationPatch:
             spec["remove_categories"] = self.remove_categories.to_spec()
         return spec
 
-    def apply_additions(self, spec: dict[str, typing.Any]) -> None:
-        """Apply all additions of this patch to the categorization specification."""
+    def apply_changes(self, spec: dict[str, typing.Any]) -> None:
+        """Apply all changes of this patch except splits, merges, and removals of
+        categories to the categorization specification."""
         categories = spec["categories"]
         hierarchical = spec["hierarchical"]
         codes = _all_codes(categories)
@@ -265,6 +295,33 @@ class CategorizationPatch:
             for new_code in new_codes:
                 codes[new_code] = code
 
+        for alternative_code, primary_code in self.remove_alternative_codes.items():
+            if primary_code not in categories:
+                raise ValueError(
+                    f"{self._label()} removes the alternative code "
+                    f"{alternative_code!r} of {primary_code!r}, which is not a "
+                    "primary code."
+                )
+            alternative_codes = categories[primary_code].get("alternative_codes", [])
+            if alternative_code not in alternative_codes:
+                raise ValueError(
+                    f"{self._label()} removes the alternative code "
+                    f"{alternative_code!r} of {primary_code!r}, but it is not an "
+                    f"alternative code of {primary_code!r}."
+                )
+            alternative_codes.remove(alternative_code)
+            if not alternative_codes:
+                del categories[primary_code]["alternative_codes"]
+            del codes[alternative_code]
+            # the category still exists, so use its primary code instead
+            for category_spec in categories.values():
+                for child_set in category_spec.get("children", []):
+                    child_set[:] = [
+                        primary_code if c == alternative_code else c for c in child_set
+                    ]
+            if spec.get("canonical_top_level_category") == alternative_code:
+                spec["canonical_top_level_category"] = primary_code
+
         for alternative_code, primary_code in self.add_alternative_codes.items():
             if alternative_code in codes:
                 raise ValueError(
@@ -281,6 +338,34 @@ class CategorizationPatch:
             )
             codes[alternative_code] = primary_code
 
+        for parent, child_sets in self.remove_children.items():
+            if not hierarchical:
+                raise ValueError(
+                    f"{self._label()} removes children of {parent!r}, but the "
+                    "categorization is not hierarchical."
+                )
+            if parent not in categories:
+                raise ValueError(
+                    f"{self._label()} removes children of {parent!r}, which is not a "
+                    "primary code."
+                )
+            existing_sets = categories[parent].get("children", [])
+            for child_set in child_sets:
+                wanted = {codes.get(c, c) for c in child_set}
+                matching = [
+                    i
+                    for i, existing in enumerate(existing_sets)
+                    if {codes.get(c, c) for c in existing} == wanted
+                ]
+                if not matching:
+                    raise ValueError(
+                        f"{self._label()} removes the children {list(child_set)!r} "
+                        f"of {parent!r}, but {parent!r} has no such child set."
+                    )
+                del existing_sets[matching[0]]
+            if not existing_sets:
+                categories[parent].pop("children", None)
+
         for parent, child_sets in self.add_children.items():
             if not hierarchical:
                 raise ValueError(
@@ -296,13 +381,19 @@ class CategorizationPatch:
                 list(child_set) for child_set in child_sets
             )
 
-        for code, info in self.update_info.items():
+        for code, update in self.update_categories.items():
             if code not in categories:
                 raise ValueError(
-                    f"{self._label()} updates the info of {code!r}, which is not a "
-                    "primary code."
+                    f"{self._label()} updates {code!r}, which is not a primary code."
                 )
-            categories[code].setdefault("info", {}).update(copy.deepcopy(info))
+            category_spec = categories[code]
+            for key in ("title", "comment"):
+                if key in update:
+                    category_spec[key] = update[key]
+            if "info" in update:
+                category_spec.setdefault("info", {}).update(
+                    copy.deepcopy(update["info"])
+                )
 
     def apply_splits(self, spec: dict[str, typing.Any]) -> None:
         """Apply all splits of this patch to the categorization specification."""
@@ -1067,7 +1158,7 @@ def _patched_spec(
 
     spec = copy.deepcopy(categorization.to_spec())
     for patch in patches:
-        patch.apply_additions(spec)
+        patch.apply_changes(spec)
     for patch in patches:
         patch.apply_splits(spec)
     for patch in patches:

@@ -9,9 +9,10 @@ combinations:
       - extra
       - no_c
     comment: Without C, the extra categories are noted.
-    update_info:
+    update_categories:
       AB:
-        note: without C
+        info:
+          note: without C
 unsupported:
   - options:
       - more

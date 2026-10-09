@@ -16852,14 +16852,14 @@ spec = {
             ],
         },
     },
-    "update_info": {
-        "BOL": {"unfccc_name": "Bolivia (Plurinational State of)"},
-        "COD": {"unfccc_name": "Democratic Republic of the Congo"},
-        "VAT": {"unfccc_name": "Holy See"},
-        "IRN": {"unfccc_name": "Iran (Islamic Republic of)"},
-        "FSM": {"unfccc_name": "Micronesia (Federated States of)"},
-        "KOR": {"unfccc_name": "Republic of Korea"},
-        "PSE": {"unfccc_name": "State of Palestine"},
-        "VEN": {"unfccc_name": "Venezuela (Bolivarian Republic of)"},
+    "update_categories": {
+        "BOL": {"info": {"unfccc_name": "Bolivia (Plurinational State of)"}},
+        "COD": {"info": {"unfccc_name": "Democratic Republic of the Congo"}},
+        "VAT": {"info": {"unfccc_name": "Holy See"}},
+        "IRN": {"info": {"unfccc_name": "Iran (Islamic Republic of)"}},
+        "FSM": {"info": {"unfccc_name": "Micronesia (Federated States of)"}},
+        "KOR": {"info": {"unfccc_name": "Republic of Korea"}},
+        "PSE": {"info": {"unfccc_name": "State of Palestine"}},
+        "VEN": {"info": {"unfccc_name": "Venezuela (Bolivarian Republic of)"}},
     },
 }

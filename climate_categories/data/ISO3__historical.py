@@ -343,5 +343,5 @@ spec = {
             "alternative_codes": ["ZRCD"],
         },
     },
-    "update_info": {"TUR": {"historical_names": ["Turkey"]}},
+    "update_categories": {"TUR": {"info": {"historical_names": ["Turkey"]}}},
 }

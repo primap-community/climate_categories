@@ -317,7 +317,8 @@ add_categories:
       former_numeric: '180'
     alternative_codes:
     - ZRCD
-update_info:
+update_categories:
   TUR:
-    historical_names:
-    - Turkey
+    info:
+      historical_names:
+      - Turkey

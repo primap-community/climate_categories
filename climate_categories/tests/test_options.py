@@ -10,6 +10,7 @@ import climate_categories.tests.data
 from climate_categories import (
     CategorizationOption,
     CategorizationRegistry,
+    OptionCombination,
     OptionFamily,
     OptionManifest,
     UnsupportedCombinationError,
@@ -382,7 +383,7 @@ def test_invalid_option_name():
         ({"add_alternative_codes": {"x": "Z"}}, "not a primary code"),
         ({"add_children": {"Z": [["A"]]}}, "not a primary code"),
         ({"add_children": {"A": [["Z"]]}}, "don't exist"),
-        ({"update_info": {"Z": {"x": "y"}}}, "not a primary code"),
+        ({"update_categories": {"Z": {"title": "y"}}}, "not a primary code"),
         (
             {"remove_categories": climate_categories.CategoryRemoval(codes=("Z",))},
             "not a primary code",
@@ -422,6 +423,11 @@ def test_invalid_option_name():
             "is removed",
         ),
         ({"split_from": {"T": "A"}}, "canonical top level"),
+        ({"remove_alternative_codes": {"x": "Z"}}, "not a primary code"),
+        ({"remove_alternative_codes": {"x": "A"}}, "not an alternative code"),
+        ({"remove_children": {"Z": [["A"]]}}, "not a primary code"),
+        ({"remove_children": {"T": [["A", "B"]]}}, "no such child set"),
+        ({"remove_children": {"A": [["B"]]}}, "no such child set"),
     ],
 )
 def test_invalid_patches(fam, option_kwargs, match):
@@ -564,6 +570,119 @@ def test_merge_into_added_category(fam):
     assert cat["BC"].info == {"includes": ["B", "C"]}
     assert children(cat, "T") == [{"A", "BC"}]
     assert cat.total_sum
+
+
+def build_option(base, **kwargs):
+    """Build the base with an option with the given patch."""
+    option = CategorizationOption(
+        name="opt", title="opt", last_update=datetime.date(2026, 1, 1), **kwargs
+    )
+    family = OptionFamily(
+        base=base,
+        manifest=OptionManifest(base=base.name, options=("opt",)),
+        options={"opt": option},
+    )
+    return family.build(["opt"])
+
+
+def test_update_categories(fam):
+    cat = build_option(
+        fam,
+        update_categories={
+            "A": {"title": "New A", "comment": "Changed.", "info": {"colour": "red"}},
+            "B": {"comment": "Only the comment."},
+        },
+    )
+    assert cat["A"].title == "New A"
+    assert cat["A"].comment == "Changed."
+    assert cat["A"].info == {"size": "big", "colour": "red"}
+    assert cat["B"].title == "Category B"
+    assert cat["B"].comment == "Only the comment."
+    assert cat["A"] == fam["A"]
+    assert fam["A"].title == "Category A"
+
+
+def test_remove_alternative_codes(fam):
+    with_ab = build_option(
+        fam,
+        add_categories={
+            "AB": {"title": "A and B", "alternative_codes": ["A+B", "AplusB"]}
+        },
+        add_children={"T": [["A+B", "C"]]},
+    )
+    cat = with_ab.apply(
+        CategorizationOption(
+            name="no_plus",
+            title="no plus",
+            last_update=datetime.date(2026, 1, 1),
+            remove_alternative_codes={"A+B": "AB"},
+        )
+    )
+    assert "A+B" not in cat
+    assert cat["AB"].codes == ("AB", "AplusB")
+    # child sets use the primary code instead of the removed alternative code
+    assert children(cat, "T") == [{"A", "B", "C"}, {"AB", "C"}]
+
+    # alternative codes can be moved to another category
+    moved = build_option(
+        fam,
+        add_alternative_codes={"a": "A", "x": "B"},
+    ).apply(
+        CategorizationOption(
+            name="move",
+            title="move",
+            last_update=datetime.date(2026, 1, 1),
+            remove_alternative_codes={"x": "B"},
+            add_alternative_codes={"x": "C"},
+        )
+    )
+    assert moved["x"] == moved["C"]
+    assert moved["B"].codes == ("B",)
+
+
+def test_remove_children(fam):
+    # replace a child set, matched regardless of order and with alternative codes
+    cat = build_option(
+        fam,
+        add_alternative_codes={"c": "C"},
+        remove_children={"T": [["c", "A", "B"]]},
+        add_children={"T": [["A", "BC"]]},
+        add_categories={"BC": {"title": "B and C", "children": [["B", "C"]]}},
+    )
+    assert children(cat, "T") == [{"A", "BC"}]
+    # removing the last child set removes the children
+    cat = build_option(fam, remove_children={"T": [["A", "B", "C"]]})
+    assert not cat["T"].children
+    assert cat.level("T") == 1
+
+
+def test_remove_children_combination(fam):
+    # combinations can remove child sets which options added
+    family = make_family(
+        fam,
+        combinations=(
+            OptionCombination(
+                options=("extra", "more"),
+                remove_children={"T": [["AB", "C"]]},
+            ),
+        ),
+    )
+    assert children(family.build(["extra"]), "T") == [{"A", "B", "C"}, {"AB", "C"}]
+    assert children(family.build(["extra", "more"]), "T") == [{"A", "B", "C"}]
+
+
+def test_round_trip_new_patch_keys(tmp_path):
+    option = CategorizationOption(
+        name="all",
+        title="all keys",
+        last_update=datetime.date(2026, 1, 1),
+        update_categories={"A": {"title": "x", "comment": "y", "info": {"z": "1"}}},
+        remove_alternative_codes={"a": "A"},
+        remove_children={"T": [["A", "B"]]},
+    )
+    assert CategorizationOption.from_spec(option.to_spec()) == option
+    option.to_yaml(tmp_path / "all.yaml")
+    assert CategorizationOption.from_yaml(tmp_path / "all.yaml") == option
 
 
 def split_d_from_b() -> CategorizationOption:

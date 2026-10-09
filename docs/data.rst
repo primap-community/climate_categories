@@ -141,28 +141,38 @@ next to the base categorization ``{base}.yaml``: each option in a StrictYaml fil
 
 Option files have the following fields:
 
-=====================  ====  =================================================  ============================
-Key                    Type  Notes                                              Example
----------------------  ----  -------------------------------------------------  ----------------------------
-option                 str   the name of the option, letters, digits, and _     unfccc
-base                   str   optional, the categorization the option is for     ISO3_PRIMAP
-title                  str   one-line description                               UNFCCC parties
-comment                str   optional, long-form description                    Parties to the UN Framework…
-references             str   optional, citable reference(s) and sources         https://unfccc.int/…
-last_update            str   date of last change in ISO format                  2026-09-24
-requires               list  optional, options which have to be enabled, too    ['eu']
-conflicts              list  optional, options which can't be enabled, too      ['other']
-add_categories         map   optional, new categories, see below
-add_alternative_codes  map   optional, new alternative code → primary code      {'EU': 'EU_2020'}
-add_children           map   optional, primary code → list of new child sets    {'World': [['ABW', 'AFG']]}
-update_info            map   optional, primary code → info to add               {'BOL': {'unfccc_name': …}}
-remove_categories      map   optional, categories to remove, see below
-merge_into             map   optional, removed primary code → including code    {'PSE': 'ISR'}
-split_from             map   optional, split primary code → original code       {'XKX': 'SRB'}
-=====================  ====  =================================================  ============================
+========================  ====  ===============================================  ============================
+Key                       Type  Notes                                            Example
+------------------------  ----  -----------------------------------------------  ----------------------------
+option                    str   the name of the option, letters, digits, and _   unfccc
+base                      str   optional, the categorization the option is for   ISO3_PRIMAP
+title                     str   one-line description                             UNFCCC parties
+comment                   str   optional, long-form description                  Parties to the UN Framework…
+references                str   optional, citable reference(s) and sources       https://unfccc.int/…
+last_update               str   date of last change in ISO format                2026-09-24
+requires                  list  optional, options which have to be enabled, too  ['eu']
+conflicts                 list  optional, options which can't be enabled, too    ['other']
+add_categories            map   optional, new categories, see below
+update_categories         map   optional, changes to categories, see below       {'SRB': {'title': …}}
+remove_categories         map   optional, categories to remove, see below
+add_alternative_codes     map   optional, new alternative code → primary code    {'EU': 'EU_2020'}
+remove_alternative_codes  map   optional, alternative code → primary code        {'XK': 'XKX'}
+add_children              map   optional, primary code → list of new child sets  {'World': [['ABW', 'AFG']]}
+remove_children           map   optional, primary code → list of child sets      {'World': [['ABW', 'AFG']]}
+merge_into                map   optional, removed primary code → including code  {'PSE': 'ISR'}
+split_from                map   optional, split primary code → original code     {'XKX': 'SRB'}
+========================  ====  ===============================================  ============================
 
 New categories in ``add_categories`` are specified like categories in categorization
-files. ``remove_categories`` has the keys ``codes`` with the list of primary codes to
+files. ``update_categories`` maps primary codes to changes with the optional keys
+``title`` and ``comment``, which replace the title and comment of the category, and
+``info``, which is added to the info of the category. ``remove_alternative_codes``
+removes alternative codes, child sets which use a removed alternative code use the
+primary code instead. ``remove_children`` removes child sets, the order of the children
+in a set and whether they are given by their primary or an alternative code does not
+matter. Within an option, alternative codes and child sets are removed before new ones
+are added, so a child set can be replaced by removing it and adding the new one, and an
+alternative code can be moved to another category the same way. ``remove_categories`` has the keys ``codes`` with the list of primary codes to
 remove and optionally ``comment``. Removed categories are also removed from all child
 sets. In categorizations with ``total_sum``, child sets which contained removed
 categories are dropped because they don't add up any more. The ``comment`` is added to
@@ -200,8 +210,10 @@ are added to the comments of the category it is split from and of all categories
 children were changed. Merging a category back into the category it was split from
 cancels the split in the ``includes`` and ``excludes`` info.
 
-When building a categorization with options, first all additions of all options are
-applied in the order of the manifest, then all splits, then all merges and removals.
+When building a categorization with options, first all additions and changes of all
+options (everything except splits, merges, and removals of categories) are applied in
+the order of the manifest, followed by the combinations, then all splits, then all
+merges and removals of categories.
 
 The manifest has the following fields:
 

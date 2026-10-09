@@ -18,6 +18,7 @@ add_children:
   T:
     - - AB
       - C
-update_info:
+update_categories:
   A:
-    colour: red
+    info:
+      colour: red

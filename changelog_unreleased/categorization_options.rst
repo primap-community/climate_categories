@@ -5,10 +5,11 @@
   conflict with other options, and combinations of options which are declared as not
   quality-controlled can only be used with ``allow_unsupported=True``. Aliases name commonly used
   combinations of options. See ``available_options``, ``supported_combinations``,
-  ``enabled_options``, and ``canonical_name`` of categorizations. Options can remove
-  categories, merge them into other categories with ``merge_into``, which records
-  the merged categories in the ``includes`` info of the receiving category, or split
-  them from other categories with ``split_from``, which records the split categories
+  ``enabled_options``, and ``canonical_name`` of categorizations. Options can add,
+  update, and remove categories, alternative codes, and child sets. They can also merge
+  categories into other categories with ``merge_into``, which records the merged
+  categories in the ``includes`` info of the receiving category, or split them from
+  other categories with ``split_from``, which records the split categories
   in the ``excludes`` info of the category they are split from.
 * **Breaking change**: ``ISO3`` now only contains the countries from ISO 3166-1 and the
   world. The groupings are available as the options ``eu``, ``unfccc`` (including the

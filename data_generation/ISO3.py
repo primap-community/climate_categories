@@ -668,7 +668,7 @@ https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&cha
         last_update=LAST_UPDATE,
         requires=("eu",),
         add_categories=categories,
-        update_info=unfccc_names(),
+        update_categories=unfccc_names(),
     )
 
 
@@ -721,7 +721,7 @@ def historical_option(
         "https://salsa.debian.org/iso-codes-team/iso-codes",
         last_update=OPTIONS_LAST_UPDATE,
         add_categories=withdrawn_countries(known_codes),
-        update_info=historical_names(),
+        update_categories=historical_names(),
     )
 
 
@@ -1055,8 +1055,8 @@ def g35_categories() -> dict[str, dict]:
 
 
 def historical_names() -> dict[str, dict]:
-    """Historical names of current countries, as info updates."""
-    return {"TUR": {"historical_names": ["Turkey"]}}
+    """Historical names of current countries, as category updates."""
+    return {"TUR": {"info": {"historical_names": ["Turkey"]}}}
 
 
 def withdrawn_countries(known_codes: set[str]) -> dict[str, dict]:
@@ -1183,7 +1183,7 @@ def g7g20_categories() -> dict[str, dict]:
 
 
 def unfccc_names() -> dict[str, dict]:
-    """The names used by the UNFCCC where they differ, as info updates."""
+    """The names used by the UNFCCC where they differ, as category updates."""
     names = {
         "BOL": "Bolivia (Plurinational State of)",
         "COD": "Democratic Republic of the Congo",
@@ -1194,7 +1194,7 @@ def unfccc_names() -> dict[str, dict]:
         "PSE": "State of Palestine",
         "VEN": "Venezuela (Bolivarian Republic of)",
     }
-    return {code: {"unfccc_name": name} for code, name in names.items()}
+    return {code: {"info": {"unfccc_name": name}} for code, name in names.items()}
 
 
 def unfccc_categories() -> dict[str, dict]:
