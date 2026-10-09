@@ -1,23 +1,21 @@
-"""Run this via `make climate_categories/data/ISO3_GCAM.yaml` in the main
-directory."""
+"""The ``gcam`` option of ISO3, adding the regions of the GCAM integrated assessment
+model.
+
+This is not run directly, the option is generated as part of ISO3 by
+`make climate_categories/data/ISO3.py` in the main directory.
+
+The region definitions are read from the model's input data in the gcam-core
+repository.
+"""
 
 import collections
 import csv
 import datetime
-import pathlib
 
 import requests
 import tqdm
-from utils import write_categorization
 
 import climate_categories
-
-OUTPATH = pathlib.Path("./climate_categories/data/ISO3_GCAM.yaml")
-
-# ISO3 categorization amended with GCAM regions.
-#
-# The region definitions are read from the model's input data in the gcam-core
-# repository.
 
 RAW_URL = "https://raw.githubusercontent.com/JGCRI/gcam-core"
 WEB_URL = "https://github.com/JGCRI/gcam-core/blob"
@@ -91,18 +89,9 @@ ISO_FIXES = {
     "yug": None,  # Yugoslavia, dissolved in 2003
 }
 
-#: Categories we have to add before we can use them in a region. GCAM 7.4 and later
-#: use Kosovo, which is not part of ISO 3166-1, and we want to follow GCAM closely, so
-#: we add it here. Like the GCAM regions themselves, it is not part of any of the
-#: groupings inherited from ISO3.
-ADDITIONAL_COUNTRIES = {
-    "XKX": {
-        "title": "Kosovo",
-        "comment": "Kosovo, as used by GCAM 7.4 and later. Not part of ISO 3166-1, "
-        "XKX is the user-assigned code commonly used for it",
-        "alternative_codes": ["XK"],
-    },
-}
+#: Options of ISO3 the gcam option requires. GCAM 7.4 and later use Kosovo, which is
+#: not part of ISO 3166-1, and we want to follow GCAM closely.
+REQUIRES = ("kosovo",)
 
 #: Additional names for regions, used as alternative codes. The GCAM documentation
 #: spells some region names differently from the mapping files, and we want both
@@ -167,13 +156,14 @@ def download_mapping(version: str, filename: str) -> list[dict[str, str]]:
 
 
 def read_regions(
-    version: str, ignored: collections.Counter[str]
+    version: str, ignored: collections.Counter[str], known_codes: set[str]
 ) -> tuple[dict[str, set[str]], dict[str, set[str]]]:
     """Read the region definitions of one GCAM version.
 
     Returns the regions of this version and the GCAM 3 regions as recorded by this
     version, both as mappings from the region name to the ISO3 codes of its countries.
-    Codes we drop are counted in ``ignored``.
+    Codes we drop are counted in ``ignored``. All other codes have to be in
+    ``known_codes``.
     """
     names = {
         row["GCAM_region_ID"]: row["region"]
@@ -196,11 +186,11 @@ def read_regions(
         else:
             code = iso.upper()
 
-        if code not in climate_categories.ISO3 and code not in ADDITIONAL_COUNTRIES:
+        if code not in known_codes:
             raise ValueError(
-                f"GCAM version {version} uses the country code {iso!r} which is "
-                "neither in ISO3 nor in ADDITIONAL_COUNTRIES, please add it to "
-                "ADDITIONAL_COUNTRIES or to ISO_FIXES."
+                f"GCAM version {version} uses the country code {iso!r} which is not "
+                f"in ISO3 with the options {list(REQUIRES)!r}, please add it to "
+                "ISO3 or to ISO_FIXES."
             )
 
         regions[names[row["GCAM_region_ID"]]].add(code)
@@ -274,12 +264,18 @@ def alternative_codes(versions: list[str], region: str) -> list[str]:
     ]
 
 
-def main():
+def gcam_option(known_codes: set[str]) -> climate_categories.CategorizationOption:
+    """Generate the gcam option of ISO3.
+
+    ``known_codes`` are all codes of ISO3 with the options in REQUIRES enabled.
+    """
     regions = {}
     regions_gcam3 = {}
     ignored: collections.Counter[str] = collections.Counter()
     for version in tqdm.tqdm(GCAM_VERSIONS):
-        regions[version], regions_gcam3[version] = read_regions(version, ignored)
+        regions[version], regions_gcam3[version] = read_regions(
+            version, ignored, known_codes
+        )
 
     for iso, count in sorted(ignored.items()):
         print(
@@ -288,8 +284,7 @@ def main():
 
     check_gcam3_additive(regions_gcam3)
 
-    categories = dict(ADDITIONAL_COUNTRIES)
-    children = []
+    categories = {}
     references = []
 
     for version, same_versions, version_regions in deduplicate(regions):
@@ -299,8 +294,8 @@ def main():
                 "title": region,
                 "comment": f"Region {region!r} as defined in {describe(versions)}",
                 "alternative_codes": alternative_codes(versions, region),
+                "children": [sorted(codes)],
             }
-            children.append((f"GCAM {version}|{region}", sorted(codes)))
         references.append(
             f"{describe(versions)} regions, "
             f"{WEB_URL}/gcam-v{version}/{mapping_dir(version)}/{REGIONS_FILE}"
@@ -312,29 +307,26 @@ def main():
             "comment": f"Region {region!r} as defined in GCAM version 3.0, as "
             f"recorded by GCAM version {GCAM3_VERSION}",
             "alternative_codes": alternative_codes(["3.0"], region),
+            "children": [sorted(codes)],
         }
-        children.append((f"GCAM 3.0|{region}", sorted(codes)))
     references.append(
         "GCAM version 3.0 regions, region_GCAM3 column of "
         f"{WEB_URL}/gcam-v{GCAM3_VERSION}/{mapping_dir(GCAM3_VERSION)}/{REGIONS_FILE}"
     )
 
-    iso3_gcam = climate_categories.ISO3.extend(
-        name="GCAM",
-        title=" with GCAM regions",
-        comment=" Additionally, includes regions used in the GCAM integrated assessment model",
+    for spec in categories.values():
+        if not spec["alternative_codes"]:
+            del spec["alternative_codes"]
+
+    return climate_categories.CategorizationOption(
+        name="gcam",
+        title="GCAM regions",
+        comment="Regions used in the GCAM integrated assessment model of the Joint "
+        "Global Change Research Institute, for all GCAM versions. Regions which are "
+        "identical in multiple GCAM versions are a single category, with codes for "
+        "all versions.",
+        references=";\n".join(references),
         last_update=datetime.date.fromisoformat("2026-09-24"),
-        categories=categories,
-        children=children,
+        requires=REQUIRES,
+        add_categories=categories,
     )
-
-    iso3_gcam.references = climate_categories.ISO3.references + ";\n".join(
-        [*references, ""]
-    )
-    iso3_gcam.institution = "Joint Global Change Research Institute "
-
-    write_categorization(iso3_gcam, OUTPATH)
-
-
-if __name__ == "__main__":
-    main()

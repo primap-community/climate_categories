@@ -1,11 +1,17 @@
-"""Run this via `make climate_categories/data/ISO3.yaml` in the main directory."""
+"""Run this via `make climate_categories/data/ISO3.py` in the main directory.
 
+Generates the base ISO3 categorization with all its options, including the ``gcam``
+option generated in ISO3_GCAM.py.
+"""
+
+import copy
 import datetime
 import itertools
 import pathlib
 
+import ISO3_GCAM
 import requests
-from utils import write_categorization
+from utils import all_codes, write_option_family
 
 import climate_categories
 
@@ -13,8 +19,38 @@ URL = (
     "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/main/data/"
     "iso_3166-1.json?inline=false"
 )
-OUTPATH = pathlib.Path("./climate_categories/data/ISO3.yaml")
+URL_WITHDRAWN = (
+    "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/main/data/"
+    "iso_3166-3.json?inline=false"
+)
+DATA_DIR = pathlib.Path("./climate_categories/data")
 LAST_UPDATE = datetime.date(2026, 9, 24)
+# Last update of the options introduced with the option mechanism.
+OPTIONS_LAST_UPDATE = datetime.date(2026, 10, 9)
+
+# Kosovo is not part of ISO 3166-1, but used in some data sources like GCAM.
+KOSOVO = {
+    "XKX": {
+        "title": "Kosovo",
+        "comment": "Kosovo, which is not part of ISO 3166-1. XKX is the user-assigned "
+        "code commonly used for it.",
+        "alternative_codes": ["XK"],
+    },
+}
+
+# Options which make up commonly used categorizations.
+ALIASES = {
+    "ISO3_PRIMAP": ("eu", "groups", "historical", "pse_in_isr", "unfccc"),
+    "ISO3_GCAM": ("eu", "gcam", "groups", "historical", "kosovo", "unfccc"),
+}
+
+# Combinations of options which are not quality-controlled.
+UNSUPPORTED = (
+    climate_categories.UnsupportedCombination(
+        options=("gcam", "pse_in_isr"),
+        comment="the GCAM regions have PSE separately",
+    ),
+)
 
 # Status of the UNFCCC at its depositary, the Secretary-General of the United Nations.
 # Lists the date on which every party deposited its instrument of ratification,
@@ -538,70 +574,184 @@ PARIS_LEFT: list[tuple[str, datetime.date, str]] = [
 
 
 def main():
-    """Generate the categorization."""
+    """Generate the base categorization and its options."""
+    base = base_categories()
+    base_codes = all_codes(base)
 
+    eu = eu_option()
+    options = [
+        eu,
+        unfccc_option(known_codes=base_codes | all_codes(eu.add_categories)),
+        groups_option(),
+        historical_option(known_codes=base_codes),
+        kosovo_option(),
+        ISO3_GCAM.gcam_option(base_codes | all_codes(KOSOVO)),
+        pse_in_isr_option(),
+    ]
+    manifest = climate_categories.OptionManifest(
+        base="ISO3",
+        options=tuple(option.name for option in options),
+        unsupported=UNSUPPORTED,
+        aliases=ALIASES,
+    )
+
+    spec = {
+        "name": "ISO3",
+        "title": "ISO 3166-1 countries",
+        "comment": "Countries, regions, and other areas as defined in ISO 3166-1, and "
+        "the world. Groupings like the parties to the UN Framework Convention on "
+        "Climate Change are available as options, see ISO3.available_options. The "
+        "alias ISO3_PRIMAP includes all groupings commonly used in climate policy "
+        "analysis.",
+        "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\n"
+        "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
+        "institution": "ISO",
+        "last_update": LAST_UPDATE.isoformat(),
+        "hierarchical": True,
+        "version": LAST_UPDATE.isoformat(),
+        "total_sum": False,
+        # from_spec modifies the categories
+        "categories": copy.deepcopy(base),
+        "canonical_top_level_category": "WORLD",
+    }
+
+    return (
+        climate_categories.HierarchicalCategorization.from_spec(spec),
+        options,
+        manifest,
+    )
+
+
+def base_categories() -> dict[str, dict]:
+    """The countries from ISO 3166-1 and the world."""
     categories = load_countries()
-
-    # add some widely used additional categories
+    # the world is needed as the canonical top level category
     categories["World"] = {
         "title": "The world",
         "alternative_codes": ["EARTH", "Earth", "WORLD"],
         "children": [list(categories.keys())],
     }
-    categories = add_eu_categories(categories)
-    categories = add_unfccc_categories(categories)
-    categories = add_unfccc_versions(categories)
-    categories = add_paris_categories(categories)
-    categories = add_unfccc_names(categories)
-    categories = add_aosis(categories)
-    categories = add_g7g20(categories)
-    categories = add_oecd(categories)
-    categories = add_historical_names(categories)
-    categories = add_basic(categories)
-    categories = add_ldc(categories)
-    categories = add_umbrella(categories)
-    categories = add_OPEC(categories)
-    categories = add_ARAB(categories)
-    categories = add_LMDC(categories)
-    categories = add_G35(categories)
+    return categories
 
-    spec = {
-        "name": "ISO3",
-        "title": "ISO 3166-1 countries with climate-relevant groupings",
-        "comment": "Countries, regions, and other areas. Also includes information on "
-        "groups like being included in Annex I of the UN Framework Convention on "
-        "Climate Change.",
-        "references": """ISO 3166, https://www.iso.org/iso-3166-country-codes.html;
-iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;
-UNFCCC Parties & Observers, https://unfccc.int/parties-observers;
+
+def eu_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="eu",
+        title="European Union members",
+        comment="The European Union at different points in time, use EU for the "
+        "current European Union.",
+        references="EU members, "
+        "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements",
+        last_update=LAST_UPDATE,
+        add_categories=eu_categories(),
+    )
+
+
+def unfccc_option(known_codes: set[str]) -> climate_categories.CategorizationOption:
+    """The UNFCCC option, all parties have to be in ``known_codes``."""
+    categories = unfccc_categories()
+    categories.update(unfccc_versions(categories, known_codes))
+    categories.update(paris_categories(categories, known_codes))
+    return climate_categories.CategorizationOption(
+        name="unfccc",
+        title="UNFCCC and Paris Agreement parties",
+        comment="Parties to the UN Framework Convention on Climate Change and to the "
+        "Paris Agreement under it, currently (UNFCCC, PARIS) and over time "
+        "(UNFCCC_YYYY_MM, PARIS_YYYY_MM), parties listed in Annex I of the "
+        "Convention and other parties (Annex-I, Non-Annex-I), and the names of "
+        "parties as used by the UNFCCC.",
+        references="""UNFCCC Parties & Observers, https://unfccc.int/parties-observers;
 UNFCCC status at the depositary,
 https://treaties.un.org/Pages/ViewDetailsIII.aspx?src=TREATY&mtdsg_no=XXVII-7&chapter=27&Temp=mtdsg3&clang=_en;
 Paris Agreement status at the depositary,
-https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en;
-EU members,
-https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:EU_enlargements;
-G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
+https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en""",
+        last_update=LAST_UPDATE,
+        requires=("eu",),
+        add_categories=categories,
+        update_categories=unfccc_names(),
+    )
+
+
+def groups_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="groups",
+        title="country groups",
+        comment="Groups of countries in climate negotiations and international "
+        "politics: AOSIS, BASIC, LDC, the Umbrella Group, the Arab Group, LMDC, G35, "
+        "G7, G8, G20, OECD, and OPEC.",
+        references="""G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
 UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;
 LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;
 AOSIS members, https://www.aosis.org/about/member-states/;
-OPEC https://www.opec.org/member-countries.html";
+OPEC https://www.opec.org/member-countries.html;
 ARAB https://unfccc.int/party-groupings;
-LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries;
-""",
-        "institution": "UN",
-        "last_update": LAST_UPDATE.isoformat(),
-        "hierarchical": True,
-        "version": LAST_UPDATE.isoformat(),
-        "total_sum": False,
-        "categories": categories,
-        "canonical_top_level_category": "WORLD",
-    }
+LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries""",
+        last_update=LAST_UPDATE,
+        # the EU is a member of the G7 and G20
+        requires=("eu",),
+        add_categories={
+            **aosis_categories(),
+            **g7g20_categories(),
+            **oecd_categories(),
+            **basic_categories(),
+            **ldc_categories(),
+            **umbrella_categories(),
+            **opec_categories(),
+            **arab_categories(),
+            **lmdc_categories(),
+            **g35_categories(),
+        },
+    )
 
-    return climate_categories.HierarchicalCategorization.from_spec(spec)
+
+def historical_option(
+    known_codes: set[str],
+) -> climate_categories.CategorizationOption:
+    """The historical option, withdrawn countries must not re-use ``known_codes``."""
+    return climate_categories.CategorizationOption(
+        name="historical",
+        title="historical countries and names",
+        comment="Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) "
+        "or Yugoslavia (YUG), and historical names of current countries. The "
+        "alpha-2 and numeric codes of withdrawn countries were partly re-used for "
+        "other countries, so they are only given in the info. If the alpha-3 code was "
+        "re-used, the alpha-4 code from ISO 3166-3 is the primary code.",
+        references="ISO 3166-3 in the iso-codes package, "
+        "https://salsa.debian.org/iso-codes-team/iso-codes",
+        last_update=OPTIONS_LAST_UPDATE,
+        add_categories=withdrawn_countries(known_codes),
+        update_categories=historical_names(),
+    )
 
 
-def add_basic(categories):
+def kosovo_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="kosovo",
+        title="Kosovo",
+        comment="Kosovo, which is not part of ISO 3166-1, with the user-assigned code "
+        "XKX which is commonly used for it.",
+        last_update=OPTIONS_LAST_UPDATE,
+        add_categories=KOSOVO,
+        split_from={"XKX": "SRB"},
+        join_parents={"XKX": ["World"]},
+    )
+
+
+def pse_in_isr_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="pse_in_isr",
+        title="Palestine included in Israel",
+        comment="Palestine (PSE) is not listed separately, it is assumed to be "
+        "included in Israel (ISR), so that sums over countries stay complete. Use "
+        "this for data sources which do not report Palestine separately.",
+        last_update=OPTIONS_LAST_UPDATE,
+        merge_into={"PSE": "ISR"},
+    )
+
+
+def basic_categories() -> dict[str, dict]:
+    categories = {}
     categories["BASIC"] = {
         "title": "BASIC countries",
         "children": [["BRA", "ZAF", "IND", "CHN"]],
@@ -609,7 +759,8 @@ def add_basic(categories):
     return categories
 
 
-def add_ldc(categories):
+def ldc_categories() -> dict[str, dict]:
+    categories = {}
     categories["LDC"] = {
         "title": "Least Developed Countries",
         "children": [
@@ -664,7 +815,8 @@ def add_ldc(categories):
     return categories
 
 
-def add_umbrella(categories):
+def umbrella_categories() -> dict[str, dict]:
+    categories = {}
     categories["UMBRELLA_2023"] = {
         "title": "The Umbrella Group",
         "comment": "The Umbrella Group is a coalition of Parties which formed following the adoption of the Kyoto Protocol. The United Kingdom formally joined the group in 2023.",
@@ -688,7 +840,8 @@ def add_umbrella(categories):
     return categories
 
 
-def add_aosis(categories):
+def aosis_categories() -> dict[str, dict]:
+    categories = {}
     categories["AOSIS"] = {
         "title": "Alliance of Small Island States",
         "children": [
@@ -738,7 +891,8 @@ def add_aosis(categories):
     return categories
 
 
-def add_OPEC(categories):
+def opec_categories() -> dict[str, dict]:
+    categories = {}
     categories["OPEC"] = {
         "title": "Oranization of Petroleum Exporting Countries",
         "children": [
@@ -761,7 +915,8 @@ def add_OPEC(categories):
     return categories
 
 
-def add_ARAB(categories):
+def arab_categories() -> dict[str, dict]:
+    categories = {}
     categories["ARAB"] = {
         "title": "Arab Group",
         "children": [
@@ -794,7 +949,8 @@ def add_ARAB(categories):
     return categories
 
 
-def add_LMDC(categories):
+def lmdc_categories() -> dict[str, dict]:
+    categories = {}
     categories["LMDC"] = {
         "title": "Like-minded developing countries",
         "children": [
@@ -829,7 +985,8 @@ def add_LMDC(categories):
     return categories
 
 
-def add_G35(categories):
+def g35_categories() -> dict[str, dict]:
+    categories = {}
     categories["G35"] = {
         "title": "Group of 35",
         "children": [
@@ -898,12 +1055,54 @@ def add_G35(categories):
     return categories
 
 
-def add_historical_names(categories):
-    categories["TUR"]["info"]["historical_names"] = ["Turkey"]
+def historical_names() -> dict[str, dict]:
+    """Historical names of current countries, as category updates."""
+    return {"TUR": {"info": {"historical_names": ["Turkey"]}}}
+
+
+def withdrawn_countries(known_codes: set[str]) -> dict[str, dict]:
+    """Countries withdrawn from ISO 3166-1, from the iso-codes debian package.
+
+    Codes in ``known_codes`` are not re-used."""
+    r = requests.get(URL_WITHDRAWN, headers={"Accept": "application/json"})
+    r.raise_for_status()
+
+    known_codes = set(known_codes)
+    categories = {}
+
+    for country in r.json()["3166-3"]:
+        # alpha-3 codes were partly re-used, use the unique alpha-4 code then
+        if country["alpha_3"] in known_codes:
+            codes = [country["alpha_4"]]
+        else:
+            codes = [country["alpha_3"], country["alpha_4"]]
+        assert not set(codes) & known_codes, codes
+        known_codes.update(codes)
+
+        date = country["withdrawal_date"]
+        comment = (
+            f"Withdrawn from ISO 3166-1 {'in' if len(date) == 4 else 'on'} {date}."
+        )
+        if "comment" in country:
+            comment += f" {country['comment'][0].upper()}{country['comment'][1:]}."
+        info = {
+            "withdrawal_date": country["withdrawal_date"],
+            "former_alpha_3": country["alpha_3"],
+            "former_alpha_2": country["alpha_2"],
+        }
+        if "numeric" in country:
+            info["former_numeric"] = country["numeric"]
+
+        spec = {"title": country["name"], "comment": comment, "info": info}
+        if len(codes) > 1:
+            spec["alternative_codes"] = codes[1:]
+        categories[codes[0]] = spec
+
     return categories
 
 
-def add_oecd(categories):
+def oecd_categories() -> dict[str, dict]:
+    categories = {}
     categories["OECD"] = {
         "title": "Organisation for Economic Co-operation and Development",
         "children": [
@@ -952,7 +1151,8 @@ def add_oecd(categories):
     return categories
 
 
-def add_g7g20(categories):
+def g7g20_categories() -> dict[str, dict]:
+    categories = {}
     categories["G7"] = {
         "title": "Group of Seven",
         "children": [["DEU", "FRA", "GBR", "ITA", "JPN", "USA", "CAN", "EU"]],
@@ -983,19 +1183,23 @@ def add_g7g20(categories):
     return categories
 
 
-def add_unfccc_names(categories):
-    categories["BOL"]["info"]["unfccc_name"] = "Bolivia (Plurinational State of)"
-    categories["COD"]["info"] = {"unfccc_name": "Democratic Republic of the Congo"}
-    categories["VAT"]["info"] = {"unfccc_name": "Holy See"}
-    categories["IRN"]["info"]["unfccc_name"] = "Iran (Islamic Republic of)"
-    categories["FSM"]["info"]["unfccc_name"] = "Micronesia (Federated States of)"
-    categories["KOR"]["info"]["unfccc_name"] = "Republic of Korea"
-    categories["PSE"]["info"]["unfccc_name"] = "State of Palestine"
-    categories["VEN"]["info"]["unfccc_name"] = "Venezuela (Bolivarian Republic of)"
-    return categories
+def unfccc_names() -> dict[str, dict]:
+    """The names used by the UNFCCC where they differ, as category updates."""
+    names = {
+        "BOL": "Bolivia (Plurinational State of)",
+        "COD": "Democratic Republic of the Congo",
+        "VAT": "Holy See",
+        "IRN": "Iran (Islamic Republic of)",
+        "FSM": "Micronesia (Federated States of)",
+        "KOR": "Republic of Korea",
+        "PSE": "State of Palestine",
+        "VEN": "Venezuela (Bolivarian Republic of)",
+    }
+    return {code: {"info": {"unfccc_name": name}} for code, name in names.items()}
 
 
-def add_unfccc_categories(categories):
+def unfccc_categories() -> dict[str, dict]:
+    categories = {}
     categories["Annex-I"] = {
         "title": "Annex-I parties to the UNFCCC",
         "comment": "Parties to the UN Framework Convention on Climate Change "
@@ -1230,10 +1434,12 @@ def add_unfccc_categories(categories):
     return categories
 
 
-def add_unfccc_versions(categories):
-    """Add the parties to the UNFCCC over time, see add_party_versions."""
-    categories = add_party_versions(
-        categories,
+def unfccc_versions(unfccc: dict[str, dict], known_codes: set[str]) -> dict[str, dict]:
+    """The parties to the UNFCCC over time, see party_versions.
+
+    ``unfccc`` are the categories from unfccc_categories."""
+    categories = party_versions(
+        known_codes,
         prefix="UNFCCC",
         joined=UNFCCC_JOINED,
         left=UNFCCC_LEFT,
@@ -1243,16 +1449,18 @@ def add_unfccc_versions(categories):
     )
 
     assert set(categories["UNFCCC_2022_10"]["children"][0]) == set(
-        categories["UNFCCC"]["children"][0]
+        unfccc["UNFCCC"]["children"][0]
     )
 
     return categories
 
 
-def add_paris_categories(categories):
-    """Add the parties to the Paris Agreement, currently and over time."""
-    categories = add_party_versions(
-        categories,
+def paris_categories(unfccc: dict[str, dict], known_codes: set[str]) -> dict[str, dict]:
+    """The parties to the Paris Agreement, currently and over time.
+
+    ``unfccc`` are the categories from unfccc_categories."""
+    categories = party_versions(
+        known_codes,
         prefix="PARIS",
         joined=PARIS_JOINED,
         left=PARIS_LEFT,
@@ -1277,7 +1485,7 @@ def add_paris_categories(categories):
 
     assert set(parties) == set(categories["PARIS_2026_01"]["children"][0])
     # all parties to the UNFCCC except the non-parties to the Paris Agreement
-    assert set(parties) == set(categories["UNFCCC"]["children"][0]) - {
+    assert set(parties) == set(unfccc["UNFCCC"]["children"][0]) - {
         "IRN",
         "LBY",
         "YEM",
@@ -1301,8 +1509,8 @@ def party_changes(
     )
 
 
-def add_party_versions(
-    categories,
+def party_versions(
+    known_codes: set[str],
     *,
     prefix: str,
     joined: list[tuple[str, datetime.date, str]],
@@ -1311,7 +1519,7 @@ def add_party_versions(
     comment_name: str,
     instrument: str,
 ):
-    """Add the parties to a treaty over time.
+    """The parties to a treaty over time. All parties have to be in ``known_codes``.
 
     For every month in which parties joined or left, there is a category
     {prefix}_YYYY_MM containing the parties after all changes in that month took
@@ -1328,10 +1536,7 @@ def add_party_versions(
         )
     ]
 
-    known_codes = set(categories)
-    for spec in categories.values():
-        known_codes.update(spec.get("alternative_codes", []))
-
+    categories = {}
     parties = []
     for i, ((year, month), month_changes) in enumerate(months):
         for _, code, kind in month_changes:
@@ -1394,7 +1599,8 @@ def add_party_versions(
     return categories
 
 
-def add_eu_categories(categories):
+def eu_categories() -> dict[str, dict]:
+    categories = {}
     categories["EU_1993"] = {
         "title": "European Union from 1993 to 1994",
         "comment": "The European Union from 1993-11-1 to 1994-12-31.",
@@ -1487,6 +1693,4 @@ def load_countries() -> dict[str, str | dict[str, str] | list[str] | list[list[s
 
 
 if __name__ == "__main__":
-    ISO3 = main()
-
-    write_categorization(ISO3, OUTPATH)
+    write_option_family(*main(), DATA_DIR)

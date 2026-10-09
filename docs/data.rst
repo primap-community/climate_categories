@@ -129,6 +129,197 @@ An example in StrictYaml syntax with two categories would be:
           - 1A
 
 
+Categorizations with options
+----------------------------
+
+A base categorization can have options, which are patches to the base categorization
+and are combined on demand. The categorization with options enabled is named like
+``ISO3[eu,unfccc]``, with the options sorted alphabetically. The options are stored
+next to the base categorization ``{base}.yaml``: each option in a StrictYaml file
+``{base}__{option}.yaml``, and a manifest declaring all options in
+``{base}__options.yaml``.
+
+Option files have the following fields:
+
+========================  ====  ===============================================  ============================
+Key                       Type  Notes                                            Example
+------------------------  ----  -----------------------------------------------  ----------------------------
+option                    str   the name of the option, letters, digits, and _   unfccc
+base                      str   optional, the categorization the option is for   ISO3_PRIMAP
+title                     str   one-line description                             UNFCCC parties
+comment                   str   optional, long-form description                  Parties to the UN Framework…
+references                str   optional, citable reference(s) and sources       https://unfccc.int/…
+last_update               str   date of last change in ISO format                2026-09-24
+requires                  list  optional, options which have to be enabled, too  ['eu']
+conflicts                 list  optional, options which can't be enabled, too    ['other']
+add_categories            map   optional, new categories, see below
+update_categories         map   optional, changes to categories, see below       {'SRB': {'title': …}}
+remove_categories         map   optional, categories to remove, see below
+add_alternative_codes     map   optional, new alternative code → primary code    {'EU': 'EU_2020'}
+remove_alternative_codes  map   optional, alternative code → primary code        {'XK': 'XKX'}
+add_children              map   optional, primary code → list of new child sets  {'World': [['ABW', 'AFG']]}
+remove_children           map   optional, primary code → list of child sets      {'World': [['ABW', 'AFG']]}
+merge_into                map   optional, removed primary code → including code  {'PSE': 'ISR'}
+split_from                map   optional, split primary code → original code     {'XKX': 'SRB'}
+join_parents              map   optional, split primary code → list of parents   {'XKX': ['World']}
+========================  ====  ===============================================  ============================
+
+New categories in ``add_categories`` are specified like categories in categorization
+files. ``update_categories`` maps primary codes to changes with the optional keys
+``title`` and ``comment``, which replace the title and comment of the category, and
+``info``, which is added to the info of the category. ``remove_alternative_codes``
+removes alternative codes, child sets which use a removed alternative code use the
+primary code instead. ``remove_children`` removes child sets, the order of the children
+in a set and whether they are given by their primary or an alternative code does not
+matter. Within an option, alternative codes and child sets are removed before new ones
+are added, so a child set can be replaced by removing it and adding the new one, and an
+alternative code can be moved to another category the same way. ``remove_categories`` has the keys ``codes`` with the list of primary codes to
+remove and optionally ``comment``. Removed categories are also removed from all child
+sets. In categorizations with ``total_sum``, child sets which contained removed
+categories are dropped because they don't add up any more. The ``comment`` is added to
+the comment of all categories whose children were changed.
+
+``merge_into`` removes categories which are included in other categories, for example
+``{'PSE': 'ISR'}`` if the emissions of Palestine are included in the emissions of
+Israel. The removed code is recorded in the ``includes`` info of the receiving
+category, so ``ISO3_PRIMAP["ISR"].info["includes"]`` is ``['PSE']``. If the removed
+category itself included other categories, they are added to the ``includes`` too.
+Child sets which also contain the receiving category, or a category it is part of, still
+add up, so the removed category is just dropped from them. If the receiving category
+is not a member of any child set yet, like a historical country or a newly added
+aggregate, it takes over the memberships of the categories merged into it: child sets
+which contain all categories merged into it by the option contain the receiving
+category instead. For example, merging ``CUW``, ``SXM``, and ``BES`` into the
+Netherlands Antilles ``ANT`` puts ``ANT`` into ``World``. In contrast, ``ISR`` is a
+member of child sets like ``UNFCCC`` already, so merging ``PSE`` into it does not put
+``ISR`` into the child sets which contained ``PSE``, like ``ARAB``. Other child sets
+which contained the removed category are handled like for ``remove_categories``. Notes about
+the merge are added to the comments of the receiving category and of all categories
+whose children were changed. The receiving category can also be added by the option
+itself, which is useful for data sources which only report the sum of several
+categories, for example::
+
+    add_categories:
+      CHI:
+        title: Channel Islands
+    merge_into:
+      GGY: CHI
+      JEY: CHI
+
+``split_from`` is the mirror image of ``merge_into`` for categories which are split from
+other categories, for example ``{'XKX': 'SRB'}`` because Kosovo is split from Serbia.
+The split category has to exist, usually it is added by ``add_categories`` of the same
+option. The split code is recorded in the ``excludes`` info of the category it is split
+from, so ``ISO3_GCAM["SRB"].info["excludes"]`` is ``['XKX']``. In categorizations with
+``total_sum``, the split category is added to all child sets which contain the category
+it is split from, so that they still add up. Without ``total_sum``, child sets are
+memberships, like the parties of the UNFCCC, so the split category is only added to the
+child sets of the parents given in ``join_parents``, which contain the category it is
+split from. For example, ``join_parents: {'XKX': ['World']}`` puts Kosovo into the
+world, but not into the UNFCCC. Parents in ``join_parents`` which don't exist are
+ignored, so ``World`` can be given even if the option is used for categorizations
+without it. Notes about the split
+are added to the comments of the category it is split from and of all categories whose
+children were changed. Merging a category back into the category it was split from
+cancels the split in the ``includes`` and ``excludes`` info.
+
+When building a categorization with options, first all additions and changes of all
+options (everything except splits, merges, and removals of categories) are applied in
+the order of the manifest, followed by the combinations, then all splits, then all
+merges and removals of categories.
+
+The manifest has the following fields:
+
+============  ====  ==================================================================  ====================
+Key           Type  Notes                                                               Example
+------------  ----  ------------------------------------------------------------------  --------------------
+base          str   the name of the base categorization                                 ISO3
+options       list  all options, in the order in which they are applied                 ['eu', 'unfccc']
+combinations  list  optional, patches applied if all their options are enabled
+unsupported   list  optional, combinations of options which are not quality-controlled
+aliases       map   optional, names for commonly used combinations of options           {'ISO3_PRIMAP': […]}
+============  ====  ==================================================================  ====================
+
+Each entry in ``combinations`` has the key ``options`` with the list of options, an
+optional ``comment`` and the same patch keys as option files (``add_categories`` etc.).
+Use combinations to handle the interaction of options.
+
+Each entry in ``unsupported`` has the key ``options`` with a list of options, and an
+optional ``comment`` explaining why they are not supported together. All combinations
+of options which contain all options of an entry can only be used with
+``allow_unsupported=True``, because they were not checked. All other combinations
+are supported, as long as they contain all options required by their options
+(``requires``) and no conflicting options (``conflicts``). Use ``conflicts`` in option
+files for options which can never be used together, and ``unsupported`` in the
+manifest for options which could be used together, but were not checked.
+
+An example manifest:
+
+.. code-block:: yaml
+
+    base: ISO3
+    options:
+      - eu
+      - unfccc
+      - gcam
+      - pse_in_isr
+    unsupported:
+      - options:
+          - gcam
+          - pse_in_isr
+        comment: the GCAM regions have PSE separately
+    aliases:
+      ISO3_PRIMAP:
+        - eu
+        - pse_in_isr
+        - unfccc
+
+
+Extensions
+----------
+
+Option files can also be used to extend categorizations without including the
+extension in climate_categories, for example to share an extension together with a
+dataset using it. For such options, give the categorization the option is for in the
+``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``, and read and apply them
+using ``climate_categories.load_extension``. ``requires`` and ``conflicts`` then refer
+to the options enabled in the base and to extensions applied before. An example:
+
+.. code-block:: yaml
+
+    option: mygroups
+    base: ISO3_PRIMAP
+    title: my groups
+    comment: Groups used in my dataset.
+    last_update: 2026-10-01
+    add_categories:
+      MYGROUP:
+        title: My group
+        children:
+          - - DEU
+            - FRA
+
+Several extensions of the same categorization can be applied together, in the given
+order, using ``climate_categories.load_extension([first, second])``. All of them name
+the same ``base``, and later extensions can require earlier ones. For example, an
+extension which uses ``MYGROUP`` from the extension above:
+
+.. code-block:: yaml
+
+    option: mysecondgroups
+    base: ISO3_PRIMAP
+    title: my second groups
+    last_update: 2026-10-02
+    requires:
+      - mygroups
+    add_categories:
+      MYSECONDGROUP:
+        title: My second group
+        children:
+          - - MYGROUP
+            - ITA
+
+
 Conversions
 ===========
 
