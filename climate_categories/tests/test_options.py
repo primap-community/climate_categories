@@ -423,6 +423,7 @@ def test_invalid_option_name():
             "is removed",
         ),
         ({"split_from": {"T": "A"}}, "canonical top level"),
+        ({"join_parents": {"C": ["T"]}}, "not split by split_from"),
         ({"remove_alternative_codes": {"x": "Z"}}, "not a primary code"),
         ({"remove_alternative_codes": {"x": "A"}}, "not an alternative code"),
         ({"remove_children": {"Z": [["A"]]}}, "not a primary code"),
@@ -679,10 +680,63 @@ def test_round_trip_new_patch_keys(tmp_path):
         update_categories={"A": {"title": "x", "comment": "y", "info": {"z": "1"}}},
         remove_alternative_codes={"a": "A"},
         remove_children={"T": [["A", "B"]]},
+        split_from={"D": "B"},
+        join_parents={"D": ["T"]},
     )
     assert CategorizationOption.from_spec(option.to_spec()) == option
     option.to_yaml(tmp_path / "all.yaml")
     assert CategorizationOption.from_yaml(tmp_path / "all.yaml") == option
+
+
+def test_merge_into_new_category(fam):
+    # a receiving category which is not a member of any child set yet takes over the
+    # memberships of the categories merged into it, if all of them are members
+    cat = build_option(
+        fam,
+        add_categories={"BC": {"title": "B and C"}},
+        merge_into={"B": "BC", "C": "BC"},
+    )
+    assert children(cat, "T") == [{"A", "BC"}]
+    assert cat["BC"].info == {"includes": ["B", "C"]}
+    assert cat.total_sum
+
+    # child sets which only contain some of the merged categories don't add up
+    extra = fam.with_options(["extra"])
+    cat = build_option(
+        extra,
+        add_categories={"BC": {"title": "B and C"}},
+        merge_into={"B": "BC", "C": "BC"},
+    )
+    assert children(cat, "T") == [{"A", "BC"}]
+    assert not cat["AB"].children
+
+
+def test_merge_into_new_category_non_total_sum():
+    hier = climate_categories.from_yaml(DATA_DIR / "hierarchical_categorization.yaml")
+    cat = build_option(
+        hier,
+        add_categories={"12": {"title": "Categories 1 and 2"}},
+        merge_into={"1": "12", "2": "12"},
+    )
+    assert children(cat, "0") == [{"12", "3"}, {"0X3", "3"}, {"1A", "1B", "3"}]
+
+
+def test_join_parents():
+    # without total_sum, split categories only join the given parents
+    hier = climate_categories.from_yaml(DATA_DIR / "hierarchical_categorization.yaml")
+    option = {
+        "add_categories": {"4": {"title": "Category 4"}},
+        "split_from": {"4": "1"},
+    }
+    assert children(build_option(hier, **option), "0") == children(hier, "0")
+    cat = build_option(hier, **option, join_parents={"4": ["TOTAL", "missing"]})
+    assert children(cat, "0") == [
+        {"1", "2", "3", "4"},
+        {"0X3", "3"},
+        {"1A", "1B", "2", "3"},
+    ]
+    assert "4 (Category 4) is split from 1 (Category 1)." in cat["0"].comment
+    assert cat["1"].info["excludes"] == ["4"]
 
 
 def split_d_from_b() -> CategorizationOption:

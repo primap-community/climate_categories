@@ -12,3 +12,6 @@ add_categories:
     - XK
 split_from:
   XKX: SRB
+join_parents:
+  XKX:
+  - World

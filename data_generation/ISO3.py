@@ -734,6 +734,7 @@ def kosovo_option() -> climate_categories.CategorizationOption:
         last_update=OPTIONS_LAST_UPDATE,
         add_categories=KOSOVO,
         split_from={"XKX": "SRB"},
+        join_parents={"XKX": ["World"]},
     )
 
 

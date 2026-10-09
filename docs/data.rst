@@ -161,6 +161,7 @@ add_children              map   optional, primary code → list of new child set
 remove_children           map   optional, primary code → list of child sets      {'World': [['ABW', 'AFG']]}
 merge_into                map   optional, removed primary code → including code  {'PSE': 'ISR'}
 split_from                map   optional, split primary code → original code     {'XKX': 'SRB'}
+join_parents              map   optional, split primary code → list of parents   {'XKX': ['World']}
 ========================  ====  ===============================================  ============================
 
 New categories in ``add_categories`` are specified like categories in categorization
@@ -184,8 +185,15 @@ Israel. The removed code is recorded in the ``includes`` info of the receiving
 category, so ``ISO3_PRIMAP["ISR"].info["includes"]`` is ``['PSE']``. If the removed
 category itself included other categories, they are added to the ``includes`` too.
 Child sets which also contain the receiving category, or a category it is part of, still
-add up, so the removed category is just dropped from them. Other child sets which
-contained the removed category are handled like for ``remove_categories``. Notes about
+add up, so the removed category is just dropped from them. If the receiving category
+is not a member of any child set yet, like a historical country or a newly added
+aggregate, it takes over the memberships of the categories merged into it: child sets
+which contain all categories merged into it by the option contain the receiving
+category instead. For example, merging ``CUW``, ``SXM``, and ``BES`` into the
+Netherlands Antilles ``ANT`` puts ``ANT`` into ``World``. In contrast, ``ISR`` is a
+member of child sets like ``UNFCCC`` already, so merging ``PSE`` into it does not put
+``ISR`` into the child sets which contained ``PSE``, like ``ARAB``. Other child sets
+which contained the removed category are handled like for ``remove_categories``. Notes about
 the merge are added to the comments of the receiving category and of all categories
 whose children were changed. The receiving category can also be added by the option
 itself, which is useful for data sources which only report the sum of several
@@ -205,7 +213,12 @@ option. The split code is recorded in the ``excludes`` info of the category it i
 from, so ``ISO3_GCAM["SRB"].info["excludes"]`` is ``['XKX']``. In categorizations with
 ``total_sum``, the split category is added to all child sets which contain the category
 it is split from, so that they still add up. Without ``total_sum``, child sets are
-memberships, like the parties of the UNFCCC, and are not changed. Notes about the split
+memberships, like the parties of the UNFCCC, so the split category is only added to the
+child sets of the parents given in ``join_parents``, which contain the category it is
+split from. For example, ``join_parents: {'XKX': ['World']}`` puts Kosovo into the
+world, but not into the UNFCCC. Parents in ``join_parents`` which don't exist are
+ignored, so ``World`` can be given even if the option is used for categorizations
+without it. Notes about the split
 are added to the comments of the category it is split from and of all categories whose
 children were changed. Merging a category back into the category it was split from
 cancels the split in the ``includes`` and ``excludes`` info.

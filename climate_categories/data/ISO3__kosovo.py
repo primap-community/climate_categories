@@ -13,4 +13,5 @@ spec = {
         }
     },
     "split_from": {"XKX": "SRB"},
+    "join_parents": {"XKX": ["World"]},
 }

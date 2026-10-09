@@ -1,5 +1,6 @@
 """Tests for the 'ISO3' categorization."""
 
+import datetime
 import re
 
 import pytest
@@ -9,6 +10,11 @@ import climate_categories
 ISO3_EU = climate_categories.cats["ISO3[eu]"]
 ISO3_UNFCCC = climate_categories.cats["ISO3[eu,unfccc]"]
 ISO3_GROUPS = climate_categories.cats["ISO3[eu,groups]"]
+
+
+def children(cat, code: str) -> set[str]:
+    """The primary codes of the first child set of the category."""
+    return {c.codes[0] for c in cat[code].children[0]}
 
 
 def test_categories():
@@ -310,6 +316,26 @@ def test_kosovo():
     assert "Kosovo" in iso3["SRB"].comment
     assert "excludes" not in climate_categories.ISO3["SRB"].info
     assert climate_categories.ISO3_GCAM["SRB"].info["excludes"] == ["XKX"]
+    # Kosovo is part of the world, but not a party to the UNFCCC
+    assert iso3["XKX"] in iso3["World"].children[0]
+    assert "XKX" not in children(climate_categories.ISO3_GCAM, "UNFCCC")
+
+
+def test_merge_into_historical():
+    # historical countries are not members of any child set, so they take over the
+    # memberships of their successors
+    historical = climate_categories.cats["ISO3[historical]"]
+    ant = climate_categories.CategorizationOption(
+        name="ant",
+        title="Netherlands Antilles",
+        last_update=datetime.date(2026, 1, 1),
+        merge_into={"CUW": "ANT", "SXM": "ANT", "BES": "ANT"},
+    )
+    cat = historical.apply(ant)
+    world = children(cat, "World")
+    assert "ANT" in world
+    assert not {"CUW", "SXM", "BES"} & world
+    assert len(world) == len(children(historical, "World")) - 2
 
 
 def test_historical():

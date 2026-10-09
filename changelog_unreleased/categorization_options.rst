@@ -10,12 +10,15 @@
   categories into other categories with ``merge_into``, which records the merged
   categories in the ``includes`` info of the receiving category, or split them from
   other categories with ``split_from``, which records the split categories
-  in the ``excludes`` info of the category they are split from.
+  in the ``excludes`` info of the category they are split from. Receiving categories
+  which are not a member of any child set yet, like historical countries, take over
+  the memberships of the categories merged into them, and ``join_parents`` lists the
+  parents, like ``World``, which split categories join.
 * **Breaking change**: ``ISO3`` now only contains the countries from ISO 3166-1 and the
   world. The groupings are available as the options ``eu``, ``unfccc`` (including the
   Paris Agreement), and ``groups``. New options are ``historical`` (countries withdrawn
   from ISO 3166-1, like ``SUN`` and ``YUG``), ``kosovo`` (split from Serbia, so ``SRB``
-  has ``info["excludes"] == ["XKX"]``), and ``pse_in_isr`` (Palestine
+  has ``info["excludes"] == ["XKX"]``, and part of ``World``), and ``pse_in_isr`` (Palestine
   not listed separately, but included in Israel, so ``ISR`` has
   ``info["includes"] == ["PSE"]``). Use the new alias ``ISO3_PRIMAP``
   for the previous contents of ``ISO3``, which additionally includes the withdrawn
