@@ -306,6 +306,10 @@ def test_kosovo():
     iso3 = climate_categories.cats["ISO3[kosovo]"]
     assert iso3["XKX"].title == "Kosovo"
     assert iso3["XK"] == iso3["XKX"]
+    assert iso3["SRB"].info["excludes"] == ["XKX"]
+    assert "Kosovo" in iso3["SRB"].comment
+    assert "excludes" not in climate_categories.ISO3["SRB"].info
+    assert climate_categories.ISO3_GCAM["SRB"].info["excludes"] == ["XKX"]
 
 
 def test_historical():

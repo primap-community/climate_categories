@@ -54,6 +54,7 @@ _patch_schema = {
     ),
     sy.Optional("remove_categories"): _removal_schema,
     sy.Optional("merge_into"): sy.MapPattern(sy.Str(), sy.Str()),
+    sy.Optional("split_from"): sy.MapPattern(sy.Str(), sy.Str()),
 }
 
 
@@ -81,6 +82,39 @@ def _descendants(categories: dict[str, dict], code: str) -> set[str]:
                     descendants.add(child)
                     todo.append(child)
     return descendants
+
+
+def _add_to_info_list(
+    category_spec: dict[str, typing.Any],
+    key: str,
+    codes: typing.Iterable[str],
+    opposite_key: str,
+) -> None:
+    """Add codes to the list ``info[key]`` of a category specification.
+
+    Codes which are in ``info[opposite_key]`` cancel out instead, e.g. a category which
+    is merged back into the category it was split from. Emptied lists are removed."""
+    info = category_spec.setdefault("info", {})
+    codes = set(codes)
+    opposite = set(info.get(opposite_key, []))
+    for k, values in (
+        (key, set(info.get(key, [])) | (codes - opposite)),
+        (opposite_key, opposite - codes),
+    ):
+        if values:
+            info[k] = sorted(values)
+        else:
+            info.pop(k, None)
+    if not info:
+        del category_spec["info"]
+
+
+def _append_comment(category_spec: dict[str, typing.Any], sentence: str) -> None:
+    """Append a sentence to the comment of a category specification."""
+    if category_spec.get("comment"):
+        category_spec["comment"] += f" {sentence}"
+    else:
+        category_spec["comment"] = sentence
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -120,9 +154,9 @@ class CategorizationPatch:
     """Changes to a categorization.
 
     Patches are applied to the specification of a categorization (see
-    ``Categorization.to_spec``) in two phases: first, all additions of all patches are
-    applied, then all removals, so that removals also affect categories added by other
-    patches.
+    ``Categorization.to_spec``) in three phases: first, all additions of all patches
+    are applied, then all splits, then all merges and removals, so that splits, merges,
+    and removals also affect categories added by other patches.
 
     Attributes
     ----------
@@ -149,6 +183,15 @@ class CategorizationPatch:
         (or one of its ancestors) still add up and only lose the removed category.
         Other child sets which contained the removed category are treated like for
         ``remove_categories``. Merges are applied before ``remove_categories``.
+    split_from : dict
+        The mirror image of ``merge_into``: categories which are split from other
+        categories (e.g. Kosovo is split from Serbia), mapping the primary code of the
+        split category to the primary code of the category it is split from. The split
+        category has to exist already, usually it is added by ``add_categories``. The
+        split code is recorded in the ``excludes`` info of the category it is split
+        from. In categorizations with ``total_sum``, the split category is added to all
+        child sets which contain the category it is split from, so that they still add
+        up. Without ``total_sum``, child sets are not changed.
     """
 
     add_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
@@ -157,6 +200,7 @@ class CategorizationPatch:
     update_info: dict[str, dict] = dataclasses.field(default_factory=dict)
     remove_categories: CategoryRemoval | None = None
     merge_into: dict[str, str] = dataclasses.field(default_factory=dict)
+    split_from: dict[str, str] = dataclasses.field(default_factory=dict)
 
     def _label(self) -> str:
         return "patch"
@@ -171,6 +215,7 @@ class CategorizationPatch:
                 "add_children",
                 "update_info",
                 "merge_into",
+                "split_from",
             )
             if key in spec
         }
@@ -188,6 +233,7 @@ class CategorizationPatch:
             "add_children",
             "update_info",
             "merge_into",
+            "split_from",
         ):
             value = getattr(self, key)
             if value:
@@ -258,6 +304,65 @@ class CategorizationPatch:
                 )
             categories[code].setdefault("info", {}).update(copy.deepcopy(info))
 
+    def apply_splits(self, spec: dict[str, typing.Any]) -> None:
+        """Apply all splits of this patch to the categorization specification."""
+        if not self.split_from:
+            return
+        categories = spec["categories"]
+        removal = self.remove_categories
+        removed = {*self.merge_into, *(removal.codes if removal is not None else ())}
+
+        for code, source in self.split_from.items():
+            for c in (code, source):
+                if c not in categories:
+                    raise ValueError(
+                        f"{self._label()} splits {code!r} from {source!r}, but {c!r} "
+                        "is not a primary code."
+                    )
+                if c in removed:
+                    raise ValueError(
+                        f"{self._label()} splits {code!r} from {source!r}, but {c!r} "
+                        "is removed."
+                    )
+            if code == source:
+                raise ValueError(f"{self._label()} splits {code!r} from itself.")
+            codes = {code, *categories[code].get("alternative_codes", [])}
+            if spec.get("canonical_top_level_category") in codes:
+                raise ValueError(
+                    f"{self._label()} splits {code!r}, which is the canonical top "
+                    "level category."
+                )
+
+        for code, source in self.split_from.items():
+            spec_a = categories[code]
+            spec_b = categories[source]
+            _add_to_info_list(
+                spec_b,
+                "excludes",
+                [code, *spec_a.get("info", {}).get("includes", [])],
+                "includes",
+            )
+            _append_comment(spec_b, f"Excludes {code} ({spec_a['title']}).")
+
+        if not spec.get("total_sum", False):
+            return
+        primary = _all_codes(categories)
+        for category_spec in categories.values():
+            changed = {}
+            for child_set in category_spec.get("children", []):
+                child_set_primary = {primary.get(c, c) for c in child_set}
+                for code, source in self.split_from.items():
+                    if source in child_set_primary and code not in child_set_primary:
+                        child_set.append(code)
+                        child_set_primary.add(code)
+                        changed[code] = source
+            for code, source in changed.items():
+                _append_comment(
+                    category_spec,
+                    f"{code} ({categories[code]['title']}) is split from "
+                    f"{source} ({categories[source]['title']}).",
+                )
+
     def apply_removals(self, spec: dict[str, typing.Any]) -> None:
         """Apply all removals and merges of this patch to the categorization
         specification."""
@@ -302,18 +407,13 @@ class CategorizationPatch:
         for code, target in self.merge_into.items():
             spec_a = categories[code]
             spec_b = categories[target]
-            info_b = spec_b.setdefault("info", {})
-            info_b["includes"] = sorted(
-                {
-                    *info_b.get("includes", []),
-                    code,
-                    *spec_a.get("info", {}).get("includes", []),
-                }
+            _add_to_info_list(
+                spec_b,
+                "includes",
+                [code, *spec_a.get("info", {}).get("includes", [])],
+                "excludes",
             )
-            sentence = f"Includes {code} ({spec_a['title']})."
-            spec_b["comment"] = (
-                f"{spec_b['comment']} {sentence}" if spec_b.get("comment") else sentence
-            )
+            _append_comment(spec_b, f"Includes {code} ({spec_a['title']}).")
             comments[code] = (
                 f"{code} ({spec_a['title']}) is included in {target} "
                 f"({spec_b['title']})."
@@ -375,12 +475,8 @@ class CategorizationPatch:
                 del category_spec["children"]
             for code in dict.fromkeys(changed):
                 comment = comments[code]
-                if comment is None:
-                    continue
-                if category_spec.get("comment"):
-                    category_spec["comment"] += f" {comment}"
-                else:
-                    category_spec["comment"] = comment
+                if comment is not None:
+                    _append_comment(category_spec, comment)
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -972,6 +1068,8 @@ def _patched_spec(
     spec = copy.deepcopy(categorization.to_spec())
     for patch in patches:
         patch.apply_additions(spec)
+    for patch in patches:
+        patch.apply_splits(spec)
     for patch in patches:
         patch.apply_removals(spec)
 

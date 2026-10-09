@@ -410,6 +410,18 @@ def test_invalid_option_name():
             "also merges it",
         ),
         ({"merge_into": {"T": "A"}}, "canonical top level"),
+        ({"split_from": {"Z": "B"}}, "not a primary code"),
+        ({"split_from": {"C": "Z"}}, "not a primary code"),
+        ({"split_from": {"C": "C"}}, "from itself"),
+        ({"split_from": {"C": "B"}, "merge_into": {"B": "A"}}, "is removed"),
+        (
+            {
+                "split_from": {"C": "B"},
+                "remove_categories": climate_categories.CategoryRemoval(codes=("C",)),
+            },
+            "is removed",
+        ),
+        ({"split_from": {"T": "A"}}, "canonical top level"),
     ],
 )
 def test_invalid_patches(fam, option_kwargs, match):
@@ -552,6 +564,88 @@ def test_merge_into_added_category(fam):
     assert cat["BC"].info == {"includes": ["B", "C"]}
     assert children(cat, "T") == [{"A", "BC"}]
     assert cat.total_sum
+
+
+def split_d_from_b() -> CategorizationOption:
+    return CategorizationOption(
+        name="d_from_b",
+        title="D split from B",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"D": {"title": "Category D"}},
+        split_from={"D": "B"},
+    )
+
+
+def test_split_from(fam):
+    option = split_d_from_b()
+    assert CategorizationOption.from_spec(option.to_spec()) == option
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("d_from_b",)),
+        options={"d_from_b": option},
+    )
+    cat = family.build(["d_from_b"])
+    assert children(cat, "T") == [{"A", "B", "C", "D"}]
+    assert cat["B"].info == {"excludes": ["D"]}
+    assert cat["B"].comment == "Excludes D (Category D)."
+    assert cat["T"].comment == "D (Category D) is split from B (Category B)."
+    assert cat.total_sum
+    assert "excludes" not in fam["B"].info
+
+
+def test_split_from_ancestors(fam):
+    # child sets which only contain an ancestor of the category D is split from still
+    # add up, because the ancestor gets D, too
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("extra", "d_from_b")),
+        options={
+            "extra": fam.available_options["extra"],
+            "d_from_b": split_d_from_b(),
+        },
+    )
+    cat = family.build(["extra", "d_from_b"])
+    assert children(cat, "T") == [{"A", "B", "C", "D"}, {"AB", "C"}]
+    assert children(cat, "AB") == [{"A", "B", "D"}]
+
+
+def test_split_from_non_total_sum():
+    # without total_sum, child sets are memberships and are not changed
+    hier = climate_categories.from_yaml(DATA_DIR / "hierarchical_categorization.yaml")
+    option = CategorizationOption(
+        name="4_from_1",
+        title="4 split from 1",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"4": {"title": "Category 4"}},
+        split_from={"4": "1"},
+    )
+    family = OptionFamily(
+        base=hier,
+        manifest=OptionManifest(base="HierCat", options=("4_from_1",)),
+        options={"4_from_1": option},
+    )
+    cat = family.build(["4_from_1"])
+    assert children(cat, "0") == children(hier, "0")
+    assert cat["1"].info["excludes"] == ["4"]
+
+
+def test_split_then_merge_cancels(fam):
+    # merging a category back into the category it was split from cancels the split
+    d_in_b = CategorizationOption(
+        name="d_in_b",
+        title="D included in B",
+        last_update=datetime.date(2026, 1, 1),
+        merge_into={"D": "B"},
+    )
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("d_from_b", "d_in_b")),
+        options={"d_from_b": split_d_from_b(), "d_in_b": d_in_b},
+    )
+    cat = family.build(["d_from_b", "d_in_b"])
+    assert "D" not in cat
+    assert cat["B"].info == {}
+    assert children(cat, "T") == [{"A", "B", "C"}]
 
 
 def shipped_combinations() -> list:

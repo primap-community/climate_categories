@@ -158,6 +158,7 @@ add_children           map   optional, primary code → list of new child sets  
 update_info            map   optional, primary code → info to add               {'BOL': {'unfccc_name': …}}
 remove_categories      map   optional, categories to remove, see below
 merge_into             map   optional, removed primary code → including code    {'PSE': 'ISR'}
+split_from             map   optional, split primary code → original code       {'XKX': 'SRB'}
 =====================  ====  =================================================  ============================
 
 New categories in ``add_categories`` are specified like categories in categorization
@@ -187,20 +188,32 @@ categories, for example::
       GGY: CHI
       JEY: CHI
 
+``split_from`` is the mirror image of ``merge_into`` for categories which are split from
+other categories, for example ``{'XKX': 'SRB'}`` because Kosovo is split from Serbia.
+The split category has to exist, usually it is added by ``add_categories`` of the same
+option. The split code is recorded in the ``excludes`` info of the category it is split
+from, so ``ISO3_GCAM["SRB"].info["excludes"]`` is ``['XKX']``. In categorizations with
+``total_sum``, the split category is added to all child sets which contain the category
+it is split from, so that they still add up. Without ``total_sum``, child sets are
+memberships, like the parties of the UNFCCC, and are not changed. Notes about the split
+are added to the comments of the category it is split from and of all categories whose
+children were changed. Merging a category back into the category it was split from
+cancels the split in the ``includes`` and ``excludes`` info.
+
 When building a categorization with options, first all additions of all options are
-applied in the order of the manifest, then all merges and removals.
+applied in the order of the manifest, then all splits, then all merges and removals.
 
 The manifest has the following fields:
 
-============  ====  ================================================================  ====================
-Key           Type  Notes                                                             Example
-------------  ----  ----------------------------------------------------------------  --------------------
-base          str   the name of the base categorization                               ISO3
-options       list  all options, in the order in which they are applied               ['eu', 'unfccc']
+============  ====  ==================================================================  ====================
+Key           Type  Notes                                                               Example
+------------  ----  ------------------------------------------------------------------  --------------------
+base          str   the name of the base categorization                                 ISO3
+options       list  all options, in the order in which they are applied                 ['eu', 'unfccc']
 combinations  list  optional, patches applied if all their options are enabled
 unsupported   list  optional, combinations of options which are not quality-controlled
-aliases       map   optional, names for commonly used combinations of options         {'ISO3_PRIMAP': […]}
-============  ====  ================================================================  ====================
+aliases       map   optional, names for commonly used combinations of options           {'ISO3_PRIMAP': […]}
+============  ====  ==================================================================  ====================
 
 Each entry in ``combinations`` has the key ``options`` with the list of options, an
 optional ``comment`` and the same patch keys as option files (``add_categories`` etc.).

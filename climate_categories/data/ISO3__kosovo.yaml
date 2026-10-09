@@ -10,3 +10,5 @@ add_categories:
       code commonly used for it.
     alternative_codes:
     - XK
+split_from:
+  XKX: SRB

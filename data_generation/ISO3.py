@@ -733,6 +733,7 @@ def kosovo_option() -> climate_categories.CategorizationOption:
         "XKX which is commonly used for it.",
         last_update=OPTIONS_LAST_UPDATE,
         add_categories=KOSOVO,
+        split_from={"XKX": "SRB"},
     )
 
 

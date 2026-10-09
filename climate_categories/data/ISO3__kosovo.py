@@ -12,4 +12,5 @@ spec = {
             "alternative_codes": ["XK"],
         }
     },
+    "split_from": {"XKX": "SRB"},
 }
