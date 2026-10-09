@@ -67,7 +67,8 @@ of options; note that the options of an alias can be extended in later versions.
 You can also apply your own options to any categorization using
 ``Categorization.apply``, or share them as a file with a ``base`` field naming the
 categorization they extend, which ``climate_categories.load_extension`` reads and
-applies.
+applies. Several extensions of the same categorization can be loaded together, and later
+extensions can require earlier ones.
 
 Included conversions between categorizations
 --------------------------------------------

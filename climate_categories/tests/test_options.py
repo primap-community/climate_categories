@@ -728,6 +728,7 @@ def test_apply(fam):
     assert cat.name == "Fam_ext"
     assert cat.canonical_name == "Fam_ext"
     assert cat.family == "Fam"
+    assert cat.enabled_options == ("ext",)
     assert children(cat, "BC") == [{"B", "C"}]
     assert cat.title == "Family with my extension"
     assert cat.references == "doi:00000/00000;\ndoi:00000/00002"
@@ -780,6 +781,43 @@ def test_apply_requires_conflicts(fam):
         fam.with_options(["no_c"]).apply(no_no_c)
 
 
+def test_apply_chain(fam):
+    # applied options count as enabled for options applied later
+    ext1 = CategorizationOption(
+        name="ext1",
+        title="x",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"X": {"title": "X"}},
+    )
+    ext2 = CategorizationOption(
+        name="ext2",
+        title="y",
+        last_update=datetime.date(2026, 1, 1),
+        requires=("extra", "ext1"),
+        add_categories={"Y": {"title": "Y", "children": [["X", "AB"]]}},
+    )
+    cat = fam.with_options(["extra"]).apply(ext1)
+    assert cat.enabled_options == ("ext1", "extra")
+    chained = cat.apply(ext2)
+    assert chained.name == "Fam[extra]_ext1_ext2"
+    assert chained.canonical_name == "Fam[extra]_ext1_ext2"
+    assert chained.enabled_options == ("ext1", "ext2", "extra")
+    assert children(chained, "Y") == [{"X", "AB"}]
+
+    no_ext1 = CategorizationOption(
+        name="no_ext1",
+        title="z",
+        last_update=datetime.date(2026, 1, 1),
+        conflicts=("ext1",),
+    )
+    with pytest.raises(ValueError, match="conflicts with the options \\['ext1'\\]"):
+        cat.apply(no_ext1)
+    with pytest.raises(ValueError, match="already enabled"):
+        cat.apply(ext1)
+    with pytest.raises(ValueError, match="already enabled"):
+        fam.with_options(["extra"]).apply(fam.available_options["extra"])
+
+
 def test_apply_removal(fam):
     cat = fam.with_options(["extra"]).apply(fam.available_options["c_in_b"])
     assert "C" not in cat
@@ -810,6 +848,50 @@ def test_load_extension_without_base(tmp_path, cats):
     )
     with pytest.raises(ValueError, match="'base' field"):
         climate_categories.load_extension(path, cats)
+
+
+SECOND_EXTENSION = """\
+option: second
+base: {base}
+title: my second groups
+last_update: 2026-10-02
+requires:
+  - extra
+  - mygroups
+add_categories:
+  MYSECONDGROUP:
+    title: My second group
+    children:
+      - - MYGROUP
+        - AB
+"""
+
+
+def test_load_extension_multiple(tmp_path, cats):
+    first = tmp_path / "first.yaml"
+    first.write_text(EXTENSION.format(base="FAM_FULL", child1="ABC", child2="A"))
+    second = tmp_path / "second.yaml"
+    second.write_text(SECOND_EXTENSION.format(base="FAM_FULL"))
+
+    # the second extension requires the first
+    with pytest.raises(ValueError, match="requires the options \\['mygroups'\\]"):
+        climate_categories.load_extension(second, cats)
+
+    cat = climate_categories.load_extension([first, second], cats)
+    assert cat.name == "FAM_FULL_mygroups_second"
+    assert cat.enabled_options == ("extra", "more", "mygroups", "second")
+    assert children(cat, "MYSECONDGROUP") == [{"MYGROUP", "AB"}]
+    assert cat["A"] == cats["Fam"]["A"]
+
+    named = climate_categories.load_extension((first, second), cats, name="Mine")
+    assert named.name == "Mine"
+
+    other = tmp_path / "other.yaml"
+    other.write_text(SECOND_EXTENSION.format(base="Fam[extra]"))
+    with pytest.raises(ValueError, match="same 'base'"):
+        climate_categories.load_extension([first, other], cats)
+    with pytest.raises(ValueError, match="No option files"):
+        climate_categories.load_extension([], cats)
 
 
 def test_load_extension_included(tmp_path):

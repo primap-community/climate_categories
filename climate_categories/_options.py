@@ -1121,6 +1121,10 @@ def apply_option(
         option = CategorizationOption.from_yaml(option)
 
     enabled = set(categorization.enabled_options)
+    if option.name in enabled:
+        raise ValueError(
+            f"Option {option.name!r} is already enabled in {categorization.name}."
+        )
     missing = [x for x in option.requires if x not in enabled]
     if missing:
         raise ValueError(
@@ -1146,46 +1150,71 @@ def apply_option(
     # and its family. This is possible because the family is not part of the hash.
     result.family = categorization.family
     result._canonical_name = result.name
+    # later options can require or conflict with this option
+    result.enabled_options = tuple(sorted({*enabled, option.name}))
     return result
 
 
 def load_extension(
-    filepath: str | pathlib.Path | typing.TextIO,
+    filepath: str
+    | pathlib.Path
+    | typing.TextIO
+    | typing.Sequence[str | pathlib.Path | typing.TextIO],
     cats: "dict[str, _categories.Categorization] | None" = None,
     *,
     name: str | None = None,
 ) -> "_categories.Categorization":
-    """Read an option from a file and apply it to the categorization it is for.
+    """Read options from files and apply them to the categorization they are for.
 
-    The option file has to name the categorization it is for in its ``base`` field,
-    like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``.
+    The option files have to name the categorization they are for in their ``base``
+    field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``. Several option files which
+    extend the same categorization can be given, they are applied in the given order.
+    Later options can require earlier options using ``requires``.
 
     Parameters
     ----------
-    filepath : str, Path, or file
-        The option file in StrictYaml format.
+    filepath : str, Path, file, or list of them
+        The option file(s) in StrictYaml format.
     cats : dict, optional
         The categorizations to look up the base in, by default all categorizations
         included in climate_categories.
     name : str, optional
-        The name of the returned categorization, by default ``{base}_{option}``.
+        The name of the returned categorization, by default ``{base}_{option}`` for a
+        single option and ``{base}_{option1}_{option2}`` etc. for several options.
 
     Returns
     -------
     categorization : Categorization
-        The base categorization with the option applied.
+        The base categorization with the option(s) applied.
     """
-    option = CategorizationOption.from_yaml(filepath)
-    if option.base is None:
+    filepaths = filepath if isinstance(filepath, list | tuple) else [filepath]
+    if not filepaths:
+        raise ValueError("No option files given.")
+    options = [CategorizationOption.from_yaml(path) for path in filepaths]
+    for option in options:
+        if option.base is None:
+            raise ValueError(
+                f"Option {option.name!r} does not name the categorization it is for "
+                "in its 'base' field, use Categorization.apply instead."
+            )
+    bases = {option.base for option in options}
+    if len(bases) > 1:
         raise ValueError(
-            f"Option {option.name!r} does not name the categorization it is for in "
-            "its 'base' field, use Categorization.apply instead."
+            f"The options are for different categorizations {sorted(bases)!r}, "
+            "extensions which are applied together have to name the same 'base' and "
+            "can refer to each other using 'requires'."
         )
     if cats is None:
         import climate_categories
 
         cats = climate_categories.cats
-    return apply_option(cats[option.base], option, name=name)
+    categorization = cats[options[0].base]
+    for i, option in enumerate(options):
+        last = i == len(options) - 1
+        categorization = apply_option(
+            categorization, option, name=name if last else None
+        )
+    return categorization
 
 
 class CategorizationRegistry(dict):

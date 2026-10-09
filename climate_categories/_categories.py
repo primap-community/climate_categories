@@ -401,8 +401,8 @@ class Categorization:
         of the categorization an option was applied to (see ``apply``), otherwise the
         name.
     enabled_options : tuple of str
-        The options enabled in this categorization, sorted. Empty for categorizations
-        without options.
+        The options enabled in this categorization, sorted, including the names of
+        options applied with ``apply``. Empty for categorizations without options.
     """
 
     hierarchical: bool = False
@@ -646,7 +646,9 @@ class Categorization:
         ----------
         option : CategorizationOption, str, or Path
             The option, or the path to an option file in StrictYaml format. Options
-            required by the option have to be enabled in this categorization.
+            required by the option have to be enabled in this categorization, see
+            ``enabled_options``, which also contains previously applied options. The
+            option itself must not be enabled already.
         name : str, optional
             The name of the returned categorization. By default ``{name}_{option}``,
             so that categories are comparable to the categories of this

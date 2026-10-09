@@ -258,7 +258,7 @@ extension in climate_categories, for example to share an extension together with
 dataset using it. For such options, give the categorization the option is for in the
 ``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``, and read and apply them
 using ``climate_categories.load_extension``. ``requires`` and ``conflicts`` then refer
-to the options enabled in the base. An example:
+to the options enabled in the base and to extensions applied before. An example:
 
 .. code-block:: yaml
 
@@ -273,6 +273,26 @@ to the options enabled in the base. An example:
         children:
           - - DEU
             - FRA
+
+Several extensions of the same categorization can be applied together, in the given
+order, using ``climate_categories.load_extension([first, second])``. All of them name
+the same ``base``, and later extensions can require earlier ones. For example, an
+extension which uses ``MYGROUP`` from the extension above:
+
+.. code-block:: yaml
+
+    option: mysecondgroups
+    base: ISO3_PRIMAP
+    title: my second groups
+    last_update: 2026-10-02
+    requires:
+      - mygroups
+    add_categories:
+      MYSECONDGROUP:
+        title: My second group
+        children:
+          - - MYGROUP
+            - ITA
 
 
 Conversions
