@@ -849,13 +849,13 @@ class OptionFamily:
             combinations,
             description=f"the options {list(options)!r} of {self.name}",
         )
-        # build with the canonical name, so that the family and options are derived
-        # from it before the categories are created, and rename to the alias later
-        spec["name"] = _categories.canonical_name(self.name, options)
-
+        if name is None:
+            name = _categories.canonical_name(self.name, options)
+        spec["name"] = name
         categorization = type(self.base).from_spec(spec)
-        if name is not None:
-            categorization.name = name
+        # for aliases, the family and options can't be derived from the name.
+        categorization.family = self.name
+        categorization.enabled_options = options
         categorization._cats = self.base._cats
         categorization._option_family = self
         return categorization
