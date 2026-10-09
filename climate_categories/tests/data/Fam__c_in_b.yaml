@@ -1,0 +1,9 @@
+option: c_in_b
+title: C included in B
+comment: C is included in B.
+last_update: 2026-01-01
+remove_categories:
+  codes:
+    - C
+  keep_total_sum: yes
+  comment: C is included in B.

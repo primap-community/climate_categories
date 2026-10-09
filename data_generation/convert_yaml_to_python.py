@@ -2,7 +2,8 @@
 loading.
 
 Each categorization is written next to its YAML file, with the extension changed to
-``.py``. Parsing StrictYaml is slow -- which is why the Python files exist in the
+``.py``. Options of categorizations (``{base}__{option}.yaml``) and their manifests
+(``{base}__options.yaml``) are converted the same way. Parsing StrictYaml is slow -- which is why the Python files exist in the
 first place -- so the files are converted in parallel.
 """
 
@@ -17,7 +18,13 @@ import climate_categories
 def convert(yaml_path: pathlib.Path) -> pathlib.Path:
     """Convert one YAML file to the Python file next to it."""
     python_path = yaml_path.with_suffix(".py")
-    climate_categories.from_yaml(yaml_path).to_python(python_path)
+    if yaml_path.stem.endswith("__options"):
+        obj = climate_categories.OptionManifest.from_yaml(yaml_path)
+    elif "__" in yaml_path.stem:
+        obj = climate_categories.CategorizationOption.from_yaml(yaml_path)
+    else:
+        obj = climate_categories.from_yaml(yaml_path)
+    obj.to_python(python_path)
     return python_path
 
 
@@ -28,7 +35,8 @@ def main() -> None:
         metavar="FILE.yaml",
         nargs="+",
         type=pathlib.Path,
-        help="categorization to convert, written to FILE.py",
+        help="categorization, option, or option manifest to convert, written to "
+        "FILE.py",
     )
     parser.add_argument(
         "-j",

@@ -129,6 +129,92 @@ An example in StrictYaml syntax with two categories would be:
           - 1A
 
 
+Categorizations with options
+----------------------------
+
+A base categorization can have options, which are patches to the base categorization
+and are combined on demand. The categorization with options enabled is named like
+``ISO3[eu,unfccc]``, with the options sorted alphabetically. The options are stored
+next to the base categorization ``{base}.yaml``: each option in a StrictYaml file
+``{base}__{option}.yaml``, and a manifest declaring all options in
+``{base}__options.yaml``.
+
+Option files have the following fields:
+
+=====================  ====  =================================================  ============================
+Key                    Type  Notes                                              Example
+---------------------  ----  -------------------------------------------------  ----------------------------
+option                 str   the name of the option, letters, digits, and _     unfccc
+title                  str   one-line description                               UNFCCC parties
+comment                str   optional, long-form description                    Parties to the UN Framework…
+references             str   optional, citable reference(s) and sources         https://unfccc.int/…
+last_update            str   date of last change in ISO format                  2026-09-24
+requires               list  optional, options which have to be enabled, too    ['eu']
+conflicts              list  optional, options which can't be enabled, too      ['other']
+add_categories         map   optional, new categories, see below
+add_alternative_codes  map   optional, new alternative code → primary code      {'EU': 'EU_2020'}
+add_children           map   optional, primary code → list of new child sets    {'World': [['ABW', 'AFG']]}
+update_info            map   optional, primary code → info to add               {'BOL': {'unfccc_name': …}}
+remove_categories      map   optional, categories to remove, see below
+=====================  ====  =================================================  ============================
+
+New categories in ``add_categories`` are specified like categories in categorization
+files. ``remove_categories`` has the keys ``codes`` with the list of primary codes to
+remove, ``keep_total_sum``, and optionally ``comment``. Removed categories are also
+removed from all child sets. If ``keep_total_sum`` is ``yes``, the removed categories
+are included in other categories, so child sets still add up to their parent. Otherwise,
+in categorizations with ``total_sum``, child sets which contained removed categories
+are dropped. The ``comment`` is added to the comment of all categories whose children
+were changed. When building a categorization with options, first all additions of all
+options are applied in the order of the manifest, then all removals.
+
+The manifest has the following fields:
+
+============  ====  ================================================================  ====================
+Key           Type  Notes                                                             Example
+------------  ----  ----------------------------------------------------------------  --------------------
+base          str   the name of the base categorization                               ISO3
+options       list  all options, in the order in which they are applied               ['eu', 'unfccc']
+combinations  list  optional, patches applied if all their options are enabled
+unsupported   list  optional, combinations of options which are not quality-controlled
+aliases       map   optional, names for commonly used combinations of options         {'ISO3_PRIMAP': […]}
+============  ====  ================================================================  ====================
+
+Each entry in ``combinations`` has the key ``options`` with the list of options, an
+optional ``comment`` and the same patch keys as option files (``add_categories`` etc.).
+Use combinations to handle the interaction of options.
+
+Each entry in ``unsupported`` has the key ``options`` with a list of options, and an
+optional ``comment`` explaining why they are not supported together. All combinations
+of options which contain all options of an entry can only be used with
+``allow_unsupported=True``, because they were not checked. All other combinations
+are supported, as long as they contain all options required by their options
+(``requires``) and no conflicting options (``conflicts``). Use ``conflicts`` in option
+files for options which can never be used together, and ``unsupported`` in the
+manifest for options which could be used together, but were not checked.
+
+An example manifest:
+
+.. code-block:: yaml
+
+    base: ISO3
+    options:
+      - eu
+      - unfccc
+      - gcam
+      - pse_in_isr
+    unsupported:
+      - options:
+          - gcam
+          - pse_in_isr
+        comment: the GCAM regions have PSE separately
+    aliases:
+      ISO3_PRIMAP:
+        - eu
+        - pse_in_isr
+        - unfccc
+
+
 Conversions
 ===========
 

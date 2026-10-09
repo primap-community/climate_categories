@@ -1,0 +1,956 @@
+"""Categorizations with options.
+
+A categorization with options consists of a base categorization (e.g. ``ISO3``) and
+named options (e.g. ``eu`` or ``unfccc``), which are patches to the base
+categorization. Options are combined on demand, yielding categorizations named like
+``ISO3[eu,unfccc]``. Not all combinations of options are meaningful or
+quality-controlled, so each family of categorizations declares the combinations of
+options which are not supported. Aliases name commonly used combinations of options,
+like ``ISO3_PRIMAP``.
+"""
+
+import copy
+import dataclasses
+import datetime
+import functools
+import itertools
+import pathlib
+import re
+import typing
+import warnings
+
+import strictyaml as sy
+
+from . import _categories
+
+_OPTION_NAME_RE = re.compile(r"[A-Za-z0-9_]+")
+
+
+class UnsupportedCombinationError(ValueError):
+    """The requested combination of options is not quality-controlled.
+
+    Use ``allow_unsupported=True`` to build it anyway."""
+
+
+class UnsupportedCombinationWarning(UserWarning):
+    """A combination of options which is not quality-controlled was built."""
+
+
+_removal_schema = sy.Map(
+    {
+        "codes": sy.Seq(sy.Str()),
+        sy.Optional("keep_total_sum"): sy.Bool(),
+        sy.Optional("comment"): sy.Str(),
+    }
+)
+
+_patch_schema = {
+    sy.Optional("add_categories"): sy.MapPattern(
+        sy.Str(), _categories.HierarchicalCategory._strictyaml_schema
+    ),
+    sy.Optional("add_alternative_codes"): sy.MapPattern(sy.Str(), sy.Str()),
+    sy.Optional("add_children"): sy.MapPattern(sy.Str(), sy.Seq(sy.Seq(sy.Str()))),
+    sy.Optional("update_info"): sy.MapPattern(
+        sy.Str(), sy.MapPattern(sy.Str(), sy.Any())
+    ),
+    sy.Optional("remove_categories"): _removal_schema,
+}
+
+
+def _all_codes(categories: dict[str, dict]) -> dict[str, str]:
+    """Map all codes of the categories in a specification to their primary code."""
+    codes = {}
+    for code, spec in categories.items():
+        codes[code] = code
+        for alternative_code in spec.get("alternative_codes", []):
+            codes[alternative_code] = code
+    return codes
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class CategoryRemoval:
+    """Removal of categories from a categorization.
+
+    Attributes
+    ----------
+    codes : tuple of str
+        Primary codes of the categories to remove.
+    keep_total_sum : bool, default False
+        If the removed categories are included in other categories (e.g. the
+        emissions of Palestine are included in the emissions of Israel), the
+        remaining child sets still add up to their parents. Then, the removed
+        categories are just dropped from the child sets. Otherwise, in categorizations
+        with ``total_sum``, all child sets which contained removed categories are
+        dropped because they would not add up anymore.
+    comment : str, optional
+        Added to the comment of all categories whose children were changed.
+    """
+
+    codes: tuple[str, ...]
+    keep_total_sum: bool = False
+    comment: str | None = None
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
+        return cls(
+            codes=tuple(spec["codes"]),
+            keep_total_sum=spec.get("keep_total_sum", False),
+            comment=spec.get("comment"),
+        )
+
+    def to_spec(self) -> dict[str, typing.Any]:
+        spec: dict[str, typing.Any] = {"codes": list(self.codes)}
+        if self.keep_total_sum:
+            spec["keep_total_sum"] = True
+        if self.comment is not None:
+            spec["comment"] = self.comment
+        return spec
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class CategorizationPatch:
+    """Changes to a categorization.
+
+    Patches are applied to the specification of a categorization (see
+    ``Categorization.to_spec``) in two phases: first, all additions of all patches are
+    applied, then all removals, so that removals also affect categories added by other
+    patches.
+
+    Attributes
+    ----------
+    add_categories : dict
+        New categories, mapping the primary code to the specification of the category
+        like in a categorization file.
+    add_alternative_codes : dict
+        New alternative codes, mapping the new alternative code to the primary code of
+        an existing category.
+    add_children : dict
+        New sets of children, mapping the primary code of a parent category to a list
+        of child sets.
+    update_info : dict
+        Additional info for existing categories, mapping the primary code to the info
+        which is added to the info of the category.
+    remove_categories : CategoryRemoval, optional
+        Categories to remove.
+    """
+
+    add_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
+    add_alternative_codes: dict[str, str] = dataclasses.field(default_factory=dict)
+    add_children: dict[str, list[list[str]]] = dataclasses.field(default_factory=dict)
+    update_info: dict[str, dict] = dataclasses.field(default_factory=dict)
+    remove_categories: CategoryRemoval | None = None
+
+    def _label(self) -> str:
+        return "patch"
+
+    @staticmethod
+    def _patch_kwargs_from_spec(spec: dict[str, typing.Any]) -> dict[str, typing.Any]:
+        kwargs = {
+            key: spec[key]
+            for key in (
+                "add_categories",
+                "add_alternative_codes",
+                "add_children",
+                "update_info",
+            )
+            if key in spec
+        }
+        if "remove_categories" in spec:
+            kwargs["remove_categories"] = CategoryRemoval.from_spec(
+                spec["remove_categories"]
+            )
+        return kwargs
+
+    def _patch_to_spec(self) -> dict[str, typing.Any]:
+        spec: dict[str, typing.Any] = {}
+        for key in (
+            "add_categories",
+            "add_alternative_codes",
+            "add_children",
+            "update_info",
+        ):
+            value = getattr(self, key)
+            if value:
+                spec[key] = copy.deepcopy(value)
+        if self.remove_categories is not None:
+            spec["remove_categories"] = self.remove_categories.to_spec()
+        return spec
+
+    def apply_additions(self, spec: dict[str, typing.Any]) -> None:
+        """Apply all additions of this patch to the categorization specification."""
+        categories = spec["categories"]
+        hierarchical = spec["hierarchical"]
+        codes = _all_codes(categories)
+
+        for code, category_spec in self.add_categories.items():
+            new_codes = [code, *category_spec.get("alternative_codes", [])]
+            existing = [c for c in new_codes if c in codes]
+            if existing:
+                raise ValueError(
+                    f"{self._label()} adds the category {code!r}, but the codes "
+                    f"{existing!r} already exist."
+                )
+            if "children" in category_spec and not hierarchical:
+                raise ValueError(
+                    f"{self._label()} adds children to {code!r}, but the "
+                    "categorization is not hierarchical."
+                )
+            categories[code] = copy.deepcopy(category_spec)
+            for new_code in new_codes:
+                codes[new_code] = code
+
+        for alternative_code, primary_code in self.add_alternative_codes.items():
+            if alternative_code in codes:
+                raise ValueError(
+                    f"{self._label()} adds the alternative code {alternative_code!r},"
+                    " but it already exists."
+                )
+            if primary_code not in categories:
+                raise ValueError(
+                    f"{self._label()} adds the alternative code {alternative_code!r} "
+                    f"to {primary_code!r}, which is not a primary code."
+                )
+            categories[primary_code].setdefault("alternative_codes", []).append(
+                alternative_code
+            )
+            codes[alternative_code] = primary_code
+
+        for parent, child_sets in self.add_children.items():
+            if not hierarchical:
+                raise ValueError(
+                    f"{self._label()} adds children to {parent!r}, but the "
+                    "categorization is not hierarchical."
+                )
+            if parent not in categories:
+                raise ValueError(
+                    f"{self._label()} adds children to {parent!r}, which is not a "
+                    "primary code."
+                )
+            categories[parent].setdefault("children", []).extend(
+                list(child_set) for child_set in child_sets
+            )
+
+        for code, info in self.update_info.items():
+            if code not in categories:
+                raise ValueError(
+                    f"{self._label()} updates the info of {code!r}, which is not a "
+                    "primary code."
+                )
+            categories[code].setdefault("info", {}).update(copy.deepcopy(info))
+
+    def apply_removals(self, spec: dict[str, typing.Any]) -> None:
+        """Apply all removals of this patch to the categorization specification."""
+        removal = self.remove_categories
+        if removal is None:
+            return
+        categories = spec["categories"]
+
+        removed_codes = set()
+        for code in removal.codes:
+            if code not in categories:
+                raise ValueError(
+                    f"{self._label()} removes {code!r}, which is not a primary code."
+                )
+            codes = {code, *categories[code].get("alternative_codes", [])}
+            if spec.get("canonical_top_level_category") in codes:
+                raise ValueError(
+                    f"{self._label()} removes {code!r}, which is the canonical top "
+                    "level category."
+                )
+            removed_codes.update(codes)
+            del categories[code]
+
+        drop_sets = spec.get("total_sum", False) and not removal.keep_total_sum
+        for category_spec in categories.values():
+            if not any(
+                child in removed_codes
+                for child_set in category_spec.get("children", [])
+                for child in child_set
+            ):
+                continue
+            new_children = []
+            for child_set in category_spec["children"]:
+                if any(child in removed_codes for child in child_set):
+                    if drop_sets:
+                        continue
+                    child_set = [c for c in child_set if c not in removed_codes]
+                if child_set and sorted(child_set) not in (
+                    sorted(c) for c in new_children
+                ):
+                    new_children.append(child_set)
+            if new_children:
+                category_spec["children"] = new_children
+            else:
+                del category_spec["children"]
+            if removal.comment is not None:
+                if category_spec.get("comment"):
+                    category_spec["comment"] += f" {removal.comment}"
+                else:
+                    category_spec["comment"] = removal.comment
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class CategorizationOption(CategorizationPatch):
+    """An option of a categorization, i.e. a named patch of the base categorization.
+
+    Attributes
+    ----------
+    name : str
+        The name of the option, like ``eu``.
+    title : str
+        A short, descriptive title for humans.
+    comment : str
+        Notes and explanations for humans.
+    references : str
+        Citable reference(s) for the data added by the option.
+    last_update : datetime.date
+        The date of the last change.
+    requires : tuple of str
+        Options which have to be enabled together with this option.
+    conflicts : tuple of str
+        Options which can not be enabled together with this option.
+    """
+
+    name: str
+    title: str
+    comment: str = ""
+    references: str = ""
+    last_update: datetime.date
+    requires: tuple[str, ...] = ()
+    conflicts: tuple[str, ...] = ()
+
+    _strictyaml_schema: typing.ClassVar = sy.Map(
+        {
+            "option": sy.Str(),
+            "title": sy.Str(),
+            sy.Optional("comment"): sy.Str(),
+            sy.Optional("references"): sy.Str(),
+            "last_update": sy.Str(),
+            sy.Optional("requires"): sy.Seq(sy.Str()),
+            sy.Optional("conflicts"): sy.Seq(sy.Str()),
+            **_patch_schema,
+        }
+    )
+
+    def __post_init__(self):
+        if not _OPTION_NAME_RE.fullmatch(self.name) or self.name == "options":
+            raise ValueError(
+                f"Invalid option name {self.name!r}, option names may only contain "
+                "letters, digits and underscores, and 'options' is reserved."
+            )
+
+    def _label(self) -> str:
+        return f"Option {self.name!r}"
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
+        """Create option from a dictionary specification."""
+        return cls(
+            name=spec["option"],
+            title=spec["title"],
+            comment=spec.get("comment", ""),
+            references=spec.get("references", ""),
+            last_update=datetime.date.fromisoformat(spec["last_update"]),
+            requires=tuple(spec.get("requires", ())),
+            conflicts=tuple(spec.get("conflicts", ())),
+            **cls._patch_kwargs_from_spec(spec),
+        )
+
+    def to_spec(self) -> dict[str, typing.Any]:
+        """Turn this option into a specification dictionary ready to be written to a
+        yaml file."""
+        spec: dict[str, typing.Any] = {"option": self.name, "title": self.title}
+        if self.comment:
+            spec["comment"] = self.comment
+        if self.references:
+            spec["references"] = self.references
+        spec["last_update"] = self.last_update.isoformat()
+        if self.requires:
+            spec["requires"] = list(self.requires)
+        if self.conflicts:
+            spec["conflicts"] = list(self.conflicts)
+        spec.update(self._patch_to_spec())
+        return spec
+
+    @classmethod
+    def from_yaml(cls, filepath: str | pathlib.Path | typing.TextIO) -> typing.Self:
+        """Read option from a StrictYaml file."""
+        return cls.from_spec(_categories._read_yaml(filepath, cls._strictyaml_schema))
+
+    @classmethod
+    def from_python(cls, filepath: str | pathlib.Path | typing.TextIO) -> typing.Self:
+        """Read option from a python cache file written by to_python.
+
+        Note that this executes the python cache file. Only load from python cache
+        files you trust."""
+        return cls.from_spec(_categories._read_python(filepath))
+
+    def to_yaml(self, filepath: str | pathlib.Path) -> None:
+        """Write to a YAML file."""
+        _categories._write_yaml(self.to_spec(), filepath)
+
+    def to_python(self, filepath: str | pathlib.Path) -> None:
+        """Write spec to a Python file."""
+        _categories._write_python(self.to_spec(), filepath)
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class OptionCombination(CategorizationPatch):
+    """A patch which is applied when all of the given options are enabled.
+
+    Used to handle the interaction of options.
+
+    Attributes
+    ----------
+    options : tuple of str
+        The options which all have to be enabled for the patch to be applied.
+    comment : str
+        Notes and explanations for humans, added to the comment of the categorization.
+    """
+
+    options: tuple[str, ...]
+    comment: str = ""
+
+    _strictyaml_schema: typing.ClassVar = sy.Map(
+        {
+            "options": sy.Seq(sy.Str()),
+            sy.Optional("comment"): sy.Str(),
+            **_patch_schema,
+        }
+    )
+
+    def _label(self) -> str:
+        return f"Combination of options {list(self.options)!r}"
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
+        return cls(
+            options=tuple(sorted(spec["options"])),
+            comment=spec.get("comment", ""),
+            **cls._patch_kwargs_from_spec(spec),
+        )
+
+    def to_spec(self) -> dict[str, typing.Any]:
+        spec: dict[str, typing.Any] = {"options": sorted(self.options)}
+        if self.comment:
+            spec["comment"] = self.comment
+        spec.update(self._patch_to_spec())
+        return spec
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class UnsupportedCombination:
+    """A combination of options which is not quality-controlled.
+
+    All combinations which contain all of the options are not supported.
+
+    Attributes
+    ----------
+    options : tuple of str
+        The options which together are not supported.
+    comment : str
+        Why the combination is not supported, for humans.
+    """
+
+    options: tuple[str, ...]
+    comment: str = ""
+
+    _strictyaml_schema: typing.ClassVar = sy.Map(
+        {"options": sy.Seq(sy.Str()), sy.Optional("comment"): sy.Str()}
+    )
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
+        return cls(
+            options=tuple(sorted(spec["options"])), comment=spec.get("comment", "")
+        )
+
+    def to_spec(self) -> dict[str, typing.Any]:
+        spec: dict[str, typing.Any] = {"options": sorted(self.options)}
+        if self.comment:
+            spec["comment"] = self.comment
+        return spec
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class OptionManifest:
+    """Declaration of the options of a categorization.
+
+    Attributes
+    ----------
+    base : str
+        Name of the base categorization.
+    options : tuple of str
+        Names of all options, in the order in which they are applied.
+    combinations : tuple of OptionCombination
+        Patches which handle the interaction of options.
+    unsupported : tuple of UnsupportedCombination
+        Combinations of options which are not quality-controlled. All other valid
+        combinations of options, i.e. combinations which contain all required options
+        and no conflicting options, are supported.
+    aliases : dict
+        Names for commonly used combinations of options, mapping the alias to the
+        options.
+    """
+
+    base: str
+    options: tuple[str, ...]
+    combinations: tuple[OptionCombination, ...] = ()
+    unsupported: tuple[UnsupportedCombination, ...] = ()
+    aliases: dict[str, tuple[str, ...]] = dataclasses.field(default_factory=dict)
+
+    _strictyaml_schema: typing.ClassVar = sy.Map(
+        {
+            "base": sy.Str(),
+            "options": sy.Seq(sy.Str()),
+            sy.Optional("combinations"): sy.Seq(OptionCombination._strictyaml_schema),
+            sy.Optional("unsupported"): sy.Seq(
+                UnsupportedCombination._strictyaml_schema
+            ),
+            sy.Optional("aliases"): sy.MapPattern(sy.Str(), sy.Seq(sy.Str())),
+        }
+    )
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
+        """Create manifest from a dictionary specification."""
+        return cls(
+            base=spec["base"],
+            options=tuple(spec["options"]),
+            combinations=tuple(
+                OptionCombination.from_spec(c) for c in spec.get("combinations", [])
+            ),
+            unsupported=tuple(
+                UnsupportedCombination.from_spec(u) for u in spec.get("unsupported", [])
+            ),
+            aliases={
+                alias: tuple(sorted(options))
+                for alias, options in spec.get("aliases", {}).items()
+            },
+        )
+
+    def to_spec(self) -> dict[str, typing.Any]:
+        """Turn this manifest into a specification dictionary ready to be written to a
+        yaml file."""
+        spec: dict[str, typing.Any] = {"base": self.base, "options": list(self.options)}
+        if self.combinations:
+            spec["combinations"] = [c.to_spec() for c in self.combinations]
+        if self.unsupported:
+            spec["unsupported"] = [u.to_spec() for u in self.unsupported]
+        if self.aliases:
+            spec["aliases"] = {
+                alias: sorted(options) for alias, options in self.aliases.items()
+            }
+        return spec
+
+    @classmethod
+    def from_yaml(cls, filepath: str | pathlib.Path | typing.TextIO) -> typing.Self:
+        """Read manifest from a StrictYaml file."""
+        return cls.from_spec(_categories._read_yaml(filepath, cls._strictyaml_schema))
+
+    @classmethod
+    def from_python(cls, filepath: str | pathlib.Path | typing.TextIO) -> typing.Self:
+        """Read manifest from a python cache file written by to_python.
+
+        Note that this executes the python cache file. Only load from python cache
+        files you trust."""
+        return cls.from_spec(_categories._read_python(filepath))
+
+    def to_yaml(self, filepath: str | pathlib.Path) -> None:
+        """Write to a YAML file."""
+        _categories._write_yaml(self.to_spec(), filepath)
+
+    def to_python(self, filepath: str | pathlib.Path) -> None:
+        """Write spec to a Python file."""
+        _categories._write_python(self.to_spec(), filepath)
+
+
+def manifest_stem(base: str) -> str:
+    """The file name (without extension) of the manifest of the given base."""
+    return f"{base}__options"
+
+
+def option_stem(base: str, option: str) -> str:
+    """The file name (without extension) of the given option of the given base."""
+    return f"{base}__{option}"
+
+
+class OptionFamily:
+    """A base categorization together with its options.
+
+    Use ``get`` to get the base categorization with options enabled.
+
+    Attributes
+    ----------
+    base : Categorization
+        The base categorization.
+    manifest : OptionManifest
+        The declaration of the options, their combinations and aliases.
+    options : dict
+        All options by name, in the order in which they are applied.
+    """
+
+    def __init__(
+        self,
+        *,
+        base: "_categories.Categorization",
+        manifest: OptionManifest,
+        options: dict[str, CategorizationOption],
+    ):
+        if manifest.base != base.name:
+            raise ValueError(
+                f"Manifest is for {manifest.base!r}, but the base is {base.name!r}."
+            )
+        if len(set(manifest.options)) != len(manifest.options):
+            raise ValueError(f"{base.name}: options listed multiple times.")
+        if set(options) != set(manifest.options):
+            raise ValueError(
+                f"{base.name}: the given options {sorted(options)!r} do not match "
+                f"the options of the manifest {sorted(manifest.options)!r}."
+            )
+        for name, option in options.items():
+            if option.name != name:
+                raise ValueError(f"Option {option.name!r} given as {name!r}.")
+
+        self.base = base
+        self.manifest = manifest
+        self.options = {name: options[name] for name in manifest.options}
+        self._cache: dict[str, _categories.Categorization] = {}
+
+        for option in self.options.values():
+            for other in (*option.requires, *option.conflicts):
+                if other not in self.options or other == option.name:
+                    raise ValueError(
+                        f"{base.name}: option {option.name!r} requires or conflicts "
+                        f"with the invalid option {other!r}."
+                    )
+        for combination in manifest.combinations:
+            self._check_known(combination.options)
+            if len(combination.options) < 2:
+                raise ValueError(
+                    f"{base.name}: combinations need at least two options, not "
+                    f"{list(combination.options)!r}."
+                )
+        for unsupported in manifest.unsupported:
+            self._check_known(unsupported.options)
+            if not unsupported.options:
+                raise ValueError(
+                    f"{base.name}: unsupported combinations need at least one option."
+                )
+        for alias, alias_options in manifest.aliases.items():
+            if _categories.parse_name(alias)[1] or alias == base.name:
+                raise ValueError(f"{base.name}: invalid alias name {alias!r}.")
+            if not self.is_supported(alias_options):
+                raise ValueError(
+                    f"{base.name}: the options {list(alias_options)!r} of the alias "
+                    f"{alias!r} are not a supported combination."
+                )
+
+    @classmethod
+    def from_yaml(
+        cls,
+        manifest_path: str | pathlib.Path,
+        base: "_categories.Categorization | None" = None,
+    ) -> typing.Self:
+        """Read the options of a categorization from StrictYaml files.
+
+        The options are read from the files ``{base}__{option}.yaml`` next to the
+        manifest file ``{base}__options.yaml``.
+
+        Parameters
+        ----------
+        manifest_path : str or Path
+            Path to the manifest file.
+        base : Categorization, optional
+            The base categorization. If not given, it is read from ``{base}.yaml``
+            next to the manifest file.
+        """
+        manifest_path = pathlib.Path(manifest_path)
+        directory = manifest_path.parent
+        manifest = OptionManifest.from_yaml(manifest_path)
+        if base is None:
+            base = _categories.from_yaml(directory / f"{manifest.base}.yaml")
+        options = {
+            name: CategorizationOption.from_yaml(
+                directory / f"{option_stem(manifest.base, name)}.yaml"
+            )
+            for name in manifest.options
+        }
+        return cls(base=base, manifest=manifest, options=options)
+
+    @property
+    def name(self) -> str:
+        """The name of the base categorization."""
+        return self.base.name
+
+    @property
+    def aliases(self) -> dict[str, tuple[str, ...]]:
+        """Names for commonly used combinations of options."""
+        return self.manifest.aliases
+
+    @functools.cached_property
+    def supported_combinations(self) -> list[tuple[str, ...]]:
+        """All supported combinations of options, including the empty combination.
+
+        These are all combinations which contain all required options, no
+        conflicting options, and are not declared unsupported in the manifest.
+        """
+        combinations = []
+        for n in range(len(self.options) + 1):
+            for options in itertools.combinations(sorted(self.options), n):
+                try:
+                    if self.is_supported(options):
+                        combinations.append(options)
+                except ValueError:
+                    # missing required or conflicting options
+                    continue
+        return combinations
+
+    def _check_known(self, options: typing.Iterable[str]) -> None:
+        unknown = [option for option in options if option not in self.options]
+        if unknown:
+            raise ValueError(
+                f"Unknown options {unknown!r} for {self.name}, available options: "
+                f"{list(self.options)!r}."
+            )
+
+    def check(self, options: typing.Iterable[str]) -> tuple[str, ...]:
+        """Check that the options are valid, i.e. are known, have all required options
+        and don't conflict.
+
+        Returns
+        -------
+        options : tuple of str
+            The options, sorted.
+        """
+        options = _categories._options_list(options)
+        if len(set(options)) != len(options):
+            raise ValueError(f"Options given multiple times: {options!r}.")
+        self._check_known(options)
+        for name in options:
+            option = self.options[name]
+            missing = [x for x in option.requires if x not in options]
+            if missing:
+                raise ValueError(
+                    f"Option {name!r} of {self.name} requires the options {missing!r}."
+                )
+            conflicting = [x for x in option.conflicts if x in options]
+            if conflicting:
+                raise ValueError(
+                    f"Option {name!r} of {self.name} conflicts with the options "
+                    f"{conflicting!r}."
+                )
+        return tuple(sorted(options))
+
+    def _unsupported_by(
+        self, options: typing.Iterable[str]
+    ) -> UnsupportedCombination | None:
+        """The declared unsupported combination which the options contain, if any."""
+        options = set(options)
+        for unsupported in self.manifest.unsupported:
+            if set(unsupported.options) <= options:
+                return unsupported
+        return None
+
+    def is_supported(self, options: typing.Iterable[str]) -> bool:
+        """Is the combination of options quality-controlled?
+
+        Raises a ValueError if the options are not valid at all."""
+        return self._unsupported_by(self.check(options)) is None
+
+    def resolve(self, name: str) -> tuple[str, ...] | None:
+        """The options of the given alias or name like ``ISO3[eu,unfccc]``.
+
+        Returns None if the name does not belong to this family."""
+        if name in self.aliases:
+            return self.aliases[name]
+        family, options = _categories.parse_name(name)
+        if family == self.name:
+            return options
+        return None
+
+    def get(
+        self,
+        options: typing.Iterable[str],
+        *,
+        allow_unsupported: bool = False,
+        name: str | None = None,
+    ) -> "_categories.Categorization":
+        """Get the base categorization with the given options enabled.
+
+        Supported combinations are only built once and cached.
+
+        Parameters
+        ----------
+        options : iterable of str
+            The names of the options to enable.
+        allow_unsupported : bool, default False
+            Combinations of options which are not supported raise an
+            ``UnsupportedCombinationError``. If True, build them anyway, emitting an
+            ``UnsupportedCombinationWarning``.
+        name : str, optional
+            The name of the returned categorization, used for aliases. Defaults to
+            the canonical name like ``ISO3[eu,unfccc]``.
+        """
+        options = self.check(options)
+        if not options and name is None:
+            return self.base
+        if name is None:
+            name = _categories.canonical_name(self.name, options)
+
+        unsupported = self._unsupported_by(options)
+        if unsupported is not None:
+            if not allow_unsupported:
+                reason = f" ({unsupported.comment})" if unsupported.comment else ""
+                raise UnsupportedCombinationError(
+                    f"The combination of options {list(options)!r} of {self.name} is "
+                    "not quality-controlled because the options "
+                    f"{list(unsupported.options)!r} are not supported together"
+                    f"{reason}. Use allow_unsupported=True to use it anyway."
+                )
+            warnings.warn(
+                f"The combination of options {list(options)!r} of {self.name} is not "
+                "quality-controlled.",
+                UnsupportedCombinationWarning,
+                stacklevel=2,
+            )
+            return self.build(options, name=name)
+
+        if name not in self._cache:
+            self._cache[name] = self.build(options, name=name)
+        return self._cache[name]
+
+    def build(
+        self, options: typing.Iterable[str], *, name: str | None = None
+    ) -> "_categories.Categorization":
+        """Build the base categorization with the given options enabled.
+
+        Unlike ``get``, this does not check if the combination of options is
+        supported and always builds a new categorization.
+        """
+        options = self.check(options)
+        enabled = [option for name, option in self.options.items() if name in options]
+        combinations = [
+            c for c in self.manifest.combinations if set(c.options) <= set(options)
+        ]
+        patches: list[CategorizationPatch] = [*enabled, *combinations]
+
+        spec = copy.deepcopy(self.base.to_spec())
+        for patch in patches:
+            patch.apply_additions(spec)
+        for patch in patches:
+            patch.apply_removals(spec)
+
+        codes = _all_codes(spec["categories"])
+        for code, category_spec in spec["categories"].items():
+            for child_set in category_spec.get("children", []):
+                missing = [child for child in child_set if child not in codes]
+                if missing:
+                    raise ValueError(
+                        f"Children {missing!r} of {code!r} don't exist with the "
+                        f"options {list(options)!r} of {self.name}."
+                    )
+
+        # build with the canonical name, so that the family and options are derived
+        # from it before the categories are created, and rename to the alias later
+        spec["name"] = _categories.canonical_name(self.name, options)
+        if enabled:
+            spec["title"] = (
+                f"{self.base.title} with {', '.join(o.title for o in enabled)}"
+            )
+        for option in enabled:
+            if option.comment:
+                spec["comment"] += f"\n\nOption {option.name!r}: {option.comment}"
+        for combination in combinations:
+            if combination.comment:
+                spec["comment"] += (
+                    f"\n\nOptions {', '.join(combination.options)} combined: "
+                    f"{combination.comment}"
+                )
+        spec["references"] = ";\n".join(
+            references.strip().rstrip(";")
+            for references in (
+                self.base.references,
+                *(option.references for option in enabled),
+            )
+            if references.strip()
+        )
+        spec["last_update"] = max(
+            [self.base.last_update, *(option.last_update for option in enabled)]
+        ).isoformat()
+
+        categorization = type(self.base).from_spec(spec)
+        if name is not None:
+            categorization.name = name
+        categorization._cats = self.base._cats
+        categorization._option_family = self
+        return categorization
+
+
+class CategorizationRegistry(dict):
+    """All categorizations, by name.
+
+    Categorizations with options, like ``ISO3[eu,unfccc]``, and aliases, like
+    ``ISO3_PRIMAP``, are built on first access. Note that iterating over the registry
+    only yields categorizations which were already built.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.families: dict[str, OptionFamily] = {}
+
+    def register_family(self, family: OptionFamily) -> None:
+        """Register the options of a base categorization."""
+        if family.name in self.families:
+            raise ValueError(f"Options for {family.name} already registered.")
+        for alias in family.aliases:
+            if dict.__contains__(self, alias) or any(
+                alias in f.aliases for f in self.families.values()
+            ):
+                raise ValueError(f"Alias {alias!r} already exists.")
+        self.families[family.name] = family
+        family.base._option_family = family
+        family.base._cats = self
+        dict.__setitem__(self, family.name, family.base)
+
+    def _resolve(self, name: str) -> tuple[OptionFamily, tuple[str, ...]] | None:
+        for family in self.families.values():
+            options = family.resolve(name)
+            if options is not None:
+                return family, options
+        return None
+
+    def __missing__(self, name: str) -> "_categories.Categorization":
+        resolved = self._resolve(name)
+        if resolved is None:
+            raise KeyError(name)
+        family, options = resolved
+        alias = name if name in family.aliases else None
+        categorization = family.get(options, name=alias)
+        dict.__setitem__(self, categorization.name, categorization)
+        return categorization
+
+    def __contains__(self, name: object) -> bool:
+        if dict.__contains__(self, name):
+            return True
+        if not isinstance(name, str):
+            return False
+        resolved = self._resolve(name)
+        if resolved is None:
+            return False
+        family, options = resolved
+        try:
+            return family.is_supported(options)
+        except ValueError:
+            return False
+
+    def get(self, name, default=None):
+        """Get the categorization with the given name, or default if it does not
+        exist.
+
+        Raises an UnsupportedCombinationError for unsupported combinations of
+        options."""
+        try:
+            return self[name]
+        except KeyError:
+            return default

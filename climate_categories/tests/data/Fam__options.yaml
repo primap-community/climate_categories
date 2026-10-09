@@ -1,0 +1,23 @@
+base: Fam
+options:
+  - extra
+  - more
+  - no_c
+  - c_in_b
+combinations:
+  - options:
+      - extra
+      - no_c
+    comment: Without C, the extra categories are noted.
+    update_info:
+      AB:
+        note: without C
+unsupported:
+  - options:
+      - more
+      - no_c
+    comment: ABC was not checked without C
+aliases:
+  FAM_FULL:
+    - extra
+    - more

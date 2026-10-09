@@ -41,11 +41,28 @@ CRFDI_class      CRF GHG emission categories (DI query interface) + classificati
 GCB              Global Carbon Budget CO2 emission categories
 RCMIP            RCMIP emissions categories
 gas              Gases and other climate-forcing substances
-ISO3             Countries, country groups, and other areas from ISO 3166
-ISO3_GCAM        dito, plus regions used by the GCAM integrated assessment model
+ISO3             Countries and other areas from ISO 3166-1, with options for country
+                 groups, see below
+ISO3_PRIMAP      ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
+                 and historical countries; Palestine included in Israel
+ISO3_GCAM        ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
+                 historical countries, Kosovo, and regions used by the GCAM
+                 integrated assessment model
 FAO              FAOSTAT climate change agrifood systems GHG emissions categories
 CT               Climate Trace categories
 ===============  ==================================================================
+
+Categorizations with options
+-----------------------------
+
+Some categorizations have options, which add or remove categories. For example,
+``climate_categories.cats["ISO3[eu,unfccc]"]`` or equivalently
+``climate_categories.ISO3.with_options(["eu", "unfccc"])`` gives the ISO 3166-1 countries
+together with the European Union and the parties to the UNFCCC.
+``climate_categories.ISO3.available_options`` lists the options and
+``climate_categories.ISO3.supported_combinations`` lists the quality-controlled
+combinations of options. Aliases like ``ISO3_PRIMAP`` name commonly used combinations
+of options; note that the options of an alias can be extended in later versions.
 
 Included conversions between categorizations
 --------------------------------------------
