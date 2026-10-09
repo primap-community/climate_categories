@@ -309,6 +309,10 @@ class CategorizationOption(CategorizationPatch):
         Options which have to be enabled together with this option.
     conflicts : tuple of str
         Options which can not be enabled together with this option.
+    base : str, optional
+        The categorization the option is meant to be applied to, like
+        ``ISO3_PRIMAP``. Used by ``load_extension`` for options which are not part of
+        the options of a categorization included in climate_categories.
     """
 
     name: str
@@ -318,10 +322,12 @@ class CategorizationOption(CategorizationPatch):
     last_update: datetime.date
     requires: tuple[str, ...] = ()
     conflicts: tuple[str, ...] = ()
+    base: str | None = None
 
     _strictyaml_schema: typing.ClassVar = sy.Map(
         {
             "option": sy.Str(),
+            sy.Optional("base"): sy.Str(),
             "title": sy.Str(),
             sy.Optional("comment"): sy.Str(),
             sy.Optional("references"): sy.Str(),
@@ -353,13 +359,17 @@ class CategorizationOption(CategorizationPatch):
             last_update=datetime.date.fromisoformat(spec["last_update"]),
             requires=tuple(spec.get("requires", ())),
             conflicts=tuple(spec.get("conflicts", ())),
+            base=spec.get("base"),
             **cls._patch_kwargs_from_spec(spec),
         )
 
     def to_spec(self) -> dict[str, typing.Any]:
         """Turn this option into a specification dictionary ready to be written to a
         yaml file."""
-        spec: dict[str, typing.Any] = {"option": self.name, "title": self.title}
+        spec: dict[str, typing.Any] = {"option": self.name}
+        if self.base is not None:
+            spec["base"] = self.base
+        spec["title"] = self.title
         if self.comment:
             spec["comment"] = self.comment
         if self.references:
@@ -833,51 +843,15 @@ class OptionFamily:
         combinations = [
             c for c in self.manifest.combinations if set(c.options) <= set(options)
         ]
-        patches: list[CategorizationPatch] = [*enabled, *combinations]
-
-        spec = copy.deepcopy(self.base.to_spec())
-        for patch in patches:
-            patch.apply_additions(spec)
-        for patch in patches:
-            patch.apply_removals(spec)
-
-        codes = _all_codes(spec["categories"])
-        for code, category_spec in spec["categories"].items():
-            for child_set in category_spec.get("children", []):
-                missing = [child for child in child_set if child not in codes]
-                if missing:
-                    raise ValueError(
-                        f"Children {missing!r} of {code!r} don't exist with the "
-                        f"options {list(options)!r} of {self.name}."
-                    )
-
+        spec = _patched_spec(
+            self.base,
+            enabled,
+            combinations,
+            description=f"the options {list(options)!r} of {self.name}",
+        )
         # build with the canonical name, so that the family and options are derived
         # from it before the categories are created, and rename to the alias later
         spec["name"] = _categories.canonical_name(self.name, options)
-        if enabled:
-            spec["title"] = (
-                f"{self.base.title} with {', '.join(o.title for o in enabled)}"
-            )
-        for option in enabled:
-            if option.comment:
-                spec["comment"] += f"\n\nOption {option.name!r}: {option.comment}"
-        for combination in combinations:
-            if combination.comment:
-                spec["comment"] += (
-                    f"\n\nOptions {', '.join(combination.options)} combined: "
-                    f"{combination.comment}"
-                )
-        spec["references"] = ";\n".join(
-            references.strip().rstrip(";")
-            for references in (
-                self.base.references,
-                *(option.references for option in enabled),
-            )
-            if references.strip()
-        )
-        spec["last_update"] = max(
-            [self.base.last_update, *(option.last_update for option in enabled)]
-        ).isoformat()
 
         categorization = type(self.base).from_spec(spec)
         if name is not None:
@@ -885,6 +859,141 @@ class OptionFamily:
         categorization._cats = self.base._cats
         categorization._option_family = self
         return categorization
+
+
+def _patched_spec(
+    categorization: "_categories.Categorization",
+    options: list["CategorizationOption"],
+    combinations: list["OptionCombination"] = (),
+    *,
+    description: str,
+) -> dict[str, typing.Any]:
+    """The specification of the categorization with the options and combinations
+    applied, including the metadata. The name is left unchanged.
+
+    ``description`` describes the applied options for error messages.
+    """
+    patches: list[CategorizationPatch] = [*options, *combinations]
+
+    spec = copy.deepcopy(categorization.to_spec())
+    for patch in patches:
+        patch.apply_additions(spec)
+    for patch in patches:
+        patch.apply_removals(spec)
+
+    codes = _all_codes(spec["categories"])
+    for code, category_spec in spec["categories"].items():
+        for child_set in category_spec.get("children", []):
+            missing = [child for child in child_set if child not in codes]
+            if missing:
+                raise ValueError(
+                    f"Children {missing!r} of {code!r} don't exist after applying "
+                    f"{description}."
+                )
+
+    if options:
+        spec["title"] = (
+            f"{categorization.title} with {', '.join(o.title for o in options)}"
+        )
+    for option in options:
+        if option.comment:
+            spec["comment"] += f"\n\nOption {option.name!r}: {option.comment}"
+    for combination in combinations:
+        if combination.comment:
+            spec["comment"] += (
+                f"\n\nOptions {', '.join(combination.options)} combined: "
+                f"{combination.comment}"
+            )
+    spec["references"] = ";\n".join(
+        references.strip().rstrip(";")
+        for references in (
+            categorization.references,
+            *(option.references for option in options),
+        )
+        if references.strip()
+    )
+    spec["last_update"] = max(
+        [categorization.last_update, *(option.last_update for option in options)]
+    ).isoformat()
+    return spec
+
+
+def apply_option(
+    categorization: "_categories.Categorization",
+    option: "CategorizationOption | str | pathlib.Path",
+    *,
+    name: str | None = None,
+) -> "_categories.Categorization":
+    """Apply an option to a categorization, see ``Categorization.apply``."""
+    if not isinstance(option, CategorizationOption):
+        option = CategorizationOption.from_yaml(option)
+
+    enabled = set(categorization.enabled_options)
+    missing = [x for x in option.requires if x not in enabled]
+    if missing:
+        raise ValueError(
+            f"Option {option.name!r} requires the options {missing!r}, which are not "
+            f"enabled in {categorization.name}."
+        )
+    conflicting = [x for x in option.conflicts if x in enabled]
+    if conflicting:
+        raise ValueError(
+            f"Option {option.name!r} conflicts with the options {conflicting!r}, "
+            f"which are enabled in {categorization.name}."
+        )
+
+    spec = _patched_spec(
+        categorization,
+        [option],
+        description=f"the option {option.name!r} to {categorization.name}",
+    )
+    spec["name"] = f"{categorization.name}_{option.name}" if name is None else name
+    result = type(categorization).from_spec(spec)
+    result._cats = categorization._cats
+    # keep the categories comparable to the categories of the original categorization
+    # and its family. This is possible because the family is not part of the hash.
+    result.family = categorization.family
+    result._canonical_name = result.name
+    return result
+
+
+def load_extension(
+    filepath: str | pathlib.Path | typing.TextIO,
+    cats: "dict[str, _categories.Categorization] | None" = None,
+    *,
+    name: str | None = None,
+) -> "_categories.Categorization":
+    """Read an option from a file and apply it to the categorization it is for.
+
+    The option file has to name the categorization it is for in its ``base`` field,
+    like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``.
+
+    Parameters
+    ----------
+    filepath : str, Path, or file
+        The option file in StrictYaml format.
+    cats : dict, optional
+        The categorizations to look up the base in, by default all categorizations
+        included in climate_categories.
+    name : str, optional
+        The name of the returned categorization, by default ``{base}_{option}``.
+
+    Returns
+    -------
+    categorization : Categorization
+        The base categorization with the option applied.
+    """
+    option = CategorizationOption.from_yaml(filepath)
+    if option.base is None:
+        raise ValueError(
+            f"Option {option.name!r} does not name the categorization it is for in "
+            "its 'base' field, use Categorization.apply instead."
+        )
+    if cats is None:
+        import climate_categories
+
+        cats = climate_categories.cats
+    return apply_option(cats[option.base], option, name=name)
 
 
 class CategorizationRegistry(dict):

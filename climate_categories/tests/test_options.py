@@ -484,3 +484,138 @@ def test_yaml_without_trailing_whitespace(tmp_path, fam):
         assert all(line == line.rstrip() for line in lines)
     assert climate_categories.from_yaml(tmp_path / "cat.yaml").comment == cat.comment
     assert CategorizationOption.from_yaml(tmp_path / "option.yaml") == option
+
+
+EXTENSION = """\
+option: mygroups
+base: {base}
+title: my groups
+comment: Groups used in my dataset.
+references: doi:00000/00002
+last_update: 2026-10-01
+add_categories:
+  MYGROUP:
+    title: My group
+    children:
+      - - {child1}
+        - {child2}
+"""
+
+
+def test_apply(fam):
+    option = CategorizationOption(
+        name="ext",
+        title="my extension",
+        references="doi:00000/00002",
+        last_update=datetime.date(2026, 10, 1),
+        add_categories={"BC": {"title": "B and C", "children": [["B", "C"]]}},
+    )
+    cat = fam.apply(option)
+    assert cat.name == "Fam_ext"
+    assert cat.canonical_name == "Fam_ext"
+    assert cat.family == "Fam"
+    assert children(cat, "BC") == [{"B", "C"}]
+    assert cat.title == "Family with my extension"
+    assert cat.references == "doi:00000/00000;\ndoi:00000/00002"
+    assert cat.last_update == datetime.date(2026, 10, 1)
+    assert "BC" not in fam
+    # categories are comparable to the categories of the original categorization
+    assert cat["A"] == fam["A"]
+    assert hash(cat["A"]) == hash(fam["A"])
+    assert cat["A"] in {fam["A"]}
+
+    assert fam.apply(option, name="Mine").name == "Mine"
+
+
+def test_apply_file(tmp_path, fam):
+    path = tmp_path / "ext.yaml"
+    path.write_text(EXTENSION.format(base="Fam", child1="A", child2="C"))
+    for option in (path, str(path)):
+        cat = fam.apply(option)
+        assert cat.name == "Fam_mygroups"
+        assert children(cat, "MYGROUP") == [{"A", "C"}]
+
+    # the base is kept when writing the option
+    option = CategorizationOption.from_yaml(path)
+    assert option.base == "Fam"
+    option.to_yaml(tmp_path / "written.yaml")
+    assert CategorizationOption.from_yaml(tmp_path / "written.yaml") == option
+
+
+def test_apply_requires_conflicts(fam):
+    needs_extra = CategorizationOption(
+        name="ext",
+        title="x",
+        last_update=datetime.date(2026, 1, 1),
+        requires=("extra",),
+        add_categories={"ABx": {"title": "AB again", "children": [["AB"]]}},
+    )
+    with pytest.raises(ValueError, match="requires the options \\['extra'\\]"):
+        fam.apply(needs_extra)
+    cat = fam.with_options(["extra"]).apply(needs_extra)
+    assert cat.name == "Fam[extra]_ext"
+    assert cat["AB"] == fam.with_options(["extra"])["AB"]
+
+    no_no_c = CategorizationOption(
+        name="ext",
+        title="x",
+        last_update=datetime.date(2026, 1, 1),
+        conflicts=("no_c",),
+    )
+    with pytest.raises(ValueError, match="conflicts with the options \\['no_c'\\]"):
+        fam.with_options(["no_c"]).apply(no_no_c)
+
+
+def test_apply_removal(fam):
+    cat = fam.with_options(["extra"]).apply(fam.available_options["c_in_b"])
+    assert "C" not in cat
+    assert children(cat, "T") == [{"A", "B"}, {"AB"}]
+    assert cat.total_sum
+
+
+def test_load_extension(tmp_path, cats):
+    path = tmp_path / "ext.yaml"
+    path.write_text(EXTENSION.format(base="FAM_FULL", child1="ABC", child2="A"))
+    cat = climate_categories.load_extension(path, cats)
+    assert cat.name == "FAM_FULL_mygroups"
+    assert cat.canonical_name == "FAM_FULL_mygroups"
+    assert cat.family == "Fam"
+    assert children(cat, "MYGROUP") == [{"ABC", "A"}]
+    # comparable with the whole family, not only with the alias it was applied to
+    assert cat["A"] == cats["Fam"]["A"]
+    assert cat["A"] == cats["Fam[extra]"]["A"]
+    # extensions are not registered
+    assert "FAM_FULL_mygroups" not in cats
+    assert climate_categories.load_extension(path, cats, name="Mine").name == "Mine"
+
+
+def test_load_extension_without_base(tmp_path, cats):
+    path = tmp_path / "ext.yaml"
+    path.write_text(
+        EXTENSION.format(base="Fam", child1="A", child2="B").replace("base: Fam\n", "")
+    )
+    with pytest.raises(ValueError, match="'base' field"):
+        climate_categories.load_extension(path, cats)
+
+
+def test_load_extension_included(tmp_path):
+    # applying an extension to a categorization included in climate_categories
+    path = tmp_path / "ext.yaml"
+    path.write_text(EXTENSION.format(base="ISO3_PRIMAP", child1="DEU", child2="EU"))
+    cat = climate_categories.load_extension(path)
+    assert cat.name == "ISO3_PRIMAP_mygroups"
+    assert cat["MYGROUP"].children == [
+        {climate_categories.ISO3["DEU"], climate_categories.ISO3_PRIMAP["EU"]}
+    ]
+    assert "PSE" not in cat
+    assert cat["DEU"] == climate_categories.ISO3["DEU"]
+    assert hash(cat["DEU"]) == hash(climate_categories.ISO3["DEU"])
+    assert "ISO3_PRIMAP_mygroups" not in climate_categories.cats
+
+
+def test_extended_categories_hash():
+    # categories of extended categorizations are equal and have the same hash
+    ipcc = climate_categories.IPCC2006
+    primap = climate_categories.IPCC2006_PRIMAP
+    assert primap["1.A"] == ipcc["1.A"]
+    assert hash(primap["1.A"]) == hash(ipcc["1.A"])

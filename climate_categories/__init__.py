@@ -39,6 +39,7 @@ from ._options import (
     UnsupportedCombination,
     UnsupportedCombinationError,
     UnsupportedCombinationWarning,
+    load_extension,
     manifest_stem,
     option_stem,
 )
@@ -144,6 +145,7 @@ __all__ = [
     "from_spec",
     "from_yaml",
     "gas",
+    "load_extension",
     "manifest_stem",
     "option_stem",
     "parse_name",

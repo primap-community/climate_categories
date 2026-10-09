@@ -145,6 +145,7 @@ Option files have the following fields:
 Key                    Type  Notes                                              Example
 ---------------------  ----  -------------------------------------------------  ----------------------------
 option                 str   the name of the option, letters, digits, and _     unfccc
+base                   str   optional, the categorization the option is for     ISO3_PRIMAP
 title                  str   one-line description                               UNFCCC parties
 comment                str   optional, long-form description                    Parties to the UN Framework…
 references             str   optional, citable reference(s) and sources         https://unfccc.int/…
@@ -213,6 +214,31 @@ An example manifest:
         - eu
         - pse_in_isr
         - unfccc
+
+
+Extensions
+----------
+
+Option files can also be used to extend categorizations without including the
+extension in climate_categories, for example to share an extension together with a
+dataset using it. For such options, give the categorization the option is for in the
+``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``, and read and apply them
+using ``climate_categories.load_extension``. ``requires`` and ``conflicts`` then refer
+to the options enabled in the base. An example:
+
+.. code-block:: yaml
+
+    option: mygroups
+    base: ISO3_PRIMAP
+    title: my groups
+    comment: Groups used in my dataset.
+    last_update: 2026-10-01
+    add_categories:
+      MYGROUP:
+        title: My group
+        children:
+          - - DEU
+            - FRA
 
 
 Conversions

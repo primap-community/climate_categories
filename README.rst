@@ -64,6 +64,11 @@ together with the European Union and the parties to the UNFCCC.
 combinations of options. Aliases like ``ISO3_PRIMAP`` name commonly used combinations
 of options; note that the options of an alias can be extended in later versions.
 
+You can also apply your own options to any categorization using
+``Categorization.apply``, or share them as a file with a ``base`` field naming the
+categorization they extend, which ``climate_categories.load_extension`` reads and
+applies.
+
 Included conversions between categorizations
 --------------------------------------------
 

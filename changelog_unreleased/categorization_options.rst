@@ -16,5 +16,6 @@
 * ``ISO3_GCAM`` is now an alias for ISO3 with the new ``gcam`` option and the options
   ``eu``, ``groups``, ``historical``, ``kosovo``, and ``unfccc``, so it also includes the
   withdrawn countries now.
-* Categories of categorizations from the same base, like ``ISO3["DEU"]`` and
-  ``ISO3_PRIMAP["DEU"]``, now also have the same hash, not only compare equal.
+* Categories which compare equal because their categorizations are related, like
+  ``ISO3["DEU"]`` and ``ISO3_PRIMAP["DEU"]``, or ``IPCC2006["1.A"]`` and
+  ``IPCC2006_PRIMAP["1.A"]``, now also have the same hash.

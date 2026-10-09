@@ -243,7 +243,9 @@ class Category:
 
     def __hash__(self):
         if self._hash is None:
-            self._hash = hash(self.categorization.family + self.codes[0])
+            # only the code, so that categories which are equal because they belong
+            # to related categorizations (see _related) have the same hash
+            self._hash = hash(self.codes[0])
         return self._hash
 
     def __lt__(self, other):
@@ -395,7 +397,8 @@ class Categorization:
         True if descendants and ancestors are defined
     family : str
         The name of the base categorization if this categorization is the base
-        categorization with options (e.g. ``"ISO3"`` for ``ISO3[eu]``), otherwise the
+        categorization with options (e.g. ``"ISO3"`` for ``ISO3[eu]``), or the family
+        of the categorization an option was applied to (see ``apply``), otherwise the
         name.
     enabled_options : tuple of str
         The options enabled in this categorization, sorted. Empty for categorizations
@@ -456,6 +459,9 @@ class Categorization:
         # is set for base categorizations with options and categorizations built from
         # them
         self._option_family: OptionFamily | None = None
+        # is set for categorizations which are not described by their family and
+        # options, i.e. categorizations with an applied option
+        self._canonical_name: str | None = None
 
     def __hash__(self):
         return hash(self.name)
@@ -597,6 +603,8 @@ class Categorization:
         if this categorization is available under an alias like ``ISO3_PRIMAP``.
         Otherwise, it is the name.
         """
+        if self._canonical_name is not None:
+            return self._canonical_name
         return canonical_name(self.family, self.enabled_options)
 
     @property
@@ -619,6 +627,38 @@ class Categorization:
         if self._option_family is None:
             return [()]
         return self._option_family.supported_combinations
+
+    def apply(
+        self,
+        option: "CategorizationOption | str | pathlib.Path",
+        *,
+        name: str | None = None,
+    ) -> "Categorization":
+        """Apply an option to this categorization, yielding a new categorization.
+
+        Use this to apply your own options, e.g. from an option file you got together
+        with a dataset. Unlike ``with_options``, it works for any option and any
+        categorization, but the result not available in ``climate_categories.cats``,
+        and you are of course responsible yourself for quality control and interactions
+        with other options.
+
+        Parameters
+        ----------
+        option : CategorizationOption, str, or Path
+            The option, or the path to an option file in StrictYaml format. Options
+            required by the option have to be enabled in this categorization.
+        name : str, optional
+            The name of the returned categorization. By default ``{name}_{option}``,
+            so that categories are comparable to the categories of this
+            categorization.
+
+        Returns
+        -------
+        categorization : Categorization
+        """
+        from ._options import apply_option
+
+        return apply_option(self, option, name=name)
 
     def with_options(
         self, options: typing.Iterable[str], *, allow_unsupported: bool = False
