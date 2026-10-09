@@ -251,6 +251,9 @@ def test_pse_in_isr():
     assert "ISR" in iso3
     assert "PS" not in iso3
     assert "Palestine" in iso3["World"].comment
+    assert iso3["ISR"].info["includes"] == ["PSE"]
+    assert "Palestine" in iso3["ISR"].comment
+    assert "includes" not in climate_categories.ISO3["ISR"].info
     assert (
         len(iso3["World"].children[0])
         == len(climate_categories.ISO3["World"].children[0]) - 1

@@ -157,17 +157,38 @@ add_alternative_codes  map   optional, new alternative code → primary code    
 add_children           map   optional, primary code → list of new child sets    {'World': [['ABW', 'AFG']]}
 update_info            map   optional, primary code → info to add               {'BOL': {'unfccc_name': …}}
 remove_categories      map   optional, categories to remove, see below
+merge_into             map   optional, removed primary code → including code    {'PSE': 'ISR'}
 =====================  ====  =================================================  ============================
 
 New categories in ``add_categories`` are specified like categories in categorization
 files. ``remove_categories`` has the keys ``codes`` with the list of primary codes to
-remove, ``keep_total_sum``, and optionally ``comment``. Removed categories are also
-removed from all child sets. If ``keep_total_sum`` is ``yes``, the removed categories
-are included in other categories, so child sets still add up to their parent. Otherwise,
-in categorizations with ``total_sum``, child sets which contained removed categories
-are dropped. The ``comment`` is added to the comment of all categories whose children
-were changed. When building a categorization with options, first all additions of all
-options are applied in the order of the manifest, then all removals.
+remove and optionally ``comment``. Removed categories are also removed from all child
+sets. In categorizations with ``total_sum``, child sets which contained removed
+categories are dropped because they don't add up any more. The ``comment`` is added to
+the comment of all categories whose children were changed.
+
+``merge_into`` removes categories which are included in other categories, for example
+``{'PSE': 'ISR'}`` if the emissions of Palestine are included in the emissions of
+Israel. The removed code is recorded in the ``includes`` info of the receiving
+category, so ``ISO3_PRIMAP["ISR"].info["includes"]`` is ``['PSE']``. If the removed
+category itself included other categories, they are added to the ``includes`` too.
+Child sets which also contain the receiving category, or a category it is part of, still
+add up, so the removed category is just dropped from them. Other child sets which
+contained the removed category are handled like for ``remove_categories``. Notes about
+the merge are added to the comments of the receiving category and of all categories
+whose children were changed. The receiving category can also be added by the option
+itself, which is useful for data sources which only report the sum of several
+categories, for example::
+
+    add_categories:
+      CHI:
+        title: Channel Islands
+    merge_into:
+      GGY: CHI
+      JEY: CHI
+
+When building a categorization with options, first all additions of all options are
+applied in the order of the manifest, then all merges and removals.
 
 The manifest has the following fields:
 

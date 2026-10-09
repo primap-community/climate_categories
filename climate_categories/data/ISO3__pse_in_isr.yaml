@@ -4,9 +4,5 @@ comment: Palestine (PSE) is not listed separately, it is assumed to be included
   in Israel (ISR), so that sums over countries stay complete. Use this for data
   sources which do not report Palestine separately.
 last_update: '2026-10-09'
-remove_categories:
-  codes:
-  - PSE
-  keep_total_sum: true
-  comment: Palestine (PSE) is not listed separately, it is included in Israel
-    (ISR).
+merge_into:
+  PSE: ISR

@@ -744,12 +744,7 @@ def pse_in_isr_option() -> climate_categories.CategorizationOption:
         "included in Israel (ISR), so that sums over countries stay complete. Use "
         "this for data sources which do not report Palestine separately.",
         last_update=OPTIONS_LAST_UPDATE,
-        remove_categories=climate_categories.CategoryRemoval(
-            codes=("PSE",),
-            keep_total_sum=True,
-            comment="Palestine (PSE) is not listed separately, it is included in "
-            "Israel (ISR).",
-        ),
+        merge_into={"PSE": "ISR"},
     )
 
 

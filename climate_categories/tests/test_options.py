@@ -138,12 +138,15 @@ def test_removal_drops_child_sets(fam):
     assert cat["T"].comment == "C is missing."
 
 
-def test_removal_keep_total_sum(fam):
+def test_merge_into(fam):
     cat = fam.with_options(["c_in_b"])
     assert "C" not in cat
     assert children(cat, "T") == [{"A", "B"}]
-    assert cat["T"].comment == "C is included in B."
+    assert cat["T"].comment == "C (Category C) is included in B (Category B)."
+    assert cat["B"].info == {"includes": ["C"]}
+    assert cat["B"].comment == "Includes C (Category C)."
     assert cat.total_sum
+    assert "includes" not in fam["B"].info
 
 
 def test_removal_after_additions(fam):
@@ -388,6 +391,25 @@ def test_invalid_option_name():
             {"remove_categories": climate_categories.CategoryRemoval(codes=("T",))},
             "canonical top level",
         ),
+        ({"merge_into": {"Z": "B"}}, "not a primary code"),
+        ({"merge_into": {"C": "Z"}}, "not a primary code"),
+        ({"merge_into": {"C": "C"}}, "removed itself"),
+        ({"merge_into": {"C": "B", "B": "A"}}, "removed itself"),
+        (
+            {
+                "merge_into": {"C": "B"},
+                "remove_categories": climate_categories.CategoryRemoval(codes=("B",)),
+            },
+            "removed itself",
+        ),
+        (
+            {
+                "merge_into": {"C": "B"},
+                "remove_categories": climate_categories.CategoryRemoval(codes=("C",)),
+            },
+            "also merges it",
+        ),
+        ({"merge_into": {"T": "A"}}, "canonical top level"),
     ],
 )
 def test_invalid_patches(fam, option_kwargs, match):
@@ -434,6 +456,104 @@ def test_removal_non_total_sum():
     ]
 
 
+def test_merge_into_set_without_target(fam):
+    # with total_sum, child sets which contain the merged category, but not the
+    # category it is merged into, don't add up any more and are dropped
+    c_in_a = CategorizationOption(
+        name="c_in_a",
+        title="C included in A",
+        last_update=datetime.date(2026, 1, 1),
+        add_children={"T": [["B", "C", "A"]]},
+        merge_into={"C": "A"},
+    )
+    b_set = CategorizationOption(
+        name="b_set",
+        title="A and C as a child set of B",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"BC": {"title": "B and C", "children": [["B", "C"]]}},
+    )
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("b_set", "c_in_a")),
+        options={"b_set": b_set, "c_in_a": c_in_a},
+    )
+    cat = family.build(["b_set", "c_in_a"])
+    assert children(cat, "T") == [{"A", "B"}]
+    assert "BC" in cat
+    assert not cat["BC"].children
+    assert cat["A"].info == {"size": "big", "includes": ["C"]}
+
+
+def test_merge_into_non_total_sum():
+    # without total_sum, merged categories are just dropped from child sets
+    hier = climate_categories.from_yaml(DATA_DIR / "hierarchical_categorization.yaml")
+    option = CategorizationOption(
+        name="3_in_1",
+        title="3 included in 1",
+        last_update=datetime.date(2026, 1, 1),
+        merge_into={"3": "1"},
+    )
+    family = OptionFamily(
+        base=hier,
+        manifest=OptionManifest(base="HierCat", options=("3_in_1",)),
+        options={"3_in_1": option},
+    )
+    cat = family.build(["3_in_1"])
+    assert children(cat, "0") == [{"1", "2"}, {"0X3"}, {"1A", "1B", "2"}]
+    assert cat["1"].info["includes"] == ["3"]
+
+
+def test_merge_into_transitive(fam):
+    # categories merged into a category which is merged itself are included in the
+    # final target, too
+    a_in_b = CategorizationOption(
+        name="a_in_b",
+        title="A included in B",
+        last_update=datetime.date(2026, 1, 1),
+        merge_into={"A": "B"},
+    )
+    c_in_b = fam.available_options["c_in_b"]
+    b_in_x = CategorizationOption(
+        name="b_in_x",
+        title="B included in X",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"X": {"title": "Category X"}},
+        add_children={"T": [["X"]]},
+        merge_into={"B": "X"},
+    )
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("a_in_b", "c_in_b", "b_in_x")),
+        options={"a_in_b": a_in_b, "c_in_b": c_in_b, "b_in_x": b_in_x},
+    )
+    cat = family.build(["a_in_b", "c_in_b", "b_in_x"])
+    assert set(cat.keys()) == {"T", "X"}
+    assert cat["X"].info == {"includes": ["A", "B", "C"]}
+    assert children(cat, "T") == [{"X"}]
+
+
+def test_merge_into_added_category(fam):
+    # a data source which only reports the sum of B and C
+    bc = CategorizationOption(
+        name="bc",
+        title="B and C together",
+        last_update=datetime.date(2026, 1, 1),
+        add_categories={"BC": {"title": "Categories B and C"}},
+        add_children={"T": [["A", "BC"]]},
+        merge_into={"B": "BC", "C": "BC"},
+    )
+    family = OptionFamily(
+        base=fam,
+        manifest=OptionManifest(base="Fam", options=("bc",)),
+        options={"bc": bc},
+    )
+    cat = family.build(["bc"])
+    assert set(cat.keys()) == {"T", "A", "BC"}
+    assert cat["BC"].info == {"includes": ["B", "C"]}
+    assert children(cat, "T") == [{"A", "BC"}]
+    assert cat.total_sum
+
+
 def shipped_combinations() -> list:
     return [
         pytest.param(family, options, id=f"{family.name}{list(options)}")
@@ -458,7 +578,7 @@ def test_shipped_supported_combinations(family, options):
         for option in options
         if family.options[option].remove_categories is not None
         for code in family.options[option].remove_categories.codes
-    }
+    } | {code for option in options for code in family.options[option].merge_into}
     assert set(family.base.keys()) - removed <= set(cat.keys())
 
 

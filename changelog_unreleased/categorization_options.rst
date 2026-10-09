@@ -5,12 +5,15 @@
   conflict with other options, and combinations of options which are declared as not
   quality-controlled can only be used with ``allow_unsupported=True``. Aliases name commonly used
   combinations of options. See ``available_options``, ``supported_combinations``,
-  ``enabled_options``, and ``canonical_name`` of categorizations.
+  ``enabled_options``, and ``canonical_name`` of categorizations. Options can remove
+  categories, or merge them into other categories with ``merge_into``, which records
+  the merged categories in the ``includes`` info of the receiving category.
 * **Breaking change**: ``ISO3`` now only contains the countries from ISO 3166-1 and the
   world. The groupings are available as the options ``eu``, ``unfccc`` (including the
   Paris Agreement), and ``groups``. New options are ``historical`` (countries withdrawn
   from ISO 3166-1, like ``SUN`` and ``YUG``), ``kosovo``, and ``pse_in_isr`` (Palestine
-  not listed separately, but included in Israel). Use the new alias ``ISO3_PRIMAP``
+  not listed separately, but included in Israel, so ``ISR`` has
+  ``info["includes"] == ["PSE"]``). Use the new alias ``ISO3_PRIMAP``
   for the previous contents of ``ISO3``, which additionally includes the withdrawn
   countries and has Palestine included in Israel, like PRIMAP-hist.
 * ``ISO3_GCAM`` is now an alias for ISO3 with the new ``gcam`` option and the options

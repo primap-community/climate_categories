@@ -39,7 +39,6 @@ class UnsupportedCombinationWarning(UserWarning):
 _removal_schema = sy.Map(
     {
         "codes": sy.Seq(sy.Str()),
-        sy.Optional("keep_total_sum"): sy.Bool(),
         sy.Optional("comment"): sy.Str(),
     }
 )
@@ -54,6 +53,7 @@ _patch_schema = {
         sy.Str(), sy.MapPattern(sy.Str(), sy.Any())
     ),
     sy.Optional("remove_categories"): _removal_schema,
+    sy.Optional("merge_into"): sy.MapPattern(sy.Str(), sy.Str()),
 }
 
 
@@ -67,6 +67,22 @@ def _all_codes(categories: dict[str, dict]) -> dict[str, str]:
     return codes
 
 
+def _descendants(categories: dict[str, dict], code: str) -> set[str]:
+    """Primary codes of all descendants of a category in a specification, following
+    all child sets."""
+    codes = _all_codes(categories)
+    descendants: set[str] = set()
+    todo = [code]
+    while todo:
+        for child_set in categories[todo.pop()].get("children", []):
+            for child in child_set:
+                child = codes.get(child, child)
+                if child in categories and child not in descendants:
+                    descendants.add(child)
+                    todo.append(child)
+    return descendants
+
+
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class CategoryRemoval:
     """Removal of categories from a categorization.
@@ -74,34 +90,26 @@ class CategoryRemoval:
     Attributes
     ----------
     codes : tuple of str
-        Primary codes of the categories to remove.
-    keep_total_sum : bool, default False
-        If the removed categories are included in other categories (e.g. the
-        emissions of Palestine are included in the emissions of Israel), the
-        remaining child sets still add up to their parents. Then, the removed
-        categories are just dropped from the child sets. Otherwise, in categorizations
-        with ``total_sum``, all child sets which contained removed categories are
-        dropped because they would not add up anymore.
+        Primary codes of the categories to remove. In categorizations with
+        ``total_sum``, all child sets which contained removed categories are dropped
+        because they would not add up anymore. Use ``merge_into`` of the patch instead
+        if the removed categories are included in other categories.
     comment : str, optional
         Added to the comment of all categories whose children were changed.
     """
 
     codes: tuple[str, ...]
-    keep_total_sum: bool = False
     comment: str | None = None
 
     @classmethod
     def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
         return cls(
             codes=tuple(spec["codes"]),
-            keep_total_sum=spec.get("keep_total_sum", False),
             comment=spec.get("comment"),
         )
 
     def to_spec(self) -> dict[str, typing.Any]:
         spec: dict[str, typing.Any] = {"codes": list(self.codes)}
-        if self.keep_total_sum:
-            spec["keep_total_sum"] = True
         if self.comment is not None:
             spec["comment"] = self.comment
         return spec
@@ -132,6 +140,15 @@ class CategorizationPatch:
         which is added to the info of the category.
     remove_categories : CategoryRemoval, optional
         Categories to remove.
+    merge_into : dict
+        Categories to remove because they are included in other categories (e.g.
+        the emissions of Palestine are included in the emissions of Israel), mapping
+        the primary code of the removed category to the primary code of the category
+        it is included in. The removed code is recorded in the ``includes`` info of
+        the receiving category. Child sets which also contain the receiving category
+        (or one of its ancestors) still add up and only lose the removed category.
+        Other child sets which contained the removed category are treated like for
+        ``remove_categories``. Merges are applied before ``remove_categories``.
     """
 
     add_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
@@ -139,6 +156,7 @@ class CategorizationPatch:
     add_children: dict[str, list[list[str]]] = dataclasses.field(default_factory=dict)
     update_info: dict[str, dict] = dataclasses.field(default_factory=dict)
     remove_categories: CategoryRemoval | None = None
+    merge_into: dict[str, str] = dataclasses.field(default_factory=dict)
 
     def _label(self) -> str:
         return "patch"
@@ -152,6 +170,7 @@ class CategorizationPatch:
                 "add_alternative_codes",
                 "add_children",
                 "update_info",
+                "merge_into",
             )
             if key in spec
         }
@@ -168,6 +187,7 @@ class CategorizationPatch:
             "add_alternative_codes",
             "add_children",
             "update_info",
+            "merge_into",
         ):
             value = getattr(self, key)
             if value:
@@ -239,14 +259,15 @@ class CategorizationPatch:
             categories[code].setdefault("info", {}).update(copy.deepcopy(info))
 
     def apply_removals(self, spec: dict[str, typing.Any]) -> None:
-        """Apply all removals of this patch to the categorization specification."""
+        """Apply all removals and merges of this patch to the categorization
+        specification."""
         removal = self.remove_categories
-        if removal is None:
+        removed = removal.codes if removal is not None else ()
+        if not removed and not self.merge_into:
             return
         categories = spec["categories"]
 
-        removed_codes = set()
-        for code in removal.codes:
+        for code in (*self.merge_into, *removed):
             if code not in categories:
                 raise ValueError(
                     f"{self._label()} removes {code!r}, which is not a primary code."
@@ -257,21 +278,91 @@ class CategorizationPatch:
                     f"{self._label()} removes {code!r}, which is the canonical top "
                     "level category."
                 )
-            removed_codes.update(codes)
+        for code, target in self.merge_into.items():
+            if code in removed:
+                raise ValueError(
+                    f"{self._label()} removes {code!r} and also merges it into "
+                    f"{target!r}."
+                )
+            if target not in categories:
+                raise ValueError(
+                    f"{self._label()} merges {code!r} into {target!r}, which is not "
+                    "a primary code."
+                )
+            if target in self.merge_into or target in removed:
+                raise ValueError(
+                    f"{self._label()} merges {code!r} into {target!r}, which is "
+                    "removed itself."
+                )
+
+        # removed code (primary or alternative) -> merge target or None
+        removed_codes: dict[str, str | None] = {}
+        # parent comments, by removed primary code
+        comments: dict[str, str | None] = {}
+        for code, target in self.merge_into.items():
+            spec_a = categories[code]
+            spec_b = categories[target]
+            info_b = spec_b.setdefault("info", {})
+            info_b["includes"] = sorted(
+                {
+                    *info_b.get("includes", []),
+                    code,
+                    *spec_a.get("info", {}).get("includes", []),
+                }
+            )
+            sentence = f"Includes {code} ({spec_a['title']})."
+            spec_b["comment"] = (
+                f"{spec_b['comment']} {sentence}" if spec_b.get("comment") else sentence
+            )
+            comments[code] = (
+                f"{code} ({spec_a['title']}) is included in {target} "
+                f"({spec_b['title']})."
+            )
+        for code in removed:
+            comments[code] = removal.comment
+        for code in comments:
+            target = self.merge_into.get(code)
+            for c in (code, *categories[code].get("alternative_codes", [])):
+                removed_codes[c] = target
+        primary = _all_codes(categories)
+        for code in comments:
             del categories[code]
 
-        drop_sets = spec.get("total_sum", False) and not removal.keep_total_sum
+        drop_sets = spec.get("total_sum", False)
+        descendants: dict[str, set[str]] = {}
+
+        def still_adds_up(child_set: list[str], removed_code: str) -> bool:
+            target = removed_codes[removed_code]
+            if target is None:
+                return False
+            for child in child_set:
+                child = primary.get(child, child)
+                if child == target:
+                    return True
+                if child not in categories:
+                    continue
+                if child not in descendants:
+                    descendants[child] = _descendants(categories, child)
+                if target in descendants[child]:
+                    return True
+            return False
+
         for category_spec in categories.values():
-            if not any(
-                child in removed_codes
+            changed = [
+                primary[child]
                 for child_set in category_spec.get("children", [])
                 for child in child_set
-            ):
+                if child in removed_codes
+            ]
+            if not changed:
                 continue
             new_children = []
             for child_set in category_spec["children"]:
-                if any(child in removed_codes for child in child_set):
-                    if drop_sets:
+                gone = [child for child in child_set if child in removed_codes]
+                if gone:
+                    if drop_sets and not all(
+                        still_adds_up(child_set, child) for child in gone
+                    ):
                         continue
                     child_set = [c for c in child_set if c not in removed_codes]
                 if child_set and sorted(child_set) not in (
@@ -282,11 +373,14 @@ class CategorizationPatch:
                 category_spec["children"] = new_children
             else:
                 del category_spec["children"]
-            if removal.comment is not None:
+            for code in dict.fromkeys(changed):
+                comment = comments[code]
+                if comment is None:
+                    continue
                 if category_spec.get("comment"):
-                    category_spec["comment"] += f" {removal.comment}"
+                    category_spec["comment"] += f" {comment}"
                 else:
-                    category_spec["comment"] = removal.comment
+                    category_spec["comment"] = comment
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
