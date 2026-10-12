@@ -889,12 +889,16 @@ class HierarchicalCategorization(Categorization):
     ----------
     total_sum : bool
         If the sum of the values of children equals the value of the parent for
-        extensive quantities. For example, a Categorization containing the Countries in
-        the EU and the EU could set `total_sum = True`, because the emissions of all
-        parts of the EU must equal the emissions of the EU. On the contrary, a
+        extensive quantities. For example, the IPCC2006 Categorization is
+        ``total_sum=True`` because it is carefully constructed so that
+        sub-category definitions are not overlapping. On the contrary, a
         categorization of Industries with categories `Power:Fossil Fuels` and
         `Power:Gas` which are both children of `Power` must set `total_sum = False`
-        to avoid double counting of fossil gas.
+        to avoid double counting of fossil gas. As another example for
+        ``total_sum = False``, a Categorization containing the Countries in the EU
+        and the EU doesn't satisfy ``total_sum`` because parts of the member countries
+        are not included in the EU (e.g. Greenland is a part of Denmark, but not a
+        member of the EU).
     canonical_top_level_category : HierarchicalCategory
         The level of a category is calculated with respect to the canonical top level
         category. Commonly, this will be the world total or a similar category. If the
