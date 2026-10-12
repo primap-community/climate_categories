@@ -1,6 +1,7 @@
 """Tests for categorizations with options."""
 
 import datetime
+import itertools
 import pathlib
 
 import pytest
@@ -845,18 +846,57 @@ def test_split_then_merge_cancels(fam):
     assert children(cat, "T") == [{"A", "B", "C"}]
 
 
+def with_required(family: OptionFamily, options) -> frozenset[str]:
+    """The options together with all options they require, recursively."""
+    result = set(options)
+    todo = list(options)
+    while todo:
+        for required in family.options[todo.pop()].requires:
+            if required not in result:
+                result.add(required)
+                todo.append(required)
+    return frozenset(result)
+
+
+def sample_combinations(family: OptionFamily) -> list[tuple[str, ...]]:
+    """A sample of the supported combinations of options of the family.
+
+    The number of supported combinations grows exponentially with the number of
+    independent options, so instead of all of them, the sample contains no options,
+    every option alone and every pair of options (each with the options they require),
+    the aliases, and the maximal supported combinations, which are not part of any
+    larger supported combination.
+    """
+    supported = {
+        frozenset(options): options for options in family.supported_combinations
+    }
+    sample = {frozenset()}
+    sample |= {with_required(family, [option]) for option in family.options}
+    sample |= {
+        with_required(family, pair)
+        for pair in itertools.combinations(family.options, 2)
+    }
+    sample |= {frozenset(options) for options in family.aliases.values()}
+    sample |= {
+        options
+        for options in supported
+        if not any(options < other for other in supported)
+    }
+    return [options for key, options in supported.items() if key in sample]
+
+
 def shipped_combinations() -> list:
     return [
         pytest.param(family, options, id=f"{family.name}{list(options)}")
         for family in climate_categories.cats.families.values()
-        for options in family.supported_combinations
+        for options in sample_combinations(family)
     ]
 
 
 @pytest.mark.parametrize(("family", "options"), shipped_combinations())
 def test_shipped_supported_combinations(family, options):
-    """Every supported combination of the included categorizations can be built and
-    is consistent."""
+    """A sample of the supported combinations of the included categorizations can be
+    built and is consistent, see sample_combinations."""
     cat = family.get(options)
     assert cat.canonical_name == climate_categories.canonical_name(family.name, options)
     assert cat.family == family.name
