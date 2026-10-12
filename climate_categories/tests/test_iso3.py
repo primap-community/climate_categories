@@ -248,6 +248,7 @@ def test_options():
         "no_unpopulated",
         "antilles",
         "esh_in_mar",
+        "msr_pcn_in_gbr",
     }
     # options are sorted, and built only once
     assert climate_categories.ISO3.with_options(["unfccc", "eu"]) is ISO3_UNFCCC
@@ -406,7 +407,35 @@ def test_esh_in_mar():
     assert "ESH" not in gcam
 
 
-@pytest.mark.parametrize("option", ["antilles", "territories_in_sovereign_inventory"])
+def test_msr_pcn_in_gbr():
+    iso3 = climate_categories.cats["ISO3[msr_pcn_in_gbr]"]
+    assert "MSR" not in iso3
+    assert "PCN" not in iso3
+    assert iso3["GBR"].info["includes"] == ["MSR", "PCN"]
+    # together with the territories in the UK inventory
+    iso3 = climate_categories.cats[
+        "ISO3[msr_pcn_in_gbr,territories_in_sovereign_inventory]"
+    ]
+    assert set(iso3["GBR"].info["includes"]) == {
+        "GGY",
+        "IMN",
+        "JEY",
+        "BMU",
+        "CYM",
+        "FLK",
+        "GIB",
+        "MSR",
+        "PCN",
+    }
+    assert (
+        len(iso3["World"].children[0])
+        == len(climate_categories.ISO3["World"].children[0]) - 32
+    )
+
+
+@pytest.mark.parametrize(
+    "option", ["antilles", "msr_pcn_in_gbr", "territories_in_sovereign_inventory"]
+)
 def test_gcam_territories_unsupported(option: str):
     with pytest.raises(climate_categories.UnsupportedCombinationError):
         climate_categories.ISO3.with_options(

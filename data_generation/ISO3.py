@@ -98,6 +98,10 @@ UNSUPPORTED = (
         options=("antilles", "gcam"),
         comment="some GCAM regions have only some of CUW, SXM, and BES",
     ),
+    climate_categories.UnsupportedCombination(
+        options=("gcam", "msr_pcn_in_gbr"),
+        comment="the GCAM regions have MSR and PCN in other regions than GBR",
+    ),
 )
 
 # Status of the UNFCCC at its depositary, the Secretary-General of the United Nations.
@@ -639,6 +643,7 @@ def main():
         no_unpopulated_option(),
         antilles_option(),
         esh_in_mar_option(),
+        msr_pcn_in_gbr_option(),
     ]
     manifest = climate_categories.OptionManifest(
         base="ISO3",
@@ -870,6 +875,21 @@ def esh_in_mar_option() -> climate_categories.CategorizationOption:
         "this for data sources which do not report Western Sahara separately.",
         last_update=OPTIONS_LAST_UPDATE,
         merge_into={"ESH": "MAR"},
+    )
+
+
+def msr_pcn_in_gbr_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="msr_pcn_in_gbr",
+        title="Montserrat and Pitcairn included in the United Kingdom",
+        comment="Montserrat (MSR) and Pitcairn (PCN) are not listed separately, they "
+        "are assumed to be included in the United Kingdom (GBR). Their population is "
+        "tiny, so for many applications it is sensible to include them, even though "
+        "the national greenhouse gas inventory of the United Kingdom does not cover "
+        "them. Use this together with territories_in_sovereign_inventory for data "
+        "sources which do not report them separately.",
+        last_update=OPTIONS_LAST_UPDATE,
+        merge_into={"MSR": "GBR", "PCN": "GBR"},
     )
 
 

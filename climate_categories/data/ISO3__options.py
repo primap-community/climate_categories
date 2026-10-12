@@ -14,6 +14,7 @@ spec = {
         "no_unpopulated",
         "antilles",
         "esh_in_mar",
+        "msr_pcn_in_gbr",
     ],
     "unsupported": [
         {
@@ -27,6 +28,10 @@ spec = {
         {
             "options": ["antilles", "gcam"],
             "comment": "some GCAM regions have only some of CUW, SXM, and BES",
+        },
+        {
+            "options": ["gcam", "msr_pcn_in_gbr"],
+            "comment": "the GCAM regions have MSR and PCN in other regions than GBR",
         },
     ],
     "aliases": {
