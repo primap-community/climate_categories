@@ -2,15 +2,15 @@
 # corresponding YAML file.
 spec = {
     "base": "ISO3",
-    "options": ["eu", "unfccc", "groups", "historical", "kosovo", "gcam", "pse_in_isr"],
+    "options": ["EU", "UNFCCC", "groups", "historical", "Kosovo", "GCAM", "PSE_in_ISR"],
     "unsupported": [
         {
-            "options": ["gcam", "pse_in_isr"],
+            "options": ["GCAM", "PSE_in_ISR"],
             "comment": "the GCAM regions have PSE separately",
         }
     ],
     "aliases": {
-        "ISO3_PRIMAP": ["eu", "groups", "historical", "pse_in_isr", "unfccc"],
-        "ISO3_GCAM": ["eu", "gcam", "groups", "historical", "kosovo", "unfccc"],
+        "ISO3_PRIMAP": ["EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"],
+        "ISO3_GCAM": ["EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"],
     },
 }

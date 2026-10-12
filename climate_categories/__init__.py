@@ -2,9 +2,9 @@
 names of categorizations. To access the example categorization `Excat`, simply use
 `climate_categories.Excat` .
 
-Categorizations with options, like `ISO3[eu,unfccc]`, are available via
-`climate_categories.cats["ISO3[eu,unfccc]"]` or
-`climate_categories.ISO3.with_options(["eu", "unfccc"])`.
+Categorizations with options, like `ISO3[EU,UNFCCC]`, are available via
+`climate_categories.cats["ISO3[EU,UNFCCC]"]` or
+`climate_categories.ISO3.with_options(["EU", "UNFCCC"])`.
 """
 
 __author__ = """Mika Pflüger"""

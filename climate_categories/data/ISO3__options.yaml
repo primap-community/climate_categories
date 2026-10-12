@@ -1,28 +1,28 @@
 base: ISO3
 options:
-- eu
-- unfccc
+- EU
+- UNFCCC
 - groups
 - historical
-- kosovo
-- gcam
-- pse_in_isr
+- Kosovo
+- GCAM
+- PSE_in_ISR
 unsupported:
 - options:
-  - gcam
-  - pse_in_isr
+  - GCAM
+  - PSE_in_ISR
   comment: the GCAM regions have PSE separately
 aliases:
   ISO3_PRIMAP:
-  - eu
+  - EU
   - groups
   - historical
-  - pse_in_isr
-  - unfccc
+  - PSE_in_ISR
+  - UNFCCC
   ISO3_GCAM:
-  - eu
-  - gcam
+  - EU
+  - GCAM
   - groups
   - historical
-  - kosovo
-  - unfccc
+  - Kosovo
+  - UNFCCC

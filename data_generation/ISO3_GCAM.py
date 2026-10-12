@@ -1,4 +1,4 @@
-"""The ``gcam`` option of ISO3, adding the regions of the GCAM integrated assessment
+"""The ``GCAM`` option of ISO3, adding the regions of the GCAM integrated assessment
 model.
 
 This is not run directly, the option is generated as part of ISO3 by
@@ -89,9 +89,9 @@ ISO_FIXES = {
     "yug": None,  # Yugoslavia, dissolved in 2003
 }
 
-#: Options of ISO3 the gcam option requires. GCAM 7.4 and later use Kosovo, which is
+#: Options of ISO3 the GCAM option requires. GCAM 7.4 and later use Kosovo, which is
 #: not part of ISO 3166-1, and we want to follow GCAM closely.
-REQUIRES = ("kosovo",)
+REQUIRES = ("Kosovo",)
 
 #: Additional names for regions, used as alternative codes. The GCAM documentation
 #: spells some region names differently from the mapping files, and we want both
@@ -265,7 +265,7 @@ def alternative_codes(versions: list[str], region: str) -> list[str]:
 
 
 def gcam_option(known_codes: set[str]) -> climate_categories.CategorizationOption:
-    """Generate the gcam option of ISO3.
+    """Generate the GCAM option of ISO3.
 
     ``known_codes`` are all codes of ISO3 with the options in REQUIRES enabled.
     """
@@ -319,7 +319,7 @@ def gcam_option(known_codes: set[str]) -> climate_categories.CategorizationOptio
             del spec["alternative_codes"]
 
     return climate_categories.CategorizationOption(
-        name="gcam",
+        name="GCAM",
         title="GCAM regions",
         comment="Regions used in the GCAM integrated assessment model of the Joint "
         "Global Change Research Institute, for all GCAM versions. Regions which are "

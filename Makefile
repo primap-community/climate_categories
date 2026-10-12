@@ -84,7 +84,7 @@ climate_categories/data/%.py: data_generation/%.py data_generation/utils.py
 	uv run pre-commit run --files climate_categories/data/*.yaml
 
 # ISO3.py generates the base ISO3 categorization together with all its options
-# (ISO3__*.py), including the gcam option from ISO3_GCAM.py.
+# (ISO3__*.py), including the GCAM option from ISO3_GCAM.py.
 climate_categories/data/ISO3.py: data_generation/ISO3_GCAM.py
 
 # Generators that extend another categorization load it from its Python spec, so they

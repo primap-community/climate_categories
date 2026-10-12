@@ -1,9 +1,9 @@
 """Categorizations with options.
 
 A categorization with options consists of a base categorization (e.g. ``ISO3``) and
-named options (e.g. ``eu`` or ``unfccc``), which are patches to the base
+named options (e.g. ``EU`` or ``UNFCCC``), which are patches to the base
 categorization. Options are combined on demand, yielding categorizations named like
-``ISO3[eu,unfccc]``. Not all combinations of options are meaningful or
+``ISO3[EU,UNFCCC]``. Not all combinations of options are meaningful or
 quality-controlled, so each family of categorizations declares the combinations of
 options which are not supported. Aliases name commonly used combinations of options,
 like ``ISO3_PRIMAP``.
@@ -629,7 +629,7 @@ class CategorizationOption(CategorizationPatch):
     Attributes
     ----------
     name : str
-        The name of the option, like ``eu``.
+        The name of the option, like ``EU``.
     title : str
         A short, descriptive title for humans.
     comment : str
@@ -768,13 +768,15 @@ class OptionCombination(CategorizationPatch):
     @classmethod
     def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
         return cls(
-            options=tuple(sorted(spec["options"])),
+            options=tuple(_categories.sort_options(spec["options"])),
             comment=spec.get("comment", ""),
             **cls._patch_kwargs_from_spec(spec),
         )
 
     def to_spec(self) -> dict[str, typing.Any]:
-        spec: dict[str, typing.Any] = {"options": sorted(self.options)}
+        spec: dict[str, typing.Any] = {
+            "options": _categories.sort_options(self.options)
+        }
         if self.comment:
             spec["comment"] = self.comment
         spec.update(self._patch_to_spec())
@@ -805,11 +807,14 @@ class UnsupportedCombination:
     @classmethod
     def from_spec(cls, spec: dict[str, typing.Any]) -> typing.Self:
         return cls(
-            options=tuple(sorted(spec["options"])), comment=spec.get("comment", "")
+            options=tuple(_categories.sort_options(spec["options"])),
+            comment=spec.get("comment", ""),
         )
 
     def to_spec(self) -> dict[str, typing.Any]:
-        spec: dict[str, typing.Any] = {"options": sorted(self.options)}
+        spec: dict[str, typing.Any] = {
+            "options": _categories.sort_options(self.options)
+        }
         if self.comment:
             spec["comment"] = self.comment
         return spec
@@ -867,7 +872,7 @@ class OptionManifest:
                 UnsupportedCombination.from_spec(u) for u in spec.get("unsupported", [])
             ),
             aliases={
-                alias: tuple(sorted(options))
+                alias: tuple(_categories.sort_options(options))
                 for alias, options in spec.get("aliases", {}).items()
             },
         )
@@ -882,7 +887,8 @@ class OptionManifest:
             spec["unsupported"] = [u.to_spec() for u in self.unsupported]
         if self.aliases:
             spec["aliases"] = {
-                alias: sorted(options) for alias, options in self.aliases.items()
+                alias: _categories.sort_options(options)
+                for alias, options in self.aliases.items()
             }
         return spec
 
@@ -954,6 +960,11 @@ class OptionFamily:
         for name, option in options.items():
             if option.name != name:
                 raise ValueError(f"Option {option.name!r} given as {name!r}.")
+        if len({name.casefold() for name in options}) != len(options):
+            raise ValueError(
+                f"{base.name}: option names must not differ only by capitalization, "
+                f"but the options are {list(manifest.options)!r}."
+            )
 
         self.base = base
         self.manifest = manifest
@@ -1040,7 +1051,9 @@ class OptionFamily:
         """
         combinations = []
         for n in range(len(self.options) + 1):
-            for options in itertools.combinations(sorted(self.options), n):
+            for options in itertools.combinations(
+                _categories.sort_options(self.options), n
+            ):
                 try:
                     if self.is_supported(options):
                         combinations.append(options)
@@ -1052,9 +1065,20 @@ class OptionFamily:
     def _check_known(self, options: typing.Iterable[str]) -> None:
         unknown = [option for option in options if option not in self.options]
         if unknown:
+            by_casefold = {name.casefold(): name for name in self.options}
+            hints = [
+                f"{option!r} -> {by_casefold[option.casefold()]!r}"
+                for option in unknown
+                if option.casefold() in by_casefold
+            ]
+            hint = (
+                f" Option names are case-sensitive: {', '.join(hints)}."
+                if hints
+                else ""
+            )
             raise ValueError(
                 f"Unknown options {unknown!r} for {self.name}, available options: "
-                f"{list(self.options)!r}."
+                f"{list(self.options)!r}.{hint}"
             )
 
     def check(self, options: typing.Iterable[str]) -> tuple[str, ...]:
@@ -1083,7 +1107,7 @@ class OptionFamily:
                     f"Option {name!r} of {self.name} conflicts with the options "
                     f"{conflicting!r}."
                 )
-        return tuple(sorted(options))
+        return tuple(_categories.sort_options(options))
 
     def _unsupported_by(
         self, options: typing.Iterable[str]
@@ -1102,7 +1126,7 @@ class OptionFamily:
         return self._unsupported_by(self.check(options)) is None
 
     def resolve(self, name: str) -> tuple[str, ...] | None:
-        """The options of the given alias or name like ``ISO3[eu,unfccc]``.
+        """The options of the given alias or name like ``ISO3[EU,UNFCCC]``.
 
         Returns None if the name does not belong to this family."""
         if name in self.aliases:
@@ -1133,7 +1157,7 @@ class OptionFamily:
             ``UnsupportedCombinationWarning``.
         name : str, optional
             The name of the returned categorization, used for aliases. Defaults to
-            the canonical name like ``ISO3[eu,unfccc]``.
+            the canonical name like ``ISO3[EU,UNFCCC]``.
         """
         options = self.check(options)
         if not options and name is None:
@@ -1268,6 +1292,12 @@ def apply_option(
         raise ValueError(
             f"Option {option.name!r} is already enabled in {categorization.name}."
         )
+    same_casefold = [x for x in enabled if x.casefold() == option.name.casefold()]
+    if same_casefold:
+        raise ValueError(
+            f"Option {option.name!r} differs only by capitalization from the option "
+            f"{same_casefold[0]!r}, which is enabled in {categorization.name}."
+        )
     missing = [x for x in option.requires if x not in enabled]
     if missing:
         raise ValueError(
@@ -1294,7 +1324,7 @@ def apply_option(
     result.family = categorization.family
     result._canonical_name = result.name
     # later options can require or conflict with this option
-    result.enabled_options = tuple(sorted({*enabled, option.name}))
+    result.enabled_options = tuple(_categories.sort_options({*enabled, option.name}))
     return result
 
 
@@ -1310,7 +1340,7 @@ def load_extension(
     """Read options from files and apply them to the categorization they are for.
 
     The option files have to name the categorization they are for in their ``base``
-    field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``. Several option files which
+    field, like ``ISO3_PRIMAP`` or ``ISO3[EU,UNFCCC]``. Several option files which
     extend the same categorization can be given, they are applied in the given order.
     Later options can require earlier options using ``requires``.
 
@@ -1363,7 +1393,7 @@ def load_extension(
 class CategorizationRegistry(dict):
     """All categorizations, by name.
 
-    Categorizations with options, like ``ISO3[eu,unfccc]``, and aliases, like
+    Categorizations with options, like ``ISO3[EU,UNFCCC]``, and aliases, like
     ``ISO3_PRIMAP``, are built on first access. Note that iterating over the registry
     only yields categorizations which were already built.
     """

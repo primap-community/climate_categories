@@ -31,23 +31,32 @@ CategorizationT = TypeVar("CategorizationT", bound="Categorization")
 _OPTIONS_NAME_RE = re.compile(r"(?P<family>[^\[\],]+)\[(?P<options>[^\[\]]*)\]")
 
 
+def sort_options(options: typing.Iterable[str]) -> list[str]:
+    """Sort option names case-insensitively, like ``["EU", "groups", "UNFCCC"]``.
+
+    Option names of a categorization never differ only by case, so the order is
+    unique.
+    """
+    return sorted(options, key=str.casefold)
+
+
 def parse_name(name: str) -> tuple[str, tuple[str, ...]]:
     """Split the name of a categorization into its family and its options.
 
-    Categorizations with options are named like ``"ISO3[eu,unfccc]"``, i.e. the name of
+    Categorizations with options are named like ``"ISO3[EU,UNFCCC]"``, i.e. the name of
     the base categorization followed by the options in brackets. Names without
     brackets have no options.
 
     Parameters
     ----------
     name : str
-        Name of a categorization, like ``"ISO3"`` or ``"ISO3[unfccc,eu]"``.
+        Name of a categorization, like ``"ISO3"`` or ``"ISO3[UNFCCC,EU]"``.
 
     Returns
     -------
     family, options : str, tuple of str
         The name of the base categorization and the sorted options, like
-        ``("ISO3", ("eu", "unfccc"))``.
+        ``("ISO3", ("EU", "UNFCCC"))``.
     """
     match = _OPTIONS_NAME_RE.fullmatch(name)
     if match is None:
@@ -56,16 +65,17 @@ def parse_name(name: str) -> tuple[str, tuple[str, ...]]:
     options = [option for option in options if option]
     if len(set(options)) != len(options):
         raise ValueError(f"Options given multiple times in {name!r}.")
-    return match["family"], tuple(sorted(options))
+    return match["family"], tuple(sort_options(options))
 
 
 def canonical_name(family: str, options: typing.Iterable[str]) -> str:
     """The canonical name of a categorization with options.
 
-    The options are sorted, so that every combination of options has exactly one name.
-    Without options, the canonical name is the name of the base categorization.
+    The options are sorted case-insensitively, so that every combination of options
+    has exactly one name. Without options, the canonical name is the name of the base
+    categorization.
     """
-    options = sorted(options)
+    options = sort_options(options)
     if not options:
         return family
     return f"{family}[{','.join(options)}]"
@@ -74,8 +84,8 @@ def canonical_name(family: str, options: typing.Iterable[str]) -> str:
 def _options_list(options: typing.Iterable[str]) -> list[str]:
     """Turn an iterable of option names into a list, rejecting a single string.
 
-    A string is an iterable of strings too, so ``with_options("eu")`` would otherwise
-    silently enable the options ``"e"`` and ``"u"``.
+    A string is an iterable of strings too, so ``with_options("EU")`` would otherwise
+    silently enable the options ``"E"`` and ``"U"``.
     """
     if isinstance(options, str):
         raise TypeError(
@@ -90,7 +100,7 @@ def _related(a: "Categorization", b: "Categorization") -> bool:
     comparable?
 
     This is the case for categorizations of the same family (e.g. ``ISO3``,
-    ``ISO3[eu]`` and the alias ``ISO3_PRIMAP``) and for extensions, which are named
+    ``ISO3[EU]`` and the alias ``ISO3_PRIMAP``) and for extensions, which are named
     ``{name}_{extension}`` (e.g. ``IPCC2006`` and ``IPCC2006_PRIMAP``).
     """
     if a is b:
@@ -397,7 +407,7 @@ class Categorization:
         True if descendants and ancestors are defined
     family : str
         The name of the base categorization if this categorization is the base
-        categorization with options (e.g. ``"ISO3"`` for ``ISO3[eu]``), or the family
+        categorization with options (e.g. ``"ISO3"`` for ``ISO3[EU]``), or the family
         of the categorization an option was applied to (see ``apply``), otherwise the
         name.
     enabled_options : tuple of str
@@ -599,7 +609,7 @@ class Categorization:
         """The canonical name of this categorization.
 
         For categorizations with options, this is the name of the base categorization
-        followed by the sorted options in brackets, like ``"ISO3[eu,unfccc]"``, also
+        followed by the sorted options in brackets, like ``"ISO3[EU,UNFCCC]"``, also
         if this categorization is available under an alias like ``ISO3_PRIMAP``.
         Otherwise, it is the name.
         """
@@ -674,7 +684,7 @@ class Categorization:
         Parameters
         ----------
         options : iterable of str
-            Names of the options to enable, like ``["eu", "unfccc"]``, see
+            Names of the options to enable, like ``["EU", "UNFCCC"]``, see
             ``available_options``. Give an empty list for the base categorization.
         allow_unsupported : bool, default False
             Combinations of options which are not quality-controlled raise an
@@ -684,7 +694,7 @@ class Categorization:
         Returns
         -------
         categorization : Categorization
-            The categorization named like ``"ISO3[eu,unfccc]"``.
+            The categorization named like ``"ISO3[EU,UNFCCC]"``.
         """
         options = _options_list(options)
         if self._option_family is None:
@@ -853,7 +863,7 @@ class Categorization:
         NotImplementedError.
 
         Conversions are looked up using the name and the canonical name of both
-        categorizations, so that conversions defined for ``ISO3[eu,unfccc]`` are also
+        categorizations, so that conversions defined for ``ISO3[EU,UNFCCC]`` are also
         found for an alias with the same options."""
         if isinstance(other, str):
             other_names = [other]

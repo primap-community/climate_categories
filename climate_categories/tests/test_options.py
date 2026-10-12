@@ -45,11 +45,13 @@ def children(cat, code: str) -> list[set[str]]:
     [
         ("ISO3", ("ISO3", ())),
         ("ISO3[]", ("ISO3", ())),
-        ("ISO3[eu]", ("ISO3", ("eu",))),
-        ("ISO3[unfccc,eu]", ("ISO3", ("eu", "unfccc"))),
-        ("ISO3[ unfccc, eu ]", ("ISO3", ("eu", "unfccc"))),
+        ("ISO3[EU]", ("ISO3", ("EU",))),
+        ("ISO3[UNFCCC,EU]", ("ISO3", ("EU", "UNFCCC"))),
+        ("ISO3[ UNFCCC, EU ]", ("ISO3", ("EU", "UNFCCC"))),
+        # sorted case-insensitively
+        ("ISO3[UNFCCC,groups,EU]", ("ISO3", ("EU", "groups", "UNFCCC"))),
         ("ISO3_GCAM", ("ISO3_GCAM", ())),
-        ("ISO3[eu]_extended", ("ISO3[eu]_extended", ())),
+        ("ISO3[EU]_extended", ("ISO3[EU]_extended", ())),
     ],
 )
 def test_parse_name(name, expected):
@@ -58,19 +60,23 @@ def test_parse_name(name, expected):
 
 def test_parse_name_duplicates():
     with pytest.raises(ValueError, match="multiple times"):
-        climate_categories.parse_name("ISO3[eu,eu]")
+        climate_categories.parse_name("ISO3[EU,EU]")
 
 
 def test_canonical_name():
     assert climate_categories.canonical_name("ISO3", []) == "ISO3"
     assert climate_categories.canonical_name("ISO3", ["b", "a"]) == "ISO3[a,b]"
+    assert (
+        climate_categories.canonical_name("ISO3", ["UNFCCC", "groups", "EU"])
+        == "ISO3[EU,groups,UNFCCC]"
+    )
 
 
 def test_base(fam):
     assert fam.canonical_name == "Fam"
     assert fam.family == "Fam"
     assert fam.enabled_options == ()
-    assert list(fam.available_options) == ["extra", "more", "no_c", "c_in_b"]
+    assert list(fam.available_options) == ["extra", "more", "no_C", "C_in_B"]
     assert fam.with_options([]) is fam
     assert fam.supported_combinations[0] == ()
     assert ("extra", "more") in fam.supported_combinations
@@ -86,7 +92,7 @@ def test_with_options(cats, fam):
     assert fam.with_options(["extra"]) is cat
     assert cats["Fam[extra]"] is cat
     # with_options is always relative to the base
-    assert cat.with_options(["no_c"]).name == "Fam[no_c]"
+    assert cat.with_options(["no_C"]).name == "Fam[no_C]"
     assert cat.with_options([]) is fam
 
 
@@ -133,14 +139,14 @@ def test_metadata(fam):
 def test_removal_drops_child_sets(fam):
     # in a total_sum categorization, child sets which don't add up any more are
     # dropped
-    cat = fam.with_options(["no_c"])
+    cat = fam.with_options(["no_C"])
     assert "C" not in cat
     assert children(cat, "T") == []
     assert cat["T"].comment == "C is missing."
 
 
 def test_merge_into(fam):
-    cat = fam.with_options(["c_in_b"])
+    cat = fam.with_options(["C_in_B"])
     assert "C" not in cat
     assert children(cat, "T") == [{"A", "B"}]
     assert cat["T"].comment == "C (Category C) is included in B (Category B)."
@@ -153,7 +159,7 @@ def test_merge_into(fam):
 def test_removal_after_additions(fam):
     # removals also affect categories added by other options, regardless of the
     # order of the options
-    cat = fam.with_options(["c_in_b", "more", "extra"])
+    cat = fam.with_options(["C_in_B", "more", "extra"])
     assert children(cat, "T") == [{"A", "B"}, {"AB"}]
     assert children(cat, "ABC") == [{"AB"}]
 
@@ -162,25 +168,25 @@ def test_removal_deduplicates_child_sets(fam):
     # after removing C, the child sets [A, B, C] and [A, B] of T are identical, so
     # only one of them is kept
     ab_set = CategorizationOption(
-        name="ab_set",
+        name="AB_set",
         title="A and B as a child set",
         last_update=datetime.date(2026, 1, 1),
         add_children={"T": [["A", "B"]]},
     )
-    c_in_b = fam.available_options["c_in_b"]
+    c_in_b = fam.available_options["C_in_B"]
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("ab_set", "c_in_b")),
-        options={"ab_set": ab_set, "c_in_b": c_in_b},
+        manifest=OptionManifest(base="Fam", options=("AB_set", "C_in_B")),
+        options={"AB_set": ab_set, "C_in_B": c_in_b},
     )
-    assert children(family.build(["ab_set"]), "T") == [{"A", "B", "C"}, {"A", "B"}]
-    cat = family.build(["ab_set", "c_in_b"])
+    assert children(family.build(["AB_set"]), "T") == [{"A", "B", "C"}, {"A", "B"}]
+    cat = family.build(["AB_set", "C_in_B"])
     assert children(cat, "T") == [{"A", "B"}]
     assert cat.total_sum
 
 
 def test_combination(fam):
-    cat = fam.with_options(["extra", "no_c"])
+    cat = fam.with_options(["extra", "no_C"])
     assert cat["AB"].info == {"note": "without C"}
     assert "combined: Without C, the extra categories are noted." in cat.comment
     assert "note" not in fam.with_options(["extra"])["AB"].info
@@ -189,29 +195,31 @@ def test_combination(fam):
 def test_invalid_options(fam):
     with pytest.raises(ValueError, match="Unknown options"):
         fam.with_options(["nope"])
+    with pytest.raises(ValueError, match="case-sensitive: 'no_c' -> 'no_C'"):
+        fam.with_options(["no_c"])
     with pytest.raises(ValueError, match="requires"):
         fam.with_options(["more"])
     with pytest.raises(ValueError, match="conflicts"):
-        fam.with_options(["no_c", "c_in_b"])
+        fam.with_options(["no_C", "C_in_B"])
     with pytest.raises(ValueError, match="multiple times"):
         fam.with_options(["extra", "extra"])
 
 
 def test_supported_combinations(fam):
-    # all valid combinations, except the ones containing more and no_c
+    # all valid combinations, except the ones containing more and no_C
     assert fam.supported_combinations == [
         (),
-        ("c_in_b",),
+        ("C_in_B",),
         ("extra",),
-        ("no_c",),
-        ("c_in_b", "extra"),
+        ("no_C",),
+        ("C_in_B", "extra"),
         ("extra", "more"),
-        ("extra", "no_c"),
-        ("c_in_b", "extra", "more"),
+        ("extra", "no_C"),
+        ("C_in_B", "extra", "more"),
     ]
     family = fam._option_family
-    assert family.is_supported(["extra", "no_c"])
-    assert not family.is_supported(["extra", "more", "no_c"])
+    assert family.is_supported(["extra", "no_C"])
+    assert not family.is_supported(["extra", "more", "no_C"])
     with pytest.raises(ValueError, match="requires"):
         family.is_supported(["more"])
 
@@ -219,23 +227,23 @@ def test_supported_combinations(fam):
 def test_unsupported(cats, fam):
     with pytest.raises(
         UnsupportedCombinationError,
-        match=r"the options \['more', 'no_c'\] are not supported together \(ABC was "
+        match=r"the options \['more', 'no_C'\] are not supported together \(ABC was "
         r"not checked without C\)\. Use allow_unsupported=True",
     ):
-        fam.with_options(["extra", "more", "no_c"])
+        fam.with_options(["extra", "more", "no_C"])
     with pytest.raises(UnsupportedCombinationError):
-        cats["Fam[extra,more,no_c]"]
-    assert "Fam[extra,more,no_c]" not in cats
+        cats["Fam[extra,more,no_C]"]
+    assert "Fam[extra,more,no_C]" not in cats
 
     with pytest.warns(UnsupportedCombinationWarning):
-        cat = fam.with_options(["extra", "more", "no_c"], allow_unsupported=True)
-    assert cat.name == "Fam[extra,more,no_c]"
+        cat = fam.with_options(["extra", "more", "no_C"], allow_unsupported=True)
+    assert cat.name == "Fam[extra,more,no_C]"
     assert children(cat, "ABC") == []
     # unsupported combinations are not cached
-    assert "Fam[extra,more,no_c]" not in dict(cats)
+    assert "Fam[extra,more,no_C]" not in dict(cats)
     with pytest.warns(UnsupportedCombinationWarning):
         assert (
-            fam.with_options(["extra", "more", "no_c"], allow_unsupported=True)
+            fam.with_options(["extra", "more", "no_C"], allow_unsupported=True)
             is not cat
         )
 
@@ -287,7 +295,7 @@ def test_category_equality(fam):
     assert cat["A"] == fam["A"]
     assert hash(cat["A"]) == hash(fam["A"])
     assert cat["A"] in {fam["A"]}
-    assert fam.with_options(["c_in_b"])["T"] == fam["T"]
+    assert fam.with_options(["C_in_B"])["T"] == fam["T"]
     # but not with other families
     other = climate_categories.ISO3
     assert other["ABW"] != fam["A"]
@@ -318,12 +326,12 @@ def test_round_trip(tmp_path, cats):
 
 
 def test_round_trip_built(tmp_path, fam):
-    cat = fam.with_options(["extra", "no_c"])
+    cat = fam.with_options(["extra", "no_C"])
     cat.to_yaml(tmp_path / "cat.yaml")
     read = climate_categories.from_yaml(tmp_path / "cat.yaml")
-    assert read.name == "Fam[extra,no_c]"
+    assert read.name == "Fam[extra,no_C]"
     assert read.family == "Fam"
-    assert read.enabled_options == ("extra", "no_c")
+    assert read.enabled_options == ("extra", "no_C")
     assert read == cat
     assert read["A"] == fam["A"]
 
@@ -361,6 +369,22 @@ def test_invalid_manifests(fam):
             fam,
             combinations=(climate_categories.OptionCombination(options=("extra",)),),
         )
+
+
+def test_option_names_differing_only_by_case(fam):
+    def option(name):
+        return CategorizationOption(
+            name=name, title=name, last_update=datetime.date(2026, 1, 1)
+        )
+
+    with pytest.raises(ValueError, match="differ only by capitalization"):
+        OptionFamily(
+            base=fam,
+            manifest=OptionManifest(base="Fam", options=("x", "X")),
+            options={"x": option("x"), "X": option("X")},
+        )
+    with pytest.raises(ValueError, match="differs only by capitalization"):
+        fam.with_options(["no_C"]).apply(option("NO_C"))
 
 
 def test_invalid_option_name():
@@ -479,24 +503,24 @@ def test_merge_into_set_without_target(fam):
     # with total_sum, child sets which contain the merged category, but not the
     # category it is merged into, don't add up any more and are dropped
     c_in_a = CategorizationOption(
-        name="c_in_a",
+        name="C_in_A",
         title="C included in A",
         last_update=datetime.date(2026, 1, 1),
         add_children={"T": [["B", "C", "A"]]},
         merge_into={"C": "A"},
     )
     b_set = CategorizationOption(
-        name="b_set",
+        name="B_set",
         title="A and C as a child set of B",
         last_update=datetime.date(2026, 1, 1),
         add_categories={"BC": {"title": "B and C", "children": [["B", "C"]]}},
     )
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("b_set", "c_in_a")),
-        options={"b_set": b_set, "c_in_a": c_in_a},
+        manifest=OptionManifest(base="Fam", options=("B_set", "C_in_A")),
+        options={"B_set": b_set, "C_in_A": c_in_a},
     )
-    cat = family.build(["b_set", "c_in_a"])
+    cat = family.build(["B_set", "C_in_A"])
     assert children(cat, "T") == [{"A", "B"}]
     assert "BC" in cat
     assert not cat["BC"].children
@@ -526,14 +550,14 @@ def test_merge_into_transitive(fam):
     # categories merged into a category which is merged itself are included in the
     # final target, too
     a_in_b = CategorizationOption(
-        name="a_in_b",
+        name="A_in_B",
         title="A included in B",
         last_update=datetime.date(2026, 1, 1),
         merge_into={"A": "B"},
     )
-    c_in_b = fam.available_options["c_in_b"]
+    c_in_b = fam.available_options["C_in_B"]
     b_in_x = CategorizationOption(
-        name="b_in_x",
+        name="B_in_X",
         title="B included in X",
         last_update=datetime.date(2026, 1, 1),
         add_categories={"X": {"title": "Category X"}},
@@ -542,10 +566,10 @@ def test_merge_into_transitive(fam):
     )
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("a_in_b", "c_in_b", "b_in_x")),
-        options={"a_in_b": a_in_b, "c_in_b": c_in_b, "b_in_x": b_in_x},
+        manifest=OptionManifest(base="Fam", options=("A_in_B", "C_in_B", "B_in_X")),
+        options={"A_in_B": a_in_b, "C_in_B": c_in_b, "B_in_X": b_in_x},
     )
-    cat = family.build(["a_in_b", "c_in_b", "b_in_x"])
+    cat = family.build(["A_in_B", "C_in_B", "B_in_X"])
     assert set(cat.keys()) == {"T", "X"}
     assert cat["X"].info == {"includes": ["A", "B", "C"]}
     assert children(cat, "T") == [{"X"}]
@@ -554,7 +578,7 @@ def test_merge_into_transitive(fam):
 def test_merge_into_added_category(fam):
     # a data source which only reports the sum of B and C
     bc = CategorizationOption(
-        name="bc",
+        name="BC",
         title="B and C together",
         last_update=datetime.date(2026, 1, 1),
         add_categories={"BC": {"title": "Categories B and C"}},
@@ -563,10 +587,10 @@ def test_merge_into_added_category(fam):
     )
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("bc",)),
-        options={"bc": bc},
+        manifest=OptionManifest(base="Fam", options=("BC",)),
+        options={"BC": bc},
     )
-    cat = family.build(["bc"])
+    cat = family.build(["BC"])
     assert set(cat.keys()) == {"T", "A", "BC"}
     assert cat["BC"].info == {"includes": ["B", "C"]}
     assert children(cat, "T") == [{"A", "BC"}]
@@ -741,7 +765,7 @@ def test_join_parents():
 
 def split_d_from_b() -> CategorizationOption:
     return CategorizationOption(
-        name="d_from_b",
+        name="D_from_B",
         title="D split from B",
         last_update=datetime.date(2026, 1, 1),
         add_categories={"D": {"title": "Category D"}},
@@ -754,10 +778,10 @@ def test_split_from(fam):
     assert CategorizationOption.from_spec(option.to_spec()) == option
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("d_from_b",)),
-        options={"d_from_b": option},
+        manifest=OptionManifest(base="Fam", options=("D_from_B",)),
+        options={"D_from_B": option},
     )
-    cat = family.build(["d_from_b"])
+    cat = family.build(["D_from_B"])
     assert children(cat, "T") == [{"A", "B", "C", "D"}]
     assert cat["B"].info == {"excludes": ["D"]}
     assert cat["B"].comment == "Excludes D (Category D)."
@@ -771,13 +795,13 @@ def test_split_from_ancestors(fam):
     # add up, because the ancestor gets D, too
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("extra", "d_from_b")),
+        manifest=OptionManifest(base="Fam", options=("extra", "D_from_B")),
         options={
             "extra": fam.available_options["extra"],
-            "d_from_b": split_d_from_b(),
+            "D_from_B": split_d_from_b(),
         },
     )
-    cat = family.build(["extra", "d_from_b"])
+    cat = family.build(["extra", "D_from_B"])
     assert children(cat, "T") == [{"A", "B", "C", "D"}, {"AB", "C"}]
     assert children(cat, "AB") == [{"A", "B", "D"}]
 
@@ -805,17 +829,17 @@ def test_split_from_non_total_sum():
 def test_split_then_merge_cancels(fam):
     # merging a category back into the category it was split from cancels the split
     d_in_b = CategorizationOption(
-        name="d_in_b",
+        name="D_in_B",
         title="D included in B",
         last_update=datetime.date(2026, 1, 1),
         merge_into={"D": "B"},
     )
     family = OptionFamily(
         base=fam,
-        manifest=OptionManifest(base="Fam", options=("d_from_b", "d_in_b")),
-        options={"d_from_b": split_d_from_b(), "d_in_b": d_in_b},
+        manifest=OptionManifest(base="Fam", options=("D_from_B", "D_in_B")),
+        options={"D_from_B": split_d_from_b(), "D_in_B": d_in_b},
     )
-    cat = family.build(["d_from_b", "d_in_b"])
+    cat = family.build(["D_from_B", "D_in_B"])
     assert "D" not in cat
     assert cat["B"].info == {}
     assert children(cat, "T") == [{"A", "B", "C"}]
@@ -860,10 +884,10 @@ def test_shipped_aliases():
 
 def test_yaml_without_trailing_whitespace(tmp_path, fam):
     # long comments are folded, which must not leave trailing whitespace
-    cat = fam.with_options(["extra", "no_c"])
+    cat = fam.with_options(["extra", "no_C"])
     cat.comment = "A long comment which has to be folded. " * 10
     cat.to_yaml(tmp_path / "cat.yaml")
-    option = climate_categories.ISO3.available_options["pse_in_isr"]
+    option = climate_categories.ISO3.available_options["PSE_in_ISR"]
     option.to_yaml(tmp_path / "option.yaml")
     for path in (tmp_path / "cat.yaml", tmp_path / "option.yaml"):
         lines = path.read_text().splitlines()
@@ -948,10 +972,10 @@ def test_apply_requires_conflicts(fam):
         name="ext",
         title="x",
         last_update=datetime.date(2026, 1, 1),
-        conflicts=("no_c",),
+        conflicts=("no_C",),
     )
-    with pytest.raises(ValueError, match="conflicts with the options \\['no_c'\\]"):
-        fam.with_options(["no_c"]).apply(no_no_c)
+    with pytest.raises(ValueError, match="conflicts with the options \\['no_C'\\]"):
+        fam.with_options(["no_C"]).apply(no_no_c)
 
 
 def test_apply_chain(fam):
@@ -992,7 +1016,7 @@ def test_apply_chain(fam):
 
 
 def test_apply_removal(fam):
-    cat = fam.with_options(["extra"]).apply(fam.available_options["c_in_b"])
+    cat = fam.with_options(["extra"]).apply(fam.available_options["C_in_B"])
     assert "C" not in cat
     assert children(cat, "T") == [{"A", "B"}, {"AB"}]
     assert cat.total_sum

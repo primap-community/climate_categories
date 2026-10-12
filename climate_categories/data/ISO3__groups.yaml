@@ -11,7 +11,7 @@ references: "G7 and G20, https://www.bmuv.de/themen/europa-internationales/inter
   ARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries"
 last_update: '2026-09-24'
 requires:
-- eu
+- EU
 add_categories:
   AOSIS:
     title: Alliance of Small Island States

@@ -1,4 +1,4 @@
-option: gcam
+option: GCAM
 title: GCAM regions
 comment: Regions used in the GCAM integrated assessment model of the Joint
   Global Change Research Institute, for all GCAM versions. Regions which are
@@ -16,7 +16,7 @@ references: "GCAM version 4.0 regions, https://github.com/JGCRI/gcam-core/blob/g
   GCAM version 3.0 regions, region_GCAM3 column of https://github.com/JGCRI/gcam-core/blob/gcam-v9.1/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv"
 last_update: '2026-09-24'
 requires:
-- kosovo
+- Kosovo
 add_categories:
   GCAM 4.0|USA:
     title: USA
