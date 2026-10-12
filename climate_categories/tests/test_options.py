@@ -1094,16 +1094,17 @@ def test_load_extension_multiple(tmp_path, cats):
 def test_load_extension_included(tmp_path):
     # applying an extension to a categorization included in climate_categories
     path = tmp_path / "ext.yaml"
-    path.write_text(EXTENSION.format(base="ISO3_PRIMAP", child1="DEU", child2="EU"))
+    path.write_text(EXTENSION.format(base="ISO3_GROUPS", child1="DEU", child2="EU"))
     cat = climate_categories.load_extension(path)
-    assert cat.name == "ISO3_PRIMAP_mygroups"
+    assert cat.name == "ISO3_GROUPS_mygroups"
     assert cat["MYGROUP"].children == [
-        {climate_categories.ISO3["DEU"], climate_categories.ISO3_PRIMAP["EU"]}
+        {climate_categories.ISO3["DEU"], climate_categories.ISO3_GROUPS["EU"]}
     ]
-    assert "PSE" not in cat
+    # the options of the base are kept
+    assert "SUN" in cat
     assert cat["DEU"] == climate_categories.ISO3["DEU"]
     assert hash(cat["DEU"]) == hash(climate_categories.ISO3["DEU"])
-    assert "ISO3_PRIMAP_mygroups" not in climate_categories.cats
+    assert "ISO3_GROUPS_mygroups" not in climate_categories.cats
 
 
 def test_extended_categories_hash():
