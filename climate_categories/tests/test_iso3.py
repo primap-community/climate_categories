@@ -156,11 +156,11 @@ def test_oecd():
 
 def test_aosis():
     assert len(ISO3_EU_GROUPS["AOSIS"].leaf_children[0]) == 39
-    assert ISO3_GROUPS["AOSIS"].codes == ("AOSIS_2011", "AOSIS")
+    assert ISO3_EU_GROUPS["AOSIS"].codes == ("AOSIS_2011", "AOSIS")
 
 
 def test_ldc_versions():
-    iso3 = ISO3_GROUPS
+    iso3 = ISO3_EU_GROUPS
     versions = [code for code in iso3 if re.fullmatch(r"LDC_\d{4}", code)]
     assert versions[0] == "LDC_1991"
     assert iso3["LDC"].codes == ("LDC_2024", "LDC")
