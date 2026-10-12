@@ -314,7 +314,7 @@ PRIMAP1_NONANNEXI = [
 ALIASES = {
     "ISO3_PRIMAP": ("EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"),
     "ISO3_GCAM": ("EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"),
-    # PRIMAP-hist from v3.0 on
+    # tentative PRIMAP-hist v3.0
     "ISO3_PRIMAP2": (
         "Antilles",
         "ESH_in_MAR",
