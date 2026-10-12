@@ -7,7 +7,7 @@ comment: Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) or
   alpha-4 code from ISO 3166-3 is the primary code.
 references: ISO 3166-3 in the iso-codes package,
   https://salsa.debian.org/iso-codes-team/iso-codes
-last_update: '2026-10-09'
+last_update: '2026-10-12'
 add_categories:
   AFI:
     title: French Afars and Issas

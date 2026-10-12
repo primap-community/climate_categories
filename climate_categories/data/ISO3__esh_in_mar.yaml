@@ -1,0 +1,8 @@
+option: esh_in_mar
+title: Western Sahara included in Morocco
+comment: Western Sahara (ESH) is not listed separately, it is assumed to be
+  included in Morocco (MAR), so that sums over countries stay complete. Use this
+  for data sources which do not report Western Sahara separately.
+last_update: '2026-10-12'
+merge_into:
+  ESH: MAR

@@ -244,6 +244,10 @@ def test_options():
         "kosovo",
         "gcam",
         "pse_in_isr",
+        "territories_in_sovereign_inventory",
+        "no_unpopulated",
+        "antilles",
+        "esh_in_mar",
     }
     # options are sorted, and built only once
     assert climate_categories.ISO3.with_options(["unfccc", "eu"]) is ISO3_UNFCCC
@@ -336,6 +340,94 @@ def test_merge_into_historical():
     assert "ANT" in world
     assert not {"CUW", "SXM", "BES"} & world
     assert len(world) == len(children(historical, "World")) - 2
+
+
+def test_territories_in_sovereign_inventory():
+    iso3 = climate_categories.cats["ISO3[territories_in_sovereign_inventory]"]
+    assert iso3["DNK"].info["includes"] == ["FRO", "GRL"]
+    assert "Greenland" in iso3["DNK"].comment
+    assert set(iso3["GBR"].info["includes"]) == {
+        "GGY",
+        "IMN",
+        "JEY",
+        "BMU",
+        "CYM",
+        "FLK",
+        "GIB",
+    }
+    assert len(iso3["FRA"].info["includes"]) == 11
+    for code in ("GRL", "PRI", "REU", "NFK", "ALA", "SJM", "GL"):
+        assert code not in iso3
+    # not included in the inventory of their sovereign country
+    for code in ("ABW", "AIA", "MSR", "PCN", "TKL", "HKG"):
+        assert code in iso3
+    # unpopulated and disputed territories are left to other options
+    for code in ("HMD", "ATF", "UMI", "ESH"):
+        assert code in iso3
+    assert "includes" not in climate_categories.ISO3["DNK"].info
+    assert (
+        len(iso3["World"].children[0])
+        == len(climate_categories.ISO3["World"].children[0]) - 30
+    )
+
+
+def test_no_unpopulated():
+    iso3 = climate_categories.cats["ISO3[no_unpopulated]"]
+    for code in ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI", "AQ"):
+        assert code not in iso3
+    assert "PCN" in iso3
+    assert "permanent population" in iso3["World"].comment
+    assert (
+        len(iso3["World"].children[0])
+        == len(climate_categories.ISO3["World"].children[0]) - 7
+    )
+
+
+def test_antilles():
+    with pytest.raises(ValueError, match="requires"):
+        climate_categories.ISO3.with_options(["antilles"])
+    iso3 = climate_categories.cats["ISO3[antilles,historical]"]
+    assert iso3["ANT"].info["includes"] == ["BES", "CUW", "SXM"]
+    world = children(iso3, "World")
+    assert "ANT" in world
+    assert not {"CUW", "SXM", "BES"} & world
+    assert "ANT" not in children(climate_categories.cats["ISO3[historical]"], "World")
+
+
+def test_esh_in_mar():
+    iso3 = climate_categories.cats["ISO3[esh_in_mar]"]
+    assert "ESH" not in iso3
+    assert iso3["MAR"].info["includes"] == ["ESH"]
+    assert "Western Sahara" in iso3["MAR"].comment
+    # ESH and MAR are in the same GCAM regions
+    gcam = climate_categories.cats[
+        "ISO3[esh_in_mar,eu,gcam,groups,historical,kosovo,unfccc]"
+    ]
+    assert "ESH" not in gcam
+
+
+@pytest.mark.parametrize("option", ["antilles", "territories_in_sovereign_inventory"])
+def test_gcam_territories_unsupported(option: str):
+    with pytest.raises(climate_categories.UnsupportedCombinationError):
+        climate_categories.ISO3.with_options(
+            ["eu", "gcam", "groups", "historical", "kosovo", option, "unfccc"]
+        )
+
+
+def test_primap_territories():
+    # the territory options give the PRIMAP-hist country list
+    iso3 = climate_categories.cats[
+        "ISO3[antilles,esh_in_mar,eu,groups,historical,no_unpopulated,pse_in_isr,"
+        "territories_in_sovereign_inventory,unfccc]"
+    ]
+    world = children(iso3, "World")
+    assert len(world) == 208
+    assert {"ANT", "MSR", "PCN"} <= world
+    assert not {"ATA", "CUW", "GRL", "ESH", "PSE"} & world
+    # no territory is a party to the UNFCCC
+    primap = climate_categories.ISO3_PRIMAP
+    for code in ("UNFCCC", "Annex-I", "Non-Annex-I", "AOSIS", "LDC"):
+        assert children(iso3, code) == children(primap, code)
 
 
 def test_historical():

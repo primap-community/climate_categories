@@ -26,7 +26,7 @@ URL_WITHDRAWN = (
 DATA_DIR = pathlib.Path("./climate_categories/data")
 LAST_UPDATE = datetime.date(2026, 9, 24)
 # Last update of the options introduced with the option mechanism.
-OPTIONS_LAST_UPDATE = datetime.date(2026, 10, 9)
+OPTIONS_LAST_UPDATE = datetime.date(2026, 10, 12)
 
 # Kosovo is not part of ISO 3166-1, but used in some data sources like GCAM.
 KOSOVO = {
@@ -37,6 +37,45 @@ KOSOVO = {
         "alternative_codes": ["XK"],
     },
 }
+
+# Dependent territories which are included in the national inventory of their
+# sovereign country under the UNFCCC, by sovereign country. Territories without
+# permanent population are left out, they are removed by the no_unpopulated option.
+TERRITORIES_IN_SOVEREIGN_INVENTORY = {
+    # Crown Dependencies and the Overseas Territories which joined the UK's ratification
+    # of the UNFCCC. Montserrat was included in earlier inventories (until about 2010),
+    # but is not any more. Other Overseas Territories are not included.
+    "GBR": ["GGY", "IMN", "JEY", "BMU", "CYM", "FLK", "GIB"],
+    # The Convention perimeter, i.e. all overseas territories.
+    "FRA": [
+        "GLP",
+        "GUF",
+        "MTQ",
+        "MYT",
+        "REU",
+        "MAF",
+        "BLM",
+        "SPM",
+        "WLF",
+        "PYF",
+        "NCL",
+    ],
+    # U.S. Territories in the energy sector: American Samoa, Guam, Puerto Rico,
+    # U.S. Virgin Islands, Wake Island, and other outlying U.S. Pacific Islands. The
+    # Northern Mariana Islands are not named, we assume they are among the latter.
+    "USA": ["ASM", "GUM", "MNP", "PRI", "VIR"],
+    # External territories: Norfolk Island and the Indian Ocean Territories.
+    "AUS": ["NFK", "CXR", "CCK"],
+    # The UNFCCC submission is for Denmark, Greenland and the Faroe Islands.
+    "DNK": ["FRO", "GRL"],
+    # Svalbard, except for LULUCF.
+    "NOR": ["SJM"],
+    # The autonomous territory of Åland, not reported separately.
+    "FIN": ["ALA"],
+}
+
+# Territories without permanent population.
+UNPOPULATED = ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI")
 
 # Options which make up commonly used categorizations.
 ALIASES = {
@@ -49,6 +88,15 @@ UNSUPPORTED = (
     climate_categories.UnsupportedCombination(
         options=("gcam", "pse_in_isr"),
         comment="the GCAM regions have PSE separately",
+    ),
+    climate_categories.UnsupportedCombination(
+        options=("gcam", "territories_in_sovereign_inventory"),
+        comment="the GCAM regions have many territories in other regions than their "
+        "sovereign country",
+    ),
+    climate_categories.UnsupportedCombination(
+        options=("antilles", "gcam"),
+        comment="some GCAM regions have only some of CUW, SXM, and BES",
     ),
 )
 
@@ -587,6 +635,10 @@ def main():
         kosovo_option(),
         ISO3_GCAM.gcam_option(base_codes | all_codes(KOSOVO)),
         pse_in_isr_option(),
+        territories_in_sovereign_inventory_option(),
+        no_unpopulated_option(),
+        antilles_option(),
+        esh_in_mar_option(),
     ]
     manifest = climate_categories.OptionManifest(
         base="ISO3",
@@ -747,6 +799,77 @@ def pse_in_isr_option() -> climate_categories.CategorizationOption:
         "this for data sources which do not report Palestine separately.",
         last_update=OPTIONS_LAST_UPDATE,
         merge_into={"PSE": "ISR"},
+    )
+
+
+def territories_in_sovereign_inventory_option() -> (
+    climate_categories.CategorizationOption
+):
+    return climate_categories.CategorizationOption(
+        name="territories_in_sovereign_inventory",
+        title="territories included in the inventory of their sovereign country",
+        comment="Dependent territories which are included in the national greenhouse "
+        "gas inventory of their sovereign country under the UNFCCC are not listed "
+        "separately, but included in their sovereign country, like the Faroe Islands "
+        "(FRO) and Greenland (GRL) in Denmark (DNK). Territories which are not "
+        "included in the inventory of their sovereign country, like Aruba (ABW), "
+        "Anguilla (AIA), or Montserrat (MSR), are kept. Territories without "
+        "permanent population are not included, use the option no_unpopulated to "
+        "remove them.",
+        references="""UK Greenhouse Gas Inventory, 1990 to 2024, chapter 1, https://unfccc.int/sites/default/files/resource/NID%2090-24.pdf;
+Inventaire des émissions de gaz à effet de serre en France de 1990 à 2019, section 1.7, https://citepa.org/?p=20926;
+Inventory of U.S. Greenhouse Gas Emissions and Sinks 1990-2022, chapter 3, https://www.epa.gov/system/files/documents/2024-04/us-ghg-inventory-2024-chapter-3-energy.pdf;
+National Inventory Report 2022, volume 1, section 1.7.2, https://www.dcceew.gov.au/climate-change/publications/national-inventory-reports;
+Denmark's National Inventory Document 2026, chapter 1, https://unfccc.int/sites/default/files/resource/Denmark%27s%20National%20Inventory%20Document%202026.pdf;
+Greenhouse Gas Emissions 1990-2024, National Inventory Document (Norway), section 1.7.1, https://unfccc.int/sites/default/files/resource/Norway%20National%20Inventory%20Document%202026.pdf;
+Greenhouse gas emissions in Finland 1990 to 2019, section 1.7, https://stat.fi/meta/kas/nir_en.html""",
+        last_update=OPTIONS_LAST_UPDATE,
+        merge_into={
+            territory: sovereign
+            for sovereign, territories in TERRITORIES_IN_SOVEREIGN_INVENTORY.items()
+            for territory in territories
+        },
+    )
+
+
+def no_unpopulated_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="no_unpopulated",
+        title="no unpopulated territories",
+        comment="Territories without permanent population, like Antarctica (ATA) "
+        "or Bouvet Island (BVT), are removed. Use this for data sources which do "
+        "not report them.",
+        last_update=OPTIONS_LAST_UPDATE,
+        remove_categories=climate_categories.CategoryRemoval(
+            codes=UNPOPULATED,
+            comment="Territories without permanent population are removed.",
+        ),
+    )
+
+
+def antilles_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="antilles",
+        title="Netherlands Antilles",
+        comment="Curaçao (CUW), Sint Maarten (SXM), and Bonaire, Sint Eustatius and "
+        "Saba (BES) are not listed separately, but included in the Netherlands "
+        "Antilles (ANT), which were dissolved on 2010-10-10. Use this for data "
+        "sources which report the Netherlands Antilles instead of their successors.",
+        last_update=OPTIONS_LAST_UPDATE,
+        requires=("historical",),
+        merge_into={"CUW": "ANT", "SXM": "ANT", "BES": "ANT"},
+    )
+
+
+def esh_in_mar_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="esh_in_mar",
+        title="Western Sahara included in Morocco",
+        comment="Western Sahara (ESH) is not listed separately, it is assumed to be "
+        "included in Morocco (MAR), so that sums over countries stay complete. Use "
+        "this for data sources which do not report Western Sahara separately.",
+        last_update=OPTIONS_LAST_UPDATE,
+        merge_into={"ESH": "MAR"},
     )
 
 

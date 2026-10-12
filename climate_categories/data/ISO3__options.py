@@ -2,12 +2,32 @@
 # corresponding YAML file.
 spec = {
     "base": "ISO3",
-    "options": ["eu", "unfccc", "groups", "historical", "kosovo", "gcam", "pse_in_isr"],
+    "options": [
+        "eu",
+        "unfccc",
+        "groups",
+        "historical",
+        "kosovo",
+        "gcam",
+        "pse_in_isr",
+        "territories_in_sovereign_inventory",
+        "no_unpopulated",
+        "antilles",
+        "esh_in_mar",
+    ],
     "unsupported": [
         {
             "options": ["gcam", "pse_in_isr"],
             "comment": "the GCAM regions have PSE separately",
-        }
+        },
+        {
+            "options": ["gcam", "territories_in_sovereign_inventory"],
+            "comment": "the GCAM regions have many territories in other regions than their sovereign country",
+        },
+        {
+            "options": ["antilles", "gcam"],
+            "comment": "some GCAM regions have only some of CUW, SXM, and BES",
+        },
     ],
     "aliases": {
         "ISO3_PRIMAP": ["eu", "groups", "historical", "pse_in_isr", "unfccc"],

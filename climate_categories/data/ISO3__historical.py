@@ -5,7 +5,7 @@ spec = {
     "title": "historical countries and names",
     "comment": "Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) or Yugoslavia (YUG), and historical names of current countries. The alpha-2 and numeric codes of withdrawn countries were partly re-used for other countries, so they are only given in the info. If the alpha-3 code was re-used, the alpha-4 code from ISO 3166-3 is the primary code.",
     "references": "ISO 3166-3 in the iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
-    "last_update": "2026-10-09",
+    "last_update": "2026-10-12",
     "add_categories": {
         "AFI": {
             "title": "French Afars and Issas",

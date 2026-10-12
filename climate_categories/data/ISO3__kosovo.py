@@ -4,7 +4,7 @@ spec = {
     "option": "kosovo",
     "title": "Kosovo",
     "comment": "Kosovo, which is not part of ISO 3166-1, with the user-assigned code XKX which is commonly used for it.",
-    "last_update": "2026-10-09",
+    "last_update": "2026-10-12",
     "add_categories": {
         "XKX": {
             "title": "Kosovo",
