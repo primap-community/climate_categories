@@ -1,9 +1,9 @@
-option: no_c
+option: no_C
 title: without C
 comment: C is not available.
 last_update: 2026-01-01
 conflicts:
-  - c_in_b
+  - C_in_B
 remove_categories:
   codes:
     - C

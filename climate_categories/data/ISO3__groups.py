@@ -6,7 +6,7 @@ spec = {
     "comment": "Groups of countries in climate negotiations and international politics: AOSIS, BASIC, LDC, the Umbrella Group, the Arab Group, LMDC, G35, G7, G8, G20, OECD, and OPEC.",
     "references": "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\nOECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\nUMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\nLDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\nAOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html;\nARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries",
     "last_update": "2026-09-24",
-    "requires": ["eu"],
+    "requires": ["EU"],
     "add_categories": {
         "AOSIS": {
             "title": "Alliance of Small Island States",

@@ -1,6 +1,6 @@
 """Run this via `make climate_categories/data/ISO3.py` in the main directory.
 
-Generates the base ISO3 categorization with all its options, including the ``gcam``
+Generates the base ISO3 categorization with all its options, including the ``GCAM``
 option generated in ISO3_GCAM.py.
 """
 
@@ -79,27 +79,27 @@ UNPOPULATED = ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI")
 
 # Options which make up commonly used categorizations.
 ALIASES = {
-    "ISO3_PRIMAP": ("eu", "groups", "historical", "pse_in_isr", "unfccc"),
-    "ISO3_GCAM": ("eu", "gcam", "groups", "historical", "kosovo", "unfccc"),
+    "ISO3_PRIMAP": ("EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"),
+    "ISO3_GCAM": ("EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"),
 }
 
 # Combinations of options which are not quality-controlled.
 UNSUPPORTED = (
     climate_categories.UnsupportedCombination(
-        options=("gcam", "pse_in_isr"),
+        options=("GCAM", "PSE_in_ISR"),
         comment="the GCAM regions have PSE separately",
     ),
     climate_categories.UnsupportedCombination(
-        options=("gcam", "territories_in_sovereign_inventory"),
+        options=("GCAM", "territories_in_sovereign_inventory"),
         comment="the GCAM regions have many territories in other regions than their "
         "sovereign country",
     ),
     climate_categories.UnsupportedCombination(
-        options=("antilles", "gcam"),
+        options=("Antilles", "GCAM"),
         comment="some GCAM regions have only some of CUW, SXM, and BES",
     ),
     climate_categories.UnsupportedCombination(
-        options=("gcam", "msr_pcn_in_gbr"),
+        options=("GCAM", "MSR_PCN_in_GBR"),
         comment="the GCAM regions have MSR and PCN in other regions than GBR",
     ),
 )
@@ -693,7 +693,7 @@ def base_categories() -> dict[str, dict]:
 
 def eu_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="eu",
+        name="EU",
         title="European Union members",
         comment="The European Union at different points in time, use EU for the "
         "current European Union.",
@@ -710,7 +710,7 @@ def unfccc_option(known_codes: set[str]) -> climate_categories.CategorizationOpt
     categories.update(unfccc_versions(categories, known_codes))
     categories.update(paris_categories(categories, known_codes))
     return climate_categories.CategorizationOption(
-        name="unfccc",
+        name="UNFCCC",
         title="UNFCCC and Paris Agreement parties",
         comment="Parties to the UN Framework Convention on Climate Change and to the "
         "Paris Agreement under it, currently (UNFCCC, PARIS) and over time "
@@ -723,7 +723,7 @@ https://treaties.un.org/Pages/ViewDetailsIII.aspx?src=TREATY&mtdsg_no=XXVII-7&ch
 Paris Agreement status at the depositary,
 https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en""",
         last_update=LAST_UPDATE,
-        requires=("eu",),
+        requires=("EU",),
         add_categories=categories,
         update_categories=unfccc_names(),
     )
@@ -746,7 +746,7 @@ ARAB https://unfccc.int/party-groupings;
 LMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries""",
         last_update=LAST_UPDATE,
         # the EU is a member of the G7 and G20
-        requires=("eu",),
+        requires=("EU",),
         add_categories={
             **aosis_categories(),
             **g7g20_categories(),
@@ -784,7 +784,7 @@ def historical_option(
 
 def kosovo_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="kosovo",
+        name="Kosovo",
         title="Kosovo",
         comment="Kosovo, which is not part of ISO 3166-1, with the user-assigned code "
         "XKX which is commonly used for it.",
@@ -797,7 +797,7 @@ def kosovo_option() -> climate_categories.CategorizationOption:
 
 def pse_in_isr_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="pse_in_isr",
+        name="PSE_in_ISR",
         title="Palestine included in Israel",
         comment="Palestine (PSE) is not listed separately, it is assumed to be "
         "included in Israel (ISR), so that sums over countries stay complete. Use "
@@ -854,7 +854,7 @@ def no_unpopulated_option() -> climate_categories.CategorizationOption:
 
 def antilles_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="antilles",
+        name="Antilles",
         title="Netherlands Antilles",
         comment="Curaçao (CUW), Sint Maarten (SXM), and Bonaire, Sint Eustatius and "
         "Saba (BES) are not listed separately, but included in the Netherlands "
@@ -868,7 +868,7 @@ def antilles_option() -> climate_categories.CategorizationOption:
 
 def esh_in_mar_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="esh_in_mar",
+        name="ESH_in_MAR",
         title="Western Sahara included in Morocco",
         comment="Western Sahara (ESH) is not listed separately, it is assumed to be "
         "included in Morocco (MAR), so that sums over countries stay complete. Use "
@@ -880,7 +880,7 @@ def esh_in_mar_option() -> climate_categories.CategorizationOption:
 
 def msr_pcn_in_gbr_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
-        name="msr_pcn_in_gbr",
+        name="MSR_PCN_in_GBR",
         title="Montserrat and Pitcairn included in the United Kingdom",
         comment="Montserrat (MSR) and Pitcairn (PCN) are not listed separately, they "
         "are assumed to be included in the United Kingdom (GBR). Their population is "

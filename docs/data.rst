@@ -134,9 +134,12 @@ Categorizations with options
 
 A base categorization can have options, which are patches to the base categorization
 and are combined on demand. The categorization with options enabled is named like
-``ISO3[eu,unfccc]``, with the options sorted alphabetically. The options are stored
-next to the base categorization ``{base}.yaml``: each option in a StrictYaml file
-``{base}__{option}.yaml``, and a manifest declaring all options in
+``ISO3[EU,UNFCCC]``, with the options sorted alphabetically ignoring case. Option
+names are case-sensitive and follow the usual capitalization, so acronyms and category
+codes are capitalized like ``EU`` or ``PSE_in_ISR``, and other words are lowercase like
+``groups``. Option names of a categorization must not differ only by capitalization.
+The options are stored next to the base categorization ``{base}.yaml``: each option in
+a StrictYaml file ``{base}__{option}.yaml``, and a manifest declaring all options in
 ``{base}__options.yaml``.
 
 Option files have the following fields:
@@ -144,13 +147,13 @@ Option files have the following fields:
 ========================  ====  ===============================================  ============================
 Key                       Type  Notes                                            Example
 ------------------------  ----  -----------------------------------------------  ----------------------------
-option                    str   the name of the option, letters, digits, and _   unfccc
+option                    str   the name of the option, letters, digits, and _   UNFCCC
 base                      str   optional, the categorization the option is for   ISO3_PRIMAP
 title                     str   one-line description                             UNFCCC parties
 comment                   str   optional, long-form description                  Parties to the UN Framework…
 references                str   optional, citable reference(s) and sources       https://unfccc.int/…
 last_update               str   date of last change in ISO format                2026-09-24
-requires                  list  optional, options which have to be enabled, too  ['eu']
+requires                  list  optional, options which have to be enabled, too  ['EU']
 conflicts                 list  optional, options which can't be enabled, too    ['other']
 add_categories            map   optional, new categories, see below
 update_categories         map   optional, changes to categories, see below       {'SRB': {'title': …}}
@@ -234,7 +237,7 @@ The manifest has the following fields:
 Key           Type  Notes                                                               Example
 ------------  ----  ------------------------------------------------------------------  --------------------
 base          str   the name of the base categorization                                 ISO3
-options       list  all options, in the order in which they are applied                 ['eu', 'unfccc']
+options       list  all options, in the order in which they are applied                 ['EU', 'UNFCCC']
 combinations  list  optional, patches applied if all their options are enabled
 unsupported   list  optional, combinations of options which are not quality-controlled
 aliases       map   optional, names for commonly used combinations of options           {'ISO3_PRIMAP': […]}
@@ -259,20 +262,20 @@ An example manifest:
 
     base: ISO3
     options:
-      - eu
-      - unfccc
-      - gcam
-      - pse_in_isr
+      - EU
+      - UNFCCC
+      - GCAM
+      - PSE_in_ISR
     unsupported:
       - options:
-          - gcam
-          - pse_in_isr
+          - GCAM
+          - PSE_in_ISR
         comment: the GCAM regions have PSE separately
     aliases:
       ISO3_PRIMAP:
-        - eu
-        - pse_in_isr
-        - unfccc
+        - EU
+        - PSE_in_ISR
+        - UNFCCC
 
 
 Extensions
@@ -281,7 +284,7 @@ Extensions
 Option files can also be used to extend categorizations without including the
 extension in climate_categories, for example to share an extension together with a
 dataset using it. For such options, give the categorization the option is for in the
-``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[eu,unfccc]``, and read and apply them
+``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[EU,UNFCCC]``, and read and apply them
 using ``climate_categories.load_extension``. ``requires`` and ``conflicts`` then refer
 to the options enabled in the base and to extensions applied before. An example:
 

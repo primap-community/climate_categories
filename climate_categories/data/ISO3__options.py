@@ -3,39 +3,39 @@
 spec = {
     "base": "ISO3",
     "options": [
-        "eu",
-        "unfccc",
+        "EU",
+        "UNFCCC",
         "groups",
         "historical",
-        "kosovo",
-        "gcam",
-        "pse_in_isr",
+        "Kosovo",
+        "GCAM",
+        "PSE_in_ISR",
         "territories_in_sovereign_inventory",
         "no_unpopulated",
-        "antilles",
-        "esh_in_mar",
-        "msr_pcn_in_gbr",
+        "Antilles",
+        "ESH_in_MAR",
+        "MSR_PCN_in_GBR",
     ],
     "unsupported": [
         {
-            "options": ["gcam", "pse_in_isr"],
+            "options": ["GCAM", "PSE_in_ISR"],
             "comment": "the GCAM regions have PSE separately",
         },
         {
-            "options": ["gcam", "territories_in_sovereign_inventory"],
+            "options": ["GCAM", "territories_in_sovereign_inventory"],
             "comment": "the GCAM regions have many territories in other regions than their sovereign country",
         },
         {
-            "options": ["antilles", "gcam"],
+            "options": ["Antilles", "GCAM"],
             "comment": "some GCAM regions have only some of CUW, SXM, and BES",
         },
         {
-            "options": ["gcam", "msr_pcn_in_gbr"],
+            "options": ["GCAM", "MSR_PCN_in_GBR"],
             "comment": "the GCAM regions have MSR and PCN in other regions than GBR",
         },
     ],
     "aliases": {
-        "ISO3_PRIMAP": ["eu", "groups", "historical", "pse_in_isr", "unfccc"],
-        "ISO3_GCAM": ["eu", "gcam", "groups", "historical", "kosovo", "unfccc"],
+        "ISO3_PRIMAP": ["EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"],
+        "ISO3_GCAM": ["EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"],
     },
 }

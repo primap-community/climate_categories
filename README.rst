@@ -56,8 +56,8 @@ Categorizations with options
 -----------------------------
 
 Some categorizations have options, which add or remove categories. For example,
-``climate_categories.cats["ISO3[eu,unfccc]"]`` or equivalently
-``climate_categories.ISO3.with_options(["eu", "unfccc"])`` gives the ISO 3166-1 countries
+``climate_categories.cats["ISO3[EU,UNFCCC]"]`` or equivalently
+``climate_categories.ISO3.with_options(["EU", "UNFCCC"])`` gives the ISO 3166-1 countries
 together with the European Union and the parties to the UNFCCC.
 ``climate_categories.ISO3.available_options`` lists the options and
 ``climate_categories.ISO3.supported_combinations`` lists the quality-controlled

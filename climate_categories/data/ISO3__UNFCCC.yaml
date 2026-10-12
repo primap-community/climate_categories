@@ -1,4 +1,4 @@
-option: unfccc
+option: UNFCCC
 title: UNFCCC and Paris Agreement parties
 comment: Parties to the UN Framework Convention on Climate Change and to the
   Paris Agreement under it, currently (UNFCCC, PARIS) and over time
@@ -10,7 +10,7 @@ references: "UNFCCC Parties & Observers, https://unfccc.int/parties-observers;\n
   Paris Agreement status at the depositary,\nhttps://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en"
 last_update: '2026-09-24'
 requires:
-- eu
+- EU
 add_categories:
   Annex-I:
     title: Annex-I parties to the UNFCCC
