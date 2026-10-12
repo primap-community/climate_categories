@@ -91,7 +91,7 @@ RCMIP = _read_py_hier("RCMIP")
 gas = _read_py_hier("gas")
 ISO3 = _read_py_hier("ISO3")
 _read_py_options("ISO3")
-ISO3_PRIMAP = cats["ISO3_PRIMAP"]
+ISO3_GROUPS = cats["ISO3_GROUPS"]
 ISO3_GCAM = cats["ISO3_GCAM"]
 FAO = _read_py_hier("FAO")
 CT = _read_py_hier("CT")
@@ -118,7 +118,7 @@ __all__ = [
     "IPCC2006_PRIMAP",
     "ISO3",
     "ISO3_GCAM",
-    "ISO3_PRIMAP",
+    "ISO3_GROUPS",
     "RCMIP",
     "BURDI_class",
     "CRFDI_class",

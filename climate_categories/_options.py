@@ -6,7 +6,7 @@ categorization. Options are combined on demand, yielding categorizations named l
 ``ISO3[EU,UNFCCC]``. Not all combinations of options are meaningful or
 quality-controlled, so each family of categorizations declares the combinations of
 options which are not supported. Aliases name commonly used combinations of options,
-like ``ISO3_PRIMAP``.
+like ``ISO3_GROUPS``.
 """
 
 import copy
@@ -644,7 +644,7 @@ class CategorizationOption(CategorizationPatch):
         Options which can not be enabled together with this option.
     base : str, optional
         The categorization the option is meant to be applied to, like
-        ``ISO3_PRIMAP``. Used by ``load_extension`` for options which are not part of
+        ``ISO3_GROUPS``. Used by ``load_extension`` for options which are not part of
         the options of a categorization included in climate_categories.
     """
 
@@ -1340,7 +1340,7 @@ def load_extension(
     """Read options from files and apply them to the categorization they are for.
 
     The option files have to name the categorization they are for in their ``base``
-    field, like ``ISO3_PRIMAP`` or ``ISO3[EU,UNFCCC]``. Several option files which
+    field, like ``ISO3_GROUPS`` or ``ISO3[EU,UNFCCC]``. Several option files which
     extend the same categorization can be given, they are applied in the given order.
     Later options can require earlier options using ``requires``.
 
@@ -1394,7 +1394,7 @@ class CategorizationRegistry(dict):
     """All categorizations, by name.
 
     Categorizations with options, like ``ISO3[EU,UNFCCC]``, and aliases, like
-    ``ISO3_PRIMAP``, are built on first access. Note that iterating over the registry
+    ``ISO3_GROUPS``, are built on first access. Note that iterating over the registry
     only yields categorizations which were already built.
     """
 

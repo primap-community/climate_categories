@@ -79,7 +79,7 @@ UNPOPULATED = ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI")
 
 # Options which make up commonly used categorizations.
 ALIASES = {
-    "ISO3_PRIMAP": ("EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"),
+    "ISO3_GROUPS": ("EU", "groups", "historical", "UNFCCC"),
     "ISO3_GCAM": ("EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"),
 }
 
@@ -658,8 +658,8 @@ def main():
         "comment": "Countries, regions, and other areas as defined in ISO 3166-1, and "
         "the world. Groupings like the parties to the UN Framework Convention on "
         "Climate Change are available as options, see ISO3.available_options. The "
-        "alias ISO3_PRIMAP includes all groupings commonly used in climate policy "
-        "analysis.",
+        "alias ISO3_GROUPS includes all groupings commonly used in climate policy "
+        "analysis and the historical countries.",
         "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\n"
         "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
         "institution": "ISO",

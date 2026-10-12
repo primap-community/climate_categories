@@ -9,7 +9,7 @@ import climate_categories
 
 ISO3_EU = climate_categories.cats["ISO3[EU]"]
 ISO3_UNFCCC = climate_categories.cats["ISO3[EU,UNFCCC]"]
-ISO3_GROUPS = climate_categories.cats["ISO3[EU,groups]"]
+ISO3_EU_GROUPS = climate_categories.cats["ISO3[EU,groups]"]
 
 
 def children(cat, code: str) -> set[str]:
@@ -144,23 +144,23 @@ def test_versions_only_stable_codes():
 
 def test_g7g20():
     # since the EU is a non-enumerated member, G7 has 8 members, G8 has 9.
-    assert len(ISO3_GROUPS["G7"].children[0]) == 8
-    assert len(ISO3_GROUPS["G8"].children[0]) == 9
+    assert len(ISO3_EU_GROUPS["G7"].children[0]) == 8
+    assert len(ISO3_EU_GROUPS["G8"].children[0]) == 9
     # in the G20, the EU is enumerated
-    assert len(ISO3_GROUPS["G20"].children[0]) == 20
+    assert len(ISO3_EU_GROUPS["G20"].children[0]) == 20
 
 
 def test_oecd():
-    assert len(ISO3_GROUPS["OECD"].leaf_children[0]) == 38
+    assert len(ISO3_EU_GROUPS["OECD"].leaf_children[0]) == 38
 
 
 def test_aosis():
-    assert len(ISO3_GROUPS["AOSIS"].leaf_children[0]) == 39
+    assert len(ISO3_EU_GROUPS["AOSIS"].leaf_children[0]) == 39
 
 
 @pytest.mark.parametrize("code", ["UMBRELLA", "LDC", "G35", "LMDC"])
 def test_country_groups_included(code: str):
-    assert code in ISO3_GROUPS
+    assert code in ISO3_EU_GROUPS
 
 
 def test_gcam():
@@ -271,20 +271,23 @@ def test_pse_in_isr():
     )
 
 
-def test_primap():
-    primap = climate_categories.ISO3_PRIMAP
-    assert primap.canonical_name == "ISO3[EU,groups,historical,PSE_in_ISR,UNFCCC]"
-    assert "PSE" not in primap
-    with_pse = climate_categories.cats["ISO3[EU,groups,UNFCCC]"]
+def test_groups():
+    groups = climate_categories.ISO3_GROUPS
+    assert groups.canonical_name == "ISO3[EU,groups,historical,UNFCCC]"
+    assert "SUN" in groups
+    assert "PSE" in children(groups, "UNFCCC")
+    assert len(groups["UNFCCC"].children[0]) == 198
 
-    def children(cat, code: str) -> set[str]:
-        return {c.codes[0] for c in cat[code].children[0]}
 
+def test_pse_in_isr_groups():
+    merged = climate_categories.cats["ISO3[EU,groups,historical,PSE_in_ISR,UNFCCC]"]
+    assert "PSE" not in merged
+    with_pse = climate_categories.ISO3_GROUPS
     for code in ("UNFCCC", "PARIS", "Non-Annex-I", "ARAB", "UNFCCC_2022"):
         assert "PSE" in children(with_pse, code)
-        assert children(primap, code) == children(with_pse, code) - {"PSE"}
-        assert "Palestine" in primap[code].comment
-    assert len(primap["UNFCCC"].children[0]) == 197
+        assert children(merged, code) == children(with_pse, code) - {"PSE"}
+        assert "Palestine" in merged[code].comment
+    assert len(merged["UNFCCC"].children[0]) == 197
 
 
 def test_gcam_keeps_pse():
@@ -473,8 +476,8 @@ def test_historical():
 
 
 def test_categories_comparable_across_options():
-    assert climate_categories.ISO3["DEU"] == climate_categories.ISO3_PRIMAP["DEU"]
+    assert climate_categories.ISO3["DEU"] == climate_categories.ISO3_GROUPS["DEU"]
     assert hash(climate_categories.ISO3["DEU"]) == hash(
         climate_categories.ISO3_GCAM["DEU"]
     )
-    assert climate_categories.ISO3_PRIMAP["EU"] == ISO3_EU["EU_2020"]
+    assert climate_categories.ISO3_GROUPS["EU"] == ISO3_EU["EU_2020"]
