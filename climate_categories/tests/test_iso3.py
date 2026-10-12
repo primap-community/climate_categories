@@ -457,9 +457,9 @@ def test_primap_territories():
     assert {"ANT", "MSR", "PCN"} <= world
     assert not {"ATA", "CUW", "GRL", "ESH", "PSE"} & world
     # no territory is a party to the UNFCCC
-    primap = climate_categories.ISO3_PRIMAP
+    without = climate_categories.cats["ISO3[EU,groups,historical,PSE_in_ISR,UNFCCC]"]
     for code in ("UNFCCC", "Annex-I", "Non-Annex-I", "AOSIS", "LDC"):
-        assert children(iso3, code) == children(primap, code)
+        assert children(iso3, code) == children(without, code)
 
 
 def test_historical():
