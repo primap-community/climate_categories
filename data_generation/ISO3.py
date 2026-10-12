@@ -1,7 +1,8 @@
 """Run this via `make climate_categories/data/ISO3.py` in the main directory.
 
 Generates the base ISO3 categorization with all its options, including the ``GCAM``
-option generated in ISO3_GCAM.py.
+option generated in ISO3_GCAM.py and the model region options from
+ISO3_model_regions.py.
 """
 
 import copy
@@ -11,6 +12,7 @@ import pathlib
 import typing
 
 import ISO3_GCAM
+import ISO3_model_regions
 import requests
 from utils import all_codes, write_option_family
 
@@ -335,6 +337,22 @@ ALIASES = {
         "historical",
         "PRIMAP1",
         "PSE_in_ISR",
+        "territories_in_sovereign_inventory",
+        "UNFCCC",
+    ),
+    # PRIMAP-hist up to v2.x, with the codes of its input data
+    "ISO3_PRIMAP1_INPUTS": (
+        "Antilles",
+        "AR5",
+        "EDGAR_HYDE",
+        "ESH_in_MAR",
+        "EU",
+        "groups",
+        "historical",
+        "PRIMAP1",
+        "PRIMAP1_inputs",
+        "PSE_in_ISR",
+        "RCP",
         "territories_in_sovereign_inventory",
         "UNFCCC",
     ),
@@ -970,6 +988,10 @@ def main():
         esh_in_mar_option(),
         msr_pcn_in_gbr_option(),
         primap1_option(),
+        ISO3_model_regions.ar5_option(OPTIONS_LAST_UPDATE),
+        ISO3_model_regions.rcp_option(OPTIONS_LAST_UPDATE),
+        ISO3_model_regions.edgar_hyde_option(OPTIONS_LAST_UPDATE),
+        ISO3_model_regions.primap1_inputs_option(OPTIONS_LAST_UPDATE),
     ]
     manifest = climate_categories.OptionManifest(
         base="ISO3",

@@ -1,0 +1,304 @@
+option: EDGAR_HYDE
+title: EDGAR-HYDE regions
+comment: The 13 regions of the EDGAR-HYDE historical emissions data set, which
+  are the regions of EDGAR 2.0, with codes like EDGAR-HYDE|Africa. The regions
+  Canada, USA, and Japan only contain the country of the same name. The source
+  does not assign Bermuda (BMU), the British Virgin Islands (VGB), Mayotte
+  (MYT), Palestine (PSE), and some other territories to any region. Dependent
+  territories are in the region of their location, which is not always the
+  region of their sovereign country. If they are merged into their sovereign
+  country, for example with the option territories_in_sovereign_inventory, they
+  are not part of any region of this option, and their sovereign country stays
+  in its own region.
+references: "Van Aardenne et al. (2001), A 1°x1° resolution data set of historical
+  anthropogenic trace gas emissions for the period 1890-1990, https://doi.org/10.1029/2000GB001265;\n\
+  Olivier et al. (1996), Description of EDGAR Version 2.0, RIVM report 771060002,
+  appendix 1, table R.1.1, https://www.rivm.nl/bibliotheek/rapporten/771060002.pdf"
+last_update: '2026-10-12'
+add_categories:
+  EDGAR-HYDE|Canada:
+    title: Canada (EDGAR-HYDE)
+    comment: Region 'Canada' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - CAN
+  EDGAR-HYDE|USA:
+    title: USA (EDGAR-HYDE)
+    comment: Region 'USA' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - USA
+  EDGAR-HYDE|Latin America:
+    title: Latin America (EDGAR-HYDE)
+    comment: Region 'Latin America' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - ABW
+      - AIA
+      - ARG
+      - ATG
+      - BES
+      - BHS
+      - BLZ
+      - BOL
+      - BRA
+      - BRB
+      - BVT
+      - CHL
+      - COL
+      - CRI
+      - CUB
+      - CUW
+      - CYM
+      - DMA
+      - DOM
+      - ECU
+      - FLK
+      - GLP
+      - GRD
+      - GTM
+      - GUF
+      - GUY
+      - HND
+      - HTI
+      - JAM
+      - KNA
+      - LCA
+      - MEX
+      - MSR
+      - MTQ
+      - NIC
+      - PAN
+      - PER
+      - PRI
+      - PRY
+      - SLV
+      - SUR
+      - SXM
+      - TCA
+      - TTO
+      - URY
+      - VCT
+      - VEN
+      - VIR
+  EDGAR-HYDE|Africa:
+    title: Africa (EDGAR-HYDE)
+    comment: Region 'Africa' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - AGO
+      - BDI
+      - BEN
+      - BFA
+      - BWA
+      - CAF
+      - CIV
+      - CMR
+      - COD
+      - COG
+      - COM
+      - CPV
+      - DJI
+      - DZA
+      - EGY
+      - ERI
+      - ESH
+      - ETH
+      - GAB
+      - GHA
+      - GIN
+      - GMB
+      - GNB
+      - GNQ
+      - IOT
+      - KEN
+      - LBR
+      - LBY
+      - LSO
+      - MAR
+      - MDG
+      - MLI
+      - MOZ
+      - MRT
+      - MUS
+      - MWI
+      - NAM
+      - NER
+      - NGA
+      - REU
+      - RWA
+      - SDN
+      - SEN
+      - SHN
+      - SLE
+      - SOM
+      - SSD
+      - STP
+      - SWZ
+      - SYC
+      - TCD
+      - TGO
+      - TUN
+      - TZA
+      - UGA
+      - ZAF
+      - ZMB
+      - ZWE
+  EDGAR-HYDE|OECD Europe:
+    title: OECD Europe (EDGAR-HYDE)
+    comment: Region 'OECD Europe' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - AND
+      - AUT
+      - BEL
+      - CHE
+      - DEU
+      - DNK
+      - ESP
+      - FIN
+      - FRA
+      - FRO
+      - GBR
+      - GIB
+      - GRC
+      - GRL
+      - IRL
+      - ISL
+      - ITA
+      - LIE
+      - LUX
+      - MCO
+      - MLT
+      - NLD
+      - NOR
+      - PRT
+      - SJM
+      - SMR
+      - SWE
+      - VAT
+  EDGAR-HYDE|Eastern Europe:
+    title: Eastern Europe (EDGAR-HYDE)
+    comment: Region 'Eastern Europe' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - ALB
+      - BGR
+      - BIH
+      - CZE
+      - HRV
+      - HUN
+      - MKD
+      - MNE
+      - POL
+      - ROU
+      - SRB
+      - SVK
+      - SVN
+  EDGAR-HYDE|CIS:
+    title: CIS (EDGAR-HYDE)
+    comment: Region 'CIS' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - ARM
+      - AZE
+      - BLR
+      - EST
+      - GEO
+      - KAZ
+      - KGZ
+      - LTU
+      - LVA
+      - MDA
+      - RUS
+      - TJK
+      - TKM
+      - UKR
+      - UZB
+  EDGAR-HYDE|Middle East:
+    title: Middle East (EDGAR-HYDE)
+    comment: Region 'Middle East' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - AFG
+      - ARE
+      - BHR
+      - CYP
+      - IRN
+      - IRQ
+      - ISR
+      - JOR
+      - KWT
+      - LBN
+      - OMN
+      - QAT
+      - SAU
+      - SYR
+      - TUR
+      - YEM
+  EDGAR-HYDE|India Region:
+    title: India Region (EDGAR-HYDE)
+    comment: Region 'India Region' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - BGD
+      - BTN
+      - IND
+      - LKA
+      - MDV
+      - MMR
+      - NPL
+      - PAK
+  EDGAR-HYDE|China Region:
+    title: China Region (EDGAR-HYDE)
+    comment: Region 'China Region' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - CHN
+      - HKG
+      - KHM
+      - LAO
+      - MAC
+      - MNG
+      - PRK
+      - TWN
+      - VNM
+  EDGAR-HYDE|East Asia:
+    title: East Asia (EDGAR-HYDE)
+    comment: Region 'East Asia' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - BRN
+      - IDN
+      - KOR
+      - MYS
+      - PHL
+      - PNG
+      - SGP
+      - THA
+      - TLS
+  EDGAR-HYDE|Oceania:
+    title: Oceania (EDGAR-HYDE)
+    comment: Region 'Oceania' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - ASM
+      - AUS
+      - CCK
+      - COK
+      - CXR
+      - FJI
+      - FSM
+      - GUM
+      - HMD
+      - KIR
+      - MHL
+      - MNP
+      - NCL
+      - NFK
+      - NIU
+      - NRU
+      - NZL
+      - PCN
+      - PLW
+      - PYF
+      - SLB
+      - TKL
+      - TON
+      - TUV
+      - VUT
+      - WLF
+      - WSM
+  EDGAR-HYDE|Japan:
+    title: Japan (EDGAR-HYDE)
+    comment: Region 'Japan' of EDGAR 2.0 and EDGAR-HYDE.
+    children:
+    - - JPN

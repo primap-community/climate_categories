@@ -94,6 +94,7 @@ _read_py_options("ISO3")
 ISO3_GROUPS = cats["ISO3_GROUPS"]
 ISO3_GCAM = cats["ISO3_GCAM"]
 ISO3_PRIMAP1 = cats["ISO3_PRIMAP1"]
+ISO3_PRIMAP1_INPUTS = cats["ISO3_PRIMAP1_INPUTS"]
 ISO3_PRIMAP2 = cats["ISO3_PRIMAP2"]
 FAO = _read_py_hier("FAO")
 CT = _read_py_hier("CT")
@@ -122,6 +123,7 @@ __all__ = [
     "ISO3_GCAM",
     "ISO3_GROUPS",
     "ISO3_PRIMAP1",
+    "ISO3_PRIMAP1_INPUTS",
     "ISO3_PRIMAP2",
     "RCMIP",
     "BURDI_class",

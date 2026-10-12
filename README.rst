@@ -20,43 +20,45 @@ The documentation can be found at: https://climate-categories.readthedocs.io.
 Included categorizations
 ------------------------
 
-===============  ==================================================================
-Name             Title
----------------  ------------------------------------------------------------------
-IPCC1996         IPCC GHG emission categories (1996)
-IPCC2006         IPCC GHG emission categories (2006)
-IPCC2006_PRIMAP  IPCC GHG emission categories (2006) with additional categories
-CRF1999          Common Reporting Format GHG emissions categories (1999)
-CRF2013          Common Reporting Format GHG emissions categories (2013)
-CRF2013_2021     CRF categories extended with country specific categories from
-                 2021 submissions
-CRF2013_2022     CRF categories extended with country specific categories from
-                 2022 submissions
-CRF2013_2023     CRF categories extended with country specific categories from
-                 2023 submissions
-BURDI            BUR GHG emission categories (DI query interface)
-BURDI_class      BUR GHG emission categories (DI query interface) + classifications
-CRFDI            CRF GHG emission categories (DI query interface)
-CRFDI_class      CRF GHG emission categories (DI query interface) + classifications
-GCB              Global Carbon Budget CO2 emission categories
-RCMIP            RCMIP emissions categories
-gas              Gases and other climate-forcing substances
-ISO3             Countries and other areas from ISO 3166-1, with options for country
-                 groups, see below
-ISO3_GROUPS      ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
-                 and historical countries
-ISO3_GCAM        ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
-                 historical countries, Kosovo, and regions used by the GCAM
-                 integrated assessment model
-ISO3_PRIMAP2     ISO3_GROUPS with the countries and territories as used by
-                 primap2: Palestine included in Israel, territories included in
-                 their sovereign country if its inventory covers them, without
-                 unpopulated territories
-ISO3_PRIMAP1     ISO3_GROUPS with the countries, territories, and regions of
-                 PRIMAP-hist up to v2.x
-FAO              FAOSTAT climate change agrifood systems GHG emissions categories
-CT               Climate Trace categories
-===============  ==================================================================
+=====================  ==================================================================
+Name                   Title
+---------------------  ------------------------------------------------------------------
+IPCC1996               IPCC GHG emission categories (1996)
+IPCC2006               IPCC GHG emission categories (2006)
+IPCC2006_PRIMAP        IPCC GHG emission categories (2006) with additional categories
+CRF1999                Common Reporting Format GHG emissions categories (1999)
+CRF2013                Common Reporting Format GHG emissions categories (2013)
+CRF2013_2021           CRF categories extended with country specific categories from
+                       2021 submissions
+CRF2013_2022           CRF categories extended with country specific categories from
+                       2022 submissions
+CRF2013_2023           CRF categories extended with country specific categories from
+                       2023 submissions
+BURDI                  BUR GHG emission categories (DI query interface)
+BURDI_class            BUR GHG emission categories (DI query interface) + classifications
+CRFDI                  CRF GHG emission categories (DI query interface)
+CRFDI_class            CRF GHG emission categories (DI query interface) + classifications
+GCB                    Global Carbon Budget CO2 emission categories
+RCMIP                  RCMIP emissions categories
+gas                    Gases and other climate-forcing substances
+ISO3                   Countries and other areas from ISO 3166-1, with options for country
+                       groups, see below
+ISO3_GROUPS            ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
+                       and historical countries
+ISO3_GCAM              ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
+                       historical countries, Kosovo, and regions used by the GCAM
+                       integrated assessment model
+ISO3_PRIMAP2           ISO3_GROUPS with the countries and territories as used by
+                       primap2: Palestine included in Israel, territories included in
+                       their sovereign country if its inventory covers them, without
+                       unpopulated territories
+ISO3_PRIMAP1           ISO3_GROUPS with the countries, territories, and regions of
+                       PRIMAP-hist up to v2.x
+ISO3_PRIMAP1_INPUTS    ISO3_PRIMAP1 with the regions of the IPCC AR5, the RCPs, and
+                       EDGAR-HYDE, and the codes of the PRIMAP-hist v2.x input data
+FAO                    FAOSTAT climate change agrifood systems GHG emissions categories
+CT                     Climate Trace categories
+=====================  ==================================================================
 
 Categorizations with options
 -----------------------------

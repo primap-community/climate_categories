@@ -309,6 +309,10 @@ def test_options():
         "GCAM",
         "PSE_in_ISR",
         "PRIMAP1",
+        "AR5",
+        "RCP",
+        "EDGAR_HYDE",
+        "PRIMAP1_inputs",
     }
     # options are sorted, and built only once
     assert climate_categories.ISO3.with_options(["UNFCCC", "EU"]) is ISO3_UNFCCC
@@ -561,6 +565,75 @@ def test_primap1_conflicts(option: str):
     options = [*climate_categories.ISO3_PRIMAP1.enabled_options, option]
     with pytest.raises(ValueError, match="conflicts"):
         climate_categories.ISO3.with_options(options)
+
+
+def model_regions_world(regions: list[str]) -> dict[str, list[str]]:
+    """The regions of each country of PRIMAP-hist v3.0."""
+    iso3 = climate_categories.ISO3.with_options(
+        [*climate_categories.ISO3_PRIMAP2.enabled_options, "AR5", "EDGAR_HYDE", "RCP"]
+    )
+    world = children(iso3, "World")
+    assert len(world) == 208
+    found: dict[str, list[str]] = {}
+    for region in regions:
+        for descendant in iso3.descendants(region):
+            if descendant.codes[0] in world:
+                found.setdefault(descendant.codes[0], []).append(region)
+    return found
+
+
+def test_ar5():
+    iso3 = climate_categories.cats["ISO3[AR5]"]
+    rc10 = ["NAM", "WEU", "POECD", "EIT", "LAM", "SSA", "MNA", "EAS", "SAS", "PAS"]
+    assert sum(len(children(iso3, f"AR5|{r}")) for r in rc10) == 244
+    assert children(iso3, "AR5|NAM") == {"CAN", "GUM", "SPM", "USA"}
+    assert "TUR" in children(iso3, "AR5|WEU")
+    assert children(iso3, "AR5|OECD-1990") == {"AR5|NAM", "AR5|WEU", "AR5|POECD"}
+    # Taiwan, Hong Kong, and Macao are not part of any region
+    found = model_regions_world([f"AR5|{r}" for r in rc10])
+    assert all(len(regions) == 1 for regions in found.values())
+    assert len(found) == 205
+    assert not {"HKG", "MAC", "TWN"} & set(found)
+    # ANT takes over the memberships of CUW, SXM, and BES
+    assert found["ANT"] == ["AR5|LAM"]
+
+
+def test_rcp():
+    iso3 = climate_categories.cats["ISO3[RCP]"]
+    assert children(iso3, "RCP|OECD90") == {"RCP|R10NAM", "RCP|R10WEU", "RCP|R10PAO"}
+    assert {"FJI", "SLB", "VUT", "WSM"} <= children(iso3, "RCP|R10PAO")
+    assert {"SDN", "SSD"} <= children(iso3, "RCP|R10AFR")
+    assert {"SRB", "MNE"} <= children(iso3, "RCP|R10REF")
+    assert "TWN" in children(iso3, "RCP|R10CHN")
+    found = model_regions_world(
+        ["RCP|OECD90", "RCP|REF", "RCP|ASIA", "RCP|MAF", "RCP|LAM"]
+    )
+    assert all(len(regions) == 1 for regions in found.values())
+    # many small countries are not part of any region
+    assert len(found) == 178
+    assert not {"AND", "ATG", "KIR", "TUV"} & set(found)
+
+
+def test_edgar_hyde():
+    iso3 = climate_categories.cats["ISO3[EDGAR_HYDE]"]
+    assert children(iso3, "EDGAR-HYDE|Canada") == {"CAN"}
+    assert len(children(iso3, "EDGAR-HYDE|CIS")) == 15
+    assert {"AIA", "ATG"} <= children(iso3, "EDGAR-HYDE|Latin America")
+    assert "IOT" in children(iso3, "EDGAR-HYDE|Africa")
+    found = model_regions_world([c for c in iso3 if c.startswith("EDGAR-HYDE|")])
+    assert all(len(regions) == 1 for regions in found.values())
+    # only the British Virgin Islands are not part of any region
+    assert len(found) == 207
+    assert "VGB" not in found
+
+
+def test_primap1_inputs():
+    iso3 = climate_categories.ISO3_PRIMAP1_INPUTS
+    assert len(children(iso3, "EARTH")) == 207
+    assert iso3["FSU"] == iso3["EDGAR-HYDE|CIS"]
+    assert iso3["LATINAMER2"] == iso3["EDGAR-HYDE|Latin America"]
+    assert iso3["R5OECD"] == iso3["RCP|OECD90"]
+    assert iso3["RC10EIT"] == iso3["AR5|EIT"]
 
 
 def test_historical():
