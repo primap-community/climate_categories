@@ -32,11 +32,10 @@ unsupported:
   - MSR_PCN_in_GBR
   comment: the GCAM regions have MSR and PCN in other regions than GBR
 aliases:
-  ISO3_PRIMAP:
+  ISO3_GROUPS:
   - EU
   - groups
   - historical
-  - PSE_in_ISR
   - UNFCCC
   ISO3_GCAM:
   - EU

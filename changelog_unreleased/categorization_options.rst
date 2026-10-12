@@ -22,12 +22,12 @@
   from ISO 3166-1, like ``SUN`` and ``YUG``), ``Kosovo`` (split from Serbia, so ``SRB``
   has ``info["excludes"] == ["XKX"]``, and part of ``World``), and ``PSE_in_ISR`` (Palestine
   not listed separately, but included in Israel, so ``ISR`` has
-  ``info["includes"] == ["PSE"]``). Use the new alias ``ISO3_PRIMAP``
+  ``info["includes"] == ["PSE"]``). Use the new alias ``ISO3_GROUPS``
   for the previous contents of ``ISO3``, which additionally includes the withdrawn
-  countries and has Palestine included in Israel, like PRIMAP-hist.
+  countries.
 * ``ISO3_GCAM`` is now an alias for ISO3 with the new ``GCAM`` option and the options
   ``EU``, ``groups``, ``historical``, ``Kosovo``, and ``UNFCCC``, so it also includes the
   withdrawn countries now.
 * Categories which compare equal because their categorizations are related, like
-  ``ISO3["DEU"]`` and ``ISO3_PRIMAP["DEU"]``, or ``IPCC2006["1.A"]`` and
+  ``ISO3["DEU"]`` and ``ISO3_GROUPS["DEU"]``, or ``IPCC2006["1.A"]`` and
   ``IPCC2006_PRIMAP["1.A"]``, now also have the same hash.

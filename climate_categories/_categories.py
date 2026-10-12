@@ -100,7 +100,7 @@ def _related(a: "Categorization", b: "Categorization") -> bool:
     comparable?
 
     This is the case for categorizations of the same family (e.g. ``ISO3``,
-    ``ISO3[EU]`` and the alias ``ISO3_PRIMAP``) and for extensions, which are named
+    ``ISO3[EU]`` and the alias ``ISO3_GROUPS``) and for extensions, which are named
     ``{name}_{extension}`` (e.g. ``IPCC2006`` and ``IPCC2006_PRIMAP``).
     """
     if a is b:
@@ -610,7 +610,7 @@ class Categorization:
 
         For categorizations with options, this is the name of the base categorization
         followed by the sorted options in brackets, like ``"ISO3[EU,UNFCCC]"``, also
-        if this categorization is available under an alias like ``ISO3_PRIMAP``.
+        if this categorization is available under an alias like ``ISO3_GROUPS``.
         Otherwise, it is the name.
         """
         if self._canonical_name is not None:

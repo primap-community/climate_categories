@@ -148,7 +148,7 @@ Option files have the following fields:
 Key                       Type  Notes                                            Example
 ------------------------  ----  -----------------------------------------------  ----------------------------
 option                    str   the name of the option, letters, digits, and _   UNFCCC
-base                      str   optional, the categorization the option is for   ISO3_PRIMAP
+base                      str   optional, the categorization the option is for   ISO3_GROUPS
 title                     str   one-line description                             UNFCCC parties
 comment                   str   optional, long-form description                  Parties to the UN Framework…
 references                str   optional, citable reference(s) and sources       https://unfccc.int/…
@@ -185,7 +185,7 @@ the comment of all categories whose children were changed.
 ``merge_into`` removes categories which are included in other categories, for example
 ``{'PSE': 'ISR'}`` if the emissions of Palestine are included in the emissions of
 Israel. The removed code is recorded in the ``includes`` info of the receiving
-category, so ``ISO3_PRIMAP["ISR"].info["includes"]`` is ``['PSE']``. If the removed
+category, so ``cats["ISO3[PSE_in_ISR]"]["ISR"].info["includes"]`` is ``['PSE']``. If the removed
 category itself included other categories, they are added to the ``includes`` too.
 Child sets which also contain the receiving category, or a category it is part of, still
 add up, so the removed category is just dropped from them. If the receiving category
@@ -240,7 +240,7 @@ base          str   the name of the base categorization                         
 options       list  all options, in the order in which they are applied                 ['EU', 'UNFCCC']
 combinations  list  optional, patches applied if all their options are enabled
 unsupported   list  optional, combinations of options which are not quality-controlled
-aliases       map   optional, names for commonly used combinations of options           {'ISO3_PRIMAP': […]}
+aliases       map   optional, names for commonly used combinations of options           {'ISO3_GROUPS': […]}
 ============  ====  ==================================================================  ====================
 
 Each entry in ``combinations`` has the key ``options`` with the list of options, an
@@ -272,9 +272,8 @@ An example manifest:
           - PSE_in_ISR
         comment: the GCAM regions have PSE separately
     aliases:
-      ISO3_PRIMAP:
+      ISO3_GROUPS:
         - EU
-        - PSE_in_ISR
         - UNFCCC
 
 
@@ -284,14 +283,14 @@ Extensions
 Option files can also be used to extend categorizations without including the
 extension in climate_categories, for example to share an extension together with a
 dataset using it. For such options, give the categorization the option is for in the
-``base`` field, like ``ISO3_PRIMAP`` or ``ISO3[EU,UNFCCC]``, and read and apply them
+``base`` field, like ``ISO3_GROUPS`` or ``ISO3[EU,UNFCCC]``, and read and apply them
 using ``climate_categories.load_extension``. ``requires`` and ``conflicts`` then refer
 to the options enabled in the base and to extensions applied before. An example:
 
 .. code-block:: yaml
 
     option: mygroups
-    base: ISO3_PRIMAP
+    base: ISO3_GROUPS
     title: my groups
     comment: Groups used in my dataset.
     last_update: 2026-10-01
@@ -310,7 +309,7 @@ extension which uses ``MYGROUP`` from the extension above:
 .. code-block:: yaml
 
     option: mysecondgroups
-    base: ISO3_PRIMAP
+    base: ISO3_GROUPS
     title: my second groups
     last_update: 2026-10-02
     requires:

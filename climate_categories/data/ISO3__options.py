@@ -36,7 +36,7 @@ spec = {
         },
     ],
     "aliases": {
-        "ISO3_PRIMAP": ["EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"],
+        "ISO3_GROUPS": ["EU", "groups", "historical", "UNFCCC"],
         "ISO3_GCAM": ["EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"],
         "ISO3_PRIMAP2": [
             "Antilles",
