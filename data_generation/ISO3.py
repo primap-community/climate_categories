@@ -8,6 +8,7 @@ import copy
 import datetime
 import itertools
 import pathlib
+import typing
 
 import ISO3_GCAM
 import requests
@@ -74,13 +75,269 @@ TERRITORIES_IN_SOVEREIGN_INVENTORY = {
     "FIN": ["ALA"],
 }
 
+# The Least Developed Countries with the year of their inclusion in the list, from the
+# list of the UN Department of Economic and Social Affairs and figure I.3 of the
+# Handbook on the Least Developed Country Category (2024). The list is available from
+# LDC_FIRST_YEAR on, earlier lists included Sikkim and the Yemen Arab Republic and the
+# People's Democratic Republic of Yemen, which merged in 1990 into the Republic of
+# Yemen, which was confirmed as an LDC in 1991.
+LDC_FIRST_YEAR = 1991
+LDC_INCLUDED: list[tuple[str, int]] = [
+    *(
+        (code, 1971)
+        for code in (
+            "AFG",
+            "BEN",
+            "BTN",
+            "BWA",
+            "BFA",
+            "BDI",
+            "TCD",
+            "ETH",
+            "GIN",
+            "HTI",
+            "LAO",
+            "LSO",
+            "MWI",
+            "MDV",
+            "MLI",
+            "NPL",
+            "NER",
+            "RWA",
+            "WSM",
+            "SOM",
+            "SDN",
+            "UGA",
+            "TZA",
+            "YEM",
+        )
+    ),
+    *((code, 1975) for code in ("BGD", "CAF", "GMB")),
+    *((code, 1977) for code in ("CPV", "COM")),
+    ("GNB", 1981),
+    *((code, 1982) for code in ("DJI", "GNQ", "STP", "SLE", "TGO")),
+    ("VUT", 1985),
+    *((code, 1986) for code in ("KIR", "MRT", "TUV")),
+    ("MMR", 1987),
+    ("MOZ", 1988),
+    ("LBR", 1990),
+    *((code, 1991) for code in ("KHM", "COD", "MDG", "SLB", "ZMB")),
+    *((code, 1994) for code in ("AGO", "ERI")),
+    ("SEN", 2000),
+    ("TLS", 2003),
+    ("SSD", 2012),
+]
+# The countries which graduated from the list, with the year of graduation.
+LDC_GRADUATED: list[tuple[str, int]] = [
+    ("BWA", 1994),
+    ("CPV", 2007),
+    ("MDV", 2011),
+    ("WSM", 2014),
+    ("GNQ", 2017),
+    ("VUT", 2020),
+    ("BTN", 2023),
+    ("STP", 2024),
+]
+
 # Territories without permanent population.
 UNPOPULATED = ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI")
+
+# Definitions of PRIMAP-hist up to v2.x, from the primap1 country table
+# (SIMCAP_EM_COUNTRYTABLE_v8.3.xlsx). They reproduce the regions of PRIMAP-hist v2.5 to
+# v2.8 exactly.
+# PRIMAP-hist up to v2.x included these unpopulated territories in their sovereign
+# country, and MSR in GBR.
+PRIMAP1_MERGED = {"MSR": "GBR", "HMD": "AUS", "ATF": "FRA", "UMI": "USA"}
+# PRIMAP-hist up to v2.x did not report these territories.
+PRIMAP1_REMOVED = ("BVT", "IOT", "PCN", "SGS")
+# The Umbrella Group, without a formal member list (2011-11-03).
+PRIMAP1_UMBRELLA = ["AUS", "CAN", "JPN", "NOR", "NZL", "RUS", "UKR", "USA"]
+# The observers of AOSIS in addition to its members (sidsnet.org, 2011-11-20). The
+# observer Netherlands Antilles is given by CUW, SXM, and BES, which the Antilles option
+# merges into ANT.
+PRIMAP1_AOSIS_OBSERVERS = ["ASM", "BES", "CUW", "GUM", "SXM", "VIR"]
+# The parties not listed in Annex I, without AND, BRN, IRQ, SOM, and VAT, which became
+# parties from 2007 on, and without PSE.
+PRIMAP1_NONANNEXI = [
+    "AFG",
+    "AGO",
+    "ALB",
+    "ARE",
+    "ARG",
+    "ARM",
+    "ATG",
+    "AZE",
+    "BDI",
+    "BEN",
+    "BFA",
+    "BGD",
+    "BHR",
+    "BHS",
+    "BIH",
+    "BLZ",
+    "BOL",
+    "BRA",
+    "BRB",
+    "BTN",
+    "BWA",
+    "CAF",
+    "CHL",
+    "CHN",
+    "CIV",
+    "CMR",
+    "COD",
+    "COG",
+    "COK",
+    "COL",
+    "COM",
+    "CPV",
+    "CRI",
+    "CUB",
+    "DJI",
+    "DMA",
+    "DOM",
+    "DZA",
+    "ECU",
+    "EGY",
+    "ERI",
+    "ETH",
+    "FJI",
+    "FSM",
+    "GAB",
+    "GEO",
+    "GHA",
+    "GIN",
+    "GMB",
+    "GNB",
+    "GNQ",
+    "GRD",
+    "GTM",
+    "GUY",
+    "HND",
+    "HTI",
+    "IDN",
+    "IND",
+    "IRN",
+    "ISR",
+    "JAM",
+    "JOR",
+    "KAZ",
+    "KEN",
+    "KGZ",
+    "KHM",
+    "KIR",
+    "KNA",
+    "KOR",
+    "KWT",
+    "LAO",
+    "LBN",
+    "LBR",
+    "LBY",
+    "LCA",
+    "LKA",
+    "LSO",
+    "MAR",
+    "MDA",
+    "MDG",
+    "MDV",
+    "MEX",
+    "MHL",
+    "MKD",
+    "MLI",
+    "MMR",
+    "MNE",
+    "MNG",
+    "MOZ",
+    "MRT",
+    "MUS",
+    "MWI",
+    "MYS",
+    "NAM",
+    "NER",
+    "NGA",
+    "NIC",
+    "NIU",
+    "NPL",
+    "NRU",
+    "OMN",
+    "PAK",
+    "PAN",
+    "PER",
+    "PHL",
+    "PLW",
+    "PNG",
+    "PRK",
+    "PRY",
+    "QAT",
+    "RWA",
+    "SAU",
+    "SDN",
+    "SEN",
+    "SGP",
+    "SLB",
+    "SLE",
+    "SLV",
+    "SMR",
+    "SRB",
+    "SSD",
+    "STP",
+    "SUR",
+    "SWZ",
+    "SYC",
+    "SYR",
+    "TCD",
+    "TGO",
+    "THA",
+    "TJK",
+    "TKM",
+    "TLS",
+    "TON",
+    "TTO",
+    "TUN",
+    "TUV",
+    "TZA",
+    "UGA",
+    "URY",
+    "UZB",
+    "VCT",
+    "VEN",
+    "VNM",
+    "VUT",
+    "WSM",
+    "YEM",
+    "ZAF",
+    "ZMB",
+    "ZWE",
+]
 
 # Options which make up commonly used categorizations.
 ALIASES = {
     "ISO3_PRIMAP": ("EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"),
     "ISO3_GCAM": ("EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"),
+    # PRIMAP-hist from v3.0 on
+    "ISO3_PRIMAP2": (
+        "Antilles",
+        "ESH_in_MAR",
+        "EU",
+        "groups",
+        "historical",
+        "no_unpopulated",
+        "PSE_in_ISR",
+        "territories_in_sovereign_inventory",
+        "UNFCCC",
+    ),
+    # PRIMAP-hist up to v2.x
+    "ISO3_PRIMAP1": (
+        "Antilles",
+        "ESH_in_MAR",
+        "EU",
+        "groups",
+        "historical",
+        "PRIMAP1",
+        "PSE_in_ISR",
+        "territories_in_sovereign_inventory",
+        "UNFCCC",
+    ),
 }
 
 # Combinations of options which are not quality-controlled.
@@ -385,6 +642,74 @@ UNFCCC_LEFT: list[tuple[str, datetime.date, str]] = [
     ),
 ]
 
+# The chapter of the UNFCCC in the treaty collection of its depositary, which lists the
+# depositary notifications of the amendments to Annex I.
+UNTC_UNFCCC_CHAPTER = (
+    "https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/"
+    "XXVII-7.en.pdf"
+)
+UNFCCC_TEXT = (
+    "https://unfccc.int/sites/default/files/convention_text_with_annexes_english_for_"
+    "posting.pdf"
+)
+
+# Countries listed in Annex I of the Convention, with the date from which they are
+# listed. Amendments to Annex I enter into force six months after the depositary
+# communicated their adoption (Article 16, paragraph 3 of the Convention). The original
+# Annex I also listed Czechoslovakia, which was never a party to the Convention and was
+# removed by the first amendment.
+ANNEX_I_ADDED: list[tuple[str, datetime.date, str]] = [
+    *(
+        (code, datetime.date(1994, 3, 21), UNFCCC_TEXT)
+        for code in (
+            "AUS",
+            "AUT",
+            "BLR",
+            "BEL",
+            "BGR",
+            "CAN",
+            "DNK",
+            "EU",
+            "EST",
+            "FIN",
+            "FRA",
+            "DEU",
+            "GRC",
+            "HUN",
+            "ISL",
+            "IRL",
+            "ITA",
+            "JPN",
+            "LVA",
+            "LTU",
+            "LUX",
+            "NLD",
+            "NZL",
+            "NOR",
+            "POL",
+            "PRT",
+            "ROU",
+            "RUS",
+            "ESP",
+            "SWE",
+            "CHE",
+            "TUR",
+            "UKR",
+            "GBR",
+            "USA",
+        )
+    ),
+    # decision 4/CP.3, communicated on 1998-02-13
+    *(
+        (code, datetime.date(1998, 8, 13), UNTC_UNFCCC_CHAPTER)
+        for code in ("HRV", "CZE", "LIE", "MCO", "SVK", "SVN")
+    ),
+    # decision 3/CP.15, communicated on 2010-04-26
+    ("MLT", datetime.date(2010, 10, 26), UNTC_UNFCCC_CHAPTER),
+    # decision 10/CP.17, communicated on 2012-07-09
+    ("CYP", datetime.date(2013, 1, 9), UNTC_UNFCCC_CHAPTER),
+]
+
 # Status of the Paris Agreement at its depositary, the Secretary-General of the United
 # Nations. Lists the date on which every party deposited its instrument of
 # ratification, acceptance, approval, or accession.
@@ -644,6 +969,7 @@ def main():
         antilles_option(),
         esh_in_mar_option(),
         msr_pcn_in_gbr_option(),
+        primap1_option(),
     ]
     manifest = climate_categories.OptionManifest(
         base="ISO3",
@@ -708,6 +1034,7 @@ def unfccc_option(known_codes: set[str]) -> climate_categories.CategorizationOpt
     """The UNFCCC option, all parties have to be in ``known_codes``."""
     categories = unfccc_categories()
     categories.update(unfccc_versions(categories, known_codes))
+    categories.update(annex_versions(categories, known_codes))
     categories.update(paris_categories(categories, known_codes))
     return climate_categories.CategorizationOption(
         name="UNFCCC",
@@ -715,13 +1042,16 @@ def unfccc_option(known_codes: set[str]) -> climate_categories.CategorizationOpt
         comment="Parties to the UN Framework Convention on Climate Change and to the "
         "Paris Agreement under it, currently (UNFCCC, PARIS) and over time "
         "(UNFCCC_YYYY_MM, PARIS_YYYY_MM), parties listed in Annex I of the "
-        "Convention and other parties (Annex-I, Non-Annex-I), and the names of "
-        "parties as used by the UNFCCC.",
+        "Convention and other parties, currently (Annex-I, Non-Annex-I) and over "
+        "time (Annex-I_YYYY_MM, Non-Annex-I_YYYY_MM), and the names of parties as "
+        "used by the UNFCCC.",
         references="""UNFCCC Parties & Observers, https://unfccc.int/parties-observers;
 UNFCCC status at the depositary,
 https://treaties.un.org/Pages/ViewDetailsIII.aspx?src=TREATY&mtdsg_no=XXVII-7&chapter=27&Temp=mtdsg3&clang=_en;
 Paris Agreement status at the depositary,
-https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en""",
+https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVII-7-d&chapter=27&clang=_en;
+Convention text with Annex I, https://unfccc.int/sites/default/files/convention_text_with_annexes_english_for_posting.pdf;
+Amendments to Annex I, https://treaties.un.org/doc/Publication/MTDSG/Volume%20II/Chapter%20XXVII/XXVII-7.en.pdf""",
         last_update=LAST_UPDATE,
         requires=("EU",),
         add_categories=categories,
@@ -734,12 +1064,14 @@ def groups_option() -> climate_categories.CategorizationOption:
         name="groups",
         title="country groups",
         comment="Groups of countries in climate negotiations and international "
-        "politics: AOSIS, BASIC, LDC, the Umbrella Group, the Arab Group, LMDC, G35, "
-        "G7, G8, G20, OECD, and OPEC.",
+        "politics: AOSIS, BASIC, the Least Developed Countries (currently LDC, and "
+        "over time LDC_YYYY), the Umbrella Group, the Arab Group, LMDC, G35, G7, G8, "
+        "G20, OECD, and OPEC.",
         references="""G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;
 OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;
 UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;
 LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;
+LDC history, Handbook on the Least Developed Country Category, figure I.3, https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/LDC-Handbook-2024.pdf;
 AOSIS members, https://www.aosis.org/about/member-states/;
 OPEC https://www.opec.org/member-countries.html;
 ARAB https://unfccc.int/party-groupings;
@@ -893,6 +1225,80 @@ def msr_pcn_in_gbr_option() -> climate_categories.CategorizationOption:
     )
 
 
+def primap1_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="PRIMAP1",
+        title="PRIMAP-hist up to v2.x",
+        comment="The countries and regions of PRIMAP-hist up to v2.x, which was "
+        "produced with the primap1 library. Montserrat (MSR) and the unpopulated "
+        "territories HMD, ATF, and UMI are included in their sovereign country, BVT, "
+        "IOT, PCN, and SGS are removed, so that World contains the countries and "
+        "territories of PRIMAP-hist. The region codes of PRIMAP-hist v2.x refer to "
+        "the definitions of PRIMAP-hist v2.x: LDC to LDC_2012, AOSIS to "
+        "AOSIS_PRIMAP1, UMBRELLA to UMBRELLA_PRIMAP1, and NONANNEXI to "
+        "NONANNEXI_PRIMAP1. ANNEXI, EU27BX, BASIC, and EARTH are unchanged.",
+        references="""PRIMAP-hist v2.8, https://zenodo.org/records/22876287;
+Gütschow et al. (2016), The PRIMAP-hist national historical emissions time series, https://doi.org/10.5194/essd-8-571-2016""",
+        last_update=OPTIONS_LAST_UPDATE,
+        requires=(
+            "Antilles",
+            "ESH_in_MAR",
+            "EU",
+            "groups",
+            "historical",
+            "PSE_in_ISR",
+            "territories_in_sovereign_inventory",
+            "UNFCCC",
+        ),
+        conflicts=("Kosovo", "MSR_PCN_in_GBR", "no_unpopulated"),
+        add_categories={
+            "AOSIS_PRIMAP1": {
+                "title": "Alliance of Small Island States with observers "
+                "(PRIMAP-hist v2.x)",
+                "comment": "The members and observers of the Alliance of Small Island "
+                "States as of 2011-11-20, as used in PRIMAP-hist up to v2.x.",
+                "children": [
+                    sorted(
+                        aosis_categories()["AOSIS_2011"]["children"][0]
+                        + PRIMAP1_AOSIS_OBSERVERS
+                    )
+                ],
+            },
+            "UMBRELLA_PRIMAP1": {
+                "title": "The Umbrella Group (PRIMAP-hist v2.x)",
+                "comment": "The Umbrella Group as used in PRIMAP-hist up to v2.x, "
+                "following the UNFCCC website in 2011, which gave no formal list.",
+                "children": [PRIMAP1_UMBRELLA],
+            },
+            "NONANNEXI_PRIMAP1": {
+                "title": "Non-Annex-I parties to the UNFCCC (PRIMAP-hist v2.x)",
+                "comment": "The parties to the UNFCCC not listed in Annex I of the "
+                "Convention as used in PRIMAP-hist up to v2.x, without Andorra, "
+                "Brunei, Iraq, Somalia, and the Holy See, which became parties from "
+                "2007 on.",
+                "children": [PRIMAP1_NONANNEXI],
+            },
+        },
+        remove_alternative_codes={
+            "LDC": "LDC_2024",
+            "AOSIS": "AOSIS_2011",
+            "UMBRELLA": "UMBRELLA_2023",
+            "NONANNEXI": "Non-Annex-I",
+        },
+        add_alternative_codes={
+            "LDC": "LDC_2012",
+            "AOSIS": "AOSIS_PRIMAP1",
+            "UMBRELLA": "UMBRELLA_PRIMAP1",
+            "NONANNEXI": "NONANNEXI_PRIMAP1",
+        },
+        merge_into=PRIMAP1_MERGED,
+        remove_categories=climate_categories.CategoryRemoval(
+            codes=PRIMAP1_REMOVED,
+            comment="Territories which are not in PRIMAP-hist up to v2.x are removed.",
+        ),
+    )
+
+
 def basic_categories() -> dict[str, dict]:
     categories = {}
     categories["BASIC"] = {
@@ -903,58 +1309,69 @@ def basic_categories() -> dict[str, dict]:
 
 
 def ldc_categories() -> dict[str, dict]:
+    """The Least Developed Countries over time, from LDC_INCLUDED and LDC_GRADUATED.
+
+    Inclusions are only documented by year, so for every year from 1991 in which
+    countries were included or graduated, there is a category LDC_YYYY containing the
+    LDCs at the end of the year. The latest category additionally has the code LDC.
+    Years from the year of LAST_UPDATE on are left out, so that all codes are stable.
+    """
+    changes = sorted(
+        {
+            max(year, LDC_FIRST_YEAR)
+            for _, year in (*LDC_INCLUDED, *LDC_GRADUATED)
+            if year < LAST_UPDATE.year
+        }
+    )
     categories = {}
-    categories["LDC"] = {
-        "title": "Least Developed Countries",
-        "children": [
-            [
-                "AGO",
-                "BEN",
-                "BFA",
-                "BDI",
-                "CAF",
-                "TCD",
-                "COM",
-                "COD",
-                "DJI",
-                "ERI",
-                "ETH",
-                "GMB",
-                "GIN",
-                "GNB",
-                "LSO",
-                "LBR",
-                "MDG",
-                "MWI",
-                "MLI",
-                "MRT",
-                "MOZ",
-                "NER",
-                "RWA",
-                "SEN",
-                "SLE",
-                "SOM",
-                "SSD",
-                "SDN",
-                "TGO",
-                "UGA",
-                "TZA",
-                "ZMB",
-                "AFG",
-                "BGD",
-                "KHM",
-                "LAO",
-                "MMR",
-                "NPL",
-                "TLS",
-                "YEM",
-                "HTI",
-                "KIR",
-                "SLB",
-                "TUV",
-            ]
-        ],
-    }
+    for i, year in enumerate(changes):
+        included = [c for c, y in LDC_INCLUDED if y <= year]
+        graduated = [c for c, y in LDC_GRADUATED if y <= year]
+        members = [c for c in included if c not in graduated]
+
+        if i + 1 < len(changes):
+            end = changes[i + 1] - 1
+            validity = f"from {year} to {end}" if end > year else f"in {year}"
+        else:
+            validity = f"since {year}"
+        if i == 0:
+            comment = (
+                f"The Least Developed Countries at the end of {year}, after the Republic "
+                "of Yemen was confirmed as an LDC. Earlier lists included Sikkim and the "
+                "two Yemeni states, so they are not available."
+            )
+        else:
+            descriptions = []
+            for kind, countries in (
+                ("included", [c for c, y in LDC_INCLUDED if y == year]),
+                ("graduated", [c for c, y in LDC_GRADUATED if y == year]),
+            ):
+                if countries:
+                    descriptions.append(f"{kind}: {', '.join(countries)}")
+            comment = (
+                f"The Least Developed Countries at the end of {year}. Changes in "
+                f"{year}, {'; '.join(descriptions)}."
+            )
+        comment += (
+            " Inclusions in the list are only documented by year, so the category "
+            "describes the list at the end of the year."
+        )
+        spec = {
+            "title": f"Least Developed Countries {validity}",
+            "comment": comment,
+            "children": [members],
+        }
+        if i + 1 == len(changes):
+            spec["comment"] += (
+                " Note that the 'LDC' code will always refer to the current list, use "
+                f"LDC_{year} if you need a stable code."
+            )
+            spec["alternative_codes"] = ["LDC"]
+        categories[f"LDC_{year}"] = spec
+
+    assert len(categories["LDC_2012"]["children"][0]) == 49
+    assert len(categories["LDC_2024"]["children"][0]) == 44
+
     return categories
 
 
@@ -985,8 +1402,14 @@ def umbrella_categories() -> dict[str, dict]:
 
 def aosis_categories() -> dict[str, dict]:
     categories = {}
-    categories["AOSIS"] = {
+    categories["AOSIS_2011"] = {
         "title": "Alliance of Small Island States",
+        "comment": "The members of the Alliance of Small Island States. The "
+        "membership is unchanged since at least 2011-11-20, when the earliest list we "
+        "checked was published (sidsnet.org, as used in PRIMAP-hist up to v2.x). "
+        "Note that the 'AOSIS' code will always refer to the current members, use "
+        "AOSIS_2011 if you need a stable code.",
+        "alternative_codes": ["AOSIS"],
         "children": [
             [
                 "ATG",
@@ -1586,14 +2009,86 @@ def unfccc_versions(unfccc: dict[str, dict], known_codes: set[str]) -> dict[str,
         prefix="UNFCCC",
         joined=UNFCCC_JOINED,
         left=UNFCCC_LEFT,
-        title_name="UNFCCC",
-        comment_name="UN Framework Convention on Climate Change",
+        title="Parties to the UNFCCC",
+        description="Parties to the UN Framework Convention on Climate Change",
         instrument="Convention",
     )
 
     assert set(categories["UNFCCC_2022_10"]["children"][0]) == set(
         unfccc["UNFCCC"]["children"][0]
     )
+
+    return categories
+
+
+def annex_versions(unfccc: dict[str, dict], known_codes: set[str]) -> dict[str, dict]:
+    """The parties listed in Annex I of the Convention and the other parties over
+    time, see party_versions.
+
+    A party is in Annex-I from the date on which it is a party and listed in Annex I,
+    and in Non-Annex-I while it is a party and not listed in Annex I.
+
+    ``unfccc`` are the categories from unfccc_categories."""
+    listed = {code: date for code, date, _ in ANNEX_I_ADDED}
+    references = {code: reference for code, _, reference in ANNEX_I_ADDED}
+    references.update({code: reference for code, _, reference in UNFCCC_JOINED})
+    references.update({code: reference for code, _, reference in UNFCCC_LEFT})
+    dates = sorted(
+        {date for _, date, _ in (*UNFCCC_JOINED, *UNFCCC_LEFT, *ANNEX_I_ADDED)}
+    )
+
+    def parties(date: datetime.date) -> set[str]:
+        joined = {code for code, d, _ in UNFCCC_JOINED if d <= date}
+        left = {code for code, d, _ in UNFCCC_LEFT if d <= date}
+        return joined - left
+
+    def listed_at(date: datetime.date) -> set[str]:
+        return {code for code, d in listed.items() if d <= date}
+
+    def changes(
+        members: typing.Callable[[datetime.date], set[str]],
+    ) -> tuple[
+        list[tuple[str, datetime.date, str]], list[tuple[str, datetime.date, str]]
+    ]:
+        joined, left = [], []
+        previous: set[str] = set()
+        for date in dates:
+            current = members(date)
+            joined += [(c, date, references[c]) for c in sorted(current - previous)]
+            left += [(c, date, references[c]) for c in sorted(previous - current)]
+            previous = current
+        return joined, left
+
+    annex_joined, annex_left = changes(lambda d: parties(d) & listed_at(d))
+    categories = party_versions(
+        known_codes,
+        prefix="Annex-I",
+        joined=annex_joined,
+        left=annex_left,
+        title="Annex-I parties to the UNFCCC",
+        description="Parties to the UN Framework Convention on Climate Change listed "
+        "in Annex I of the Convention",
+        instrument="Convention",
+    )
+    non_annex_joined, non_annex_left = changes(lambda d: parties(d) - listed_at(d))
+    categories.update(
+        party_versions(
+            known_codes,
+            prefix="Non-Annex-I",
+            joined=non_annex_joined,
+            left=non_annex_left,
+            title="Non-Annex-I parties to the UNFCCC",
+            description="Parties to the UN Framework Convention on Climate Change not "
+            "listed in Annex I of the Convention",
+            instrument="Convention",
+        )
+    )
+
+    for code in ("Annex-I", "Non-Annex-I"):
+        latest = max(c for c in categories if c.startswith(f"{code}_"))
+        assert set(categories[latest]["children"][0]) == set(
+            unfccc[code]["children"][0]
+        ), latest
 
     return categories
 
@@ -1607,8 +2102,8 @@ def paris_categories(unfccc: dict[str, dict], known_codes: set[str]) -> dict[str
         prefix="PARIS",
         joined=PARIS_JOINED,
         left=PARIS_LEFT,
-        title_name="Paris Agreement",
-        comment_name="Paris Agreement",
+        title="Parties to the Paris Agreement",
+        description="Parties to the Paris Agreement",
         instrument="Agreement",
     )
 
@@ -1658,11 +2153,14 @@ def party_versions(
     prefix: str,
     joined: list[tuple[str, datetime.date, str]],
     left: list[tuple[str, datetime.date, str]],
-    title_name: str,
-    comment_name: str,
+    title: str,
+    description: str,
     instrument: str,
 ):
     """The parties to a treaty over time. All parties have to be in ``known_codes``.
+
+    ``title`` and ``description`` describe the parties in the title and comment of the
+    categories, like "Parties to the UNFCCC", and are followed by the validity.
 
     For every month in which parties joined or left, there is a category
     {prefix}_YYYY_MM containing the parties after all changes in that month took
@@ -1714,7 +2212,7 @@ def party_versions(
             if changed:
                 descriptions.append(f"{kind}: {', '.join(changed)}")
         comment = (
-            f"Parties to the {comment_name} {validity}. "
+            f"{description} {validity}. "
             f"Changes in {year}-{month:02}, {'; '.join(descriptions)}."
         )
         if i == 0:
@@ -1730,7 +2228,7 @@ def party_versions(
             )
 
         spec = {
-            "title": f"Parties to the {title_name} {validity}",
+            "title": f"{title} {validity}",
             "comment": comment,
             "children": [parties.copy()],
         }

@@ -48,6 +48,11 @@ ISO3_PRIMAP      ISO3 with EU, UNFCCC and Paris Agreement parties, country group
 ISO3_GCAM        ISO3 with EU, UNFCCC and Paris Agreement parties, country groups,
                  historical countries, Kosovo, and regions used by the GCAM
                  integrated assessment model
+ISO3_PRIMAP2     ISO3_PRIMAP with the countries and territories of PRIMAP-hist
+                 from v3.0 on: territories included in their sovereign country if
+                 its inventory covers them, without unpopulated territories
+ISO3_PRIMAP1     ISO3_PRIMAP with the countries, territories, and regions of
+                 PRIMAP-hist up to v2.x
 FAO              FAOSTAT climate change agrifood systems GHG emissions categories
 CT               Climate Trace categories
 ===============  ==================================================================

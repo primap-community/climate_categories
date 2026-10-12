@@ -1,0 +1,266 @@
+option: PRIMAP1
+title: PRIMAP-hist up to v2.x
+comment: 'The countries and regions of PRIMAP-hist up to v2.x, which was produced
+  with the primap1 library. Montserrat (MSR) and the unpopulated territories HMD,
+  ATF, and UMI are included in their sovereign country, BVT, IOT, PCN, and SGS are
+  removed, so that World contains the countries and territories of PRIMAP-hist. The
+  region codes of PRIMAP-hist v2.x refer to the definitions of PRIMAP-hist v2.x: LDC
+  to LDC_2012, AOSIS to AOSIS_PRIMAP1, UMBRELLA to UMBRELLA_PRIMAP1, and NONANNEXI
+  to NONANNEXI_PRIMAP1. ANNEXI, EU27BX, BASIC, and EARTH are unchanged.'
+references: "PRIMAP-hist v2.8, https://zenodo.org/records/22876287;\nGütschow et al.
+  (2016), The PRIMAP-hist national historical emissions time series, https://doi.org/10.5194/essd-8-571-2016"
+last_update: '2026-10-12'
+requires:
+- Antilles
+- ESH_in_MAR
+- EU
+- groups
+- historical
+- PSE_in_ISR
+- territories_in_sovereign_inventory
+- UNFCCC
+conflicts:
+- Kosovo
+- MSR_PCN_in_GBR
+- no_unpopulated
+add_categories:
+  AOSIS_PRIMAP1:
+    title: Alliance of Small Island States with observers (PRIMAP-hist v2.x)
+    comment: The members and observers of the Alliance of Small Island States as
+      of 2011-11-20, as used in PRIMAP-hist up to v2.x.
+    children:
+    - - ASM
+      - ATG
+      - BES
+      - BHS
+      - BLZ
+      - BRB
+      - COK
+      - COM
+      - CPV
+      - CUB
+      - CUW
+      - DMA
+      - DOM
+      - FJI
+      - FSM
+      - GNB
+      - GRD
+      - GUM
+      - GUY
+      - HTI
+      - JAM
+      - KIR
+      - KNA
+      - LCA
+      - MDV
+      - MHL
+      - MUS
+      - NIU
+      - NRU
+      - PLW
+      - PNG
+      - SGP
+      - SLB
+      - STP
+      - SUR
+      - SXM
+      - SYC
+      - TLS
+      - TON
+      - TTO
+      - TUV
+      - VCT
+      - VIR
+      - VUT
+      - WSM
+  UMBRELLA_PRIMAP1:
+    title: The Umbrella Group (PRIMAP-hist v2.x)
+    comment: The Umbrella Group as used in PRIMAP-hist up to v2.x, following the
+      UNFCCC website in 2011, which gave no formal list.
+    children:
+    - - AUS
+      - CAN
+      - JPN
+      - NOR
+      - NZL
+      - RUS
+      - UKR
+      - USA
+  NONANNEXI_PRIMAP1:
+    title: Non-Annex-I parties to the UNFCCC (PRIMAP-hist v2.x)
+    comment: The parties to the UNFCCC not listed in Annex I of the Convention
+      as used in PRIMAP-hist up to v2.x, without Andorra, Brunei, Iraq, Somalia,
+      and the Holy See, which became parties from 2007 on.
+    children:
+    - - AFG
+      - AGO
+      - ALB
+      - ARE
+      - ARG
+      - ARM
+      - ATG
+      - AZE
+      - BDI
+      - BEN
+      - BFA
+      - BGD
+      - BHR
+      - BHS
+      - BIH
+      - BLZ
+      - BOL
+      - BRA
+      - BRB
+      - BTN
+      - BWA
+      - CAF
+      - CHL
+      - CHN
+      - CIV
+      - CMR
+      - COD
+      - COG
+      - COK
+      - COL
+      - COM
+      - CPV
+      - CRI
+      - CUB
+      - DJI
+      - DMA
+      - DOM
+      - DZA
+      - ECU
+      - EGY
+      - ERI
+      - ETH
+      - FJI
+      - FSM
+      - GAB
+      - GEO
+      - GHA
+      - GIN
+      - GMB
+      - GNB
+      - GNQ
+      - GRD
+      - GTM
+      - GUY
+      - HND
+      - HTI
+      - IDN
+      - IND
+      - IRN
+      - ISR
+      - JAM
+      - JOR
+      - KAZ
+      - KEN
+      - KGZ
+      - KHM
+      - KIR
+      - KNA
+      - KOR
+      - KWT
+      - LAO
+      - LBN
+      - LBR
+      - LBY
+      - LCA
+      - LKA
+      - LSO
+      - MAR
+      - MDA
+      - MDG
+      - MDV
+      - MEX
+      - MHL
+      - MKD
+      - MLI
+      - MMR
+      - MNE
+      - MNG
+      - MOZ
+      - MRT
+      - MUS
+      - MWI
+      - MYS
+      - NAM
+      - NER
+      - NGA
+      - NIC
+      - NIU
+      - NPL
+      - NRU
+      - OMN
+      - PAK
+      - PAN
+      - PER
+      - PHL
+      - PLW
+      - PNG
+      - PRK
+      - PRY
+      - QAT
+      - RWA
+      - SAU
+      - SDN
+      - SEN
+      - SGP
+      - SLB
+      - SLE
+      - SLV
+      - SMR
+      - SRB
+      - SSD
+      - STP
+      - SUR
+      - SWZ
+      - SYC
+      - SYR
+      - TCD
+      - TGO
+      - THA
+      - TJK
+      - TKM
+      - TLS
+      - TON
+      - TTO
+      - TUN
+      - TUV
+      - TZA
+      - UGA
+      - URY
+      - UZB
+      - VCT
+      - VEN
+      - VNM
+      - VUT
+      - WSM
+      - YEM
+      - ZAF
+      - ZMB
+      - ZWE
+add_alternative_codes:
+  LDC: LDC_2012
+  AOSIS: AOSIS_PRIMAP1
+  UMBRELLA: UMBRELLA_PRIMAP1
+  NONANNEXI: NONANNEXI_PRIMAP1
+remove_alternative_codes:
+  LDC: LDC_2024
+  AOSIS: AOSIS_2011
+  UMBRELLA: UMBRELLA_2023
+  NONANNEXI: Non-Annex-I
+merge_into:
+  MSR: GBR
+  HMD: AUS
+  ATF: FRA
+  UMI: USA
+remove_categories:
+  codes:
+  - BVT
+  - IOT
+  - PCN
+  - SGS
+  comment: Territories which are not in PRIMAP-hist up to v2.x are removed.

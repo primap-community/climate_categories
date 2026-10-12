@@ -156,6 +156,65 @@ def test_oecd():
 
 def test_aosis():
     assert len(ISO3_GROUPS["AOSIS"].leaf_children[0]) == 39
+    assert ISO3_GROUPS["AOSIS"].codes == ("AOSIS_2011", "AOSIS")
+
+
+def test_ldc_versions():
+    iso3 = ISO3_GROUPS
+    versions = [code for code in iso3 if re.fullmatch(r"LDC_\d{4}", code)]
+    assert versions[0] == "LDC_1991"
+    assert iso3["LDC"].codes == ("LDC_2024", "LDC")
+    assert len(children(iso3, "LDC_2024")) == 44
+    assert len(children(iso3, "LDC_2012")) == 49
+    assert {"SSD", "WSM"} <= children(iso3, "LDC_2012")
+    assert "WSM" not in children(iso3, "LDC_2014")
+    assert "SSD" not in children(iso3, "LDC_2011")
+    # inclusions are documented by year, the categories describe the end of the year
+    assert "graduated: STP" in iso3["LDC_2024"].comment
+    # graduations which did not take effect yet are left out
+    assert "LDC_2026" not in iso3
+
+
+def test_annex_versions():
+    iso3 = ISO3_UNFCCC
+    assert iso3["Annex-I_2013"] == iso3["Annex-I_2013_01"]
+    assert children(iso3, "Annex-I_2013_01") == children(iso3, "Annex-I")
+    assert children(iso3, "Non-Annex-I_2022_10") == children(iso3, "Non-Annex-I")
+
+    def at(prefix: str, month: str) -> set[str]:
+        """The members of the latest version of prefix in or before month."""
+        versions = [
+            code
+            for code in iso3
+            if re.fullmatch(rf"{prefix}_\d{{4}}_\d{{2}}", code) and code[-7:] <= month
+        ]
+        return children(iso3, max(versions))
+
+    # the amendments to Annex I move parties from Non-Annex-I to Annex-I
+    for code, before, after in (
+        ("CZE", "1998_07", "1998_08"),
+        ("MLT", "2010_09", "2010_10"),
+        ("CYP", "2012_12", "2013_01"),
+    ):
+        assert code in at("Non-Annex-I", before)
+        assert code not in at("Annex-I", before)
+        assert code in at("Annex-I", after)
+        assert code not in at("Non-Annex-I", after)
+    # Turkey is listed in Annex I, but became a party only in 2004
+    assert "TUR" not in at("Annex-I", "2004_04")
+    assert "TUR" in at("Annex-I", "2004_05")
+    # Annex-I and Non-Annex-I together are the parties
+    for code in iso3:
+        match = re.fullmatch(r"UNFCCC_(\d{4}_\d{2})", code)
+        if (
+            match
+            and f"Annex-I_{match[1]}" in iso3
+            and f"Non-Annex-I_{match[1]}" in iso3
+        ):
+            annex = children(iso3, f"Annex-I_{match[1]}")
+            non_annex = children(iso3, f"Non-Annex-I_{match[1]}")
+            assert not annex & non_annex
+            assert annex | non_annex == children(iso3, code)
 
 
 @pytest.mark.parametrize("code", ["UMBRELLA", "LDC", "G35", "LMDC"])
@@ -249,6 +308,7 @@ def test_options():
         "Kosovo",
         "GCAM",
         "PSE_in_ISR",
+        "PRIMAP1",
     }
     # options are sorted, and built only once
     assert climate_categories.ISO3.with_options(["UNFCCC", "EU"]) is ISO3_UNFCCC
@@ -445,10 +505,11 @@ def test_gcam_territories_unsupported(option: str):
 
 def test_primap_territories():
     # the territory options give the PRIMAP-hist country list
-    iso3 = climate_categories.cats[
+    iso3 = climate_categories.ISO3_PRIMAP2
+    assert iso3.canonical_name == (
         "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,no_unpopulated,PSE_in_ISR,"
         "territories_in_sovereign_inventory,UNFCCC]"
-    ]
+    )
     world = children(iso3, "World")
     assert len(world) == 208
     assert {"ANT", "MSR", "PCN"} <= world
@@ -457,6 +518,46 @@ def test_primap_territories():
     primap = climate_categories.ISO3_PRIMAP
     for code in ("UNFCCC", "Annex-I", "Non-Annex-I", "AOSIS", "LDC"):
         assert children(iso3, code) == children(primap, code)
+
+
+def test_primap1():
+    iso3 = climate_categories.ISO3_PRIMAP1
+    assert iso3.canonical_name == (
+        "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,PRIMAP1,PSE_in_ISR,"
+        "territories_in_sovereign_inventory,UNFCCC]"
+    )
+    # the country list of PRIMAP-hist v2.x
+    world = children(iso3, "EARTH")
+    assert len(world) == 207
+    assert {"ANT", "ATA"} <= world
+    assert not {"MSR", "HMD", "ATF", "UMI", "BVT", "IOT", "PCN", "SGS"} & world
+    assert {"MSR", "GGY"} <= set(iso3["GBR"].info["includes"])
+    # the regions of PRIMAP-hist v2.x
+    assert iso3["LDC"].codes[0] == "LDC_2012"
+    assert len(children(iso3, "LDC")) == 49
+    assert iso3["UMBRELLA"].codes[0] == "UMBRELLA_PRIMAP1"
+    assert "RUS" in children(iso3, "UMBRELLA")
+    assert iso3["NONANNEXI"].codes[0] == "NONANNEXI_PRIMAP1"
+    assert len(children(iso3, "NONANNEXI")) == 149
+    assert iso3["ANNEXI"] == iso3["Annex-I"]
+    assert iso3["EU27BX"] == iso3["EU_2020"]
+    # the observers ASM, GUM, and VIR are included in USA, the Netherlands Antilles
+    # are included via their successors
+    aosis = children(iso3, "AOSIS")
+    assert iso3["AOSIS"].codes[0] == "AOSIS_PRIMAP1"
+    assert "ANT" in aosis
+    assert not {"ASM", "CUW", "GUM", "VIR"} & aosis
+    assert len(aosis) == 40
+    # the current definitions are still available under their dated codes
+    assert len(children(iso3, "LDC_2024")) == 44
+    assert "RUS" not in children(iso3, "UMBRELLA_2023")
+
+
+@pytest.mark.parametrize("option", ["Kosovo", "MSR_PCN_in_GBR", "no_unpopulated"])
+def test_primap1_conflicts(option: str):
+    options = [*climate_categories.ISO3_PRIMAP1.enabled_options, option]
+    with pytest.raises(ValueError, match="conflicts"):
+        climate_categories.ISO3.with_options(options)
 
 
 def test_historical():

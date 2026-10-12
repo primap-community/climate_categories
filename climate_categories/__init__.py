@@ -93,6 +93,8 @@ ISO3 = _read_py_hier("ISO3")
 _read_py_options("ISO3")
 ISO3_PRIMAP = cats["ISO3_PRIMAP"]
 ISO3_GCAM = cats["ISO3_GCAM"]
+ISO3_PRIMAP1 = cats["ISO3_PRIMAP1"]
+ISO3_PRIMAP2 = cats["ISO3_PRIMAP2"]
 FAO = _read_py_hier("FAO")
 CT = _read_py_hier("CT")
 
@@ -119,6 +121,8 @@ __all__ = [
     "ISO3",
     "ISO3_GCAM",
     "ISO3_PRIMAP",
+    "ISO3_PRIMAP1",
+    "ISO3_PRIMAP2",
     "RCMIP",
     "BURDI_class",
     "CRFDI_class",

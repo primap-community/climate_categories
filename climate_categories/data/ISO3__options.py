@@ -15,6 +15,7 @@ spec = {
         "Antilles",
         "ESH_in_MAR",
         "MSR_PCN_in_GBR",
+        "PRIMAP1",
     ],
     "unsupported": [
         {
@@ -37,5 +38,27 @@ spec = {
     "aliases": {
         "ISO3_PRIMAP": ["EU", "groups", "historical", "PSE_in_ISR", "UNFCCC"],
         "ISO3_GCAM": ["EU", "GCAM", "groups", "historical", "Kosovo", "UNFCCC"],
+        "ISO3_PRIMAP2": [
+            "Antilles",
+            "ESH_in_MAR",
+            "EU",
+            "groups",
+            "historical",
+            "no_unpopulated",
+            "PSE_in_ISR",
+            "territories_in_sovereign_inventory",
+            "UNFCCC",
+        ],
+        "ISO3_PRIMAP1": [
+            "Antilles",
+            "ESH_in_MAR",
+            "EU",
+            "groups",
+            "historical",
+            "PRIMAP1",
+            "PSE_in_ISR",
+            "territories_in_sovereign_inventory",
+            "UNFCCC",
+        ],
     },
 }
