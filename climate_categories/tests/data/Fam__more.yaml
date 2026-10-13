@@ -1,0 +1,11 @@
+option: more
+title: more categories
+last_update: 2026-03-01
+requires:
+  - extra
+add_categories:
+  ABC:
+    title: Categories A, B, and C
+    children:
+      - - AB
+        - C

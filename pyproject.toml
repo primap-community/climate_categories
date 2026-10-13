@@ -62,6 +62,7 @@ dev = [
 ]
 docs = [
     "ipykernel",
+    "jupyterlab>=4.6.4",
     "nbsphinx",
     "sphinx",
     "sphinx_rtd_theme",

@@ -1,0 +1,25 @@
+name: Fam
+title: Family
+comment: A family of categorizations to test options
+references: doi:00000/00000
+institution: PIK
+last_update: 2026-01-01
+hierarchical: yes
+version: one
+total_sum: yes
+canonical_top_level_category: T
+categories:
+  T:
+    title: Total
+    children:
+      - - A
+        - B
+        - C
+  A:
+    title: Category A
+    info:
+      size: big
+  B:
+    title: Category B
+  C:
+    title: Category C

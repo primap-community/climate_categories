@@ -1,0 +1,40 @@
+option: PRIMAP1_inputs
+title: PRIMAP-hist up to v2.x, input data
+comment: The codes which primap1, which produced PRIMAP-hist up to v2.x, used in
+  its input data, as alternative codes. Currently the codes of the regions of
+  the IPCC Fifth Assessment Report (RC10*), the RCP database (R5*), and
+  EDGAR-HYDE.
+references: PRIMAP-hist v2.8 input data,
+  https://github.com/primap-community/PRIMAP-hist_data
+last_update: '2026-10-12'
+requires:
+- AR5
+- EDGAR_HYDE
+- PRIMAP1
+- RCP
+add_alternative_codes:
+  RC10NAM: AR5|NAM
+  RC10WEU: AR5|WEU
+  RC10POECD: AR5|POECD
+  RC10EIT: AR5|EIT
+  RC10LAM: AR5|LAM
+  RC10SSA: AR5|SSA
+  RC10MNA: AR5|MNA
+  RC10EAS: AR5|EAS
+  RC10SAS: AR5|SAS
+  RC10PAS: AR5|PAS
+  R5OECD: RCP|OECD90
+  R5REF: RCP|REF
+  R5ASIA: RCP|ASIA
+  R5MAF: RCP|MAF
+  R5LAM: RCP|LAM
+  LATINAMER2: EDGAR-HYDE|Latin America
+  AFR: EDGAR-HYDE|Africa
+  WEUR2: EDGAR-HYDE|OECD Europe
+  EEUR: EDGAR-HYDE|Eastern Europe
+  FSU: EDGAR-HYDE|CIS
+  MEAST3: EDGAR-HYDE|Middle East
+  INDSSA: EDGAR-HYDE|India Region
+  CHNCP: EDGAR-HYDE|China Region
+  EAS: EDGAR-HYDE|East Asia
+  OCE: EDGAR-HYDE|Oceania

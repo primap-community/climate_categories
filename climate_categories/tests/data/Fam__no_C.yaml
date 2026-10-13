@@ -1,0 +1,10 @@
+option: no_C
+title: without C
+comment: C is not available.
+last_update: 2026-01-01
+conflicts:
+  - C_in_B
+remove_categories:
+  codes:
+    - C
+  comment: C is missing.

@@ -20,6 +20,52 @@ def write_categorization(
     climate_categories.from_yaml(yaml_path).to_python(yaml_path.with_suffix(".py"))
 
 
+def write_option_family(
+    base: "climate_categories.Categorization",
+    options: list["climate_categories.CategorizationOption"],
+    manifest: "climate_categories.OptionManifest",
+    directory: pathlib.Path,
+) -> None:
+    """Write a base categorization with its options and manifest as YAML and as the
+    cached Python specs next to them.
+
+    Like ``write_categorization``, the Python specs are generated from the YAML files
+    we just wrote. Option files of the base which are not part of the manifest any
+    more are deleted. Afterwards, the family is read back in, which validates it.
+    """
+    write_categorization(base, directory / f"{base.name}.yaml")
+
+    stems = {climate_categories.manifest_stem(base.name)}
+    for option in options:
+        stem = climate_categories.option_stem(base.name, option.name)
+        stems.add(stem)
+        option.to_yaml(directory / f"{stem}.yaml")
+        climate_categories.CategorizationOption.from_yaml(
+            directory / f"{stem}.yaml"
+        ).to_python(directory / f"{stem}.py")
+
+    manifest_path = directory / f"{climate_categories.manifest_stem(base.name)}.yaml"
+    manifest.to_yaml(manifest_path)
+    climate_categories.OptionManifest.from_yaml(manifest_path).to_python(
+        manifest_path.with_suffix(".py")
+    )
+
+    for path in directory.glob(f"{base.name}__*"):
+        if path.suffix in (".yaml", ".py") and path.stem not in stems:
+            print(f"Deleting {path}, which is not an option of {base.name} any more.")
+            path.unlink()
+
+    climate_categories.OptionFamily.from_yaml(manifest_path)
+
+
+def all_codes(categories: dict[str, dict]) -> set[str]:
+    """All primary and alternative codes in a specification of categories."""
+    codes = set(categories)
+    for spec in categories.values():
+        codes.update(spec.get("alternative_codes", []))
+    return codes
+
+
 def download_cached(url: str, fpath: pathlib.Path):
     if not fpath.exists():
         print(f"{fpath} not found, downloading it.")

@@ -1,0 +1,24 @@
+option: extra
+title: extra categories
+comment: Adds the sum of A and B.
+references: doi:00000/00001
+last_update: 2026-02-01
+add_categories:
+  AB:
+    title: Categories A and B
+    comment: The sum of A and B
+    alternative_codes:
+      - A+B
+    children:
+      - - A
+        - B
+add_alternative_codes:
+  a: A
+add_children:
+  T:
+    - - AB
+      - C
+update_categories:
+  A:
+    info:
+      colour: red

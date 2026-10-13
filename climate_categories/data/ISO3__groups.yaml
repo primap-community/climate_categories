@@ -1,0 +1,953 @@
+option: groups
+title: country groups
+comment: 'Groups of countries in climate negotiations and international politics:
+  AOSIS, BASIC, the Least Developed Countries (currently LDC, and over time LDC_YYYY),
+  the Umbrella Group, the Arab Group, LMDC, G35, G7, G8, G20, OECD, and OPEC.'
+references: "G7 and G20, https://www.bmuv.de/themen/europa-internationales/internationales/g7-und-g20;\n\
+  OECD members, https://www.oecd.org/about/document/ratification-oecd-convention.htm;\n\
+  UMBRELLA https://unfccc.int/process-and-meetings/parties-non-party-stakeholders/parties/party-groupings;\n\
+  LDC https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf;\n\
+  LDC history, Handbook on the Least Developed Country Category, figure I.3, https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/LDC-Handbook-2024.pdf;\n\
+  AOSIS members, https://www.aosis.org/about/member-states/;\nOPEC https://www.opec.org/member-countries.html;\n\
+  ARAB https://unfccc.int/party-groupings;\nLMDC https://en.wikipedia.org/wiki/Like-Minded_Developing_Countries"
+last_update: '2026-09-24'
+requires:
+- EU
+add_categories:
+  AOSIS_2011:
+    title: Alliance of Small Island States
+    comment: The members of the Alliance of Small Island States. The membership
+      is unchanged since at least 2011-11-20, when the earliest list we checked
+      was published (sidsnet.org, as used in PRIMAP-hist up to v2.x). Note that
+      the 'AOSIS' code will always refer to the current members, use AOSIS_2011
+      if you need a stable code.
+    alternative_codes:
+    - AOSIS
+    children:
+    - - ATG
+      - BHS
+      - BRB
+      - BLZ
+      - CUB
+      - DMA
+      - DOM
+      - GRD
+      - GUY
+      - HTI
+      - JAM
+      - KNA
+      - LCA
+      - VCT
+      - SUR
+      - TTO
+      - COK
+      - FSM
+      - FJI
+      - KIR
+      - NRU
+      - NIU
+      - PLW
+      - PNG
+      - MHL
+      - WSM
+      - SLB
+      - TON
+      - TUV
+      - VUT
+      - CPV
+      - COM
+      - GNB
+      - MDV
+      - MUS
+      - STP
+      - SYC
+      - SGP
+      - TLS
+  G7:
+    title: Group of Seven
+    children:
+    - - DEU
+      - FRA
+      - GBR
+      - ITA
+      - JPN
+      - USA
+      - CAN
+      - EU
+  G8:
+    title: Group of Eight
+    children:
+    - - DEU
+      - FRA
+      - GBR
+      - ITA
+      - JPN
+      - USA
+      - CAN
+      - EU
+      - RUS
+  G20:
+    title: Group of 20
+    children:
+    - - DEU
+      - FRA
+      - GBR
+      - ITA
+      - JPN
+      - USA
+      - CAN
+      - EU
+      - RUS
+      - ARG
+      - AUS
+      - BRA
+      - CHN
+      - IND
+      - IDN
+      - MEX
+      - SAU
+      - ZAF
+      - KOR
+      - TUR
+  OECD:
+    title: Organisation for Economic Co-operation and Development
+    children:
+    - - AUS
+      - AUT
+      - BEL
+      - CAN
+      - CHL
+      - COL
+      - CRI
+      - CZE
+      - DNK
+      - EST
+      - FIN
+      - FRA
+      - DEU
+      - GRC
+      - HUN
+      - ISL
+      - IRL
+      - ISR
+      - ITA
+      - JPN
+      - KOR
+      - LVA
+      - LTU
+      - LUX
+      - MEX
+      - NLD
+      - NZL
+      - NOR
+      - POL
+      - PRT
+      - SVK
+      - SVN
+      - ESP
+      - SWE
+      - CHE
+      - TUR
+      - GBR
+      - USA
+  BASIC:
+    title: BASIC countries
+    children:
+    - - BRA
+      - ZAF
+      - IND
+      - CHN
+  LDC_1991:
+    title: Least Developed Countries from 1991 to 1993
+    comment: The Least Developed Countries at the end of 1991, after the
+      Republic of Yemen was confirmed as an LDC. Earlier lists included Sikkim
+      and the two Yemeni states, so they are not available. Inclusions in the
+      list are only documented by year, so the category describes the list at
+      the end of the year.
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BWA
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MDV
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - CPV
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+  LDC_1994:
+    title: Least Developed Countries from 1994 to 1999
+    comment: 'The Least Developed Countries at the end of 1994. Changes in 1994, included:
+      AGO, ERI; graduated: BWA. Inclusions in the list are only documented by year,
+      so the category describes the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MDV
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - CPV
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+  LDC_2000:
+    title: Least Developed Countries from 2000 to 2002
+    comment: 'The Least Developed Countries at the end of 2000. Changes in 2000, included:
+      SEN. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MDV
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - CPV
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+  LDC_2003:
+    title: Least Developed Countries from 2003 to 2006
+    comment: 'The Least Developed Countries at the end of 2003. Changes in 2003, included:
+      TLS. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MDV
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - CPV
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+  LDC_2007:
+    title: Least Developed Countries from 2007 to 2010
+    comment: 'The Least Developed Countries at the end of 2007. Changes in 2007, graduated:
+      CPV. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MDV
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+  LDC_2011:
+    title: Least Developed Countries in 2011
+    comment: 'The Least Developed Countries at the end of 2011. Changes in 2011, graduated:
+      MDV. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+  LDC_2012:
+    title: Least Developed Countries from 2012 to 2013
+    comment: 'The Least Developed Countries at the end of 2012. Changes in 2012, included:
+      SSD. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - WSM
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+  LDC_2014:
+    title: Least Developed Countries from 2014 to 2016
+    comment: 'The Least Developed Countries at the end of 2014. Changes in 2014, graduated:
+      WSM. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - GNQ
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+  LDC_2017:
+    title: Least Developed Countries from 2017 to 2019
+    comment: 'The Least Developed Countries at the end of 2017. Changes in 2017, graduated:
+      GNQ. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - STP
+      - SLE
+      - TGO
+      - VUT
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+  LDC_2020:
+    title: Least Developed Countries from 2020 to 2022
+    comment: 'The Least Developed Countries at the end of 2020. Changes in 2020, graduated:
+      VUT. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BTN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - STP
+      - SLE
+      - TGO
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+  LDC_2023:
+    title: Least Developed Countries in 2023
+    comment: 'The Least Developed Countries at the end of 2023. Changes in 2023, graduated:
+      BTN. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year.'
+    children:
+    - - AFG
+      - BEN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - STP
+      - SLE
+      - TGO
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+  LDC_2024:
+    title: Least Developed Countries since 2024
+    comment: "The Least Developed Countries at the end of 2024. Changes in 2024, graduated:
+      STP. Inclusions in the list are only documented by year, so the category describes
+      the list at the end of the year. Note that the 'LDC' code will always refer
+      to the current list, use LDC_2024 if you need a stable code."
+    children:
+    - - AFG
+      - BEN
+      - BFA
+      - BDI
+      - TCD
+      - ETH
+      - GIN
+      - HTI
+      - LAO
+      - LSO
+      - MWI
+      - MLI
+      - NPL
+      - NER
+      - RWA
+      - SOM
+      - SDN
+      - UGA
+      - TZA
+      - YEM
+      - BGD
+      - CAF
+      - GMB
+      - COM
+      - GNB
+      - DJI
+      - SLE
+      - TGO
+      - KIR
+      - MRT
+      - TUV
+      - MMR
+      - MOZ
+      - LBR
+      - KHM
+      - COD
+      - MDG
+      - SLB
+      - ZMB
+      - AGO
+      - ERI
+      - SEN
+      - TLS
+      - SSD
+    alternative_codes:
+    - LDC
+  UMBRELLA_2023:
+    title: The Umbrella Group
+    comment: The Umbrella Group is a coalition of Parties which formed following
+      the adoption of the Kyoto Protocol. The United Kingdom formally joined the
+      group in 2023.
+    children:
+    - - AUS
+      - CAN
+      - ISL
+      - ISR
+      - JPN
+      - NZL
+      - KAZ
+      - NOR
+      - UKR
+      - USA
+      - GBR
+    alternative_codes:
+    - UMBRELLA
+  OPEC:
+    title: Oranization of Petroleum Exporting Countries
+    children:
+    - - IRN
+      - IRQ
+      - KWT
+      - SAU
+      - VEN
+      - LBY
+      - ARE
+      - DZA
+      - NGA
+      - GAB
+      - GNQ
+      - COG
+  ARAB:
+    title: Arab Group
+    children:
+    - - DZA
+      - BHR
+      - COM
+      - DJI
+      - EGY
+      - IRQ
+      - JOR
+      - KWT
+      - LBN
+      - LBY
+      - MAR
+      - MRT
+      - OMN
+      - PSE
+      - QAT
+      - SAU
+      - SOM
+      - SDN
+      - SYR
+      - TUN
+      - ARE
+      - YEM
+  LMDC:
+    title: Like-minded developing countries
+    children:
+    - - DZA
+      - BGD
+      - BOL
+      - CHN
+      - CUB
+      - ECU
+      - EGY
+      - SLV
+      - IND
+      - IDN
+      - IRN
+      - IRQ
+      - JOR
+      - KWT
+      - MYS
+      - MLI
+      - NIC
+      - PAK
+      - SAU
+      - LKA
+      - SDN
+      - SYR
+      - VEN
+      - VNM
+  G35:
+    title: Group of 35
+    children:
+    - - ARG
+      - AUS
+      - AZE
+      - BRA
+      - CAN
+      - CHL
+      - CHN
+      - COL
+      - EGY
+      - FRA
+      - DEU
+      - IND
+      - IDN
+      - IRN
+      - ITA
+      - JPN
+      - KAZ
+      - KEN
+      - KOR
+      - MYS
+      - MEX
+      - MNG
+      - NGA
+      - PAK
+      - PHL
+      - RUS
+      - SAU
+      - ZAF
+      - THA
+      - TUR
+      - GBR
+      - ARE
+      - USA
+      - VNM
+      - AUT
+      - BEL
+      - BGR
+      - HRV
+      - CYP
+      - CZE
+      - DNK
+      - EST
+      - FIN
+      - GRC
+      - HUN
+      - IRL
+      - LVA
+      - LTU
+      - LUX
+      - MLT
+      - NLD
+      - POL
+      - PRT
+      - ROU
+      - SVK
+      - SVN
+      - ESP
+      - SWE

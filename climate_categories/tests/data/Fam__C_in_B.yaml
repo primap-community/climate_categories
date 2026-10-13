@@ -1,0 +1,6 @@
+option: C_in_B
+title: C included in B
+comment: C is included in B.
+last_update: 2026-01-01
+merge_into:
+  C: B
