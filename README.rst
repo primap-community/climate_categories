@@ -55,7 +55,8 @@ ISO3_PRIMAP2           ISO3_GROUPS with the countries and territories as used by
 ISO3_PRIMAP1           ISO3_GROUPS with the countries, territories, and regions of
                        PRIMAP-hist up to v2.x
 ISO3_PRIMAP1_INPUTS    ISO3_PRIMAP1 with the regions of the IPCC AR5, the RCPs, and
-                       EDGAR-HYDE, and the codes of the PRIMAP-hist v2.x input data
+                       EDGAR-HYDE, the areas of CEDS, and the codes of the
+                       PRIMAP-hist v2.x input data
 FAO                    FAOSTAT climate change agrifood systems GHG emissions categories
 CT                     Climate Trace categories
 =====================  ==================================================================

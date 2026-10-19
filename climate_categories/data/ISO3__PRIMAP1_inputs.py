@@ -3,7 +3,7 @@
 spec = {
     "option": "PRIMAP1_inputs",
     "title": "PRIMAP-hist up to v2.x, input data",
-    "comment": "The codes which primap1, which produced PRIMAP-hist up to v2.x, used in its input data, as alternative codes. Currently the codes of the regions of the IPCC Fifth Assessment Report (RC10*), the RCP database (R5*), and EDGAR-HYDE.",
+    "comment": "The codes which primap1, which produced PRIMAP-hist up to v2.x, used in its input data, as alternative codes. Currently the codes of the regions of the IPCC Fifth Assessment Report (RC10*), the RCP database (R5*), and EDGAR-HYDE. primap1 used FSU for the USSR (SUN) in all input data, so the CIS region of EDGAR-HYDE, which consists of the same 15 republics, is included in SUN.",
     "references": "PRIMAP-hist v2.8 input data, https://github.com/primap-community/PRIMAP-hist_data",
     "last_update": "2026-10-12",
     "requires": ["AR5", "EDGAR_HYDE", "PRIMAP1", "RCP"],
@@ -27,11 +27,12 @@ spec = {
         "AFR": "EDGAR-HYDE|Africa",
         "WEUR2": "EDGAR-HYDE|OECD Europe",
         "EEUR": "EDGAR-HYDE|Eastern Europe",
-        "FSU": "EDGAR-HYDE|CIS",
+        "FSU": "SUN",
         "MEAST3": "EDGAR-HYDE|Middle East",
         "INDSSA": "EDGAR-HYDE|India Region",
         "CHNCP": "EDGAR-HYDE|China Region",
         "EAS": "EDGAR-HYDE|East Asia",
         "OCE": "EDGAR-HYDE|Oceania",
     },
+    "merge_into": {"EDGAR-HYDE|CIS": "SUN"},
 }

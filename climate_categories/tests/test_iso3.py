@@ -313,6 +313,7 @@ def test_options():
         "RCP",
         "EDGAR_HYDE",
         "PRIMAP1_inputs",
+        "CEDS",
     }
     # options are sorted, and built only once
     assert climate_categories.ISO3.with_options(["UNFCCC", "EU"]) is ISO3_UNFCCC
@@ -391,6 +392,9 @@ def test_kosovo():
     # Kosovo is part of the world, but not a party to the UNFCCC
     assert iso3["XKX"] in iso3["World"].children[0]
     assert "XKX" not in children(climate_categories.ISO3_GCAM, "UNFCCC")
+    # Kosovo stays part of its historical predecessors
+    assert children(climate_categories.ISO3_GCAM, "SCG") == {"MNE", "SRB", "XKX"}
+    assert "XKX" in children(climate_categories.ISO3_GCAM, "YUG")
 
 
 def test_merge_into_historical():
@@ -408,6 +412,10 @@ def test_merge_into_historical():
     assert "ANT" in world
     assert not {"CUW", "SXM", "BES"} & world
     assert len(world) == len(children(historical, "World")) - 2
+    # ANT had its successors as children, it doesn't become its own child
+    assert children(historical, "ANT") == {"CUW", "SXM", "BES"}
+    assert not cat["ANT"].children
+    assert cat["ANT"].info["includes"] == ["BES", "CUW", "SXM"]
 
 
 def test_territories_in_sovereign_inventory():
@@ -460,6 +468,7 @@ def test_antilles():
     assert "ANT" in world
     assert not {"CUW", "SXM", "BES"} & world
     assert "ANT" not in children(climate_categories.cats["ISO3[historical]"], "World")
+    assert not iso3["ANT"].children
 
 
 def test_esh_in_mar():
@@ -538,6 +547,11 @@ def test_primap1():
     assert len(world) == 207
     assert {"ANT", "ATA"} <= world
     assert not {"MSR", "HMD", "ATF", "UMI", "BVT", "IOT", "PCN", "SGS"} & world
+    # territories which PRIMAP-hist v2.x did not report are kept outside of World
+    for code in ("BVT", "IOT", "PCN", "SGS"):
+        assert code in iso3
+    for code in ("MSR", "HMD", "ATF", "UMI"):
+        assert code not in iso3
     assert {"MSR", "GGY"} <= set(iso3["GBR"].info["includes"])
     # the regions of PRIMAP-hist v2.x
     assert iso3["LDC"].codes[0] == "LDC_2012"
@@ -630,7 +644,19 @@ def test_edgar_hyde():
 def test_primap1_inputs():
     iso3 = climate_categories.ISO3_PRIMAP1_INPUTS
     assert len(children(iso3, "EARTH")) == 207
-    assert iso3["FSU"] == iso3["EDGAR-HYDE|CIS"]
+    # FSU is the USSR, which includes the CIS region of EDGAR-HYDE
+    assert iso3["FSU"] == iso3["SUN"]
+    assert "EDGAR-HYDE|CIS" not in iso3
+    assert iso3["SUN"].info["includes"] == ["EDGAR-HYDE|CIS"]
+    assert len(children(iso3, "SUN")) == 15
+    edgar_hyde = climate_categories.cats["ISO3[EDGAR_HYDE]"]
+    for parent in edgar_hyde["EDGAR-HYDE|CIS"].parents:
+        assert "SUN" in children(iso3, parent.codes[0])
+    # codes in the input data which are not part of World
+    for code in ("IOT", "PCN"):
+        assert code in iso3
+        assert code not in children(iso3, "EARTH")
+    assert iso3["GLOBAL"] == iso3["CEDS|global"]
     assert iso3["LATINAMER2"] == iso3["EDGAR-HYDE|Latin America"]
     assert iso3["R5OECD"] == iso3["RCP|OECD90"]
     assert iso3["RC10EIT"] == iso3["AR5|EIT"]
@@ -647,6 +673,50 @@ def test_historical():
     # ATF was re-used for the French Southern Territories
     assert iso3["ATF"].title == "French Southern Territories"
     assert iso3["FQHH"].info["former_alpha_3"] == "ATF"
+    # successors are children
+    assert len(children(iso3, "SUN")) == 15
+    assert children(iso3, "CSK") == {"CZE", "SVK"}
+    assert children(iso3, "YUG") == {"BIH", "HRV", "MKD", "MNE", "SRB", "SVN"}
+    assert children(iso3, "SCG") == {"MNE", "SRB"}
+    assert children(iso3, "ANT") == {"BES", "CUW", "SXM"}
+    assert children(iso3, "PCI") == {"FSM", "MHL", "MNP", "PLW"}
+    assert children(iso3, "ZAR") == {"COD"}
+    # parts of larger countries have no children
+    for code in ("DDR", "YMD", "VDR", "SKM", "NTZ", "PCZ", "FXX"):
+        assert not iso3[code].children
+    # withdrawn countries are not part of the world
+    world = children(iso3, "World")
+    assert not {c.codes[0] for c in iso3.values() if "withdrawal_date" in c.info} & (
+        world
+    )
+
+
+def test_sovereign():
+    iso3 = climate_categories.ISO3
+    assert iso3["GRL"].info["sovereign"] == "DNK"
+    assert iso3["HKG"].info["sovereign"] == "CHN"
+    assert iso3["JEY"].info["sovereign"] == "GBR"
+    for code in ("DEU", "COK", "NIU", "TWN", "ESH", "ATA", "PSE"):
+        assert "sovereign" not in iso3[code].info
+    sovereigns = {c.info["sovereign"] for c in iso3.values() if "sovereign" in c.info}
+    assert sovereigns == {"AUS", "CHN", "DNK", "FIN", "FRA", "GBR", "NLD", "NOR"} | {
+        "NZL",
+        "USA",
+    }
+    # all territories merged into their sovereign country have it as sovereign
+    merged = climate_categories.cats["ISO3[territories_in_sovereign_inventory]"]
+    for country in merged.values():
+        for territory in country.info.get("includes", []):
+            assert iso3[territory].info["sovereign"] == country.codes[0]
+
+
+def test_ceds():
+    iso3 = climate_categories.cats["ISO3[CEDS]"]
+    assert iso3["global"] == iso3["CEDS|global"]
+    assert iso3["GLOBAL"] == iso3["CEDS|global"]
+    # international shipping and aviation are not part of the world
+    assert "CEDS|global" not in children(iso3, "World")
+    assert not iso3["CEDS|global"].parents
 
 
 def test_categories_comparable_across_options():

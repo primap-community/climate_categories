@@ -15,6 +15,7 @@ spec = {
         "Antilles",
         "ESH_in_MAR",
         "MSR_PCN_in_GBR",
+        "CEDS",
         "PRIMAP1",
         "AR5",
         "RCP",
@@ -67,6 +68,7 @@ spec = {
         "ISO3_PRIMAP1_INPUTS": [
             "Antilles",
             "AR5",
+            "CEDS",
             "EDGAR_HYDE",
             "ESH_in_MAR",
             "EU",

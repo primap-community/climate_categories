@@ -199,7 +199,8 @@ PRIMAP1_INPUT_CODES = {
     "AFR": "EDGAR-HYDE|Africa",
     "WEUR2": "EDGAR-HYDE|OECD Europe",
     "EEUR": "EDGAR-HYDE|Eastern Europe",
-    "FSU": "EDGAR-HYDE|CIS",
+    # the USSR in all input data, including EDGAR-HYDE, see primap1_inputs_option
+    "FSU": "SUN",
     "MEAST3": "EDGAR-HYDE|Middle East",
     "INDSSA": "EDGAR-HYDE|India Region",
     "CHNCP": "EDGAR-HYDE|China Region",
@@ -325,10 +326,13 @@ def primap1_inputs_option(
         comment="The codes which primap1, which produced PRIMAP-hist up to v2.x, used "
         "in its input data, as alternative codes. Currently the codes of the regions "
         "of the IPCC Fifth Assessment Report (RC10*), the RCP database (R5*), and "
-        "EDGAR-HYDE.",
+        "EDGAR-HYDE. primap1 used FSU for the USSR (SUN) in all input data, so the "
+        "CIS region of EDGAR-HYDE, which consists of the same 15 republics, is "
+        "included in SUN.",
         references="PRIMAP-hist v2.8 input data, "
         "https://github.com/primap-community/PRIMAP-hist_data",
         last_update=last_update,
         requires=("AR5", "EDGAR_HYDE", "PRIMAP1", "RCP"),
         add_alternative_codes=PRIMAP1_INPUT_CODES,
+        merge_into={"EDGAR-HYDE|CIS": "SUN"},
     )

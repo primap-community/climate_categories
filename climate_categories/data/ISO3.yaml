@@ -1,12 +1,14 @@
 name: ISO3
 title: ISO 3166-1 countries
 comment: Countries, regions, and other areas as defined in ISO 3166-1, and the
-  world. Groupings like the parties to the UN Framework Convention on Climate
-  Change are available as options, see ISO3.available_options. The alias
+  world. Dependent territories have their sovereign country in the info
+  'sovereign'. Groupings like the parties to the UN Framework Convention on
+  Climate Change are available as options, see ISO3.available_options. The alias
   ISO3_GROUPS includes all groupings commonly used in climate policy analysis
   and the historical countries.
 references: "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes
-  package, https://salsa.debian.org/iso-codes-team/iso-codes"
+  package, https://salsa.debian.org/iso-codes-team/iso-codes;\nsovereign countries,
+  https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
 institution: ISO
 hierarchical: true
 last_update: '2026-09-24'
@@ -19,6 +21,8 @@ categories:
     alternative_codes:
     - AW
     - '533'
+    info:
+      sovereign: NLD
   AFG:
     title: Afghanistan
     alternative_codes:
@@ -38,11 +42,15 @@ categories:
     alternative_codes:
     - AI
     - '660'
+    info:
+      sovereign: GBR
   ALA:
     title: Åland Islands
     alternative_codes:
     - AX
     - '248'
+    info:
+      sovereign: FIN
   ALB:
     title: Albania
     alternative_codes:
@@ -81,6 +89,8 @@ categories:
     alternative_codes:
     - AS
     - '016'
+    info:
+      sovereign: USA
   ATA:
     title: Antarctica
     alternative_codes:
@@ -91,6 +101,8 @@ categories:
     alternative_codes:
     - TF
     - '260'
+    info:
+      sovereign: FRA
   ATG:
     title: Antigua and Barbuda
     alternative_codes:
@@ -143,6 +155,7 @@ categories:
     - '535'
     info:
       official_name: Bonaire, Sint Eustatius and Saba
+      sovereign: NLD
   BFA:
     title: Burkina Faso
     alternative_codes:
@@ -188,6 +201,8 @@ categories:
     alternative_codes:
     - BL
     - '652'
+    info:
+      sovereign: FRA
   BLR:
     title: Belarus
     alternative_codes:
@@ -205,6 +220,8 @@ categories:
     alternative_codes:
     - BM
     - '060'
+    info:
+      sovereign: GBR
   BOL:
     title: Bolivia, Plurinational State of
     alternative_codes:
@@ -242,6 +259,8 @@ categories:
     alternative_codes:
     - BV
     - '074'
+    info:
+      sovereign: NOR
   BWA:
     title: Botswana
     alternative_codes:
@@ -264,6 +283,8 @@ categories:
     alternative_codes:
     - CC
     - '166'
+    info:
+      sovereign: AUS
   CHE:
     title: Switzerland
     alternative_codes:
@@ -358,16 +379,21 @@ categories:
     - '531'
     info:
       official_name: Curaçao
+      sovereign: NLD
   CXR:
     title: Christmas Island
     alternative_codes:
     - CX
     - '162'
+    info:
+      sovereign: AUS
   CYM:
     title: Cayman Islands
     alternative_codes:
     - KY
     - '136'
+    info:
+      sovereign: GBR
   CYP:
     title: Cyprus
     alternative_codes:
@@ -488,6 +514,8 @@ categories:
     alternative_codes:
     - FK
     - '238'
+    info:
+      sovereign: GBR
   FRA:
     title: France
     alternative_codes:
@@ -500,6 +528,8 @@ categories:
     alternative_codes:
     - FO
     - '234'
+    info:
+      sovereign: DNK
   FSM:
     title: Micronesia, Federated States of
     alternative_codes:
@@ -531,6 +561,8 @@ categories:
     alternative_codes:
     - GG
     - '831'
+    info:
+      sovereign: GBR
   GHA:
     title: Ghana
     alternative_codes:
@@ -543,6 +575,8 @@ categories:
     alternative_codes:
     - GI
     - '292'
+    info:
+      sovereign: GBR
   GIN:
     title: Guinea
     alternative_codes:
@@ -555,6 +589,8 @@ categories:
     alternative_codes:
     - GP
     - '312'
+    info:
+      sovereign: FRA
   GMB:
     title: Gambia
     alternative_codes:
@@ -593,6 +629,8 @@ categories:
     alternative_codes:
     - GL
     - '304'
+    info:
+      sovereign: DNK
   GTM:
     title: Guatemala
     alternative_codes:
@@ -605,11 +643,15 @@ categories:
     alternative_codes:
     - GF
     - '254'
+    info:
+      sovereign: FRA
   GUM:
     title: Guam
     alternative_codes:
     - GU
     - '316'
+    info:
+      sovereign: USA
   GUY:
     title: Guyana
     alternative_codes:
@@ -624,11 +666,14 @@ categories:
     - '344'
     info:
       official_name: Hong Kong Special Administrative Region of China
+      sovereign: CHN
   HMD:
     title: Heard Island and McDonald Islands
     alternative_codes:
     - HM
     - '334'
+    info:
+      sovereign: AUS
   HND:
     title: Honduras
     alternative_codes:
@@ -669,6 +714,8 @@ categories:
     alternative_codes:
     - IM
     - '833'
+    info:
+      sovereign: GBR
   IND:
     title: India
     alternative_codes:
@@ -681,6 +728,8 @@ categories:
     alternative_codes:
     - IO
     - '086'
+    info:
+      sovereign: GBR
   IRL:
     title: Ireland
     alternative_codes:
@@ -732,6 +781,8 @@ categories:
     alternative_codes:
     - JE
     - '832'
+    info:
+      sovereign: GBR
   JOR:
     title: Jordan
     alternative_codes:
@@ -880,11 +931,14 @@ categories:
     - '446'
     info:
       official_name: Macao Special Administrative Region of China
+      sovereign: CHN
   MAF:
     title: Saint Martin (French part)
     alternative_codes:
     - MF
     - '663'
+    info:
+      sovereign: FRA
   MAR:
     title: Morocco
     alternative_codes:
@@ -982,6 +1036,7 @@ categories:
     - '580'
     info:
       official_name: Commonwealth of the Northern Mariana Islands
+      sovereign: USA
   MOZ:
     title: Mozambique
     alternative_codes:
@@ -1001,11 +1056,15 @@ categories:
     alternative_codes:
     - MS
     - '500'
+    info:
+      sovereign: GBR
   MTQ:
     title: Martinique
     alternative_codes:
     - MQ
     - '474'
+    info:
+      sovereign: FRA
   MUS:
     title: Mauritius
     alternative_codes:
@@ -1030,6 +1089,8 @@ categories:
     alternative_codes:
     - YT
     - '175'
+    info:
+      sovereign: FRA
   NAM:
     title: Namibia
     alternative_codes:
@@ -1042,6 +1103,8 @@ categories:
     alternative_codes:
     - NC
     - '540'
+    info:
+      sovereign: FRA
   NER:
     title: Niger
     alternative_codes:
@@ -1054,6 +1117,8 @@ categories:
     alternative_codes:
     - NF
     - '574'
+    info:
+      sovereign: AUS
   NGA:
     title: Nigeria
     alternative_codes:
@@ -1134,6 +1199,8 @@ categories:
     alternative_codes:
     - PN
     - '612'
+    info:
+      sovereign: GBR
   PER:
     title: Peru
     alternative_codes:
@@ -1174,6 +1241,8 @@ categories:
     alternative_codes:
     - PR
     - '630'
+    info:
+      sovereign: USA
   PRK:
     title: Korea, Democratic People's Republic of
     alternative_codes:
@@ -1208,6 +1277,8 @@ categories:
     alternative_codes:
     - PF
     - '258'
+    info:
+      sovereign: FRA
   QAT:
     title: Qatar
     alternative_codes:
@@ -1220,6 +1291,8 @@ categories:
     alternative_codes:
     - RE
     - '638'
+    info:
+      sovereign: FRA
   ROU:
     title: Romania
     alternative_codes:
@@ -1270,16 +1343,22 @@ categories:
     alternative_codes:
     - GS
     - '239'
+    info:
+      sovereign: GBR
   SHN:
     title: Saint Helena, Ascension and Tristan da Cunha
     alternative_codes:
     - SH
     - '654'
+    info:
+      sovereign: GBR
   SJM:
     title: Svalbard and Jan Mayen
     alternative_codes:
     - SJ
     - '744'
+    info:
+      sovereign: NOR
   SLB:
     title: Solomon Islands
     alternative_codes:
@@ -1318,6 +1397,8 @@ categories:
     alternative_codes:
     - PM
     - '666'
+    info:
+      sovereign: FRA
   SRB:
     title: Serbia
     alternative_codes:
@@ -1381,6 +1462,7 @@ categories:
     - '534'
     info:
       official_name: Sint Maarten (Dutch part)
+      sovereign: NLD
   SYC:
     title: Seychelles
     alternative_codes:
@@ -1400,6 +1482,8 @@ categories:
     alternative_codes:
     - TC
     - '796'
+    info:
+      sovereign: GBR
   TCD:
     title: Chad
     alternative_codes:
@@ -1433,6 +1517,8 @@ categories:
     alternative_codes:
     - TK
     - '772'
+    info:
+      sovereign: NZL
   TKM:
     title: Turkmenistan
     alternative_codes:
@@ -1511,6 +1597,8 @@ categories:
     alternative_codes:
     - UM
     - '581'
+    info:
+      sovereign: USA
   URY:
     title: Uruguay
     alternative_codes:
@@ -1557,6 +1645,7 @@ categories:
     - '092'
     info:
       official_name: British Virgin Islands
+      sovereign: GBR
   VIR:
     title: Virgin Islands, U.S.
     alternative_codes:
@@ -1564,6 +1653,7 @@ categories:
     - '850'
     info:
       official_name: Virgin Islands of the United States
+      sovereign: USA
   VNM:
     title: Viet Nam
     alternative_codes:
@@ -1584,6 +1674,8 @@ categories:
     alternative_codes:
     - WF
     - '876'
+    info:
+      sovereign: FRA
   WSM:
     title: Samoa
     alternative_codes:

@@ -15,3 +15,5 @@ split_from:
 join_parents:
   XKX:
   - World
+  - SCG
+  - YUG

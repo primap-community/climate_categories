@@ -449,6 +449,9 @@ def test_invalid_option_name():
         ),
         ({"split_from": {"T": "A"}}, "canonical top level"),
         ({"join_parents": {"C": ["T"]}}, "not split by split_from"),
+        ({"leave_parents": {"Z": ["T"]}}, "not a primary code"),
+        ({"leave_parents": {"C": ["T"]}, "merge_into": {"C": "B"}}, "is removed"),
+        ({"leave_parents": {"T": ["A"]}}, "not a child"),
         ({"remove_alternative_codes": {"x": "Z"}}, "not a primary code"),
         ({"remove_alternative_codes": {"x": "A"}}, "not an alternative code"),
         ({"remove_children": {"Z": [["A"]]}}, "not a primary code"),
@@ -762,6 +765,33 @@ def test_join_parents():
     ]
     assert "4 (Category 4) is split from 1 (Category 1)." in cat["0"].comment
     assert cat["1"].info["excludes"] == ["4"]
+
+
+def test_leave_parents():
+    # without total_sum, categories only leave the given parents
+    hier = climate_categories.from_yaml(DATA_DIR / "hierarchical_categorization.yaml")
+    option = CategorizationOption(
+        name="opt",
+        title="opt",
+        last_update=datetime.date(2026, 1, 1),
+        leave_parents={"3": ["TOTAL", "missing"]},
+    )
+    assert CategorizationOption.from_spec(option.to_spec()) == option
+    cat = build_option(hier, leave_parents={"3": ["TOTAL", "missing"]})
+    assert children(cat, "0") == [{"1", "2"}, {"0X3"}, {"1A", "1B", "2"}]
+    assert "3 (Category 3) is left out." in cat["0"].comment
+    # the category itself and its children are kept
+    assert children(cat, "3") == [{"3A"}]
+    # parents which don't exist are ignored
+    cat = build_option(hier, leave_parents={"3": ["missing"]})
+    assert children(cat, "0") == children(hier, "0")
+
+
+def test_leave_parents_total_sum(fam):
+    # with total_sum, child sets which contained the category don't add up any more
+    cat = build_option(fam, leave_parents={"C": ["T"]})
+    assert not cat["T"].children
+    assert "C" in cat
 
 
 def split_d_from_b() -> CategorizationOption:

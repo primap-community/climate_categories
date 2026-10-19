@@ -3,9 +3,9 @@ title: PRIMAP-hist up to v2.x
 comment: 'The countries and regions of PRIMAP-hist up to v2.x, which was produced
   with the primap1 library. Montserrat (MSR) and the unpopulated territories HMD,
   ATF, and UMI are included in their sovereign country, BVT, IOT, PCN, and SGS are
-  removed, so that World contains the countries and territories of PRIMAP-hist. The
-  region codes of PRIMAP-hist v2.x refer to the definitions of PRIMAP-hist v2.x: LDC
-  to LDC_2012, AOSIS to AOSIS_PRIMAP1, UMBRELLA to UMBRELLA_PRIMAP1, and NONANNEXI
+  not part of World, so that World contains the countries and territories of PRIMAP-hist.
+  The region codes of PRIMAP-hist v2.x refer to the definitions of PRIMAP-hist v2.x:
+  LDC to LDC_2012, AOSIS to AOSIS_PRIMAP1, UMBRELLA to UMBRELLA_PRIMAP1, and NONANNEXI
   to NONANNEXI_PRIMAP1. ANNEXI, EU27BX, BASIC, and EARTH are unchanged.'
 references: "PRIMAP-hist v2.8, https://zenodo.org/records/22876287;\nGütschow et al.
   (2016), The PRIMAP-hist national historical emissions time series, https://doi.org/10.5194/essd-8-571-2016"
@@ -257,10 +257,12 @@ merge_into:
   HMD: AUS
   ATF: FRA
   UMI: USA
-remove_categories:
-  codes:
-  - BVT
-  - IOT
-  - PCN
-  - SGS
-  comment: Territories which are not in PRIMAP-hist up to v2.x are removed.
+leave_parents:
+  BVT:
+  - World
+  IOT:
+  - World
+  PCN:
+  - World
+  SGS:
+  - World
