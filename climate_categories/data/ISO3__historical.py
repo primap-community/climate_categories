@@ -3,13 +3,13 @@
 spec = {
     "option": "historical",
     "title": "historical countries and names",
-    "comment": "Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) or Yugoslavia (YUG), and historical names of current countries. The alpha-2 and numeric codes of withdrawn countries were partly re-used for other countries, so they are only given in the info. If the alpha-3 code was re-used, the alpha-4 code from ISO 3166-3 is the primary code.",
+    "comment": "Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) or Yugoslavia (YUG), and historical names of current countries. The alpha-2 and numeric codes of withdrawn countries were partly re-used for other countries, so they are only given in the info. If the alpha-3 code was re-used, the alpha-4 code from ISO 3166-3 is the primary code. Withdrawn countries which were split up or renamed have their successors as children, like the USSR (SUN) its 15 republics. Withdrawn countries which became part of a larger country, like the German Democratic Republic (DDR), have no children.",
     "references": "ISO 3166-3 in the iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
-    "last_update": "2026-10-12",
+    "last_update": "2026-10-13",
     "add_categories": {
         "AFI": {
             "title": "French Afars and Issas",
-            "comment": "Withdrawn from ISO 3166-1 in 1977.",
+            "comment": "Withdrawn from ISO 3166-1 in 1977. Succeeded by DJI.",
             "info": {
                 "withdrawal_date": "1977",
                 "former_alpha_3": "AFI",
@@ -17,10 +17,11 @@ spec = {
                 "former_numeric": "262",
             },
             "alternative_codes": ["AIDJ"],
+            "children": [["DJI"]],
         },
         "ANT": {
             "title": "Netherlands Antilles",
-            "comment": "Withdrawn from ISO 3166-1 on 2010-12-15. Had numeric code 532 until Aruba split away in 1986.",
+            "comment": "Withdrawn from ISO 3166-1 on 2010-12-15. Had numeric code 532 until Aruba split away in 1986. Succeeded by BES, CUW, SXM.",
             "info": {
                 "withdrawal_date": "2010-12-15",
                 "former_alpha_3": "ANT",
@@ -28,6 +29,7 @@ spec = {
                 "former_numeric": "530",
             },
             "alternative_codes": ["ANHH"],
+            "children": [["BES", "CUW", "SXM"]],
         },
         "ATB": {
             "title": "British Antarctic Territory",
@@ -41,7 +43,7 @@ spec = {
         },
         "BUR": {
             "title": "Burma, Socialist Republic of the Union of",
-            "comment": "Withdrawn from ISO 3166-1 on 1989-12-05.",
+            "comment": "Withdrawn from ISO 3166-1 on 1989-12-05. Succeeded by MMR.",
             "info": {
                 "withdrawal_date": "1989-12-05",
                 "former_alpha_3": "BUR",
@@ -49,10 +51,11 @@ spec = {
                 "former_numeric": "104",
             },
             "alternative_codes": ["BUMM"],
+            "children": [["MMR"]],
         },
         "BYS": {
             "title": "Byelorussian SSR Soviet Socialist Republic",
-            "comment": "Withdrawn from ISO 3166-1 on 1992-06-15.",
+            "comment": "Withdrawn from ISO 3166-1 on 1992-06-15. Succeeded by BLR.",
             "info": {
                 "withdrawal_date": "1992-06-15",
                 "former_alpha_3": "BYS",
@@ -60,10 +63,11 @@ spec = {
                 "former_numeric": "112",
             },
             "alternative_codes": ["BYAA"],
+            "children": [["BLR"]],
         },
         "CSK": {
             "title": "Czechoslovakia, Czechoslovak Socialist Republic",
-            "comment": "Withdrawn from ISO 3166-1 on 1993-06-15.",
+            "comment": "Withdrawn from ISO 3166-1 on 1993-06-15. Succeeded by CZE, SVK.",
             "info": {
                 "withdrawal_date": "1993-06-15",
                 "former_alpha_3": "CSK",
@@ -71,10 +75,11 @@ spec = {
                 "former_numeric": "200",
             },
             "alternative_codes": ["CSHH"],
+            "children": [["CZE", "SVK"]],
         },
         "SCG": {
             "title": "Serbia and Montenegro",
-            "comment": "Withdrawn from ISO 3166-1 on 2006-09-26.",
+            "comment": "Withdrawn from ISO 3166-1 on 2006-09-26. Succeeded by MNE, SRB.",
             "info": {
                 "withdrawal_date": "2006-09-26",
                 "former_alpha_3": "SCG",
@@ -82,6 +87,7 @@ spec = {
                 "former_numeric": "891",
             },
             "alternative_codes": ["CSXX"],
+            "children": [["MNE", "SRB"]],
         },
         "CTE": {
             "title": "Canton and Enderbury Islands",
@@ -107,7 +113,7 @@ spec = {
         },
         "DHY": {
             "title": "Dahomey",
-            "comment": "Withdrawn from ISO 3166-1 in 1977.",
+            "comment": "Withdrawn from ISO 3166-1 in 1977. Succeeded by BEN.",
             "info": {
                 "withdrawal_date": "1977",
                 "former_alpha_3": "DHY",
@@ -115,6 +121,7 @@ spec = {
                 "former_numeric": "204",
             },
             "alternative_codes": ["DYBJ"],
+            "children": [["BEN"]],
         },
         "FQHH": {
             "title": "French Southern and Antarctic Territories",
@@ -149,7 +156,7 @@ spec = {
         },
         "HVO": {
             "title": "Upper Volta, Republic of",
-            "comment": "Withdrawn from ISO 3166-1 in 1984.",
+            "comment": "Withdrawn from ISO 3166-1 in 1984. Succeeded by BFA.",
             "info": {
                 "withdrawal_date": "1984",
                 "former_alpha_3": "HVO",
@@ -157,6 +164,7 @@ spec = {
                 "former_numeric": "854",
             },
             "alternative_codes": ["HVBF"],
+            "children": [["BFA"]],
         },
         "JTN": {
             "title": "Johnston Island",
@@ -182,7 +190,7 @@ spec = {
         },
         "NHB": {
             "title": "New Hebrides",
-            "comment": "Withdrawn from ISO 3166-1 in 1980.",
+            "comment": "Withdrawn from ISO 3166-1 in 1980. Succeeded by VUT.",
             "info": {
                 "withdrawal_date": "1980",
                 "former_alpha_3": "NHB",
@@ -190,6 +198,7 @@ spec = {
                 "former_numeric": "548",
             },
             "alternative_codes": ["NHVU"],
+            "children": [["VUT"]],
         },
         "ATN": {
             "title": "Dronning Maud Land",
@@ -215,7 +224,7 @@ spec = {
         },
         "PCI": {
             "title": "Pacific Islands (trust territory)",
-            "comment": "Withdrawn from ISO 3166-1 in 1986. Divided into FM, MH, MP, and PW.",
+            "comment": "Withdrawn from ISO 3166-1 in 1986. Divided into FM, MH, MP, and PW. Succeeded by FSM, MHL, MNP, PLW.",
             "info": {
                 "withdrawal_date": "1986",
                 "former_alpha_3": "PCI",
@@ -223,6 +232,7 @@ spec = {
                 "former_numeric": "582",
             },
             "alternative_codes": ["PCHH"],
+            "children": [["FSM", "MHL", "MNP", "PLW"]],
         },
         "PUS": {
             "title": "US Miscellaneous Pacific Islands",
@@ -247,7 +257,7 @@ spec = {
         },
         "RHO": {
             "title": "Southern Rhodesia",
-            "comment": "Withdrawn from ISO 3166-1 in 1980.",
+            "comment": "Withdrawn from ISO 3166-1 in 1980. Succeeded by ZWE.",
             "info": {
                 "withdrawal_date": "1980",
                 "former_alpha_3": "RHO",
@@ -255,6 +265,7 @@ spec = {
                 "former_numeric": "716",
             },
             "alternative_codes": ["RHZW"],
+            "children": [["ZWE"]],
         },
         "SKM": {
             "title": "Sikkim",
@@ -268,7 +279,7 @@ spec = {
         },
         "SUN": {
             "title": "USSR, Union of Soviet Socialist Republics",
-            "comment": "Withdrawn from ISO 3166-1 on 1992-08-30.",
+            "comment": "Withdrawn from ISO 3166-1 on 1992-08-30. Succeeded by ARM, AZE, BLR, EST, GEO, KAZ, KGZ, LTU, LVA, MDA, RUS, TJK, TKM, UKR, UZB.",
             "info": {
                 "withdrawal_date": "1992-08-30",
                 "former_alpha_3": "SUN",
@@ -276,10 +287,29 @@ spec = {
                 "former_numeric": "810",
             },
             "alternative_codes": ["SUHH"],
+            "children": [
+                [
+                    "ARM",
+                    "AZE",
+                    "BLR",
+                    "EST",
+                    "GEO",
+                    "KAZ",
+                    "KGZ",
+                    "LTU",
+                    "LVA",
+                    "MDA",
+                    "RUS",
+                    "TJK",
+                    "TKM",
+                    "UKR",
+                    "UZB",
+                ]
+            ],
         },
         "TMP": {
             "title": "East Timor",
-            "comment": "Withdrawn from ISO 3166-1 on 2002-05-20. Was Portuguese Timor.",
+            "comment": "Withdrawn from ISO 3166-1 on 2002-05-20. Was Portuguese Timor. Succeeded by TLS.",
             "info": {
                 "withdrawal_date": "2002-05-20",
                 "former_alpha_3": "TMP",
@@ -287,6 +317,7 @@ spec = {
                 "former_numeric": "626",
             },
             "alternative_codes": ["TPTL"],
+            "children": [["TLS"]],
         },
         "VDR": {
             "title": "Viet-Nam, Democratic Republic of",
@@ -322,7 +353,7 @@ spec = {
         },
         "YUG": {
             "title": "Yugoslavia, (Socialist) Federal Republic of",
-            "comment": "Withdrawn from ISO 3166-1 on 2003-07-23. Had numeric code 890 until the 'Socialist Federal Republic of Yugoslavia' formerly broke apart on 27 April 1992 and the 'Federal Republic of Yugoslavia' was founded.",
+            "comment": "Withdrawn from ISO 3166-1 on 2003-07-23. Had numeric code 890 until the 'Socialist Federal Republic of Yugoslavia' formerly broke apart on 27 April 1992 and the 'Federal Republic of Yugoslavia' was founded. Succeeded by BIH, HRV, MKD, MNE, SRB, SVN.",
             "info": {
                 "withdrawal_date": "2003-07-23",
                 "former_alpha_3": "YUG",
@@ -330,10 +361,11 @@ spec = {
                 "former_numeric": "891",
             },
             "alternative_codes": ["YUCS"],
+            "children": [["BIH", "HRV", "MKD", "MNE", "SRB", "SVN"]],
         },
         "ZAR": {
             "title": "Zaire, Republic of",
-            "comment": "Withdrawn from ISO 3166-1 on 1997-07-14.",
+            "comment": "Withdrawn from ISO 3166-1 on 1997-07-14. Succeeded by COD.",
             "info": {
                 "withdrawal_date": "1997-07-14",
                 "former_alpha_3": "ZAR",
@@ -341,6 +373,7 @@ spec = {
                 "former_numeric": "180",
             },
             "alternative_codes": ["ZRCD"],
+            "children": [["COD"]],
         },
     },
     "update_categories": {"TUR": {"info": {"historical_names": ["Turkey"]}}},

@@ -30,6 +30,8 @@ DATA_DIR = pathlib.Path("./climate_categories/data")
 LAST_UPDATE = datetime.date(2026, 9, 24)
 # Last update of the options introduced with the option mechanism.
 OPTIONS_LAST_UPDATE = datetime.date(2026, 10, 12)
+# Last update of the historical and CEDS options.
+HISTORICAL_CEDS_LAST_UPDATE = datetime.date(2026, 10, 13)
 
 # Kosovo is not part of ISO 3166-1, but used in some data sources like GCAM.
 KOSOVO = {
@@ -144,14 +146,117 @@ LDC_GRADUATED: list[tuple[str, int]] = [
 # Territories without permanent population.
 UNPOPULATED = ("ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI")
 
+# The sovereign state of dependent territories, from the list of ISO 3166 country codes
+# on Wikipedia, which follows the CIA World Factbook. The Crown Dependencies are
+# possessions of the British Crown, the United Kingdom is responsible for their
+# international relations. Not listed: the Cook Islands and Niue, which are in free
+# association with New Zealand, but parties to the UNFCCC themselves, Antarctica
+# (Antarctic Treaty), and areas whose status is disputed (Taiwan, Western Sahara).
+SOVEREIGN = {
+    "ABW": "NLD",
+    "AIA": "GBR",
+    "ALA": "FIN",
+    "ASM": "USA",
+    "ATF": "FRA",
+    "BES": "NLD",
+    "BLM": "FRA",
+    "BMU": "GBR",
+    "BVT": "NOR",
+    "CCK": "AUS",
+    "CUW": "NLD",
+    "CXR": "AUS",
+    "CYM": "GBR",
+    "FLK": "GBR",
+    "FRO": "DNK",
+    "GGY": "GBR",
+    "GIB": "GBR",
+    "GLP": "FRA",
+    "GRL": "DNK",
+    "GUF": "FRA",
+    "GUM": "USA",
+    "HKG": "CHN",
+    "HMD": "AUS",
+    "IMN": "GBR",
+    "IOT": "GBR",
+    "JEY": "GBR",
+    "MAC": "CHN",
+    "MAF": "FRA",
+    "MNP": "USA",
+    "MSR": "GBR",
+    "MTQ": "FRA",
+    "MYT": "FRA",
+    "NCL": "FRA",
+    "NFK": "AUS",
+    "PCN": "GBR",
+    "PRI": "USA",
+    "PYF": "FRA",
+    "REU": "FRA",
+    "SGS": "GBR",
+    "SHN": "GBR",
+    "SJM": "NOR",
+    "SPM": "FRA",
+    "SXM": "NLD",
+    "TCA": "GBR",
+    "TKL": "NZL",
+    "UMI": "USA",
+    "VGB": "GBR",
+    "VIR": "USA",
+    "WLF": "FRA",
+}
+
+# The current countries which succeeded withdrawn countries, if together they cover
+# exactly the territory of the withdrawn country. They are the children of the withdrawn
+# country. Withdrawn countries which became part of a larger country, like the German
+# Democratic Republic (DDR), or which were divided between several countries, like the
+# Neutral Zone (NTZ), have no children.
+SUCCESSORS = {
+    # split up
+    "ANT": ["BES", "CUW", "SXM"],
+    "CSK": ["CZE", "SVK"],
+    "PCI": ["FSM", "MHL", "MNP", "PLW"],
+    "SCG": ["MNE", "SRB"],
+    "SUN": [
+        "ARM",
+        "AZE",
+        "BLR",
+        "EST",
+        "GEO",
+        "KAZ",
+        "KGZ",
+        "LTU",
+        "LVA",
+        "MDA",
+        "RUS",
+        "TJK",
+        "TKM",
+        "UKR",
+        "UZB",
+    ],
+    # The Socialist Federal Republic of Yugoslavia. From 1992 to 2003, the code was
+    # used for the Federal Republic of Yugoslavia, which was then renamed to Serbia and
+    # Montenegro (SCG).
+    "YUG": ["BIH", "HRV", "MKD", "MNE", "SRB", "SVN"],
+    # renamed
+    "AFI": ["DJI"],
+    "BUR": ["MMR"],
+    "BYS": ["BLR"],
+    "DHY": ["BEN"],
+    "HVO": ["BFA"],
+    "NHB": ["VUT"],
+    "RHO": ["ZWE"],
+    "TMP": ["TLS"],
+    "ZAR": ["COD"],
+}
+
 # Definitions of PRIMAP-hist up to v2.x, from the primap1 country table
 # (SIMCAP_EM_COUNTRYTABLE_v8.3.xlsx). They reproduce the regions of PRIMAP-hist v2.5 to
 # v2.8 exactly.
 # PRIMAP-hist up to v2.x included these unpopulated territories in their sovereign
 # country, and MSR in GBR.
 PRIMAP1_MERGED = {"MSR": "GBR", "HMD": "AUS", "ATF": "FRA", "UMI": "USA"}
-# PRIMAP-hist up to v2.x did not report these territories.
-PRIMAP1_REMOVED = ("BVT", "IOT", "PCN", "SGS")
+# PRIMAP-hist up to v2.x did not report these territories. They are kept outside of
+# World, because its input data partly contain them.
+PRIMAP1_NOT_REPORTED = ("BVT", "IOT", "PCN", "SGS")
 # The Umbrella Group, without a formal member list (2011-11-03).
 PRIMAP1_UMBRELLA = ["AUS", "CAN", "JPN", "NOR", "NZL", "RUS", "UKR", "USA"]
 # The observers of AOSIS in addition to its members (sidsnet.org, 2011-11-20). The
@@ -344,6 +449,7 @@ ALIASES = {
     "ISO3_PRIMAP1_INPUTS": (
         "Antilles",
         "AR5",
+        "CEDS",
         "EDGAR_HYDE",
         "ESH_in_MAR",
         "EU",
@@ -987,6 +1093,7 @@ def main():
         antilles_option(),
         esh_in_mar_option(),
         msr_pcn_in_gbr_option(),
+        ceds_option(),
         primap1_option(),
         ISO3_model_regions.ar5_option(OPTIONS_LAST_UPDATE),
         ISO3_model_regions.rcp_option(OPTIONS_LAST_UPDATE),
@@ -1004,12 +1111,15 @@ def main():
         "name": "ISO3",
         "title": "ISO 3166-1 countries",
         "comment": "Countries, regions, and other areas as defined in ISO 3166-1, and "
-        "the world. Groupings like the parties to the UN Framework Convention on "
+        "the world. Dependent territories have their sovereign country in the info "
+        "'sovereign'. Groupings like the parties to the UN Framework Convention on "
         "Climate Change are available as options, see ISO3.available_options. The "
         "alias ISO3_GROUPS includes all groupings commonly used in climate policy "
         "analysis and the historical countries.",
         "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\n"
-        "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
+        "iso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\n"
+        "sovereign countries, "
+        "https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes",
         "institution": "ISO",
         "last_update": LAST_UPDATE.isoformat(),
         "hierarchical": True,
@@ -1030,6 +1140,9 @@ def main():
 def base_categories() -> dict[str, dict]:
     """The countries from ISO 3166-1 and the world."""
     categories = load_countries()
+    for territory, sovereign in SOVEREIGN.items():
+        assert sovereign in categories, sovereign
+        categories[territory].setdefault("info", {})["sovereign"] = sovereign
     # the world is needed as the canonical top level category
     categories["World"] = {
         "title": "The world",
@@ -1127,10 +1240,14 @@ def historical_option(
         "or Yugoslavia (YUG), and historical names of current countries. The "
         "alpha-2 and numeric codes of withdrawn countries were partly re-used for "
         "other countries, so they are only given in the info. If the alpha-3 code was "
-        "re-used, the alpha-4 code from ISO 3166-3 is the primary code.",
+        "re-used, the alpha-4 code from ISO 3166-3 is the primary code. Withdrawn "
+        "countries which were split up or renamed have their successors as children, "
+        "like the USSR (SUN) its 15 republics. Withdrawn countries which became part "
+        "of a larger country, like the German Democratic Republic (DDR), have no "
+        "children.",
         references="ISO 3166-3 in the iso-codes package, "
         "https://salsa.debian.org/iso-codes-team/iso-codes",
-        last_update=OPTIONS_LAST_UPDATE,
+        last_update=HISTORICAL_CEDS_LAST_UPDATE,
         add_categories=withdrawn_countries(known_codes),
         update_categories=historical_names(),
     )
@@ -1145,7 +1262,9 @@ def kosovo_option() -> climate_categories.CategorizationOption:
         last_update=OPTIONS_LAST_UPDATE,
         add_categories=KOSOVO,
         split_from={"XKX": "SRB"},
-        join_parents={"XKX": ["World"]},
+        # Kosovo was part of Yugoslavia and Serbia and Montenegro, which are only
+        # there with the historical option
+        join_parents={"XKX": ["World", "SCG", "YUG"]},
     )
 
 
@@ -1220,6 +1339,28 @@ def antilles_option() -> climate_categories.CategorizationOption:
     )
 
 
+def ceds_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="CEDS",
+        title="Community Emissions Data System",
+        comment="The areas of the Community Emissions Data System (CEDS) which are not "
+        "countries: emissions which CEDS does not allocate to countries, which are "
+        "international shipping and aviation, under the CEDS code 'global'. They are "
+        "not part of World.",
+        references="CEDS master country list, "
+        "https://github.com/JGCRI/CEDS/blob/master/input/mappings/Master_Country_List.csv",
+        last_update=HISTORICAL_CEDS_LAST_UPDATE,
+        add_categories={
+            "CEDS|global": {
+                "title": "International shipping and aviation (CEDS)",
+                "comment": "Emissions from international shipping and aviation, which "
+                "CEDS does not allocate to countries.",
+                "alternative_codes": ["global", "GLOBAL"],
+            },
+        },
+    )
+
+
 def esh_in_mar_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
         name="ESH_in_MAR",
@@ -1254,8 +1395,8 @@ def primap1_option() -> climate_categories.CategorizationOption:
         comment="The countries and regions of PRIMAP-hist up to v2.x, which was "
         "produced with the primap1 library. Montserrat (MSR) and the unpopulated "
         "territories HMD, ATF, and UMI are included in their sovereign country, BVT, "
-        "IOT, PCN, and SGS are removed, so that World contains the countries and "
-        "territories of PRIMAP-hist. The region codes of PRIMAP-hist v2.x refer to "
+        "IOT, PCN, and SGS are not part of World, so that World contains the "
+        "countries and territories of PRIMAP-hist. The region codes of PRIMAP-hist v2.x refer to "
         "the definitions of PRIMAP-hist v2.x: LDC to LDC_2012, AOSIS to "
         "AOSIS_PRIMAP1, UMBRELLA to UMBRELLA_PRIMAP1, and NONANNEXI to "
         "NONANNEXI_PRIMAP1. ANNEXI, EU27BX, BASIC, and EARTH are unchanged.",
@@ -1313,11 +1454,8 @@ Gütschow et al. (2016), The PRIMAP-hist national historical emissions time seri
             "UMBRELLA": "UMBRELLA_PRIMAP1",
             "NONANNEXI": "NONANNEXI_PRIMAP1",
         },
+        leave_parents={code: ["World"] for code in PRIMAP1_NOT_REPORTED},
         merge_into=PRIMAP1_MERGED,
-        remove_categories=climate_categories.CategoryRemoval(
-            codes=PRIMAP1_REMOVED,
-            comment="Territories which are not in PRIMAP-hist up to v2.x are removed.",
-        ),
     )
 
 
@@ -1684,8 +1822,13 @@ def withdrawn_countries(known_codes: set[str]) -> dict[str, dict]:
         spec = {"title": country["name"], "comment": comment, "info": info}
         if len(codes) > 1:
             spec["alternative_codes"] = codes[1:]
+        if codes[0] in SUCCESSORS:
+            successors = SUCCESSORS[codes[0]]
+            spec["children"] = [successors]
+            spec["comment"] += f" Succeeded by {', '.join(successors)}."
         categories[codes[0]] = spec
 
+    assert set(SUCCESSORS) <= set(categories), set(SUCCESSORS) - set(categories)
     return categories
 
 

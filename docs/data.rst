@@ -165,6 +165,7 @@ remove_children           map   optional, primary code → list of child sets   
 merge_into                map   optional, removed primary code → including code  {'PSE': 'ISR'}
 split_from                map   optional, split primary code → original code     {'XKX': 'SRB'}
 join_parents              map   optional, split primary code → list of parents   {'XKX': ['World']}
+leave_parents             map   optional, primary code → list of parents         {'PCN': ['World']}
 ========================  ====  ===============================================  ============================
 
 New categories in ``add_categories`` are specified like categories in categorization
@@ -225,6 +226,16 @@ without it. Notes about the split
 are added to the comments of the category it is split from and of all categories whose
 children were changed. Merging a category back into the category it was split from
 cancels the split in the ``includes`` and ``excludes`` info.
+
+``leave_parents`` removes categories from the child sets of the given parents, but
+keeps them in the categorization, for example ``{'PCN': ['World']}`` for a territory
+which a dataset does not report, but which is used in some of its input data. In
+categorizations with ``total_sum``, the child sets which contained the category are
+dropped instead, because they don't add up any more. Parents which don't exist are
+ignored, but the category has to be a child of at least one of the given parents
+which exist. A note is added to the comments of the parents whose children were
+changed. ``leave_parents`` is applied together with merges and removals of categories,
+before them, so it also affects child sets added by other options.
 
 When building a categorization with options, first all additions and changes of all
 options (everything except splits, merges, and removals of categories) are applied in

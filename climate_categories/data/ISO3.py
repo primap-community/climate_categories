@@ -3,8 +3,8 @@
 spec = {
     "name": "ISO3",
     "title": "ISO 3166-1 countries",
-    "comment": "Countries, regions, and other areas as defined in ISO 3166-1, and the world. Groupings like the parties to the UN Framework Convention on Climate Change are available as options, see ISO3.available_options. The alias ISO3_GROUPS includes all groupings commonly used in climate policy analysis and the historical countries.",
-    "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes",
+    "comment": "Countries, regions, and other areas as defined in ISO 3166-1, and the world. Dependent territories have their sovereign country in the info 'sovereign'. Groupings like the parties to the UN Framework Convention on Climate Change are available as options, see ISO3.available_options. The alias ISO3_GROUPS includes all groupings commonly used in climate policy analysis and the historical countries.",
+    "references": "ISO 3166, https://www.iso.org/iso-3166-country-codes.html;\niso-codes package, https://salsa.debian.org/iso-codes-team/iso-codes;\nsovereign countries, https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes",
     "institution": "ISO",
     "hierarchical": True,
     "last_update": "2026-09-24",
@@ -12,7 +12,11 @@ spec = {
     "total_sum": False,
     "canonical_top_level_category": "World",
     "categories": {
-        "ABW": {"title": "Aruba", "alternative_codes": ["AW", "533"]},
+        "ABW": {
+            "title": "Aruba",
+            "alternative_codes": ["AW", "533"],
+            "info": {"sovereign": "NLD"},
+        },
         "AFG": {
             "title": "Afghanistan",
             "alternative_codes": ["AF", "004"],
@@ -23,8 +27,16 @@ spec = {
             "alternative_codes": ["AO", "024"],
             "info": {"official_name": "Republic of Angola"},
         },
-        "AIA": {"title": "Anguilla", "alternative_codes": ["AI", "660"]},
-        "ALA": {"title": "Åland Islands", "alternative_codes": ["AX", "248"]},
+        "AIA": {
+            "title": "Anguilla",
+            "alternative_codes": ["AI", "660"],
+            "info": {"sovereign": "GBR"},
+        },
+        "ALA": {
+            "title": "Åland Islands",
+            "alternative_codes": ["AX", "248"],
+            "info": {"sovereign": "FIN"},
+        },
         "ALB": {
             "title": "Albania",
             "alternative_codes": ["AL", "008"],
@@ -46,11 +58,16 @@ spec = {
             "alternative_codes": ["AM", "051"],
             "info": {"official_name": "Republic of Armenia"},
         },
-        "ASM": {"title": "American Samoa", "alternative_codes": ["AS", "016"]},
+        "ASM": {
+            "title": "American Samoa",
+            "alternative_codes": ["AS", "016"],
+            "info": {"sovereign": "USA"},
+        },
         "ATA": {"title": "Antarctica", "alternative_codes": ["AQ", "010"]},
         "ATF": {
             "title": "French Southern Territories",
             "alternative_codes": ["TF", "260"],
+            "info": {"sovereign": "FRA"},
         },
         "ATG": {"title": "Antigua and Barbuda", "alternative_codes": ["AG", "028"]},
         "AUS": {"title": "Australia", "alternative_codes": ["AU", "036"]},
@@ -82,7 +99,10 @@ spec = {
         "BES": {
             "title": "Bonaire, Sint Eustatius and Saba",
             "alternative_codes": ["BQ", "535"],
-            "info": {"official_name": "Bonaire, Sint Eustatius and Saba"},
+            "info": {
+                "official_name": "Bonaire, Sint Eustatius and Saba",
+                "sovereign": "NLD",
+            },
         },
         "BFA": {"title": "Burkina Faso", "alternative_codes": ["BF", "854"]},
         "BGD": {
@@ -110,14 +130,22 @@ spec = {
             "alternative_codes": ["BA", "070"],
             "info": {"official_name": "Republic of Bosnia and Herzegovina"},
         },
-        "BLM": {"title": "Saint Barthélemy", "alternative_codes": ["BL", "652"]},
+        "BLM": {
+            "title": "Saint Barthélemy",
+            "alternative_codes": ["BL", "652"],
+            "info": {"sovereign": "FRA"},
+        },
         "BLR": {
             "title": "Belarus",
             "alternative_codes": ["BY", "112"],
             "info": {"official_name": "Republic of Belarus"},
         },
         "BLZ": {"title": "Belize", "alternative_codes": ["BZ", "084"]},
-        "BMU": {"title": "Bermuda", "alternative_codes": ["BM", "060"]},
+        "BMU": {
+            "title": "Bermuda",
+            "alternative_codes": ["BM", "060"],
+            "info": {"sovereign": "GBR"},
+        },
         "BOL": {
             "title": "Bolivia, Plurinational State of",
             "alternative_codes": ["BO", "068"],
@@ -138,7 +166,11 @@ spec = {
             "alternative_codes": ["BT", "064"],
             "info": {"official_name": "Kingdom of Bhutan"},
         },
-        "BVT": {"title": "Bouvet Island", "alternative_codes": ["BV", "074"]},
+        "BVT": {
+            "title": "Bouvet Island",
+            "alternative_codes": ["BV", "074"],
+            "info": {"sovereign": "NOR"},
+        },
         "BWA": {
             "title": "Botswana",
             "alternative_codes": ["BW", "072"],
@@ -149,7 +181,11 @@ spec = {
             "alternative_codes": ["CF", "140"],
         },
         "CAN": {"title": "Canada", "alternative_codes": ["CA", "124"]},
-        "CCK": {"title": "Cocos (Keeling) Islands", "alternative_codes": ["CC", "166"]},
+        "CCK": {
+            "title": "Cocos (Keeling) Islands",
+            "alternative_codes": ["CC", "166"],
+            "info": {"sovereign": "AUS"},
+        },
         "CHE": {
             "title": "Switzerland",
             "alternative_codes": ["CH", "756"],
@@ -213,10 +249,18 @@ spec = {
         "CUW": {
             "title": "Curaçao",
             "alternative_codes": ["CW", "531"],
-            "info": {"official_name": "Curaçao"},
+            "info": {"official_name": "Curaçao", "sovereign": "NLD"},
         },
-        "CXR": {"title": "Christmas Island", "alternative_codes": ["CX", "162"]},
-        "CYM": {"title": "Cayman Islands", "alternative_codes": ["KY", "136"]},
+        "CXR": {
+            "title": "Christmas Island",
+            "alternative_codes": ["CX", "162"],
+            "info": {"sovereign": "AUS"},
+        },
+        "CYM": {
+            "title": "Cayman Islands",
+            "alternative_codes": ["KY", "136"],
+            "info": {"sovereign": "GBR"},
+        },
         "CYP": {
             "title": "Cyprus",
             "alternative_codes": ["CY", "196"],
@@ -297,13 +341,18 @@ spec = {
         "FLK": {
             "title": "Falkland Islands (Malvinas)",
             "alternative_codes": ["FK", "238"],
+            "info": {"sovereign": "GBR"},
         },
         "FRA": {
             "title": "France",
             "alternative_codes": ["FR", "250"],
             "info": {"official_name": "French Republic"},
         },
-        "FRO": {"title": "Faroe Islands", "alternative_codes": ["FO", "234"]},
+        "FRO": {
+            "title": "Faroe Islands",
+            "alternative_codes": ["FO", "234"],
+            "info": {"sovereign": "DNK"},
+        },
         "FSM": {
             "title": "Micronesia, Federated States of",
             "alternative_codes": ["FM", "583"],
@@ -322,19 +371,31 @@ spec = {
             },
         },
         "GEO": {"title": "Georgia", "alternative_codes": ["GE", "268"]},
-        "GGY": {"title": "Guernsey", "alternative_codes": ["GG", "831"]},
+        "GGY": {
+            "title": "Guernsey",
+            "alternative_codes": ["GG", "831"],
+            "info": {"sovereign": "GBR"},
+        },
         "GHA": {
             "title": "Ghana",
             "alternative_codes": ["GH", "288"],
             "info": {"official_name": "Republic of Ghana"},
         },
-        "GIB": {"title": "Gibraltar", "alternative_codes": ["GI", "292"]},
+        "GIB": {
+            "title": "Gibraltar",
+            "alternative_codes": ["GI", "292"],
+            "info": {"sovereign": "GBR"},
+        },
         "GIN": {
             "title": "Guinea",
             "alternative_codes": ["GN", "324"],
             "info": {"official_name": "Republic of Guinea"},
         },
-        "GLP": {"title": "Guadeloupe", "alternative_codes": ["GP", "312"]},
+        "GLP": {
+            "title": "Guadeloupe",
+            "alternative_codes": ["GP", "312"],
+            "info": {"sovereign": "FRA"},
+        },
         "GMB": {
             "title": "Gambia",
             "alternative_codes": ["GM", "270"],
@@ -356,14 +417,26 @@ spec = {
             "info": {"official_name": "Hellenic Republic"},
         },
         "GRD": {"title": "Grenada", "alternative_codes": ["GD", "308"]},
-        "GRL": {"title": "Greenland", "alternative_codes": ["GL", "304"]},
+        "GRL": {
+            "title": "Greenland",
+            "alternative_codes": ["GL", "304"],
+            "info": {"sovereign": "DNK"},
+        },
         "GTM": {
             "title": "Guatemala",
             "alternative_codes": ["GT", "320"],
             "info": {"official_name": "Republic of Guatemala"},
         },
-        "GUF": {"title": "French Guiana", "alternative_codes": ["GF", "254"]},
-        "GUM": {"title": "Guam", "alternative_codes": ["GU", "316"]},
+        "GUF": {
+            "title": "French Guiana",
+            "alternative_codes": ["GF", "254"],
+            "info": {"sovereign": "FRA"},
+        },
+        "GUM": {
+            "title": "Guam",
+            "alternative_codes": ["GU", "316"],
+            "info": {"sovereign": "USA"},
+        },
         "GUY": {
             "title": "Guyana",
             "alternative_codes": ["GY", "328"],
@@ -373,12 +446,14 @@ spec = {
             "title": "Hong Kong",
             "alternative_codes": ["HK", "344"],
             "info": {
-                "official_name": "Hong Kong Special Administrative Region of China"
+                "official_name": "Hong Kong Special Administrative Region of China",
+                "sovereign": "CHN",
             },
         },
         "HMD": {
             "title": "Heard Island and McDonald Islands",
             "alternative_codes": ["HM", "334"],
+            "info": {"sovereign": "AUS"},
         },
         "HND": {
             "title": "Honduras",
@@ -405,7 +480,11 @@ spec = {
             "alternative_codes": ["ID", "360"],
             "info": {"official_name": "Republic of Indonesia"},
         },
-        "IMN": {"title": "Isle of Man", "alternative_codes": ["IM", "833"]},
+        "IMN": {
+            "title": "Isle of Man",
+            "alternative_codes": ["IM", "833"],
+            "info": {"sovereign": "GBR"},
+        },
         "IND": {
             "title": "India",
             "alternative_codes": ["IN", "356"],
@@ -414,6 +493,7 @@ spec = {
         "IOT": {
             "title": "British Indian Ocean Territory",
             "alternative_codes": ["IO", "086"],
+            "info": {"sovereign": "GBR"},
         },
         "IRL": {"title": "Ireland", "alternative_codes": ["IE", "372"]},
         "IRN": {
@@ -445,7 +525,11 @@ spec = {
             "info": {"official_name": "Italian Republic"},
         },
         "JAM": {"title": "Jamaica", "alternative_codes": ["JM", "388"]},
-        "JEY": {"title": "Jersey", "alternative_codes": ["JE", "832"]},
+        "JEY": {
+            "title": "Jersey",
+            "alternative_codes": ["JE", "832"],
+            "info": {"sovereign": "GBR"},
+        },
         "JOR": {
             "title": "Jordan",
             "alternative_codes": ["JO", "400"],
@@ -542,11 +626,15 @@ spec = {
         "MAC": {
             "title": "Macao",
             "alternative_codes": ["MO", "446"],
-            "info": {"official_name": "Macao Special Administrative Region of China"},
+            "info": {
+                "official_name": "Macao Special Administrative Region of China",
+                "sovereign": "CHN",
+            },
         },
         "MAF": {
             "title": "Saint Martin (French part)",
             "alternative_codes": ["MF", "663"],
+            "info": {"sovereign": "FRA"},
         },
         "MAR": {
             "title": "Morocco",
@@ -612,7 +700,10 @@ spec = {
         "MNP": {
             "title": "Northern Mariana Islands",
             "alternative_codes": ["MP", "580"],
-            "info": {"official_name": "Commonwealth of the Northern Mariana Islands"},
+            "info": {
+                "official_name": "Commonwealth of the Northern Mariana Islands",
+                "sovereign": "USA",
+            },
         },
         "MOZ": {
             "title": "Mozambique",
@@ -624,8 +715,16 @@ spec = {
             "alternative_codes": ["MR", "478"],
             "info": {"official_name": "Islamic Republic of Mauritania"},
         },
-        "MSR": {"title": "Montserrat", "alternative_codes": ["MS", "500"]},
-        "MTQ": {"title": "Martinique", "alternative_codes": ["MQ", "474"]},
+        "MSR": {
+            "title": "Montserrat",
+            "alternative_codes": ["MS", "500"],
+            "info": {"sovereign": "GBR"},
+        },
+        "MTQ": {
+            "title": "Martinique",
+            "alternative_codes": ["MQ", "474"],
+            "info": {"sovereign": "FRA"},
+        },
         "MUS": {
             "title": "Mauritius",
             "alternative_codes": ["MU", "480"],
@@ -637,19 +736,31 @@ spec = {
             "info": {"official_name": "Republic of Malawi"},
         },
         "MYS": {"title": "Malaysia", "alternative_codes": ["MY", "458"]},
-        "MYT": {"title": "Mayotte", "alternative_codes": ["YT", "175"]},
+        "MYT": {
+            "title": "Mayotte",
+            "alternative_codes": ["YT", "175"],
+            "info": {"sovereign": "FRA"},
+        },
         "NAM": {
             "title": "Namibia",
             "alternative_codes": ["NA", "516"],
             "info": {"official_name": "Republic of Namibia"},
         },
-        "NCL": {"title": "New Caledonia", "alternative_codes": ["NC", "540"]},
+        "NCL": {
+            "title": "New Caledonia",
+            "alternative_codes": ["NC", "540"],
+            "info": {"sovereign": "FRA"},
+        },
         "NER": {
             "title": "Niger",
             "alternative_codes": ["NE", "562"],
             "info": {"official_name": "Republic of the Niger"},
         },
-        "NFK": {"title": "Norfolk Island", "alternative_codes": ["NF", "574"]},
+        "NFK": {
+            "title": "Norfolk Island",
+            "alternative_codes": ["NF", "574"],
+            "info": {"sovereign": "AUS"},
+        },
         "NGA": {
             "title": "Nigeria",
             "alternative_codes": ["NG", "566"],
@@ -701,7 +812,11 @@ spec = {
             "alternative_codes": ["PA", "591"],
             "info": {"official_name": "Republic of Panama"},
         },
-        "PCN": {"title": "Pitcairn", "alternative_codes": ["PN", "612"]},
+        "PCN": {
+            "title": "Pitcairn",
+            "alternative_codes": ["PN", "612"],
+            "info": {"sovereign": "GBR"},
+        },
         "PER": {
             "title": "Peru",
             "alternative_codes": ["PE", "604"],
@@ -727,7 +842,11 @@ spec = {
             "alternative_codes": ["PL", "616"],
             "info": {"official_name": "Republic of Poland"},
         },
-        "PRI": {"title": "Puerto Rico", "alternative_codes": ["PR", "630"]},
+        "PRI": {
+            "title": "Puerto Rico",
+            "alternative_codes": ["PR", "630"],
+            "info": {"sovereign": "USA"},
+        },
         "PRK": {
             "title": "Korea, Democratic People's Republic of",
             "alternative_codes": ["KP", "408"],
@@ -751,13 +870,21 @@ spec = {
             "alternative_codes": ["PS", "275"],
             "info": {"official_name": "the State of Palestine"},
         },
-        "PYF": {"title": "French Polynesia", "alternative_codes": ["PF", "258"]},
+        "PYF": {
+            "title": "French Polynesia",
+            "alternative_codes": ["PF", "258"],
+            "info": {"sovereign": "FRA"},
+        },
         "QAT": {
             "title": "Qatar",
             "alternative_codes": ["QA", "634"],
             "info": {"official_name": "State of Qatar"},
         },
-        "REU": {"title": "Réunion", "alternative_codes": ["RE", "638"]},
+        "REU": {
+            "title": "Réunion",
+            "alternative_codes": ["RE", "638"],
+            "info": {"sovereign": "FRA"},
+        },
         "ROU": {"title": "Romania", "alternative_codes": ["RO", "642"]},
         "RUS": {"title": "Russian Federation", "alternative_codes": ["RU", "643"]},
         "RWA": {
@@ -788,12 +915,18 @@ spec = {
         "SGS": {
             "title": "South Georgia and the South Sandwich Islands",
             "alternative_codes": ["GS", "239"],
+            "info": {"sovereign": "GBR"},
         },
         "SHN": {
             "title": "Saint Helena, Ascension and Tristan da Cunha",
             "alternative_codes": ["SH", "654"],
+            "info": {"sovereign": "GBR"},
         },
-        "SJM": {"title": "Svalbard and Jan Mayen", "alternative_codes": ["SJ", "744"]},
+        "SJM": {
+            "title": "Svalbard and Jan Mayen",
+            "alternative_codes": ["SJ", "744"],
+            "info": {"sovereign": "NOR"},
+        },
         "SLB": {"title": "Solomon Islands", "alternative_codes": ["SB", "090"]},
         "SLE": {
             "title": "Sierra Leone",
@@ -818,6 +951,7 @@ spec = {
         "SPM": {
             "title": "Saint Pierre and Miquelon",
             "alternative_codes": ["PM", "666"],
+            "info": {"sovereign": "FRA"},
         },
         "SRB": {
             "title": "Serbia",
@@ -862,7 +996,7 @@ spec = {
         "SXM": {
             "title": "Sint Maarten (Dutch part)",
             "alternative_codes": ["SX", "534"],
-            "info": {"official_name": "Sint Maarten (Dutch part)"},
+            "info": {"official_name": "Sint Maarten (Dutch part)", "sovereign": "NLD"},
         },
         "SYC": {
             "title": "Seychelles",
@@ -877,6 +1011,7 @@ spec = {
         "TCA": {
             "title": "Turks and Caicos Islands",
             "alternative_codes": ["TC", "796"],
+            "info": {"sovereign": "GBR"},
         },
         "TCD": {
             "title": "Chad",
@@ -898,7 +1033,11 @@ spec = {
             "alternative_codes": ["TJ", "762"],
             "info": {"official_name": "Republic of Tajikistan"},
         },
-        "TKL": {"title": "Tokelau", "alternative_codes": ["TK", "772"]},
+        "TKL": {
+            "title": "Tokelau",
+            "alternative_codes": ["TK", "772"],
+            "info": {"sovereign": "NZL"},
+        },
         "TKM": {"title": "Turkmenistan", "alternative_codes": ["TM", "795"]},
         "TLS": {
             "title": "Timor-Leste",
@@ -951,6 +1090,7 @@ spec = {
         "UMI": {
             "title": "United States Minor Outlying Islands",
             "alternative_codes": ["UM", "581"],
+            "info": {"sovereign": "USA"},
         },
         "URY": {
             "title": "Uruguay",
@@ -986,12 +1126,15 @@ spec = {
         "VGB": {
             "title": "Virgin Islands, British",
             "alternative_codes": ["VG", "092"],
-            "info": {"official_name": "British Virgin Islands"},
+            "info": {"official_name": "British Virgin Islands", "sovereign": "GBR"},
         },
         "VIR": {
             "title": "Virgin Islands, U.S.",
             "alternative_codes": ["VI", "850"],
-            "info": {"official_name": "Virgin Islands of the United States"},
+            "info": {
+                "official_name": "Virgin Islands of the United States",
+                "sovereign": "USA",
+            },
         },
         "VNM": {
             "title": "Viet Nam",
@@ -1006,7 +1149,11 @@ spec = {
             "alternative_codes": ["VU", "548"],
             "info": {"official_name": "Republic of Vanuatu"},
         },
-        "WLF": {"title": "Wallis and Futuna", "alternative_codes": ["WF", "876"]},
+        "WLF": {
+            "title": "Wallis and Futuna",
+            "alternative_codes": ["WF", "876"],
+            "info": {"sovereign": "FRA"},
+        },
         "WSM": {
             "title": "Samoa",
             "alternative_codes": ["WS", "882"],

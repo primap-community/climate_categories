@@ -65,6 +65,7 @@ _patch_schema = {
     sy.Optional("merge_into"): sy.MapPattern(sy.Str(), sy.Str()),
     sy.Optional("split_from"): sy.MapPattern(sy.Str(), sy.Str()),
     sy.Optional("join_parents"): sy.MapPattern(sy.Str(), sy.Seq(sy.Str())),
+    sy.Optional("leave_parents"): sy.MapPattern(sy.Str(), sy.Seq(sy.Str())),
 }
 
 
@@ -207,7 +208,8 @@ class CategorizationPatch:
         historical country or a newly added aggregate), it takes over the memberships
         of the merged categories: child sets which contain all categories merged into
         it by the patch contain the receiving category instead. Other child sets which
-        contained the removed category are treated like for ``remove_categories``.
+        contained the removed category, including child sets of the receiving category
+        itself, are treated like for ``remove_categories``.
         Merges are applied before ``remove_categories``.
     split_from : dict
         The mirror image of ``merge_into``: categories which are split from other
@@ -225,6 +227,15 @@ class CategorizationPatch:
         category is added to all child sets of the listed parents which contain the
         category it is split from, e.g. ``{"XKX": ["World"]}``. Listed parents which
         don't exist are ignored.
+    leave_parents : dict
+        Parents which categories leave, mapping the primary code of a category to a
+        list of codes of parent categories. The category is removed from all child sets
+        of the listed parents, but not from the categorization, e.g.
+        ``{"PCN": ["World"]}`` for a territory which is not reported, but still used
+        in some data. In categorizations with ``total_sum``, the child sets which
+        contained the category are dropped instead, because they don't add up any
+        more. Listed parents which don't exist are ignored. Applied together with
+        merges and removals, before them.
     """
 
     add_categories: dict[str, dict] = dataclasses.field(default_factory=dict)
@@ -239,6 +250,7 @@ class CategorizationPatch:
     merge_into: dict[str, str] = dataclasses.field(default_factory=dict)
     split_from: dict[str, str] = dataclasses.field(default_factory=dict)
     join_parents: dict[str, list[str]] = dataclasses.field(default_factory=dict)
+    leave_parents: dict[str, list[str]] = dataclasses.field(default_factory=dict)
 
     def _label(self) -> str:
         return "patch"
@@ -257,6 +269,7 @@ class CategorizationPatch:
                 "merge_into",
                 "split_from",
                 "join_parents",
+                "leave_parents",
             )
             if key in spec
         }
@@ -278,6 +291,7 @@ class CategorizationPatch:
             "merge_into",
             "split_from",
             "join_parents",
+            "leave_parents",
         ):
             value = getattr(self, key)
             if value:
@@ -483,9 +497,58 @@ class CategorizationPatch:
                     f"{source} ({categories[source]['title']}).",
                 )
 
+    def _apply_leave_parents(self, spec: dict[str, typing.Any]) -> None:
+        """Remove categories from the child sets of the parents in leave_parents."""
+        if not self.leave_parents:
+            return
+        categories = spec["categories"]
+        removal = self.remove_categories
+        removed = {*self.merge_into, *(removal.codes if removal is not None else ())}
+        primary = _all_codes(categories)
+        drop_sets = spec.get("total_sum", False)
+
+        for code, parents in self.leave_parents.items():
+            if code not in categories:
+                raise ValueError(
+                    f"{self._label()} has leave_parents for {code!r}, which is not a "
+                    "primary code."
+                )
+            if code in removed:
+                raise ValueError(
+                    f"{self._label()} has leave_parents for {code!r}, which is removed."
+                )
+            existing = list(dict.fromkeys(primary[p] for p in parents if p in primary))
+            left = False
+            for parent in existing:
+                parent_spec = categories[parent]
+                new_children = []
+                for child_set in parent_spec.get("children", []):
+                    if code in {primary.get(c, c) for c in child_set}:
+                        left = True
+                        if drop_sets:
+                            continue
+                        child_set = [c for c in child_set if primary.get(c, c) != code]
+                    if child_set:
+                        new_children.append(child_set)
+                if new_children == parent_spec.get("children", []):
+                    continue
+                if new_children:
+                    parent_spec["children"] = new_children
+                else:
+                    del parent_spec["children"]
+                _append_comment(
+                    parent_spec, f"{code} ({categories[code]['title']}) is left out."
+                )
+            if existing and not left:
+                raise ValueError(
+                    f"{self._label()} has leave_parents for {code!r}, but it is not a "
+                    f"child of {existing!r}."
+                )
+
     def apply_removals(self, spec: dict[str, typing.Any]) -> None:
         """Apply all removals and merges of this patch to the categorization
-        specification."""
+        specification, after the parents in ``leave_parents`` are left."""
+        self._apply_leave_parents(spec)
         removal = self.remove_categories
         removed = removal.codes if removal is not None else ()
         if not removed and not self.merge_into:
@@ -579,7 +642,7 @@ class CategorizationPatch:
                     return True
             return False
 
-        for category_spec in categories.values():
+        for code, category_spec in categories.items():
             changed = [
                 primary[child]
                 for child_set in category_spec.get("children", [])
@@ -593,10 +656,12 @@ class CategorizationPatch:
                 gone = [child for child in child_set if child in removed_codes]
                 if gone:
                     present = {primary[child] for child in gone}
+                    # a receiving category doesn't become its own child, e.g. if its
+                    # successors are merged into a historical country
                     joined = [
                         target
                         for target, parts in new_targets.items()
-                        if parts <= present
+                        if parts <= present and target != code
                     ]
                     replaced = set().union(*(new_targets[t] for t in joined))
                     if drop_sets and not all(
@@ -616,9 +681,10 @@ class CategorizationPatch:
                 category_spec["children"] = new_children
             else:
                 del category_spec["children"]
-            for code in dict.fromkeys(changed):
-                comment = comments[code]
-                if comment is not None:
+            for changed_code in dict.fromkeys(changed):
+                comment = comments[changed_code]
+                # the receiving category already notes what it includes
+                if comment is not None and removed_codes[changed_code] != code:
                     _append_comment(category_spec, comment)
 
 
