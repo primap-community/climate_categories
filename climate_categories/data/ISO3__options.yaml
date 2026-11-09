@@ -12,6 +12,7 @@ options:
 - Antilles
 - ESH_in_MAR
 - MSR_PCN_in_GBR
+- PCN_not_in_World
 - CEDS
 - PRIMAP1
 - AR5
@@ -56,6 +57,7 @@ aliases:
   - groups
   - historical
   - no_unpopulated
+  - PCN_not_in_World
   - PSE_in_ISR
   - territories_in_sovereign_inventory
   - UNFCCC

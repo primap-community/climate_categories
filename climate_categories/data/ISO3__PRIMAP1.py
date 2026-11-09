@@ -19,6 +19,7 @@ spec = {
         "Kosovo",
         "MSR_PCN_in_GBR",
         "no_unpopulated",
+        "PCN_not_in_World",
         "territories_in_sovereign_inventory",
     ],
     "add_categories": {

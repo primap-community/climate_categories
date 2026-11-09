@@ -7,5 +7,7 @@
   is part of ``World``. ``ESH_in_MAR`` includes Western Sahara (``ESH``) in Morocco
   (``MAR``). ``MSR_PCN_in_GBR`` includes Montserrat and Pitcairn, which are not
   covered by the inventory of the United Kingdom, but have a tiny population, in the
-  United Kingdom (``GBR``). The options ``territories_in_sovereign_inventory``,
+  United Kingdom (``GBR``). ``PCN_not_in_World`` removes Pitcairn (``PCN``), for which
+  practically no emissions data exist, from ``World``. The options
+  ``territories_in_sovereign_inventory``,
   ``Antilles``, and ``MSR_PCN_in_GBR`` are not supported together with ``GCAM``.

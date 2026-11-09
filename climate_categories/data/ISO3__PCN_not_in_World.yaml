@@ -1,0 +1,12 @@
+option: PCN_not_in_World
+title: Pitcairn not part of World
+comment: Pitcairn (PCN) is not part of World, but stays available as a category.
+  Practically no emissions data exist for Pitcairn, so use this for data sets
+  which do not report it, so that World contains only countries and territories
+  with data.
+last_update: '2026-11-09'
+conflicts:
+- MSR_PCN_in_GBR
+leave_parents:
+  PCN:
+  - World
