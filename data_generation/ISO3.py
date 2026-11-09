@@ -29,9 +29,7 @@ URL_WITHDRAWN = (
 DATA_DIR = pathlib.Path("./climate_categories/data")
 LAST_UPDATE = datetime.date(2026, 9, 24)
 # Last update of the options introduced with the option mechanism.
-OPTIONS_LAST_UPDATE = datetime.date(2026, 10, 12)
-# Last update of the historical and CEDS options.
-HISTORICAL_CEDS_LAST_UPDATE = datetime.date(2026, 10, 13)
+OPTIONS_LAST_UPDATE = datetime.date(2026, 11, 9)
 
 # Kosovo is not part of ISO 3166-1, but used in some data sources like GCAM.
 KOSOVO = {
@@ -77,6 +75,8 @@ TERRITORIES_IN_SOVEREIGN_INVENTORY = {
     "NOR": ["SJM"],
     # The autonomous territory of Åland, not reported separately.
     "FIN": ["ALA"],
+    # Tokelau, since the 2019 submission, reported under the sector "Other".
+    "NZL": ["TKL"],
 }
 
 # The Least Developed Countries with the year of their inclusion in the list, from the
@@ -251,9 +251,36 @@ SUCCESSORS = {
 # Definitions of PRIMAP-hist up to v2.x, from the primap1 country table
 # (SIMCAP_EM_COUNTRYTABLE_v8.3.xlsx). They reproduce the regions of PRIMAP-hist v2.5 to
 # v2.8 exactly.
-# PRIMAP-hist up to v2.x included these unpopulated territories in their sovereign
-# country, and MSR in GBR.
-PRIMAP1_MERGED = {"MSR": "GBR", "HMD": "AUS", "ATF": "FRA", "UMI": "USA"}
+# The territories which PRIMAP-hist up to v2.x included in their sovereign country.
+# This is a fixed list, independent of TERRITORIES_IN_SOVEREIGN_INVENTORY, so that
+# changes in what national inventories cover don't change the countries of v2.x. Unlike
+# that list, it has MSR and the unpopulated HMD, ATF, and UMI, but not TKL.
+PRIMAP1_MERGED = {
+    territory: sovereign
+    for sovereign, territories in {
+        "GBR": ["GGY", "IMN", "JEY", "BMU", "CYM", "FLK", "GIB", "MSR"],
+        "FRA": [
+            "GLP",
+            "GUF",
+            "MTQ",
+            "MYT",
+            "REU",
+            "MAF",
+            "BLM",
+            "SPM",
+            "WLF",
+            "PYF",
+            "NCL",
+            "ATF",
+        ],
+        "USA": ["ASM", "GUM", "MNP", "PRI", "VIR", "UMI"],
+        "AUS": ["NFK", "CXR", "CCK", "HMD"],
+        "DNK": ["FRO", "GRL"],
+        "NOR": ["SJM"],
+        "FIN": ["ALA"],
+    }.items()
+    for territory in territories
+}
 # PRIMAP-hist up to v2.x did not report these territories. They are kept outside of
 # World, because its input data partly contain them.
 PRIMAP1_NOT_REPORTED = ("BVT", "IOT", "PCN", "SGS")
@@ -442,7 +469,6 @@ ALIASES = {
         "historical",
         "PRIMAP1",
         "PSE_in_ISR",
-        "territories_in_sovereign_inventory",
         "UNFCCC",
     ),
     # PRIMAP-hist up to v2.x, with the codes of its input data
@@ -459,7 +485,6 @@ ALIASES = {
         "PRIMAP1_inputs",
         "PSE_in_ISR",
         "RCP",
-        "territories_in_sovereign_inventory",
         "UNFCCC",
     ),
 }
@@ -1247,7 +1272,7 @@ def historical_option(
         "children.",
         references="ISO 3166-3 in the iso-codes package, "
         "https://salsa.debian.org/iso-codes-team/iso-codes",
-        last_update=HISTORICAL_CEDS_LAST_UPDATE,
+        last_update=OPTIONS_LAST_UPDATE,
         add_categories=withdrawn_countries(known_codes),
         update_categories=historical_names(),
     )
@@ -1300,7 +1325,8 @@ Inventory of U.S. Greenhouse Gas Emissions and Sinks 1990-2022, chapter 3, https
 National Inventory Report 2022, volume 1, section 1.7.2, https://www.dcceew.gov.au/climate-change/publications/national-inventory-reports;
 Denmark's National Inventory Document 2026, chapter 1, https://unfccc.int/sites/default/files/resource/Denmark%27s%20National%20Inventory%20Document%202026.pdf;
 Greenhouse Gas Emissions 1990-2024, National Inventory Document (Norway), section 1.7.1, https://unfccc.int/sites/default/files/resource/Norway%20National%20Inventory%20Document%202026.pdf;
-Greenhouse gas emissions in Finland 1990 to 2019, section 1.7, https://stat.fi/meta/kas/nir_en.html""",
+Greenhouse gas emissions in Finland 1990 to 2019, section 1.7, https://stat.fi/meta/kas/nir_en.html;
+New Zealand's Greenhouse Gas Inventory 1990-2024, volume 1, section ES.1, https://environment.govt.nz/assets/publications/GhG-Inventory/GHG-Inventory-2026/Volume-1-GHG-Inventory-2026.docx""",
         last_update=OPTIONS_LAST_UPDATE,
         merge_into={
             territory: sovereign
@@ -1349,7 +1375,7 @@ def ceds_option() -> climate_categories.CategorizationOption:
         "not part of World.",
         references="CEDS master country list, "
         "https://github.com/JGCRI/CEDS/blob/master/input/mappings/Master_Country_List.csv",
-        last_update=HISTORICAL_CEDS_LAST_UPDATE,
+        last_update=OPTIONS_LAST_UPDATE,
         add_categories={
             "CEDS|global": {
                 "title": "International shipping and aviation (CEDS)",
@@ -1393,8 +1419,11 @@ def primap1_option() -> climate_categories.CategorizationOption:
         name="PRIMAP1",
         title="PRIMAP-hist up to v2.x",
         comment="The countries and regions of PRIMAP-hist up to v2.x, which was "
-        "produced with the primap1 library. Montserrat (MSR) and the unpopulated "
-        "territories HMD, ATF, and UMI are included in their sovereign country, BVT, "
+        "produced with the primap1 library. Dependent territories are included in "
+        "their sovereign country as in PRIMAP-hist v2.x, independent of the option "
+        "territories_in_sovereign_inventory: unlike that option, Montserrat (MSR) and "
+        "the unpopulated territories HMD, ATF, and UMI are included in their "
+        "sovereign country and Tokelau (TKL) is not. BVT, "
         "IOT, PCN, and SGS are not part of World, so that World contains the "
         "countries and territories of PRIMAP-hist. The region codes of PRIMAP-hist v2.x refer to "
         "the definitions of PRIMAP-hist v2.x: LDC to LDC_2012, AOSIS to "
@@ -1410,10 +1439,14 @@ Gütschow et al. (2016), The PRIMAP-hist national historical emissions time seri
             "groups",
             "historical",
             "PSE_in_ISR",
-            "territories_in_sovereign_inventory",
             "UNFCCC",
         ),
-        conflicts=("Kosovo", "MSR_PCN_in_GBR", "no_unpopulated"),
+        conflicts=(
+            "Kosovo",
+            "MSR_PCN_in_GBR",
+            "no_unpopulated",
+            "territories_in_sovereign_inventory",
+        ),
         add_categories={
             "AOSIS_PRIMAP1": {
                 "title": "Alliance of Small Island States with observers "

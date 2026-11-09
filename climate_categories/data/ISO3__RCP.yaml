@@ -12,7 +12,7 @@ comment: The regions of the Representative Concentration Pathways (RCPs) in the
   option, and their sovereign country stays in its own region.
 references: RCP Database (version 2.0), region definitions,
   https://tntcat.iiasa.ac.at/RcpDb/dsd?Action=htmlpage&page=about
-last_update: '2026-10-12'
+last_update: '2026-11-09'
 add_categories:
   RCP|R10NAM:
     title: Northern America (RCP, 10 regions)

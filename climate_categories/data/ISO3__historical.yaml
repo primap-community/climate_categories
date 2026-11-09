@@ -10,7 +10,7 @@ comment: Countries which were withdrawn from ISO 3166-1, like the USSR (SUN) or
   country, like the German Democratic Republic (DDR), have no children.
 references: ISO 3166-3 in the iso-codes package,
   https://salsa.debian.org/iso-codes-team/iso-codes
-last_update: '2026-10-13'
+last_update: '2026-11-09'
 add_categories:
   AFI:
     title: French Afars and Issas

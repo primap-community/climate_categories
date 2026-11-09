@@ -6,7 +6,7 @@ comment: Montserrat (MSR) and Pitcairn (PCN) are not listed separately, they are
   national greenhouse gas inventory of the United Kingdom does not cover them.
   Use this together with territories_in_sovereign_inventory for data sources
   which do not report them separately.
-last_update: '2026-10-12'
+last_update: '2026-11-09'
 merge_into:
   MSR: GBR
   PCN: GBR

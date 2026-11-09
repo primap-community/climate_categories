@@ -12,7 +12,7 @@ comment: The regions of the RC5 and RC10 region sets of the IPCC Fifth
   option, and their sovereign country stays in its own region.
 references: 'IPCC (2014), Annex II: Metrics & Methodology, section A.II.2, in: Climate
   Change 2014: Mitigation of Climate Change, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-ii.pdf'
-last_update: '2026-10-12'
+last_update: '2026-11-09'
 add_categories:
   AR5|NAM:
     title: North America (IPCC AR5 RC10)

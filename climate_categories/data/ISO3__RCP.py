@@ -5,7 +5,7 @@ spec = {
     "title": "RCP regions",
     "comment": "The regions of the Representative Concentration Pathways (RCPs) in the RCP Database, with codes like RCP|OECD90 for the 5 regions and RCP|R10NAM for the 10 regions. The 5 regions have the 10 regions as children. The source only assigns 188 countries to regions, many small countries and territories are not part of any region, for example Antigua and Barbuda (ATG), Kiribati (KIR), and Andorra (AND). Dependent territories are in the region of their location, which is not always the region of their sovereign country. If they are merged into their sovereign country, for example with the option territories_in_sovereign_inventory, they are not part of any region of this option, and their sovereign country stays in its own region.",
     "references": "RCP Database (version 2.0), region definitions, https://tntcat.iiasa.ac.at/RcpDb/dsd?Action=htmlpage&page=about",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "add_categories": {
         "RCP|R10NAM": {
             "title": "Northern America (RCP, 10 regions)",

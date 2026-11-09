@@ -14,7 +14,7 @@ references: "Van Aardenne et al. (2001), A 1°x1° resolution data set of histor
   anthropogenic trace gas emissions for the period 1890-1990, https://doi.org/10.1029/2000GB001265;\n\
   Olivier et al. (1996), Description of EDGAR Version 2.0, RIVM report 771060002,
   appendix 1, table R.1.1, https://www.rivm.nl/bibliotheek/rapporten/771060002.pdf"
-last_update: '2026-10-12'
+last_update: '2026-11-09'
 add_categories:
   EDGAR-HYDE|Canada:
     title: Canada (EDGAR-HYDE)

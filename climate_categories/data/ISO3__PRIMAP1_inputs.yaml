@@ -8,7 +8,7 @@ comment: The codes which primap1, which produced PRIMAP-hist up to v2.x, used in
   SUN.
 references: PRIMAP-hist v2.8 input data,
   https://github.com/primap-community/PRIMAP-hist_data
-last_update: '2026-10-12'
+last_update: '2026-11-09'
 requires:
 - AR5
 - EDGAR_HYDE

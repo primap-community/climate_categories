@@ -62,7 +62,6 @@ spec = {
             "historical",
             "PRIMAP1",
             "PSE_in_ISR",
-            "territories_in_sovereign_inventory",
             "UNFCCC",
         ],
         "ISO3_PRIMAP1_INPUTS": [
@@ -78,7 +77,6 @@ spec = {
             "PRIMAP1_inputs",
             "PSE_in_ISR",
             "RCP",
-            "territories_in_sovereign_inventory",
             "UNFCCC",
         ],
     },

@@ -4,6 +4,6 @@ spec = {
     "option": "PSE_in_ISR",
     "title": "Palestine included in Israel",
     "comment": "Palestine (PSE) is not listed separately, it is assumed to be included in Israel (ISR), so that sums over countries stay complete. Use this for data sources which do not report Palestine separately.",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "merge_into": {"PSE": "ISR"},
 }

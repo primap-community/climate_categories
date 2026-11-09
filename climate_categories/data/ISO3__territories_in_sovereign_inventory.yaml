@@ -15,8 +15,9 @@ references: "UK Greenhouse Gas Inventory, 1990 to 2024, chapter 1, https://unfcc
   Denmark's National Inventory Document 2026, chapter 1, https://unfccc.int/sites/default/files/resource/Denmark%27s%20National%20Inventory%20Document%202026.pdf;\n\
   Greenhouse Gas Emissions 1990-2024, National Inventory Document (Norway), section
   1.7.1, https://unfccc.int/sites/default/files/resource/Norway%20National%20Inventory%20Document%202026.pdf;\n\
-  Greenhouse gas emissions in Finland 1990 to 2019, section 1.7, https://stat.fi/meta/kas/nir_en.html"
-last_update: '2026-10-12'
+  Greenhouse gas emissions in Finland 1990 to 2019, section 1.7, https://stat.fi/meta/kas/nir_en.html;\n\
+  New Zealand's Greenhouse Gas Inventory 1990-2024, volume 1, section ES.1, https://environment.govt.nz/assets/publications/GhG-Inventory/GHG-Inventory-2026/Volume-1-GHG-Inventory-2026.docx"
+last_update: '2026-11-09'
 merge_into:
   GGY: GBR
   IMN: GBR
@@ -48,3 +49,4 @@ merge_into:
   GRL: DNK
   SJM: NOR
   ALA: FIN
+  TKL: NZL
