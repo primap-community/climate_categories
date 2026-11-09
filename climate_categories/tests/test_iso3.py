@@ -305,6 +305,7 @@ def test_options():
         "Antilles",
         "ESH_in_MAR",
         "MSR_PCN_in_GBR",
+        "PCN_not_in_World",
         "Kosovo",
         "GCAM",
         "PSE_in_ISR",
@@ -521,17 +522,28 @@ def test_gcam_territories_unsupported(option: str):
         )
 
 
+def test_pcn_not_in_world():
+    iso3 = climate_categories.cats["ISO3[PCN_not_in_World]"]
+    assert "PCN" in iso3
+    assert "PCN" not in children(iso3, "World")
+    assert len(children(iso3, "World")) == (
+        len(children(climate_categories.ISO3, "World")) - 1
+    )
+    with pytest.raises(ValueError, match="conflict"):
+        climate_categories.ISO3.with_options(["PCN_not_in_World", "MSR_PCN_in_GBR"])
+
+
 def test_primap_territories():
     # the territory options give the PRIMAP-hist country list
     iso3 = climate_categories.ISO3_PRIMAP2
     assert iso3.canonical_name == (
-        "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,no_unpopulated,PSE_in_ISR,"
-        "territories_in_sovereign_inventory,UNFCCC]"
+        "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,no_unpopulated,"
+        "PCN_not_in_World,PSE_in_ISR,territories_in_sovereign_inventory,UNFCCC]"
     )
     world = children(iso3, "World")
-    assert len(world) == 207
-    assert {"ANT", "MSR", "PCN"} <= world
-    assert not {"ATA", "CUW", "GRL", "ESH", "PSE", "TKL"} & world
+    assert len(world) == 206
+    assert {"ANT", "MSR"} <= world
+    assert not {"ATA", "CUW", "GRL", "ESH", "PCN", "PSE", "TKL"} & world
     # no territory is a party to the UNFCCC
     without = climate_categories.cats["ISO3[EU,groups,historical,PSE_in_ISR,UNFCCC]"]
     for code in ("UNFCCC", "Annex-I", "Non-Annex-I", "AOSIS", "LDC"):
@@ -575,7 +587,9 @@ def test_primap1():
     assert "RUS" not in children(iso3, "UMBRELLA_2023")
 
 
-@pytest.mark.parametrize("option", ["Kosovo", "MSR_PCN_in_GBR", "no_unpopulated"])
+@pytest.mark.parametrize(
+    "option", ["Kosovo", "MSR_PCN_in_GBR", "no_unpopulated", "PCN_not_in_World"]
+)
 def test_primap1_conflicts(option: str):
     options = [*climate_categories.ISO3_PRIMAP1.enabled_options, option]
     with pytest.raises(ValueError, match="conflicts"):
@@ -588,7 +602,7 @@ def model_regions_world(regions: list[str]) -> dict[str, list[str]]:
         [*climate_categories.ISO3_PRIMAP2.enabled_options, "AR5", "EDGAR_HYDE", "RCP"]
     )
     world = children(iso3, "World")
-    assert len(world) == 207
+    assert len(world) == 206
     found: dict[str, list[str]] = {}
     for region in regions:
         for descendant in iso3.descendants(region):
@@ -607,7 +621,7 @@ def test_ar5():
     # Taiwan, Hong Kong, and Macao are not part of any region
     found = model_regions_world([f"AR5|{r}" for r in rc10])
     assert all(len(regions) == 1 for regions in found.values())
-    assert len(found) == 204
+    assert len(found) == 203
     assert not {"HKG", "MAC", "TWN"} & set(found)
     # ANT takes over the memberships of CUW, SXM, and BES
     assert found["ANT"] == ["AR5|LAM"]
@@ -638,7 +652,7 @@ def test_edgar_hyde():
     found = model_regions_world([c for c in iso3 if c.startswith("EDGAR-HYDE|")])
     assert all(len(regions) == 1 for regions in found.values())
     # only the British Virgin Islands are not part of any region
-    assert len(found) == 206
+    assert len(found) == 205
     assert "VGB" not in found
 
 

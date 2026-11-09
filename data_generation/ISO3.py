@@ -456,6 +456,7 @@ ALIASES = {
         "groups",
         "historical",
         "no_unpopulated",
+        "PCN_not_in_World",
         "PSE_in_ISR",
         "territories_in_sovereign_inventory",
         "UNFCCC",
@@ -1118,6 +1119,7 @@ def main():
         antilles_option(),
         esh_in_mar_option(),
         msr_pcn_in_gbr_option(),
+        pcn_not_in_world_option(),
         ceds_option(),
         primap1_option(),
         ISO3_model_regions.ar5_option(OPTIONS_LAST_UPDATE),
@@ -1414,6 +1416,20 @@ def msr_pcn_in_gbr_option() -> climate_categories.CategorizationOption:
     )
 
 
+def pcn_not_in_world_option() -> climate_categories.CategorizationOption:
+    return climate_categories.CategorizationOption(
+        name="PCN_not_in_World",
+        title="Pitcairn not part of World",
+        comment="Pitcairn (PCN) is not part of World, but stays available as a "
+        "category. Practically no emissions data exist for Pitcairn, so use this for "
+        "data sets which do not report it, so that World contains only countries and "
+        "territories with data.",
+        last_update=OPTIONS_LAST_UPDATE,
+        conflicts=("MSR_PCN_in_GBR",),
+        leave_parents={"PCN": ["World"]},
+    )
+
+
 def primap1_option() -> climate_categories.CategorizationOption:
     return climate_categories.CategorizationOption(
         name="PRIMAP1",
@@ -1445,6 +1461,7 @@ Gütschow et al. (2016), The PRIMAP-hist national historical emissions time seri
             "Kosovo",
             "MSR_PCN_in_GBR",
             "no_unpopulated",
+            "PCN_not_in_World",
             "territories_in_sovereign_inventory",
         ),
         add_categories={
