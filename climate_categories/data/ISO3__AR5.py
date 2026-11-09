@@ -5,7 +5,7 @@ spec = {
     "title": "IPCC AR5 regions",
     "comment": "The regions of the RC5 and RC10 region sets of the IPCC Fifth Assessment Report, Working Group III, with codes like AR5|NAM. The RC5 regions EIT and LAM are identical to the RC10 regions of the same name, the other RC5 regions have the RC10 regions as children. The source does not assign Taiwan (TWN), Hong Kong (HKG), Macao (MAC), Saint Barthélemy (BLM), and Saint Martin (MAF) to any region. Dependent territories are in the region of their location, which is not always the region of their sovereign country. If they are merged into their sovereign country, for example with the option territories_in_sovereign_inventory, they are not part of any region of this option, and their sovereign country stays in its own region.",
     "references": "IPCC (2014), Annex II: Metrics & Methodology, section A.II.2, in: Climate Change 2014: Mitigation of Climate Change, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-ii.pdf",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "add_categories": {
         "AR5|NAM": {
             "title": "North America (IPCC AR5 RC10)",

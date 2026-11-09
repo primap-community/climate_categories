@@ -4,7 +4,7 @@ spec = {
     "option": "Antilles",
     "title": "Netherlands Antilles",
     "comment": "Curaçao (CUW), Sint Maarten (SXM), and Bonaire, Sint Eustatius and Saba (BES) are not listed separately, but included in the Netherlands Antilles (ANT), which were dissolved on 2010-10-10. Use this for data sources which report the Netherlands Antilles instead of their successors.",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "requires": ["historical"],
     "merge_into": {"CUW": "ANT", "SXM": "ANT", "BES": "ANT"},
 }

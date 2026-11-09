@@ -434,8 +434,10 @@ def test_territories_in_sovereign_inventory():
     assert len(iso3["FRA"].info["includes"]) == 11
     for code in ("GRL", "PRI", "REU", "NFK", "ALA", "SJM", "GL"):
         assert code not in iso3
+    assert iso3["NZL"].info["includes"] == ["TKL"]
+    assert "TKL" not in iso3
     # not included in the inventory of their sovereign country
-    for code in ("ABW", "AIA", "MSR", "PCN", "TKL", "HKG"):
+    for code in ("ABW", "AIA", "MSR", "PCN", "HKG"):
         assert code in iso3
     # unpopulated and disputed territories are left to other options
     for code in ("HMD", "ATF", "UMI", "ESH"):
@@ -443,7 +445,7 @@ def test_territories_in_sovereign_inventory():
     assert "includes" not in climate_categories.ISO3["DNK"].info
     assert (
         len(iso3["World"].children[0])
-        == len(climate_categories.ISO3["World"].children[0]) - 30
+        == len(climate_categories.ISO3["World"].children[0]) - 31
     )
 
 
@@ -505,7 +507,7 @@ def test_msr_pcn_in_gbr():
     }
     assert (
         len(iso3["World"].children[0])
-        == len(climate_categories.ISO3["World"].children[0]) - 32
+        == len(climate_categories.ISO3["World"].children[0]) - 33
     )
 
 
@@ -527,9 +529,9 @@ def test_primap_territories():
         "territories_in_sovereign_inventory,UNFCCC]"
     )
     world = children(iso3, "World")
-    assert len(world) == 208
+    assert len(world) == 207
     assert {"ANT", "MSR", "PCN"} <= world
-    assert not {"ATA", "CUW", "GRL", "ESH", "PSE"} & world
+    assert not {"ATA", "CUW", "GRL", "ESH", "PSE", "TKL"} & world
     # no territory is a party to the UNFCCC
     without = climate_categories.cats["ISO3[EU,groups,historical,PSE_in_ISR,UNFCCC]"]
     for code in ("UNFCCC", "Annex-I", "Non-Annex-I", "AOSIS", "LDC"):
@@ -539,13 +541,12 @@ def test_primap_territories():
 def test_primap1():
     iso3 = climate_categories.ISO3_PRIMAP1
     assert iso3.canonical_name == (
-        "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,PRIMAP1,PSE_in_ISR,"
-        "territories_in_sovereign_inventory,UNFCCC]"
+        "ISO3[Antilles,ESH_in_MAR,EU,groups,historical,PRIMAP1,PSE_in_ISR,UNFCCC]"
     )
     # the country list of PRIMAP-hist v2.x
     world = children(iso3, "EARTH")
     assert len(world) == 207
-    assert {"ANT", "ATA"} <= world
+    assert {"ANT", "ATA", "TKL"} <= world
     assert not {"MSR", "HMD", "ATF", "UMI", "BVT", "IOT", "PCN", "SGS"} & world
     # territories which PRIMAP-hist v2.x did not report are kept outside of World
     for code in ("BVT", "IOT", "PCN", "SGS"):
@@ -587,7 +588,7 @@ def model_regions_world(regions: list[str]) -> dict[str, list[str]]:
         [*climate_categories.ISO3_PRIMAP2.enabled_options, "AR5", "EDGAR_HYDE", "RCP"]
     )
     world = children(iso3, "World")
-    assert len(world) == 208
+    assert len(world) == 207
     found: dict[str, list[str]] = {}
     for region in regions:
         for descendant in iso3.descendants(region):
@@ -606,7 +607,7 @@ def test_ar5():
     # Taiwan, Hong Kong, and Macao are not part of any region
     found = model_regions_world([f"AR5|{r}" for r in rc10])
     assert all(len(regions) == 1 for regions in found.values())
-    assert len(found) == 205
+    assert len(found) == 204
     assert not {"HKG", "MAC", "TWN"} & set(found)
     # ANT takes over the memberships of CUW, SXM, and BES
     assert found["ANT"] == ["AR5|LAM"]
@@ -637,7 +638,7 @@ def test_edgar_hyde():
     found = model_regions_world([c for c in iso3 if c.startswith("EDGAR-HYDE|")])
     assert all(len(regions) == 1 for regions in found.values())
     # only the British Virgin Islands are not part of any region
-    assert len(found) == 207
+    assert len(found) == 206
     assert "VGB" not in found
 
 

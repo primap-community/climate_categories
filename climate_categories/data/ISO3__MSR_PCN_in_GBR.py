@@ -4,6 +4,6 @@ spec = {
     "option": "MSR_PCN_in_GBR",
     "title": "Montserrat and Pitcairn included in the United Kingdom",
     "comment": "Montserrat (MSR) and Pitcairn (PCN) are not listed separately, they are assumed to be included in the United Kingdom (GBR). Their population is tiny, so for many applications it is sensible to include them, even though the national greenhouse gas inventory of the United Kingdom does not cover them. Use this together with territories_in_sovereign_inventory for data sources which do not report them separately.",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "merge_into": {"MSR": "GBR", "PCN": "GBR"},
 }

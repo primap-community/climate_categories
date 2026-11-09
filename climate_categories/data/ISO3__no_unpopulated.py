@@ -4,7 +4,7 @@ spec = {
     "option": "no_unpopulated",
     "title": "no unpopulated territories",
     "comment": "Territories without permanent population, like Antarctica (ATA) or Bouvet Island (BVT), are removed. Use this for data sources which do not report them.",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "remove_categories": {
         "codes": ["ATA", "ATF", "BVT", "HMD", "IOT", "SGS", "UMI"],
         "comment": "Territories without permanent population are removed.",

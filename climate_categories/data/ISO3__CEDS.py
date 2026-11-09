@@ -5,7 +5,7 @@ spec = {
     "title": "Community Emissions Data System",
     "comment": "The areas of the Community Emissions Data System (CEDS) which are not countries: emissions which CEDS does not allocate to countries, which are international shipping and aviation, under the CEDS code 'global'. They are not part of World.",
     "references": "CEDS master country list, https://github.com/JGCRI/CEDS/blob/master/input/mappings/Master_Country_List.csv",
-    "last_update": "2026-10-13",
+    "last_update": "2026-11-09",
     "add_categories": {
         "CEDS|global": {
             "title": "International shipping and aviation (CEDS)",

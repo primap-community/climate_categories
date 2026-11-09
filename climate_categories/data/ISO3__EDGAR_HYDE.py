@@ -5,7 +5,7 @@ spec = {
     "title": "EDGAR-HYDE regions",
     "comment": "The 13 regions of the EDGAR-HYDE historical emissions data set, which are the regions of EDGAR 2.0, with codes like EDGAR-HYDE|Africa. The regions Canada, USA, and Japan only contain the country of the same name. The source does not assign Bermuda (BMU), the British Virgin Islands (VGB), Mayotte (MYT), Palestine (PSE), and some other territories to any region. Dependent territories are in the region of their location, which is not always the region of their sovereign country. If they are merged into their sovereign country, for example with the option territories_in_sovereign_inventory, they are not part of any region of this option, and their sovereign country stays in its own region.",
     "references": "Van Aardenne et al. (2001), A 1°x1° resolution data set of historical anthropogenic trace gas emissions for the period 1890-1990, https://doi.org/10.1029/2000GB001265;\nOlivier et al. (1996), Description of EDGAR Version 2.0, RIVM report 771060002, appendix 1, table R.1.1, https://www.rivm.nl/bibliotheek/rapporten/771060002.pdf",
-    "last_update": "2026-10-12",
+    "last_update": "2026-11-09",
     "add_categories": {
         "EDGAR-HYDE|Canada": {
             "title": "Canada (EDGAR-HYDE)",
